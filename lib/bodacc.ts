@@ -2,48 +2,62 @@ import type { AlerteSignal, BodaccItem } from './types';
 
 const BODACC_BASE = 'https://bodacc-datadila.opendatasoft.com/api/v2';
 
+// BODACC indexes by SIREN (9 first digits of the SIRET).
+function siren(siret: string): string {
+  return siret.replace(/\D/g, '').slice(0, 9);
+}
+
+function mapRecord(rec: any): BodaccItem {
+  return {
+    type:
+      rec.familleavis_lib ??
+      rec.familleavis ??
+      rec.typeavis_lib ??
+      rec.typeavis ??
+      'Annonce',
+    date: rec.dateparution ?? '',
+    tribunal: rec.tribunal ?? rec.tribunal_lib ?? undefined,
+    description:
+      rec.listepersonnes?.personne?.[0]?.denomination ??
+      rec.commercant ??
+      rec.jugement ??
+      rec.typeannonce_lib ??
+      undefined,
+  };
+}
+
 export async function fetchBodacc(siret: string): Promise<BodaccItem[]> {
+  const sn = siren(siret);
+  if (!sn) return [];
+  const where = encodeURIComponent(`siren = "${sn}"`);
   try {
-    const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=registre%20like%20%22${siret}%22&limit=10&order_by=dateparution%20desc`;
+    const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=${where}&limit=10&order_by=dateparution%20desc`;
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) return [];
     const json: any = await res.json();
     const records: any[] = json?.records ?? [];
-    return records.map((r) => {
-      const rec = r.record?.fields ?? r;
-      return {
-        type: rec.familleavis_lib ?? rec.familleavis ?? 'Annonce',
-        date: rec.dateparution ?? '',
-        tribunal: rec.tribunal ?? undefined,
-        description:
-          rec.listepersonnes?.personne?.[0]?.denomination ??
-          rec.typeannonce_lib ??
-          rec.jugement ??
-          undefined,
-      } as BodaccItem;
-    });
+    return records.map((r) => mapRecord(r.record?.fields ?? r));
   } catch {
     return [];
   }
 }
 
-export async function fetchInfogreffeSignals(siret: string): Promise<BodaccItem[]> {
-  // Infogreffe public endpoint is limited; we use Bodacc's judicial category as a proxy.
+export async function fetchInfogreffeSignals(
+  siret: string
+): Promise<BodaccItem[]> {
+  // Infogreffe public endpoint is limited; we use Bodacc judicial annonces as a proxy.
+  const sn = siren(siret);
+  if (!sn) return [];
+  const where = encodeURIComponent(
+    `siren = "${sn}" AND familleavis_lib like "procedure"`
+  );
   try {
-    const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=registre%20like%20%22${siret}%22%20and%20familleavis_lib%20like%20%22procedure%20collective%22&limit=5&order_by=dateparution%20desc`;
+    const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=${where}&limit=5&order_by=dateparution%20desc`;
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) return [];
     const json: any = await res.json();
     const records: any[] = json?.records ?? [];
-    return records.map((r) => {
-      const rec = r.record?.fields ?? r;
-      return {
-        type: rec.familleavis_lib ?? 'Procédure',
-        date: rec.dateparution ?? '',
-        tribunal: rec.tribunal,
-        description: rec.jugement ?? rec.typeannonce_lib,
-      } as BodaccItem;
-    });
+    return records.map((r) => mapRecord(r.record?.fields ?? r));
   } catch {
     return [];
   }

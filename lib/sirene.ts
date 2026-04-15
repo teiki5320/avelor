@@ -1,5 +1,8 @@
 import type { CompanyData } from './types';
 
+// Free, no-key government API. Backed by Sirene data.
+const RECHERCHE_BASE = 'https://recherche-entreprises.api.gouv.fr/search';
+// Fallback (requires key, kept for completeness).
 const SIRENE_BASE = 'https://api.insee.fr/entreprises/sirene/V3';
 
 const FORMES: Record<string, string> = {
@@ -26,7 +29,7 @@ function formatForme(code: string | undefined): string {
   if (code.startsWith('57')) return 'SAS / SASU';
   if (code.startsWith('55')) return 'SA';
   if (code.startsWith('65')) return 'SCI';
-  return code;
+  return `Forme ${code}`;
 }
 
 function formatEffectif(code: string | undefined): string {
@@ -49,10 +52,9 @@ function formatEffectif(code: string | undefined): string {
   return map[code ?? ''] ?? 'Non renseigné';
 }
 
-export async function fetchSirene(siret: string): Promise<CompanyData> {
-  const cleanSiret = siret.replace(/\s/g, '');
-  const fallback: CompanyData = {
-    siret: cleanSiret,
+function fallbackFor(siret: string): CompanyData {
+  return {
+    siret,
     nom: 'Votre entreprise',
     formeJuridique: 'Non renseignée',
     naf: '',
@@ -61,31 +63,78 @@ export async function fetchSirene(siret: string): Promise<CompanyData> {
     adresse: '',
     codePostal: '',
     ville: '',
-    departement: cleanSiret.slice(0, 2),
+    departement: siret.slice(0, 2),
     fetched: false,
   };
+}
 
+async function fetchFromRechercheEntreprises(
+  siret: string
+): Promise<CompanyData | null> {
+  try {
+    const url = `${RECHERCHE_BASE}?q=${siret}&page=1&per_page=1`;
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+    if (!res.ok) return null;
+    const json: any = await res.json();
+    const result = json?.results?.[0];
+    if (!result) return null;
+
+    const matching =
+      result.matching_etablissements?.find((e: any) => e.siret === siret) ??
+      result.matching_etablissements?.[0] ??
+      result.siege;
+
+    const codePostal: string = matching?.code_postal ?? result.siege?.code_postal ?? '';
+    const ville: string = matching?.libelle_commune ?? result.siege?.libelle_commune ?? '';
+    const departement = codePostal.slice(0, 2) || siret.slice(0, 2);
+    const nom: string =
+      result.nom_complet ??
+      result.nom_raison_sociale ??
+      [result.prenom_usuel, result.nom].filter(Boolean).join(' ') ??
+      'Votre entreprise';
+
+    return {
+      siret,
+      nom: nom.trim(),
+      formeJuridique: formatForme(result.nature_juridique),
+      naf: result.activite_principale ?? '',
+      nafLabel: result.libelle_activite_principale,
+      dateCreation: result.date_creation ?? '',
+      effectif: formatEffectif(result.tranche_effectif_salarie),
+      adresse: matching?.adresse ?? result.siege?.adresse ?? '',
+      codePostal,
+      ville,
+      departement,
+      fetched: true,
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchFromInseeSirene(
+  siret: string
+): Promise<CompanyData | null> {
   const apiKey = process.env.INSEE_API_KEY;
-  if (!apiKey) return fallback;
+  if (!apiKey) return null;
 
   try {
-    const res = await fetch(`${SIRENE_BASE}/siret/${cleanSiret}`, {
+    const res = await fetch(`${SIRENE_BASE}/siret/${siret}`, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         Accept: 'application/json',
       },
       next: { revalidate: 3600 },
     });
-
-    if (!res.ok) return fallback;
+    if (!res.ok) return null;
     const json: any = await res.json();
     const etab = json?.etablissement;
-    if (!etab) return fallback;
+    if (!etab) return null;
 
     const unit = etab.uniteLegale ?? {};
     const addr = etab.adresseEtablissement ?? {};
     const codePostal: string = addr.codePostalEtablissement ?? '';
-    const departement = codePostal.slice(0, 2) || cleanSiret.slice(0, 2);
+    const departement = codePostal.slice(0, 2) || siret.slice(0, 2);
 
     const nom =
       unit.denominationUniteLegale ??
@@ -101,12 +150,13 @@ export async function fetchSirene(siret: string): Promise<CompanyData> {
       .join(' ');
 
     return {
-      siret: cleanSiret,
+      siret,
       nom: nom.trim(),
       formeJuridique: formatForme(unit.categorieJuridiqueUniteLegale),
       naf: unit.activitePrincipaleUniteLegale ?? '',
       nafLabel: etab.activitePrincipaleEtablissement ?? unit.activitePrincipaleUniteLegale,
-      dateCreation: unit.dateCreationUniteLegale ?? etab.dateCreationEtablissement ?? '',
+      dateCreation:
+        unit.dateCreationUniteLegale ?? etab.dateCreationEtablissement ?? '',
       effectif: formatEffectif(unit.trancheEffectifsUniteLegale),
       adresse: addressParts,
       codePostal,
@@ -115,8 +165,19 @@ export async function fetchSirene(siret: string): Promise<CompanyData> {
       fetched: true,
     };
   } catch {
-    return fallback;
+    return null;
   }
+}
+
+export async function fetchSirene(siret: string): Promise<CompanyData> {
+  const cleanSiret = siret.replace(/\s/g, '');
+  // Primary: free public API — works without any key.
+  const primary = await fetchFromRechercheEntreprises(cleanSiret);
+  if (primary) return primary;
+  // Secondary: INSEE Sirene with user-provided key.
+  const secondary = await fetchFromInseeSirene(cleanSiret);
+  if (secondary) return secondary;
+  return fallbackFor(cleanSiret);
 }
 
 export function yearFromDate(d: string): string {
