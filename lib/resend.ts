@@ -14,11 +14,13 @@ export async function sendMagicLink(email: string, token: string): Promise<boole
   const resend = getResend();
   if (!resend) return false;
   const base = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://avelor.fr';
+  const from =
+    process.env.RESEND_FROM ?? 'AVELOR <onboarding@resend.dev>';
   const url = `${base}/fiche/${token}`;
 
   try {
     const { error } = await resend.emails.send({
-      from: 'AVELOR <bonjour@avelor.fr>',
+      from,
       to: email,
       subject: 'Votre fiche AVELOR est prête',
       html: `
