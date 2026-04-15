@@ -71,7 +71,10 @@ export default function Questionnaire({ siret }: Props) {
         body: JSON.stringify({ siret, reponses }),
       });
       const json = await res.json();
-      if (json?.token) {
+      // Only use the persisted token if the fiche was actually saved.
+      // Otherwise fall back to a base64-encoded local URL so the user still
+      // gets a working page even without Supabase configured.
+      if (json?.token && json?.persisted) {
         router.push(`/fiche/${json.token}`);
         return;
       }
@@ -79,7 +82,7 @@ export default function Questionnaire({ siret }: Props) {
       // fallback below
     }
 
-    // Fallback: encode into URL
+    // Fallback: encode into URL so the fiche renders without Supabase.
     const encoded = btoa(
       unescape(encodeURIComponent(JSON.stringify({ siret, reponses })))
     );
