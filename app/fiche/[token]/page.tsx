@@ -7,6 +7,7 @@ import BlocChecklist from '@/components/fiche/BlocChecklist';
 import BlocOrganismes from '@/components/fiche/BlocOrganismes';
 import BlocAlertes from '@/components/fiche/BlocAlertes';
 import SaveBanner from '@/components/fiche/SaveBanner';
+import ExportPDF from '@/components/fiche/ExportPDF';
 import { getFicheByToken } from '@/lib/supabase';
 import { fetchSirene } from '@/lib/sirene';
 import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodacc';
@@ -95,6 +96,18 @@ export default async function FichePage({ params, searchParams }: PageProps) {
 
   return (
     <section className="mx-auto max-w-3xl space-y-5 px-5 pb-24 sm:space-y-6">
+      {/* Print-only header */}
+      <div className="print-header hidden">
+        <p style={{ fontFamily: 'Georgia, serif', fontSize: '22pt', letterSpacing: '0.05em' }}>AVELOR</p>
+        <p style={{ fontSize: '10pt', color: '#666', marginTop: '4px' }}>
+          Fiche confidentielle · {company_data.nom} · SIRET {company_data.siret}
+        </p>
+      </div>
+
+      <div className="no-print flex items-center justify-between">
+        <ExportPDF companyName={company_data.nom} />
+      </div>
+
       {moralFragile && (
         <div
           role="note"
@@ -133,6 +146,12 @@ export default async function FichePage({ params, searchParams }: PageProps) {
         Cette fiche ne remplace pas un conseil personnalisé. Elle vous aide à
         y voir clair et à mobiliser les bons interlocuteurs.
       </p>
+
+      {/* Print-only footer */}
+      <div className="print-footer hidden">
+        <p>AVELOR · Accompagnement gratuit, confidentiel, sans jugement</p>
+        <p>Cette fiche ne remplace pas un conseil personnalisé.</p>
+      </div>
     </section>
   );
 }
