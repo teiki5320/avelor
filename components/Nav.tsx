@@ -8,6 +8,7 @@ const LINKS = [
   { href: '/procedures', label: 'Procédures' },
   { href: '/glossaire', label: 'Glossaire' },
   { href: '/accompagnant', label: 'J\'accompagne' },
+  { href: '/temoignages', label: 'Témoignages' },
   { href: '/parler', label: 'Parler à quelqu\'un' },
 ];
 
