@@ -8,6 +8,7 @@ import BlocOrganismes from '@/components/fiche/BlocOrganismes';
 import BlocAlertes from '@/components/fiche/BlocAlertes';
 import BlocPrescription from '@/components/fiche/BlocPrescription';
 import BlocPlanAction from '@/components/fiche/BlocPlanAction';
+import BlocAidesPersonnalisees from '@/components/fiche/BlocAides';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import { getFicheByToken } from '@/lib/supabase';
@@ -139,9 +140,10 @@ export default async function FichePage({ params, searchParams }: PageProps) {
       <AlertesBand alertes={alertes} />
 
       <BlocSoutien reponses={reponses} />
-      <BlocCalendrier reponses={reponses} />
+      <BlocCalendrier reponses={reponses} company={company_data} />
       <BlocChecklist reponses={reponses} />
-      <BlocPlanAction reponses={reponses} />
+      <BlocPlanAction reponses={reponses} company={company_data} />
+      <BlocAidesPersonnalisees reponses={reponses} company={company_data} />
       <BlocOrganismes groupes={groupes} />
       <BlocPrescription reponses={reponses} />
       <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />

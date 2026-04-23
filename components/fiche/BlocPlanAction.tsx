@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
-import type { Reponses } from '@/lib/types';
+import type { Reponses, CompanyData } from '@/lib/types';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
   reponses: Reponses;
+  company: CompanyData;
 }
 
 interface Action {
@@ -14,35 +15,38 @@ interface Action {
   custom?: boolean;
 }
 
-function buildDefaultActions(r: Reponses): Action[] {
+function buildDefaultActions(r: Reponses, c: CompanyData): Action[] {
   const actions: Action[] = [];
+  const dep = c.departement || '';
+  const ville = c.ville || '';
+
   actions.push({ id: 'soin', texte: 'Prendre soin de moi (APESA, médecin, sommeil)', done: false });
 
   if (r.situation === 'assignation') {
-    actions.push({ id: 'avocat-urgence', texte: 'Contacter un avocat en urgence (assignation reçue)', done: false });
+    actions.push({ id: 'avocat-urgence', texte: `Contacter un avocat en urgence${ville ? ` à ${ville}` : ''} (assignation reçue)`, done: false });
   }
   if (r.probleme === 'urssaf') {
-    actions.push({ id: 'urssaf-appel', texte: 'Appeler l\'URSSAF (36 98) pour demander un échelonnement', done: false });
+    actions.push({ id: 'urssaf-appel', texte: `Appeler l'URSSAF${dep ? ` (${dep})` : ''} au 36 98 pour demander un échelonnement`, done: false });
   }
   if (r.probleme === 'impots') {
-    actions.push({ id: 'impots-sie', texte: 'Contacter le SIE pour demander un délai de paiement', done: false });
+    actions.push({ id: 'impots-sie', texte: `Contacter le SIE${ville ? ` de ${ville}` : ''} pour demander un délai de paiement`, done: false });
   }
   if (r.probleme === 'banque') {
-    actions.push({ id: 'mediation-credit', texte: 'Saisir la médiation du crédit (Banque de France)', done: false });
+    actions.push({ id: 'mediation-credit', texte: `Saisir la médiation du crédit (Banque de France${dep ? `, dép. ${dep}` : ''})`, done: false });
   }
   if (r.probleme === 'fournisseurs') {
     actions.push({ id: 'fournisseur-lettre', texte: 'Écrire une lettre de demande de délai au fournisseur principal', done: false });
   }
 
-  actions.push({ id: 'cci', texte: 'Prendre RDV avec la CCI (accompagnement gratuit)', done: false });
+  actions.push({ id: 'cci', texte: `Prendre RDV avec la CCI${dep ? ` (${dep})` : ''} — accompagnement gratuit`, done: false });
   actions.push({ id: 'comptable', texte: 'Faire le point avec mon expert-comptable', done: false });
 
   if (r.effectif === 'salaries') {
     actions.push({ id: 'salaires', texte: 'Vérifier mes obligations vis-à-vis de l\'AGS et des salariés', done: false });
   }
 
-  actions.push({ id: 'tribunal', texte: 'Identifier mon tribunal de commerce', done: false });
-  actions.push({ id: 'bilan', texte: 'Rassembler mes derniers bilans et relevés bancaires', done: false });
+  actions.push({ id: 'tribunal', texte: `Identifier mon tribunal de commerce${ville ? ` (${ville})` : ''}`, done: false });
+  actions.push({ id: 'bilan', texte: `Rassembler les derniers bilans et relevés bancaires de ${c.nom !== 'Votre entreprise' ? c.nom : 'mon entreprise'}`, done: false });
 
   if (r.situation === 'redressement' || r.situation === 'assignation') {
     actions.push({ id: 'cessation', texte: 'Déclarer la cessation des paiements (délai : 45 jours max)', done: false });
@@ -53,7 +57,7 @@ function buildDefaultActions(r: Reponses): Action[] {
 
 const STORAGE_KEY = 'avelor_plan_action';
 
-export default function BlocPlanAction({ reponses }: Props) {
+export default function BlocPlanAction({ reponses, company }: Props) {
   const [actions, setActions] = useState<Action[]>([]);
   const [newText, setNewText] = useState('');
   const [loaded, setLoaded] = useState(false);
@@ -67,9 +71,9 @@ export default function BlocPlanAction({ reponses }: Props) {
         return;
       }
     } catch {}
-    setActions(buildDefaultActions(reponses));
+    setActions(buildDefaultActions(reponses, company));
     setLoaded(true);
-  }, [reponses]);
+  }, [reponses, company]);
 
   useEffect(() => {
     if (loaded) {

@@ -14,17 +14,18 @@ export default function IdentiteCard({ company }: Props) {
       </h2>
       <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-navy/60">
         <span>SIRET · {company.siret}</span>
+        {company.adresse && <span>{company.adresse}</span>}
         <span>
-          Département · {company.departement}
-          {company.ville ? ` · ${company.ville}` : ''}
+          {company.codePostal && `${company.codePostal} `}
+          {company.ville || `Département ${company.departement}`}
         </span>
       </div>
       <div className="mt-5 flex flex-wrap gap-2">
         {company.formeJuridique && (
           <span className="pastille">⚖️ {company.formeJuridique}</span>
         )}
-        {company.naf && (
-          <span className="pastille">🏷 NAF {company.naf}</span>
+        {(company.nafLabel || company.naf) && (
+          <span className="pastille">🏷 {company.nafLabel || `NAF ${company.naf}`}</span>
         )}
         {year !== '—' && <span className="pastille">📅 Depuis {year}</span>}
         {company.effectif && (

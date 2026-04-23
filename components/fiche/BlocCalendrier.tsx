@@ -1,22 +1,38 @@
-import type { Reponses } from '@/lib/types';
+import type { Reponses, CompanyData } from '@/lib/types';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
   reponses: Reponses;
+  company: CompanyData;
 }
 
 interface Jalon {
   delai: string;
+  date: string;
   texte: string;
   urgence?: 'rouge' | 'jaune' | 'vert';
 }
 
-function buildJalons(r: Reponses): Jalon[] {
+function formatDate(d: Date): string {
+  return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+}
+
+function addDays(days: number): Date {
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+function buildJalons(r: Reponses, c: CompanyData): Jalon[] {
   const jalons: Jalon[] = [];
+  const now = new Date();
+  const ville = c.ville || 'votre ville';
+  const dep = c.departement || '';
 
   if (r.moral === 'epuise' || r.moral === 'perdu') {
     jalons.push({
       delai: 'Dès aujourd\'hui',
+      date: formatDate(now),
       texte: 'Appeler APESA — gratuit et confidentiel (apesa.fr)',
       urgence: 'vert',
     });
@@ -24,34 +40,47 @@ function buildJalons(r: Reponses): Jalon[] {
   if (r.situation === 'assignation') {
     jalons.push({
       delai: 'Urgent',
+      date: formatDate(now),
       texte: 'Consulter un avocat immédiatement — les délais sont courts',
       urgence: 'rouge',
     });
   }
   if (r.probleme === 'urssaf') {
     jalons.push({
-      delai: 'Dans 7 jours',
-      texte: 'Contacter l\'URSSAF pour demander un échelonnement',
+      delai: 'Avant le ' + formatDate(addDays(7)),
+      date: formatDate(addDays(7)),
+      texte: `Contacter l'URSSAF${dep ? ` (${dep})` : ''} pour demander un échelonnement · 36 98`,
+      urgence: 'jaune',
+    });
+  }
+  if (r.probleme === 'impots') {
+    jalons.push({
+      delai: 'Avant le ' + formatDate(addDays(7)),
+      date: formatDate(addDays(7)),
+      texte: `Contacter le SIE${ville !== 'votre ville' ? ` de ${ville}` : ''} pour demander un délai`,
       urgence: 'jaune',
     });
   }
 
   jalons.push({
     delai: 'Aujourd\'hui',
-    texte: 'Contacter la CCI — accompagnement gratuit et confidentiel',
+    date: formatDate(now),
+    texte: `Contacter la CCI${dep ? ` (${dep})` : ''} — accompagnement gratuit et confidentiel`,
   });
   jalons.push({
-    delai: 'Dans 15 jours',
+    delai: 'Avant le ' + formatDate(addDays(15)),
+    date: formatDate(addDays(15)),
     texte: 'Faire le point avec votre expert-comptable',
   });
   jalons.push({
-    delai: 'Dans 30 jours',
-    texte: 'Consulter un avocat si la situation n\'a pas évolué',
+    delai: 'Avant le ' + formatDate(addDays(30)),
+    date: formatDate(addDays(30)),
+    texte: `Consulter un avocat${ville !== 'votre ville' ? ` à ${ville}` : ''} si la situation n'a pas évolué`,
   });
   jalons.push({
-    delai: 'Dans 45 jours',
-    texte:
-      'Délai légal maximum pour déclarer la cessation des paiements — à ne pas dépasser',
+    delai: formatDate(addDays(45)),
+    date: formatDate(addDays(45)),
+    texte: 'Délai légal maximum pour déclarer la cessation des paiements — à ne pas dépasser',
     urgence: 'rouge',
   });
 
@@ -64,13 +93,13 @@ const PUCE: Record<NonNullable<Jalon['urgence']>, string> = {
   vert: 'border-vert/40 bg-vert/5 text-vert',
 };
 
-export default function BlocCalendrier({ reponses }: Props) {
-  const jalons = buildJalons(reponses);
+export default function BlocCalendrier({ reponses, company }: Props) {
+  const jalons = buildJalons(reponses, company);
   return (
     <BlocAccordeon
       icone="📅"
-      titre="Calendrier d'urgence"
-      soustitre="Un cap, étape par étape — sans pression"
+      titre={`Calendrier d'urgence${company.nom !== 'Votre entreprise' ? ` · ${company.nom}` : ''}`}
+      soustitre="Dates réelles calculées à partir d'aujourd'hui"
     >
       <ol className="space-y-3">
         {jalons.map((j, i) => (
