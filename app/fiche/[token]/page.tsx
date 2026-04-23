@@ -11,6 +11,7 @@ import BlocPlanAction from '@/components/fiche/BlocPlanAction';
 import BlocAidesPersonnalisees from '@/components/fiche/BlocAides';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
+import StoreCompanyData from '@/components/fiche/StoreCompanyData';
 import { getFicheByToken } from '@/lib/supabase';
 import { fetchSirene } from '@/lib/sirene';
 import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodacc';
@@ -134,6 +135,8 @@ export default async function FichePage({ params, searchParams }: PageProps) {
         </div>
       )}
 
+      <StoreCompanyData company={company_data} token={token} />
+
       {token !== 'local' && <SaveBanner token={token} />}
 
       <IdentiteCard company={company_data} />
@@ -141,7 +144,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
 
       <BlocSoutien reponses={reponses} />
       <BlocCalendrier reponses={reponses} company={company_data} />
-      <BlocChecklist reponses={reponses} />
+      <BlocChecklist reponses={reponses} company={company_data} />
       <BlocPlanAction reponses={reponses} company={company_data} />
       <BlocAidesPersonnalisees reponses={reponses} company={company_data} />
       <BlocOrganismes groupes={groupes} />

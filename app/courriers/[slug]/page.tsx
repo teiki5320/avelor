@@ -1,6 +1,6 @@
 'use client';
-import { useState, useMemo, useRef } from 'react';
-import { useParams } from 'next/navigation';
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { getCourrier, CATEGORIES } from '@/lib/courriers';
 
@@ -76,11 +76,31 @@ const FIELD_LABELS: Record<string, string> = {
 
 export default function CourrierDetailPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const slug = params.slug as string;
   const template = getCourrier(slug);
   const textRef = useRef<HTMLDivElement>(null);
   const [values, setValues] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const merged: Record<string, string> = {};
+    // From sessionStorage (set by fiche page)
+    try {
+      const stored = sessionStorage.getItem('avelor_company');
+      if (stored) Object.assign(merged, JSON.parse(stored));
+    } catch {}
+    // From URL params (from checklist link)
+    const prefill = searchParams.get('prefill');
+    if (prefill) {
+      try { Object.assign(merged, JSON.parse(decodeURIComponent(prefill))); } catch {}
+    }
+    // Today's date
+    merged.DATE = merged.DATE || new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+    if (Object.keys(merged).length > 0) {
+      setValues((prev) => ({ ...merged, ...prev }));
+    }
+  }, [searchParams]);
 
   const allFields = useMemo(
     () => template ? extractFields(template.objet + '\n' + template.corps) : [],

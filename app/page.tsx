@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import SiretInput from '@/components/SiretInput';
+import RetourFiche from '@/components/RetourFiche';
 
 const RESSOURCES = [
   { href: '/courriers', icone: '✉️', label: 'Courriers types', desc: '12 modèles prêts à l\'emploi' },
@@ -26,6 +27,7 @@ export default function HomePage() {
         aujourd&apos;hui.
       </p>
       <SiretInput />
+      <RetourFiche />
       <div className="mt-12 flex flex-wrap items-center justify-center gap-3 text-sm text-navy/60">
         <span className="pastille">⏱ 4 minutes</span>
         <span className="pastille">🔒 Anonyme</span>
