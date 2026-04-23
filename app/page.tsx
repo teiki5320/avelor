@@ -4,11 +4,15 @@ import RetourFiche from '@/components/RetourFiche';
 
 const RESSOURCES = [
   { href: '/courriers', icone: '✉️', label: 'Courriers types', desc: '12 modèles prêts à l\'emploi' },
-  { href: '/aides', icone: '💶', label: 'Aides financières', desc: 'Aides d\'urgence méconnues' },
+  { href: '/aides', icone: '💶', label: 'Aides entreprise', desc: 'Toutes les aides existantes' },
+  { href: '/aides-personnelles', icone: '🧑', label: 'Droits personnels', desc: 'ATI, CSS, aide juridictionnelle…' },
+  { href: '/proteger-famille', icone: '🏠', label: 'Protéger ma famille', desc: 'Résidence, conjoint, cautions' },
+  { href: '/vendre', icone: '🔑', label: 'Vendre / Céder', desc: 'Cession, location-gérance…' },
   { href: '/procedures', icone: '⚖️', label: 'Procédures', desc: 'Tableau comparatif clair' },
-  { href: '/glossaire', icone: '📖', label: 'Glossaire', desc: 'Les mots expliqués simplement' },
+  { href: '/rebond', icone: '🚀', label: 'Rebondir', desc: 'Recréer après une liquidation' },
+  { href: '/glossaire', icone: '📖', label: 'Glossaire', desc: '19 termes expliqués simplement' },
   { href: '/accompagnant', icone: '🤝', label: 'J\'accompagne', desc: 'Pour les proches' },
-  { href: '/parler', icone: '📞', label: 'Parler à quelqu\'un', desc: 'Numéros gratuits' },
+  { href: '/parler', icone: '📞', label: 'Parler à quelqu\'un', desc: 'Numéros gratuits 24/7' },
 ];
 
 export default function HomePage() {

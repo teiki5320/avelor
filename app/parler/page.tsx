@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 const contacts = [
   {
     name: 'APESA',
-    phone: '06 02 04 21 22',
-    tel: '+33602042122',
+    phone: '08 05 65 50 50',
+    tel: '0805655050',
     description:
       'Psychologues formés à la souffrance des dirigeants · Gratuit · Confidentiel',
     url: 'https://apesa.fr',

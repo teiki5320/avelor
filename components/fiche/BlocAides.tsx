@@ -139,17 +139,80 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
       badge: 'Entretien gratuit',
     },
   ];
+  nationales.push({
+    nom: 'CODEFI',
+    description: `Comité départemental d'aide aux entreprises en difficulté de financement${dep ? ` (${dep})` : ''}. Peut négocier avec vos créanciers.`,
+    site: 'https://www.economie.gouv.fr',
+    badge: '< 400 salariés',
+  });
+  nationales.push({
+    nom: 'CIP · Centre d\'Information sur la Prévention',
+    description: 'Rendez-vous gratuit et confidentiel avec d\'anciens chefs d\'entreprise, avocats et comptables bénévoles.',
+    site: 'https://www.cip-national.fr',
+    badge: 'Gratuit · confidentiel',
+  });
+  nationales.push({
+    nom: 'ADIE · Micro-crédit',
+    description: 'Prêts jusqu\'à 17 000 € sur 5 ans. Accessible même si vous êtes interdit bancaire ou fiché FICP.',
+    telephone: '0 969 328 110',
+    site: 'https://www.adie.org',
+    badge: 'Même interdit bancaire',
+  });
+  nationales.push({
+    nom: 'France Active · Garanties de prêts',
+    description: 'Garantit jusqu\'à 65 % d\'un prêt bancaire, réduisant le risque pour la banque. Accompagnement inclus.',
+    site: 'https://www.franceactive.org',
+  });
   sections.push({ titre: 'Aides nationales', aides: nationales });
 
-  // Section 4: Aides régionales
+  // Aides personnelles du dirigeant
+  const personnelles: Aide[] = [
+    {
+      nom: 'ATI · Allocation Travailleurs Indépendants',
+      description: 'Chômage spécifique indépendants : 592 à 789 €/mois pendant 6 mois après cessation involontaire.',
+      site: 'https://chomage-independant.francetravail.fr',
+      badge: '6 mois',
+    },
+    {
+      nom: 'CSS · Complémentaire Santé Solidaire',
+      description: 'Mutuelle gratuite si vos revenus ont fortement baissé (< 10 166 €/an).',
+      telephone: '3646',
+      site: 'https://www.complementaire-sante-solidaire.gouv.fr',
+      badge: 'Gratuit',
+    },
+    {
+      nom: 'Aide juridictionnelle',
+      description: 'Avocat et frais de justice pris en charge si revenus < 12 957 €/an. Pour vos procédures personnelles.',
+      site: 'https://www.service-public.fr',
+      badge: 'Sous conditions',
+    },
+    {
+      nom: 'Droit au compte · Banque de France',
+      description: 'Si toutes les banques refusent de vous ouvrir un compte, la Banque de France en désigne une obligatoirement.',
+      site: 'https://www.banque-france.fr',
+      badge: 'Droit légal',
+    },
+  ];
+  sections.push({ titre: 'Aides personnelles du dirigeant', aides: personnelles });
+
+  // Aides locales
+  const chambreLabel = s.chambre === 'CMA' ? 'Chambre de Métiers' : s.chambre === 'CA' ? 'Chambre d\'agriculture' : 'CCI';
   const regionales: Aide[] = [
     {
-      nom: `CCI${dep ? ` de votre département (${dep})` : ''}`,
+      nom: `${chambreLabel}${dep ? ` (${dep})` : ''}`,
       description: `Accompagnement gratuit et confidentiel pour les entreprises en difficulté${ville ? ` dans la région de ${ville}` : ''}.`,
-      site: 'https://www.cci.fr',
+      site: s.chambre === 'CMA' ? 'https://www.artisanat.fr' : s.chambre === 'CA' ? 'https://chambres-agriculture.fr' : 'https://www.cci.fr',
       badge: 'Gratuit · local',
     },
   ];
+  if (r.probleme === 'urssaf' || r.probleme === 'impots') {
+    regionales.push({
+      nom: 'Médiateur national de l\'énergie',
+      description: 'Si vos factures d\'énergie aggravent la situation. Gratuit pour les TPE (< 10 salariés, CA < 2 M€).',
+      site: 'https://www.energie-mediateur.fr',
+      badge: 'TPE uniquement',
+    });
+  }
   sections.push({ titre: `Aides locales${dep ? ` · département ${dep}` : ''}`, aides: regionales });
 
   return sections;

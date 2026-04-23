@@ -5,10 +5,13 @@ import { useState } from 'react';
 const LINKS = [
   { href: '/courriers', label: 'Courriers' },
   { href: '/aides', label: 'Aides' },
+  { href: '/aides-personnelles', label: 'Droits perso' },
+  { href: '/proteger-famille', label: 'Famille' },
+  { href: '/vendre', label: 'Vendre' },
   { href: '/procedures', label: 'Procédures' },
+  { href: '/rebond', label: 'Rebondir' },
   { href: '/glossaire', label: 'Glossaire' },
   { href: '/accompagnant', label: 'J\'accompagne' },
-  { href: '/temoignages', label: 'Témoignages' },
   { href: '/parler', label: 'Parler à quelqu\'un' },
 ];
 
