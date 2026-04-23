@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Reponses, Situation, Probleme, Effectif, Moral } from '@/lib/types';
@@ -40,11 +40,55 @@ interface Props {
   siret: string;
 }
 
+const STORAGE_KEY = 'avelor_questionnaire';
+
+function loadSaved(siret: string): { step: number; answers: Partial<Reponses> } | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw);
+    if (saved?.siret !== siret) return null;
+    return { step: saved.step ?? 0, answers: saved.answers ?? {} };
+  } catch {
+    return null;
+  }
+}
+
+function saveDraft(siret: string, step: number, answers: Partial<Reponses>) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ siret, step, answers, ts: Date.now() }));
+  } catch {
+    // ignore
+  }
+}
+
+function clearDraft() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+}
+
 export default function Questionnaire({ siret }: Props) {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [answers, setAnswers] = useState<Partial<Reponses>>({});
+  const [restored, setRestored] = useState(false);
+
+  useEffect(() => {
+    const saved = loadSaved(siret);
+    if (saved && saved.step > 0) {
+      setStep(saved.step);
+      setAnswers(saved.answers);
+      setRestored(true);
+    }
+  }, [siret]);
+
+  useEffect(() => {
+    if (step > 0) saveDraft(siret, step, answers);
+  }, [step, answers, siret]);
 
   const progress = useMemo(() => ((step + 1) / 4) * 100, [step]);
 
@@ -62,6 +106,7 @@ export default function Questionnaire({ siret }: Props) {
 
   async function submit(final: Partial<Reponses>) {
     setSubmitting(true);
+    clearDraft();
     const reponses = final as Reponses;
 
     try {
@@ -120,6 +165,18 @@ export default function Questionnaire({ siret }: Props) {
 
   return (
     <div className="mx-auto max-w-2xl px-5 pb-20">
+      {restored && (
+        <div className="mb-4 flex items-center justify-between rounded-2xl bg-bleu/10 px-4 py-3 text-sm text-bleu-fonce">
+          <span>Vos réponses précédentes ont été restaurées.</span>
+          <button
+            type="button"
+            onClick={() => { setStep(0); setAnswers({}); clearDraft(); setRestored(false); }}
+            className="ml-3 text-xs text-navy/50 underline hover:text-navy"
+          >
+            Recommencer
+          </button>
+        </div>
+      )}
       <div className="mb-8">
         <div className="mb-2 flex items-center justify-between text-xs text-navy/50">
           <span>Étape {step + 1} sur 4</span>

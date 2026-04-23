@@ -6,6 +6,7 @@ import BlocCalendrier from '@/components/fiche/BlocCalendrier';
 import BlocChecklist from '@/components/fiche/BlocChecklist';
 import BlocOrganismes from '@/components/fiche/BlocOrganismes';
 import BlocAlertes from '@/components/fiche/BlocAlertes';
+import BlocPrescription from '@/components/fiche/BlocPrescription';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import { getFicheByToken } from '@/lib/supabase';
@@ -140,6 +141,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
       <BlocCalendrier reponses={reponses} />
       <BlocChecklist reponses={reponses} />
       <BlocOrganismes groupes={groupes} />
+      <BlocPrescription reponses={reponses} />
       <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
 
       <p className="pt-6 text-center text-xs text-navy/45">
