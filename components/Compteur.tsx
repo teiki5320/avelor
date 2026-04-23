@@ -7,7 +7,7 @@ export default function Compteur() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch('/api/stats', { next: { revalidate: 300 } } as any);
+        const res = await fetch('/api/stats');
         if (res.ok) {
           const json = await res.json();
           if (typeof json.count === 'number') {
