@@ -1,14 +1,16 @@
 'use client';
 import { useState } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
+import type { SectorInfo } from '@/lib/secteur';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
   reponses: Reponses;
   company: CompanyData;
+  sector: SectorInfo;
 }
 
-function buildItems(r: Reponses, c: CompanyData): { id: string; texte: string; lien?: string }[] {
+function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; texte: string; lien?: string }[] {
   const items: { id: string; texte: string; lien?: string }[] = [];
   const dep = c.departement || '';
   const ville = c.ville || '';
@@ -24,7 +26,7 @@ function buildItems(r: Reponses, c: CompanyData): { id: string; texte: string; l
   if (r.probleme === 'urssaf') {
     items.push({
       id: 'urssaf',
-      texte: `Appeler l'URSSAF${dep ? ` (${dep})` : ''} avant toute relance · 36 98`,
+      texte: `Appeler ${s.cotisationOrg}${dep ? ` (${dep})` : ''} avant toute relance · ${s.cotisationTel}`,
     });
   }
   if (r.probleme === 'banque') {
@@ -46,9 +48,16 @@ function buildItems(r: Reponses, c: CompanyData): { id: string; texte: string; l
     });
   }
   items.push({
-    id: 'cci',
-    texte: `Prendre RDV avec la CCI${dep ? ` (${dep})` : ''}`,
+    id: 'chambre',
+    texte: `Prendre RDV avec la ${s.chambre}${dep ? ` (${dep})` : ''}`,
   });
+  if (s.syndicats.length > 0) {
+    items.push({
+      id: 'syndicat',
+      texte: `Contacter ${s.syndicats[0].nom} (${s.syndicats[0].role})`,
+      lien: s.syndicats[0].site,
+    });
+  }
   items.push({
     id: 'tribunal',
     texte: `Identifier votre tribunal de commerce${ville ? ` (${ville})` : ''}`,
@@ -61,8 +70,8 @@ function buildItems(r: Reponses, c: CompanyData): { id: string; texte: string; l
   return items;
 }
 
-export default function BlocChecklist({ reponses, company }: Props) {
-  const items = buildItems(reponses, company);
+export default function BlocChecklist({ reponses, company, sector }: Props) {
+  const items = buildItems(reponses, company, sector);
   const [done, setDone] = useState<Record<string, boolean>>({});
 
   function toggle(id: string) {

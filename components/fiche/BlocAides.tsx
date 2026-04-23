@@ -1,9 +1,11 @@
 import type { Reponses, CompanyData } from '@/lib/types';
+import type { SectorInfo } from '@/lib/secteur';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
   reponses: Reponses;
   company: CompanyData;
+  sector: SectorInfo;
 }
 
 interface Aide {
@@ -19,7 +21,7 @@ function isEI(forme: string): boolean {
   return /individuel|ei|eirl|micro|auto/i.test(forme);
 }
 
-function buildAides(r: Reponses, c: CompanyData): { titre: string; aides: Aide[] }[] {
+function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string; aides: Aide[] }[] {
   const sections: { titre: string; aides: Aide[] }[] = [];
   const dep = c.departement || '';
   const ville = c.ville || '';
@@ -116,7 +118,18 @@ function buildAides(r: Reponses, c: CompanyData): { titre: string; aides: Aide[]
     sections.push({ titre: r.effectif === 'independant' ? 'Pour les indépendants' : 'Pour les employeurs', aides: statut });
   }
 
-  // Section 3: Aides nationales (toujours)
+  // Section 3: Aides sectorielles
+  if (s.aidesSpecifiques.length > 0) {
+    const sectorielles: Aide[] = s.aidesSpecifiques.map((a) => ({
+      nom: a.nom,
+      description: a.description,
+      site: a.site,
+      badge: a.badge ?? `Spécifique ${s.label}`,
+    }));
+    sections.push({ titre: `Aides ${s.label}`, aides: sectorielles });
+  }
+
+  // Section 4: Aides nationales (toujours)
   const nationales: Aide[] = [
     {
       nom: 'BPI France · Prêt rebond',
@@ -142,8 +155,8 @@ function buildAides(r: Reponses, c: CompanyData): { titre: string; aides: Aide[]
   return sections;
 }
 
-export default function BlocAides({ reponses, company }: Props) {
-  const sections = buildAides(reponses, company);
+export default function BlocAides({ reponses, company, sector }: Props) {
+  const sections = buildAides(reponses, company, sector);
   const total = sections.reduce((n, s) => n + s.aides.length, 0);
 
   return (

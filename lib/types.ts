@@ -17,6 +17,7 @@ export interface CompanyData {
   formeJuridique: string;
   naf: string;
   nafLabel?: string;
+  nafSection?: string;
   dateCreation: string;
   effectif: string;
   adresse: string;

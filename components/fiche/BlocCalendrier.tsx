@@ -1,9 +1,12 @@
 import type { Reponses, CompanyData } from '@/lib/types';
+import type { SectorInfo } from '@/lib/secteur';
+import { getChambreLabel } from '@/lib/secteur';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
   reponses: Reponses;
   company: CompanyData;
+  sector: SectorInfo;
 }
 
 interface Jalon {
@@ -23,7 +26,7 @@ function addDays(days: number): Date {
   return d;
 }
 
-function buildJalons(r: Reponses, c: CompanyData): Jalon[] {
+function buildJalons(r: Reponses, c: CompanyData, s: SectorInfo): Jalon[] {
   const jalons: Jalon[] = [];
   const now = new Date();
   const ville = c.ville || 'votre ville';
@@ -49,7 +52,7 @@ function buildJalons(r: Reponses, c: CompanyData): Jalon[] {
     jalons.push({
       delai: 'Avant le ' + formatDate(addDays(7)),
       date: formatDate(addDays(7)),
-      texte: `Contacter l'URSSAF${dep ? ` (${dep})` : ''} pour demander un échelonnement · 36 98`,
+      texte: `Contacter ${s.cotisationOrg}${dep ? ` (${dep})` : ''} pour demander un échelonnement · ${s.cotisationTel}`,
       urgence: 'jaune',
     });
   }
@@ -65,7 +68,7 @@ function buildJalons(r: Reponses, c: CompanyData): Jalon[] {
   jalons.push({
     delai: 'Aujourd\'hui',
     date: formatDate(now),
-    texte: `Contacter la CCI${dep ? ` (${dep})` : ''} — accompagnement gratuit et confidentiel`,
+    texte: `Contacter la ${s.chambre}${dep ? ` (${dep})` : ''} — accompagnement gratuit et confidentiel`,
   });
   jalons.push({
     delai: 'Avant le ' + formatDate(addDays(15)),
@@ -93,8 +96,8 @@ const PUCE: Record<NonNullable<Jalon['urgence']>, string> = {
   vert: 'border-vert/40 bg-vert/5 text-vert',
 };
 
-export default function BlocCalendrier({ reponses, company }: Props) {
-  const jalons = buildJalons(reponses, company);
+export default function BlocCalendrier({ reponses, company, sector }: Props) {
+  const jalons = buildJalons(reponses, company, sector);
   return (
     <BlocAccordeon
       icone="📅"

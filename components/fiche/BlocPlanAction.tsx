@@ -1,11 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
+import type { SectorInfo } from '@/lib/secteur';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
   reponses: Reponses;
   company: CompanyData;
+  sector: SectorInfo;
 }
 
 interface Action {
@@ -15,18 +17,18 @@ interface Action {
   custom?: boolean;
 }
 
-function buildDefaultActions(r: Reponses, c: CompanyData): Action[] {
+function buildDefaultActions(r: Reponses, c: CompanyData, s: SectorInfo): Action[] {
   const actions: Action[] = [];
   const dep = c.departement || '';
   const ville = c.ville || '';
 
-  actions.push({ id: 'soin', texte: 'Prendre soin de moi (APESA, médecin, sommeil)', done: false });
+  actions.push({ id: 'soin', texte: `Prendre soin de moi${s.soutien ? ` (${s.soutien.nom}, APESA)` : ' (APESA, médecin, sommeil)'}`, done: false });
 
   if (r.situation === 'assignation') {
     actions.push({ id: 'avocat-urgence', texte: `Contacter un avocat en urgence${ville ? ` à ${ville}` : ''} (assignation reçue)`, done: false });
   }
   if (r.probleme === 'urssaf') {
-    actions.push({ id: 'urssaf-appel', texte: `Appeler l'URSSAF${dep ? ` (${dep})` : ''} au 36 98 pour demander un échelonnement`, done: false });
+    actions.push({ id: 'urssaf-appel', texte: `Appeler ${s.cotisationOrg}${dep ? ` (${dep})` : ''} au ${s.cotisationTel} pour demander un échelonnement`, done: false });
   }
   if (r.probleme === 'impots') {
     actions.push({ id: 'impots-sie', texte: `Contacter le SIE${ville ? ` de ${ville}` : ''} pour demander un délai de paiement`, done: false });
@@ -38,7 +40,10 @@ function buildDefaultActions(r: Reponses, c: CompanyData): Action[] {
     actions.push({ id: 'fournisseur-lettre', texte: 'Écrire une lettre de demande de délai au fournisseur principal', done: false });
   }
 
-  actions.push({ id: 'cci', texte: `Prendre RDV avec la CCI${dep ? ` (${dep})` : ''} — accompagnement gratuit`, done: false });
+  actions.push({ id: 'chambre', texte: `Prendre RDV avec la ${s.chambre}${dep ? ` (${dep})` : ''} — accompagnement gratuit`, done: false });
+  if (s.syndicats.length > 0) {
+    actions.push({ id: 'syndicat', texte: `Contacter ${s.syndicats[0].nom} (${s.syndicats[0].role})`, done: false });
+  }
   actions.push({ id: 'comptable', texte: 'Faire le point avec mon expert-comptable', done: false });
 
   if (r.effectif === 'salaries') {
@@ -57,7 +62,7 @@ function buildDefaultActions(r: Reponses, c: CompanyData): Action[] {
 
 const STORAGE_KEY = 'avelor_plan_action';
 
-export default function BlocPlanAction({ reponses, company }: Props) {
+export default function BlocPlanAction({ reponses, company, sector }: Props) {
   const [actions, setActions] = useState<Action[]>([]);
   const [newText, setNewText] = useState('');
   const [loaded, setLoaded] = useState(false);
@@ -71,9 +76,9 @@ export default function BlocPlanAction({ reponses, company }: Props) {
         return;
       }
     } catch {}
-    setActions(buildDefaultActions(reponses, company));
+    setActions(buildDefaultActions(reponses, company, sector));
     setLoaded(true);
-  }, [reponses, company]);
+  }, [reponses, company, sector]);
 
   useEffect(() => {
     if (loaded) {

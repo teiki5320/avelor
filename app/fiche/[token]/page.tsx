@@ -17,6 +17,7 @@ import { fetchSirene } from '@/lib/sirene';
 import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodacc';
 import { searchAvocats } from '@/lib/googlePlaces';
 import { buildOrganismes, getDepartement, OrganismeCard } from '@/lib/organismes';
+import { getSectorInfo, getCompanyAge, getEffectifSeuils } from '@/lib/secteur';
 import type { CompanyData, Reponses } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
@@ -94,6 +95,9 @@ export default async function FichePage({ params, searchParams }: PageProps) {
     mapsUrl: p.mapsUrl,
   }));
 
+  const sector = getSectorInfo(company_data);
+  const companyAge = getCompanyAge(company_data.dateCreation);
+  const seuils = getEffectifSeuils(company_data.effectif);
   const groupes = buildOrganismes(dep, reponses, avocats);
 
   const moralFragile = reponses.moral === 'epuise' || reponses.moral === 'perdu';
@@ -142,13 +146,13 @@ export default async function FichePage({ params, searchParams }: PageProps) {
       <IdentiteCard company={company_data} />
       <AlertesBand alertes={alertes} />
 
-      <BlocSoutien reponses={reponses} />
-      <BlocCalendrier reponses={reponses} company={company_data} />
-      <BlocChecklist reponses={reponses} company={company_data} />
-      <BlocPlanAction reponses={reponses} company={company_data} />
-      <BlocAidesPersonnalisees reponses={reponses} company={company_data} />
+      <BlocSoutien reponses={reponses} sector={sector} />
+      <BlocCalendrier reponses={reponses} company={company_data} sector={sector} />
+      <BlocChecklist reponses={reponses} company={company_data} sector={sector} />
+      <BlocPlanAction reponses={reponses} company={company_data} sector={sector} />
+      <BlocAidesPersonnalisees reponses={reponses} company={company_data} sector={sector} />
       <BlocOrganismes groupes={groupes} />
-      <BlocPrescription reponses={reponses} />
+      <BlocPrescription reponses={reponses} company={company_data} companyAge={companyAge} seuils={seuils} />
       <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
 
       <p className="pt-6 text-center text-xs text-navy/45">

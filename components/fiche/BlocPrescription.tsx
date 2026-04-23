@@ -1,8 +1,11 @@
-import type { Reponses } from '@/lib/types';
+import type { Reponses, CompanyData } from '@/lib/types';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
   reponses: Reponses;
+  company: CompanyData;
+  companyAge: number | null;
+  seuils: { cse: boolean; obligations50: boolean };
 }
 
 interface Alerte {
@@ -11,7 +14,7 @@ interface Alerte {
   urgence: 'info' | 'attention';
 }
 
-function buildAlertes(r: Reponses): Alerte[] {
+function buildAlertes(r: Reponses, age: number | null, seuils: { cse: boolean; obligations50: boolean }): Alerte[] {
   const alertes: Alerte[] = [];
 
   if (r.probleme === 'urssaf') {
@@ -65,6 +68,33 @@ function buildAlertes(r: Reponses): Alerte[] {
     });
   }
 
+  if (age !== null && age < 2) {
+    alertes.push({
+      texte: 'Votre entreprise a moins de 2 ans — des protections spécifiques existent',
+      detail:
+        'Les entreprises de moins de 2 ans peuvent bénéficier de dispositifs spécifiques : exonérations ACRE, prêts d\'honneur BPI France, et certaines procédures (sauvegarde) sont plus favorables aux jeunes entreprises.',
+      urgence: 'info',
+    });
+  }
+
+  if (seuils.cse) {
+    alertes.push({
+      texte: 'Avec 11+ salariés, le CSE doit être informé en cas de difficulté',
+      detail:
+        'Le Code du travail impose d\'informer le CSE en cas de difficulté économique. Ne pas le faire peut engager votre responsabilité. C\'est aussi un allié : le CSE peut déclencher un droit d\'alerte économique.',
+      urgence: 'attention',
+    });
+  }
+
+  if (seuils.obligations50) {
+    alertes.push({
+      texte: 'Avec 50+ salariés, des obligations renforcées s\'appliquent',
+      detail:
+        'PSE (Plan de Sauvegarde de l\'Emploi) obligatoire en cas de licenciement économique de 10+ salariés sur 30 jours. Le CSE doit être consulté avec un expert-comptable.',
+      urgence: 'attention',
+    });
+  }
+
   alertes.push({
     texte: 'Un mandat ad hoc peut être demandé à tout moment',
     detail:
@@ -75,8 +105,8 @@ function buildAlertes(r: Reponses): Alerte[] {
   return alertes;
 }
 
-export default function BlocPrescription({ reponses }: Props) {
-  const alertes = buildAlertes(reponses);
+export default function BlocPrescription({ reponses, companyAge, seuils }: Props) {
+  const alertes = buildAlertes(reponses, companyAge, seuils);
 
   return (
     <BlocAccordeon
