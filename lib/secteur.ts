@@ -34,6 +34,15 @@ export interface SectorInfo {
   soutien?: { nom: string; description: string; telephone?: string; site?: string };
   conseilsSpecifiques: string[];
   chambre: 'CCI' | 'CMA' | 'CA';
+  /** Niveau de tension du secteur (utilisé pour modérer les attentes du dirigeant). */
+  santeSecteur?: SanteSecteur;
+}
+
+export interface SanteSecteur {
+  niveau: 'crise' | 'tendu' | 'normal';
+  titre: string;
+  message: string;
+  ressource?: { label: string; url: string };
 }
 
 function sectionFromNaf(naf: string): string {
@@ -118,6 +127,13 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'Agri\'Écoute est disponible 24h/24 si vous avez besoin de parler',
     ],
     chambre: 'CA',
+    santeSecteur: {
+      niveau: 'crise',
+      titre: 'Secteur agricole sous tension durable',
+      message:
+        'Vous n\'êtes pas seul·e : le secteur agricole cumule hausse des charges, aléas climatiques et pression sur les prix. Des dispositifs nationaux et MSA existent spécifiquement pour cette crise.',
+      ressource: { label: 'Aide d\'urgence MSA', url: 'https://www.msa.fr' },
+    },
   },
   btp: {
     label: 'BTP / Construction',
@@ -140,6 +156,13 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'La CAPEB ou la FFB peuvent vous accompagner dans vos démarches',
     ],
     chambre: 'CMA',
+    santeSecteur: {
+      niveau: 'crise',
+      titre: 'BTP : secteur en chute marquée',
+      message:
+        'Le BTP connaît une contraction historique depuis 2023 (construction neuve en repli). Les défaillances ont fortement augmenté. Agissez tôt : les dispositifs amiables (mandat ad hoc, conciliation) sont votre meilleure arme.',
+      ressource: { label: 'CAPEB — accompagnement', url: 'https://www.capeb.fr' },
+    },
   },
   hotellerie: {
     label: 'Hôtellerie-restauration',
@@ -162,6 +185,13 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'Les baux commerciaux HCR ont des protections spécifiques',
     ],
     chambre: 'CCI',
+    santeSecteur: {
+      niveau: 'crise',
+      titre: 'HCR : secteur durablement tendu',
+      message:
+        'Hausse de l\'énergie, pénurie de main-d\'œuvre, remboursement des PGE : le secteur concentre un grand nombre de défaillances. Sollicitez l\'UMIH et la CCI avant toute procédure — des négociations de branche existent.',
+      ressource: { label: 'UMIH', url: 'https://www.umih.fr' },
+    },
   },
   commerce: {
     label: 'Commerce',
@@ -181,6 +211,12 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'Les impayés de loyer commercial ont des procédures spécifiques',
     ],
     chambre: 'CCI',
+    santeSecteur: {
+      niveau: 'tendu',
+      titre: 'Commerce de détail sous pression',
+      message:
+        'Inflation, e-commerce et baisse de pouvoir d\'achat pèsent sur le commerce physique. Vérifiez les aides territoriales (FISAC, aides communales) avant tout.',
+    },
   },
   transport: {
     label: 'Transport',
@@ -199,6 +235,12 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'Vérifiez le remboursement de la TICPE si vous êtes transporteur routier',
     ],
     chambre: 'CCI',
+    santeSecteur: {
+      niveau: 'tendu',
+      titre: 'Transport routier : marges serrées',
+      message:
+        'Hausse du carburant, remontée des taux, concurrence internationale : le transport routier est fragilisé. Le remboursement TICPE et les dispositifs OTRE/FNTR peuvent donner un peu d\'air.',
+    },
   },
   liberal: {
     label: 'Professions libérales',

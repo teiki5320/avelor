@@ -11,6 +11,7 @@ import BlocPlanAction from '@/components/fiche/BlocPlanAction';
 import BlocAidesPersonnalisees from '@/components/fiche/BlocAides';
 import BlocProtectionFamille from '@/components/fiche/BlocProtectionFamille';
 import BlocProcedureRecommandee from '@/components/fiche/BlocProcedureRecommandee';
+import BlocSanteSecteur from '@/components/fiche/BlocSanteSecteur';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
@@ -146,6 +147,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
       {token !== 'local' && <SaveBanner token={token} />}
 
       <IdentiteCard company={company_data} />
+      <BlocSanteSecteur sector={sector} />
       <AlertesBand alertes={alertes} />
 
       <BlocSoutien reponses={reponses} sector={sector} />
