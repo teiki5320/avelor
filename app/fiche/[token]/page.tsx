@@ -19,6 +19,7 @@ import BlocStrategie from '@/components/fiche/BlocStrategie';
 import BlocPatrimoine from '@/components/fiche/BlocPatrimoine';
 import BlocTresorerie from '@/components/fiche/BlocTresorerie';
 import BlocCessationDecompte from '@/components/fiche/BlocCessationDecompte';
+import BlocCCSF from '@/components/fiche/BlocCCSF';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
@@ -170,6 +171,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
       <BlocPatrimoine reponses={reponses} company={company_data} />
       <BlocAuditCaution reponses={reponses} />
       <BlocAidesPersonnalisees reponses={reponses} company={company_data} sector={sector} />
+      <BlocCCSF reponses={reponses} company={company_data} />
       <BlocObligations reponses={reponses} company={company_data} seuils={seuils} />
       <BlocOrganismes groupes={groupes} />
       <BlocPrescription reponses={reponses} company={company_data} companyAge={companyAge} seuils={seuils} />
