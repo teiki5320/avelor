@@ -2,7 +2,14 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { getCourrier, CATEGORIES } from '@/lib/courriers';
+import {
+  getCourrier,
+  CATEGORIES,
+  personalizeCourrier,
+  loadContextFromStorage,
+  type CourrierContext,
+  type PersonalizedCourrier,
+} from '@/lib/courriers';
 
 function extractFields(text: string): string[] {
   const set = new Set<string>();
@@ -81,6 +88,7 @@ export default function CourrierDetailPage() {
   const textRef = useRef<HTMLDivElement>(null);
   const [values, setValues] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
+  const [context, setContext] = useState<CourrierContext | null>(null);
 
   useEffect(() => {
     const merged: Record<string, string> = {};
@@ -97,7 +105,13 @@ export default function CourrierDetailPage() {
     if (Object.keys(merged).length > 0) {
       setValues((prev) => ({ ...merged, ...prev }));
     }
+    setContext(loadContextFromStorage());
   }, []);
+
+  const personalized: PersonalizedCourrier | null = useMemo(
+    () => (template ? personalizeCourrier(template, context ?? {}) : null),
+    [template, context]
+  );
 
   const allFields = useMemo(
     () => template ? extractFields(template.objet + '\n' + template.corps) : [],
@@ -123,8 +137,8 @@ export default function CourrierDetailPage() {
   }
 
   async function handleCopy() {
-    if (!template) return;
-    const text = `Objet : ${rendered(template.objet)}\n\n${rendered(template.corps)}`;
+    if (!template || !personalized) return;
+    const text = `Objet : ${rendered(personalized.objet)}\n\n${rendered(personalized.corps)}`;
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -150,15 +164,32 @@ export default function CourrierDetailPage() {
       </Link>
 
       <div className="mb-8">
-        <span className="pastille mb-3 inline-flex">
-          {template.icone} {meta?.label}
-        </span>
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span className="pastille inline-flex">
+            {template.icone} {meta?.label}
+          </span>
+          {personalized?.urgence === 'critique' && (
+            <span className="pastille inline-flex bg-rouge/15 text-rouge">
+              ⚠️ Urgence critique
+            </span>
+          )}
+          {personalized?.urgence === 'elevee' && (
+            <span className="pastille inline-flex bg-jaune/20 text-navy">
+              ⏱ Urgence élevée
+            </span>
+          )}
+        </div>
         <h1 className="font-display text-2xl text-navy sm:text-4xl">
           {template.titre}
         </h1>
         <p className="mt-2 text-navy/60">
           Destinataire : {template.destinataire}
         </p>
+        {context && (personalized?.preambule || personalized?.closing) && (
+          <p className="no-print mt-3 text-xs text-vert">
+            ✓ Courrier adapté à votre situation
+          </p>
+        )}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-5">
@@ -220,15 +251,24 @@ export default function CourrierDetailPage() {
         <div className="lg:col-span-3">
           <div className="glass card-top-line p-6 sm:p-8">
             <p className="mb-6 text-sm font-medium text-bleu-fonce">
-              Objet : {rendered(template.objet)}
+              Objet : {rendered(personalized?.objet ?? template.objet)}
             </p>
             <div
               ref={textRef}
               className="whitespace-pre-wrap text-sm leading-relaxed text-navy/90"
             >
-              {rendered(template.corps)}
+              {rendered(personalized?.corps ?? template.corps)}
             </div>
           </div>
+
+          {personalized?.conseil && (
+            <div className="no-print mt-4 rounded-2xl border border-bleu/20 bg-bleu/5 p-4 text-sm text-navy">
+              <p className="mb-1 font-display text-sm text-bleu-fonce">
+                Conseil pour ce courrier
+              </p>
+              <p className="text-navy/80">{personalized.conseil}</p>
+            </div>
+          )}
 
           <div className="no-print mt-4 flex flex-wrap gap-3">
             <button

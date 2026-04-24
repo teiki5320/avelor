@@ -141,7 +141,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
         </div>
       )}
 
-      <StoreCompanyData company={company_data} token={token} />
+      <StoreCompanyData company={company_data} token={token} reponses={reponses} />
 
       {token !== 'local' && <SaveBanner token={token} />}
 

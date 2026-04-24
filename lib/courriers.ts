@@ -1,3 +1,5 @@
+import type { Situation, Moral, Probleme, Effectif, Reponses } from './types';
+
 export interface CourrierTemplate {
   slug: string;
   titre: string;
@@ -7,6 +9,23 @@ export interface CourrierTemplate {
   description: string;
   objet: string;
   corps: string;
+}
+
+export interface CourrierContext {
+  situation?: Situation;
+  moral?: Moral;
+  probleme?: Probleme;
+  effectif?: Effectif;
+  effectifDetail?: string;
+}
+
+export interface PersonalizedCourrier {
+  objet: string;
+  corps: string;
+  preambule?: string;
+  closing?: string;
+  conseil?: string;
+  urgence?: 'normale' | 'elevee' | 'critique';
 }
 
 export const COURRIERS: CourrierTemplate[] = [
@@ -385,3 +404,157 @@ export const CATEGORIES: Record<string, { label: string; couleur: string }> = {
   cci: { label: 'CCI', couleur: 'vert' },
   social: { label: 'Social', couleur: 'vert' },
 };
+
+// ─────────────────────────────────────────────────────────────
+// Personnalisation contextuelle des courriers
+// ─────────────────────────────────────────────────────────────
+
+const SITUATION_FRAGMENTS: Record<Situation, string> = {
+  prevention:
+    "Je m'adresse à vous à titre préventif, avant que la situation ne se dégrade davantage. Mon entreprise reste en activité et je souhaite anticiper plutôt que subir.",
+  tresorie:
+    "Mon entreprise traverse une tension de trésorerie identifiée. L'activité se poursuit normalement et je sollicite votre compréhension afin de préserver son équilibre.",
+  redressement:
+    "Mon entreprise est aujourd'hui dans l'impossibilité de faire face à l'intégralité de son passif exigible. Je prends la mesure de cette situation et j'agis pour la traiter dans les règles.",
+  assignation:
+    "J'ai récemment reçu une assignation, ce qui rend ma démarche urgente. Je souhaite rétablir un dialogue constructif sans attendre l'audience.",
+};
+
+const SITUATION_URGENCY: Record<Situation, 'normale' | 'elevee' | 'critique'> = {
+  prevention: 'normale',
+  tresorie: 'normale',
+  redressement: 'elevee',
+  assignation: 'critique',
+};
+
+const MORAL_CLOSINGS: Record<Moral, string> = {
+  combatif:
+    "Je reste mobilisé pour redresser la situation et m'engage à respecter scrupuleusement les modalités convenues.",
+  epuise:
+    "Je traverse une période éprouvante et je vous remercie sincèrement de l'attention que vous porterez à ma demande. Votre réponse compte beaucoup pour moi.",
+  perdu:
+    "Je reconnais avoir besoin d'être accompagné pour avancer. Tout échange, même bref, m'aiderait à clarifier la marche à suivre.",
+};
+
+function effectifFragment(effectif?: Effectif, detail?: string): string | null {
+  if (!effectif) return null;
+  if (effectif === 'independant') {
+    return "Mon activité est exercée seul·e, sans salarié.";
+  }
+  const precisions = detail?.trim();
+  return precisions
+    ? `Mon entreprise emploie ${precisions}, dont la pérennité dépend directement de ma capacité à traverser cette période.`
+    : "Mon entreprise compte des salariés dont l'emploi dépend directement de ma capacité à traverser cette période.";
+}
+
+function conseilCategorie(template: CourrierTemplate, ctx: CourrierContext): string | null {
+  switch (template.categorie) {
+    case 'urssaf':
+      if (ctx.situation === 'assignation') {
+        return "URGENT : envoyez ce courrier en recommandé AR sous 48 h et appelez en parallèle votre URSSAF (3957). En cas d'assignation, demandez explicitement une suspension des poursuites.";
+      }
+      return "Envoyez en recommandé AR. L'URSSAF traite les demandes argumentées plus vite — joignez bilan + situation de trésorerie + prévisionnel.";
+    case 'impots':
+      if (ctx.situation === 'redressement' || ctx.situation === 'assignation') {
+        return "Demandez en parallèle un rendez-vous avec votre interlocuteur dédié au SIE (Service des Impôts des Entreprises) et mentionnez la possibilité d'une CCSF (Commission des Chefs de Services Financiers).";
+      }
+      return "Joignez impérativement un prévisionnel de trésorerie. Le SIE accepte plus volontiers un échelonnement quand la demande est anticipée.";
+    case 'tribunal':
+      return "Ce courrier engage votre entreprise. Faites-le relire par un avocat ou par un mandataire judiciaire avant envoi — la plupart proposent un premier échange gratuit.";
+    case 'banque':
+      if (ctx.situation === 'redressement' || ctx.situation === 'assignation') {
+        return "Joignez immédiatement la médiation du crédit (gratuit, 5 jours pour répondre). En cas de cessation des paiements, votre banque ne peut pas refuser de discuter sans motif sérieux.";
+      }
+      return "Sollicitez en parallèle la médiation du crédit (Banque de France). Service gratuit qui facilite le dialogue avec votre établissement.";
+    case 'fournisseurs':
+      return "Téléphonez avant d'envoyer le courrier : un appel humain change souvent l'issue. Le courrier sécurise ensuite l'accord par écrit.";
+    case 'cci':
+      return "La CCI propose souvent un premier rendez-vous sous 7 jours. N'hésitez pas à les relancer par téléphone si pas de réponse en une semaine.";
+    case 'social':
+      return "Préparez vos justificatifs avant l'envoi : avis d'imposition, relevés bancaires, quittances. Une demande complète est traitée en 2 à 4 semaines.";
+    default:
+      return null;
+  }
+}
+
+// Reconnaît la formule de politesse finale d'un paragraphe.
+const FORMULE_REGEX = /^(Veuillez agréer|Je vous prie d'agréer|Avec mes (?:meilleures|salutations|sincères)|Cordialement|Avec mes salutations|Fait à)/i;
+
+function injectFragments(corps: string, preambule?: string, closing?: string): string {
+  if (!preambule && !closing) return corps;
+  const blocks = corps.split(/\n\n+/);
+  if (blocks.length === 0) return corps;
+
+  // Préambule : inséré après la salutation initiale (1er bloc qui contient "Madame" ou "Monsieur").
+  if (preambule) {
+    const insertAt = blocks[0].match(/^(Madame|Monsieur|Cher)/i) ? 1 : 0;
+    blocks.splice(insertAt, 0, preambule);
+  }
+
+  // Closing : inséré juste avant la formule de politesse finale.
+  if (closing) {
+    let formuleIndex = -1;
+    for (let i = blocks.length - 1; i >= 0; i--) {
+      if (FORMULE_REGEX.test(blocks[i].trim())) {
+        formuleIndex = i;
+        break;
+      }
+    }
+    if (formuleIndex >= 0) {
+      blocks.splice(formuleIndex, 0, closing);
+    } else {
+      blocks.push(closing);
+    }
+  }
+
+  return blocks.join('\n\n');
+}
+
+export function personalizeCourrier(
+  template: CourrierTemplate,
+  ctx: CourrierContext
+): PersonalizedCourrier {
+  const fragments: string[] = [];
+
+  if (ctx.situation && SITUATION_FRAGMENTS[ctx.situation]) {
+    fragments.push(SITUATION_FRAGMENTS[ctx.situation]);
+  }
+  const eff = effectifFragment(ctx.effectif, ctx.effectifDetail);
+  if (eff && template.categorie !== 'tribunal') {
+    fragments.push(eff);
+  }
+
+  const preambule = fragments.length > 0 ? fragments.join('\n\n') : undefined;
+  // Pour le tribunal on évite le ton émotionnel (formel uniquement).
+  const closing =
+    ctx.moral && template.categorie !== 'tribunal' ? MORAL_CLOSINGS[ctx.moral] : undefined;
+  const conseil = conseilCategorie(template, ctx) ?? undefined;
+  const urgence = ctx.situation ? SITUATION_URGENCY[ctx.situation] : undefined;
+
+  return {
+    objet: template.objet,
+    corps: injectFragments(template.corps, preambule, closing),
+    preambule,
+    closing,
+    conseil,
+    urgence,
+  };
+}
+
+export function loadContextFromStorage(): CourrierContext | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = sessionStorage.getItem('avelor_reponses');
+    if (!raw) return null;
+    const r = JSON.parse(raw) as Partial<Reponses>;
+    return {
+      situation: r.situation,
+      moral: r.moral,
+      probleme: r.probleme,
+      effectif: r.effectif,
+      effectifDetail: r.effectifDetail,
+    };
+  } catch {
+    return null;
+  }
+}

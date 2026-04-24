@@ -1,13 +1,14 @@
 'use client';
 import { useEffect } from 'react';
-import type { CompanyData } from '@/lib/types';
+import type { CompanyData, Reponses } from '@/lib/types';
 
 interface Props {
   company: CompanyData;
   token: string;
+  reponses?: Reponses;
 }
 
-export default function StoreCompanyData({ company, token }: Props) {
+export default function StoreCompanyData({ company, token, reponses }: Props) {
   useEffect(() => {
     try {
       sessionStorage.setItem(
@@ -23,6 +24,9 @@ export default function StoreCompanyData({ company, token }: Props) {
           ACTIVITE: company.nafLabel || company.naf,
         })
       );
+      if (reponses) {
+        sessionStorage.setItem('avelor_reponses', JSON.stringify(reponses));
+      }
       // Store last fiche token for "Retrouver ma fiche"
       localStorage.setItem('avelor_last_fiche', JSON.stringify({
         token,
@@ -31,7 +35,7 @@ export default function StoreCompanyData({ company, token }: Props) {
         ts: Date.now(),
       }));
     } catch {}
-  }, [company, token]);
+  }, [company, token, reponses]);
 
   return null;
 }
