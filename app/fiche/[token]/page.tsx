@@ -1,31 +1,8 @@
 import { notFound } from 'next/navigation';
-import IdentiteCard from '@/components/fiche/IdentiteCard';
-import AlertesBand from '@/components/fiche/AlertesBand';
-import BlocSoutien from '@/components/fiche/BlocSoutien';
-import BlocCalendrier from '@/components/fiche/BlocCalendrier';
-import BlocChecklist from '@/components/fiche/BlocChecklist';
-import BlocOrganismes from '@/components/fiche/BlocOrganismes';
-import BlocAlertes from '@/components/fiche/BlocAlertes';
-import BlocPrescription from '@/components/fiche/BlocPrescription';
-import BlocPlanAction from '@/components/fiche/BlocPlanAction';
-import BlocAidesPersonnalisees from '@/components/fiche/BlocAides';
-import BlocProtectionFamille from '@/components/fiche/BlocProtectionFamille';
-import BlocProcedureRecommandee from '@/components/fiche/BlocProcedureRecommandee';
-import BlocSanteSecteur from '@/components/fiche/BlocSanteSecteur';
-import BlocObligations from '@/components/fiche/BlocObligations';
-import BlocAuditCaution from '@/components/fiche/BlocAuditCaution';
-import BlocTimeline from '@/components/fiche/BlocTimeline';
-import BlocStrategie from '@/components/fiche/BlocStrategie';
-import BlocPatrimoine from '@/components/fiche/BlocPatrimoine';
-import BlocTresorerie from '@/components/fiche/BlocTresorerie';
-import BlocCessationDecompte from '@/components/fiche/BlocCessationDecompte';
-import BlocCCSF from '@/components/fiche/BlocCCSF';
-import BlocBailCommercial from '@/components/fiche/BlocBailCommercial';
-import BlocConsequencesPerso from '@/components/fiche/BlocConsequencesPerso';
-import BlocRappels from '@/components/fiche/BlocRappels';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
+import FicheLayoutSwitcher from '@/components/fiche/FicheLayoutSwitcher';
 import { getFicheByToken } from '@/lib/supabase';
 import { fetchSirene } from '@/lib/sirene';
 import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodacc';
@@ -117,7 +94,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
   const moralFragile = reponses.moral === 'epuise' || reponses.moral === 'perdu';
 
   return (
-    <section className="mx-auto max-w-3xl space-y-5 px-5 pb-24 sm:space-y-6">
+    <section className="mx-auto max-w-5xl space-y-5 px-5 pb-24 sm:space-y-6">
       {/* Print-only header */}
       <div className="print-header hidden">
         <p style={{ fontFamily: 'Georgia, serif', fontSize: '22pt', letterSpacing: '0.05em' }}>AVELOR</p>
@@ -157,31 +134,18 @@ export default async function FichePage({ params, searchParams }: PageProps) {
 
       {token !== 'local' && <SaveBanner token={token} />}
 
-      <IdentiteCard company={company_data} />
-      <BlocSanteSecteur sector={sector} />
-      <AlertesBand alertes={alertes} />
-
-      <BlocSoutien reponses={reponses} sector={sector} />
-      <BlocStrategie reponses={reponses} company={company_data} sector={sector} />
-      <BlocProcedureRecommandee reponses={reponses} company={company_data} sector={sector} />
-      <BlocTimeline reponses={reponses} company={company_data} />
-      <BlocCessationDecompte reponses={reponses} />
-      <BlocRappels reponses={reponses} />
-      <BlocTresorerie reponses={reponses} />
-      <BlocCalendrier reponses={reponses} company={company_data} sector={sector} />
-      <BlocChecklist reponses={reponses} company={company_data} sector={sector} />
-      <BlocPlanAction reponses={reponses} company={company_data} sector={sector} />
-      <BlocProtectionFamille reponses={reponses} company={company_data} sector={sector} />
-      <BlocPatrimoine reponses={reponses} company={company_data} />
-      <BlocConsequencesPerso reponses={reponses} />
-      <BlocAuditCaution reponses={reponses} />
-      <BlocAidesPersonnalisees reponses={reponses} company={company_data} sector={sector} />
-      <BlocCCSF reponses={reponses} company={company_data} />
-      <BlocBailCommercial reponses={reponses} company={company_data} sector={sector} />
-      <BlocObligations reponses={reponses} company={company_data} seuils={seuils} />
-      <BlocOrganismes groupes={groupes} />
-      <BlocPrescription reponses={reponses} company={company_data} companyAge={companyAge} seuils={seuils} />
-      <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
+      <FicheLayoutSwitcher
+        token={token}
+        company={company_data}
+        reponses={reponses}
+        sector={sector}
+        alertes={alertes}
+        bodacc={bodacc}
+        infogreffe={infogreffe}
+        groupes={groupes}
+        companyAge={companyAge}
+        seuils={seuils}
+      />
 
       <p className="pt-6 text-center text-xs text-navy/45">
         Cette fiche ne remplace pas un conseil personnalisé. Elle vous aide à
