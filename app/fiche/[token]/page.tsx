@@ -13,6 +13,7 @@ import BlocProtectionFamille from '@/components/fiche/BlocProtectionFamille';
 import BlocProcedureRecommandee from '@/components/fiche/BlocProcedureRecommandee';
 import BlocSanteSecteur from '@/components/fiche/BlocSanteSecteur';
 import BlocObligations from '@/components/fiche/BlocObligations';
+import BlocAuditCaution from '@/components/fiche/BlocAuditCaution';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
@@ -157,6 +158,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
       <BlocChecklist reponses={reponses} company={company_data} sector={sector} />
       <BlocPlanAction reponses={reponses} company={company_data} sector={sector} />
       <BlocProtectionFamille reponses={reponses} company={company_data} sector={sector} />
+      <BlocAuditCaution reponses={reponses} />
       <BlocAidesPersonnalisees reponses={reponses} company={company_data} sector={sector} />
       <BlocObligations reponses={reponses} company={company_data} seuils={seuils} />
       <BlocOrganismes groupes={groupes} />
