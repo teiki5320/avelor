@@ -75,7 +75,7 @@ function Carte({ o, couleur }: { o: OrganismeCard; couleur: string }) {
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
           >
-            🌐 Site
+            🌐 {(() => { try { return new URL(o.site).hostname.replace('www.', ''); } catch { return o.nom; } })()}
           </a>
         )}
         {o.mapsUrl && (

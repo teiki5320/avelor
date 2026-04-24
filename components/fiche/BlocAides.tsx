@@ -262,7 +262,7 @@ export default function BlocAides({ reponses, company, sector }: Props) {
                           rel="noreferrer"
                           className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
                         >
-                          🌐 Site
+                          🌐 {(() => { try { return new URL(a.site).hostname.replace('www.', ''); } catch { return a.nom; } })()}
                         </a>
                       )}
                     </div>
