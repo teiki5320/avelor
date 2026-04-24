@@ -2,7 +2,10 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { Reponses, Situation, Probleme, Effectif, Moral } from '@/lib/types';
+import type {
+  Reponses, Situation, Probleme, Effectif, Moral,
+  Caution, RegimeMatrimonial, Patrimoine, VenteEnvisagee,
+} from '@/lib/types';
 
 interface Choice<T extends string> {
   value: T;
@@ -10,11 +13,18 @@ interface Choice<T extends string> {
   hint?: string;
 }
 
+interface SlideConfig {
+  title: string;
+  subtitle: string;
+  key: keyof Reponses;
+  choices: Choice<string>[];
+}
+
 const SITUATIONS: Choice<Situation>[] = [
-  { value: 'prevention', label: 'Je sens que ça se dégrade', hint: 'Trésorerie qui s\'érode, doute' },
+  { value: 'prevention', label: 'Je sens que ça se dégrade', hint: 'Trésorerie qui s’érode, doute' },
   { value: 'tresorie', label: 'Je ne peux plus faire face à certaines dépenses', hint: 'Retards, relances' },
   { value: 'redressement', label: 'Je suis en cessation de paiements', hint: 'Plus de trésorerie disponible' },
-  { value: 'assignation', label: 'J\'ai reçu une assignation', hint: 'Courrier du tribunal ou huissier' },
+  { value: 'assignation', label: 'J’ai reçu une assignation', hint: 'Courrier du tribunal ou huissier' },
 ];
 
 const PROBLEMES: Choice<Probleme>[] = [
@@ -32,9 +42,35 @@ const EFFECTIFS: Choice<Effectif>[] = [
 
 const MORAUX: Choice<Moral>[] = [
   { value: 'combatif', label: 'Stressé mais combatif', hint: 'Vous gardez le cap' },
-  { value: 'epuise', label: 'Épuisé, j\'ai besoin d\'aide', hint: 'Le poids est lourd à porter' },
+  { value: 'epuise', label: 'Épuisé, j’ai besoin d’aide', hint: 'Le poids est lourd à porter' },
   { value: 'perdu', label: 'Je ne sais plus quoi faire', hint: 'Tout se mélange' },
 ];
+
+const CAUTIONS: Choice<Caution>[] = [
+  { value: 'oui', label: 'Oui, j’ai signé des cautions', hint: 'Garantie personnelle sur un prêt, un bail, etc.' },
+  { value: 'non', label: 'Non, aucune caution personnelle' },
+  { value: 'ne-sais-pas', label: 'Je ne suis pas sûr·e', hint: 'On vérifiera ensemble' },
+];
+
+const REGIMES: Choice<RegimeMatrimonial>[] = [
+  { value: 'communaute', label: 'Communauté de biens (régime par défaut)', hint: 'Les biens du couple sont communs' },
+  { value: 'separation', label: 'Séparation de biens', hint: 'Chacun ses biens' },
+  { value: 'non-marie', label: 'Je ne suis pas marié·e', hint: 'Célibataire, pacsé·e ou concubin·e' },
+  { value: 'ne-sais-pas', label: 'Je ne sais pas', hint: 'Un notaire peut vérifier' },
+];
+
+const PATRIMOINES: Choice<Patrimoine>[] = [
+  { value: 'proprietaire', label: 'Je suis propriétaire de ma résidence', hint: 'Maison ou appartement à votre nom' },
+  { value: 'locataire', label: 'Je suis locataire', hint: 'Pas de bien immobilier personnel' },
+];
+
+const VENTES: Choice<VenteEnvisagee>[] = [
+  { value: 'oui', label: 'Oui, je suis prêt·e à vendre', hint: 'Cession totale ou partielle' },
+  { value: 'peut-etre', label: 'Peut-être, si c’est la meilleure option', hint: 'Je veux d’abord comprendre' },
+  { value: 'non', label: 'Non, je veux garder mon entreprise', hint: 'Chercher d’autres solutions' },
+];
+
+const TOTAL_SLIDES = 8;
 
 interface Props {
   siret: string;
@@ -57,17 +93,13 @@ function loadSaved(siret: string): { step: number; answers: Partial<Reponses> } 
 function saveDraft(siret: string, step: number, answers: Partial<Reponses>) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ siret, step, answers, ts: Date.now() }));
-  } catch {
-    // ignore
-  }
+  } catch {}
 }
 
 function clearDraft() {
   try {
     localStorage.removeItem(STORAGE_KEY);
-  } catch {
-    // ignore
-  }
+  } catch {}
 }
 
 export default function Questionnaire({ siret }: Props) {
@@ -90,7 +122,7 @@ export default function Questionnaire({ siret }: Props) {
     if (step > 0) saveDraft(siret, step, answers);
   }, [step, answers, siret]);
 
-  const progress = useMemo(() => ((step + 1) / 4) * 100, [step]);
+  const progress = useMemo(() => ((step + 1) / TOTAL_SLIDES) * 100, [step]);
 
   function select(key: keyof Reponses, value: string, detail?: string) {
     setAnswers((prev) => ({
@@ -99,7 +131,7 @@ export default function Questionnaire({ siret }: Props) {
       ...(detail && key === 'effectif' ? { effectifDetail: detail } : {}),
     }));
     setTimeout(() => {
-      if (step < 3) setStep((s) => s + 1);
+      if (step < TOTAL_SLIDES - 1) setStep((s) => s + 1);
       else submit({ ...answers, [key]: value, ...(detail ? { effectifDetail: detail } : {}) });
     }, 280);
   }
@@ -116,47 +148,65 @@ export default function Questionnaire({ siret }: Props) {
         body: JSON.stringify({ siret, reponses }),
       });
       const json = await res.json();
-      // Only use the persisted token if the fiche was actually saved.
-      // Otherwise fall back to a base64-encoded local URL so the user still
-      // gets a working page even without Supabase configured.
       if (json?.token && json?.persisted) {
         router.push(`/fiche/${json.token}`);
         return;
       }
-    } catch {
-      // fallback below
-    }
+    } catch {}
 
-    // Fallback: encode into URL so the fiche renders without Supabase.
     const encoded = btoa(
       unescape(encodeURIComponent(JSON.stringify({ siret, reponses })))
     );
     router.push(`/fiche/local?d=${encoded}`);
   }
 
-  const slides = [
+  const slides: SlideConfig[] = [
     {
       title: 'Où en êtes-vous ?',
-      subtitle: 'Il n\'y a pas de mauvaise réponse.',
-      key: 'situation' as const,
+      subtitle: 'Il n’y a pas de mauvaise réponse.',
+      key: 'situation',
       choices: SITUATIONS,
     },
     {
       title: 'Quel est votre problème principal ?',
       subtitle: 'Vous pourrez nuancer plus tard.',
-      key: 'probleme' as const,
+      key: 'probleme',
       choices: PROBLEMES,
     },
     {
       title: 'Avez-vous des salariés ?',
       subtitle: 'Cela change les interlocuteurs à mobiliser.',
-      key: 'effectif' as const,
+      key: 'effectif',
       choices: EFFECTIFS,
+    },
+    {
+      title: 'Avez-vous signé des cautions personnelles ?',
+      subtitle: 'C’est important pour protéger votre patrimoine et votre famille.',
+      key: 'caution',
+      choices: CAUTIONS,
+    },
+    {
+      title: 'Êtes-vous propriétaire de votre résidence ?',
+      subtitle: 'Des protections légales existent selon votre statut.',
+      key: 'patrimoine',
+      choices: PATRIMOINES,
+    },
+    {
+      title: 'Quel est votre régime matrimonial ?',
+      subtitle: 'Cela détermine ce que votre conjoint·e risque ou non.',
+      key: 'regime',
+      choices: REGIMES,
+    },
+    {
+      title: 'Envisagez-vous de vendre votre entreprise ?',
+      subtitle: 'Vendre n’est pas un échec — c’est parfois la meilleure décision.',
+      key: 'vente',
+      choices: VENTES,
     },
     {
       title: 'Comment vous sentez-vous ?',
       subtitle: 'Votre réponse reste entre vous et nous.',
-      key: 'moral' as const,
+      key: 'moral',
       choices: MORAUX,
     },
   ];
@@ -167,7 +217,7 @@ export default function Questionnaire({ siret }: Props) {
     <div className="mx-auto max-w-2xl px-5 pb-20">
       {restored && (
         <div className="mb-4 flex items-center justify-between rounded-2xl bg-bleu/10 px-4 py-3 text-sm text-bleu-fonce">
-          <span>Vos réponses précédentes ont été restaurées.</span>
+          <span>Vos r&eacute;ponses pr&eacute;c&eacute;dentes ont &eacute;t&eacute; restaur&eacute;es.</span>
           <button
             type="button"
             onClick={() => { setStep(0); setAnswers({}); clearDraft(); setRestored(false); }}
@@ -179,7 +229,7 @@ export default function Questionnaire({ siret }: Props) {
       )}
       <div className="mb-8">
         <div className="mb-2 flex items-center justify-between text-xs text-navy/50">
-          <span>Étape {step + 1} sur 4</span>
+          <span>&Eacute;tape {step + 1} sur {TOTAL_SLIDES}</span>
           <span>{Math.round(progress)} %</span>
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-navy/10">
@@ -242,10 +292,10 @@ export default function Questionnaire({ siret }: Props) {
               onClick={() => setStep((s) => Math.max(0, s - 1))}
               className="text-navy/50 hover:text-navy disabled:opacity-40"
             >
-              ← Précédent
+              &larr; Pr&eacute;c&eacute;dent
             </button>
             {submitting && (
-              <span className="text-navy/50">Préparation de votre fiche…</span>
+              <span className="text-navy/50">Pr&eacute;paration de votre fiche&hellip;</span>
             )}
           </div>
         </motion.div>

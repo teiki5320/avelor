@@ -2,6 +2,10 @@ export type Situation = 'prevention' | 'tresorie' | 'redressement' | 'assignatio
 export type Probleme = 'urssaf' | 'fournisseurs' | 'banque' | 'impots';
 export type Effectif = 'independant' | 'salaries';
 export type Moral = 'combatif' | 'epuise' | 'perdu';
+export type Caution = 'oui' | 'non' | 'ne-sais-pas';
+export type RegimeMatrimonial = 'communaute' | 'separation' | 'non-marie' | 'ne-sais-pas';
+export type Patrimoine = 'proprietaire' | 'locataire';
+export type VenteEnvisagee = 'oui' | 'peut-etre' | 'non';
 
 export interface Reponses {
   situation: Situation;
@@ -9,6 +13,10 @@ export interface Reponses {
   effectif: Effectif;
   effectifDetail?: string;
   moral: Moral;
+  caution?: Caution;
+  regime?: RegimeMatrimonial;
+  patrimoine?: Patrimoine;
+  vente?: VenteEnvisagee;
 }
 
 export interface CompanyData {

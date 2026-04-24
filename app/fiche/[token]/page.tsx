@@ -9,6 +9,8 @@ import BlocAlertes from '@/components/fiche/BlocAlertes';
 import BlocPrescription from '@/components/fiche/BlocPrescription';
 import BlocPlanAction from '@/components/fiche/BlocPlanAction';
 import BlocAidesPersonnalisees from '@/components/fiche/BlocAides';
+import BlocProtectionFamille from '@/components/fiche/BlocProtectionFamille';
+import BlocProcedureRecommandee from '@/components/fiche/BlocProcedureRecommandee';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
@@ -147,9 +149,11 @@ export default async function FichePage({ params, searchParams }: PageProps) {
       <AlertesBand alertes={alertes} />
 
       <BlocSoutien reponses={reponses} sector={sector} />
+      <BlocProcedureRecommandee reponses={reponses} company={company_data} sector={sector} />
       <BlocCalendrier reponses={reponses} company={company_data} sector={sector} />
       <BlocChecklist reponses={reponses} company={company_data} sector={sector} />
       <BlocPlanAction reponses={reponses} company={company_data} sector={sector} />
+      <BlocProtectionFamille reponses={reponses} company={company_data} sector={sector} />
       <BlocAidesPersonnalisees reponses={reponses} company={company_data} sector={sector} />
       <BlocOrganismes groupes={groupes} />
       <BlocPrescription reponses={reponses} company={company_data} companyAge={companyAge} seuils={seuils} />
