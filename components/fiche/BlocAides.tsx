@@ -1,5 +1,6 @@
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
+import { getAidesRegionales } from '@/lib/aidesRegionales';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
@@ -214,6 +215,22 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
     });
   }
   sections.push({ titre: `Aides locales${dep ? ` · département ${dep}` : ''}`, aides: regionales });
+
+  // Aides régionales ciblées
+  const regionInfo = getAidesRegionales(dep);
+  if (regionInfo && regionInfo.aides.length > 0) {
+    const regionAides: Aide[] = regionInfo.aides.map((a) => ({
+      nom: a.nom,
+      description: a.description,
+      site: a.site,
+      telephone: a.telephone,
+      badge: a.badge ?? `Région ${regionInfo.label}`,
+    }));
+    sections.push({
+      titre: `Dispositifs régionaux · ${regionInfo.label}`,
+      aides: regionAides,
+    });
+  }
 
   return sections;
 }
