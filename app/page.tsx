@@ -11,6 +11,7 @@ const RESSOURCES = [
   { href: '/procedures', icone: '⚖️', label: 'Procédures', desc: 'Tableau comparatif clair' },
   { href: '/rebond', icone: '🚀', label: 'Rebondir', desc: 'Recréer après une liquidation' },
   { href: '/glossaire', icone: '📖', label: 'Glossaire', desc: '19 termes expliqués simplement' },
+  { href: '/outils', icone: '🧮', label: 'Boîte à outils', desc: 'Calculateurs et vérificateurs officiels' },
   { href: '/accompagnant', icone: '🤝', label: 'J\'accompagne', desc: 'Pour les proches' },
   { href: '/parler', icone: '📞', label: 'Parler à quelqu\'un', desc: 'Numéros gratuits 24/7' },
 ];
