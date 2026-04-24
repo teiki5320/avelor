@@ -409,15 +409,40 @@ export const CATEGORIES: Record<string, { label: string; couleur: string }> = {
 // Personnalisation contextuelle des courriers
 // ─────────────────────────────────────────────────────────────
 
+/**
+ * Les courriers de ces slugs sont déjà très structurés ou ne
+ * supportent pas un préambule émotionnel (contestation, saisine
+ * de médiateur, requêtes judiciaires).
+ */
+const SLUGS_SANS_PREAMBULE = new Set<string>([
+  'cessation-paiements',
+  'mandat-ad-hoc',
+  'conciliation',
+  'mediation-entreprises',
+  'contestation-urssaf',
+]);
+
+/**
+ * Les courriers très formels (tribunal, contestation) ne reçoivent pas
+ * de ligne de clôture émotionnelle : seule la formule standard du template
+ * est conservée.
+ */
+const SLUGS_SANS_CLOSING = new Set<string>([
+  'cessation-paiements',
+  'mandat-ad-hoc',
+  'conciliation',
+  'contestation-urssaf',
+]);
+
 const SITUATION_FRAGMENTS: Record<Situation, string> = {
   prevention:
-    "Je m'adresse à vous à titre préventif, avant que la situation ne se dégrade davantage. Mon entreprise reste en activité et je souhaite anticiper plutôt que subir.",
+    "Je vous adresse cette demande à un stade encore amiable, pour anticiper et non subir. Je souhaite honorer mes obligations en les étalant sur une période raisonnable.",
   tresorie:
-    "Mon entreprise traverse une tension de trésorerie identifiée. L'activité se poursuit normalement et je sollicite votre compréhension afin de préserver son équilibre.",
+    "Mon entreprise traverse actuellement une tension de trésorerie identifiée. L'activité est maintenue et je sollicite votre bienveillance pour préserver son équilibre.",
   redressement:
-    "Mon entreprise est aujourd'hui dans l'impossibilité de faire face à l'intégralité de son passif exigible. Je prends la mesure de cette situation et j'agis pour la traiter dans les règles.",
+    "Ma société fait face à une difficulté de paiement qu'il m'appartient de traiter dans les règles, au mieux de l'intérêt de mes créanciers et de la continuité d'activité.",
   assignation:
-    "J'ai récemment reçu une assignation, ce qui rend ma démarche urgente. Je souhaite rétablir un dialogue constructif sans attendre l'audience.",
+    "Ma démarche revêt un caractère d'urgence, une procédure ayant été initiée à mon encontre. Je souhaite rétablir un dialogue constructif avant l'audience.",
 };
 
 const SITUATION_URGENCY: Record<Situation, 'normale' | 'elevee' | 'critique'> = {
@@ -429,22 +454,36 @@ const SITUATION_URGENCY: Record<Situation, 'normale' | 'elevee' | 'critique'> = 
 
 const MORAL_CLOSINGS: Record<Moral, string> = {
   combatif:
-    "Je reste mobilisé pour redresser la situation et m'engage à respecter scrupuleusement les modalités convenues.",
+    "Je reste pleinement mobilisé pour traverser cette période et m'engage à respecter scrupuleusement les modalités que nous conviendrons.",
   epuise:
-    "Je traverse une période éprouvante et je vous remercie sincèrement de l'attention que vous porterez à ma demande. Votre réponse compte beaucoup pour moi.",
+    "Je traverse une période éprouvante et je vous remercie sincèrement de l'attention que vous porterez à ma demande.",
   perdu:
-    "Je reconnais avoir besoin d'être accompagné pour avancer. Tout échange, même bref, m'aiderait à clarifier la marche à suivre.",
+    "Je reconnais avoir besoin d'être accompagné pour avancer. Un échange, même bref, m'aiderait à clarifier la marche à suivre.",
 };
+
+/**
+ * Reformate l'étiquette brute du questionnaire en une phrase naturelle.
+ * Ex. : "Oui, 5 ou plus" → "5 salariés ou plus"
+ */
+function normaliserEffectifDetail(detail?: string): string | null {
+  if (!detail) return null;
+  const clean = detail.replace(/^Oui,\s*/i, '').trim();
+  if (/^moins de\s+(\d+)/i.test(clean)) return clean + ' salariés';
+  if (/^(\d+)\s*ou\s*plus/i.test(clean)) return clean + ' salariés';
+  if (/^(\d+)$/.test(clean)) return clean + ' salariés';
+  if (/seul·e|seul\(e\)|seul$/i.test(clean)) return null;
+  return clean;
+}
 
 function effectifFragment(effectif?: Effectif, detail?: string): string | null {
   if (!effectif) return null;
   if (effectif === 'independant') {
-    return "Mon activité est exercée seul·e, sans salarié.";
+    return "J'exerce mon activité sans salarié.";
   }
-  const precisions = detail?.trim();
+  const precisions = normaliserEffectifDetail(detail);
   return precisions
-    ? `Mon entreprise emploie ${precisions}, dont la pérennité dépend directement de ma capacité à traverser cette période.`
-    : "Mon entreprise compte des salariés dont l'emploi dépend directement de ma capacité à traverser cette période.";
+    ? `L'entreprise compte ${precisions}, dont l'emploi dépend directement de ma capacité à traverser cette période.`
+    : "L'entreprise emploie des salariés dont la situation est directement liée à la résolution de ces difficultés.";
 }
 
 function conseilCategorie(template: CourrierTemplate, ctx: CourrierContext): string | null {
@@ -514,20 +553,32 @@ export function personalizeCourrier(
   template: CourrierTemplate,
   ctx: CourrierContext
 ): PersonalizedCourrier {
+  const sansPreambule = SLUGS_SANS_PREAMBULE.has(template.slug);
+  const sansClosing = SLUGS_SANS_CLOSING.has(template.slug);
+
   const fragments: string[] = [];
 
-  if (ctx.situation && SITUATION_FRAGMENTS[ctx.situation]) {
+  if (!sansPreambule && ctx.situation && SITUATION_FRAGMENTS[ctx.situation]) {
     fragments.push(SITUATION_FRAGMENTS[ctx.situation]);
   }
-  const eff = effectifFragment(ctx.effectif, ctx.effectifDetail);
-  if (eff && template.categorie !== 'tribunal') {
-    fragments.push(eff);
+
+  // L'information sur l'effectif n'est pertinente que pour les courriers
+  // qui négocient un moratoire/une aide où l'impact sur l'emploi peut peser.
+  // Exclu : 'social' (aide personnelle du dirigeant, pas de l'entreprise),
+  // 'fournisseurs' (échelle commerciale, pas sociale), 'tribunal' (formel).
+  const categoriesAvecEffectif = new Set(['urssaf', 'impots', 'banque', 'cci']);
+  if (
+    !sansPreambule &&
+    categoriesAvecEffectif.has(template.categorie) &&
+    // On ne ressort pas l'effectif si le template a déjà un champ {{NB_SALARIES}}.
+    !/\{\{NB_SALARIES\}\}/.test(template.corps)
+  ) {
+    const eff = effectifFragment(ctx.effectif, ctx.effectifDetail);
+    if (eff) fragments.push(eff);
   }
 
   const preambule = fragments.length > 0 ? fragments.join('\n\n') : undefined;
-  // Pour le tribunal on évite le ton émotionnel (formel uniquement).
-  const closing =
-    ctx.moral && template.categorie !== 'tribunal' ? MORAL_CLOSINGS[ctx.moral] : undefined;
+  const closing = !sansClosing && ctx.moral ? MORAL_CLOSINGS[ctx.moral] : undefined;
   const conseil = conseilCategorie(template, ctx) ?? undefined;
   const urgence = ctx.situation ? SITUATION_URGENCY[ctx.situation] : undefined;
 

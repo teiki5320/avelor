@@ -154,16 +154,32 @@ export default function CourrierDetailPage() {
 
   const meta = template ? CATEGORIES[template.categorie] : undefined;
 
+  const todayFR = new Date().toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  const nomEntreprise = values.NOM_ENTREPRISE || '';
+
   return (
-    <section className="mx-auto max-w-4xl px-5 pb-24">
+    <section className="courrier-page mx-auto max-w-4xl px-5 pb-24">
+      {/* Entête imprimable — n'apparaît qu'à l'impression */}
+      <div className="courrier-print-header hidden">
+        <div className="courrier-print-brand">AVELOR</div>
+        <div className="courrier-print-meta">
+          {nomEntreprise && <span>{nomEntreprise} · </span>}
+          <span>Document préparé le {todayFR}</span>
+        </div>
+      </div>
+
       <Link
         href="/courriers"
-        className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy"
+        className="no-print mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy"
       >
         ← Tous les modèles
       </Link>
 
-      <div className="mb-8">
+      <div className="courrier-page-header no-print mb-8">
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <span className="pastille inline-flex">
             {template.icone} {meta?.label}
@@ -186,15 +202,15 @@ export default function CourrierDetailPage() {
           Destinataire : {template.destinataire}
         </p>
         {context && (personalized?.preambule || personalized?.closing) && (
-          <p className="no-print mt-3 text-xs text-vert">
+          <p className="mt-3 text-xs text-vert">
             ✓ Courrier adapté à votre situation
           </p>
         )}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-5">
+      <div className="courrier-grid grid gap-6 lg:grid-cols-5">
         {/* Fields column */}
-        <div className="space-y-3 lg:col-span-2">
+        <div className="courrier-fields no-print space-y-3 lg:col-span-2">
           <h2 className="font-display text-lg text-navy">
             Vos informations
           </h2>
@@ -247,22 +263,29 @@ export default function CourrierDetailPage() {
           </div>
         </div>
 
-        {/* Preview column */}
-        <div className="lg:col-span-3">
-          <div className="glass card-top-line p-6 sm:p-8">
-            <p className="mb-6 text-sm font-medium text-bleu-fonce">
+        {/* Preview column — la seule partie imprimée */}
+        <div className="courrier-preview-col lg:col-span-3">
+          <div className="courrier-preview glass card-top-line p-6 sm:p-8">
+            <div className="courrier-print-date hidden">
+              <p>{nomEntreprise || '________________'}</p>
+              <p className="mt-1">Fait le {todayFR}</p>
+            </div>
+            <p className="courrier-objet mb-6 text-sm font-medium text-bleu-fonce">
               Objet : {rendered(personalized?.objet ?? template.objet)}
             </p>
             <div
               ref={textRef}
-              className="whitespace-pre-wrap text-sm leading-relaxed text-navy/90"
+              className="courrier-corps whitespace-pre-wrap text-sm leading-relaxed text-navy/90"
             >
               {rendered(personalized?.corps ?? template.corps)}
+            </div>
+            <div className="courrier-signature hidden">
+              <p>Signature :</p>
             </div>
           </div>
 
           {personalized?.conseil && (
-            <div className="no-print mt-4 rounded-2xl border border-bleu/20 bg-bleu/5 p-4 text-sm text-navy">
+            <div className="courrier-conseil no-print mt-4 rounded-2xl border border-bleu/20 bg-bleu/5 p-4 text-sm text-navy">
               <p className="mb-1 font-display text-sm text-bleu-fonce">
                 Conseil pour ce courrier
               </p>
@@ -283,13 +306,17 @@ export default function CourrierDetailPage() {
               onClick={handlePrint}
               className="btn-ghost"
             >
-              📄 Imprimer / PDF
+              📄 Télécharger en PDF
             </button>
           </div>
+          <p className="no-print mt-2 text-[11px] text-navy/50">
+            « Télécharger en PDF » ouvre la boîte d&apos;impression de votre
+            navigateur — choisissez « Enregistrer en PDF » comme destination.
+          </p>
         </div>
       </div>
 
-      <div className="dashed-band mt-8 p-5 text-sm text-navy/70">
+      <div className="dashed-band no-print mt-8 p-5 text-sm text-navy/70">
         <p>
           Ce modèle est une base de travail. Adaptez-le à votre situation.
           Pour les courriers au tribunal, un avocat peut vous aider à le
