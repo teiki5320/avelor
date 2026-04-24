@@ -2,45 +2,17 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 
-interface MenuGroup {
-  titre: string;
-  liens: { href: string; label: string }[];
-}
-
-const GROUPS: MenuGroup[] = [
-  {
-    titre: 'Comprendre',
-    liens: [
-      { href: '/procedures', label: 'Procédures' },
-      { href: '/glossaire', label: 'Glossaire' },
-      { href: '/situation', label: 'Par situation' },
-    ],
-  },
-  {
-    titre: 'Agir',
-    liens: [
-      { href: '/courriers', label: 'Courriers types' },
-      { href: '/aides', label: 'Aides entreprise' },
-      { href: '/aides-personnelles', label: 'Droits personnels' },
-      { href: '/vendre', label: 'Vendre / Céder' },
-    ],
-  },
-  {
-    titre: 'Se protéger',
-    liens: [
-      { href: '/proteger-famille', label: 'Famille et patrimoine' },
-      { href: '/rebond', label: 'Rebondir' },
-      { href: '/accompagnant', label: "J'accompagne quelqu'un" },
-    ],
-  },
-  {
-    titre: 'En parler',
-    liens: [
-      { href: '/parler', label: 'Parler maintenant' },
-      { href: '/temoignages', label: 'Témoignages' },
-      { href: '/confidentialite', label: 'Confidentialité' },
-    ],
-  },
+const LINKS = [
+  { href: '/procedures', label: 'Procédures', desc: 'Comprendre vos options' },
+  { href: '/courriers', label: 'Courriers', desc: '12 modèles prêts' },
+  { href: '/aides', label: 'Aides entreprise', desc: 'Financements et dispositifs' },
+  { href: '/aides-personnelles', label: 'Droits personnels', desc: 'ATI, CSS, RSA...' },
+  { href: '/proteger-famille', label: 'Famille', desc: 'Patrimoine et cautions' },
+  { href: '/vendre', label: 'Vendre / Céder', desc: 'Cession, location-gérance' },
+  { href: '/rebond', label: 'Rebondir', desc: 'Après une liquidation' },
+  { href: '/glossaire', label: 'Glossaire', desc: '18 termes expliqués' },
+  { href: '/accompagnant', label: "J'accompagne", desc: 'Pour les proches' },
+  { href: '/parler', label: 'Parler', desc: 'Numéros gratuits 24/7' },
 ];
 
 export default function Nav() {
@@ -66,7 +38,7 @@ export default function Nav() {
         </Link>
 
         <div className="hidden items-center gap-4 text-sm text-navy/55 md:flex">
-          <Link href="/procedures" className="transition hover:text-navy">Procédures</Link>
+          <Link href="/procedures" className="transition hover:text-navy">Proc&eacute;dures</Link>
           <Link href="/courriers" className="transition hover:text-navy">Courriers</Link>
           <Link href="/aides" className="transition hover:text-navy">Aides</Link>
           <Link href="/parler" className="transition hover:text-navy">Parler</Link>
@@ -84,25 +56,19 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="pill-nav mt-2 grid grid-cols-2 gap-x-6 gap-y-4 px-5 py-5 sm:grid-cols-4 sm:px-6">
-          {GROUPS.map((g) => (
-            <div key={g.titre}>
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-navy/35">
-                {g.titre}
-              </p>
-              <div className="space-y-0.5">
-                {g.liens.map((l) => (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-lg px-2 py-1.5 text-sm text-navy/70 transition hover:bg-navy/5 hover:text-navy"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
+        <div className="glass mt-2 max-h-[70vh] w-[280px] overflow-y-auto rounded-2xl p-2 sm:w-[320px]"
+          style={{ position: 'absolute', right: 0, top: '100%' }}
+        >
+          {LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="flex flex-col rounded-xl px-4 py-2.5 transition hover:bg-navy/5"
+            >
+              <span className="text-sm font-medium text-navy">{l.label}</span>
+              <span className="text-xs text-navy/45">{l.desc}</span>
+            </Link>
           ))}
         </div>
       )}
