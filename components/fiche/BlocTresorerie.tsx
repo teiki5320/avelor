@@ -150,7 +150,6 @@ export default function BlocTresorerie({ reponses }: Props) {
       icone="📊"
       titre="Projection de trésorerie (6 mois)"
       soustitre={hasData && v ? v.titre : 'Estimez votre horizon de trésorerie'}
-      defaultOpen={prioritaire}
     >
       <p className="mb-4 text-sm text-navy/80">
         Renseignez quatre chiffres (au doigt mouillé, c&apos;est ok) pour

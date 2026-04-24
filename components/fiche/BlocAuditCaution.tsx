@@ -176,7 +176,6 @@ export default function BlocAuditCaution({ reponses }: Props) {
       icone="🛡️"
       titre="Audit de vos cautions"
       soustitre={soustitre}
-      defaultOpen={reponses.caution === 'oui'}
     >
       {reponses.caution === 'ne-sais-pas' && (
         <div className="mb-4 rounded-2xl border border-jaune/30 bg-jaune/10 p-4 text-sm text-navy">

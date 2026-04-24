@@ -149,7 +149,6 @@ export default function BlocCessationDecompte({ reponses }: Props) {
             : `${verdict.joursRestants} j restants · échéance ${formatDateFR(verdict.echeance)}`
           : 'Renseignez la date de cessation pour activer le décompte'
       }
-      defaultOpen={reponses.situation === 'redressement' || reponses.situation === 'assignation'}
     >
       <p className="mb-4 text-sm text-navy/80">
         L&apos;article <strong>L631-4 du Code de commerce</strong> impose au

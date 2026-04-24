@@ -94,16 +94,11 @@ const SECTIONS: Section[] = [
 ];
 
 export default function BlocConsequencesPerso({ reponses }: Props) {
-  // Pertinent pour tout le monde — le dirigeant doit connaître ces mécanismes.
-  // On ouvre par défaut si situation à risque.
-  const defaultOpen = reponses.situation === 'redressement' || reponses.situation === 'assignation';
-
   return (
     <BlocAccordeon
       icone="🔒"
       titre="Conséquences personnelles à connaître"
       soustitre="Fichiers BDF, cotation, responsabilité — sources officielles"
-      defaultOpen={defaultOpen}
     >
       <p className="mb-4 text-sm text-navy/80">
         Trois mécanismes peuvent affecter durablement votre patrimoine,

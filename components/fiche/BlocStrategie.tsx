@@ -245,7 +245,6 @@ export default function BlocStrategie({ reponses, company, sector }: Props) {
       icone="🎯"
       titre="Stratégie recommandée"
       soustitre="Un cap clair, à confirmer avec votre conseil"
-      defaultOpen
     >
       <div className={`rounded-2xl border border-navy/10 border-l-4 p-5 ${AXE_STYLES[main.axe].bg} ${AXE_STYLES[main.axe].accent}`}>
         <div className="flex flex-wrap items-center gap-2">

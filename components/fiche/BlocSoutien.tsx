@@ -21,7 +21,6 @@ export default function BlocSoutien({ reponses, sector }: Props) {
       icone="🤝"
       titre="Vous n'êtes pas seul·e"
       soustitre="Soutien humain, avant tout"
-      defaultOpen
     >
       <p className="text-navy/80">{message}</p>
       <div className={`mt-5 grid gap-3 ${hasSectorSoutien ? 'sm:grid-cols-2' : 'sm:grid-cols-3'}`}>

@@ -136,7 +136,6 @@ export default function BlocProcedureRecommandee({ reponses, company, sector }: 
       icone="⚖️"
       titre="Procédures et options pour votre situation"
       soustitre={`${procs.length} pistes identifiées`}
-      defaultOpen
     >
       <div className="space-y-3">
         {procs.map((p, i) => (
