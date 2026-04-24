@@ -193,7 +193,7 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
       badge: 'Droit légal',
     },
   ];
-  sections.push({ titre: 'Aides personnelles du dirigeant', aides: personnelles });
+  sections.push({ titre: 'Pour vous personnellement', aides: personnelles });
 
   // Aides locales
   const chambreLabel = s.chambre === 'CMA' ? 'Chambre de Métiers' : s.chambre === 'CA' ? 'Chambre d\'agriculture' : 'CCI';
@@ -225,8 +225,8 @@ export default function BlocAides({ reponses, company, sector }: Props) {
   return (
     <BlocAccordeon
       icone="💶"
-      titre="Aides financières pour votre situation"
-      soustitre={`${total} aides identifiées pour ${company.nom !== 'Votre entreprise' ? company.nom : 'votre entreprise'}`}
+      titre="Aides et financements"
+      soustitre={`${total} dispositifs identifiés pour ${company.nom !== 'Votre entreprise' ? company.nom : 'votre situation'}`}
     >
       <div className="space-y-6">
         {sections.map((s) => (

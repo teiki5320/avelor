@@ -66,8 +66,8 @@ export default function BlocProtectionFamille({ reponses, company, sector }: Pro
   }
 
   items.push({
-    titre: 'Vos enfants ne sont pas responsables de vos dettes',
-    texte: "Les dettes professionnelles ne se transmettent pas aux enfants. En cas de décès, les héritiers peuvent toujours refuser la succession.",
+    titre: 'Vos dettes ne se transmettent pas',
+    texte: "Les dettes professionnelles sont les vôtres, pas celles de votre famille. Vos proches ne peuvent pas en hériter contre leur volonté.",
   });
 
   if (items.length === 0) return null;
