@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
-import FicheLayoutSwitcher from '@/components/fiche/FicheLayoutSwitcher';
+import LayoutDashboard from '@/components/fiche/layouts/LayoutDashboard';
 import { getFicheByToken } from '@/lib/supabase';
 import { fetchSirene } from '@/lib/sirene';
 import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodacc';
@@ -94,7 +94,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
   const moralFragile = reponses.moral === 'epuise' || reponses.moral === 'perdu';
 
   return (
-    <section className="mx-auto max-w-5xl space-y-5 px-5 pb-24 sm:space-y-6">
+    <section className="mx-auto max-w-6xl space-y-5 px-5 pb-24 sm:space-y-6">
       {/* Print-only header */}
       <div className="print-header hidden">
         <p style={{ fontFamily: 'Georgia, serif', fontSize: '22pt', letterSpacing: '0.05em' }}>AVELOR</p>
@@ -134,7 +134,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
 
       {token !== 'local' && <SaveBanner token={token} />}
 
-      <FicheLayoutSwitcher
+      <LayoutDashboard
         token={token}
         company={company_data}
         reponses={reponses}
