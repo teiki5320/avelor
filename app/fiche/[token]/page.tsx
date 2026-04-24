@@ -16,6 +16,7 @@ import BlocObligations from '@/components/fiche/BlocObligations';
 import BlocAuditCaution from '@/components/fiche/BlocAuditCaution';
 import BlocTimeline from '@/components/fiche/BlocTimeline';
 import BlocStrategie from '@/components/fiche/BlocStrategie';
+import BlocPatrimoine from '@/components/fiche/BlocPatrimoine';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
@@ -162,6 +163,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
       <BlocChecklist reponses={reponses} company={company_data} sector={sector} />
       <BlocPlanAction reponses={reponses} company={company_data} sector={sector} />
       <BlocProtectionFamille reponses={reponses} company={company_data} sector={sector} />
+      <BlocPatrimoine reponses={reponses} company={company_data} />
       <BlocAuditCaution reponses={reponses} />
       <BlocAidesPersonnalisees reponses={reponses} company={company_data} sector={sector} />
       <BlocObligations reponses={reponses} company={company_data} seuils={seuils} />
