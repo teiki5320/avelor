@@ -414,23 +414,27 @@ export default function PriorityCards(props: Props) {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
-    <section className="space-y-3">
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {cards.map((c) => {
-          const t = TONES[c.tone];
-          const isOpen = expanded === c.id;
-          return (
+    <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {cards.map((c) => {
+        const t = TONES[c.tone];
+        const isOpen = expanded === c.id;
+        return (
+          <div
+            key={c.id}
+            className={`relative overflow-hidden rounded-2xl border transition-all duration-200 ${t.bg} ${t.border} ${
+              isOpen ? 'ring-2 ring-navy/15 sm:col-span-2 lg:col-span-4' : ''
+            }`}
+          >
+            <div className={`absolute left-0 top-0 bottom-0 w-1 ${t.accent}`} aria-hidden />
+
+            {/* Zone d'en-tête cliquable */}
             <button
-              key={c.id}
               type="button"
               onClick={() => setExpanded(isOpen ? null : c.id)}
-              className={`relative overflow-hidden rounded-2xl border p-4 text-left transition ${t.bg} ${t.border} ${t.hover} ${
-                isOpen ? 'ring-2 ring-navy/15' : ''
-              }`}
+              className={`w-full p-4 text-left transition ${t.hover}`}
               aria-expanded={isOpen}
               aria-controls={`panel-${c.id}`}
             >
-              <div className={`absolute left-0 top-0 bottom-0 w-1 ${t.accent}`} aria-hidden />
               <div className="flex items-start justify-between gap-2">
                 <span className="text-2xl leading-none" aria-hidden>{c.icone}</span>
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-navy/50">
@@ -446,31 +450,20 @@ export default function PriorityCards(props: Props) {
                 <span aria-hidden className={`transition ${isOpen ? 'rotate-180' : ''}`}>↓</span>
               </div>
             </button>
-          );
-        })}
-      </div>
 
-      {/* Panneau détaillé qui s'affiche sous la grille */}
-      {expanded && (() => {
-        const card = cards.find((c) => c.id === expanded);
-        if (!card) return null;
-        const t = TONES[card.tone];
-        return (
-          <div
-            id={`panel-${card.id}`}
-            role="region"
-            className={`rounded-2xl border p-5 ${t.bg} ${t.border}`}
-          >
-            <div className="mb-3 flex items-center gap-2">
-              <span className="text-xl" aria-hidden>{card.icone}</span>
-              <p className={`font-display text-base ${t.text}`}>
-                {card.label} · {card.valeur}
-              </p>
-            </div>
-            {card.expandedContent}
+            {/* Contenu détaillé — s'intègre dans la carte qui s'agrandit */}
+            {isOpen && (
+              <div
+                id={`panel-${c.id}`}
+                role="region"
+                className="border-t border-navy/10 bg-white/40 px-5 pb-5 pt-4"
+              >
+                {c.expandedContent}
+              </div>
+            )}
           </div>
         );
-      })()}
+      })}
     </section>
   );
 }
