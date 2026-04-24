@@ -21,7 +21,8 @@ import BlocBailCommercial from '@/components/fiche/BlocBailCommercial';
 import BlocConsequencesPerso from '@/components/fiche/BlocConsequencesPerso';
 import BlocRappels from '@/components/fiche/BlocRappels';
 import IdentiteHero from '@/components/fiche/dashboard/IdentiteHero';
-import KpiBand from '@/components/fiche/dashboard/KpiBand';
+import PriorityCards from '@/components/fiche/dashboard/PriorityCards';
+import QuickLinks from '@/components/fiche/dashboard/QuickLinks';
 import StrategieHero from '@/components/fiche/dashboard/StrategieHero';
 import SectionNav from '@/components/fiche/dashboard/SectionNav';
 import SectionHeader from '@/components/fiche/dashboard/SectionHeader';
@@ -43,12 +44,15 @@ export default function LayoutDashboard({
       {/* Hero identité */}
       <IdentiteHero company={company} />
 
-      {/* KPI band */}
-      <KpiBand reponses={reponses} company={company} sector={sector} seuils={seuils} />
+      {/* 4 cards prioritaires dynamiques (cliquables pour expand) */}
+      <PriorityCards reponses={reponses} company={company} sector={sector} seuils={seuils} />
 
-      {/* Alertes contextuelles (santé secteur + BODACC) — affichées si pertinentes */}
+      {/* Alertes contextuelles */}
       <BlocSanteSecteur sector={sector} />
       <AlertesBand alertes={alertes} />
+
+      {/* Petites cards outils / courriers / annuaires */}
+      <QuickLinks />
 
       {/* SECTION : Vue d'ensemble */}
       <SectionHeader
