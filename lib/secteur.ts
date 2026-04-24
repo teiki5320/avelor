@@ -413,7 +413,13 @@ export function getCompanyAge(dateCreation: string): number | null {
   return Math.floor((now.getTime() - d.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
 }
 
-export function getEffectifSeuils(effectif: string): { cse: boolean; obligations50: boolean } {
+export interface EffectifSeuils {
+  approx: number;
+  cse: boolean;
+  obligations50: boolean;
+}
+
+export function getEffectifSeuils(effectif: string): EffectifSeuils {
   const map: Record<string, number> = {
     '0 salarié': 0,
     '1 ou 2 salariés': 2,
@@ -423,12 +429,89 @@ export function getEffectifSeuils(effectif: string): { cse: boolean; obligations
     '20 à 49 salariés': 35,
     '50 à 99 salariés': 75,
     '100 à 199 salariés': 150,
+    '200 à 249 salariés': 220,
+    '250 à 499 salariés': 350,
+    '500 à 999 salariés': 750,
+    '1 000 à 1 999 salariés': 1500,
+    '2 000 à 4 999 salariés': 3000,
+    '5 000 à 9 999 salariés': 7000,
+    '10 000 salariés et plus': 12000,
   };
   const approx = map[effectif] ?? 0;
   return {
+    approx,
     cse: approx >= 11,
     obligations50: approx >= 50,
   };
+}
+
+export interface ObligationSeuil {
+  seuilMin: number;
+  atteint: boolean;
+  titre: string;
+  description: string;
+}
+
+export function getObligationsEffectif(seuils: EffectifSeuils): ObligationSeuil[] {
+  const n = seuils.approx;
+  return [
+    {
+      seuilMin: 11,
+      atteint: n >= 11,
+      titre: 'CSE (Comité Social et Économique)',
+      description:
+        "Obligatoire dès 11 salariés pendant 12 mois consécutifs. En cas de difficulté économique, l'employeur doit informer et consulter le CSE — sous peine de délit d'entrave.",
+    },
+    {
+      seuilMin: 20,
+      atteint: n >= 20,
+      titre: 'Règlement intérieur',
+      description:
+        "Obligatoire à partir de 20 salariés. Doit notamment prévoir les règles disciplinaires et l'hygiène/sécurité.",
+    },
+    {
+      seuilMin: 50,
+      atteint: n >= 50,
+      titre: 'CSE élargi, participation, PSE',
+      description:
+        "À 50 salariés : accord de participation aux résultats, représentant de proximité, budget d'activités sociales du CSE. Un Plan de Sauvegarde de l'Emploi (PSE) est obligatoire pour tout licenciement économique de 10+ salariés sur 30 jours.",
+    },
+    {
+      seuilMin: 50,
+      atteint: n >= 50,
+      titre: 'Information-consultation renforcée du CSE',
+      description:
+        "À partir de 50 salariés, le CSE doit être consulté chaque année sur les orientations stratégiques. En difficulté, il peut exercer un droit d'alerte économique et se faire assister d'un expert-comptable aux frais de l'entreprise.",
+    },
+    {
+      seuilMin: 100,
+      atteint: n >= 100,
+      titre: 'Bilan social annuel',
+      description:
+        "Obligatoire à partir de 300 salariés mais recommandé dès 100. Agrège indicateurs emploi, rémunération, formation sur 3 ans.",
+    },
+    {
+      seuilMin: 250,
+      atteint: n >= 250,
+      titre: 'Index égalité professionnelle',
+      description:
+        'Publication obligatoire de l\'index égalité F/H. Au-delà de 250 salariés, plusieurs autres obligations sociales et fiscales (CICE, taxe sur les salaires, etc.) s\'appliquent.',
+    },
+    {
+      seuilMin: 300,
+      atteint: n >= 300,
+      titre: 'GEPP et bilan social obligatoire',
+      description:
+        "À 300 salariés : négociation obligatoire sur la Gestion des Emplois et des Parcours Professionnels (GEPP), bilan social annuel, commission formation et commission égalité au CSE.",
+    },
+    {
+      seuilMin: 1000,
+      atteint: n >= 1000,
+      titre: 'Obligations de grand groupe',
+      description:
+        "Comité de groupe, accord d'entreprise sur la prévention de la pénibilité, congé de mobilité en cas de restructuration, obligations de sous-traitance responsable.",
+    },
+  ];
 }
 
 export function getChambreLabel(chambre: 'CCI' | 'CMA' | 'CA'): string {
