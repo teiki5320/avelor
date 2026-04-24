@@ -9,6 +9,7 @@ interface Props {
   reponses: Reponses;
   company: CompanyData;
   sector: SectorInfo;
+  defaultOpen?: boolean;
 }
 
 function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; texte: string; lien?: string }[] {
@@ -71,7 +72,7 @@ function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; t
   return items;
 }
 
-export default function BlocChecklist({ reponses, company, sector }: Props) {
+export default function BlocChecklist({ reponses, company, sector, defaultOpen }: Props) {
   const items = buildItems(reponses, company, sector);
   const [done, setDone] = useState<Record<string, boolean>>({});
   const tone = getTonePreset(reponses.moral);
@@ -87,6 +88,7 @@ export default function BlocChecklist({ reponses, company, sector }: Props) {
       icone="✓"
       titre="Votre checklist"
       soustitre={`${completed} / ${items.length} · ${tone.pace}`}
+      defaultOpen={defaultOpen}
     >
       <p className="mb-3 text-sm text-navy/75">{tone.intro}</p>
       <ul className="space-y-2.5">

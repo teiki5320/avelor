@@ -9,6 +9,7 @@ interface Props {
   reponses: Reponses;
   company: CompanyData;
   sector: SectorInfo;
+  defaultOpen?: boolean;
 }
 
 interface Action {
@@ -63,7 +64,7 @@ function buildDefaultActions(r: Reponses, c: CompanyData, s: SectorInfo): Action
 
 const STORAGE_KEY = 'avelor_plan_action';
 
-export default function BlocPlanAction({ reponses, company, sector }: Props) {
+export default function BlocPlanAction({ reponses, company, sector, defaultOpen }: Props) {
   const [actions, setActions] = useState<Action[]>([]);
   const [newText, setNewText] = useState('');
   const [loaded, setLoaded] = useState(false);
@@ -125,6 +126,7 @@ export default function BlocPlanAction({ reponses, company, sector }: Props) {
       icone="📋"
       titre="Mon plan d'action"
       soustitre={`${doneCount} / ${actions.length} · ${tone.pace}`}
+      defaultOpen={defaultOpen}
     >
       <p className="mb-3 text-sm text-navy/75">{tone.intro}</p>
       <ul className="space-y-2">

@@ -60,15 +60,18 @@ function buildCards({ reponses, company, sector, seuils }: Props): PriorityCard[
       expandedContent: (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            L&apos;article <strong>L631-4 du Code de commerce</strong> vous
-            impose de déclarer la cessation dans les 45 jours suivant son
-            constat. Au-delà : responsabilité personnelle, faillite
-            personnelle, voire banqueroute (L651-2, L653-1, L654-1).
+            L&apos;article <strong>L631-4 du Code de commerce</strong>{' '}
+            impose au dirigeant de déclarer la cessation dans les{' '}
+            <strong>45 jours</strong> suivant son constat. Au-delà :
+            action en comblement de passif (L651-2), faillite personnelle
+            (L653-1), banqueroute pénale (L654-1, jusqu&apos;à 5 ans de
+            prison et 75 000 € d&apos;amende).
           </p>
           <ul className="space-y-1.5">
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Consulter un avocat / mandataire judiciaire</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Préparer le formulaire CERFA 10530</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Rassembler K-bis, passif, actif, trésorerie</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Avocat / mandataire sous 48 h (premier RDV souvent gratuit)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Formulaire <strong>CERFA 10530</strong> sur service-public.fr</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Pièces : K-bis &lt; 3 mois, état actif/passif exigible, comptes annuels, trésorerie &lt; 1 mois, liste créanciers</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Dépôt au tribunal de commerce{ville !== 'votre ville' ? ` de ${ville}` : ''} (ou TAE si ressort réformé)</li>
           </ul>
           <button
             type="button"
@@ -96,13 +99,17 @@ function buildCards({ reponses, company, sector, seuils }: Props): PriorityCard[
       expandedContent: (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            Une assignation impose des délais stricts. Le tribunal rend sa
-            décision généralement sous 15 à 45 jours.
+            Une assignation fixe une date et impose des délais stricts. Le
+            tribunal peut rendre sa décision <strong>par défaut</strong>{' '}
+            si vous ne comparaissez pas — presque toujours en votre
+            défaveur. Se présenter (ou se faire représenter) est crucial.
           </p>
           <ul className="space-y-1.5">
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Avocat en droit des entreprises en difficulté (urgent)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Préparer bilan, trésorerie, liste créanciers</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Décider : RJ, plan de cession, liquidation ?</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Avocat en droit des entreprises en difficulté sous 48 h</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Aide juridictionnelle possible si RFR &lt; 19 411 €/an (outil dédié)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Pièces : bilan, trésorerie &lt; 1 mois, liste créanciers, propositions</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Réfléchir à la voie : RJ, plan de cession (L642-1), ou LJ</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Appel possible sous 10 j (C. com. R661-3)</li>
           </ul>
           <button
             type="button"
@@ -171,15 +178,17 @@ function buildCards({ reponses, company, sector, seuils }: Props): PriorityCard[
       expandedContent: (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            Les cautions personnelles sont <strong>la porte d&apos;entrée
-            principale vers le patrimoine du dirigeant</strong>. Mais
-            beaucoup peuvent être contestées (disproportion, vice de
-            forme).
+            Les cautions personnelles sont <strong>la première source de
+            ruine patrimoniale</strong> des dirigeants. Bonne nouvelle :
+            une part importante est contestable (disproportion, défaut
+            d&apos;information annuelle, vice de forme, durée excessive).
           </p>
           <ul className="space-y-1.5">
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Demander copie de chaque acte de cautionnement</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Tester la disproportion au moment de la signature (art. L341-4 C. conso)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Consulter un avocat en droit bancaire</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Demander copie de chaque acte + fiche d&apos;information patrimoniale signée</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Disproportion au jour de la signature : art. <strong>L341-4 C. conso</strong></li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Information annuelle manquante : déchéance des intérêts (art. L341-6)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Vérifier la durée : beaucoup limitées à 10 ans sans mention expresse</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Avocat en droit bancaire — premier RDV souvent gratuit</li>
           </ul>
           <button
             type="button"
@@ -207,14 +216,17 @@ function buildCards({ reponses, company, sector, seuils }: Props): PriorityCard[
       expandedContent: (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            Votre capacité à tenir à 6 mois détermine la stratégie
-            possible. Renseignez 4 chiffres dans le bloc Trésorerie :
-            solde, entrées/sorties, dette exigible.
+            Votre capacité à tenir sur 6 mois détermine la stratégie
+            possible. Un prévisionnel propre est aussi <strong>le
+            document qui fait accepter</strong> les demandes de délais
+            URSSAF / SIE / bailleur.
           </p>
           <ul className="space-y-1.5">
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Prévisionnel avec votre expert-comptable</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Médiation du crédit (Banque de France, gratuit)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Moratoire URSSAF / SIE / bailleur</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Prévisionnel 6 mois avec votre expert-comptable (2-4 h)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>Médiation du crédit</strong> — Banque de France, gratuit, réponse sous 5 j (0810 00 12 10)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Moratoire URSSAF (3957) / SIE (téléprocédure) / bailleur (LRAR)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>CCSF si dettes fiscales ET sociales (guichet unique, CERFA 15772*02)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Affacturage / escompte pour accélérer les encaissements</li>
           </ul>
           <button
             type="button"
@@ -243,14 +255,19 @@ function buildCards({ reponses, company, sector, seuils }: Props): PriorityCard[
       expandedContent: (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            Votre résidence principale et votre patrimoine méritent un
-            audit rapide. Les protections dépendent de votre statut (EI
-            vs société), de votre régime matrimonial et de vos cautions.
+            Votre résidence et vos autres biens sont <strong>différemment
+            protégés</strong> selon votre statut (EI vs société), votre
+            régime matrimonial et vos cautions. Règle d&apos;or : n&apos;opérez
+            <strong> aucun transfert d&apos;actif maintenant</strong> — les
+            donations, ventes à proches, changements de régime peuvent
+            être annulés (action paulienne, 18 mois avant cessation).
           </p>
           <ul className="space-y-1.5">
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Insaisissabilité de droit (EI, loi Macron 2015)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Déclaration chez notaire si société</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Ne pas transférer d&apos;actifs (action paulienne)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>EI : résidence principale insaisissable de droit (loi Macron 2015)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Société : déclaration d&apos;insaisissabilité chez notaire (300-500 €)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Assurance-vie avec bénéficiaire : hors succession, difficilement saisissable</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Régime communauté : changement possible, mais opposable pour dettes FUTURES seulement</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Véhicule en LOA/LLD : reste propriété du loueur, protégé</li>
           </ul>
           <button
             type="button"
@@ -278,9 +295,10 @@ function buildCards({ reponses, company, sector, seuils }: Props): PriorityCard[
     expandedContent: (
       <div className="space-y-3 text-sm text-navy/80">
         <p>
-          Vous n&apos;êtes pas seul·e. Parler, même 10 minutes, change la
-          trajectoire. Les lignes ci-dessous sont tenues au secret
-          professionnel.
+          Vous n&apos;êtes pas seul·e. <strong>1 dirigeant sur 3</strong>{' '}
+          traversant des difficultés présente des symptômes de burn-out
+          (étude Amarok 2023). Parler 10 minutes change la trajectoire.
+          Toutes ces lignes sont tenues au secret professionnel.
         </p>
         <ul className="space-y-1.5">
           {sector.soutien && (
@@ -292,8 +310,10 @@ function buildCards({ reponses, company, sector, seuils }: Props): PriorityCard[
               </span>
             </li>
           )}
-          <li className="flex gap-2"><span className="text-navy/40">→</span><strong>APESA</strong> — soutien psychologique dirigeants · apesa.fr</li>
-          <li className="flex gap-2"><span className="text-navy/40">→</span><strong>3114</strong> — prévention suicide, 24h/24, gratuit</li>
+          <li className="flex gap-2"><span className="text-navy/40">→</span><strong>APESA</strong> — soutien psychologique dirigeants, activable via tribunal de commerce · apesa.fr</li>
+          <li className="flex gap-2"><span className="text-navy/40">→</span><strong>3114</strong> — prévention suicide, 24h/24, gratuit, anonyme</li>
+          <li className="flex gap-2"><span className="text-navy/40">→</span><strong>60 000 Rebonds</strong> — accompagnement post-liquidation (mentor + groupe de pairs) · 60000rebonds.com</li>
+          <li className="flex gap-2"><span className="text-navy/40">→</span><strong>CIP</strong> (~105 antennes) — RDV gratuit confidentiel 1 h avec juriste + comptable + dirigeant · cip-national.fr</li>
         </ul>
       </div>
     ),

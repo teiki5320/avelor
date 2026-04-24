@@ -8,9 +8,9 @@ interface Section {
 }
 
 const SECTIONS: Section[] = [
+  { id: 'action', label: 'Agir', icone: '✅' },
   { id: 'vue-ensemble', label: "Vue d'ensemble", icone: '📊' },
   { id: 'echeances', label: 'Échéances', icone: '⏱️' },
-  { id: 'action', label: 'Agir', icone: '✅' },
   { id: 'patrimoine', label: 'Patrimoine', icone: '🏠' },
   { id: 'aides', label: 'Aides', icone: '💶' },
   { id: 'ressources', label: 'Ressources', icone: '📚' },

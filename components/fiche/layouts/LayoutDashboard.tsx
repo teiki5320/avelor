@@ -28,6 +28,20 @@ import SectionNav from '@/components/fiche/dashboard/SectionNav';
 import SectionHeader from '@/components/fiche/dashboard/SectionHeader';
 import type { LayoutData } from './types';
 
+/**
+ * Wrapper qui rend deux colonnes indépendantes : chaque colonne grandit
+ * librement, sans alignement forcé entre les deux (évite les vides
+ * quand un accordéon s'ouvre d'un seul côté).
+ */
+function TwoCols({ left, right }: { left: React.ReactNode; right: React.ReactNode }) {
+  return (
+    <div className="grid items-start gap-4 lg:grid-cols-2">
+      <div className="min-w-0 space-y-4">{left}</div>
+      <div className="min-w-0 space-y-4">{right}</div>
+    </div>
+  );
+}
+
 export default function LayoutDashboard({
   company,
   reponses,
@@ -41,68 +55,88 @@ export default function LayoutDashboard({
 }: LayoutData) {
   return (
     <div className="space-y-6">
-      {/* Hero identité */}
+      {/* ───── Top : identité + cartes prioritaires dynamiques ───── */}
       <IdentiteHero company={company} />
-
-      {/* 4 cards prioritaires dynamiques (cliquables pour expand) */}
       <PriorityCards reponses={reponses} company={company} sector={sector} seuils={seuils} />
 
       {/* Alertes contextuelles */}
       <BlocSanteSecteur sector={sector} />
       <AlertesBand alertes={alertes} />
 
-      {/* Petites cards outils / courriers / annuaires */}
+      {/* Liens rapides outils / courriers */}
       <QuickLinks />
 
-      {/* SECTION : Vue d'ensemble */}
-      <SectionHeader
-        id="vue-ensemble"
-        icone="📊"
-        titre="Vue d'ensemble"
-        sousTitre="Votre cap, en un coup d'œil"
-        couleur="bleu"
-      />
-
-      {/* Navigation sticky vers les sections */}
+      {/* Navigation sticky */}
       <SectionNav />
 
-      {/* Stratégie en hero permanent */}
-      <StrategieHero reponses={reponses} company={company} />
-
-      {/* Soutien humain toujours visible */}
-      <BlocSoutien reponses={reponses} sector={sector} />
-
-      {/* SECTION : Échéances */}
-      <SectionHeader
-        id="echeances"
-        icone="⏱️"
-        titre="Échéances & urgences"
-        sousTitre="Ce qui presse, avec dates et délais"
-        couleur="rouge"
-      />
-      <div className="grid gap-4 lg:grid-cols-2">
-        <BlocCessationDecompte reponses={reponses} />
-        <BlocTimeline reponses={reponses} company={company} />
-        <BlocTresorerie reponses={reponses} />
-        <BlocRappels reponses={reponses} />
-        <BlocCalendrier reponses={reponses} company={company} sector={sector} />
-      </div>
-
-      {/* SECTION : Agir */}
+      {/* ───── Section AGIR (en premier, 2 accordéons ouverts) ───── */}
       <SectionHeader
         id="action"
         icone="✅"
         titre="Agir"
-        sousTitre="Votre plan, votre checklist, vos procédures"
+        sousTitre="Votre plan et votre checklist, déjà dépliés pour commencer"
         couleur="vert"
       />
-      <div className="grid gap-4 lg:grid-cols-2">
-        <BlocPlanAction reponses={reponses} company={company} sector={sector} />
-        <BlocChecklist reponses={reponses} company={company} sector={sector} />
-        <BlocProcedureRecommandee reponses={reponses} company={company} sector={sector} />
-      </div>
+      <TwoCols
+        left={
+          <>
+            <BlocPlanAction
+              reponses={reponses}
+              company={company}
+              sector={sector}
+              defaultOpen
+            />
+            <BlocProcedureRecommandee reponses={reponses} company={company} sector={sector} />
+          </>
+        }
+        right={
+          <>
+            <BlocChecklist
+              reponses={reponses}
+              company={company}
+              sector={sector}
+              defaultOpen
+            />
+          </>
+        }
+      />
 
-      {/* SECTION : Patrimoine */}
+      {/* ───── Section VUE D'ENSEMBLE ───── */}
+      <SectionHeader
+        id="vue-ensemble"
+        icone="📊"
+        titre="Vue d'ensemble"
+        sousTitre="Votre cap recommandé et votre soutien"
+        couleur="bleu"
+      />
+      <StrategieHero reponses={reponses} company={company} />
+      <BlocSoutien reponses={reponses} sector={sector} />
+
+      {/* ───── Section ÉCHÉANCES ───── */}
+      <SectionHeader
+        id="echeances"
+        icone="⏱️"
+        titre="Échéances & urgences"
+        sousTitre="Ce qui presse, avec dates et délais légaux"
+        couleur="rouge"
+      />
+      <TwoCols
+        left={
+          <>
+            <BlocCessationDecompte reponses={reponses} />
+            <BlocTresorerie reponses={reponses} />
+            <BlocCalendrier reponses={reponses} company={company} sector={sector} />
+          </>
+        }
+        right={
+          <>
+            <BlocTimeline reponses={reponses} company={company} />
+            <BlocRappels reponses={reponses} />
+          </>
+        }
+      />
+
+      {/* ───── Section PATRIMOINE ───── */}
       <SectionHeader
         id="patrimoine"
         icone="🏠"
@@ -110,14 +144,22 @@ export default function LayoutDashboard({
         sousTitre="Protection, cautions, conséquences personnelles"
         couleur="jaune"
       />
-      <div className="grid gap-4 lg:grid-cols-2">
-        <BlocProtectionFamille reponses={reponses} company={company} sector={sector} />
-        <BlocPatrimoine reponses={reponses} company={company} />
-        <BlocAuditCaution reponses={reponses} />
-        <BlocConsequencesPerso reponses={reponses} />
-      </div>
+      <TwoCols
+        left={
+          <>
+            <BlocProtectionFamille reponses={reponses} company={company} sector={sector} />
+            <BlocAuditCaution reponses={reponses} />
+          </>
+        }
+        right={
+          <>
+            <BlocPatrimoine reponses={reponses} company={company} />
+            <BlocConsequencesPerso reponses={reponses} />
+          </>
+        }
+      />
 
-      {/* SECTION : Aides & leviers */}
+      {/* ───── Section AIDES ───── */}
       <SectionHeader
         id="aides"
         icone="💶"
@@ -125,14 +167,22 @@ export default function LayoutDashboard({
         sousTitre="Dispositifs financiers, CCSF, bail commercial"
         couleur="bleu"
       />
-      <div className="grid gap-4 lg:grid-cols-2">
-        <BlocAides reponses={reponses} company={company} sector={sector} />
-        <BlocCCSF reponses={reponses} company={company} />
-        <BlocBailCommercial reponses={reponses} company={company} sector={sector} />
-        <BlocObligations reponses={reponses} company={company} seuils={seuils} />
-      </div>
+      <TwoCols
+        left={
+          <>
+            <BlocAides reponses={reponses} company={company} sector={sector} />
+            <BlocBailCommercial reponses={reponses} company={company} sector={sector} />
+          </>
+        }
+        right={
+          <>
+            <BlocCCSF reponses={reponses} company={company} />
+            <BlocObligations reponses={reponses} company={company} seuils={seuils} />
+          </>
+        }
+      />
 
-      {/* SECTION : Ressources */}
+      {/* ───── Section RESSOURCES ───── */}
       <SectionHeader
         id="ressources"
         icone="📚"
@@ -140,16 +190,24 @@ export default function LayoutDashboard({
         sousTitre="Organismes, prescriptions, alertes publiques"
         couleur="navy"
       />
-      <div className="grid gap-4 lg:grid-cols-2">
-        <BlocOrganismes groupes={groupes} />
-        <BlocPrescription
-          reponses={reponses}
-          company={company}
-          companyAge={companyAge}
-          seuils={seuils}
-        />
-        <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
-      </div>
+      <TwoCols
+        left={
+          <>
+            <BlocOrganismes groupes={groupes} />
+            <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
+          </>
+        }
+        right={
+          <>
+            <BlocPrescription
+              reponses={reponses}
+              company={company}
+              companyAge={companyAge}
+              seuils={seuils}
+            />
+          </>
+        }
+      />
     </div>
   );
 }
