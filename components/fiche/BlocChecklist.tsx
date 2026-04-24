@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
+import { getTonePreset } from '@/lib/tone';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
@@ -73,6 +74,7 @@ function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; t
 export default function BlocChecklist({ reponses, company, sector }: Props) {
   const items = buildItems(reponses, company, sector);
   const [done, setDone] = useState<Record<string, boolean>>({});
+  const tone = getTonePreset(reponses.moral);
 
   function toggle(id: string) {
     setDone((d) => ({ ...d, [id]: !d[id] }));
@@ -84,8 +86,9 @@ export default function BlocChecklist({ reponses, company, sector }: Props) {
     <BlocAccordeon
       icone="✓"
       titre="Votre checklist"
-      soustitre={`${completed} / ${items.length} · à votre rythme`}
+      soustitre={`${completed} / ${items.length} · ${tone.pace}`}
     >
+      <p className="mb-3 text-sm text-navy/75">{tone.intro}</p>
       <ul className="space-y-2.5">
         {items.map((it) => {
           const checked = !!done[it.id];

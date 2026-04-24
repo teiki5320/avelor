@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
+import { getTonePreset } from '@/lib/tone';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
@@ -66,6 +67,7 @@ export default function BlocPlanAction({ reponses, company, sector }: Props) {
   const [actions, setActions] = useState<Action[]>([]);
   const [newText, setNewText] = useState('');
   const [loaded, setLoaded] = useState(false);
+  const tone = getTonePreset(reponses.moral);
 
   useEffect(() => {
     try {
@@ -122,8 +124,9 @@ export default function BlocPlanAction({ reponses, company, sector }: Props) {
     <BlocAccordeon
       icone="📋"
       titre="Mon plan d'action"
-      soustitre={`${doneCount} / ${actions.length} · réorganisable · sauvegardé localement`}
+      soustitre={`${doneCount} / ${actions.length} · ${tone.pace}`}
     >
+      <p className="mb-3 text-sm text-navy/75">{tone.intro}</p>
       <ul className="space-y-2">
         {actions.map((a, idx) => (
           <li
@@ -200,6 +203,7 @@ export default function BlocPlanAction({ reponses, company, sector }: Props) {
         Ce plan est sauvegardé dans votre navigateur. Réorganisez-le selon
         vos priorités — commencez toujours par prendre soin de vous.
       </p>
+      <p className="mt-2 text-xs italic text-navy/55">{tone.rappel}</p>
     </BlocAccordeon>
   );
 }
