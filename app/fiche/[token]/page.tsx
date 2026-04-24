@@ -14,6 +14,7 @@ import BlocProcedureRecommandee from '@/components/fiche/BlocProcedureRecommande
 import BlocSanteSecteur from '@/components/fiche/BlocSanteSecteur';
 import BlocObligations from '@/components/fiche/BlocObligations';
 import BlocAuditCaution from '@/components/fiche/BlocAuditCaution';
+import BlocTimeline from '@/components/fiche/BlocTimeline';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
@@ -154,6 +155,7 @@ export default async function FichePage({ params, searchParams }: PageProps) {
 
       <BlocSoutien reponses={reponses} sector={sector} />
       <BlocProcedureRecommandee reponses={reponses} company={company_data} sector={sector} />
+      <BlocTimeline reponses={reponses} company={company_data} />
       <BlocCalendrier reponses={reponses} company={company_data} sector={sector} />
       <BlocChecklist reponses={reponses} company={company_data} sector={sector} />
       <BlocPlanAction reponses={reponses} company={company_data} sector={sector} />
