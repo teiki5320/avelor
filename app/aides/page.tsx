@@ -49,7 +49,7 @@ const sections: Section[] = [
       {
         nom: 'Médiateur des entreprises',
         description: 'Litiges avec fournisseurs ou clients',
-        url: 'https://economie.gouv.fr/mediateur-des-entreprises',
+        url: 'https://www.economie.gouv.fr/mediateur-des-entreprises',
         urlLabel: 'economie.gouv.fr/mediateur-des-entreprises',
         gratuit: true,
       },
@@ -57,7 +57,7 @@ const sections: Section[] = [
         nom: 'CCSF',
         description:
           'Échelonnement de vos dettes fiscales et sociales en une seule demande',
-        url: 'https://impots.gouv.fr',
+        url: 'https://www.impots.gouv.fr',
         urlLabel: 'impots.gouv.fr',
       },
     ],
@@ -71,21 +71,21 @@ const sections: Section[] = [
         nom: 'CPAM / SSI Action sociale',
         description:
           'Aide financière d’urgence pour indépendants (jusqu’à 3 000 €)',
-        url: 'https://secu-independants.fr',
+        url: 'https://www.secu-independants.fr',
         urlLabel: 'secu-independants.fr',
         tel: '36 46',
       },
       {
         nom: 'Fonds d’action sociale URSSAF',
         description: 'Prise en charge partielle de cotisations',
-        url: 'https://urssaf.fr',
+        url: 'https://www.urssaf.fr',
         urlLabel: 'urssaf.fr',
       },
       {
         nom: 'RSA / ASS',
         description:
           'Si votre revenu d’activité est nul ou très faible',
-        url: 'https://caf.fr',
+        url: 'https://www.caf.fr',
         urlLabel: 'caf.fr',
       },
     ],
@@ -99,7 +99,7 @@ const sections: Section[] = [
         nom: 'Activité partielle',
         description:
           'Indemnisation des salariés si baisse d’activité',
-        url: 'https://asp-public.fr',
+        url: 'https://www.asp-public.fr',
         urlLabel: 'asp-public.fr',
       },
       {
@@ -113,7 +113,7 @@ const sections: Section[] = [
         nom: 'FNE-Formation',
         description:
           'Financement de formations pour vos salariés pendant la difficulté',
-        url: 'https://travail-emploi.gouv.fr',
+        url: 'https://www.travail-emploi.gouv.fr',
         urlLabel: 'travail-emploi.gouv.fr',
       },
     ],
@@ -217,7 +217,7 @@ export default function AidesPage() {
             {s.titre === 'Aides régionales' && (
               <div className="mt-6 text-center">
                 <a
-                  href="https://cci.fr"
+                  href="https://www.cci.fr"
                   target="_blank"
                   rel="noreferrer"
                   className="btn-primary"

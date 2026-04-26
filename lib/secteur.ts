@@ -117,8 +117,8 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     ],
     aidesSpecifiques: [
       { nom: 'Aide d\'urgence MSA', description: 'Action sociale pour exploitants en difficulté. Aide financière directe possible.', site: 'https://www.msa.fr', badge: 'Gratuit' },
-      { nom: 'Aide à la relance agricole', description: 'Prêts bonifiés et subventions régionales pour exploitations en difficulté.', site: 'https://agriculture.gouv.fr' },
-      { nom: 'Fonds d\'allègement des charges', description: 'Prise en charge partielle des cotisations MSA et des prêts bancaires.', site: 'https://agriculture.gouv.fr', badge: 'Sous conditions' },
+      { nom: 'Aide à la relance agricole', description: 'Prêts bonifiés et subventions régionales pour exploitations en difficulté.', site: 'https://www.agriculture.gouv.fr' },
+      { nom: 'Fonds d\'allègement des charges', description: 'Prise en charge partielle des cotisations MSA et des prêts bancaires.', site: 'https://www.agriculture.gouv.fr', badge: 'Sous conditions' },
     ],
     soutien: { nom: 'Agri\'Écoute', description: 'Écoute psychologique pour agriculteurs en détresse · 24h/24', telephone: '09 69 39 29 19', site: 'https://www.msa.fr' },
     conseilsSpecifiques: [
@@ -175,7 +175,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'SNRTC', role: 'Syndicat National de la Restauration Thématique', site: 'https://www.snrtc.fr' },
     ],
     aidesSpecifiques: [
-      { nom: 'Aides saisonnières', description: 'Activité partielle pendant les périodes creuses. Exonérations spécifiques HCR.', site: 'https://travail-emploi.gouv.fr' },
+      { nom: 'Aides saisonnières', description: 'Activité partielle pendant les périodes creuses. Exonérations spécifiques HCR.', site: 'https://www.travail-emploi.gouv.fr' },
       { nom: 'Fonds de modernisation CHR', description: 'Aides à la mise aux normes et à la modernisation des établissements.', badge: 'Régional' },
     ],
     soutien: { nom: 'UMIH Entraide', description: 'Réseau d\'entraide entre restaurateurs et hôteliers', site: 'https://www.umih.fr' },

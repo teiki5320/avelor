@@ -112,7 +112,7 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
     statut.push({
       nom: 'FNE-Formation',
       description: 'Financement de formations pour vos salariés pendant la période de difficulté.',
-      site: 'https://travail-emploi.gouv.fr',
+      site: 'https://www.travail-emploi.gouv.fr',
     });
   }
   if (statut.length) {

@@ -54,7 +54,7 @@ const financements: Financement[] = [
     nom: 'Droit au compte (Banque de France)',
     description:
       'Si toutes les banques refusent de vous ouvrir un compte, la BdF en désigne une qui DOIT le faire. Services de base gratuits.',
-    url: 'https://banque-france.fr',
+    url: 'https://www.banque-france.fr',
     urlLabel: 'banque-france.fr',
     badge: 'Droit légal',
   },
@@ -309,7 +309,7 @@ export default function RebondPage() {
 
         <div className="mt-5">
           <a
-            href="https://banque-france.fr"
+            href="https://www.banque-france.fr"
             target="_blank"
             rel="noreferrer"
             className="text-sm text-bleu-fonce underline underline-offset-4"

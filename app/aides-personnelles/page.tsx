@@ -42,7 +42,7 @@ const sections: Section[] = [
         nom: 'RSA',
         description:
           'Accessible aux dirigeants dont les revenus sont quasi nuls. Depuis le 01/01/2025, inscription automatique à France Travail. Conditions : CA < 20 550 €/3 mois (BIC), 25+ ans.',
-        url: 'https://caf.fr',
+        url: 'https://www.caf.fr',
         urlLabel: 'caf.fr',
         badge: 'Sous conditions',
         badgeColor: 'text-jaune',
@@ -77,7 +77,7 @@ const sections: Section[] = [
         nom: 'APL / ALS',
         description:
           'Aide au logement recalculée tous les 3 mois sur vos revenus actuels. Si vos revenus baissent, l’aide augmente automatiquement. Pensez à déclarer vos changements de situation.',
-        url: 'https://caf.fr',
+        url: 'https://www.caf.fr',
         urlLabel: 'caf.fr',
       },
       {
@@ -98,7 +98,7 @@ const sections: Section[] = [
         nom: 'Procédure de surendettement (Banque de France)',
         description:
           'Restructure ou efface vos dettes PERSONNELLES (pas celles de l’entreprise). Particulièrement utile si vous avez signé des cautions personnelles. Inscription au FICP pendant 7 ans maximum. La procédure est gratuite et confidentielle.',
-        url: 'https://banque-france.fr',
+        url: 'https://www.banque-france.fr',
         urlLabel: 'banque-france.fr',
         badge: 'Dernier recours',
         badgeColor: 'text-rouge',
