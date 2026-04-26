@@ -31,6 +31,17 @@ export default function HomePage() {
         interlocuteurs autour de vous. Vous n&apos;avez pas à tout résoudre
         aujourd&apos;hui.
       </p>
+
+      {/* Mention discrète pour les accompagnants — juste au-dessus du SIRET */}
+      <Link
+        href="/accompagnant"
+        className="mx-auto mt-6 inline-flex items-center gap-2 rounded-full border border-vert/30 bg-vert/5 px-4 py-1.5 text-sm text-vert transition hover:bg-vert/10"
+      >
+        <span aria-hidden>🤝</span>
+        Vous accompagnez un proche ? Pas besoin du SIRET
+        <span aria-hidden>→</span>
+      </Link>
+
       <SiretInput />
       <RetourFiche />
       <div className="mt-12 flex flex-wrap items-center justify-center gap-3 text-sm text-navy/60">
@@ -39,38 +50,6 @@ export default function HomePage() {
         <span className="pastille">✉︎ Sauvegarde par email</span>
         <span className="pastille">🤝 Sans jugement</span>
       </div>
-
-      {/* Bandeau dédié pour les accompagnants */}
-      <Link
-        href="/accompagnant"
-        className="group mt-10 block overflow-hidden rounded-3xl border border-vert/30 bg-gradient-to-br from-vert/10 via-white/60 to-vert/15 p-6 text-left shadow-sm transition hover:shadow-md sm:mt-12 sm:p-8"
-      >
-        <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-          <div
-            className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/70 text-3xl shadow-sm sm:h-20 sm:w-20 sm:text-4xl"
-            aria-hidden
-          >
-            🤝
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-vert">
-              Vous accompagnez un proche ?
-            </p>
-            <h2 className="mt-1 font-display text-xl text-navy sm:text-2xl">
-              Conjoint, associé, ami, salarié, expert… cette voie est pour vous.
-            </h2>
-            <p className="mt-2 text-sm text-navy/75 sm:text-base">
-              Pas besoin du SIRET. Trois questions pour comprendre la situation
-              et vous orienter vers les bonnes ressources : APESA, 3114, CCI,
-              guides pour ouvrir le dialogue, soutien aux proches.
-            </p>
-          </div>
-          <span className="inline-flex items-center gap-2 self-start rounded-full bg-vert px-5 py-3 text-sm font-medium text-white shadow-sm transition group-hover:translate-x-1 sm:self-center">
-            Démarrer mon parcours
-            <span aria-hidden>→</span>
-          </span>
-        </div>
-      </Link>
 
       <div className="mt-16">
         <h2 className="font-display text-2xl text-navy">
