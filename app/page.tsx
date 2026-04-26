@@ -13,7 +13,6 @@ const RESSOURCES = [
   { href: '/glossaire', icone: '📖', label: 'Glossaire', desc: '19 termes expliqués simplement' },
   { href: '/outils', icone: '🧮', label: 'Boîte à outils', desc: 'Calculateurs et vérificateurs officiels' },
   { href: '/annuaires', icone: '📇', label: 'Annuaires officiels', desc: 'AGS, TAE, mandataires, CIP…' },
-  { href: '/accompagnant', icone: '🤝', label: 'J\'accompagne', desc: 'Pour les proches' },
   { href: '/parler', icone: '📞', label: 'Parler à quelqu\'un', desc: 'Numéros gratuits 24/7' },
 ];
 
@@ -40,6 +39,38 @@ export default function HomePage() {
         <span className="pastille">✉︎ Sauvegarde par email</span>
         <span className="pastille">🤝 Sans jugement</span>
       </div>
+
+      {/* Bandeau dédié pour les accompagnants */}
+      <Link
+        href="/accompagnant"
+        className="group mt-10 block overflow-hidden rounded-3xl border border-vert/30 bg-gradient-to-br from-vert/10 via-white/60 to-vert/15 p-6 text-left shadow-sm transition hover:shadow-md sm:mt-12 sm:p-8"
+      >
+        <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+          <div
+            className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/70 text-3xl shadow-sm sm:h-20 sm:w-20 sm:text-4xl"
+            aria-hidden
+          >
+            🤝
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-vert">
+              Vous accompagnez un proche ?
+            </p>
+            <h2 className="mt-1 font-display text-xl text-navy sm:text-2xl">
+              Conjoint, associé, ami, salarié, expert… cette voie est pour vous.
+            </h2>
+            <p className="mt-2 text-sm text-navy/75 sm:text-base">
+              Pas besoin du SIRET. Trois questions pour comprendre la situation
+              et vous orienter vers les bonnes ressources : APESA, 3114, CCI,
+              guides pour ouvrir le dialogue, soutien aux proches.
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-2 self-start rounded-full bg-vert px-5 py-3 text-sm font-medium text-white shadow-sm transition group-hover:translate-x-1 sm:self-center">
+            Démarrer mon parcours
+            <span aria-hidden>→</span>
+          </span>
+        </div>
+      </Link>
 
       <div className="mt-16">
         <h2 className="font-display text-2xl text-navy">
