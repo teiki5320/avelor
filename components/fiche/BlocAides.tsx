@@ -34,7 +34,7 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
     specifiques.push({
       nom: 'Échelonnement URSSAF',
       description: `Demandez un échéancier auprès de l'URSSAF ${dep ? `de votre département (${dep})` : ''}. Les cotisations de plus de 3 ans sont potentiellement prescrites.`,
-      telephone: '36 98',
+      telephone: '3957',
       site: 'https://www.urssaf.fr',
       badge: 'Prioritaire pour vous',
     });

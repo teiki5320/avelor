@@ -138,7 +138,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   btp: {
     label: 'BTP / Construction',
     cotisationOrg: 'URSSAF + Caisses BTP (CIBTP, PRO BTP)',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'FFB', role: 'Fédération Française du Bâtiment', telephone: '01 40 69 51 00', site: 'https://www.ffbatiment.fr' },
@@ -167,7 +167,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   hotellerie: {
     label: 'Hôtellerie-restauration',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'UMIH', role: 'Union des Métiers et des Industries de l\'Hôtellerie', telephone: '01 44 94 19 94', site: 'https://www.umih.fr' },
@@ -196,7 +196,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   commerce: {
     label: 'Commerce',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'CCI', role: 'Chambre de commerce et d\'industrie', site: 'https://www.cci.fr' },
@@ -221,7 +221,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   transport: {
     label: 'Transport',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'FNTR', role: 'Fédération Nationale des Transports Routiers', site: 'https://www.fntr.fr' },
@@ -245,7 +245,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   liberal: {
     label: 'Professions libérales',
     cotisationOrg: 'URSSAF (+ CIPAV pour certaines professions)',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'UNAPL', role: 'Union Nationale des Professions Libérales', site: 'https://www.unapl.fr' },
@@ -264,7 +264,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   sante: {
     label: 'Santé',
     cotisationOrg: 'URSSAF (+ CARMF/CARPIMKO selon profession)',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'Ordre professionnel', role: 'Conseil de l\'Ordre (médecins, pharmaciens, infirmiers…)', site: 'https://www.conseil-national.medecin.fr' },
@@ -284,7 +284,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   industrie: {
     label: 'Industrie',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'MEDEF territorial', role: 'Mouvement des entreprises de France', site: 'https://www.medef.com' },
@@ -303,7 +303,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   information: {
     label: 'Numérique / IT',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'Syntec Numérique', role: 'Syndicat du numérique', site: 'https://numeum.fr' },
@@ -319,7 +319,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   finance: {
     label: 'Finance / Assurance',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [],
     aidesSpecifiques: [],
@@ -331,7 +331,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   immobilier: {
     label: 'Immobilier',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'FNAIM', role: 'Fédération Nationale de l\'Immobilier', site: 'https://www.fnaim.fr' },
@@ -345,7 +345,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   education: {
     label: 'Éducation / Formation',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [],
     aidesSpecifiques: [
@@ -359,7 +359,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   artisanat: {
     label: 'Artisanat',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'CMA', role: 'Chambre de Métiers et de l\'Artisanat', site: 'https://www.artisanat.fr' },
@@ -378,7 +378,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   autre: {
     label: 'Autre',
     cotisationOrg: 'URSSAF',
-    cotisationTel: '36 98',
+    cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [],
     aidesSpecifiques: [],

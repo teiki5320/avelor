@@ -188,8 +188,8 @@ export function computeAlertes(
     niveau: 'vert',
     titre: 'Vous avez fait le premier pas',
     message:
-      "Le simple fait de vous informer aujourd'hui change la trajectoire. 70 % des dirigeants qui agissent tôt redressent leur entreprise.",
-    source: 'APESA · CCI France',
+      "Le simple fait de vous informer aujourd'hui change la trajectoire. Les dispositifs amiables (mandat ad hoc, conciliation) aboutissent dans la grande majorité des cas quand ils sont engagés tôt — avant la cessation des paiements.",
+    source: 'CIP National · CCI France',
   });
 
   return alertes.slice(0, 3);

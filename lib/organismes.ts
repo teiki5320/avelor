@@ -123,7 +123,7 @@ export function buildOrganismes(
     fin.push({
       nom: dep.urssaf.nom,
       type: 'URSSAF',
-      telephone: dep.urssaf.telephone ?? '36 98',
+      telephone: dep.urssaf.telephone ?? '3957',
       site: dep.urssaf.site ?? 'https://www.urssaf.fr',
       badge: 'Échelonnement possible',
     });
@@ -199,7 +199,7 @@ export function buildOrganismes(
     soc.push({
       nom: 'SSI · Sécurité Sociale des Indépendants',
       type: 'Action sociale dirigeants',
-      telephone: '36 98',
+      telephone: '3957',
       site: 'https://www.secu-independants.fr',
       badge: 'Aides dédiées indépendants',
     });

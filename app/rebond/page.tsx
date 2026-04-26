@@ -205,7 +205,7 @@ export default function RebondPage() {
 
         <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
           <a
-            href="https://service-public.fr"
+            href="https://www.service-public.fr"
             target="_blank"
             rel="noreferrer"
             className="text-bleu-fonce underline underline-offset-4"

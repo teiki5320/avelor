@@ -84,7 +84,7 @@ const sections: Section[] = [
         nom: 'Aide juridictionnelle',
         description:
           'Avocat et frais de justice pris en charge si revenus < 12 957 €/an (total) ou < 19 433 € (partiel). Pour vos procédures PERSONNELLES uniquement  -  pas celles de l’entreprise.',
-        url: 'https://service-public.fr',
+        url: 'https://www.service-public.fr',
         urlLabel: 'service-public.fr',
       },
     ],
