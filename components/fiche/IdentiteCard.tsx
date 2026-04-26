@@ -20,7 +20,7 @@ export default function IdentiteCard({ company }: Props) {
         {hasName ? company.nom : 'Votre entreprise'}
       </h2>
       <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-navy/60">
-        <span>SIRET &middot; {company.siret}</span>
+        <span>SIRET · {company.siret}</span>
         {company.adresse && <span>{company.adresse}</span>}
         <span>
           {company.codePostal && `${company.codePostal} `}
@@ -44,11 +44,11 @@ export default function IdentiteCard({ company }: Props) {
       </div>
       <div className="mt-8 rounded-2xl bg-gradient-to-br from-bleu/5 to-bleu-fonce/5 p-5 text-sm text-navy/80 sm:text-base">
         <p className="font-display text-lg text-bleu-fonce sm:text-xl">
-          Votre fiche est pr&ecirc;te.
+          Votre fiche est prête.
         </p>
         <p className="mt-2">
-          Prenez le temps de la lire. Vous n&apos;avez pas &agrave; tout
-          r&eacute;soudre aujourd&apos;hui &mdash; commencez par une seule chose.
+          Prenez le temps de la lire. Vous n&apos;avez pas à tout
+          résoudre aujourd&apos;hui — commencez par une seule chose.
         </p>
       </div>
     </section>

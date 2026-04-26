@@ -135,7 +135,7 @@ export default function AidesPersonnellesPage() {
           Vos droits personnels en tant que dirigeant
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-          En tant que personne &mdash; pas en tant qu&rsquo;entreprise &mdash;
+          En tant que personne — pas en tant qu’entreprise —
           vous avez des droits. Beaucoup de dirigeants les ignorent.
         </p>
       </div>
@@ -198,7 +198,7 @@ export default function AidesPersonnellesPage() {
                         href={`tel:${a.tel.replace(/\s/g, '')}`}
                         className="pastille"
                       >
-                        T&eacute;l&nbsp;: {a.tel}
+                        Tél : {a.tel}
                       </a>
                     )}
                   </div>
@@ -212,14 +212,14 @@ export default function AidesPersonnellesPage() {
       {/* Footer note */}
       <div className="dashed-band mt-12 p-6 text-center text-sm leading-relaxed text-navy/70">
         Ces aides sont cumulables dans certains cas. Un travailleur social de la
-        CAF ou de la CPAM peut vous aider &agrave; identifier celles auxquelles
+        CAF ou de la CPAM peut vous aider à identifier celles auxquelles
         vous avez droit.
       </div>
 
       {/* Bottom CTA */}
       <div className="mt-10 text-center">
         <a href="/parler" className="btn-primary">
-          Vous n&rsquo;&ecirc;tes pas seul &rarr;
+          Vous n’êtes pas seul →
         </a>
       </div>
     </section>

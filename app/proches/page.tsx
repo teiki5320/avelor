@@ -54,7 +54,7 @@ export default function PrôchesPage() {
           Comment en parler à vos proches
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-          Beaucoup de dirigeants portent la difficulté seuls. Voici quelques
+          Beaucoup de dirigeants portent la difficulté seul·e·s. Voici quelques
           phrases qui peuvent ouvrir la conversation — sans dramatiser, sans
           minimiser.
         </p>
@@ -76,7 +76,7 @@ export default function PrôchesPage() {
                     aria-hidden="true"
                     className="absolute left-3 top-3 text-2xl leading-none text-bleu/30 sm:left-4"
                   >
-                    &ldquo;
+                    “
                   </span>
                   <p className="italic leading-relaxed text-navy/80 sm:text-lg">
                     {phrase}
@@ -91,7 +91,7 @@ export default function PrôchesPage() {
       <div className="glass card-top-line mt-16 p-8 text-center sm:p-10">
         <p className="text-lg leading-relaxed text-navy sm:text-xl">
           Vous n&apos;avez pas à tout dire.<br />
-          Un mot suffit pour ne plus porter seul.
+          Un mot suffit pour ne plus porter seul·e.
         </p>
       </div>
     </section>

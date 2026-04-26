@@ -96,10 +96,10 @@ export default function BlocProtectionFamille({ reponses, company, sector }: Pro
       </div>
       <div className="mt-5 flex flex-wrap gap-2 text-xs">
         <a href="/proteger-famille" className="rounded-full bg-white/80 px-3 py-1 text-bleu-fonce hover:bg-white">
-          Guide complet : protéger ma famille &rarr;
+          Guide complet : protéger ma famille →
         </a>
         <a href="https://www.notaires.fr" target="_blank" rel="noreferrer" className="rounded-full bg-white/80 px-3 py-1 text-navy/70 hover:bg-white">
-          Trouver un notaire &rarr;
+          Trouver un notaire →
         </a>
       </div>
     </BlocAccordeon>

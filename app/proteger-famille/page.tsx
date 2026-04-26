@@ -42,12 +42,12 @@ export default function ProtegerFamillePage() {
           Patrimoine &amp; famille
         </p>
         <h1 className="font-display text-3xl leading-tight text-navy sm:text-5xl">
-          Prot&eacute;ger votre famille
+          Protéger votre famille
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-          Quand l&rsquo;entreprise vacille, la premi&egrave;re question est
-          souvent&nbsp;: qu&rsquo;est-ce que ma famille risque&nbsp;? Voici les
-          r&eacute;ponses.
+          Quand l’entreprise vacille, la première question est
+          souvent : qu’est-ce que ma famille risque ? Voici les
+          réponses.
         </p>
       </div>
 
@@ -59,7 +59,7 @@ export default function ProtegerFamillePage() {
             aria-hidden="true"
           />
           <h2 className="font-display text-xl text-navy sm:text-2xl">
-            Votre r&eacute;sidence principale
+            Votre résidence principale
           </h2>
         </div>
 
@@ -69,44 +69,44 @@ export default function ProtegerFamillePage() {
               Entrepreneur individuel (EI)
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Depuis la loi Macron 2015, la r&eacute;sidence principale est
+              Depuis la loi Macron 2015, la résidence principale est
               <strong className="text-navy/80"> AUTOMATIQUEMENT </strong>
-              prot&eacute;g&eacute;e contre les cr&eacute;anciers professionnels.
-              Aucune d&eacute;marche n&eacute;cessaire.
+              protégée contre les créanciers professionnels.
+              Aucune démarche nécessaire.
             </p>
           </article>
 
           <article className="glass-soft border-l-4 border-vert flex flex-col p-5">
             <h3 className="font-display text-base text-navy">EIRL</h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Supprim&eacute; en 2022. Tous les EI b&eacute;n&eacute;ficient
-              d&eacute;sormais de la s&eacute;paration automatique des patrimoines
-              &mdash; plus besoin de ce statut.
+              Supprimé en 2022. Tous les EI bénéficient
+              désormais de la séparation automatique des patrimoines
+              — plus besoin de ce statut.
             </p>
           </article>
 
           <article className="glass-soft border-l-4 border-vert flex flex-col p-5">
             <h3 className="font-display text-base text-navy">
-              Soci&eacute;t&eacute; (SARL, SAS, SA)
+              Société (SARL, SAS, SA)
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              La r&eacute;sidence n&rsquo;est
+              La résidence n’est
               <strong className="text-navy/80"> PAS </strong>
-              automatiquement prot&eacute;g&eacute;e. La protection d&eacute;pend
-              de votre r&eacute;gime matrimonial et des cautions que vous avez
-              sign&eacute;es.
+              automatiquement protégée. La protection dépend
+              de votre régime matrimonial et des cautions que vous avez
+              signées.
             </p>
           </article>
 
           <article className="glass-soft border-l-4 border-vert flex flex-col p-5">
             <h3 className="font-display text-base text-navy">
-              D&eacute;claration d&rsquo;insaisissabilit&eacute;
+              Déclaration d’insaisissabilité
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
               Existe encore pour les <strong className="text-navy/80">AUTRES</strong> biens
-              immobiliers (pas la r&eacute;sidence). Doit &ecirc;tre faite chez le
-              notaire. Ne prot&egrave;ge que contre les dettes
-              POST&Eacute;RIEURES &agrave; la d&eacute;claration.
+              immobiliers (pas la résidence). Doit être faite chez le
+              notaire. Ne protège que contre les dettes
+              POSTÉRIEURES à la déclaration.
             </p>
           </article>
         </div>
@@ -120,54 +120,54 @@ export default function ProtegerFamillePage() {
             aria-hidden="true"
           />
           <h2 className="font-display text-xl text-navy sm:text-2xl">
-            Votre r&eacute;gime matrimonial
+            Votre régime matrimonial
           </h2>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <article className="glass-soft border-l-4 border-jaune flex flex-col p-5">
             <h3 className="font-display text-base text-navy">
-              Communaut&eacute; l&eacute;gale (d&eacute;faut)
+              Communauté légale (défaut)
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
               Les biens communs
               <strong className="text-navy/80"> PEUVENT </strong>
-              &ecirc;tre saisis pour payer les dettes de l&rsquo;entreprise.
-              Risque r&eacute;el pour le conjoint.
+              être saisis pour payer les dettes de l’entreprise.
+              Risque réel pour le conjoint.
             </p>
           </article>
 
           <article className="glass-soft border-l-4 border-jaune flex flex-col p-5">
             <h3 className="font-display text-base text-navy">
-              S&eacute;paration de biens
+              Séparation de biens
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Seuls VOS biens personnels sont &agrave; risque. Ceux du conjoint sont
-              prot&eacute;g&eacute;s &mdash; sauf s&rsquo;il a co-sign&eacute; une
+              Seuls VOS biens personnels sont à risque. Ceux du conjoint sont
+              protégés — sauf s’il a co-signé une
               caution.
             </p>
           </article>
 
           <article className="glass-soft border-l-4 border-jaune flex flex-col p-5">
             <h3 className="font-display text-base text-navy">
-              Changement de r&eacute;gime
+              Changement de régime
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Possible par acte notari&eacute; (1&nbsp;500 &agrave;
-              3&nbsp;000&nbsp;&euro;).
-              <strong className="text-navy/80"> ATTENTION&nbsp;:</strong> doit
-              &ecirc;tre fait AVANT les difficult&eacute;s &mdash; un changement
-              effectu&eacute; pour frauder les cr&eacute;anciers peut &ecirc;tre
-              annul&eacute; par le juge.
+              Possible par acte notarié (1 500 à
+              3 000 €).
+              <strong className="text-navy/80"> ATTENTION :</strong> doit
+              être fait AVANT les difficultés — un changement
+              effectué pour frauder les créanciers peut être
+              annulé par le juge.
             </p>
           </article>
 
           <article className="glass-soft border-l-4 border-jaune flex flex-col p-5">
-            <h3 className="font-display text-base text-navy">D&eacute;lai</h3>
+            <h3 className="font-display text-base text-navy">Délai</h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Depuis 2019, il n&rsquo;y a plus de d&eacute;lai d&rsquo;attente de
-              2&nbsp;ans pour changer de r&eacute;gime matrimonial. La
-              proc&eacute;dure est donc plus rapide qu&rsquo;avant.
+              Depuis 2019, il n’y a plus de délai d’attente de
+              2 ans pour changer de régime matrimonial. La
+              procédure est donc plus rapide qu’avant.
             </p>
           </article>
         </div>
@@ -188,35 +188,35 @@ export default function ProtegerFamillePage() {
         <div className="grid gap-4 sm:grid-cols-2">
           <article className="glass-soft border-l-4 border-rouge flex flex-col p-5">
             <h3 className="font-display text-base text-navy">
-              Ce que c&rsquo;est
+              Ce que c’est
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Un engagement personnel &agrave; payer les dettes de
-              l&rsquo;entreprise avec VOS biens. Cet engagement
-              <strong className="text-navy/80"> survit &agrave; la liquidation </strong>
-              de l&rsquo;entreprise.
+              Un engagement personnel à payer les dettes de
+              l’entreprise avec VOS biens. Cet engagement
+              <strong className="text-navy/80"> survit à la liquidation </strong>
+              de l’entreprise.
             </p>
           </article>
 
           <article className="glass-soft border-l-4 border-rouge flex flex-col p-5">
             <h3 className="font-display text-base text-navy">
-              Peut-on les contester&nbsp;?
+              Peut-on les contester ?
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              <strong className="text-vert">OUI</strong> si disproportionn&eacute;e
-              par rapport &agrave; vos revenus et patrimoine au moment de la
-              signature (art.&nbsp;2297 Code civil).
-              <strong className="text-vert"> OUI</strong> si le formalisme n&rsquo;a
-              pas &eacute;t&eacute; respect&eacute; (mentions manuscrites).
+              <strong className="text-vert">OUI</strong> si disproportionnée
+              par rapport à vos revenus et patrimoine au moment de la
+              signature (art. 2297 Code civil).
+              <strong className="text-vert"> OUI</strong> si le formalisme n’a
+              pas été respecté (mentions manuscrites).
             </p>
           </article>
 
           <article className="glass-soft border-l-4 border-rouge flex flex-col p-5">
             <h3 className="font-display text-base text-navy">Le conjoint</h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Si le conjoint n&rsquo;a PAS co-sign&eacute;, ses biens personnels
-              sont prot&eacute;g&eacute;s &mdash; m&ecirc;me en communaut&eacute;,
-              seuls les biens propres du signataire sont &agrave; risque selon la
+              Si le conjoint n’a PAS co-signé, ses biens personnels
+              sont protégés — même en communauté,
+              seuls les biens propres du signataire sont à risque selon la
               jurisprudence.
             </p>
           </article>
@@ -227,9 +227,9 @@ export default function ProtegerFamillePage() {
               <span className="pastille text-rouge">Important</span>
             </div>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Faites v&eacute;rifier
+              Faites vérifier
               <strong className="text-navy/80"> TOUTES </strong>
-              vos cautions par un avocat &mdash; beaucoup sont contestables.
+              vos cautions par un avocat — beaucoup sont contestables.
             </p>
           </article>
         </div>
@@ -253,11 +253,11 @@ export default function ProtegerFamillePage() {
               Donation-partage
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Possible pour transf&eacute;rer des actifs aux enfants,
+              Possible pour transférer des actifs aux enfants,
               <strong className="text-navy/80"> MAIS </strong>
-              attention &agrave; l&rsquo;action paulienne &mdash; tout transfert
-              dans les 18&nbsp;mois pr&eacute;c&eacute;dant la cessation des
-              paiements peut &ecirc;tre annul&eacute; par le tribunal.
+              attention à l’action paulienne — tout transfert
+              dans les 18 mois précédant la cessation des
+              paiements peut être annulé par le tribunal.
             </p>
           </article>
 
@@ -267,8 +267,8 @@ export default function ProtegerFamillePage() {
               <span className="pastille text-bleu">Anticipez</span>
             </div>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
-              Ne PAS transf&eacute;rer d&rsquo;actifs une fois les
-              difficult&eacute;s commenc&eacute;es. Consultez un notaire
+              Ne PAS transférer d’actifs une fois les
+              difficultés commencées. Consultez un notaire
               <strong className="text-navy/80"> EN AMONT</strong>.
             </p>
           </article>
@@ -283,7 +283,7 @@ export default function ProtegerFamillePage() {
             aria-hidden="true"
           />
           <h2 className="font-display text-xl text-navy sm:text-2xl">
-            Que faire concr&egrave;tement
+            Que faire concrètement
           </h2>
         </div>
 
@@ -322,7 +322,7 @@ export default function ProtegerFamillePage() {
       {/* Footer note */}
       <div className="dashed-band mt-12 p-6 text-center text-sm leading-relaxed text-navy/70">
         La protection du patrimoine familial est un sujet technique. Un notaire et
-        un avocat peuvent vous conseiller &mdash; la premi&egrave;re consultation
+        un avocat peuvent vous conseiller — la première consultation
         est souvent gratuite.
       </div>
     </section>

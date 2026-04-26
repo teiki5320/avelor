@@ -57,7 +57,7 @@ export default function BlocSoutien({ reponses, sector }: Props) {
           rel="noreferrer"
           className="glass-soft block p-4 transition hover:bg-white"
         >
-          <p className="font-display text-lg text-navy">60&nbsp;000 Rebonds</p>
+          <p className="font-display text-lg text-navy">60 000 Rebonds</p>
           <p className="mt-1 text-xs text-navy/60">
             Accompagnement après un dépôt de bilan
           </p>

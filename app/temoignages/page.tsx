@@ -90,7 +90,7 @@ export default function TemoignagesPage() {
               </div>
               <p className="font-display text-xl text-navy">{t.prenom}</p>
               <blockquote className="mt-4 border-l-2 border-bleu/30 pl-4 text-sm italic text-navy/80">
-                &ldquo;{t.texte}&rdquo;
+                “{t.texte}”
               </blockquote>
               {t.issue && (
                 <p className="mt-4 rounded-xl bg-vert/10 px-4 py-3 text-sm text-vert">

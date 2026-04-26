@@ -155,7 +155,7 @@ export default function BlocProcedureRecommandee({ reponses, company, sector }: 
               <p className="mt-1 text-xs text-navy/50">Conditions : {p.conditions}</p>
             )}
             <a href={p.lien} className="mt-2 inline-block text-xs text-bleu-fonce underline underline-offset-2">
-              En savoir plus &rarr;
+              En savoir plus →
             </a>
           </div>
         ))}

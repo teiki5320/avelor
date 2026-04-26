@@ -143,11 +143,11 @@ export default function AidesPage() {
           Vos droits
         </p>
         <h1 className="font-display text-3xl leading-tight text-navy sm:text-5xl">
-          Aides financi&egrave;res d&rsquo;urgence
+          Aides financières d’urgence
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-          Beaucoup de dirigeants ignorent qu&rsquo;ils ont droit &agrave; ces
-          aides. V&eacute;rifiez.
+          Beaucoup de dirigeants ignorent qu’ils ont droit à ces
+          aides. Vérifiez.
         </p>
       </div>
 
@@ -205,7 +205,7 @@ export default function AidesPage() {
                         href={`tel:${a.tel.replace(/\s/g, '')}`}
                         className="pastille"
                       >
-                        Tel&nbsp;: {a.tel}
+                        Tel : {a.tel}
                       </a>
                     )}
                   </div>
@@ -222,7 +222,7 @@ export default function AidesPage() {
                   rel="noreferrer"
                   className="btn-primary"
                 >
-                  Trouver ma CCI &rarr; cci.fr
+                  Trouver ma CCI → cci.fr
                 </a>
               </div>
             )}
@@ -232,8 +232,8 @@ export default function AidesPage() {
 
       {/* Footer note */}
       <div className="dashed-band mt-12 p-6 text-center text-sm leading-relaxed text-navy/70">
-        Ces aides &eacute;voluent. V&eacute;rifiez les conditions actuelles
-        directement aupr&egrave;s de chaque organisme.
+        Ces aides évoluent. Vérifiez les conditions actuelles
+        directement auprès de chaque organisme.
       </div>
     </section>
   );

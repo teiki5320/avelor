@@ -38,7 +38,7 @@ export default function Nav() {
         </Link>
 
         <div className="hidden items-center gap-4 text-sm text-navy/55 md:flex">
-          <Link href="/procedures" className="transition hover:text-navy">Proc&eacute;dures</Link>
+          <Link href="/procedures" className="transition hover:text-navy">Procédures</Link>
           <Link href="/courriers" className="transition hover:text-navy">Courriers</Link>
           <Link href="/aides" className="transition hover:text-navy">Aides</Link>
           <Link href="/parler" className="transition hover:text-navy">Parler</Link>

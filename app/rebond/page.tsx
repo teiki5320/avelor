@@ -100,42 +100,42 @@ export default function RebondPage() {
       {/* Header */}
       <div className="text-center">
         <p className="mb-4 text-sm uppercase tracking-[0.2em] text-bleu-fonce/70">
-          Nouveau d&eacute;part
+          Nouveau départ
         </p>
         <h1 className="font-display text-3xl leading-tight text-navy sm:text-5xl">
           Rebondir
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-          La fin d&rsquo;une entreprise n&rsquo;est pas la fin de tout. Des
-          milliers de dirigeants recr&eacute;ent chaque ann&eacute;e &mdash; et
-          beaucoup r&eacute;ussissent mieux la deuxi&egrave;me fois.
+          La fin d’une entreprise n’est pas la fin de tout. Des
+          milliers de dirigeants recréent chaque année — et
+          beaucoup réussissent mieux la deuxième fois.
         </p>
       </div>
 
       {/* Section 1  -  Droits après liquidation */}
       <div className="mt-12 glass card-top-line p-6 sm:p-8">
         <h2 className="font-display text-xl text-navy sm:text-2xl mb-6">
-          Apr&egrave;s une liquidation &mdash; vos droits
+          Après une liquidation — vos droits
         </h2>
 
         <dl className="space-y-4 text-sm">
           <div>
             <dt className="font-semibold text-navy/80">
-              Pas d&rsquo;interdiction automatique
+              Pas d’interdiction automatique
             </dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              Sauf sanctions personnelles (interdiction de g&eacute;rer,
-              faillite personnelle, banqueroute), vous &ecirc;tes LIBRE de
-              recr&eacute;er imm&eacute;diatement apr&egrave;s la cl&ocirc;ture.
+              Sauf sanctions personnelles (interdiction de gérer,
+              faillite personnelle, banqueroute), vous êtes LIBRE de
+              recréer immédiatement après la clôture.
             </dd>
           </div>
           <div>
             <dt className="font-semibold text-navy/80">
-              Interdiction de g&eacute;rer
+              Interdiction de gérer
             </dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              Jusqu&rsquo;&agrave; 15 ans si faute de gestion prouv&eacute;e.
-              Tr&egrave;s rare.
+              Jusqu’à 15 ans si faute de gestion prouvée.
+              Très rare.
             </dd>
           </div>
           <div>
@@ -143,17 +143,17 @@ export default function RebondPage() {
               Faillite personnelle
             </dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              D&eacute;ch&eacute;ance commerciale. Encore plus rare.
+              Déchéance commerciale. Encore plus rare.
             </dd>
           </div>
           <div>
             <dt className="font-semibold text-navy/80">
-              Cl&ocirc;ture pour insuffisance d&rsquo;actif
+              Clôture pour insuffisance d’actif
             </dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              Comment 97 % des liquidations se terminent. N&rsquo;efface PAS les
+              Comment 97 % des liquidations se terminent. N’efface PAS les
               cautions personnelles. Le liquidateur peut engager votre
-              responsabilit&eacute; dans les 3 ans si fautes de gestion.
+              responsabilité dans les 3 ans si fautes de gestion.
             </dd>
           </div>
         </dl>
@@ -167,7 +167,7 @@ export default function RebondPage() {
             aria-hidden="true"
           />
           <h2 className="font-display text-xl text-navy sm:text-2xl">
-            R&eacute;tablissement professionnel (PRP)
+            Rétablissement professionnel (PRP)
           </h2>
         </div>
 
@@ -175,28 +175,28 @@ export default function RebondPage() {
           <div>
             <dt className="font-semibold text-navy/80">Quoi</dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              Proc&eacute;dure simplifi&eacute;e qui EFFACE vos dettes
-              professionnelles SANS passer par une liquidation compl&egrave;te.
+              Procédure simplifiée qui EFFACE vos dettes
+              professionnelles SANS passer par une liquidation complète.
             </dd>
           </div>
           <div>
             <dt className="font-semibold text-navy/80">Qui</dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              Entrepreneurs individuels uniquement (pas les soci&eacute;t&eacute;s).
-              Conditions&nbsp;: cessation des paiements, aucun salari&eacute;,
-              actifs &lt;&nbsp;15&nbsp;000&nbsp;&euro; (hors r&eacute;sidence si
-              prot&eacute;g&eacute;e), pas de proc&eacute;dure dans les
-              5&nbsp;derni&egrave;res ann&eacute;es.
+              Entrepreneurs individuels uniquement (pas les sociétés).
+              Conditions : cessation des paiements, aucun salarié,
+              actifs &lt; 15 000 € (hors résidence si
+              protégée), pas de procédure dans les
+              5 dernières années.
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-navy/80">Dur&eacute;e</dt>
+            <dt className="font-semibold text-navy/80">Durée</dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
               4 mois maximum.
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-navy/80">R&eacute;sultat</dt>
+            <dt className="font-semibold text-navy/80">Résultat</dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
               Effacement des dettes. Fresh start.
             </dd>
@@ -260,7 +260,7 @@ export default function RebondPage() {
                     href={`tel:${f.tel.replace(/\s/g, '')}`}
                     className="pastille"
                   >
-                    T&eacute;l&nbsp;: {f.tel}
+                    Tél : {f.tel}
                   </a>
                 )}
               </div>
@@ -278,31 +278,31 @@ export default function RebondPage() {
         <dl className="space-y-4 text-sm">
           <div>
             <dt className="font-semibold text-navy/80">
-              FCC (ch&egrave;ques)
+              FCC (chèques)
             </dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              Inscription 5 ans max. R&eacute;gularisez l&rsquo;incident
-              &rarr;&nbsp;la banque demande la radiation.
+              Inscription 5 ans max. Régularisez l’incident
+              → la banque demande la radiation.
             </dd>
           </div>
           <div>
             <dt className="font-semibold text-navy/80">
-              FICP (cr&eacute;dits)
+              FICP (crédits)
             </dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
               Inscription 5 ans (incidents) ou 7 ans (surendettement). Radiation
-              anticip&eacute;e si plan termin&eacute;.
+              anticipée si plan terminé.
             </dd>
           </div>
           <div>
             <dt className="font-semibold text-navy/80">
-              Cons&eacute;quence
+              Conséquence
             </dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              &Ecirc;tre fich&eacute; n&rsquo;interdit PAS l&eacute;galement de
-              cr&eacute;er une entreprise, mais rend l&rsquo;acc&egrave;s au
-              cr&eacute;dit tr&egrave;s difficile &mdash; d&rsquo;o&ugrave;
-              l&rsquo;ADIE et les pr&ecirc;ts d&rsquo;honneur.
+              Être fiché n’interdit PAS légalement de
+              créer une entreprise, mais rend l’accès au
+              crédit très difficile — d’où
+              l’ADIE et les prêts d’honneur.
             </dd>
           </div>
         </dl>
@@ -322,7 +322,7 @@ export default function RebondPage() {
       {/* Section 5  -  Associations d’accompagnement */}
       <div className="mt-8 glass card-top-line p-6 sm:p-8">
         <h2 className="font-display text-xl text-navy sm:text-2xl mb-6">
-          Associations d&rsquo;accompagnement au rebond
+          Associations d’accompagnement au rebond
         </h2>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -356,15 +356,15 @@ export default function RebondPage() {
 
       {/* Footer quote */}
       <div className="dashed-band mt-12 p-6 text-center text-sm leading-relaxed text-navy/70">
-        Le rebond n&rsquo;est pas un mythe. 50 % des dirigeants qui ont
-        v&eacute;cu une liquidation recr&eacute;ent dans les 3 ans &mdash; et
-        leur deuxi&egrave;me entreprise est souvent plus solide.
+        Le rebond n’est pas un mythe. 50 % des dirigeants qui ont
+        vécu une liquidation recréent dans les 3 ans — et
+        leur deuxième entreprise est souvent plus solide.
       </div>
 
       {/* CTA */}
       <div className="mt-10 text-center">
         <Link href="/" className="btn-primary">
-          Commencer un nouveau diagnostic &rarr;
+          Commencer un nouveau diagnostic →
         </Link>
       </div>
     </section>

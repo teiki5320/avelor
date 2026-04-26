@@ -168,11 +168,11 @@ export default function GlossairePage() {
           Glossaire
         </p>
         <h1 className="font-display text-3xl leading-tight text-navy sm:text-5xl">
-          Les proc&eacute;dures expliqu&eacute;es simplement
+          Les procédures expliquées simplement
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-          Pas de jargon. Pas de panique. Juste ce que &ccedil;a veut dire,
-          concr&egrave;tement.
+          Pas de jargon. Pas de panique. Juste ce que ça veut dire,
+          concrètement.
         </p>
       </div>
 
@@ -204,7 +204,7 @@ export default function GlossairePage() {
               </div>
               <div>
                 <span className="text-sm font-semibold uppercase tracking-wide text-bleu-fonce/70">
-                  Dur&eacute;e :
+                  Durée :
                 </span>
                 <p className="mt-1 leading-relaxed text-navy/80">
                   {term.duree}

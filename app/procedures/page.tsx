@@ -108,10 +108,10 @@ export default function ProceduresPage() {
           Comprendre vos options
         </p>
         <h1 className="font-display text-3xl leading-tight text-navy sm:text-5xl">
-          Quelle proc&eacute;dure pour votre situation&nbsp;?
+          Quelle procédure pour votre situation ?
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-          Un tableau clair pour comprendre vos options &mdash; sans jargon.
+          Un tableau clair pour comprendre vos options — sans jargon.
         </p>
       </div>
 
@@ -150,15 +150,15 @@ export default function ProceduresPage() {
 
       {/* Disclaimer */}
       <div className="dashed-band mt-12 p-6 text-center text-sm leading-relaxed text-navy/70">
-        Ce tableau est une simplification. Chaque situation est unique &mdash;
+        Ce tableau est une simplification. Chaque situation est unique —
         un avocat ou le tribunal de commerce peuvent vous conseiller gratuitement
-        sur la proc&eacute;dure la plus adapt&eacute;e.
+        sur la procédure la plus adaptée.
       </div>
 
       {/* CTA */}
       <div className="mt-10 text-center">
         <Link href="/parler" className="btn-primary">
-          Besoin de parler&nbsp;? &rarr;
+          Besoin de parler ? →
         </Link>
       </div>
     </section>

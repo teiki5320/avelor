@@ -217,7 +217,7 @@ export default function Questionnaire({ siret }: Props) {
     <div className="mx-auto max-w-2xl px-5 pb-20">
       {restored && (
         <div className="mb-4 flex items-center justify-between rounded-2xl bg-bleu/10 px-4 py-3 text-sm text-bleu-fonce">
-          <span>Vos r&eacute;ponses pr&eacute;c&eacute;dentes ont &eacute;t&eacute; restaur&eacute;es.</span>
+          <span>Vos réponses précédentes ont été restaurées.</span>
           <button
             type="button"
             onClick={() => { setStep(0); setAnswers({}); clearDraft(); setRestored(false); }}
@@ -229,7 +229,7 @@ export default function Questionnaire({ siret }: Props) {
       )}
       <div className="mb-8">
         <div className="mb-2 flex items-center justify-between text-xs text-navy/50">
-          <span>&Eacute;tape {step + 1} sur {TOTAL_SLIDES}</span>
+          <span>Étape {step + 1} sur {TOTAL_SLIDES}</span>
           <span>{Math.round(progress)} %</span>
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-navy/10">
@@ -292,10 +292,10 @@ export default function Questionnaire({ siret }: Props) {
               onClick={() => setStep((s) => Math.max(0, s - 1))}
               className="text-navy/50 hover:text-navy disabled:opacity-40"
             >
-              &larr; Pr&eacute;c&eacute;dent
+              ← Précédent
             </button>
             {submitting && (
-              <span className="text-navy/50">Pr&eacute;paration de votre fiche&hellip;</span>
+              <span className="text-navy/50">Préparation de votre fiche…</span>
             )}
           </div>
         </motion.div>

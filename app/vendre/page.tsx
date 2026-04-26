@@ -180,11 +180,11 @@ export default function VendrePage() {
           Vos options
         </p>
         <h1 className="font-display text-3xl leading-tight text-navy sm:text-5xl">
-          Vendre, c&eacute;der ou transmettre
+          Vendre, céder ou transmettre
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-          Vendre n&rsquo;est pas un &eacute;chec &mdash; c&rsquo;est parfois la
-          meilleure d&eacute;cision pour vous, vos salari&eacute;s et votre
+          Vendre n’est pas un échec — c’est parfois la
+          meilleure décision pour vous, vos salariés et votre
           famille.
         </p>
       </div>
@@ -222,9 +222,9 @@ export default function VendrePage() {
             {/* Conseil */}
             <div className="mt-5 flex items-start gap-2 rounded-xl bg-navy/[0.04] px-4 py-3 text-sm leading-relaxed text-navy/75">
               <span className="mt-0.5 shrink-0 font-semibold text-navy/80">
-                Conseil&nbsp;:
+                Conseil :
               </span>
-              <span>&laquo;&nbsp;{o.conseil}&nbsp;&raquo;</span>
+              <span>« {o.conseil} »</span>
             </div>
           </article>
         ))}
@@ -232,20 +232,20 @@ export default function VendrePage() {
 
       {/* Dashed band disclaimer */}
       <div className="dashed-band mt-12 p-6 text-center text-sm leading-relaxed text-navy/70">
-        Chaque option a ses cons&eacute;quences fiscales et sociales. Consultez
+        Chaque option a ses conséquences fiscales et sociales. Consultez
         votre expert-comptable et un avocat avant de vous engager.
       </div>
 
       {/* Bottom links */}
       <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
         <Link href="/courriers" className="btn-ghost">
-          Mod&egrave;les de courriers
+          Modèles de courriers
         </Link>
         <Link href="/procedures" className="btn-ghost">
-          Comprendre les proc&eacute;dures
+          Comprendre les procédures
         </Link>
         <Link href="/parler" className="btn-ghost">
-          Parler &agrave; quelqu&rsquo;un
+          Parler à quelqu’un
         </Link>
       </div>
     </section>
