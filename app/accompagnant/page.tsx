@@ -12,7 +12,7 @@ export default function AccompagnantPage() {
     <section className="mx-auto max-w-3xl px-5 pt-4 pb-20">
       <div className="mb-8 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-vert/80">
-          Mode accompagnant
+          Aux côtés d&apos;un dirigeant
         </p>
         <h1 className="mt-2 font-display text-3xl text-navy sm:text-4xl">
           Vous accompagnez un dirigeant
