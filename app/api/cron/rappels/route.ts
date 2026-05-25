@@ -1,14 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase';
-
-interface Rappel {
-  email: string;
-  echeance: string;
-  dateRappel: string;
-  libelle: string;
-  cree_le: string;
-  envoye?: boolean;
-}
+import type { Rappel } from '@/lib/types';
 
 interface FicheAvecRappels {
   token: string;

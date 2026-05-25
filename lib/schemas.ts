@@ -26,3 +26,14 @@ export const sendLinkPayloadSchema = z.object({
   token: z.string().min(10, 'Le token doit contenir au moins 10 caractères'),
   email: z.string().email('Adresse email invalide'),
 });
+
+/**
+ * Schéma Zod pour le payload de création de rappel (POST /api/fiche/rappels).
+ */
+export const rappelPayloadSchema = z.object({
+  token: z.string().min(10),
+  email: z.string().email(),
+  echeance: z.string().min(1),
+  dateRappel: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  libelle: z.string().min(1),
+});

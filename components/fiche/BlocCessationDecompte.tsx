@@ -127,8 +127,6 @@ export default function BlocCessationDecompte({ reponses }: Props) {
     reponses.situation === 'assignation' ||
     reponses.situation === 'tresorie';
 
-  if (!pertinent) return null;
-
   const verdict = useMemo<Verdict | null>(() => {
     if (!dateStr) return null;
     const d = new Date(dateStr);
@@ -137,6 +135,8 @@ export default function BlocCessationDecompte({ reponses }: Props) {
   }, [dateStr]);
 
   const todayISO = new Date().toISOString().slice(0, 10);
+
+  if (!pertinent) return null;
 
   return (
     <BlocAccordeon

@@ -49,6 +49,7 @@ interface RouteLimit {
 
 const routeLimits: RouteLimit[] = [
   { path: '/api/fiche/send-link', method: 'POST', limit: 5 },
+  { path: '/api/fiche/rappels', method: 'POST', limit: 5 },
   { path: '/api/fiche', method: 'POST', limit: 10 },
   { path: '/api/stats', limit: 30 },
 ];

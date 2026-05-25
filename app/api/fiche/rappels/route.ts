@@ -1,47 +1,22 @@
 import { NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase';
-
-interface RappelPayload {
-  token: string;
-  email: string;
-  echeance: string;
-  dateRappel: string;
-  libelle: string;
-}
-
-interface Rappel {
-  email: string;
-  echeance: string;
-  dateRappel: string;
-  libelle: string;
-  cree_le: string;
-  envoye?: boolean;
-}
+import { rappelPayloadSchema } from '@/lib/schemas';
+import type { Rappel } from '@/lib/types';
 
 export async function POST(req: Request) {
-  let body: RappelPayload;
+  let body: unknown;
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: 'Corps de requête invalide' }, { status: 400 });
   }
 
-  const { token, email, echeance, dateRappel, libelle } = body;
-
-  if (!token || !email || !echeance) {
-    return NextResponse.json({ error: 'Champs manquants (token, email, echeance requis)' }, { status: 400 });
+  const result = rappelPayloadSchema.safeParse(body);
+  if (!result.success) {
+    return NextResponse.json({ error: 'Données invalides', details: result.error.flatten().fieldErrors }, { status: 400 });
   }
 
-  /* Validation basique email */
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return NextResponse.json({ error: 'Adresse email invalide' }, { status: 400 });
-  }
-
-  /* Validation date */
-  const dateObj = new Date(dateRappel || echeance);
-  if (isNaN(dateObj.getTime())) {
-    return NextResponse.json({ error: 'Date invalide' }, { status: 400 });
-  }
+  const { token, email, echeance, dateRappel, libelle } = result.data;
 
   const sb = getSupabase();
   if (!sb) {

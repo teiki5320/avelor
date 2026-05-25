@@ -126,7 +126,7 @@ export default function LayoutDashboard({
         <StrategieHero reponses={reponses} company={company} />
       </div>
       <div data-section="soutien">
-        <BlocSoutien reponses={reponses} sector={sector} />
+        <BlocSoutien />
       </div>
 
       {/* ───── Section ÉCHÉANCES ───── */}
@@ -219,7 +219,7 @@ export default function LayoutDashboard({
               <BlocCCSF reponses={reponses} company={company} />
             </div>
             <div data-section="obligations">
-              <BlocObligations reponses={reponses} company={company} seuils={seuils} />
+              <BlocObligations />
             </div>
           </>
         }
@@ -247,12 +247,7 @@ export default function LayoutDashboard({
         right={
           <>
             <div data-section="prescription">
-              <BlocPrescription
-                reponses={reponses}
-                company={company}
-                companyAge={companyAge}
-                seuils={seuils}
-              />
+              <BlocPrescription />
             </div>
           </>
         }

@@ -1,21 +1,8 @@
-import type { ReactNode } from 'react';
 import type { Reponses, CompanyData } from './types';
 import type { SectorInfo, EffectifSeuils } from './secteur';
 import { resolveStrategie, AXE_META } from './strategie';
 
 export type Tone = 'rouge' | 'jaune' | 'bleu' | 'vert' | 'navy';
-
-export interface PriorityCardData {
-  id: string;
-  icone: string;
-  label: string;
-  valeur: string;
-  detail: string;
-  tone: Tone;
-  scrollTo?: string;
-  expandedContent: ReactNode;
-  score: number;
-}
 
 export const TONES: Record<Tone, { bg: string; border: string; accent: string; text: string; hover: string }> = {
   rouge: { bg: 'bg-rouge/5', border: 'border-rouge/30', accent: 'bg-rouge', text: 'text-rouge', hover: 'hover:bg-rouge/10' },

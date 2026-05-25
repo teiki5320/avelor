@@ -1,13 +1,9 @@
-import type { Reponses } from '@/lib/types';
-import type { SectorInfo } from '@/lib/secteur';
+'use client';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
-interface Props {
-  reponses: Reponses;
-  sector: SectorInfo;
-}
-
-export default function BlocSoutien({ reponses, sector }: Props) {
+export default function BlocSoutien() {
+  const { reponses, sector } = useFiche();
   const epuise = reponses.moral === 'epuise' || reponses.moral === 'perdu';
 
   const message = epuise

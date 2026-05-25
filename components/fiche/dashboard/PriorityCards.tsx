@@ -20,10 +20,10 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
         <div className="space-y-3 text-sm text-navy/80">
           <p>
             L&apos;article <strong>L631-4 du Code de commerce</strong>{' '}
-            impose au dirigeant de d&eacute;clarer la cessation dans les{' '}
-            <strong>45 jours</strong> suivant son constat. Au-del&agrave; :
+            impose au dirigeant de déclarer la cessation dans les{' '}
+            <strong>45 jours</strong> suivant son constat. Au-delà :
             action en comblement de passif (L651-2), faillite personnelle
-            (L653-1), banqueroute p&eacute;nale (L654-1, jusqu&apos;à 5 ans de
+            (L653-1), banqueroute pénale (L654-1, jusqu&apos;à 5 ans de
             prison et 75 000 € d&apos;amende).
           </p>
           <ul className="space-y-1.5">

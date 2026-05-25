@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
+import { useLocalStorage } from '@/lib/hooks';
 
 const SECTIONS = [
   'strategie',
@@ -29,39 +30,19 @@ const TOTAL = SECTIONS.length;
 const STORAGE_PREFIX = 'avelor_progress_';
 
 export default function ProgressTracker({ token }: { token: string }) {
-  const [consultes, setConsultes] = useState<Set<string>>(new Set());
-
-  /* Charger la progression depuis localStorage */
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(`${STORAGE_PREFIX}${token}`);
-      if (stored) {
-        const parsed: string[] = JSON.parse(stored);
-        if (Array.isArray(parsed)) {
-          setConsultes(new Set(parsed));
-        }
-      }
-    } catch {
-      /* localStorage indisponible ou donnée corrompue */
-    }
-  }, [token]);
-
-  /* Sauvegarder dans localStorage */
-  const persister = useCallback(
-    (next: Set<string>) => {
-      try {
-        localStorage.setItem(
-          `${STORAGE_PREFIX}${token}`,
-          JSON.stringify([...next]),
-        );
-      } catch {
-        /* quota ou mode privé */
-      }
-    },
-    [token],
-  );
+  const [consultes, setConsultes] = useLocalStorage<string[]>(`${STORAGE_PREFIX}${token}`, []);
 
   /* Observer les clics sur les éléments avec data-section */
+  const ajouterSection = useCallback(
+    (id: string) => {
+      setConsultes((prev) => {
+        if (prev.includes(id)) return prev;
+        return [...prev, id];
+      });
+    },
+    [setConsultes],
+  );
+
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       const target = e.target as HTMLElement | null;
@@ -71,20 +52,14 @@ export default function ProgressTracker({ token }: { token: string }) {
       const id = section.getAttribute('data-section');
       if (!id) return;
 
-      setConsultes((prev) => {
-        if (prev.has(id)) return prev;
-        const next = new Set(prev);
-        next.add(id);
-        persister(next);
-        return next;
-      });
+      ajouterSection(id);
     }
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, [persister]);
+  }, [ajouterSection]);
 
-  const fait = consultes.size;
+  const fait = consultes.length;
   const pct = Math.round((fait / TOTAL) * 100);
 
   if (fait === 0) return null;

@@ -1,14 +1,10 @@
-import type { CompanyData, Reponses } from '@/lib/types';
-import { type EffectifSeuils, getObligationsEffectif } from '@/lib/secteur';
+'use client';
+import { useFiche } from '@/lib/FicheContext';
+import { getObligationsEffectif } from '@/lib/secteur';
 import BlocAccordeon from './BlocAccordeon';
 
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  seuils: EffectifSeuils;
-}
-
-export default function BlocObligations({ reponses, company, seuils }: Props) {
+export default function BlocObligations() {
+  const { reponses, seuils } = useFiche();
   if (reponses.effectif === 'independant' || seuils.approx === 0) return null;
 
   const obligations = getObligationsEffectif(seuils);
