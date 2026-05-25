@@ -28,11 +28,8 @@ interface FicheAvecRappels {
 export async function GET(req: Request) {
   /* Vérification du secret cron */
   const cronSecret = process.env.CRON_SECRET;
-  if (cronSecret) {
-    const auth = req.headers.get('authorization');
-    if (auth !== `Bearer ${cronSecret}`) {
-      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
-    }
+  if (!cronSecret || req.headers.get('authorization') !== `Bearer ${cronSecret}`) {
+    return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
   }
 
   const sb = getSupabase();

@@ -39,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/annuaires/cip',
     '/courriers',
     '/accompagnant',
+    '/faq',
   ];
 
   return routes.map((route) => ({
