@@ -25,9 +25,9 @@ const SECTIONS: SectionFAQ[] = [
     id: 'cessation',
     questions: [
       {
-        question: 'Qu&apos;est-ce que la cessation des paiements exactement ?',
+        question: "Qu'est-ce que la cessation des paiements exactement ?",
         reponse:
-          'La cessation des paiements est définie par l&apos;article L631-1 du Code de commerce : c&apos;est l&apos;impossibilité de faire face au passif exigible avec l&apos;actif disponible. Concrètement, vous ne pouvez plus payer vos dettes échues (URSSAF, fournisseurs, impôts, loyer) avec votre trésorerie et vos créances clients encaissables immédiatement. Ce n&apos;est pas un simple découvert bancaire — c&apos;est une situation juridique précise, constatée à une date donnée.',
+          "La cessation des paiements est définie par l'article L631-1 du Code de commerce : c'est l'impossibilité de faire face au passif exigible avec l'actif disponible. Concrètement, vous ne pouvez plus payer vos dettes échues (URSSAF, fournisseurs, impôts, loyer) avec votre trésorerie et vos créances clients encaissables immédiatement. Ce n'est pas un simple découvert bancaire — c'est une situation juridique précise, constatée à une date donnée.",
         liens: [
           { href: '/outils/prescription', label: 'Calculateur de délais' },
         ],
@@ -35,7 +35,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Quel est le délai pour la déclarer ?',
         reponse:
-          'Vous disposez de 45 jours maximum après la date de cessation des paiements pour la déclarer au greffe du tribunal de commerce (article L631-4 du Code de commerce). Ce délai court à partir du moment où vous ne pouvez plus payer vos dettes échues — pas à partir du moment où vous en prenez conscience. La déclaration se fait via le formulaire Cerfa n°10530, accompagné des documents comptables.',
+          "Vous disposez de 45 jours maximum après la date de cessation des paiements pour la déclarer au greffe du tribunal de commerce (article L631-4 du Code de commerce). Ce délai court à partir du moment où vous ne pouvez plus payer vos dettes échues — pas à partir du moment où vous en prenez conscience. La déclaration se fait via le formulaire Cerfa n°10530, accompagné des documents comptables.",
         liens: [
           { href: '/courriers', label: 'Modèles de courriers' },
         ],
@@ -43,12 +43,12 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Que se passe-t-il si je ne la déclare pas à temps ?',
         reponse:
-          'Le non-respect du délai de 45 jours expose le dirigeant à une interdiction de gérer (article L653-8 du Code de commerce), pouvant aller jusqu&apos;à 15 ans. Le tribunal peut aussi remonter la date de cessation des paiements jusqu&apos;à 18 mois en arrière (période suspecte), ce qui annule certains paiements et garanties consentis pendant cette période. En cas de faute de gestion avérée, une action en responsabilité pour insuffisance d&apos;actif est possible (article L651-2).',
+          "Le non-respect du délai de 45 jours expose le dirigeant à une interdiction de gérer (article L653-8 du Code de commerce), pouvant aller jusqu'à 15 ans. Le tribunal peut aussi remonter la date de cessation des paiements jusqu'à 18 mois en arrière (période suspecte), ce qui annule certains paiements et garanties consentis pendant cette période. En cas de faute de gestion avérée, une action en responsabilité pour insuffisance d'actif est possible (article L651-2).",
       },
       {
         question: 'Puis-je continuer à diriger mon entreprise ?',
         reponse:
-          'Cela dépend de la procédure ouverte. En sauvegarde, vous restez aux commandes avec l&apos;assistance d&apos;un administrateur. En redressement judiciaire, le tribunal détermine si vous administrez seul ou avec un administrateur (article L631-12). En liquidation judiciaire, vous perdez la gestion : un liquidateur est nommé pour réaliser les actifs et payer les créanciers (article L641-9).',
+          "Cela dépend de la procédure ouverte. En sauvegarde, vous restez aux commandes avec l'assistance d'un administrateur. En redressement judiciaire, le tribunal détermine si vous administrez seul ou avec un administrateur (article L631-12). En liquidation judiciaire, vous perdez la gestion : un liquidateur est nommé pour réaliser les actifs et payer les créanciers (article L641-9).",
         liens: [
           { href: '/procedures', label: 'Comparer les procédures' },
         ],
@@ -62,7 +62,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Quelle est la différence entre sauvegarde et redressement ?',
         reponse:
-          'La différence fondamentale est le timing. La sauvegarde (article L620-1) est ouverte avant la cessation des paiements : l&apos;entreprise a des difficultés qu&apos;elle ne peut surmonter seule, mais elle peut encore payer ses dettes. Le redressement (article L631-1) intervient après la cessation des paiements. Dans les deux cas, les poursuites individuelles sont suspendues et un plan d&apos;apurement sur 10 ans maximum peut être adopté. Avantage clé de la sauvegarde : le dirigeant reste toujours aux commandes.',
+          "La différence fondamentale est le timing. La sauvegarde (article L620-1) est ouverte avant la cessation des paiements : l'entreprise a des difficultés qu'elle ne peut surmonter seule, mais elle peut encore payer ses dettes. Le redressement (article L631-1) intervient après la cessation des paiements. Dans les deux cas, les poursuites individuelles sont suspendues et un plan d'apurement sur 10 ans maximum peut être adopté. Avantage clé de la sauvegarde : le dirigeant reste toujours aux commandes.",
         liens: [
           { href: '/procedures', label: 'Tableau comparatif des procédures' },
         ],
@@ -70,17 +70,17 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Combien coûte une procédure collective ?',
         reponse:
-          'Les frais de justice (greffe) sont modestes : quelques centaines d&apos;euros pour le dépôt. Le coût principal vient des honoraires des mandataires de justice (administrateur, mandataire judiciaire), fixés par décret (R663-1 et suivants du Code de commerce) selon un barème proportionnel au chiffre d&apos;affaires et au nombre de salariés. Comptez environ 3 000 à 10 000 euros pour une petite entreprise. L&apos;aide juridictionnelle est possible si vos revenus personnels sont faibles.',
+          "Les frais de justice (greffe) sont modestes : quelques centaines d'euros pour le dépôt. Le coût principal vient des honoraires des mandataires de justice (administrateur, mandataire judiciaire), fixés par décret (R663-1 et suivants du Code de commerce) selon un barème proportionnel au chiffre d'affaires et au nombre de salariés. Comptez environ 3 000 à 10 000 euros pour une petite entreprise. L'aide juridictionnelle est possible si vos revenus personnels sont faibles.",
       },
       {
         question: 'Combien de temps dure un redressement judiciaire ?',
         reponse:
-          'La période d&apos;observation initiale est de 6 mois, renouvelable une fois (article L631-7). En tout, elle ne peut excéder 18 mois. Pendant cette période, le tribunal évalue si l&apos;entreprise est viable. Si oui, un plan de redressement est adopté (apurement des dettes sur 10 ans maximum). Si non, la liquidation judiciaire est prononcée.',
+          "La période d'observation initiale est de 6 mois, renouvelable une fois (article L631-7). En tout, elle ne peut excéder 18 mois. Pendant cette période, le tribunal évalue si l'entreprise est viable. Si oui, un plan de redressement est adopté (apurement des dettes sur 10 ans maximum). Si non, la liquidation judiciaire est prononcée.",
       },
       {
         question: 'Puis-je choisir mon mandataire judiciaire ?',
         reponse:
-          'Non, c&apos;est le tribunal qui désigne le mandataire judiciaire et l&apos;administrateur judiciaire (articles L621-4 et L631-9 du Code de commerce). Cependant, vous pouvez suggérer un nom au tribunal, qui reste libre de sa décision. Vous pouvez aussi demander le remplacement d&apos;un mandataire en cas de difficulté (article L621-7).',
+          "Non, c'est le tribunal qui désigne le mandataire judiciaire et l'administrateur judiciaire (articles L621-4 et L631-9 du Code de commerce). Cependant, vous pouvez suggérer un nom au tribunal, qui reste libre de sa décision. Vous pouvez aussi demander le remplacement d'un mandataire en cas de difficulté (article L621-7).",
         liens: [
           { href: '/annuaires/mandataires', label: 'Annuaire des mandataires' },
         ],
@@ -92,9 +92,9 @@ const SECTIONS: SectionFAQ[] = [
     id: 'dettes',
     questions: [
       {
-        question: 'Puis-je négocier directement avec l&apos;URSSAF ?',
+        question: "Puis-je négocier directement avec l'URSSAF ?",
         reponse:
-          'Oui. Vous pouvez demander des délais de paiement directement à l&apos;URSSAF (numéro 3957) ou via la Commission des chefs de services financiers (CCSF) de votre département, qui regroupe tous les créanciers publics (URSSAF, impôts, douanes). La CCSF peut accorder un plan d&apos;échelonnement sur 12 à 36 mois. L&apos;URSSAF peut aussi accorder une remise partielle des majorations de retard (article L243-5 du Code de la sécurité sociale).',
+          "Oui. Vous pouvez demander des délais de paiement directement à l'URSSAF (numéro 3957) ou via la Commission des chefs de services financiers (CCSF) de votre département, qui regroupe tous les créanciers publics (URSSAF, impôts, douanes). La CCSF peut accorder un plan d'échelonnement sur 12 à 36 mois. L'URSSAF peut aussi accorder une remise partielle des majorations de retard (article L243-5 du Code de la sécurité sociale).",
         liens: [
           { href: '/courriers/urssaf-delai', label: 'Modèle courrier URSSAF' },
           { href: '/outils/ccsf', label: 'Simulateur CCSF' },
@@ -103,7 +103,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Mes dettes personnelles sont-elles concernées ?',
         reponse:
-          'Si vous êtes en société (SARL, SAS, SA), vos dettes personnelles sont en principe séparées de celles de l&apos;entreprise — c&apos;est le principe de la personnalité morale. Exceptions : les cautions personnelles que vous avez signées, les comptes courants d&apos;associé, et les cas de faute de gestion (action en comblement de passif, article L651-2). Si vous êtes entrepreneur individuel, la loi du 14 février 2022 protège désormais votre patrimoine personnel de plein droit (article L526-22 du Code de commerce).',
+          "Si vous êtes en société (SARL, SAS, SA), vos dettes personnelles sont en principe séparées de celles de l'entreprise — c'est le principe de la personnalité morale. Exceptions : les cautions personnelles que vous avez signées, les comptes courants d'associé, et les cas de faute de gestion (action en comblement de passif, article L651-2). Si vous êtes entrepreneur individuel, la loi du 14 février 2022 protège désormais votre patrimoine personnel de plein droit (article L526-22 du Code de commerce).",
         liens: [
           { href: '/proteger-famille', label: 'Protéger famille et patrimoine' },
         ],
@@ -111,7 +111,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Que couvre la garantie AGS pour mes salariés ?',
         reponse:
-          'L&apos;AGS (Association pour la gestion du régime de Garantie des créances des Salariés) avance les salaires, indemnités de licenciement, préavis et congés payés impayés en cas de procédure collective. Les plafonds sont fixés par décret : le plafond 6 couvre jusqu&apos;à 6 fois le plafond mensuel de la Sécurité sociale (soit environ 24 000 euros en 2024). La demande est faite par le mandataire judiciaire, pas par le dirigeant.',
+          "L'AGS (Association pour la gestion du régime de Garantie des créances des Salariés) avance les salaires, indemnités de licenciement, préavis et congés payés impayés en cas de procédure collective. Les plafonds sont fixés par décret : le plafond 6 couvre jusqu'à 6 fois le plafond mensuel de la Sécurité sociale (soit environ 24 000 euros en 2024). La demande est faite par le mandataire judiciaire, pas par le dirigeant.",
         liens: [
           { href: '/annuaires/ags', label: 'Contacts AGS' },
           { href: '/outils/licenciement', label: 'Calculateur indemnités' },
@@ -126,7 +126,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Ma résidence principale est-elle saisissable ?',
         reponse:
-          'Depuis la loi Macron du 6 août 2015 (article L526-1 du Code de commerce), la résidence principale de l&apos;entrepreneur individuel est insaisissable de plein droit pour les dettes professionnelles — aucune déclaration notariée n&apos;est nécessaire. Pour les dirigeants de société, la résidence est protégée sauf si vous avez consenti une hypothèque ou un cautionnement réel. Attention : cette protection ne joue pas pour les dettes fiscales et sociales en cas de fraude.',
+          "Depuis la loi Macron du 6 août 2015 (article L526-1 du Code de commerce), la résidence principale de l'entrepreneur individuel est insaisissable de plein droit pour les dettes professionnelles — aucune déclaration notariée n'est nécessaire. Pour les dirigeants de société, la résidence est protégée sauf si vous avez consenti une hypothèque ou un cautionnement réel. Attention : cette protection ne joue pas pour les dettes fiscales et sociales en cas de fraude.",
         liens: [
           { href: '/proteger-famille', label: 'Protection du patrimoine' },
         ],
@@ -134,7 +134,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Ma caution personnelle peut-elle être annulée ?',
         reponse:
-          'Une caution personnelle peut être contestée dans plusieurs cas : si elle est disproportionnée par rapport à vos revenus et patrimoine au moment de la signature (article L332-1 du Code de la consommation), si la banque ne vous a pas averti de la défaillance du débiteur principal (obligation d&apos;information annuelle, article L333-2), ou si les conditions de mise en jeu ne sont pas respectées. Un avocat peut analyser votre acte de cautionnement pour identifier des failles.',
+          "Une caution personnelle peut être contestée dans plusieurs cas : si elle est disproportionnée par rapport à vos revenus et patrimoine au moment de la signature (article L332-1 du Code de la consommation), si la banque ne vous a pas averti de la défaillance du débiteur principal (obligation d'information annuelle, article L333-2), ou si les conditions de mise en jeu ne sont pas respectées. Un avocat peut analyser votre acte de cautionnement pour identifier des failles.",
         liens: [
           { href: '/outils/caution', label: 'Audit caution en ligne' },
         ],
@@ -142,11 +142,11 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Quelles sont mes aides personnelles (ATI, RSA) ?',
         reponse:
-          'L&apos;ATI (Allocation des travailleurs indépendants) est versée par France Travail (ex-Pôle emploi) aux indépendants dont l&apos;entreprise a fait l&apos;objet d&apos;une liquidation judiciaire ou d&apos;un redressement avec plan de cession totale. Elle est d&apos;environ 800 euros par mois pendant 6 mois (décret n°2019-796). Le RSA est accessible sous conditions de ressources. La CSS (Complémentaire santé solidaire) couvre vos frais de santé. APESA propose un soutien psychologique gratuit et confidentiel.',
+          "L'ATI (Allocation des travailleurs indépendants) est versée par France Travail (ex-Pôle emploi) aux indépendants dont l'entreprise a fait l'objet d'une liquidation judiciaire ou d'un redressement avec plan de cession totale. Elle est d'environ 800 euros par mois pendant 6 mois (décret n°2019-796). Le RSA est accessible sous conditions de ressources. La CSS (Complémentaire santé solidaire) couvre vos frais de santé. APESA propose un soutien psychologique gratuit et confidentiel.",
         liens: [
           { href: '/aides-personnelles', label: 'Toutes les aides personnelles' },
           { href: '/outils/ati', label: 'Simulateur ATI' },
-          { href: '/parler', label: 'Numéros d&apos;écoute gratuits' },
+          { href: '/parler', label: "Numéros d'écoute gratuits" },
         ],
       },
     ],
@@ -158,7 +158,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Puis-je recréer une entreprise après une liquidation ?',
         reponse:
-          'Oui, sauf si le tribunal a prononcé une interdiction de gérer (article L653-8 du Code de commerce), ce qui est réservé aux cas de faute de gestion grave. Après clôture de la liquidation, vous êtes libre de recréer une entreprise immédiatement. La loi du 14 février 2022 a renforcé le droit au rebond : les dettes professionnelles de l&apos;entrepreneur individuel sont effacées à la clôture pour insuffisance d&apos;actif. Pour les dirigeants de société, la clôture met fin à la procédure mais pas nécessairement aux cautions personnelles.',
+          "Oui, sauf si le tribunal a prononcé une interdiction de gérer (article L653-8 du Code de commerce), ce qui est réservé aux cas de faute de gestion grave. Après clôture de la liquidation, vous êtes libre de recréer une entreprise immédiatement. La loi du 14 février 2022 a renforcé le droit au rebond : les dettes professionnelles de l'entrepreneur individuel sont effacées à la clôture pour insuffisance d'actif. Pour les dirigeants de société, la clôture met fin à la procédure mais pas nécessairement aux cautions personnelles.",
         liens: [
           { href: '/rebond', label: 'Guide du rebond' },
         ],
@@ -166,7 +166,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Quelles aides existent pour repartir (ACRE, ARCE) ?',
         reponse:
-          'L&apos;ACRE (Aide aux créateurs et repreneurs d&apos;entreprise) offre une exonération partielle de cotisations sociales pendant 12 mois. L&apos;ARCE (Aide à la reprise ou à la création d&apos;entreprise) permet de percevoir 60 % de ses droits ARE restants en deux versements pour capitaliser le projet. Le prêt d&apos;honneur (Initiative France, Réseau Entreprendre) va de 2 000 à 50 000 euros à taux zéro. 60 000 Rebonds accompagne gratuitement les entrepreneurs après une liquidation. BPI France propose un prêt rebond jusqu&apos;à 50 000 euros.',
+          "L'ACRE (Aide aux créateurs et repreneurs d'entreprise) offre une exonération partielle de cotisations sociales pendant 12 mois. L'ARCE (Aide à la reprise ou à la création d'entreprise) permet de percevoir 60 % de ses droits ARE restants en deux versements pour capitaliser le projet. Le prêt d'honneur (Initiative France, Réseau Entreprendre) va de 2 000 à 50 000 euros à taux zéro. 60 000 Rebonds accompagne gratuitement les entrepreneurs après une liquidation. BPI France propose un prêt rebond jusqu'à 50 000 euros.",
         liens: [
           { href: '/rebond', label: 'Guide complet du rebond' },
           { href: '/aides', label: 'Toutes les aides entreprise' },
@@ -175,10 +175,10 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Combien de temps faut-il pour se relancer ?',
         reponse:
-          'Il n&apos;y a pas de délai légal d&apos;attente (sauf interdiction de gérer). En pratique, les entrepreneurs qui rebondissent mettent en moyenne 12 à 24 mois entre la clôture de la liquidation et la création d&apos;une nouvelle activité. L&apos;accompagnement par des réseaux spécialisés (60 000 Rebonds, BGE, CCI) réduit significativement ce délai. Le plus important est de prendre le temps de tirer les enseignements de l&apos;expérience précédente et de se faire accompagner psychologiquement si besoin (APESA, associations de pairs).',
+          "Il n'y a pas de délai légal d'attente (sauf interdiction de gérer). En pratique, les entrepreneurs qui rebondissent mettent en moyenne 12 à 24 mois entre la clôture de la liquidation et la création d'une nouvelle activité. L'accompagnement par des réseaux spécialisés (60 000 Rebonds, BGE, CCI) réduit significativement ce délai. Le plus important est de prendre le temps de tirer les enseignements de l'expérience précédente et de se faire accompagner psychologiquement si besoin (APESA, associations de pairs).",
         liens: [
-          { href: '/parler', label: 'Parler à quelqu&apos;un' },
-          { href: '/accompagnant', label: 'J&apos;accompagne un proche' },
+          { href: '/parler', label: "Parler à quelqu'un" },
+          { href: '/accompagnant', label: "J'accompagne un proche" },
         ],
       },
     ],
