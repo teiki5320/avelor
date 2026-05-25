@@ -1,3 +1,4 @@
+import { FicheProvider } from '@/lib/FicheContext';
 import BlocSanteSecteur from '@/components/fiche/BlocSanteSecteur';
 import AlertesBand from '@/components/fiche/AlertesBand';
 import BlocSoutien from '@/components/fiche/BlocSoutien';
@@ -54,6 +55,7 @@ export default function LayoutDashboard({
   seuils,
 }: LayoutData) {
   return (
+    <FicheProvider value={{ reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
     <div className="space-y-6">
       {/* ───── Top : identité + cartes prioritaires dynamiques ───── */}
       <IdentiteHero company={company} />
@@ -209,5 +211,6 @@ export default function LayoutDashboard({
         }
       />
     </div>
+    </FicheProvider>
   );
 }

@@ -1,0 +1,50 @@
+import type { MetadataRoute } from 'next';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const base = 'https://avelor.vercel.app';
+
+  const routes = [
+    '/',
+    '/questionnaire',
+    '/aides',
+    '/aides-personnelles',
+    '/glossaire',
+    '/parler',
+    '/procedures',
+    '/proches',
+    '/proteger-famille',
+    '/rebond',
+    '/temoignages',
+    '/vendre',
+    '/confidentialite',
+    '/situation',
+    '/situation/dettes-urssaf',
+    '/situation/dettes-fournisseurs',
+    '/situation/credit-bancaire',
+    '/situation/impots-impayes',
+    '/outils',
+    '/outils/acre-arce',
+    '/outils/aide-juridictionnelle',
+    '/outils/ati',
+    '/outils/calendrier-fiscal',
+    '/outils/cout-procedures',
+    '/outils/data-room',
+    '/outils/licenciement',
+    '/outils/prescription',
+    '/outils/valorisation',
+    '/annuaires',
+    '/annuaires/ags',
+    '/annuaires/tae',
+    '/annuaires/mandataires',
+    '/annuaires/cip',
+    '/courriers',
+    '/accompagnant',
+  ];
+
+  return routes.map((route) => ({
+    url: `${base}${route}`,
+    lastModified: new Date(),
+    changeFrequency: route === '/' ? 'weekly' : 'monthly',
+    priority: route === '/' ? 1 : 0.8,
+  }));
+}

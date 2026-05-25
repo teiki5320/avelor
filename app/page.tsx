@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiretInput from '@/components/SiretInput';
 import RetourFiche from '@/components/RetourFiche';
+
+export const metadata: Metadata = {
+  title: 'AVELOR — Aide aux chefs d\'entreprise en difficulté',
+  description:
+    'AVELOR aide les dirigeants d\'entreprise en difficulté en France. Entrez votre SIRET et recevez une fiche personnalisée gratuite : stratégie, courriers, aides, annuaires.',
+};
 
 const RESSOURCES = [
   { href: '/courriers', icone: '✉️', label: 'Courriers types', desc: '12 modèles prêts à l\'emploi' },

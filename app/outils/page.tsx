@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Boîte à outils — AVELOR',
+  description:
+    'Calculateurs et vérificateurs officiels pour les dirigeants : prescription, indemnités de licenciement, ATI, aide juridictionnelle, valorisation, coûts de procédures.',
+};
 
 interface Outil {
   href: string;

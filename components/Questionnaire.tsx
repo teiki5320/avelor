@@ -251,16 +251,17 @@ export default function Questionnaire({ siret }: Props) {
           transition={{ duration: 0.35, ease: 'easeOut' }}
           className="glass card-top-line p-6 sm:p-10"
         >
-          <h2 className="font-display text-2xl text-navy sm:text-3xl">
+          <h2 id={`question-${current.key}`} className="font-display text-2xl text-navy sm:text-3xl">
             {current.title}
           </h2>
           <p className="mt-2 text-sm text-navy/60">{current.subtitle}</p>
-          <div className="mt-6 space-y-3">
+          <div className="mt-6 space-y-3" role="group" aria-labelledby={`question-${current.key}`}>
             {current.choices.map((c, idx) => (
               <button
                 key={`${current.key}-${idx}`}
                 type="button"
                 disabled={submitting}
+                aria-label={c.hint ? `${c.label} — ${c.hint}` : c.label}
                 onClick={() => {
                   if (current.key === 'effectif') {
                     select(current.key, c.value, c.label);
@@ -270,7 +271,7 @@ export default function Questionnaire({ siret }: Props) {
                 }}
                 className="group flex w-full items-start gap-4 rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-left transition hover:border-bleu hover:bg-white"
               >
-                <span className="mt-1 h-5 w-5 shrink-0 rounded-full border border-navy/20 group-hover:border-bleu" />
+                <span className="mt-1 h-5 w-5 shrink-0 rounded-full border border-navy/20 group-hover:border-bleu" aria-hidden="true" />
                 <span>
                   <span className="block text-base font-medium text-navy">
                     {c.label}

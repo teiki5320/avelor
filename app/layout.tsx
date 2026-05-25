@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Playfair_Display, Outfit } from 'next/font/google';
 import './globals.css';
 import Background from '@/components/Background';
@@ -36,14 +37,36 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${playfair.variable} ${outfit.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'AVELOR',
+              url: 'https://avelor.vercel.app',
+              description:
+                'Plateforme d\'aide aux chefs d\'entreprise en difficulté en France',
+            }),
+          }}
+        />
+        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
+          <script
+            defer
+            data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/script.js"
+          />
+        )}
+      </head>
       <body>
         <Background />
         <Nav />
-        <main className="relative min-h-screen pt-20 sm:pt-24">{children}</main>
+        <main id="contenu-principal" className="relative min-h-screen pt-20 sm:pt-24">{children}</main>
         <footer className="relative mt-24 space-y-2 pb-10 text-center text-xs text-navy/50">
           <p className="font-display text-sm tracking-wide">AVELOR</p>
           <p>Accompagnement gratuit · confidentiel · sans jugement</p>
-          <Compteur />
+          <Suspense fallback={null}><Compteur /></Suspense>
           <div className="flex flex-wrap justify-center gap-3 pt-2 text-navy/40">
             <a href="/confidentialite" className="hover:text-navy/70">Confidentialité</a>
             <a href="/parler" className="hover:text-navy/70">Parler à quelqu&apos;un</a>

@@ -1,6 +1,7 @@
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
 import { getAidesRegionales } from '@/lib/aidesRegionales';
+import { isEI } from '@/lib/strategie';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
@@ -16,10 +17,6 @@ interface Aide {
   site?: string;
   badge?: string;
   condition?: string;
-}
-
-function isEI(forme: string): boolean {
-  return /individuel|ei|eirl|micro|auto/i.test(forme);
 }
 
 function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string; aides: Aide[] }[] {

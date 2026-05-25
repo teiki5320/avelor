@@ -13,7 +13,7 @@ export interface Strategie {
   score: number;
 }
 
-function isEI(forme: string): boolean {
+export function isEI(forme: string): boolean {
   return /individuel|ei|eirl|micro|auto/i.test(forme);
 }
 

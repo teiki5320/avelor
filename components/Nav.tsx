@@ -29,6 +29,12 @@ export default function Nav() {
 
   return (
     <header ref={ref} className="fixed top-3 left-1/2 z-40 -translate-x-1/2 sm:top-4">
+      <a
+        href="#contenu-principal"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:rounded-lg"
+      >
+        Aller au contenu
+      </a>
       <nav className="pill-nav flex items-center gap-4 px-5 py-2.5 sm:gap-6 sm:px-6">
         <Link
           href="/"
