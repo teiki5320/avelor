@@ -1,4 +1,5 @@
 import { FicheProvider } from '@/lib/FicheContext';
+import ProgressTracker from '@/components/fiche/ProgressTracker';
 import BlocSanteSecteur from '@/components/fiche/BlocSanteSecteur';
 import AlertesBand from '@/components/fiche/AlertesBand';
 import BlocSoutien from '@/components/fiche/BlocSoutien';
@@ -44,6 +45,7 @@ function TwoCols({ left, right }: { left: React.ReactNode; right: React.ReactNod
 }
 
 export default function LayoutDashboard({
+  token,
   company,
   reponses,
   sector,
@@ -60,6 +62,9 @@ export default function LayoutDashboard({
       {/* ───── Top : identité + cartes prioritaires dynamiques ───── */}
       <IdentiteHero company={company} />
       <PriorityCards reponses={reponses} company={company} sector={sector} seuils={seuils} />
+
+      {/* Progression de lecture */}
+      <ProgressTracker token={token} />
 
       {/* Alertes contextuelles */}
       <BlocSanteSecteur sector={sector} />
@@ -82,23 +87,29 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocPlanAction
-              reponses={reponses}
-              company={company}
-              sector={sector}
-              defaultOpen
-            />
-            <BlocProcedureRecommandee reponses={reponses} company={company} sector={sector} />
+            <div data-section="plan-action">
+              <BlocPlanAction
+                reponses={reponses}
+                company={company}
+                sector={sector}
+                defaultOpen
+              />
+            </div>
+            <div data-section="procedure">
+              <BlocProcedureRecommandee reponses={reponses} company={company} sector={sector} />
+            </div>
           </>
         }
         right={
           <>
-            <BlocChecklist
-              reponses={reponses}
-              company={company}
-              sector={sector}
-              defaultOpen
-            />
+            <div data-section="checklist">
+              <BlocChecklist
+                reponses={reponses}
+                company={company}
+                sector={sector}
+                defaultOpen
+              />
+            </div>
           </>
         }
       />
@@ -111,8 +122,12 @@ export default function LayoutDashboard({
         sousTitre="Votre cap recommandé et votre soutien"
         couleur="bleu"
       />
-      <StrategieHero reponses={reponses} company={company} />
-      <BlocSoutien reponses={reponses} sector={sector} />
+      <div data-section="strategie">
+        <StrategieHero reponses={reponses} company={company} />
+      </div>
+      <div data-section="soutien">
+        <BlocSoutien reponses={reponses} sector={sector} />
+      </div>
 
       {/* ───── Section ÉCHÉANCES ───── */}
       <SectionHeader
@@ -125,15 +140,25 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocCessationDecompte reponses={reponses} />
-            <BlocTresorerie reponses={reponses} />
-            <BlocCalendrier reponses={reponses} company={company} sector={sector} />
+            <div data-section="cessation">
+              <BlocCessationDecompte reponses={reponses} />
+            </div>
+            <div data-section="tresorerie">
+              <BlocTresorerie reponses={reponses} />
+            </div>
+            <div data-section="calendrier">
+              <BlocCalendrier reponses={reponses} company={company} sector={sector} />
+            </div>
           </>
         }
         right={
           <>
-            <BlocTimeline reponses={reponses} company={company} />
-            <BlocRappels reponses={reponses} />
+            <div data-section="timeline">
+              <BlocTimeline reponses={reponses} company={company} />
+            </div>
+            <div data-section="rappels">
+              <BlocRappels reponses={reponses} />
+            </div>
           </>
         }
       />
@@ -149,14 +174,22 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocProtectionFamille reponses={reponses} company={company} sector={sector} />
-            <BlocAuditCaution reponses={reponses} />
+            <div data-section="protection">
+              <BlocProtectionFamille reponses={reponses} company={company} sector={sector} />
+            </div>
+            <div data-section="caution">
+              <BlocAuditCaution reponses={reponses} />
+            </div>
           </>
         }
         right={
           <>
-            <BlocPatrimoine reponses={reponses} company={company} />
-            <BlocConsequencesPerso reponses={reponses} />
+            <div data-section="patrimoine">
+              <BlocPatrimoine reponses={reponses} company={company} />
+            </div>
+            <div data-section="consequences">
+              <BlocConsequencesPerso reponses={reponses} />
+            </div>
           </>
         }
       />
@@ -172,14 +205,22 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocAides reponses={reponses} company={company} sector={sector} />
-            <BlocBailCommercial reponses={reponses} company={company} sector={sector} />
+            <div data-section="aides">
+              <BlocAides reponses={reponses} company={company} sector={sector} />
+            </div>
+            <div data-section="bail">
+              <BlocBailCommercial reponses={reponses} company={company} sector={sector} />
+            </div>
           </>
         }
         right={
           <>
-            <BlocCCSF reponses={reponses} company={company} />
-            <BlocObligations reponses={reponses} company={company} seuils={seuils} />
+            <div data-section="ccsf">
+              <BlocCCSF reponses={reponses} company={company} />
+            </div>
+            <div data-section="obligations">
+              <BlocObligations reponses={reponses} company={company} seuils={seuils} />
+            </div>
           </>
         }
       />
@@ -195,18 +236,24 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocOrganismes groupes={groupes} />
-            <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
+            <div data-section="organismes">
+              <BlocOrganismes groupes={groupes} />
+            </div>
+            <div data-section="alertes">
+              <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
+            </div>
           </>
         }
         right={
           <>
-            <BlocPrescription
-              reponses={reponses}
-              company={company}
-              companyAge={companyAge}
-              seuils={seuils}
-            />
+            <div data-section="prescription">
+              <BlocPrescription
+                reponses={reponses}
+                company={company}
+                companyAge={companyAge}
+                seuils={seuils}
+              />
+            </div>
           </>
         }
       />

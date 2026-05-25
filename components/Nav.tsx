@@ -1,15 +1,17 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import { COURRIERS } from '@/lib/courriers';
 
 const LINKS = [
   { href: '/procedures', label: 'Procédures', desc: 'Comprendre vos options' },
-  { href: '/courriers', label: 'Courriers', desc: '12 modèles prêts' },
+  { href: '/courriers', label: 'Courriers', desc: `${COURRIERS.length} modèles prêts` },
   { href: '/aides', label: 'Aides entreprise', desc: 'Financements et dispositifs' },
   { href: '/aides-personnelles', label: 'Droits personnels', desc: 'ATI, CSS, RSA...' },
   { href: '/proteger-famille', label: 'Famille', desc: 'Patrimoine et cautions' },
   { href: '/vendre', label: 'Vendre / Céder', desc: 'Cession, location-gérance' },
   { href: '/rebond', label: 'Rebondir', desc: 'Après une liquidation' },
+  { href: '/faq', label: 'FAQ', desc: 'Questions fréquentes' },
   { href: '/glossaire', label: 'Glossaire', desc: '18 termes expliqués' },
   { href: '/accompagnant', label: "J'accompagne", desc: 'Pour les proches' },
   { href: '/parler', label: 'Parler', desc: 'Numéros gratuits 24/7' },
