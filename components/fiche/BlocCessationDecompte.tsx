@@ -182,7 +182,7 @@ export default function BlocCessationDecompte({ reponses }: Props) {
           </p>
           <p className="mt-2 text-sm text-navy/80">{verdict.message}</p>
 
-          <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
+          <div className="mt-4 grid grid-cols-2 gap-2 text-center text-xs sm:grid-cols-3">
             <div className="rounded-xl bg-white/70 p-3">
               <p className="font-display text-xl text-navy">{verdict.joursEcoules}</p>
               <p className="mt-1 text-navy/60">jours écoulés</p>

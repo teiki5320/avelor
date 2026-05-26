@@ -16,7 +16,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] Fiche personnalisée organisée en dashboard avec 4 cartes prioritaires adaptatives (choisies parmi 10 selon le profil) et 6 sections thématiques claires
 - [x] Croisement avec les annonces publiques BODACC pour détecter les incohérences entre la situation déclarée et la réalité publiée
 - [x] 11 nouveaux blocs juridiques et patrimoniaux : stratégie recommandée, timeline juridique, décompte 45 jours, projection de trésorerie, audit de cautions, cartographie patrimoniale, conséquences personnelles, CCSF, bail commercial, obligations selon l'effectif, rappels exportables au calendrier
-- [x] 13 modèles de courriers contextualisés selon la situation et le moral du dirigeant, avec impression PDF propre
+- [x] 12 modèles de courriers contextualisés selon la situation et le moral du dirigeant, avec impression PDF propre
 - [x] Ton du site et des courriers adapté au moral déclaré (combatif, épuisé, perdu)
 - [x] État de santé sectoriel mis en avant dès l'arrivée sur la fiche pour les secteurs en crise (HCR, BTP, agriculture…)
 - [x] Aides régionales spécifiques pour les 13 régions métropolitaines et l'Outre-mer
