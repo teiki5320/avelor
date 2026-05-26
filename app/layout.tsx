@@ -39,6 +39,8 @@ export default function RootLayout({
     <html lang="fr" className={`${playfair.variable} ${outfit.variable}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/icon-512.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/icon-512.png" />
         <meta name="theme-color" content="#1E3D82" />
         <script
           type="application/ld+json"
