@@ -11,11 +11,12 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 interface Props {
-  searchParams: { siret?: string };
+  searchParams: Promise<{ siret?: string }>;
 }
 
-export default function QuestionnairePage({ searchParams }: Props) {
-  const siret = (searchParams.siret ?? '').replace(/\D/g, '');
+export default async function QuestionnairePage({ searchParams }: Props) {
+  const { siret: rawSiret } = await searchParams;
+  const siret = (rawSiret ?? '').replace(/\D/g, '');
   if (!/^\d{14}$/.test(siret)) {
     redirect('/');
   }
