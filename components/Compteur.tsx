@@ -1,18 +1,25 @@
-import { getSupabase } from '@/lib/supabase';
+'use client';
+import { useState, useEffect } from 'react';
 
-export default async function Compteur() {
-  let count = 0;
-  const sb = getSupabase();
-  if (sb) {
-    try {
-      const { count: c } = await sb
-        .from('fiches')
-        .select('*', { count: 'exact', head: true });
-      count = c ?? 0;
-    } catch {}
-  }
+export default function Compteur() {
+  const [count, setCount] = useState<number | null>(null);
 
-  if (count < 1) return null;
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch('/api/stats');
+        if (res.ok) {
+          const json = await res.json();
+          if (typeof json.count === 'number' && json.count > 0) {
+            setCount(json.count);
+          }
+        }
+      } catch {}
+    }
+    load();
+  }, []);
+
+  if (count === null || count < 1) return null;
 
   return (
     <p className="text-xs text-navy/40">

@@ -18,7 +18,7 @@ export default function BlocAccordeon({
   children,
 }: Props) {
   const [open, setOpen] = useState(defaultOpen);
-  const panelId = `panel-${titre.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`;
+  const panelId = `panel-${(titre || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`;
   return (
     <section className="glass card-top-line overflow-hidden">
       <button

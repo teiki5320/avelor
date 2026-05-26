@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { Playfair_Display, Outfit } from 'next/font/google';
 import './globals.css';
 import Background from '@/components/Background';
@@ -70,7 +69,7 @@ export default function RootLayout({
         <footer className="relative mt-24 space-y-2 pb-10 text-center text-xs text-navy/50">
           <p className="font-display text-sm tracking-wide">AVELOR</p>
           <p>Accompagnement gratuit · confidentiel · sans jugement</p>
-          <Suspense fallback={null}><Compteur /></Suspense>
+          <Compteur />
           <div className="flex flex-wrap justify-center gap-3 pt-2 text-navy/40">
             <a href="/confidentialite" className="hover:text-navy/70">Confidentialité</a>
             <a href="/parler" className="hover:text-navy/70">Parler à quelqu&apos;un</a>

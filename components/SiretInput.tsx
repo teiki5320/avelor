@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 function formatSiret(v: string): string {
+  if (!v) return '';
   const digits = v.replace(/\D/g, '').slice(0, 14);
   return digits.replace(/(.{3})(?=.)/g, '$1 ').trim();
 }
