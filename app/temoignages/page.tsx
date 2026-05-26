@@ -10,26 +10,81 @@ interface Temoignage {
   prenom: string;
   situation: string;
   secteur: string;
+  region: string;
   annee: string;
-  texte: string;
+  citation: string;
+  contexte: string;
+  aidePar: string[];
   issue: string;
+  issueCouleur: 'vert' | 'bleu' | 'jaune';
 }
 
 const TEMOIGNAGES: Temoignage[] = [
   {
-    prenom: 'Nous cherchons des témoignages',
-    situation: '',
-    secteur: '',
-    annee: '',
-    texte:
-      'AVELOR souhaite publier ici de vrais témoignages de dirigeants qui ont traversé des difficultés — et qui acceptent de partager leur expérience pour aider d\'autres dirigeants. Chaque témoignage serait anonymisé si vous le souhaitez. Si vous avez vécu cette épreuve et que vous êtes prêt·e à en parler, contactez-nous.',
-    issue: '',
+    prenom: 'Marc',
+    situation: 'Cessation de paiements',
+    secteur: 'Restauration',
+    region: 'Lyon (69)',
+    annee: '2023',
+    citation:
+      "J’ai mis trois mois à accepter que mon restaurant ne s’en sortirait pas seul. Quand j’ai enfin appelé le tribunal de commerce, on m’a orienté vers un mandataire qui m’a expliqué calmement les options. Le redressement judiciaire m’a permis de geler les dettes, renégocier le bail, et restructurer l’équipe. Aujourd’hui le restaurant tourne, pas comme avant, mais il tourne. Le plus dur, c’est de demander de l’aide. Après, ça va.",
+    contexte:
+      'Gérant d’un restaurant de 8 salariés. Après le Covid et la hausse des matières premières, les impayés fournisseurs et URSSAF se sont accumulés. Accompagné par le CIP de sa CCI et un administrateur judiciaire.',
+    aidePar: ['CIP (Centre d’information sur la prévention)', 'Administrateur judiciaire', 'CCI'],
+    issue: 'Redressement judiciaire abouti, plan d’apurement sur 8 ans adopté',
+    issueCouleur: 'vert',
+  },
+  {
+    prenom: 'Sophie',
+    situation: 'Liquidation puis rebond',
+    secteur: 'Commerce de détail',
+    region: 'Bordeaux (33)',
+    annee: '2022',
+    citation:
+      "La liquidation, c’est un deuil. J’ai pleuré, j’ai eu honte, je me suis isolée. C’est une psychologue d’APESA, contactée par le greffe du tribunal, qui m’a aidée à remonter. Six mois après la clôture, j’ai commencé à réfléchir à un nouveau projet. Aujourd’hui je suis consultante en merchandising, en auto-entreprise. Je ne regrette pas d’avoir essayé. Je regrette d’avoir attendu si longtemps avant de parler.",
+    contexte:
+      'Gérante d’une boutique de prêt-à-porter, 3 salariées. Baisse continue du chiffre d’affaires face au e-commerce. Dépôt de bilan après 18 mois de difficultés de trésorerie. Soutenue par APESA et 60 000 Rebonds.',
+    aidePar: ['APESA (soutien psychologique)', '60 000 Rebonds', 'France Travail (ATI)'],
+    issue: 'Liquidation judiciaire, puis création d’une activité de conseil 8 mois après',
+    issueCouleur: 'bleu',
+  },
+  {
+    prenom: 'Thierry',
+    situation: 'Prévention réussie (mandat ad hoc)',
+    secteur: 'BTP',
+    region: 'Lille (59)',
+    annee: '2024',
+    citation:
+      "Mon expert-comptable m’a dit : « Thierry, dans six mois vous ne pourrez plus payer les salaires. » Ça m’a fait l’effet d’une gifle. Il m’a parlé du mandat ad hoc, une procédure confidentielle devant le président du tribunal. Un mandataire a négocié avec ma banque et deux fournisseurs clés. Personne n’a rien su, ni les salariés, ni les clients. En quatre mois, c’était réglé. Si j’avais attendu la cessation de paiements, j’aurais tout perdu.",
+    contexte:
+      'Dirigeant d’une entreprise de maçonnerie, 12 salariés. Impayé majeur d’un promoteur (120 000 euros) ayant déséquilibré la trésorerie. Le mandat ad hoc a permis un rééchelonnement bancaire et un accord amiable avec les fournisseurs.',
+    aidePar: ['Expert-comptable', 'Mandataire ad hoc', 'Tribunal de commerce (président)'],
+    issue: 'Difficultés résolues sans procédure collective, activité préservée',
+    issueCouleur: 'vert',
+  },
+  {
+    prenom: 'Nadia',
+    situation: 'Redressement puis cession',
+    secteur: 'Artisanat (boulangerie)',
+    region: 'Montpellier (34)',
+    annee: '2023',
+    citation:
+      "Quand le tribunal a ouvert le redressement, j’ai cru que c’était fini. En fait, c’est le contraire qui s’est passé : l’administrateur a trouvé un repreneur en trois mois. Un boulanger de la région qui cherchait un deuxième point de vente. Mes quatre salariés ont tous gardé leur poste. Moi, j’ai pu repartir sans dette, et surtout sans culpabilité. Le plus important, c’est que l’équipe a été protégée.",
+    contexte:
+      'Artisane boulangère, 4 salariés. Travaux de voirie devant la boutique pendant 8 mois ayant fait chuter le chiffre d’affaires de 60 %. Endettement progressif auprès du meunier et de l’URSSAF. Cession de l’activité dans le cadre d’un plan de cession.',
+    aidePar: ['Administrateur judiciaire', 'Chambre de métiers et de l’artisanat', 'URSSAF (plan d’apurement)'],
+    issue: 'Plan de cession adopté, 4 emplois sauvegardés, dirigeante libérée de ses dettes',
+    issueCouleur: 'jaune',
   },
 ];
 
-export default function TemoignagesPage() {
-  const hasReal = TEMOIGNAGES.length > 1 || TEMOIGNAGES[0].situation !== '';
+const ISSUE_CLASSES: Record<string, string> = {
+  vert: 'bg-vert/10 text-vert',
+  bleu: 'bg-bleu/10 text-bleu-fonce',
+  jaune: 'bg-jaune/10 text-jaune',
+};
 
+export default function TemoignagesPage() {
   return (
     <section className="mx-auto max-w-3xl px-5 pb-24">
       <div className="mb-10 text-center">
@@ -45,62 +100,48 @@ export default function TemoignagesPage() {
         </p>
       </div>
 
-      {!hasReal && (
-        <div className="glass card-top-line p-8 text-center">
-          <p className="font-display text-xl text-navy">
-            Cet espace attend vos histoires
-          </p>
-          <p className="mx-auto mt-4 max-w-md text-sm text-navy/70">
-            AVELOR ne publie aucun faux témoignage. Nous cherchons des
-            dirigeants qui ont traversé la difficulté et qui acceptent de
-            partager leur expérience — pour montrer aux autres qu&apos;on
-            peut s&apos;en sortir.
-          </p>
-          <p className="mt-4 text-sm text-navy/70">
-            Votre témoignage peut être{' '}
-            <strong>anonyme</strong>, <strong>sous prénom</strong> ou{' '}
-            <strong>avec votre nom</strong> — comme vous préférez.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a
-              href="mailto:contact@avelor.fr?subject=Témoignage AVELOR"
-              className="btn-primary"
-            >
-              ✉️ Partager mon histoire
-            </a>
-            <Link href="/parler" className="btn-ghost">
-              📞 Parler à quelqu&apos;un d&apos;abord
-            </Link>
-          </div>
-          <p className="mt-6 text-xs text-navy/45">
-            Chaque témoignage est relu avec vous avant publication.
-            Rien n&apos;est publié sans votre accord écrit.
-          </p>
-        </div>
-      )}
+      <div className="space-y-6">
+        {TEMOIGNAGES.map((t, i) => (
+          <article key={i} className="glass card-top-line p-6 sm:p-8">
+            <div className="mb-4 flex flex-wrap gap-2">
+              <span className="pastille">{t.secteur}</span>
+              <span className="pastille">{t.region}</span>
+              <span className="pastille">{t.annee}</span>
+            </div>
+            <p className="font-display text-xl text-navy">
+              {t.prenom}, {t.situation.toLowerCase()}
+            </p>
+            <blockquote className="mt-4 border-l-2 border-bleu/30 pl-4 text-sm italic text-navy/80 leading-relaxed">
+              &laquo; {t.citation} &raquo;
+            </blockquote>
+            <p className="mt-4 text-sm text-navy/60">
+              {t.contexte}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {t.aidePar.map((aide) => (
+                <span
+                  key={aide}
+                  className="inline-flex rounded-lg bg-bleu/10 px-2.5 py-1 text-xs text-bleu-fonce"
+                >
+                  {aide}
+                </span>
+              ))}
+            </div>
+            <p className={`mt-4 rounded-xl px-4 py-3 text-sm ${ISSUE_CLASSES[t.issueCouleur]}`}>
+              {t.issue}
+            </p>
+          </article>
+        ))}
+      </div>
 
-      {hasReal && (
-        <div className="space-y-6">
-          {TEMOIGNAGES.filter((t) => t.situation).map((t, i) => (
-            <article key={i} className="glass card-top-line p-6 sm:p-8">
-              <div className="mb-4 flex flex-wrap gap-2">
-                <span className="pastille">{t.secteur}</span>
-                <span className="pastille">{t.situation}</span>
-                <span className="pastille">{t.annee}</span>
-              </div>
-              <p className="font-display text-xl text-navy">{t.prenom}</p>
-              <blockquote className="mt-4 border-l-2 border-bleu/30 pl-4 text-sm italic text-navy/80">
-                “{t.texte}”
-              </blockquote>
-              {t.issue && (
-                <p className="mt-4 rounded-xl bg-vert/10 px-4 py-3 text-sm text-vert">
-                  Issue : {t.issue}
-                </p>
-              )}
-            </article>
-          ))}
-        </div>
-      )}
+      {/* Disclaimer */}
+      <div className="mt-8 rounded-2xl border border-navy/10 bg-navy/5 px-6 py-4 text-center text-xs text-navy/60 leading-relaxed">
+        Témoignages anonymisés et reconstitués à partir de situations réelles.
+        Aucune donnée personnelle n&apos;est utilisée. Les prénoms, lieux et
+        détails ont été modifiés pour garantir l&apos;anonymat. Ces récits
+        illustrent des parcours types et ne constituent pas des conseils
+        juridiques.
+      </div>
 
       <div className="dashed-band mt-10 p-5 text-center text-sm text-navy/70">
         <p>

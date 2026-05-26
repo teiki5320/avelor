@@ -147,7 +147,7 @@ export default function LayoutDashboard({
               <BlocTresorerie reponses={reponses} />
             </div>
             <div data-section="calendrier">
-              <BlocCalendrier reponses={reponses} company={company} sector={sector} />
+              <BlocCalendrier />
             </div>
           </>
         }
@@ -188,7 +188,7 @@ export default function LayoutDashboard({
               <BlocPatrimoine reponses={reponses} company={company} />
             </div>
             <div data-section="consequences">
-              <BlocConsequencesPerso reponses={reponses} />
+              <BlocConsequencesPerso />
             </div>
           </>
         }
@@ -237,10 +237,10 @@ export default function LayoutDashboard({
         left={
           <>
             <div data-section="organismes">
-              <BlocOrganismes groupes={groupes} />
+              <BlocOrganismes />
             </div>
             <div data-section="alertes">
-              <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
+              <BlocAlertes />
             </div>
           </>
         }

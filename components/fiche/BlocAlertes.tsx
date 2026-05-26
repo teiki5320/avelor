@@ -1,12 +1,9 @@
-import type { BodaccItem } from '@/lib/types';
+'use client';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
-interface Props {
-  bodacc: BodaccItem[];
-  infogreffe: BodaccItem[];
-}
-
-export default function BlocAlertes({ bodacc, infogreffe }: Props) {
+export default function BlocAlertes() {
+  const { bodacc, infogreffe } = useFiche();
   const tout = [...infogreffe, ...bodacc];
   const aucun = tout.length === 0;
 

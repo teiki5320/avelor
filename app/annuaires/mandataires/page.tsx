@@ -23,6 +23,8 @@ const REGIONS = [
   'Grand Est',
   'Bourgogne-Franche-Comté',
   'Normandie',
+  'Centre-Val de Loire',
+  'Corse',
 ];
 
 // Sources : cnajmj.fr, ajup.fr, btsg.eu, fhbx.eu, mjs-partners.fr — extraits indicatifs au 2025
@@ -93,6 +95,12 @@ const ETUDES: Etude[] = [
   { region: 'Normandie', ville: 'Rouen (76)', nom: 'Maître Leblay', type: 'mandataire' },
   { region: 'Normandie', ville: 'Caen (14)', nom: 'Maître Lizé', type: 'mandataire' },
   { region: 'Normandie', ville: 'Le Havre (76)', nom: 'FHBX Le Havre', type: 'administrateur' },
+  // — Centre-Val de Loire —
+  { region: 'Centre-Val de Loire', ville: 'Tours (37)', nom: 'SELARL Bally MJ', type: 'mandataire' },
+  { region: 'Centre-Val de Loire', ville: 'Tours (37)', nom: 'AJ Up Tours', type: 'administrateur' },
+  { region: 'Centre-Val de Loire', ville: 'Orléans (45)', nom: 'SELARL Valliot MJ', type: 'mandataire' },
+  // — Corse —
+  { region: 'Corse', ville: 'Ajaccio (2A)', nom: 'SELARL Ferracci MJ', type: 'mandataire' },
 ];
 
 export default function MandatairesPage() {

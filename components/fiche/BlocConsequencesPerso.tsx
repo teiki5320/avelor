@@ -1,9 +1,6 @@
-import type { Reponses } from '@/lib/types';
+'use client';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-}
 
 interface Section {
   icone: string;
@@ -93,7 +90,8 @@ const SECTIONS: Section[] = [
   },
 ];
 
-export default function BlocConsequencesPerso({ reponses }: Props) {
+export default function BlocConsequencesPerso() {
+  const { reponses } = useFiche();
   return (
     <BlocAccordeon
       icone="🔒"

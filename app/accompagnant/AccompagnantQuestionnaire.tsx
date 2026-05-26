@@ -1,6 +1,43 @@
 'use client';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import data from '@/data/organismes.json';
+
+interface OrganismeLocal {
+  nom: string;
+  type: string;
+  telephone?: string;
+  adresse?: string;
+  site?: string;
+}
+
+interface DepartementData {
+  code: string;
+  nom: string;
+  chefLieu: string;
+  tribunal: OrganismeLocal;
+  cci: OrganismeLocal;
+  urssaf: OrganismeLocal;
+  sie: OrganismeLocal;
+  mandataires?: OrganismeLocal[];
+  banqueDeFrance?: OrganismeLocal;
+  dreets?: OrganismeLocal;
+}
+
+const ORGANISMES = data as Record<string, DepartementData>;
+
+function codePostalVersDepartement(cp: string): string | null {
+  if (!/^\d{5}$/.test(cp)) return null;
+  const prefix = cp.substring(0, 2);
+  // Corse : 20000-20190 = 2A, 20200+ = 2B
+  if (prefix === '20') {
+    const num = parseInt(cp, 10);
+    return num < 20200 ? '2A' : '2B';
+  }
+  // DOM-TOM : 97x
+  if (prefix === '97') return cp.substring(0, 3);
+  return prefix;
+}
 
 type Lien = 'conjoint' | 'associe' | 'ami' | 'comptable' | 'autre';
 type EtatPercu = 'stress' | 'epuise' | 'en-colere' | 'ferme';
@@ -146,6 +183,13 @@ function buildConseils(a: Answers) {
 export default function AccompagnantQuestionnaire() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
+  const [codePostal, setCodePostal] = useState('');
+
+  const departement = useMemo(() => {
+    const dep = codePostalVersDepartement(codePostal);
+    if (!dep) return null;
+    return ORGANISMES[dep] ?? null;
+  }, [codePostal]);
 
   const slides = [
     { title: 'Quel est votre lien avec le dirigeant ?', key: 'lien' as const, choices: LIENS },
@@ -258,9 +302,142 @@ export default function AccompagnantQuestionnaire() {
             </div>
           ))}
 
+          {/* Services localisés */}
+          <div className="glass card-top-line p-6 sm:p-8">
+            <h2 className="font-display text-xl text-navy">
+              Services près de chez vous
+            </h2>
+            <p className="mt-2 text-sm text-navy/60">
+              Entrez un code postal pour trouver les interlocuteurs locaux.
+            </p>
+            <div className="mt-4">
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={5}
+                placeholder="Code postal (ex : 75001)"
+                value={codePostal}
+                onChange={(e) => {
+                  const v = e.target.value.replace(/\D/g, '').slice(0, 5);
+                  setCodePostal(v);
+                }}
+                className="w-full rounded-xl border border-navy/15 bg-white/60 px-4 py-2.5 text-sm text-navy placeholder:text-navy/40 focus:border-bleu/50 focus:outline-none focus:ring-1 focus:ring-bleu/30 sm:w-64"
+                aria-label="Code postal"
+              />
+            </div>
+
+            {codePostal.length === 5 && !departement && (
+              <p className="mt-3 text-sm text-rouge/80">
+                Aucune donnée pour ce code postal. Vérifiez votre saisie.
+              </p>
+            )}
+
+            {departement && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-5 space-y-3"
+              >
+                <p className="text-xs font-medium uppercase tracking-wide text-navy/50">
+                  {departement.nom} ({departement.code})
+                </p>
+
+                {/* CCI locale */}
+                {departement.cci && (
+                  <div className="glass-soft flex items-start gap-3 rounded-2xl p-4">
+                    <span className="mt-0.5 text-lg" aria-hidden="true">🏢</span>
+                    <div>
+                      <p className="font-display text-base text-navy">{departement.cci.nom}</p>
+                      <p className="mt-0.5 text-xs text-navy/60">
+                        Accompagnement gratuit · Premier rendez-vous confidentiel
+                      </p>
+                      {departement.cci.telephone && (
+                        <a
+                          href={`tel:${departement.cci.telephone.replace(/\s/g, '')}`}
+                          className="mt-1 inline-block text-sm font-medium text-bleu-fonce"
+                        >
+                          {departement.cci.telephone}
+                        </a>
+                      )}
+                      {departement.cci.site && (
+                        <a
+                          href={departement.cci.site}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="ml-3 text-sm text-bleu-fonce underline underline-offset-4"
+                        >
+                          Site web
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Tribunal de commerce */}
+                {departement.tribunal && (
+                  <div className="glass-soft flex items-start gap-3 rounded-2xl p-4">
+                    <span className="mt-0.5 text-lg" aria-hidden="true">🏛️</span>
+                    <div>
+                      <p className="font-display text-base text-navy">{departement.tribunal.nom}</p>
+                      <p className="mt-0.5 text-xs text-navy/60">
+                        Procédures collectives, conciliation, mandat ad hoc
+                      </p>
+                      {departement.tribunal.telephone && (
+                        <a
+                          href={`tel:${departement.tribunal.telephone.replace(/\s/g, '')}`}
+                          className="mt-1 inline-block text-sm font-medium text-bleu-fonce"
+                        >
+                          {departement.tribunal.telephone}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* CIP */}
+                <div className="glass-soft flex items-start gap-3 rounded-2xl p-4">
+                  <span className="mt-0.5 text-lg" aria-hidden="true">🤝</span>
+                  <div>
+                    <p className="font-display text-base text-navy">
+                      CIP — Prévention des difficultés
+                    </p>
+                    <p className="mt-0.5 text-xs text-navy/60">
+                      Permanence gratuite, confidentielle, sans rendez-vous
+                    </p>
+                    <a
+                      href="/annuaires/cip"
+                      className="mt-1 inline-block text-sm text-bleu-fonce underline underline-offset-4"
+                    >
+                      Trouver le CIP le plus proche →
+                    </a>
+                  </div>
+                </div>
+
+                {/* Lien annuaires */}
+                <div className="glass-soft flex items-start gap-3 rounded-2xl p-4">
+                  <span className="mt-0.5 text-lg" aria-hidden="true">⚖️</span>
+                  <div>
+                    <p className="font-display text-base text-navy">
+                      Trouver un avocat près de chez vous
+                    </p>
+                    <p className="mt-0.5 text-xs text-navy/60">
+                      Droit des entreprises en difficulté, droit social
+                    </p>
+                    <a
+                      href="/annuaires"
+                      className="mt-1 inline-block text-sm text-bleu-fonce underline underline-offset-4"
+                    >
+                      Consulter les annuaires →
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </div>
+
           <button
             type="button"
-            onClick={() => { setStep(0); setAnswers({}); }}
+            onClick={() => { setStep(0); setAnswers({}); setCodePostal(''); }}
             className="btn-ghost mx-auto flex"
           >
             ← Recommencer

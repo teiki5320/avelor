@@ -1,13 +1,9 @@
+'use client';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
 import { getChambreLabel } from '@/lib/secteur';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  sector: SectorInfo;
-}
 
 interface Jalon {
   delai: string;
@@ -96,7 +92,8 @@ const PUCE: Record<NonNullable<Jalon['urgence']>, string> = {
   vert: 'border-vert/40 bg-vert/5 text-vert',
 };
 
-export default function BlocCalendrier({ reponses, company, sector }: Props) {
+export default function BlocCalendrier() {
+  const { reponses, company, sector } = useFiche();
   const jalons = buildJalons(reponses, company, sector);
   return (
     <BlocAccordeon

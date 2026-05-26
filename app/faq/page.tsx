@@ -185,8 +185,34 @@ const SECTIONS: SectionFAQ[] = [
   },
 ];
 
+function buildFaqJsonLd() {
+  const mainEntity = SECTIONS.flatMap((section) =>
+    section.questions.map((qr) => ({
+      '@type': 'Question' as const,
+      name: qr.question,
+      acceptedAnswer: {
+        '@type': 'Answer' as const,
+        text: qr.reponse,
+      },
+    }))
+  );
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity,
+  };
+}
+
 export default function FAQPage() {
+  const faqJsonLd = buildFaqJsonLd();
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+    />
     <main id="contenu-principal" className="mx-auto max-w-3xl px-5 pb-24 pt-28 sm:pt-32">
       <h1 className="font-display text-3xl text-navy sm:text-4xl">
         Questions fréquentes
@@ -293,5 +319,6 @@ export default function FAQPage() {
         </Link>
       </div>
     </main>
+    </>
   );
 }
