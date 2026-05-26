@@ -38,6 +38,8 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${playfair.variable} ${outfit.variable}`}>
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1E3D82" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -86,8 +86,56 @@ export default function AcreArcePage() {
     { value: 'aucun', label: 'Aucun de ces cas', description: '' },
   ];
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Vérifier votre éligibilité ACRE/ARCE',
+    description:
+      'Vérifiez si vous êtes éligible à l\'ACRE (exonération de cotisations sociales) et à l\'ARCE (versement en capital de 60 % de l\'ARE restante) pour rebondir après une cessation.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Identifier votre situation d\'éligibilité ACRE',
+        text: 'Sélectionnez votre situation parmi les cas d\'éligibilité : demandeur d\'emploi, bénéficiaire RSA/ASS, jeune de 18-25 ans, licencié d\'une entreprise en RJ/LJ, CAPE ou création en QPV.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Préciser le type d\'entreprise et le revenu prévisionnel',
+        text: 'Indiquez si vous créez en micro-entreprise et votre revenu prévisionnel de la première année.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Renseigner l\'ARE pour l\'ARCE',
+        text: 'Si vous percevez l\'ARE, indiquez le montant mensuel et le nombre de mois restants pour calculer le capital ARCE.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Lire les résultats',
+        text: 'L\'outil affiche votre éligibilité ACRE (économie estimée sur 12 mois) et ARCE (montant du capital en 2 tranches).',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Vérificateur ACRE/ARCE' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link href="/outils" className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy">
         ← Tous les outils
       </Link>

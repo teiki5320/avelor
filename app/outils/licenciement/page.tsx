@@ -92,8 +92,56 @@ export default function LicenciementPage() {
     return { lignes, totalIndem, totalAgs, totalDepasse };
   }, [salaries]);
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Estimer l\'indemnité de licenciement',
+    description:
+      'Calculez l\'indemnité de licenciement économique due à chaque salarié selon les barèmes légaux, et vérifiez la couverture par l\'AGS.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Saisir l\'ancienneté du salarié',
+        text: 'Indiquez l\'ancienneté en mois de chaque salarié. L\'indemnité est due à partir de 8 mois (L1234-9).',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Saisir le salaire brut mensuel de référence',
+        text: 'Indiquez la moyenne des 12 ou 3 derniers mois (la plus favorable au salarié).',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Ajouter d\'autres salariés si besoin',
+        text: 'Cliquez sur "Ajouter un salarié" pour estimer le coût total de l\'équipe.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Lire les résultats',
+        text: 'L\'outil affiche l\'indemnité due, la part couverte par l\'AGS (plafonds 2025) et le reste à votre charge.',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Indemnité de licenciement' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-4xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link
         href="/outils"
         className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy"

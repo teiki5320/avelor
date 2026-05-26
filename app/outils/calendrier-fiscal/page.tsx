@@ -219,8 +219,56 @@ export default function CalendrierFiscalPage() {
 
   const echeances = useMemo(() => buildEcheances(tva, is, fin, salaries, proprietaire), [tva, is, fin, salaries, proprietaire]);
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Générer votre calendrier fiscal',
+    description:
+      'Générez un calendrier personnalisé de vos prochaines échéances fiscales et sociales (TVA, IS, CFE, DSN, URSSAF) selon votre régime.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Choisir votre régime TVA',
+        text: 'Sélectionnez votre régime : franchise en base, réel normal mensuel, réel normal trimestriel ou réel simplifié.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Indiquer votre régime fiscal',
+        text: 'Choisissez entre IS, IR/BIC, IR/BNC ou micro-entreprise.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Préciser la date de clôture et les options',
+        text: 'Sélectionnez votre date de clôture d\'exercice et indiquez si vous avez des salariés ou êtes propriétaire des locaux.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Consulter les échéances',
+        text: 'L\'outil liste chronologiquement toutes vos prochaines échéances déclaratives et de paiement avec les sources officielles.',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Calendrier fiscal' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link href="/outils" className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy">
         ← Tous les outils
       </Link>

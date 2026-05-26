@@ -1,11 +1,7 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import type { Reponses } from '@/lib/types';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-}
 
 const STORAGE_KEY = 'avelor_cessation_date';
 
@@ -102,7 +98,8 @@ const STYLES: Record<Verdict['niveau'], { bg: string; border: string; text: stri
   depasse: { bg: 'bg-rouge/10', border: 'border-rouge/40', text: 'text-rouge' },
 };
 
-export default function BlocCessationDecompte({ reponses }: Props) {
+export default function BlocCessationDecompte() {
+  const { reponses } = useFiche();
   const [dateStr, setDateStr] = useState<string>('');
   const [loaded, setLoaded] = useState(false);
 

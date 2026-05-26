@@ -1,7 +1,7 @@
 'use client';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
-import { getCompanyAge, getEffectifSeuils } from '@/lib/secteur';
+import { getEffectifSeuils } from '@/lib/secteur';
 import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 

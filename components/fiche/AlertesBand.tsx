@@ -1,8 +1,6 @@
+'use client';
 import type { AlerteSignal } from '@/lib/types';
-
-interface Props {
-  alertes: AlerteSignal[];
-}
+import { useFiche } from '@/lib/FicheContext';
 
 const STYLES: Record<AlerteSignal['niveau'], string> = {
   rouge: 'bg-rouge/10 border-rouge/30 text-rouge',
@@ -16,7 +14,8 @@ const DOTS: Record<AlerteSignal['niveau'], string> = {
   vert: 'bg-vert',
 };
 
-export default function AlertesBand({ alertes }: Props) {
+export default function AlertesBand() {
+  const { alertes } = useFiche();
   if (!alertes.length) return null;
   return (
     <section className="grid gap-3 sm:grid-cols-3">

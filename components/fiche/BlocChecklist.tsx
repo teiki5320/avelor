@@ -3,12 +3,10 @@ import { useState } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
 import { getTonePreset } from '@/lib/tone';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  sector: SectorInfo;
   defaultOpen?: boolean;
 }
 
@@ -72,7 +70,8 @@ function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; t
   return items;
 }
 
-export default function BlocChecklist({ reponses, company, sector, defaultOpen }: Props) {
+export default function BlocChecklist({ defaultOpen }: Props) {
+  const { reponses, company, sector } = useFiche();
   const items = buildItems(reponses, company, sector);
   const [done, setDone] = useState<Record<string, boolean>>({});
   const tone = getTonePreset(reponses.moral);

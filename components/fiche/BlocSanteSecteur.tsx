@@ -1,8 +1,5 @@
-import type { SectorInfo } from '@/lib/secteur';
-
-interface Props {
-  sector: SectorInfo;
-}
+'use client';
+import { useFiche } from '@/lib/FicheContext';
 
 const STYLES: Record<'crise' | 'tendu', { border: string; bg: string; icon: string }> = {
   crise: {
@@ -17,7 +14,8 @@ const STYLES: Record<'crise' | 'tendu', { border: string; bg: string; icon: stri
   },
 };
 
-export default function BlocSanteSecteur({ sector }: Props) {
+export default function BlocSanteSecteur() {
+  const { sector } = useFiche();
   const sante = sector.santeSecteur;
   if (!sante || sante.niveau === 'normal') return null;
 

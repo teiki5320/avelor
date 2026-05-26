@@ -1,12 +1,8 @@
+'use client';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  sector: SectorInfo;
-}
 
 interface Levier {
   titre: string;
@@ -96,7 +92,8 @@ const LABELS = {
   utile: 'Levier utile',
 } as const;
 
-export default function BlocBailCommercial({ reponses, company, sector }: Props) {
+export default function BlocBailCommercial() {
+  const { reponses, company, sector } = useFiche();
   // On affiche pour les secteurs avec local commercial fort
   const secteursAvecLocal = ['commerce', 'hotellerie', 'artisanat', 'liberal', 'sante'];
   const pertinent =

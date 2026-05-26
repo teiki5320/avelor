@@ -1,16 +1,9 @@
 'use client';
 import { useState, useMemo, type ReactNode } from 'react';
-import type { Reponses, CompanyData } from '@/lib/types';
-import type { SectorInfo, EffectifSeuils } from '@/lib/secteur';
+import type { Reponses } from '@/lib/types';
 import { scorePriorityCards, scrollToId, type PriorityCardMeta } from '@/lib/priorites';
+import { useFiche } from '@/lib/FicheContext';
 import PriorityCard from './PriorityCard';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  sector: SectorInfo;
-  seuils: EffectifSeuils;
-}
 
 function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): ReactNode {
   switch (card.id) {
@@ -243,8 +236,9 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
   }
 }
 
-export default function PriorityCards(props: Props) {
-  const cards = useMemo(() => scorePriorityCards(props), [props]);
+export default function PriorityCards() {
+  const { reponses, company, sector, seuils } = useFiche();
+  const cards = useMemo(() => scorePriorityCards({ reponses, company, sector, seuils }), [reponses, company, sector, seuils]);
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
@@ -258,7 +252,7 @@ export default function PriorityCards(props: Props) {
           valeur={c.valeur}
           detail={c.detail}
           tone={c.tone}
-          expandedContent={buildExpandedContent(c, props.reponses)}
+          expandedContent={buildExpandedContent(c, reponses)}
           isOpen={expanded === c.id}
           onToggle={() => setExpanded(expanded === c.id ? null : c.id)}
         />

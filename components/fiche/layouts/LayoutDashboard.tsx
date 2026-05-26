@@ -60,15 +60,15 @@ export default function LayoutDashboard({
     <FicheProvider value={{ reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
     <div className="space-y-6">
       {/* ───── Top : identité + cartes prioritaires dynamiques ───── */}
-      <IdentiteHero company={company} />
-      <PriorityCards reponses={reponses} company={company} sector={sector} seuils={seuils} />
+      <IdentiteHero />
+      <PriorityCards />
 
       {/* Progression de lecture */}
       <ProgressTracker token={token} />
 
       {/* Alertes contextuelles */}
-      <BlocSanteSecteur sector={sector} />
-      <AlertesBand alertes={alertes} />
+      <BlocSanteSecteur />
+      <AlertesBand />
 
       {/* Liens rapides outils / courriers */}
       <QuickLinks />
@@ -88,27 +88,17 @@ export default function LayoutDashboard({
         left={
           <>
             <div data-section="plan-action">
-              <BlocPlanAction
-                reponses={reponses}
-                company={company}
-                sector={sector}
-                defaultOpen
-              />
+              <BlocPlanAction defaultOpen />
             </div>
             <div data-section="procedure">
-              <BlocProcedureRecommandee reponses={reponses} company={company} sector={sector} />
+              <BlocProcedureRecommandee />
             </div>
           </>
         }
         right={
           <>
             <div data-section="checklist">
-              <BlocChecklist
-                reponses={reponses}
-                company={company}
-                sector={sector}
-                defaultOpen
-              />
+              <BlocChecklist defaultOpen />
             </div>
           </>
         }
@@ -123,7 +113,7 @@ export default function LayoutDashboard({
         couleur="bleu"
       />
       <div data-section="strategie">
-        <StrategieHero reponses={reponses} company={company} />
+        <StrategieHero />
       </div>
       <div data-section="soutien">
         <BlocSoutien />
@@ -141,10 +131,10 @@ export default function LayoutDashboard({
         left={
           <>
             <div data-section="cessation">
-              <BlocCessationDecompte reponses={reponses} />
+              <BlocCessationDecompte />
             </div>
             <div data-section="tresorerie">
-              <BlocTresorerie reponses={reponses} />
+              <BlocTresorerie />
             </div>
             <div data-section="calendrier">
               <BlocCalendrier />
@@ -154,10 +144,10 @@ export default function LayoutDashboard({
         right={
           <>
             <div data-section="timeline">
-              <BlocTimeline reponses={reponses} company={company} />
+              <BlocTimeline />
             </div>
             <div data-section="rappels">
-              <BlocRappels reponses={reponses} />
+              <BlocRappels />
             </div>
           </>
         }
@@ -175,17 +165,17 @@ export default function LayoutDashboard({
         left={
           <>
             <div data-section="protection">
-              <BlocProtectionFamille reponses={reponses} company={company} sector={sector} />
+              <BlocProtectionFamille />
             </div>
             <div data-section="caution">
-              <BlocAuditCaution reponses={reponses} />
+              <BlocAuditCaution />
             </div>
           </>
         }
         right={
           <>
             <div data-section="patrimoine">
-              <BlocPatrimoine reponses={reponses} company={company} />
+              <BlocPatrimoine />
             </div>
             <div data-section="consequences">
               <BlocConsequencesPerso />
@@ -206,17 +196,17 @@ export default function LayoutDashboard({
         left={
           <>
             <div data-section="aides">
-              <BlocAides reponses={reponses} company={company} sector={sector} />
+              <BlocAides />
             </div>
             <div data-section="bail">
-              <BlocBailCommercial reponses={reponses} company={company} sector={sector} />
+              <BlocBailCommercial />
             </div>
           </>
         }
         right={
           <>
             <div data-section="ccsf">
-              <BlocCCSF reponses={reponses} company={company} />
+              <BlocCCSF />
             </div>
             <div data-section="obligations">
               <BlocObligations />

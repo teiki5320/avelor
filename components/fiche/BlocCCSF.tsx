@@ -1,12 +1,9 @@
-import type { Reponses, CompanyData } from '@/lib/types';
+'use client';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-}
-
-export default function BlocCCSF({ reponses, company }: Props) {
+export default function BlocCCSF() {
+  const { reponses, company } = useFiche();
   const pertinent =
     reponses.probleme === 'urssaf' ||
     reponses.probleme === 'impots' ||

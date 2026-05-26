@@ -157,8 +157,56 @@ export default function PrescriptionPage() {
     normal: 'bg-bleu/10 border-bleu/30 text-bleu-fonce',
   } as const;
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Vérifier la prescription de vos dettes',
+    description:
+      'Calculez si une dette est prescrite en fonction de sa catégorie (URSSAF, fiscale, civile, commerciale) et de sa date de point de départ.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Choisir le type de dette',
+        text: 'Sélectionnez la catégorie de dette (URSSAF, impôt sur le revenu, TVA, civile, commerciale, loyer, salaire, amende pénale).',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Saisir la date du point de départ',
+        text: 'Indiquez la date d\'exigibilité, d\'échéance ou du fait générateur de la dette.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Indiquer une éventuelle interruption',
+        text: 'Si la prescription a été interrompue (mise en demeure, jugement, reconnaissance écrite), cochez la case et indiquez la date du dernier acte.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Lire le résultat',
+        text: 'L\'outil affiche la date de prescription estimée et le nombre de jours restants, avec un verdict (prescrite, proche, à venir).',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Vérificateur de prescription' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link
         href="/outils"
         className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy"

@@ -1,10 +1,7 @@
-import type { Reponses, CompanyData } from '@/lib/types';
+'use client';
+import { useFiche } from '@/lib/FicheContext';
+import type { Reponses } from '@/lib/types';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-}
 
 interface Etape {
   jour: string;
@@ -195,7 +192,8 @@ const STYLES: Record<Etape['niveau'], { line: string; dot: string; bg: string; t
   futur: { line: 'bg-navy/15', dot: 'bg-navy/25', bg: 'bg-white/60', text: 'text-navy' },
 };
 
-export default function BlocTimeline({ reponses }: Props) {
+export default function BlocTimeline() {
+  const { reponses } = useFiche();
   const { titre, etapes } = getEtapes(reponses);
 
   return (

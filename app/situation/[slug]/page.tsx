@@ -112,8 +112,22 @@ export default function SituationPage({ params }: { params: { slug: string } }) 
   const d = DATA[params.slug];
   if (!d) return notFound();
 
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Situations', item: 'https://avelor.vercel.app/situation' },
+      { '@type': 'ListItem', position: 3, name: d.titre },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-3xl px-5 pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link href="/situation" className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy">
         ← Toutes les situations
       </Link>
