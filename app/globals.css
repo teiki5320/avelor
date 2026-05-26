@@ -132,8 +132,8 @@ input, button, textarea {
 }
 
 /* Focus styles */
-input:focus-visible, button:focus-visible, a:focus-visible {
-  outline: 2px solid rgba(74, 114, 184, 0.6);
+*:focus-visible {
+  outline: 2px solid #4A72B8;
   outline-offset: 2px;
 }
 
@@ -180,7 +180,12 @@ input:focus-visible, button:focus-visible, a:focus-visible {
   section { break-inside: avoid; }
   a { text-decoration: underline; }
   a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666; }
-  a[href^="tel:"]::after, a[href^="javascript:"]::after { content: ""; }
+  a[href^="tel:"]::after,
+  a[href^="javascript:"]::after,
+  a[href^="/"]::after,
+  a[href^="#"]::after,
+  a[href^="mailto:"]::after,
+  a[href*="avelor"]::after { content: ""; }
   .print-header {
     display: block !important;
     text-align: center;

@@ -1,16 +1,14 @@
-import type { CompanyData } from '@/lib/types';
+'use client';
 import { yearFromDate } from '@/lib/sirene';
-
-interface Props {
-  company: CompanyData;
-}
+import { useFiche } from '@/lib/FicheContext';
 
 function isValid(v?: string): boolean {
   if (!v) return false;
   return !/non renseign|^—$/i.test(v);
 }
 
-export default function IdentiteHero({ company }: Props) {
+export default function IdentiteHero() {
+  const { company } = useFiche();
   const year = yearFromDate(company.dateCreation);
   const hasName = company.nom && company.nom !== 'Votre entreprise';
   const initials = hasName

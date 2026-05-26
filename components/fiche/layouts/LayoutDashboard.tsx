@@ -1,3 +1,5 @@
+import { FicheProvider } from '@/lib/FicheContext';
+import ProgressTracker from '@/components/fiche/ProgressTracker';
 import BlocSanteSecteur from '@/components/fiche/BlocSanteSecteur';
 import AlertesBand from '@/components/fiche/AlertesBand';
 import BlocSoutien from '@/components/fiche/BlocSoutien';
@@ -43,6 +45,7 @@ function TwoCols({ left, right }: { left: React.ReactNode; right: React.ReactNod
 }
 
 export default function LayoutDashboard({
+  token,
   company,
   reponses,
   sector,
@@ -54,14 +57,18 @@ export default function LayoutDashboard({
   seuils,
 }: LayoutData) {
   return (
+    <FicheProvider value={{ reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
     <div className="space-y-6">
       {/* ───── Top : identité + cartes prioritaires dynamiques ───── */}
-      <IdentiteHero company={company} />
-      <PriorityCards reponses={reponses} company={company} sector={sector} seuils={seuils} />
+      <IdentiteHero />
+      <PriorityCards />
+
+      {/* Progression de lecture */}
+      <ProgressTracker token={token} />
 
       {/* Alertes contextuelles */}
-      <BlocSanteSecteur sector={sector} />
-      <AlertesBand alertes={alertes} />
+      <BlocSanteSecteur />
+      <AlertesBand />
 
       {/* Liens rapides outils / courriers */}
       <QuickLinks />
@@ -80,23 +87,19 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocPlanAction
-              reponses={reponses}
-              company={company}
-              sector={sector}
-              defaultOpen
-            />
-            <BlocProcedureRecommandee reponses={reponses} company={company} sector={sector} />
+            <div data-section="plan-action">
+              <BlocPlanAction defaultOpen />
+            </div>
+            <div data-section="procedure">
+              <BlocProcedureRecommandee />
+            </div>
           </>
         }
         right={
           <>
-            <BlocChecklist
-              reponses={reponses}
-              company={company}
-              sector={sector}
-              defaultOpen
-            />
+            <div data-section="checklist">
+              <BlocChecklist defaultOpen />
+            </div>
           </>
         }
       />
@@ -109,8 +112,12 @@ export default function LayoutDashboard({
         sousTitre="Votre cap recommandé et votre soutien"
         couleur="bleu"
       />
-      <StrategieHero reponses={reponses} company={company} />
-      <BlocSoutien reponses={reponses} sector={sector} />
+      <div data-section="strategie">
+        <StrategieHero />
+      </div>
+      <div data-section="soutien">
+        <BlocSoutien />
+      </div>
 
       {/* ───── Section ÉCHÉANCES ───── */}
       <SectionHeader
@@ -123,15 +130,25 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocCessationDecompte reponses={reponses} />
-            <BlocTresorerie reponses={reponses} />
-            <BlocCalendrier reponses={reponses} company={company} sector={sector} />
+            <div data-section="cessation">
+              <BlocCessationDecompte />
+            </div>
+            <div data-section="tresorerie">
+              <BlocTresorerie />
+            </div>
+            <div data-section="calendrier">
+              <BlocCalendrier />
+            </div>
           </>
         }
         right={
           <>
-            <BlocTimeline reponses={reponses} company={company} />
-            <BlocRappels reponses={reponses} />
+            <div data-section="timeline">
+              <BlocTimeline />
+            </div>
+            <div data-section="rappels">
+              <BlocRappels />
+            </div>
           </>
         }
       />
@@ -147,14 +164,22 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocProtectionFamille reponses={reponses} company={company} sector={sector} />
-            <BlocAuditCaution reponses={reponses} />
+            <div data-section="protection">
+              <BlocProtectionFamille />
+            </div>
+            <div data-section="caution">
+              <BlocAuditCaution />
+            </div>
           </>
         }
         right={
           <>
-            <BlocPatrimoine reponses={reponses} company={company} />
-            <BlocConsequencesPerso reponses={reponses} />
+            <div data-section="patrimoine">
+              <BlocPatrimoine />
+            </div>
+            <div data-section="consequences">
+              <BlocConsequencesPerso />
+            </div>
           </>
         }
       />
@@ -170,14 +195,22 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocAides reponses={reponses} company={company} sector={sector} />
-            <BlocBailCommercial reponses={reponses} company={company} sector={sector} />
+            <div data-section="aides">
+              <BlocAides />
+            </div>
+            <div data-section="bail">
+              <BlocBailCommercial />
+            </div>
           </>
         }
         right={
           <>
-            <BlocCCSF reponses={reponses} company={company} />
-            <BlocObligations reponses={reponses} company={company} seuils={seuils} />
+            <div data-section="ccsf">
+              <BlocCCSF />
+            </div>
+            <div data-section="obligations">
+              <BlocObligations />
+            </div>
           </>
         }
       />
@@ -193,21 +226,23 @@ export default function LayoutDashboard({
       <TwoCols
         left={
           <>
-            <BlocOrganismes groupes={groupes} />
-            <BlocAlertes bodacc={bodacc} infogreffe={infogreffe} />
+            <div data-section="organismes">
+              <BlocOrganismes />
+            </div>
+            <div data-section="alertes">
+              <BlocAlertes />
+            </div>
           </>
         }
         right={
           <>
-            <BlocPrescription
-              reponses={reponses}
-              company={company}
-              companyAge={companyAge}
-              seuils={seuils}
-            />
+            <div data-section="prescription">
+              <BlocPrescription />
+            </div>
           </>
         }
       />
     </div>
+    </FicheProvider>
   );
 }

@@ -1,11 +1,7 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import type { Reponses } from '@/lib/types';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-}
 
 type TypeCaution = 'personnelle' | 'hypothecaire' | 'solidaire' | 'autre';
 type Creancier = 'banque' | 'bailleur' | 'fournisseur' | 'urssaf' | 'impots' | 'autre';
@@ -111,7 +107,8 @@ function formatMontant(n: number): string {
   return n.toLocaleString('fr-FR') + ' €';
 }
 
-export default function BlocAuditCaution({ reponses }: Props) {
+export default function BlocAuditCaution() {
+  const { reponses } = useFiche();
   const [cautions, setCautions] = useState<CautionDetail[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [draft, setDraft] = useState<Partial<CautionDetail>>({

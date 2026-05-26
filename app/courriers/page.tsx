@@ -17,6 +17,15 @@ const COLOR_MAP: Record<string, string> = {
   vert: 'border-l-vert',
 };
 
+const jsonLdBreadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+    { '@type': 'ListItem', position: 2, name: 'Courriers' },
+  ],
+};
+
 export default function CourriersPage() {
   const grouped = COURRIERS.reduce(
     (acc, c) => {
@@ -30,6 +39,10 @@ export default function CourriersPage() {
 
   return (
     <section className="mx-auto max-w-4xl px-5 pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <div className="mb-10 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-bleu-fonce/70">
           12 modèles prêts à l&apos;emploi

@@ -1,9 +1,7 @@
+'use client';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 import type { GroupeOrganismes, OrganismeCard } from '@/lib/organismes';
-
-interface Props {
-  groupes: GroupeOrganismes[];
-}
 
 const COULEURS: Record<string, { bord: string; fond: string; texte: string; badge: string }> = {
   violet: {
@@ -93,7 +91,8 @@ function Carte({ o, couleur }: { o: OrganismeCard; couleur: string }) {
   );
 }
 
-export default function BlocOrganismes({ groupes }: Props) {
+export default function BlocOrganismes() {
+  const { groupes } = useFiche();
   const nonVides = groupes.filter((g) => g.cartes.length > 0);
   if (!nonVides.length) return null;
   const total = nonVides.reduce((n, g) => n + g.cartes.length, 0);

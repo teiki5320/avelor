@@ -207,8 +207,56 @@ export default function DataRoomPage() {
     downloadText(lines.join('\n'), 'avelor-data-room.txt');
   }
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Préparer votre data room',
+    description:
+      'Constituez la data room pour la cession de votre entreprise avec cette checklist exhaustive des pièces à rassembler, inspirée des standards Bpifrance et CRA.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Parcourir les catégories de documents',
+        text: 'Consultez les 10 catégories : identité juridique, comptable, commercial, fournisseurs, RH, immobilier, propriété intellectuelle, contentieux, fiscal, bancaire.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Cocher les pièces déjà prêtes',
+        text: 'Cochez chaque document que vous avez déjà rassemblé. L\'avancement est sauvegardé dans votre navigateur.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Prioriser les pièces obligatoires',
+        text: 'Concentrez-vous sur les pièces marquées "obligatoire" en rouge, qui sont indispensables pour tout repreneur.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Exporter la checklist',
+        text: 'Cliquez sur "Exporter ma checklist" pour télécharger un récapitulatif au format texte.',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Préparateur de data room' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link href="/outils" className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy">
         ← Tous les outils
       </Link>

@@ -1,12 +1,8 @@
 'use client';
 import { useState, useMemo, useEffect } from 'react';
-import type { Reponses } from '@/lib/types';
+import { useFiche } from '@/lib/FicheContext';
 import { buildIcs, downloadIcs, type IcsEvent } from '@/lib/ics';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-}
 
 interface Echeance {
   cle: string;
@@ -32,7 +28,8 @@ function daysBetween(from: Date, to: Date): number {
   return Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
 }
 
-export default function BlocRappels({ reponses }: Props) {
+export default function BlocRappels() {
+  const { reponses } = useFiche();
   const [dateCessation, setDateCessation] = useState<string>('');
   const [dateAssignation, setDateAssignation] = useState<string>('');
   const [dateMiseDemeure, setDateMiseDemeure] = useState<string>('');

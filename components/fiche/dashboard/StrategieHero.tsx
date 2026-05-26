@@ -1,12 +1,7 @@
 'use client';
 import { useState } from 'react';
-import type { Reponses, CompanyData } from '@/lib/types';
 import { resolveStrategie, AXE_META, type Axe } from '@/lib/strategie';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-}
+import { useFiche } from '@/lib/FicheContext';
 
 // Classes Tailwind statiques pour que le JIT les détecte
 const PASTILLE_CLASSES: Record<Axe, string> = {
@@ -25,7 +20,8 @@ const GRADIENT_CLASSES: Record<Axe, string> = {
   rebondir: 'bg-gradient-to-br from-rouge/15 via-white/40 to-rouge/5',
 };
 
-export default function StrategieHero({ reponses, company }: Props) {
+export default function StrategieHero() {
+  const { reponses, company } = useFiche();
   const [showMore, setShowMore] = useState(false);
   const res = resolveStrategie(reponses, company);
   if (!res) return null;

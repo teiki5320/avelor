@@ -1,0 +1,10 @@
+{
+  "name": "AVELOR — Aide aux chefs d'entreprise",
+  "short_name": "AVELOR",
+  "description": "Plateforme d'aide aux dirigeants d'entreprise en difficulté en France",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#1E3D82",
+  "icons": []
+}

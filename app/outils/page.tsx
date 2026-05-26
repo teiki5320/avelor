@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Boîte à outils — AVELOR',
+  description:
+    'Calculateurs et vérificateurs officiels pour les dirigeants : prescription, indemnités de licenciement, ATI, aide juridictionnelle, valorisation, coûts de procédures.',
+};
 
 interface Outil {
   href: string;
@@ -84,9 +91,22 @@ const OUTILS: Outil[] = [
   },
 ];
 
+const jsonLdBreadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+    { '@type': 'ListItem', position: 2, name: 'Outils' },
+  ],
+};
+
 export default function OutilsPage() {
   return (
     <section className="mx-auto max-w-4xl px-5 py-10 sm:py-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <p className="mb-3 text-sm uppercase tracking-[0.2em] text-bleu-fonce/70">
         Calculateurs · annuaires · check-lists
       </p>

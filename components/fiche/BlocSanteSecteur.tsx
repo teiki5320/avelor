@@ -1,8 +1,5 @@
-import type { SectorInfo } from '@/lib/secteur';
-
-interface Props {
-  sector: SectorInfo;
-}
+'use client';
+import { useFiche } from '@/lib/FicheContext';
 
 const STYLES: Record<'crise' | 'tendu', { border: string; bg: string; icon: string }> = {
   crise: {
@@ -17,7 +14,8 @@ const STYLES: Record<'crise' | 'tendu', { border: string; bg: string; icon: stri
   },
 };
 
-export default function BlocSanteSecteur({ sector }: Props) {
+export default function BlocSanteSecteur() {
+  const { sector } = useFiche();
   const sante = sector.santeSecteur;
   if (!sante || sante.niveau === 'normal') return null;
 
@@ -43,7 +41,7 @@ export default function BlocSanteSecteur({ sector }: Props) {
         </a>
       )}
       <p className="mt-3 text-xs text-navy/50">
-        Cette indication n'est pas un jugement sur votre entreprise, mais un
+        Cette indication n&apos;est pas un jugement sur votre entreprise, mais un
         rappel que beaucoup de confrères du secteur traversent une période
         similaire — et que des dispositifs ciblés existent.
       </p>

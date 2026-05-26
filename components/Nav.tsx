@@ -1,15 +1,17 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import { COURRIERS } from '@/lib/courriers';
 
 const LINKS = [
   { href: '/procedures', label: 'Procédures', desc: 'Comprendre vos options' },
-  { href: '/courriers', label: 'Courriers', desc: '12 modèles prêts' },
+  { href: '/courriers', label: 'Courriers', desc: `${COURRIERS.length} modèles prêts` },
   { href: '/aides', label: 'Aides entreprise', desc: 'Financements et dispositifs' },
   { href: '/aides-personnelles', label: 'Droits personnels', desc: 'ATI, CSS, RSA...' },
   { href: '/proteger-famille', label: 'Famille', desc: 'Patrimoine et cautions' },
   { href: '/vendre', label: 'Vendre / Céder', desc: 'Cession, location-gérance' },
   { href: '/rebond', label: 'Rebondir', desc: 'Après une liquidation' },
+  { href: '/faq', label: 'FAQ', desc: 'Questions fréquentes' },
   { href: '/glossaire', label: 'Glossaire', desc: '18 termes expliqués' },
   { href: '/accompagnant', label: "J'accompagne", desc: 'Pour les proches' },
   { href: '/parler', label: 'Parler', desc: 'Numéros gratuits 24/7' },
@@ -29,6 +31,12 @@ export default function Nav() {
 
   return (
     <header ref={ref} className="fixed top-3 left-1/2 z-40 -translate-x-1/2 sm:top-4">
+      <a
+        href="#contenu-principal"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:rounded-lg"
+      >
+        Aller au contenu
+      </a>
       <nav className="pill-nav flex items-center gap-4 px-5 py-2.5 sm:gap-6 sm:px-6">
         <Link
           href="/"

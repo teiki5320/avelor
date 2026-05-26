@@ -18,12 +18,14 @@ export default function BlocAccordeon({
   children,
 }: Props) {
   const [open, setOpen] = useState(defaultOpen);
+  const panelId = `panel-${titre.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`;
   return (
     <section className="glass card-top-line overflow-hidden">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
+        aria-controls={panelId}
         className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left sm:px-8"
       >
         <span className="flex items-center gap-3">
@@ -59,7 +61,7 @@ export default function BlocAccordeon({
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="border-t border-navy/5 px-6 py-6 sm:px-8">
+            <div id={panelId} role="region" aria-label={titre} className="border-t border-navy/5 px-6 py-6 sm:px-8">
               {children}
             </div>
           </motion.div>

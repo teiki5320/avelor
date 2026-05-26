@@ -149,8 +149,51 @@ export default function CoutProceduresPage() {
     }));
   }, [taille]);
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Comparer le coût des procédures',
+    description:
+      'Comparez les fourchettes de coût des procédures amiables et collectives (mandat ad hoc, conciliation, sauvegarde, RJ, LJ, PRP) selon la taille de votre entreprise.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Sélectionner la taille de l\'entreprise',
+        text: 'Choisissez parmi TPE, petite PME, PME ou ETI/grande entreprise pour ajuster les fourchettes de coût.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Comparer les procédures',
+        text: 'Consultez les fourchettes de coût pour chaque procédure : frais de greffe, émoluments du mandataire, honoraires d\'avocat.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Identifier les solutions de financement',
+        text: 'Vérifiez les options de prise en charge : aide juridictionnelle, consultation gratuite, fonds publics (PRP).',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Coût des procédures' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-5xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link
         href="/outils"
         className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy"

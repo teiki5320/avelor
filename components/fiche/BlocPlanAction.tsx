@@ -3,12 +3,10 @@ import { useState, useEffect } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
 import { getTonePreset } from '@/lib/tone';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  sector: SectorInfo;
   defaultOpen?: boolean;
 }
 
@@ -64,7 +62,8 @@ function buildDefaultActions(r: Reponses, c: CompanyData, s: SectorInfo): Action
 
 const STORAGE_KEY = 'avelor_plan_action';
 
-export default function BlocPlanAction({ reponses, company, sector, defaultOpen }: Props) {
+export default function BlocPlanAction({ defaultOpen }: Props) {
+  const { reponses, company, sector } = useFiche();
   const [actions, setActions] = useState<Action[]>([]);
   const [newText, setNewText] = useState('');
   const [loaded, setLoaded] = useState(false);

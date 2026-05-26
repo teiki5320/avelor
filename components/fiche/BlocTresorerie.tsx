@@ -1,11 +1,7 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import type { Reponses } from '@/lib/types';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-}
 
 interface Inputs {
   soldeInitial: number;
@@ -104,7 +100,8 @@ const NIVEAU_STYLES: Record<'safe' | 'alerte' | 'cessation', { bg: string; borde
   cessation: { bg: 'bg-rouge/10', border: 'border-rouge/40', text: 'text-rouge' },
 };
 
-export default function BlocTresorerie({ reponses }: Props) {
+export default function BlocTresorerie() {
+  const { reponses } = useFiche();
   const [inputs, setInputs] = useState<Inputs>(EMPTY);
   const [loaded, setLoaded] = useState(false);
 

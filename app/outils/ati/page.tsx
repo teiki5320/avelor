@@ -100,8 +100,61 @@ export default function AtiPage() {
     };
   }, [activiteMois, revenuAnnuelMoyen, ressourcesMensuelles, typeCessation, plafondRSA]);
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Estimer votre allocation chômage (ATI)',
+    description:
+      'Vérifiez votre éligibilité à l\'Allocation des Travailleurs Indépendants et estimez le montant perçu pendant 6 mois.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Indiquer la durée d\'activité',
+        text: 'Saisissez la durée totale de votre activité non salariée en mois (seuil légal : 24 mois).',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Saisir le revenu annuel moyen',
+        text: 'Indiquez votre revenu annuel moyen sur les 2 dernières années (seuil : 10 000 euros/an).',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Choisir le type de cessation',
+        text: 'Sélectionnez la raison de la cessation : liquidation judiciaire, redressement avec remplacement, ou activité non viable.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Renseigner le foyer et les ressources',
+        text: 'Indiquez la taille du foyer et les ressources mensuelles actuelles pour vérifier le plafond RSA.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Lire le résultat',
+        text: 'L\'outil affiche votre éligibilité, les conditions remplies ou bloquantes, et le montant estimé (26,30 euros/jour pendant 182 jours).',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Estimateur ATI' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link
         href="/outils"
         className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy"

@@ -161,8 +161,22 @@ export default function CourrierDetailPage() {
   });
   const nomEntreprise = values.NOM_ENTREPRISE || '';
 
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Courriers', item: 'https://avelor.vercel.app/courriers' },
+      { '@type': 'ListItem', position: 3, name: template?.titre ?? 'Courrier' },
+    ],
+  };
+
   return (
     <section className="courrier-page mx-auto max-w-4xl px-5 pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       {/* Entête imprimable — n'apparaît qu'à l'impression */}
       <div className="courrier-print-header hidden">
         <div className="courrier-print-brand">AVELOR</div>

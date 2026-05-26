@@ -132,8 +132,56 @@ export default function ValorisationPage() {
     };
   }, [ebe, ca, m, decotes]);
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Estimer la valorisation de votre entreprise',
+    description:
+      'Estimez la valeur de votre entreprise par la méthode des multiples sectoriels (EBE et CA) avec prise en compte des facteurs de décote.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Sélectionner votre secteur d\'activité',
+        text: 'Choisissez parmi 9 secteurs (commerce, HCR, BTP, industrie, services, numérique, santé, transport, autre) pour obtenir les multiples adaptés.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Saisir le chiffre d\'affaires et l\'EBE',
+        text: 'Indiquez votre CA annuel HT et votre Excédent Brut d\'Exploitation pour le calcul des fourchettes.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Appliquer les facteurs de décote',
+        text: 'Cochez les éléments applicables : dépendance client, dépendance dirigeant, dette, procédure collective, déclin sectoriel, fournisseur unique.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Lire la valorisation estimée',
+        text: 'L\'outil affiche la fourchette par approche EBE et CA, la valeur centrale pondérée (70 % EBE / 30 % CA) et la valeur ajustée après décotes.',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Valorisation indicative' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link href="/outils" className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy">
         ← Tous les outils
       </Link>

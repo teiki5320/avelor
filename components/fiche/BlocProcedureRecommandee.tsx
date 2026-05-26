@@ -1,13 +1,9 @@
+'use client';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
-import { getCompanyAge, getEffectifSeuils } from '@/lib/secteur';
+import { getEffectifSeuils } from '@/lib/secteur';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  sector: SectorInfo;
-}
 
 interface Procedure {
   nom: string;
@@ -128,7 +124,8 @@ const LABELS = {
   info: 'À connaître',
 };
 
-export default function BlocProcedureRecommandee({ reponses, company, sector }: Props) {
+export default function BlocProcedureRecommandee() {
+  const { reponses, company, sector } = useFiche();
   const procs = buildProcedures(reponses, company, sector);
 
   return (

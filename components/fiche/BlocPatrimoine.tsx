@@ -1,10 +1,7 @@
+'use client';
 import type { Reponses, CompanyData } from '@/lib/types';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-}
 
 type Niveau = 'protege' | 'mixte' | 'expose';
 
@@ -206,7 +203,8 @@ const NIVEAU_STYLES: Record<Niveau, { bg: string; border: string; pill: string; 
   expose: { bg: 'bg-rouge/10', border: 'border-rouge/30', pill: 'bg-rouge/20 text-rouge', label: 'Exposé' },
 };
 
-export default function BlocPatrimoine({ reponses, company }: Props) {
+export default function BlocPatrimoine() {
+  const { reponses, company } = useFiche();
   const poches = buildPoches(reponses, company);
   if (poches.length === 0) return null;
 

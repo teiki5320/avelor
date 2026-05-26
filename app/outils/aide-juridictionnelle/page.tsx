@@ -84,8 +84,56 @@ export default function AidejuridictionnellePage() {
     0: 'bg-rouge/10 border-rouge/30 text-rouge',
   };
 
+  const jsonLdHowTo = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Vérifier votre éligibilité à l\'aide juridictionnelle',
+    description:
+      'Déterminez si vous pouvez bénéficier de l\'aide juridictionnelle (totale ou partielle) selon vos revenus, votre patrimoine et la composition de votre foyer.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Saisir le Revenu Fiscal de Référence',
+        text: 'Indiquez votre RFR annuel, disponible sur votre dernier avis d\'imposition.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Indiquer les personnes à charge',
+        text: 'Renseignez le nombre de personnes à charge (conjoint, enfants, ascendants) pour ajuster les plafonds.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Renseigner le patrimoine',
+        text: 'Indiquez votre patrimoine mobilier et immobilier (hors résidence principale) pour vérifier les plafonds.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Lire le résultat',
+        text: 'L\'outil affiche votre taux de prise en charge (100 %, 55 %, 25 % ou non éligible) et le reste à votre charge.',
+      },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 3, name: 'Aide juridictionnelle' },
+    ],
+  };
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <Link href="/outils" className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy">
         ← Tous les outils
       </Link>

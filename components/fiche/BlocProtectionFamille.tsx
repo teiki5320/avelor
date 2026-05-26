@@ -1,18 +1,13 @@
-import type { Reponses, CompanyData } from '@/lib/types';
-import type { SectorInfo } from '@/lib/secteur';
+'use client';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  sector: SectorInfo;
-}
 
 function isEI(forme: string): boolean {
   return /individuel|ei|eirl|micro|auto/i.test(forme);
 }
 
-export default function BlocProtectionFamille({ reponses, company, sector }: Props) {
+export default function BlocProtectionFamille() {
+  const { reponses, company } = useFiche();
   const ei = isEI(company.formeJuridique);
   const aCaution = reponses.caution === 'oui' || reponses.caution === 'ne-sais-pas';
   const proprietaire = reponses.patrimoine === 'proprietaire';

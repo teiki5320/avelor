@@ -1,12 +1,7 @@
-import type { Reponses, CompanyData } from '@/lib/types';
+'use client';
+import type { Reponses } from '@/lib/types';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  companyAge: number | null;
-  seuils: { cse: boolean; obligations50: boolean };
-}
 
 interface Alerte {
   texte: string;
@@ -105,7 +100,8 @@ function buildAlertes(r: Reponses, age: number | null, seuils: { cse: boolean; o
   return alertes;
 }
 
-export default function BlocPrescription({ reponses, companyAge, seuils }: Props) {
+export default function BlocPrescription() {
+  const { reponses, companyAge, seuils } = useFiche();
   const alertes = buildAlertes(reponses, companyAge, seuils);
 
   return (

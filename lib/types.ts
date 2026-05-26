@@ -58,6 +58,15 @@ export interface PlaceResult {
   mapsUrl?: string;
 }
 
+export interface Rappel {
+  email: string;
+  echeance: string;
+  dateRappel: string;
+  libelle: string;
+  cree_le: string;
+  envoye?: boolean;
+}
+
 export interface FicheRecord {
   id?: string;
   token: string;

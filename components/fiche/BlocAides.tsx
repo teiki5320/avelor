@@ -1,13 +1,10 @@
+'use client';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
 import { getAidesRegionales } from '@/lib/aidesRegionales';
+import { isEI } from '@/lib/strategie';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-  company: CompanyData;
-  sector: SectorInfo;
-}
 
 interface Aide {
   nom: string;
@@ -16,10 +13,6 @@ interface Aide {
   site?: string;
   badge?: string;
   condition?: string;
-}
-
-function isEI(forme: string): boolean {
-  return /individuel|ei|eirl|micro|auto/i.test(forme);
 }
 
 function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string; aides: Aide[] }[] {
@@ -235,7 +228,8 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
   return sections;
 }
 
-export default function BlocAides({ reponses, company, sector }: Props) {
+export default function BlocAides() {
+  const { reponses, company, sector } = useFiche();
   const sections = buildAides(reponses, company, sector);
   const total = sections.reduce((n, s) => n + s.aides.length, 0);
 

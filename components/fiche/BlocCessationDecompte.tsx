@@ -1,11 +1,7 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import type { Reponses } from '@/lib/types';
+import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
-
-interface Props {
-  reponses: Reponses;
-}
 
 const STORAGE_KEY = 'avelor_cessation_date';
 
@@ -102,7 +98,8 @@ const STYLES: Record<Verdict['niveau'], { bg: string; border: string; text: stri
   depasse: { bg: 'bg-rouge/10', border: 'border-rouge/40', text: 'text-rouge' },
 };
 
-export default function BlocCessationDecompte({ reponses }: Props) {
+export default function BlocCessationDecompte() {
+  const { reponses } = useFiche();
   const [dateStr, setDateStr] = useState<string>('');
   const [loaded, setLoaded] = useState(false);
 
@@ -127,8 +124,6 @@ export default function BlocCessationDecompte({ reponses }: Props) {
     reponses.situation === 'assignation' ||
     reponses.situation === 'tresorie';
 
-  if (!pertinent) return null;
-
   const verdict = useMemo<Verdict | null>(() => {
     if (!dateStr) return null;
     const d = new Date(dateStr);
@@ -137,6 +132,8 @@ export default function BlocCessationDecompte({ reponses }: Props) {
   }, [dateStr]);
 
   const todayISO = new Date().toISOString().slice(0, 10);
+
+  if (!pertinent) return null;
 
   return (
     <BlocAccordeon
@@ -182,7 +179,7 @@ export default function BlocCessationDecompte({ reponses }: Props) {
           </p>
           <p className="mt-2 text-sm text-navy/80">{verdict.message}</p>
 
-          <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
+          <div className="mt-4 grid grid-cols-2 gap-2 text-center text-xs sm:grid-cols-3">
             <div className="rounded-xl bg-white/70 p-3">
               <p className="font-display text-xl text-navy">{verdict.joursEcoules}</p>
               <p className="mt-1 text-navy/60">jours écoulés</p>
