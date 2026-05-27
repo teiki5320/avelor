@@ -29,6 +29,13 @@ const urgences = [
     description: 'Conseiller entreprise · Gratuit',
     couleur: 'bg-jaune/10 text-jaune',
   },
+  {
+    nom: 'Conseillers-Entreprises',
+    telephone: '0 806 000 245',
+    tel: '0806000245',
+    description: 'Service public · Rappel sous 5 jours',
+    couleur: 'bg-vert/10 text-vert',
+  },
 ];
 
 export default function AccompagnantPage() {
@@ -53,7 +60,7 @@ export default function AccompagnantPage() {
         <p className="text-center text-sm font-medium text-navy/80">
           Si vous êtes inquiet·e pour sa sécurité, n&apos;attendez pas :
         </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
           {urgences.map((u) => (
             <a
               key={u.nom}

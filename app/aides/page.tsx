@@ -119,6 +119,54 @@ const sections: Section[] = [
     ],
   },
   {
+    titre: "Dispositifs de l’État",
+    colorBorder: 'border-navy',
+    colorDot: 'bg-navy',
+    aides: [
+      {
+        nom: 'CODEFI',
+        description:
+          "Comité départemental d’examen des problèmes de financement. Audit gratuit + prêts restructuration. Entreprises < 400 salariés. Contact via la DDFiP (Direction départementale des finances publiques).",
+        url: 'https://www.economie.gouv.fr',
+        urlLabel: 'economie.gouv.fr',
+        gratuit: true,
+      },
+      {
+        nom: 'CIRI',
+        description:
+          "Comité interministériel de restructuration industrielle. Entreprises > 400 salariés.",
+        url: 'https://www.economie.gouv.fr',
+        urlLabel: 'economie.gouv.fr',
+        tel: '01 44 87 72 58',
+      },
+      {
+        nom: 'CRP',
+        description:
+          "Commissaire aux Restructurations et à la Prévention des difficultés. Nommé par le préfet régional. Diagnostic + négociation avec créanciers. Contact via la préfecture.",
+        url: 'https://www.economie.gouv.fr',
+        urlLabel: 'economie.gouv.fr',
+        gratuit: true,
+      },
+      {
+        nom: 'Conseillers-Entreprises',
+        description:
+          "Service public d’accompagnement. 10 000 conseillers, 40 organismes partenaires.",
+        url: 'https://conseillers-entreprises.service-public.gouv.fr',
+        urlLabel: 'conseillers-entreprises.service-public.gouv.fr',
+        tel: '0 806 000 245',
+        gratuit: true,
+      },
+      {
+        nom: 'MAPi (Infogreffe)',
+        description:
+          "Moteur de recherche d’aides publiques. Toutes les aides disponibles selon votre situation.",
+        url: 'https://mesaidespubliques.infogreffe.fr',
+        urlLabel: 'mesaidespubliques.infogreffe.fr',
+        gratuit: true,
+      },
+    ],
+  },
+  {
     titre: 'Aides régionales',
     colorBorder: 'border-bleu',
     colorDot: 'bg-bleu',
@@ -126,7 +174,7 @@ const sections: Section[] = [
       {
         nom: 'Votre région',
         description:
-          'Chaque région propose des aides spécifiques (fonds d’urgence, prêts d’honneur, accompagnement). Contactez votre CCI locale pour connaître les dispositifs de votre territoire.',
+          "Chaque région propose des aides spécifiques (fonds d’urgence, prêts d’honneur, accompagnement). Contactez votre CCI locale pour connaître les dispositifs de votre territoire.",
       },
     ],
   },

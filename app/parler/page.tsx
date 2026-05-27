@@ -45,6 +45,36 @@ const contacts = [
     urlLabel: null,
     color: 'bg-vert/10 text-vert',
   },
+  {
+    name: 'Conseillers-Entreprises',
+    phone: '0 806 000 245',
+    tel: '0806000245',
+    description:
+      'Service public gratuit · 10 000 conseillers · Rappel sous 5 jours',
+    url: 'https://conseillers-entreprises.service-public.gouv.fr',
+    urlLabel: 'conseillers-entreprises.service-public.gouv.fr',
+    color: 'bg-bleu/10 text-bleu-fonce',
+  },
+  {
+    name: 'Banque de France TPE-PME',
+    phone: '34 14',
+    tel: '3414',
+    description:
+      'Correspondant TPE-PME · Orientation gratuite · Diagnostic financier',
+    url: 'https://entreprises.banque-france.fr',
+    urlLabel: 'entreprises.banque-france.fr',
+    color: 'bg-navy/10 text-navy',
+  },
+  {
+    name: 'Médiation du crédit',
+    phone: '34 14',
+    tel: '3414',
+    description:
+      'Rétablir le dialogue avec votre banque · Gratuit · Confidentiel',
+    url: 'https://mediateur-credit.banque-france.fr',
+    urlLabel: 'mediateur-credit.banque-france.fr',
+    color: 'bg-vert/10 text-vert',
+  },
 ];
 
 export default function ParlerPage() {
