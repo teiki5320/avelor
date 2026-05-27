@@ -15,7 +15,7 @@ export default function SiretInput() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const clean = value.replace(/\s/g, '');
+  const clean = (value || '').replace(/\s/g, '');
   const isValid = /^\d{14}$/.test(clean);
 
   async function onSubmit(e: React.FormEvent) {
@@ -28,9 +28,7 @@ export default function SiretInput() {
     setError(null);
     try {
       sessionStorage.setItem('avelor_siret', clean);
-    } catch {
-      // ignore
-    }
+    } catch {}
     router.push(`/questionnaire?siret=${clean}`);
   }
 

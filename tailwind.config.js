@@ -30,6 +30,7 @@ module.exports = {
         'blob-1': 'blob1 22s ease-in-out infinite',
         'blob-2': 'blob2 28s ease-in-out infinite',
         'blob-3': 'blob3 32s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.5s ease-out 0.15s both',
       },
       keyframes: {
         blob1: {
@@ -43,6 +44,10 @@ module.exports = {
         blob3: {
           '0%,100%': { transform: 'translate(0,0) scale(1)' },
           '50%': { transform: 'translate(20px,30px) scale(0.92)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(12px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },
