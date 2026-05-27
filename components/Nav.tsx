@@ -74,14 +74,31 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="glass mt-2 max-h-[70vh] w-[280px] overflow-y-auto rounded-2xl p-2 sm:w-[320px]"
+        <div
+          className="glass mt-2 max-h-[70vh] w-[280px] overflow-y-auto rounded-2xl p-2 sm:w-[320px]"
           style={{ position: 'absolute', right: 0, top: '100%' }}
+          role="menu"
+          onKeyDown={(e) => {
+            if (e.key !== 'Tab') return;
+            const focusable = e.currentTarget.querySelectorAll<HTMLElement>('a, button');
+            if (focusable.length === 0) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }}
         >
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
+              role="menuitem"
               aria-current={pathname === l.href ? 'page' : undefined}
               className="flex flex-col rounded-xl px-4 py-2.5 transition hover:bg-navy/5"
             >

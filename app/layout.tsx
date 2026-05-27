@@ -22,11 +22,20 @@ export const metadata: Metadata = {
   title: 'AVELOR · Aide aux chefs d\'entreprise',
   description:
     'AVELOR accompagne les chefs d\'entreprise français en difficulté — avec tact, avec clarté, avec les bons interlocuteurs.',
+  metadataBase: new URL('https://avelor.vercel.app'),
   openGraph: {
     title: 'AVELOR',
     description:
       'Vous n\'êtes pas seul. AVELOR vous aide à y voir clair — en quelques minutes, gratuitement.',
     type: 'website',
+    url: 'https://avelor.vercel.app',
+    images: [{ url: '/api/og', width: 1200, height: 630, alt: 'AVELOR — Aide aux chefs d\'entreprise en difficulté' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AVELOR',
+    description: 'Aide gratuite et confidentielle aux chefs d\'entreprise en difficulté en France.',
+    images: ['/api/og'],
   },
 };
 
