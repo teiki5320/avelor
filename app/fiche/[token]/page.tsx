@@ -92,10 +92,22 @@ export default async function FichePage({ params, searchParams }: PageProps) {
     mapsUrl: p.mapsUrl,
   }));
 
-  const sector = getSectorInfo(company_data);
-  const companyAge = getCompanyAge(company_data.dateCreation);
-  const seuils = getEffectifSeuils(company_data.effectif);
-  const groupes = buildOrganismes(dep, reponses, avocats);
+  let sector: ReturnType<typeof getSectorInfo>;
+  let companyAge: number | null;
+  let seuils: ReturnType<typeof getEffectifSeuils>;
+  let groupes: ReturnType<typeof buildOrganismes>;
+  try {
+    sector = getSectorInfo(company_data);
+    companyAge = getCompanyAge(company_data.dateCreation);
+    seuils = getEffectifSeuils(company_data.effectif);
+    groupes = buildOrganismes(dep, reponses, avocats);
+  } catch (e) {
+    console.error('[fiche] Erreur calcul données:', e);
+    sector = getSectorInfo({ ...company_data, naf: '' });
+    companyAge = null;
+    seuils = { approx: 0, cse: false, obligations50: false };
+    groupes = [];
+  }
 
   const moralFragile = reponses.moral === 'epuise' || reponses.moral === 'perdu';
 
