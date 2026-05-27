@@ -149,7 +149,7 @@ export default function Questionnaire({ siret }: Props) {
       });
       const json = await res.json();
       if (json?.token && json?.persisted) {
-        router.push(`/fiche/${json.token}`);
+        window.location.href = `/fiche/${json.token}`;
         return;
       }
     } catch {}
@@ -157,7 +157,7 @@ export default function Questionnaire({ siret }: Props) {
     const encoded = btoa(
       unescape(encodeURIComponent(JSON.stringify({ siret, reponses })))
     );
-    router.push(`/fiche/local?d=${encoded}`);
+    window.location.href = `/fiche/local?d=${encoded}`;
   }
 
   const slides: SlideConfig[] = [
