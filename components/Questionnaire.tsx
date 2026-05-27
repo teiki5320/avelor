@@ -111,7 +111,7 @@ export default function Questionnaire({ siret }: Props) {
 
   useEffect(() => {
     const saved = loadSaved(siret);
-    if (saved && saved.step > 0) {
+    if (saved && saved.step > 0 && saved.step < TOTAL_SLIDES) {
       setStep(saved.step);
       setAnswers(saved.answers);
       setRestored(true);
@@ -211,7 +211,8 @@ export default function Questionnaire({ siret }: Props) {
     },
   ];
 
-  const current = slides[step] ?? slides[0];
+  const safeStep = Math.min(step, slides.length - 1);
+  const current = slides[safeStep];
 
   return (
     <div className="mx-auto max-w-2xl px-5 pb-20">

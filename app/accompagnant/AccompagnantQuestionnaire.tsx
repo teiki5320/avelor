@@ -236,10 +236,10 @@ export default function AccompagnantQuestionnaire() {
             className="glass card-top-line p-6 sm:p-10"
           >
             <h2 className="font-display text-2xl text-navy sm:text-3xl">
-              {slides[step].title}
+              {slides[Math.min(step, slides.length - 1)].title}
             </h2>
             <div className="mt-6 space-y-3">
-              {slides[step].choices.map((c, i) => (
+              {slides[Math.min(step, slides.length - 1)].choices.map((c, i) => (
                 <button
                   key={i}
                   type="button"
