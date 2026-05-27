@@ -14,8 +14,8 @@ import type { CompanyData, Reponses } from '@/lib/types';
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
-  params: Promise<{ token: string }>;
-  searchParams: Promise<{ d?: string }>;
+  params: { token: string };
+  searchParams: { d?: string };
 }
 
 interface FicheData {
@@ -62,9 +62,7 @@ async function loadFiche(
 }
 
 export default async function FichePage({ params, searchParams }: PageProps) {
-  const { token: tokenParam } = await params;
-  const { d } = await searchParams;
-  const data = await loadFiche(tokenParam, d);
+  const data = await loadFiche(params.token, searchParams.d);
   if (!data) return notFound();
 
   const { token, siret, reponses, company_data } = data;

@@ -102,16 +102,14 @@ export function generateStaticParams() {
   return Object.keys(DATA).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const d = DATA[slug];
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const d = DATA[params.slug];
   if (!d) return { title: 'AVELOR' };
   return { title: d.metaTitle, description: d.metaDesc };
 }
 
-export default async function SituationPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const d = DATA[slug];
+export default function SituationPage({ params }: { params: { slug: string } }) {
+  const d = DATA[params.slug];
   if (!d) return notFound();
 
   const jsonLdBreadcrumb = {
