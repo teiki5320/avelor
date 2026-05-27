@@ -9,7 +9,7 @@ import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodac
 import { searchAvocats } from '@/lib/googlePlaces';
 import { buildOrganismes, getDepartement, OrganismeCard } from '@/lib/organismes';
 import { getSectorInfo, getCompanyAge, getEffectifSeuils } from '@/lib/secteur';
-import type { CompanyData, Reponses } from '@/lib/types';
+import type { CompanyData, Reponses, BodaccItem } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 
@@ -67,11 +67,17 @@ export default async function FichePage({ params, searchParams }: PageProps) {
 
   const { token, siret, reponses, company_data } = data;
 
-  const [bodacc, infogreffe, avocatsRaw] = await Promise.all([
-    fetchBodacc(siret),
-    fetchInfogreffeSignals(siret),
-    searchAvocats(company_data.ville || company_data.departement),
-  ]);
+  let bodacc: BodaccItem[] = [];
+  let infogreffe: BodaccItem[] = [];
+  let avocatsRaw: Awaited<ReturnType<typeof searchAvocats>> = [];
+
+  try {
+    [bodacc, infogreffe, avocatsRaw] = await Promise.all([
+      fetchBodacc(siret).catch(() => []),
+      fetchInfogreffeSignals(siret).catch(() => []),
+      searchAvocats(company_data.ville || company_data.departement).catch(() => []),
+    ]);
+  } catch {}
 
   const alertes = computeAlertes(bodacc, infogreffe, reponses.situation);
   const dep = getDepartement(company_data.departement);
