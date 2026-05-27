@@ -22,7 +22,7 @@ export default function BlocSoutien() {
       <div className={`mt-5 grid gap-3 ${hasSectorSoutien ? 'sm:grid-cols-2' : 'sm:grid-cols-3'}`}>
         {hasSectorSoutien && (
           <a
-            href={sector.soutien!.site ?? sector.soutien!.telephone ? `tel:${sector.soutien!.telephone!.replace(/\s/g, '')}` : '#'}
+            href={sector.soutien!.site ? sector.soutien!.site : sector.soutien!.telephone ? `tel:${sector.soutien!.telephone.replace(/\s/g, '')}` : '#'}
             target={sector.soutien!.site ? '_blank' : undefined}
             rel={sector.soutien!.site ? 'noreferrer' : undefined}
             className="glass-soft block border-l-4 border-l-vert p-4 transition hover:bg-white"
