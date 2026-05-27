@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { fetchSirene } from '@/lib/sirene';
 import { saveFiche } from '@/lib/supabase';
 import { fichePayloadSchema } from '@/lib/schemas';
+import type { Reponses } from '@/lib/types';
 
 export const runtime = 'nodejs';
 
@@ -19,6 +20,7 @@ export async function POST(req: Request) {
     }
 
     const { siret, reponses } = parsed.data;
+    const typedReponses = reponses as unknown as Reponses;
 
     const company_data = await fetchSirene(siret);
     const token = uuid().replace(/-/g, '').slice(0, 24);
@@ -26,7 +28,7 @@ export async function POST(req: Request) {
     const saved = await saveFiche({
       token,
       siret,
-      reponses,
+      reponses: typedReponses,
       company_data,
     });
 
@@ -34,7 +36,7 @@ export async function POST(req: Request) {
       token,
       persisted: saved,
       company_data,
-      reponses,
+      reponses: typedReponses,
     });
   } catch (e) {
     console.error('[POST /api/fiche]', e);

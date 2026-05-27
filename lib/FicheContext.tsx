@@ -40,18 +40,19 @@ const DEFAULT_COMPANY: CompanyData = {
   codePostal: '',
   ville: '',
   departement: '',
+  fetched: false,
 };
 
 const DEFAULT_CONTEXT: FicheContextType = {
   reponses: DEFAULT_REPONSES,
   company: DEFAULT_COMPANY,
-  sector: { secteur: '', label: '', sante: null, contacts: [] },
+  sector: {} as SectorInfo,
   alertes: [],
   bodacc: [],
   infogreffe: [],
   groupes: [],
   companyAge: null,
-  seuils: { cse: false, obligations50: false },
+  seuils: { cse: false, obligations50: false } as EffectifSeuils,
 };
 
 export function useFiche(): FicheContextType {

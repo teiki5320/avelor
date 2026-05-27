@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const fichePayloadSchema = z.object({
   siret: z.string().regex(/^\d{14}$/, 'Le SIRET doit contenir exactement 14 chiffres'),
-  reponses: z.record(z.unknown()),
-  companyData: z.record(z.unknown()).optional(),
+  reponses: z.record(z.string(), z.unknown()),
+  companyData: z.record(z.string(), z.unknown()).optional(),
 });
 
 export const sendLinkPayloadSchema = z.object({
