@@ -62,7 +62,22 @@ async function loadFiche(
 }
 
 export default async function FichePage({ params, searchParams }: PageProps) {
-  const data = await loadFiche(params.token, searchParams.d);
+  try {
+    return await renderFiche(params.token, searchParams.d);
+  } catch (e) {
+    console.error('[fiche] CRASH:', e);
+    return (
+      <section className="mx-auto max-w-xl px-5 py-20 text-center">
+        <h1 className="font-display text-2xl text-navy">Impossible d&apos;afficher cette fiche</h1>
+        <p className="mt-4 text-navy/60">Une erreur est survenue lors du chargement. Veuillez réessayer.</p>
+        <a href="/" className="mt-6 inline-block rounded-full bg-bleu-fonce px-6 py-3 text-white">Retour à l&apos;accueil</a>
+      </section>
+    );
+  }
+}
+
+async function renderFiche(tokenParam: string, d?: string) {
+  const data = await loadFiche(tokenParam, d);
   if (!data) return notFound();
 
   const { token, siret, reponses, company_data } = data;
