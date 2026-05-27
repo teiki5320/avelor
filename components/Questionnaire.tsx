@@ -211,7 +211,7 @@ export default function Questionnaire({ siret }: Props) {
     },
   ];
 
-  const current = slides[step];
+  const current = slides[step] ?? slides[0];
 
   return (
     <div className="mx-auto max-w-2xl px-5 pb-20">

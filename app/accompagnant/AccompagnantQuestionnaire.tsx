@@ -243,7 +243,7 @@ export default function AccompagnantQuestionnaire() {
                 <button
                   key={i}
                   type="button"
-                  onClick={() => select(slides[step].key, c.value)}
+                  onClick={() => { const s = slides[step]; if (s) select(s.key, c.value); }}
                   className="group flex w-full items-start gap-4 rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-left transition hover:border-vert hover:bg-white"
                 >
                   <span className="mt-1 h-5 w-5 shrink-0 rounded-full border border-navy/20 group-hover:border-vert" />
