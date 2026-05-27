@@ -61,21 +61,37 @@ describe('fichePayloadSchema', () => {
     expect(result.success).toBe(false);
   });
 
-  it('accepte des reponses avec champs manquants (validation souple)', () => {
+  it('rejette quand les champs requis de reponses sont manquants', () => {
     const result = fichePayloadSchema.safeParse({
       siret: '12345678901234',
       reponses: {
         probleme: 'urssaf',
       },
     });
-    expect(result.success).toBe(true);
+    expect(result.success).toBe(false);
   });
 
-  it('accepte des reponses avec valeurs quelconques (validation souple)', () => {
+  it('rejette une valeur de situation invalide', () => {
     const result = fichePayloadSchema.safeParse({
       siret: '12345678901234',
       reponses: {
         situation: 'inconnu',
+        probleme: 'urssaf',
+        effectif: 'independant',
+        moral: 'combatif',
+      },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it('accepte des champs supplémentaires dans reponses (passthrough)', () => {
+    const result = fichePayloadSchema.safeParse({
+      siret: '12345678901234',
+      reponses: {
+        situation: 'prevention',
+        probleme: 'urssaf',
+        effectif: 'independant',
+        moral: 'combatif',
         custom: 'value',
       },
     });

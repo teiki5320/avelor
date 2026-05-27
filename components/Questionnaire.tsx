@@ -1,6 +1,5 @@
 'use client';
 import { useState, useMemo, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import type {
   Reponses, Situation, Probleme, Effectif, Moral,
@@ -103,7 +102,6 @@ function clearDraft() {
 }
 
 export default function Questionnaire({ siret }: Props) {
-  const router = useRouter();
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [answers, setAnswers] = useState<Partial<Reponses>>({});
