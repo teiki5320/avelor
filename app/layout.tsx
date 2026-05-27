@@ -4,6 +4,7 @@ import './globals.css';
 import Background from '@/components/Background';
 import Nav from '@/components/Nav';
 import Compteur from '@/components/Compteur';
+import LazyMotionProvider from '@/components/LazyMotionProvider';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -63,6 +64,7 @@ export default function RootLayout({
         )}
       </head>
       <body>
+        <LazyMotionProvider>
         <Background />
         <Nav />
         <main id="contenu-principal" className="relative min-h-screen pt-20 sm:pt-24">{children}</main>
@@ -70,12 +72,13 @@ export default function RootLayout({
           <p className="font-display text-sm tracking-wide">AVELOR</p>
           <p>Accompagnement gratuit · confidentiel · sans jugement</p>
           <Compteur />
-          <div className="flex flex-wrap justify-center gap-3 pt-2 text-navy/40">
+          <div className="flex flex-wrap justify-center gap-3 pt-2 text-navy/55">
             <a href="/confidentialite" className="hover:text-navy/70">Confidentialité</a>
             <a href="/parler" className="hover:text-navy/70">Parler à quelqu&apos;un</a>
             <a href="/temoignages" className="hover:text-navy/70">Témoignages</a>
           </div>
         </footer>
+        </LazyMotionProvider>
       </body>
     </html>
   );

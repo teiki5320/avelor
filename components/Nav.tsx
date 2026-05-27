@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { COURRIERS } from '@/lib/courriers';
 
 const LINKS = [
@@ -20,6 +21,7 @@ const LINKS = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     function close(e: MouseEvent) {
@@ -27,6 +29,14 @@ export default function Nav() {
     }
     if (open) document.addEventListener('click', close);
     return () => document.removeEventListener('click', close);
+  }, [open]);
+
+  useEffect(() => {
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false);
+    }
+    if (open) document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
   }, [open]);
 
   return (
@@ -46,10 +56,10 @@ export default function Nav() {
         </Link>
 
         <div className="hidden items-center gap-4 text-sm text-navy/55 md:flex">
-          <Link href="/procedures" className="transition hover:text-navy">Procédures</Link>
-          <Link href="/courriers" className="transition hover:text-navy">Courriers</Link>
-          <Link href="/aides" className="transition hover:text-navy">Aides</Link>
-          <Link href="/parler" className="transition hover:text-navy">Parler</Link>
+          <Link href="/procedures" aria-current={pathname === '/procedures' ? 'page' : undefined} className="transition hover:text-navy">Procédures</Link>
+          <Link href="/courriers" aria-current={pathname === '/courriers' ? 'page' : undefined} className="transition hover:text-navy">Courriers</Link>
+          <Link href="/aides" aria-current={pathname === '/aides' ? 'page' : undefined} className="transition hover:text-navy">Aides</Link>
+          <Link href="/parler" aria-current={pathname === '/parler' ? 'page' : undefined} className="transition hover:text-navy">Parler</Link>
         </div>
 
         <button
@@ -72,6 +82,7 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
+              aria-current={pathname === l.href ? 'page' : undefined}
               className="flex flex-col rounded-xl px-4 py-2.5 transition hover:bg-navy/5"
             >
               <span className="text-sm font-medium text-navy">{l.label}</span>

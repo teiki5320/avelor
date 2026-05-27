@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 function formatSiret(v: string): string {
   if (!v) return '';
@@ -33,7 +33,7 @@ export default function SiretInput() {
   }
 
   return (
-    <motion.form
+    <m.form
       onSubmit={onSubmit}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -77,6 +77,6 @@ export default function SiretInput() {
           {!loading && <span aria-hidden>→</span>}
         </button>
       </div>
-    </motion.form>
+    </m.form>
   );
 }

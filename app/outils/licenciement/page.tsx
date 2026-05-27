@@ -173,7 +173,7 @@ export default function LicenciementPage() {
                     <button
                       type="button"
                       onClick={() => remove(s.id)}
-                      className="text-xs text-navy/40 hover:text-rouge"
+                      className="text-xs text-navy/55 hover:text-rouge"
                     >
                       ✕ retirer
                     </button>

@@ -215,7 +215,7 @@ export default function BlocAuditCaution() {
                   <button
                     type="button"
                     onClick={() => remove(c.id)}
-                    className="text-xs text-navy/40 hover:text-rouge"
+                    className="text-xs text-navy/55 hover:text-rouge"
                     aria-label="Supprimer"
                   >
                     ✕

@@ -1,5 +1,65 @@
 import type { CompanyData } from './types';
 
+/* ---------- Interfaces API ---------- */
+
+interface SireneEtablissement {
+  siret?: string;
+  code_postal?: string;
+  libelle_commune?: string;
+  adresse?: string;
+}
+
+interface SireneResult {
+  nom_complet?: string;
+  nom_raison_sociale?: string;
+  prenom_usuel?: string;
+  nom?: string;
+  nature_juridique?: string;
+  activite_principale?: string;
+  libelle_activite_principale?: string;
+  section_activite_principale?: string;
+  date_creation?: string;
+  tranche_effectif_salarie?: string;
+  siege?: SireneEtablissement;
+  matching_etablissements?: SireneEtablissement[];
+}
+
+interface SireneApiResponse {
+  results?: SireneResult[];
+  total_results?: number;
+  page?: number;
+  per_page?: number;
+}
+
+interface InseeAdresse {
+  codePostalEtablissement?: string;
+  libelleCommuneEtablissement?: string;
+  numeroVoieEtablissement?: string;
+  typeVoieEtablissement?: string;
+  libelleVoieEtablissement?: string;
+}
+
+interface InseeUniteLegale {
+  denominationUniteLegale?: string;
+  prenomUsuelUniteLegale?: string;
+  nomUniteLegale?: string;
+  categorieJuridiqueUniteLegale?: string;
+  activitePrincipaleUniteLegale?: string;
+  trancheEffectifsUniteLegale?: string;
+  dateCreationUniteLegale?: string;
+}
+
+interface InseeEtablissement {
+  uniteLegale?: InseeUniteLegale;
+  adresseEtablissement?: InseeAdresse;
+  activitePrincipaleEtablissement?: string;
+  dateCreationEtablissement?: string;
+}
+
+interface InseeSireneApiResponse {
+  etablissement?: InseeEtablissement;
+}
+
 // Free, no-key government API. Backed by Sirene data.
 const RECHERCHE_BASE = 'https://recherche-entreprises.api.gouv.fr/search';
 // Fallback (requires key, kept for completeness).
@@ -75,12 +135,12 @@ async function fetchFromRechercheEntreprises(
     const url = `${RECHERCHE_BASE}?q=${siret}&page=1&per_page=1`;
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) return null;
-    const json: any = await res.json();
+    const json: SireneApiResponse = await res.json();
     const result = json?.results?.[0];
     if (!result) return null;
 
     const matching =
-      result.matching_etablissements?.find((e: any) => e.siret === siret) ??
+      result.matching_etablissements?.find((e) => e.siret === siret) ??
       result.matching_etablissements?.[0] ??
       result.siege;
 
@@ -128,7 +188,7 @@ async function fetchFromInseeSirene(
       next: { revalidate: 3600 },
     });
     if (!res.ok) return null;
-    const json: any = await res.json();
+    const json: InseeSireneApiResponse = await res.json();
     const etab = json?.etablissement;
     if (!etab) return null;
 

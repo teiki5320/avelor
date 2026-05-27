@@ -1,6 +1,6 @@
 'use client';
 import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import data from '@/data/organismes.json';
 
 interface OrganismeLocal {
@@ -216,7 +216,7 @@ export default function AccompagnantQuestionnaire() {
           <span>{Math.round(progress)} %</span>
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-navy/10">
-          <motion.div
+          <m.div
             initial={false}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
@@ -227,7 +227,7 @@ export default function AccompagnantQuestionnaire() {
 
       {!showResults && (
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={step}
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -266,12 +266,12 @@ export default function AccompagnantQuestionnaire() {
                 ← Précédent
               </button>
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       )}
 
       {showResults && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="space-y-4"
@@ -333,7 +333,7 @@ export default function AccompagnantQuestionnaire() {
             )}
 
             {departement && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-5 space-y-3"
@@ -431,7 +431,7 @@ export default function AccompagnantQuestionnaire() {
                     </a>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </div>
 
@@ -442,7 +442,7 @@ export default function AccompagnantQuestionnaire() {
           >
             ← Recommencer
           </button>
-        </motion.div>
+        </m.div>
       )}
     </div>
   );

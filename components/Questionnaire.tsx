@@ -1,6 +1,6 @@
 'use client';
 import { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import type {
   Reponses, Situation, Probleme, Effectif, Moral,
   Caution, RegimeMatrimonial, Patrimoine, VenteEnvisagee,
@@ -232,7 +232,7 @@ export default function Questionnaire({ siret }: Props) {
           <span>{Math.round(progress)} %</span>
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-navy/10">
-          <motion.div
+          <m.div
             initial={false}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
@@ -242,7 +242,7 @@ export default function Questionnaire({ siret }: Props) {
       </div>
 
       <AnimatePresence mode="wait">
-        <motion.div
+        <m.div
           key={step}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -298,7 +298,7 @@ export default function Questionnaire({ siret }: Props) {
               <span className="text-navy/50">Préparation de votre fiche…</span>
             )}
           </div>
-        </motion.div>
+        </m.div>
       </AnimatePresence>
     </div>
   );

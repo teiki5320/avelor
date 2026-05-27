@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 interface Props {
   icone: string;
@@ -43,18 +43,18 @@ export default function BlocAccordeon({
             )}
           </span>
         </span>
-        <motion.span
+        <m.span
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.25 }}
           className="text-navy/50"
           aria-hidden
         >
           ↓
-        </motion.span>
+        </m.span>
       </button>
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -64,7 +64,7 @@ export default function BlocAccordeon({
             <div id={panelId} role="region" aria-label={titre} className="border-t border-navy/5 px-6 py-6 sm:px-8">
               {children}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </section>

@@ -1,5 +1,41 @@
 import type { AlerteSignal, BodaccItem } from './types';
 
+/* ---------- Interfaces API ---------- */
+
+interface BodaccPersonne {
+  denomination?: string;
+}
+
+interface BodaccListePersonnes {
+  personne?: BodaccPersonne[];
+}
+
+interface BodaccRecordFields {
+  familleavis_lib?: string;
+  familleavis?: string;
+  typeavis_lib?: string;
+  typeavis?: string;
+  dateparution?: string;
+  tribunal?: string;
+  tribunal_lib?: string;
+  listepersonnes?: BodaccListePersonnes;
+  commercant?: string;
+  jugement?: string;
+  typeannonce_lib?: string;
+  siren?: string;
+}
+
+interface BodaccRecord {
+  record?: {
+    fields?: BodaccRecordFields;
+  };
+}
+
+interface BodaccApiResponse {
+  total_count?: number;
+  records?: BodaccRecord[];
+}
+
 const BODACC_BASE = 'https://bodacc-datadila.opendatasoft.com/api/v2';
 
 // BODACC indexes by SIREN (9 first digits of the SIRET).
@@ -7,7 +43,7 @@ function siren(siret: string): string {
   return siret.replace(/\D/g, '').slice(0, 9);
 }
 
-function mapRecord(rec: any): BodaccItem {
+function mapRecord(rec: BodaccRecordFields): BodaccItem {
   return {
     type:
       rec.familleavis_lib ??
@@ -34,9 +70,9 @@ export async function fetchBodacc(siret: string): Promise<BodaccItem[]> {
     const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=${where}&limit=10&order_by=dateparution%20desc`;
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) return [];
-    const json: any = await res.json();
-    const records: any[] = json?.records ?? [];
-    return records.map((r) => mapRecord(r.record?.fields ?? r));
+    const json: BodaccApiResponse = await res.json();
+    const records: BodaccRecord[] = json?.records ?? [];
+    return records.map((r) => mapRecord(r.record?.fields ?? (r as unknown as BodaccRecordFields)));
   } catch {
     return [];
   }
@@ -55,9 +91,9 @@ export async function fetchInfogreffeSignals(
     const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=${where}&limit=5&order_by=dateparution%20desc`;
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) return [];
-    const json: any = await res.json();
-    const records: any[] = json?.records ?? [];
-    return records.map((r) => mapRecord(r.record?.fields ?? r));
+    const json: BodaccApiResponse = await res.json();
+    const records: BodaccRecord[] = json?.records ?? [];
+    return records.map((r) => mapRecord(r.record?.fields ?? (r as unknown as BodaccRecordFields)));
   } catch {
     return [];
   }
