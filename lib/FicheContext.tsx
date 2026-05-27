@@ -22,8 +22,39 @@ export function FicheProvider({ children, value }: { children: React.ReactNode; 
   return <FicheContext.Provider value={value}>{children}</FicheContext.Provider>;
 }
 
+const DEFAULT_REPONSES: Reponses = {
+  situation: 'prevention',
+  probleme: 'urssaf',
+  effectif: 'independant',
+  moral: 'combatif',
+};
+
+const DEFAULT_COMPANY: CompanyData = {
+  siret: '',
+  nom: '',
+  formeJuridique: '',
+  naf: '',
+  dateCreation: '',
+  effectif: '',
+  adresse: '',
+  codePostal: '',
+  ville: '',
+  departement: '',
+};
+
+const DEFAULT_CONTEXT: FicheContextType = {
+  reponses: DEFAULT_REPONSES,
+  company: DEFAULT_COMPANY,
+  sector: { secteur: '', label: '', sante: null, contacts: [] },
+  alertes: [],
+  bodacc: [],
+  infogreffe: [],
+  groupes: [],
+  companyAge: null,
+  seuils: { cse: false, obligations50: false },
+};
+
 export function useFiche(): FicheContextType {
   const ctx = useContext(FicheContext);
-  if (!ctx) throw new Error('useFiche must be used within FicheProvider');
-  return ctx;
+  return ctx ?? DEFAULT_CONTEXT;
 }
