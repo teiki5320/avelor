@@ -54,6 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/obligations-dirigeant',
     '/mediation-vs-conciliation',
     '/accessibilite',
+    '/penalites-fiscales',
   ];
 
   return routes.map((route) => ({

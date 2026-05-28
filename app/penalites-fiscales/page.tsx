@@ -1,0 +1,156 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Pénalités fiscales : intérêts, majorations, remises — AVELOR',
+  description: 'Comprendre les pénalités fiscales (intérêts de retard, majorations 10/40/80 %), les voies de recours et de remise gracieuse.',
+  robots: { index: true, follow: true },
+};
+
+interface Penalite {
+  nom: string;
+  taux: string;
+  motif: string;
+  reference: string;
+  contestable: boolean;
+}
+
+const PENALITES: Penalite[] = [
+  { nom: 'Intérêts de retard', taux: '0,20 % par mois (2,40 %/an)', motif: 'Tout retard de déclaration ou de paiement.', reference: 'CGI art. 1727', contestable: false },
+  { nom: 'Majoration pour retard de paiement', taux: '5 %', motif: 'Paiement après échéance, sans rappel.', reference: 'CGI art. 1731', contestable: true },
+  { nom: 'Majoration pour défaut de déclaration', taux: '10 %', motif: 'Déclaration tardive sans mise en demeure.', reference: 'CGI art. 1728-1-a', contestable: true },
+  { nom: 'Majoration après mise en demeure', taux: '40 %', motif: 'Déclaration > 30 j après mise en demeure.', reference: 'CGI art. 1728-1-b', contestable: true },
+  { nom: 'Majoration pour activité occulte', taux: '80 %', motif: 'Travail dissimulé, activité non déclarée.', reference: 'CGI art. 1728-1-c', contestable: true },
+  { nom: 'Manquement délibéré', taux: '40 %', motif: 'Volonté manifeste de tromper l\'administration.', reference: 'CGI art. 1729-a', contestable: true },
+  { nom: 'Manœuvres frauduleuses', taux: '80 %', motif: 'Manœuvres caractérisées (fausses factures, comptabilité fictive).', reference: 'CGI art. 1729-b', contestable: true },
+  { nom: 'Abus de droit (rectification)', taux: '40 % à 80 %', motif: 'Montage artificiel à but exclusivement fiscal.', reference: 'CGI art. 1729-b, LPF art. L64', contestable: true },
+];
+
+export default function PenalitesFiscalesPage() {
+  return (
+    <section className="mx-auto max-w-4xl px-5 py-10 sm:py-14">
+      <Link href="/situation/impots-impayes" className="mb-6 inline-flex items-center gap-2 text-sm text-navy/60 hover:text-navy">
+        ← Impôts impayés
+      </Link>
+
+      <h1 className="font-display text-3xl text-navy sm:text-4xl">
+        Pénalités fiscales : tout comprendre, tout contester
+      </h1>
+      <p className="mt-4 max-w-2xl text-base text-navy/70">
+        Une mise en demeure ou un avis avec pénalités ? La plupart sont négociables ou contestables. Voici les
+        barèmes officiels, les motifs, et les voies de remise.
+      </p>
+
+      {/* Tableau pénalités */}
+      <section className="mt-10">
+        <h2 className="font-display text-xl text-navy">Les principales pénalités</h2>
+        <div className="mt-4 space-y-3">
+          {PENALITES.map((p) => (
+            <article key={p.nom} className="glass-soft rounded-2xl p-5">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="font-display text-base text-navy">{p.nom}</p>
+                  <p className="mt-1 text-xs text-navy/55">{p.reference}</p>
+                </div>
+                <span className="rounded-full bg-rouge/10 px-3 py-1 text-sm font-medium text-rouge">{p.taux}</span>
+              </div>
+              <p className="mt-3 text-sm text-navy/80">{p.motif}</p>
+              <p className="mt-2 text-xs">
+                {p.contestable ? (
+                  <span className="rounded-full bg-vert/10 px-2 py-0.5 text-vert">✓ Contestable / remise possible</span>
+                ) : (
+                  <span className="rounded-full bg-navy/10 px-2 py-0.5 text-navy/70">Légale, application automatique</span>
+                )}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Voies de recours */}
+      <section className="mt-12">
+        <h2 className="font-display text-xl text-navy">Comment obtenir une remise ou un échelonnement</h2>
+
+        <article className="glass card-top-line mt-5 p-6">
+          <h3 className="font-display text-lg text-navy">1️⃣ Remise gracieuse (LPF art. L247)</h3>
+          <p className="mt-2 text-sm text-navy/80">
+            L&apos;administration peut accorder une remise totale ou partielle des intérêts de retard et des
+            majorations <strong>en cas de gêne ou d&apos;indigence</strong>. La demande est gratuite et confidentielle.
+          </p>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-navy/80">
+            <li>Demande motivée à votre SIE (Service des Impôts des Entreprises)</li>
+            <li>Pièces : dernier bilan, état de trésorerie, justificatifs de la difficulté</li>
+            <li>Délai de réponse : 2 à 4 mois</li>
+            <li>Réponse motivée par écrit, recours possible</li>
+          </ul>
+        </article>
+
+        <article className="glass card-top-line mt-5 p-6">
+          <h3 className="font-display text-lg text-navy">2️⃣ Délai de paiement / échelonnement</h3>
+          <p className="mt-2 text-sm text-navy/80">
+            Vous pouvez demander un échelonnement de votre dette fiscale, généralement sur 12 à 36 mois selon
+            les montants. Les intérêts de retard continuent de courir pendant l&apos;échelonnement.
+          </p>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-navy/80">
+            <li>Demande au SIE de votre département</li>
+            <li>Plan accepté si vous payez les échéances courantes</li>
+            <li>Si dettes fiscales ET sociales : passer par la <strong>CCSF</strong> (guichet unique)</li>
+          </ul>
+        </article>
+
+        <article className="glass card-top-line mt-5 p-6">
+          <h3 className="font-display text-lg text-navy">3️⃣ Contester une rectification</h3>
+          <p className="mt-2 text-sm text-navy/80">
+            Si vous estimez la pénalité injustifiée (manquement délibéré non caractérisé, manœuvres non
+            établies, abus de droit contestable), <strong>vous avez 2 ans pour contester</strong> (LPF art. R196-1).
+          </p>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-navy/80">
+            <li>Réclamation écrite au SIE dans les 2 ans (jamais oublier ce délai)</li>
+            <li>Recours hiérarchique gratuit (au directeur du SIE)</li>
+            <li>Conciliateur fiscal départemental : recours médiateur, gratuit</li>
+            <li>Tribunal administratif : si désaccord persistant</li>
+          </ul>
+        </article>
+
+        <article className="glass card-top-line mt-5 p-6">
+          <h3 className="font-display text-lg text-navy">4️⃣ Procédure de redressement / liquidation</h3>
+          <p className="mt-2 text-sm text-navy/80">
+            En procédure collective, les pénalités fiscales sont des créances <strong>chirographaires</strong> et
+            sont traitées comme les autres dettes (déclaration au passif). En cas de plan de continuation : étalées
+            sur 10 ans max. En liquidation : éteintes par la clôture pour insuffisance d&apos;actif.
+          </p>
+        </article>
+      </section>
+
+      {/* Conseils */}
+      <div className="mt-12 rounded-2xl border border-bleu/30 bg-bleu/5 p-6">
+        <h2 className="font-display text-lg text-bleu-fonce">Conseils pratiques</h2>
+        <ul className="mt-3 space-y-2 text-sm text-navy/80">
+          <li>✓ Ne laissez jamais une mise en demeure sans réponse — l&apos;inaction est interprétée comme une reconnaissance</li>
+          <li>✓ Demandez systématiquement la remise gracieuse en amont d&apos;un échéancier — c&apos;est gratuit et confidentiel</li>
+          <li>✓ Conservez tous les courriers, accusés de réception, copies d&apos;écran (preuve en cas de contestation)</li>
+          <li>✓ Le conciliateur fiscal départemental est gratuit et obtient un accord dans plus de 50 % des cas</li>
+          <li>✓ Si vous êtes en procédure : ne payez pas avant le mandataire (sinon paiement préférentiel annulable)</li>
+        </ul>
+      </div>
+
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link href="/faq/urssaf-impayee" className="rounded-full border border-navy/15 bg-white/80 px-4 py-2 text-sm text-navy/80 hover:bg-white">
+          FAQ URSSAF (équivalent social)
+        </Link>
+        <Link href="/courriers" className="rounded-full border border-navy/15 bg-white/80 px-4 py-2 text-sm text-navy/80 hover:bg-white">
+          Modèles de courriers
+        </Link>
+        <Link href="/outils/calendrier-fiscal" className="rounded-full border border-navy/15 bg-white/80 px-4 py-2 text-sm text-navy/80 hover:bg-white">
+          Calendrier fiscal
+        </Link>
+      </div>
+
+      <p className="mt-12 text-xs text-navy/50">
+        Sources : Code général des impôts (CGI) art. 1727 à 1729 ; Livre des procédures fiscales (LPF) art. L247
+        et R196-1 ; impots.gouv.fr ; jurisprudence Conseil d&apos;État sur la caractérisation des manœuvres et
+        manquements délibérés.
+      </p>
+    </section>
+  );
+}

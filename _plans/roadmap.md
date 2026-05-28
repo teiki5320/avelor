@@ -152,6 +152,12 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **Page Obligations du dirigeant** : 6 obligations à faire + 6 à ne pas faire, références légales et sanctions
 - [x] **Mentions légales** + **Politique RGPD** : compliance complète, conforme RGPD
 - [x] **Robots noindex** sur /fiche/[token] : fiches personnelles non indexées
+- [x] **Adresses précises Tribunaux de commerce** : 101 dpts (TC + TAE réforme 2025 + TJ Alsace-Moselle + tribunaux mixtes DOM)
+- [x] **Adresses précises URSSAF départementales** : 101 dpts + CGSS DOM + CSSM Mayotte
+- [x] **Page Pénalités fiscales** : barème complet (intérêts, majorations 10/40/80 %, manœuvres) + voies de remise
+- [x] **Page Médiation vs conciliation** : différences entre médiation crédit/entreprises, mandat ad hoc, conciliation
+- [x] **Page Accessibilité** : déclaration RGAA, limitations, voies de recours
+- [x] **CSS print enrichi** : @page A4, marges, mode économie d'encre, anti-orphelins
 - [x] **Téléphones DDFiP locaux** : 99/101 numéros directs (2 conservent le 0 809 401 401)
 - [x] **Numéros Bâtonniers et Chambres notaires départementales** : 101 chambres notaires avec téléphones directs ; bâtonniers avec adresses (téléphones non publiés sur l'annuaire récap CNB)
 
