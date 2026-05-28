@@ -88,6 +88,61 @@ const SECTIONS: Section[] = [
       'LPF art. L267 (dettes fiscales) ; CSS art. L244-1 (dettes sociales)',
     ],
   },
+  {
+    icone: '🛡️',
+    titre: "Risques juridiques supplémentaires : à connaître pour éviter les pièges",
+    intro:
+      "Au-delà des sanctions principales, plusieurs mécanismes peu connus peuvent vous exposer personnellement. Les anticiper est la meilleure façon de les neutraliser — et la plupart sont évitables avec quelques précautions simples.",
+    points: [
+      {
+        label: 'Recouvrement personnel URSSAF (art. L243-6-2 CSS)',
+        valeur:
+          "En cas de manœuvres frauduleuses OU d'inobservation grave et répétée du paiement des cotisations sociales, le dirigeant peut être condamné solidairement avec la société. Exemples typiques : déclarations délibérément minorées, non-paiement systématique des cotisations sur plusieurs trimestres consécutifs. Une simple difficulté ponctuelle (même répétée) ne suffit pas : il faut une volonté manifeste de se soustraire.",
+      },
+      {
+        label: 'Période suspecte — 18 mois avant cessation des paiements (art. L632-1 à L632-3 C. com.)',
+        valeur:
+          "Le tribunal fixe une date de cessation des paiements ; les actes des 18 mois précédents peuvent être annulés. NULLITÉS DE DROIT (automatiques) : paiement anticipé d'une dette, dation en paiement (céder un bien à la place d'un paiement), constitution d'une sûreté pour une dette antérieure non échue. NULLITÉS FACULTATIVES (à l'appréciation du juge) : actes ayant gravement aggravé la situation — vente à prix dérisoire, donation, paiement préférentiel d'un créancier amical. Le mandataire peut faire annuler ces actes pour récupérer des fonds.",
+      },
+      {
+        label: 'Confusion de patrimoine — extension de procédure (art. L621-2 C. com.)',
+        valeur:
+          "Si la justice constate une confusion entre votre patrimoine personnel et celui de la société (compte mixte, dépenses perso payées par la société, flux financiers anormaux), la procédure collective peut être ÉTENDUE à d'autres sociétés du groupe, voire à votre patrimoine personnel. C'est l'un des rares mécanismes capables de faire tomber les protections classiques — y compris, dans certains cas, la protection de la résidence principale de l'EIRL ou de l'entrepreneur individuel.",
+      },
+      {
+        label: 'Privilèges des créanciers en liquidation — l\'ordre de paiement',
+        valeur:
+          "À savoir si vous êtes vous-même créancier de votre société (compte courant d'associé, apports) : (1) super-privilège des salaires (AGS), (2) frais de justice de la procédure, (3) privilège fiscal et social (Trésor + URSSAF), (4) créances garanties par sûreté, (5) créances chirographaires (sans garantie). Vos apports et comptes courants associés passent en DERNIER : il est très rare qu'ils soient remboursés. Ce n'est pas une injustice — c'est la règle légale.",
+      },
+      {
+        label: 'Casier judiciaire B2 / B3 — conséquences professionnelles à long terme',
+        valeur:
+          "Faillite personnelle, interdiction de gérer et banqueroute sont inscrites au bulletin n°2 du casier judiciaire. Le B2 est consultable par : employeurs publics, organismes de protection sociale, certaines professions réglementées (avocat, notaire, expert-comptable, médecin, agent immobilier, etc.). Durée d'inscription : 10 à 15 ans selon la peine. Conséquence concrète : impossibilité d'exercer certaines professions futures. Le B3 (votre exemplaire, demandable gratuitement) ne contient que les condamnations les plus lourdes.",
+      },
+      {
+        label: 'CRPC (Comparution sur Reconnaissance Préalable de Culpabilité) — en cas de banqueroute',
+        valeur:
+          "Si vous êtes poursuivi pour banqueroute, le procureur peut vous proposer une CRPC (le « plaider-coupable » à la française). Vous reconnaissez les faits ; en échange, la peine proposée ne peut dépasser la moitié de la peine encourue. L'assistance d'un avocat est OBLIGATOIRE. Avantage : procédure plus rapide, peine plus faible, moins d'exposition médiatique. À discuter sérieusement avec votre avocat — c'est souvent la meilleure option quand les faits sont matériellement établis.",
+      },
+    ],
+    actions: [
+      "Évitez de payer un créancier « amical » avant les autres dans les 18 mois précédant une cessation potentielle",
+      "Tenez vos comptes professionnels et personnels strictement séparés (jamais de carte société pour des dépenses perso)",
+      "Si l'URSSAF est massivement impayée, échelonnez tout de suite — c'est la trace écrite de la bonne foi",
+      "En cas de poursuite pénale, ne refusez pas la CRPC par principe : faites évaluer l'option par votre avocat",
+      "Demandez gratuitement votre bulletin n°3 du casier (casier-judiciaire.justice.gouv.fr) pour savoir ce qui y figure",
+    ],
+    sources: [
+      'CSS art. L243-6-2 (recouvrement personnel URSSAF)',
+      'C. com. art. L632-1 à L632-3 (période suspecte)',
+      'C. com. art. L621-2 (extension pour confusion de patrimoine)',
+      'C. com. art. L641-13 (ordre des créanciers en liquidation)',
+      'Code de procédure pénale art. 775 (bulletin n°2) ; art. 495-7 et s. (CRPC)',
+    ],
+    liens: [
+      { label: 'Demande de bulletin n°3', url: 'https://casier-judiciaire.justice.gouv.fr' },
+    ],
+  },
 ];
 
 export default function BlocConsequencesPerso() {
@@ -99,7 +154,7 @@ export default function BlocConsequencesPerso() {
       soustitre="Fichiers BDF, cotation, responsabilité — sources officielles"
     >
       <p className="mb-4 text-sm text-navy/80">
-        Trois mécanismes peuvent affecter durablement votre patrimoine,
+        Plusieurs mécanismes peuvent affecter durablement votre patrimoine,
         votre capacité à emprunter ou à gérer une entreprise. Les
         connaître permet de les anticiper — et le plus souvent, de les
         éviter.

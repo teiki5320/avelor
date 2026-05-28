@@ -1,6 +1,6 @@
 import data from '@/data/organismes.json';
 import type { Reponses } from './types';
-import type { SectorInfo } from './secteur';
+import type { SectorInfo, Secteur } from './secteur';
 
 interface OrganismeLocal {
   nom: string;
