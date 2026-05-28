@@ -34,8 +34,34 @@ export interface SectorInfo {
   soutien?: { nom: string; description: string; telephone?: string; site?: string };
   conseilsSpecifiques: string[];
   chambre: 'CCI' | 'CMA' | 'CA';
+  /** Caisses de retraite professionnelles spécifiques (libéral / santé). */
+  caissesRetraite?: CaisseRetraite[];
+  /** Ordres professionnels et cellules d'aide aux confrères en difficulté. */
+  ordresProfessionnels?: OrdreProfessionnel[];
   /** Niveau de tension du secteur (utilisé pour modérer les attentes du dirigeant). */
   santeSecteur?: SanteSecteur;
+}
+
+export interface CaisseRetraite {
+  /** Profession concernée (libellé court, ex: "Médecin", "Avocat"). */
+  profession: string;
+  /** Sigle de la caisse (ex: "CARMF"). */
+  caisse: string;
+  /** Téléphone de contact action sociale. */
+  telephone: string;
+  /** URL du site officiel. */
+  site: string;
+}
+
+export interface OrdreProfessionnel {
+  /** Profession (libellé court). */
+  profession: string;
+  /** Nom complet de l'ordre. */
+  nom: string;
+  telephone: string;
+  site: string;
+  /** Précision utile (ex: « cellule d'aide aux confrères »). */
+  note?: string;
 }
 
 export interface SanteSecteur {
@@ -244,26 +270,38 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   },
   liberal: {
     label: 'Professions libérales',
-    cotisationOrg: 'URSSAF (+ CIPAV pour certaines professions)',
+    cotisationOrg: 'URSSAF (+ CIPAV / CNBF / CRPCEN / CAVEC selon profession)',
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'UNAPL', role: 'Union Nationale des Professions Libérales', site: 'https://www.unapl.fr' },
     ],
     aidesSpecifiques: [
-      { nom: 'CIPAV · Action sociale', description: 'Aide financière d\'urgence pour professions libérales affiliées à la CIPAV.', site: 'https://www.cipav.fr', badge: 'Si affilié CIPAV' },
+      { nom: 'CIPAV · Action sociale', description: 'Aide financière d\'urgence pour professions libérales affiliées à la CIPAV.', site: 'https://www.lacipav.fr', badge: 'Si affilié CIPAV' },
       { nom: 'Fonds de solidarité libéral', description: 'Aides spécifiques via les ordres professionnels (avocats, médecins, architectes…).', badge: 'Selon profession' },
     ],
     conseilsSpecifiques: [
       'Contactez votre Ordre professionnel — beaucoup proposent une aide confidentielle',
-      'La CIPAV (si vous y êtes affilié) a un fonds d\'action sociale',
+      'Votre caisse de retraite (CIPAV, CNBF, CRPCEN, CAVEC, CAVP…) dispose d\'un fonds d\'action sociale',
       'Les professions libérales ont accès au mandat ad hoc comme toute entreprise',
     ],
     chambre: 'CCI',
+    caissesRetraite: [
+      { profession: 'Avocat', caisse: 'CNBF', telephone: '01 42 21 32 30', site: 'https://www.cnbf.fr' },
+      { profession: 'Notaire', caisse: 'CRPCEN', telephone: '01 40 26 14 25', site: 'https://www.crpcen.fr' },
+      { profession: 'Expert-comptable', caisse: 'CAVEC', telephone: '01 80 49 25 25', site: 'https://www.cavec.fr' },
+      { profession: 'Architecte', caisse: 'CIPAV', telephone: '0 820 04 12 04', site: 'https://www.lacipav.fr' },
+      { profession: 'Profession libérale autre', caisse: 'CIPAV', telephone: '0 820 04 12 04', site: 'https://www.lacipav.fr' },
+    ],
+    ordresProfessionnels: [
+      { profession: 'Avocat', nom: 'Conseil National des Barreaux', telephone: '01 53 30 85 60', site: 'https://www.cnb.avocat.fr', note: 'Cellules d\'aide confidentielles au barreau' },
+      { profession: 'Notaire', nom: 'Conseil Supérieur du Notariat', telephone: '01 44 90 30 00', site: 'https://www.notaires.fr' },
+      { profession: 'Expert-comptable', nom: 'Ordre des Experts-Comptables', telephone: '01 44 15 60 00', site: 'https://www.experts-comptables.fr', note: 'Cellule d\'accompagnement confraternel gratuite' },
+    ],
   },
   sante: {
     label: 'Santé',
-    cotisationOrg: 'URSSAF (+ CARMF/CARPIMKO selon profession)',
+    cotisationOrg: 'URSSAF (+ CARMF / CARPIMKO / CAVP / CARCDSF / CARPV selon profession)',
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
@@ -277,9 +315,21 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     conseilsSpecifiques: [
       'Contactez votre Ordre en priorité — ils ont un devoir d\'entraide',
       'La continuité des soins aux patients doit être organisée même en difficulté',
-      'Votre caisse de retraite (CARMF, CARPIMKO…) propose une action sociale',
+      'Votre caisse de retraite (CARMF, CARPIMKO, CAVP, CARCDSF, CARPV…) propose une action sociale',
     ],
     chambre: 'CCI',
+    caissesRetraite: [
+      { profession: 'Médecin', caisse: 'CARMF', telephone: '01 40 68 32 00', site: 'https://www.carmf.fr' },
+      { profession: 'Pharmacien', caisse: 'CAVP', telephone: '01 42 66 90 37', site: 'https://www.cavp.fr' },
+      { profession: 'Dentiste', caisse: 'CARCDSF', telephone: '01 40 55 42 02', site: 'https://www.carcdsf.fr' },
+      { profession: 'Sage-femme', caisse: 'CARCDSF', telephone: '01 40 55 42 02', site: 'https://www.carcdsf.fr' },
+      { profession: 'Vétérinaire', caisse: 'CARPV', telephone: '01 44 51 71 50', site: 'https://www.carpv.fr' },
+      { profession: 'Auxiliaire médical (kiné, infirmier)', caisse: 'CARPIMKO', telephone: '01 40 55 42 50', site: 'https://www.carpimko.com' },
+    ],
+    ordresProfessionnels: [
+      { profession: 'Médecin', nom: 'Conseil National de l\'Ordre des Médecins', telephone: '01 53 89 32 00', site: 'https://www.conseil-national.medecin.fr', note: 'Cellule d\'aide aux confrères en difficulté' },
+      { profession: 'Pharmacien', nom: 'Ordre National des Pharmaciens', telephone: '01 56 21 34 34', site: 'https://www.ordre.pharmacien.fr' },
+    ],
   },
   industrie: {
     label: 'Industrie',
