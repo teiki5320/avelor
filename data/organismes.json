@@ -6949,6 +6949,586 @@
       "site": "https://www.conciliateurs.fr"
     }
   },
+  "975": {
+    "code": "975",
+    "nom": "Saint-Pierre-et-Miquelon",
+    "chefLieu": "Saint-Pierre",
+    "tribunal": {
+      "nom": "Tribunal de commerce de Saint-Pierre",
+      "type": "Tribunal mixte de commerce (TMC)",
+      "adresse": "Saint-Pierre",
+      "site": "https://www.tribunal-de-commerce.fr"
+    },
+    "cci": {
+      "nom": "CACIMA Saint-Pierre-et-Miquelon",
+      "type": "Chambre d'Agriculture, de Commerce, d'Industrie, de Métiers et de l'Artisanat",
+      "adresse": "Saint-Pierre",
+      "site": "https://www.cacima.fr"
+    },
+    "urssaf": {
+      "nom": "Caisse de Prévoyance Sociale (CPS) de Saint-Pierre-et-Miquelon",
+      "type": "Organisme de sécurité sociale local (régime sui generis)",
+      "telephone": "05 08 41 47 00",
+      "site": "https://www.cps.spm.fr"
+    },
+    "cps": {
+      "nom": "Caisse de Prévoyance Sociale (CPS)",
+      "type": "Sécurité sociale locale (cotisations + santé + retraite)",
+      "telephone": "05 08 41 47 00",
+      "site": "https://www.cps.spm.fr"
+    },
+    "sie": {
+      "nom": "Service des impôts de Saint-Pierre-et-Miquelon",
+      "type": "Direction des Services Fiscaux",
+      "adresse": "Saint-Pierre",
+      "site": "https://www.impots.gouv.fr"
+    },
+    "banqueDeFrance": {
+      "nom": "IEDOM Saint-Pierre-et-Miquelon",
+      "type": "Institut d'Émission des Départements d'Outre-Mer (équivalent Banque de France)",
+      "site": "https://www.iedom.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Outre-mer",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Saint-Pierre-et-Miquelon",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
+    },
+    "dreets": {
+      "nom": "Service du Travail, de l'Emploi et de la Formation Professionnelle (STEFP)",
+      "type": "Équivalent DREETS — collectivité de SPM",
+      "site": "https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr"
+    },
+    "ddfip": {
+      "nom": "Direction des Services Fiscaux de Saint-Pierre-et-Miquelon (CCSF)",
+      "type": "Services fiscaux locaux",
+      "adresse": "Saint-Pierre",
+      "site": "https://www.impots.gouv.fr/contacts"
+    },
+    "cma": {
+      "nom": "CACIMA · Section Métiers",
+      "type": "Chambre des Métiers et de l'Artisanat (intégrée à la CACIMA)",
+      "adresse": "Saint-Pierre",
+      "site": "https://www.cacima.fr"
+    },
+    "prefecture": {
+      "nom": "Préfecture de Saint-Pierre-et-Miquelon",
+      "type": "Préfecture (CRP, aides État)",
+      "adresse": "Saint-Pierre",
+      "site": "https://www.saint-pierre-et-miquelon.gouv.fr"
+    },
+    "pointJustice": {
+      "nom": "Point-Justice de Saint-Pierre",
+      "type": "Accès au droit gratuit",
+      "site": "https://www.justice.fr"
+    },
+    "carsat": {
+      "nom": "CPS Saint-Pierre-et-Miquelon · Action sanitaire et sociale",
+      "type": "Action sanitaire et sociale (CPS locale)",
+      "telephone": "05 08 41 47 00",
+      "site": "https://www.cps.spm.fr"
+    },
+    "conciliateur": {
+      "nom": "Conciliateur de justice de Saint-Pierre-et-Miquelon",
+      "type": "Règlement amiable gratuit",
+      "adresse": "Mairie de Saint-Pierre",
+      "site": "https://www.conciliateurs.fr"
+    }
+  },
+  "977": {
+    "code": "977",
+    "nom": "Saint-Barthélemy",
+    "chefLieu": "Gustavia",
+    "tribunal": {
+      "nom": "Tribunal mixte de commerce de Basse-Terre (compétent pour Saint-Barthélemy)",
+      "type": "Tribunal mixte de commerce",
+      "adresse": "Basse-Terre (Guadeloupe)",
+      "site": "https://www.tribunal-de-commerce.fr"
+    },
+    "cci": {
+      "nom": "CEM Saint-Barthélemy",
+      "type": "Chambre Économique Multiprofessionnelle (équivalent CCI)",
+      "adresse": "Gustavia",
+      "site": "https://www.cem-stbarth.com"
+    },
+    "urssaf": {
+      "nom": "CGSS Guadeloupe (compétente pour Saint-Barthélemy)",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 971",
+      "site": "https://www.cgss-guadeloupe.fr"
+    },
+    "cgss": {
+      "nom": "CGSS Guadeloupe (compétente pour Saint-Barthélemy)",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 971",
+      "site": "https://www.cgss-guadeloupe.fr"
+    },
+    "sie": {
+      "nom": "Service fiscal de Saint-Barthélemy",
+      "type": "SIE (compétence fiscale propre de la collectivité)",
+      "adresse": "Gustavia",
+      "site": "https://www.collectivite-saintbarthelemy.fr"
+    },
+    "banqueDeFrance": {
+      "nom": "IEDOM Antilles-Guyane",
+      "type": "Institut d'Émission des Départements d'Outre-Mer (équivalent Banque de France)",
+      "site": "https://www.iedom.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Antilles-Guyane",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Antilles-Guyane",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
+    },
+    "dreets": {
+      "nom": "DEETS Guadeloupe (compétente pour Saint-Barthélemy)",
+      "type": "Direction de l'Économie, de l'Emploi, du Travail et des Solidarités",
+      "site": "https://dreets.gouv.fr"
+    },
+    "ddfip": {
+      "nom": "Service fiscal de Saint-Barthélemy (CCSF)",
+      "type": "Services fiscaux locaux",
+      "adresse": "Gustavia",
+      "site": "https://www.impots.gouv.fr/contacts"
+    },
+    "cma": {
+      "nom": "CEM · Section Artisanat",
+      "type": "Chambre des Métiers (intégrée à la CEM)",
+      "adresse": "Gustavia",
+      "site": "https://www.cem-stbarth.com"
+    },
+    "prefecture": {
+      "nom": "Préfecture déléguée de Saint-Barthélemy et Saint-Martin",
+      "type": "Préfecture déléguée (rattachée à la Guadeloupe)",
+      "adresse": "Gustavia",
+      "site": "https://www.saint-barth-saint-martin.gouv.fr"
+    },
+    "pointJustice": {
+      "nom": "Point-Justice de Saint-Barthélemy",
+      "type": "Accès au droit gratuit",
+      "site": "https://www.justice.fr"
+    },
+    "carsat": {
+      "nom": "CGSS Guadeloupe",
+      "type": "Action sanitaire et sociale",
+      "telephone": "3960",
+      "site": "https://www.cgss-guadeloupe.fr"
+    },
+    "conciliateur": {
+      "nom": "Conciliateur de justice de Saint-Barthélemy",
+      "type": "Règlement amiable gratuit",
+      "adresse": "Mairie de Gustavia",
+      "site": "https://www.conciliateurs.fr"
+    }
+  },
+  "978": {
+    "code": "978",
+    "nom": "Saint-Martin",
+    "chefLieu": "Marigot",
+    "tribunal": {
+      "nom": "Tribunal mixte de commerce de Basse-Terre (compétent pour Saint-Martin)",
+      "type": "Tribunal mixte de commerce",
+      "adresse": "Basse-Terre (Guadeloupe)",
+      "site": "https://www.tribunal-de-commerce.fr"
+    },
+    "cci": {
+      "nom": "CCISM Saint-Martin",
+      "type": "Chambre Consulaire Interprofessionnelle de Saint-Martin",
+      "adresse": "Marigot",
+      "site": "https://www.ccism.com"
+    },
+    "urssaf": {
+      "nom": "CGSS Guadeloupe (compétente pour Saint-Martin)",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 971",
+      "site": "https://www.cgss-guadeloupe.fr"
+    },
+    "cgss": {
+      "nom": "CGSS Guadeloupe (compétente pour Saint-Martin)",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 971",
+      "site": "https://www.cgss-guadeloupe.fr"
+    },
+    "sie": {
+      "nom": "Service fiscal de Saint-Martin",
+      "type": "SIE (compétence fiscale propre de la collectivité)",
+      "adresse": "Marigot",
+      "site": "https://www.com-saint-martin.fr"
+    },
+    "banqueDeFrance": {
+      "nom": "IEDOM Antilles-Guyane",
+      "type": "Institut d'Émission des Départements d'Outre-Mer (équivalent Banque de France)",
+      "site": "https://www.iedom.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Antilles-Guyane",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Antilles-Guyane",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
+    },
+    "dreets": {
+      "nom": "DEETS Guadeloupe (compétente pour Saint-Martin)",
+      "type": "Direction de l'Économie, de l'Emploi, du Travail et des Solidarités",
+      "site": "https://dreets.gouv.fr"
+    },
+    "ddfip": {
+      "nom": "Service fiscal de Saint-Martin (CCSF)",
+      "type": "Services fiscaux locaux",
+      "adresse": "Marigot",
+      "site": "https://www.impots.gouv.fr/contacts"
+    },
+    "cma": {
+      "nom": "CCISM · Section Artisanat",
+      "type": "Chambre des Métiers (intégrée à la CCISM)",
+      "adresse": "Marigot",
+      "site": "https://www.ccism.com"
+    },
+    "prefecture": {
+      "nom": "Préfecture déléguée de Saint-Barthélemy et Saint-Martin",
+      "type": "Préfecture déléguée (rattachée à la Guadeloupe)",
+      "adresse": "Marigot",
+      "site": "https://www.saint-barth-saint-martin.gouv.fr"
+    },
+    "pointJustice": {
+      "nom": "Point-Justice de Saint-Martin",
+      "type": "Accès au droit gratuit",
+      "site": "https://www.justice.fr"
+    },
+    "carsat": {
+      "nom": "CGSS Guadeloupe",
+      "type": "Action sanitaire et sociale",
+      "telephone": "3960",
+      "site": "https://www.cgss-guadeloupe.fr"
+    },
+    "conciliateur": {
+      "nom": "Conciliateur de justice de Saint-Martin",
+      "type": "Règlement amiable gratuit",
+      "adresse": "Mairie de Marigot",
+      "site": "https://www.conciliateurs.fr"
+    }
+  },
+  "986": {
+    "code": "986",
+    "nom": "Wallis-et-Futuna",
+    "chefLieu": "Mata-Utu",
+    "tribunal": {
+      "nom": "Tribunal de première instance de Mata-Utu (compétence commerciale)",
+      "type": "Tribunal de première instance · chambre commerciale",
+      "adresse": "Mata-Utu",
+      "site": "https://www.justice.fr"
+    },
+    "cci": {
+      "nom": "Service de l'Économie Rurale et de la Pêche (SERP) de Wallis-et-Futuna",
+      "type": "Pas de CCI · l'Administration supérieure assure les fonctions économiques",
+      "adresse": "Mata-Utu",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "urssaf": {
+      "nom": "Caisse de Prévoyance Sociale (CPS) de Wallis-et-Futuna",
+      "type": "Organisme de sécurité sociale local (régime sui generis)",
+      "telephone": "+681 72 25 25",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "cps": {
+      "nom": "Caisse de Prévoyance Sociale (CPS) de Wallis-et-Futuna",
+      "type": "Sécurité sociale locale (cotisations + santé + retraite)",
+      "telephone": "+681 72 25 25",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "sie": {
+      "nom": "Service des Impôts de Wallis-et-Futuna",
+      "type": "Service fiscal du territoire",
+      "adresse": "Mata-Utu",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "banqueDeFrance": {
+      "nom": "IEOM Wallis-et-Futuna",
+      "type": "Institut d'Émission d'Outre-Mer (équivalent Banque de France pour le Pacifique)",
+      "site": "https://www.ieom.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Outre-mer",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Wallis-et-Futuna",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
+    },
+    "dreets": {
+      "nom": "Service de l'Inspection du Travail et des Affaires Sociales (SITAS)",
+      "type": "Équivalent DREETS — Administration supérieure",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "ddfip": {
+      "nom": "Service des Impôts de Wallis-et-Futuna (CCSF locale)",
+      "type": "Services fiscaux locaux",
+      "adresse": "Mata-Utu",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "cma": {
+      "nom": "SERP · Section Artisanat",
+      "type": "Service de l'Économie Rurale et de la Pêche (fonctions consulaires)",
+      "adresse": "Mata-Utu",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "prefecture": {
+      "nom": "Administration Supérieure de Wallis-et-Futuna",
+      "type": "Administration supérieure (l'Administrateur Supérieur tient lieu de préfet)",
+      "adresse": "Mata-Utu",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "pointJustice": {
+      "nom": "Point-Justice de Mata-Utu",
+      "type": "Accès au droit gratuit",
+      "site": "https://www.justice.fr"
+    },
+    "carsat": {
+      "nom": "CPS Wallis-et-Futuna · Action sanitaire et sociale",
+      "type": "Action sanitaire et sociale (CPS locale)",
+      "telephone": "+681 72 25 25",
+      "site": "https://www.wallis-et-futuna.gouv.fr"
+    },
+    "conciliateur": {
+      "nom": "Conciliateur de justice de Wallis-et-Futuna",
+      "type": "Règlement amiable gratuit",
+      "adresse": "Mata-Utu",
+      "site": "https://www.conciliateurs.fr"
+    }
+  },
+  "987": {
+    "code": "987",
+    "nom": "Polynésie française",
+    "chefLieu": "Papeete",
+    "tribunal": {
+      "nom": "Tribunal mixte de commerce de Papeete",
+      "type": "Tribunal mixte de commerce",
+      "adresse": "Papeete (Tahiti)",
+      "site": "https://www.tribunal-de-commerce.fr"
+    },
+    "cci": {
+      "nom": "CCISM Polynésie française",
+      "type": "Chambre de Commerce, d'Industrie, des Services et des Métiers",
+      "adresse": "Papeete",
+      "telephone": "+689 40 47 27 00",
+      "site": "https://www.ccism.pf"
+    },
+    "urssaf": {
+      "nom": "CPS Polynésie française (Caisse de Prévoyance Sociale)",
+      "type": "Organisme de sécurité sociale local (régime sui generis)",
+      "telephone": "+689 40 41 68 42",
+      "site": "https://www.cps.pf"
+    },
+    "cps": {
+      "nom": "CPS Polynésie française (Caisse de Prévoyance Sociale)",
+      "type": "Sécurité sociale locale (cotisations + santé + retraite)",
+      "telephone": "+689 40 41 68 42",
+      "site": "https://www.cps.pf"
+    },
+    "sie": {
+      "nom": "Direction des Impôts et des Contributions Publiques (DICP)",
+      "type": "Service fiscal de la Polynésie française",
+      "adresse": "Papeete",
+      "telephone": "+689 40 46 13 13",
+      "site": "https://www.impot-polynesie.gov.pf"
+    },
+    "banqueDeFrance": {
+      "nom": "IEOM Polynésie française",
+      "type": "Institut d'Émission d'Outre-Mer (équivalent Banque de France pour le Pacifique)",
+      "site": "https://www.ieom.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Outre-mer",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Polynésie française",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
+    },
+    "dreets": {
+      "nom": "Direction du Travail de Polynésie française",
+      "type": "Équivalent DREETS",
+      "site": "https://www.service-public.pf"
+    },
+    "ddfip": {
+      "nom": "DICP Polynésie française (CCSF locale)",
+      "type": "Services fiscaux locaux",
+      "adresse": "Papeete",
+      "site": "https://www.impot-polynesie.gov.pf"
+    },
+    "cma": {
+      "nom": "CCISM · Section Métiers",
+      "type": "Chambre des Métiers (intégrée à la CCISM)",
+      "adresse": "Papeete",
+      "site": "https://www.ccism.pf"
+    },
+    "prefecture": {
+      "nom": "Haut-Commissariat de la République en Polynésie française",
+      "type": "Haut-Commissariat (équivalent préfecture)",
+      "adresse": "Papeete",
+      "site": "https://www.polynesie-francaise.pref.gouv.fr"
+    },
+    "pointJustice": {
+      "nom": "Point-Justice de Papeete",
+      "type": "Accès au droit gratuit",
+      "site": "https://www.justice.fr"
+    },
+    "carsat": {
+      "nom": "CPS Polynésie française · Action sanitaire et sociale",
+      "type": "Action sanitaire et sociale (CPS locale)",
+      "telephone": "+689 40 41 68 42",
+      "site": "https://www.cps.pf"
+    },
+    "conciliateur": {
+      "nom": "Conciliateur de justice de Polynésie française",
+      "type": "Règlement amiable gratuit",
+      "adresse": "Mairie de Papeete",
+      "site": "https://www.conciliateurs.fr"
+    }
+  },
+  "988": {
+    "code": "988",
+    "nom": "Nouvelle-Calédonie",
+    "chefLieu": "Nouméa",
+    "tribunal": {
+      "nom": "Tribunal mixte de commerce de Nouméa",
+      "type": "Tribunal mixte de commerce",
+      "adresse": "Nouméa",
+      "site": "https://www.tribunal-de-commerce.fr"
+    },
+    "cci": {
+      "nom": "CCI Nouvelle-Calédonie",
+      "type": "Chambre de Commerce et d'Industrie",
+      "adresse": "Nouméa",
+      "telephone": "+687 24 31 00",
+      "site": "https://www.cci.nc"
+    },
+    "urssaf": {
+      "nom": "CAFAT Nouvelle-Calédonie",
+      "type": "Caisse de Compensation des Prestations Familiales, des Accidents du Travail et de Prévoyance des Travailleurs de la Nouvelle-Calédonie",
+      "telephone": "+687 25 58 00",
+      "site": "https://www.cafat.nc"
+    },
+    "cafat": {
+      "nom": "CAFAT Nouvelle-Calédonie",
+      "type": "Sécurité sociale locale (cotisations + prestations sociales)",
+      "telephone": "+687 25 58 00",
+      "site": "https://www.cafat.nc"
+    },
+    "sie": {
+      "nom": "Direction des Services Fiscaux de Nouvelle-Calédonie (DSF)",
+      "type": "Service fiscal de la Nouvelle-Calédonie",
+      "adresse": "Nouméa",
+      "telephone": "+687 25 75 00",
+      "site": "https://dsf.gouv.nc"
+    },
+    "banqueDeFrance": {
+      "nom": "IEOM Nouvelle-Calédonie",
+      "type": "Institut d'Émission d'Outre-Mer (équivalent Banque de France pour le Pacifique)",
+      "site": "https://www.ieom.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Outre-mer",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Nouvelle-Calédonie",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
+    },
+    "dreets": {
+      "nom": "Direction du Travail, de l'Emploi et de la Formation Professionnelle (DTE-NC)",
+      "type": "Équivalent DREETS",
+      "site": "https://dtenc.gouv.nc"
+    },
+    "ddfip": {
+      "nom": "DSF Nouvelle-Calédonie (CCSF locale)",
+      "type": "Services fiscaux locaux",
+      "adresse": "Nouméa",
+      "site": "https://dsf.gouv.nc"
+    },
+    "cma": {
+      "nom": "CMA Nouvelle-Calédonie",
+      "type": "Chambre de Métiers et de l'Artisanat",
+      "adresse": "Nouméa",
+      "site": "https://www.cma.nc"
+    },
+    "prefecture": {
+      "nom": "Haut-Commissariat de la République en Nouvelle-Calédonie",
+      "type": "Haut-Commissariat (équivalent préfecture)",
+      "adresse": "Nouméa",
+      "site": "https://www.nouvelle-caledonie.gouv.fr"
+    },
+    "pointJustice": {
+      "nom": "Point-Justice de Nouméa",
+      "type": "Accès au droit gratuit",
+      "site": "https://www.justice.fr"
+    },
+    "carsat": {
+      "nom": "CAFAT · Action sanitaire et sociale",
+      "type": "Action sanitaire et sociale (CAFAT locale)",
+      "telephone": "+687 25 58 00",
+      "site": "https://www.cafat.nc"
+    },
+    "conciliateur": {
+      "nom": "Conciliateur de justice de Nouvelle-Calédonie",
+      "type": "Règlement amiable gratuit",
+      "adresse": "Mairie de Nouméa",
+      "site": "https://www.conciliateurs.fr"
+    }
+  },
   "01": {
     "code": "01",
     "nom": "Ain",
