@@ -10,6 +10,11 @@ export type MontantDettes = 'moins-10k' | '10k-50k' | '50k-200k' | '200k-1m' | '
 export type AgeDirigeant = 'moins-25' | '25-50' | '50-60' | 'plus-60';
 export type Franchise = 'oui' | 'non';
 export type AntecedentsBodacc = 'oui' | 'non' | 'ne-sais-pas';
+export type PgeEnCours = 'oui' | 'non' | 'ne-sais-pas';
+export type Rqth = 'oui' | 'non';
+export type ConjointStatut = 'salarie' | 'collaborateur' | 'associe' | 'aucun' | 'sans-conjoint';
+export type CoGerants = 'oui' | 'non' | 'sans-objet';
+export type Saisonnalite = 'oui' | 'non';
 
 export interface Reponses {
   situation: Situation;
@@ -25,6 +30,11 @@ export interface Reponses {
   ageDirigeant?: AgeDirigeant;
   franchise?: Franchise;
   antecedents?: AntecedentsBodacc;
+  pgeEnCours?: PgeEnCours;
+  rqth?: Rqth;
+  conjointStatut?: ConjointStatut;
+  coGerants?: CoGerants;
+  saisonnalite?: Saisonnalite;
 }
 
 export interface CompanyData {

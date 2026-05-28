@@ -197,5 +197,47 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
     });
   }
 
+  // 11. PGE en cours : très prioritaire (à traiter avant procédure)
+  if (reponses.pgeEnCours === 'oui') {
+    cards.push({
+      id: 'pge',
+      icone: '💳',
+      label: 'PGE en cours',
+      valeur: 'A restructurer',
+      detail: 'Médiation BdF, étalement 10 ans',
+      tone: 'jaune',
+      scrollTo: 'echeances',
+      score: 8,
+    });
+  }
+
+  // 12. Conjoint impliqué : protection à vérifier
+  if (reponses.conjointStatut && reponses.conjointStatut !== 'sans-conjoint' && reponses.conjointStatut !== 'aucun') {
+    cards.push({
+      id: 'conjoint',
+      icone: '👫',
+      label: 'Conjoint',
+      valeur: reponses.conjointStatut === 'salarie' ? 'Salarié·e (AGS)' : reponses.conjointStatut === 'collaborateur' ? 'Collaborateur·rice' : 'Associé·e',
+      detail: 'Protections et risques spécifiques',
+      tone: 'jaune',
+      scrollTo: 'patrimoine',
+      score: 5,
+    });
+  }
+
+  // 13. Co-gérance : risque solidarité fiscale/sociale
+  if (reponses.coGerants === 'oui') {
+    cards.push({
+      id: 'cogerance',
+      icone: '⚖️',
+      label: 'Co-gérance',
+      valeur: 'Solidarité',
+      detail: 'L267 LPF + L243-6-2 CSS',
+      tone: 'jaune',
+      scrollTo: 'patrimoine',
+      score: 6,
+    });
+  }
+
   return cards.sort((a, b) => b.score - a.score).slice(0, 4);
 }

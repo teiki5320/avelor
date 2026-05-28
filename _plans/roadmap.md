@@ -1,7 +1,7 @@
 # 🗺️ Avelor — Roadmap
 
-> Dernière mise à jour : **2026-05-27**
-> Statut global : **production · couverture ~78%**
+> Dernière mise à jour : **2026-05-28**
+> Statut global : **production · couverture ~82%**
 
 ## 🎯 Vision
 
@@ -14,7 +14,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 #### Infrastructure & qualité
 - [x] Plateforme en ligne sur avelor.vercel.app, déployée en continu via Vercel et la branche main
 - [x] Stack stable : Next.js 14.2.35 + React 18 + framer-motion 11 (LazyMotion)
-- [x] 173 tests Vitest verts (lib/__tests__)
+- [x] 188 tests Vitest verts (lib/__tests__)
 - [x] GitHub Actions CI : lint → build → test
 - [x] ESLint configuré (next/core-web-vitals)
 - [x] Validation Zod sur toutes les routes API (fiche, send-link, rappels)
@@ -33,7 +33,10 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] Plausible analytics conditionnel (NEXT_PUBLIC_PLAUSIBLE_DOMAIN)
 
 #### Questionnaire & fiche
-- [x] Questionnaire en 12 étapes (8 base + 4 optionnelles : montant dettes, âge, franchise, antécédents)
+- [x] Questionnaire en 17 étapes (8 base + 9 optionnelles : montant dettes, âge, franchise, antécédents, **PGE en cours, RQTH, statut conjoint, co-gérants, saisonnalité**)
+- [x] **Moteur stratégie** distingue micro / EI / EIRL / société (`getFormeDetail`) — PRP priorisé pour les personnes physiques uniquement
+- [x] **Scoring stratégie enrichi** : PGE en cours favorise restructuration amiable et pénalise sauvegarde (perte garantie État) ; antécédents BODACC poussent vers liquidation / rebond accompagné
+- [x] **Mode « perdu » radical** (`ModePerdu`) : 3 infos max si moral === 'perdu' (qui appeler / 1 action semaine / soutien APESA-3114). Bouton « Voir tout » pour ouvrir la fiche complète.
 - [x] Fiche personnalisée organisée en dashboard avec 4 cartes prioritaires adaptatives (parmi 10) et 6 sections thématiques
 - [x] Croisement avec les annonces BODACC pour détecter les incohérences
 - [x] Stratégie sur 5 axes (restructurer, sauvegarder, céder, liquider, rebondir) avec scoring
@@ -51,6 +54,12 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **BlocCreditBail** : continuation/restitution/indemnité, ASF
 - [x] **BlocSCOP** : reprise par les salariés, CG SCOP, SOCODEN
 - [x] **BlocReclassement** : CSP, PSE, congé reclassement, France Travail
+- [x] **BlocAPLDR** : Activité Partielle Longue Durée Rebond (loi 14 fév. 2025, décret 11 avril 2025) — successeur APLD Covid
+- [x] **BlocPeriodeSuspecte** (autonome) : nullités de droit / facultatives (L632-1 à L632-3), action paulienne (1341-2 C. civ.)
+- [x] **BlocConjointCollaborateur** : 3 statuts légaux (salarié, collaborateur, associé) + statut de fait (Cass. com. 2023) + co-gérance solidaire
+- [x] **BlocPGE enrichi** : procédure pas-à-pas en 5 étapes pour la restructuration via Médiation du crédit
+- [x] **BlocAidesEtat enrichi** : FSE+ 2021-2027, FNE-Formation (en restructuration)
+- [x] **BlocAides enrichi** : section dédiée « Leviers de trésorerie immédiats » — affacturage / escompte / Dailly / mobilisation créances publiques distingués
 
 #### Données enrichies
 - [x] **107 territoires couverts** (96 dpts métropole + 11 DOM-TOM)
@@ -90,26 +99,26 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 #### 🔴 CRITIQUE — bloque la qualité du conseil
 - [ ] **Tester le site en navigateur réel** (mobile + desktop) sur tout le parcours
-- [ ] **Mode "perdu" radical** : limiter à 3 infos max (qui appeler / 1 action semaine / "on reprend demain")
-- [ ] **Migrer le rate limiting vers Upstash Redis** (in-memory inefficace sur Vercel serverless)
+- [x] **Mode "perdu" radical** : 3 infos max (qui appeler / 1 action semaine / soutien APESA-3114) — composant `ModePerdu`
+- [ ] **Migrer le rate limiting vers Upstash Redis** (in-memory inefficace sur Vercel serverless) — nécessite config externe
 - [ ] **Préparer la mise à jour des barèmes 2026** quand publiés (AGS 92 736€, ATI 26,30€/j, aide juridictionnelle)
 
 #### 🟠 IMPORTANT — manques fonctionnels identifiés
-- [ ] **Question "PGE en cours"** dans le questionnaire (oui/non)
-- [ ] **Question "RQTH/handicap"** dans le questionnaire (consentement explicite RGPD)
-- [ ] **Question "Conjoint salarié/collaborateur"** dans le questionnaire
-- [ ] **Question "Co-gérants"** dans le questionnaire (solidarité fiscale)
-- [ ] **Question "Saisonnalité"** dans le questionnaire (impact activité partielle)
-- [ ] **Activité Partielle Longue Durée Rebond (APLD-R)** : nouveau dispositif 2025 — créer bloc
-- [ ] **Médiation PGE détaillée** : protocole de place, étalement 10 ans
-- [ ] **FSE+ (Fonds Social Européen 2021-2027)** : aides restructurations sociales
-- [ ] **AFE → Bpifrance Création** : corriger la référence AFE (fusionné depuis 2019)
+- [x] **Question "PGE en cours"** dans le questionnaire (oui/non/ne-sais-pas) + scoring stratégie + carte prioritaire + plan d'action
+- [x] **Question "RQTH/handicap"** dans le questionnaire (consentement explicite RGPD) + priorisation AGEFIPH/Cap Emploi + ajout Comète France
+- [x] **Question "Conjoint salarié/collaborateur"** dans le questionnaire + bloc dédié (3 statuts + statut de fait)
+- [x] **Question "Co-gérants"** dans le questionnaire (solidarité fiscale L267 LPF / L243-6-2 CSS) + carte prioritaire
+- [x] **Question "Saisonnalité"** dans le questionnaire — conditionne l'affichage APLD-R
+- [x] **Activité Partielle Longue Durée Rebond (APLD-R)** : nouveau bloc autonome (loi 14 fév. 2025, décret 11 avril 2025)
+- [x] **Médiation PGE détaillée** : protocole de place, étalement 10 ans + procédure pas-à-pas en 5 étapes
+- [x] **FSE+ (Fonds Social Européen 2021-2027)** : ajouté à BlocAidesEtat (employeurs)
+- [x] **AFE → Bpifrance Création** : vérifié, pas de référence obsolète dans le code (l'AFE mentionnée dans BlocReclassement est l'Allocation de Fin d'Études, sans rapport)
+- [x] **Distinguer EI/EIRL/Micro** dans le moteur stratégie (`getFormeDetail` → micro/ei/eirl/societe)
+- [x] **Bloc Période suspecte** autonome (`BlocPeriodeSuspecte` — nullités de droit, nullités facultatives, action paulienne)
+- [ ] **Bloc CSP autonome** si BlocReclassement reste léger (CSP déjà bien couvert dans BlocReclassement, sépration non prioritaire)
 - [ ] **Adresses postales précises** dans data/organismes.json (actuellement chef-lieu générique)
 - [ ] **Téléphones DDFiP locaux** (numéro 0 809 401 401 partout, à affiner)
 - [ ] **Numéros Bâtonniers et Chambres notaires départementales** (sites génériques actuellement)
-- [ ] **Distinguer EI/EIRL/Micro** dans le moteur stratégie (procédures différentes)
-- [ ] **Bloc CSP autonome** si BlocReclassement reste léger
-- [ ] **Bloc Période suspecte** autonome (actuellement dans BlocConsequencesPerso)
 - [ ] **Tests E2E Playwright** (parcours complet SIRET → fiche)
 - [ ] **Plus de tests** : composants React, routes API, bodacc edge cases
 
@@ -119,14 +128,14 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [ ] **Syndicats locaux HCR** : UMIH délégations départementales (siège national actuellement)
 - [ ] **OPCO par NAF** : AKTO (HCR), ATLAS, OCAPIAT (agri), AFDAS, UNIFORMATION, OPCO EP, OPCO MOBILITÉS
 - [ ] **Plateformes (VTC, livreurs)** : statut spécifique, DGCCRF, registre VTC, FNAUT-VTC
-- [ ] **Antécédents BODACC** : exploiter `reponses.antecedents` pour adapter la stratégie (récidive = plus dur)
+- [x] **Antécédents BODACC** : exploités dans le scoring stratégie (récidive → liquidation + rebond accompagné)
 - [ ] **Crédit-bail / leasing matériel** : déjà BlocCreditBail, enrichir avec exemples
 - [ ] **Garantie BPI/OSEO** : règles négociation si emprunt garanti
-- [ ] **Action paulienne (1341-2 C. civ.)** : ajout dans BlocConsequencesPerso (mentionnée brièvement)
+- [x] **Action paulienne (1341-2 C. civ.)** : couverte dans le nouveau BlocPeriodeSuspecte (encart dédié)
 - [ ] **Salariés en arrêt longue durée** : impact AGS différent
-- [ ] **Calcul automatique seuil AGS** par salarié (calculateur affiché mais ne somme pas)
+- [x] **Calcul automatique seuil AGS** : vérification — l'outil licenciement somme déjà via `total.totalIndem` / `total.totalAgs` / `total.totalDepasse`
 - [ ] **Stocks importants** : valorisation possible si commerçant
-- [ ] **Affacturage / escompte** : distinguer du crédit fournisseur
+- [x] **Affacturage / escompte** : nouvelle section dédiée dans BlocAides (affacturage, escompte, Dailly, mobilisation créances publiques BPI)
 
 #### 🟢 NICE-TO-HAVE — backlog
 - [ ] Notifications email automatiques avant échéances clés (45 jours cessation, audience, contestation URSSAF)
@@ -139,7 +148,8 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [ ] **Question "Nationalité hors UE"** : impact titre de séjour (Passeport Talent retiré si liquidation)
 - [ ] **OFII / aide régularisation** : pour dirigeants étrangers
 - [ ] **Vetos-Entraide** : équivalent APESA pour vétérinaires
-- [ ] **CarePoint, Comète France** : reconversion handicap
+- [x] **Comète France** : ajouté pour les profils RQTH (reconversion handicap)
+- [ ] **CarePoint** : reconversion handicap
 
 ### 💡 Idées (long terme)
 
@@ -156,31 +166,35 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 | Catégorie | Couverture |
 |---|---|
-| Procédures collectives métropole | 80% |
+| Procédures collectives métropole | 85% (avec BlocPeriodeSuspecte + APLD-R + distinction micro/EI/EIRL) |
 | Organismes départementaux | 90% (après enrichissement métropole) |
-| Aides État (CCSF/CODEFI/CIRI/CRP) | 90% |
+| Aides État (CCSF/CODEFI/CIRI/CRP/FSE+/FNE) | 95% |
 | Aides personnelles dirigeant (ATI/ARCE/etc.) | 80% |
+| Trésorerie immédiate (affacturage/escompte/Dailly) | 85% (nouvelle section dédiée) |
 | Soutien psy | 80% (avec CMP/CUMP/SOS Suicide) |
-| Risques juridiques dirigeant | 90% (avec L243-6-2, période suspecte, CRPC) |
+| Risques juridiques dirigeant | 95% (L243-6-2, période suspecte dédiée, action paulienne, CRPC, co-gérance) |
 | Santé/libéral (caisses + ordres) | 75% |
-| Réseaux spécifiques (femmes/jeunes/seniors/handicap) | 70% |
+| Statut conjoint (salarié/collaborateur/associé/de fait) | 90% (nouveau bloc dédié) |
+| Réseaux spécifiques (femmes/jeunes/seniors/handicap) | 75% (avec Comète France et priorisation RQTH) |
 | HCR/BTP/Agriculture | 75% |
-| Pêche | 70% (nouveau) |
+| Pêche | 70% |
 | Transport spécialisé (VTC) | 30% |
 | Franchise | 70% (avec BlocFranchise) |
 | DOM-TOM | 75% (avec 11 territoires couverts) |
 | Plateformes (Uber, Deliveroo) | 10% |
+| PGE (restructuration + médiation) | 95% (procédure pas-à-pas) |
 
-**Couverture globale : ~78%**
+**Couverture globale : ~82%**
 
 ## 📈 Métriques
 
 - 96 départements métropolitains + 11 DOM-TOM = **107 territoires**
 - **~20 organismes par département** (vs 6 initialement)
 - **15 secteurs** (vs 14)
-- **28 blocs fiche** (vs 20)
-- **12 questions** dans le questionnaire (vs 8)
-- **173 tests** Vitest (vs 0 au départ)
+- **31 blocs fiche** (vs 20 au départ — 28 → 31 avec APLDR/PeriodeSuspecte/ConjointCollaborateur)
+- **17 questions** dans le questionnaire (vs 8 au départ — +PGE, RQTH, Conjoint, Co-gérants, Saisonnalité)
+- **188 tests** Vitest (vs 0 au départ — +15 sur PGE, antécédents, formes EI, schemas)
 - **12 courriers** types
 - **9 calculateurs** officiels
 - **4 annuaires** officiels
+- **13 cartes prioritaires** scorables (top 4 affichées) — ajout PGE, conjoint, cogerance

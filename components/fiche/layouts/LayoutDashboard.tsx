@@ -29,6 +29,10 @@ import BlocFranchise from '@/components/fiche/BlocFranchise';
 import BlocCreditBail from '@/components/fiche/BlocCreditBail';
 import BlocSCOP from '@/components/fiche/BlocSCOP';
 import BlocReclassement from '@/components/fiche/BlocReclassement';
+import BlocAPLDR from '@/components/fiche/BlocAPLDR';
+import BlocPeriodeSuspecte from '@/components/fiche/BlocPeriodeSuspecte';
+import BlocConjointCollaborateur from '@/components/fiche/BlocConjointCollaborateur';
+import ModePerdu from '@/components/fiche/ModePerdu';
 import IdentiteHero from '@/components/fiche/dashboard/IdentiteHero';
 import PriorityCards from '@/components/fiche/dashboard/PriorityCards';
 import QuickLinks from '@/components/fiche/dashboard/QuickLinks';
@@ -66,6 +70,9 @@ export default function LayoutDashboard({
   return (
     <FicheProvider value={{ reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
     <div className="space-y-6">
+      {/* Mode perdu : remplace temporairement le détail si moral === 'perdu' */}
+      <ModePerdu />
+
       {/* ───── Top : identité + cartes prioritaires dynamiques ───── */}
       <IdentiteHero />
       <PriorityCards />
@@ -99,6 +106,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="procedure">
               <BlocProcedureRecommandee />
+            </div>
+            <div data-section="apldr">
+              <BlocAPLDR />
             </div>
           </>
         }
@@ -159,6 +169,9 @@ export default function LayoutDashboard({
             <div data-section="timeline">
               <BlocTimeline />
             </div>
+            <div data-section="periode-suspecte">
+              <BlocPeriodeSuspecte />
+            </div>
             <div data-section="rappels">
               <BlocRappels />
             </div>
@@ -182,6 +195,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="caution">
               <BlocAuditCaution />
+            </div>
+            <div data-section="conjoint">
+              <BlocConjointCollaborateur />
             </div>
           </>
         }

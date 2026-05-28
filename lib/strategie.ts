@@ -17,6 +17,23 @@ export function isEI(forme: string): boolean {
   return /individuel|ei|eirl|micro|auto/i.test(forme);
 }
 
+export type FormeJuridiqueDetail = 'micro' | 'ei' | 'eirl' | 'societe';
+
+/**
+ * Sous-classifie la forme juridique pour affiner le moteur stratégie.
+ * - micro : régime micro-entreprise (CA limité, franchise TVA, statut allégé)
+ * - eirl : entrepreneur individuel à responsabilité limitée (patrimoine affecté, statut éteint depuis 2022 mais EIRL existants conservent leur statut)
+ * - ei : entrepreneur individuel classique (statut unifié depuis loi du 14 fév. 2022 — séparation patrimoine pro/perso de droit)
+ * - societe : SARL, SAS, SA, SCI, SNC… (personne morale, responsabilité limitée par défaut)
+ */
+export function getFormeDetail(forme: string): FormeJuridiqueDetail {
+  const f = (forme || '').toLowerCase();
+  if (/micro|auto[\s-]?entrepren/i.test(f)) return 'micro';
+  if (/eirl/i.test(f)) return 'eirl';
+  if (/(?:^|[\s,])(ei|entrepreneur individuel|profession lib[ée]rale ind|artisan|commer[çc]ant)(?:[\s,]|$)/i.test(f) || /individuel/.test(f)) return 'ei';
+  return 'societe';
+}
+
 /**
  * Détermine la juridiction compétente en cas de procédure collective.
  *
@@ -46,6 +63,7 @@ export function getJuridictionLabel(company: CompanyData, ville?: string): strin
 export function computeScores(r: Reponses, c: CompanyData): Record<Axe, number> {
   const age = getCompanyAge(c.dateCreation) ?? 0;
   const ei = isEI(c.formeJuridique);
+  const forme = getFormeDetail(c.formeJuridique);
 
   const scores: Record<Axe, number> = {
     restructurer: 0,
@@ -60,11 +78,15 @@ export function computeScores(r: Reponses, c: CompanyData): Record<Axe, number> 
   if (r.moral === 'combatif') scores.restructurer += 2;
   if (age >= 5) scores.restructurer += 1;
   if (r.vente === 'non') scores.restructurer += 2;
+  // PGE en cours = forte indication restructuration amiable (médiation crédit)
+  if (r.pgeEnCours === 'oui' && r.situation !== 'assignation') scores.restructurer += 2;
 
   if (r.situation === 'tresorie') scores.sauvegarder += 2;
   if (r.situation === 'prevention') scores.sauvegarder += 1;
   if (r.effectif === 'salaries') scores.sauvegarder += 1;
   if (r.vente === 'non') scores.sauvegarder += 1;
+  // La sauvegarde fait perdre la garantie d'État du PGE — pénalise légèrement
+  if (r.pgeEnCours === 'oui') scores.sauvegarder -= 1;
 
   if (r.vente === 'oui') scores.ceder += 4;
   if (r.vente === 'peut-etre') scores.ceder += 2;
@@ -78,10 +100,16 @@ export function computeScores(r: Reponses, c: CompanyData): Record<Axe, number> 
   if (r.vente === 'non' && r.moral === 'perdu') scores.liquider += 1;
   if (r.caution === 'non') scores.liquider += 1;
   if (r.effectif === 'independant' && r.moral !== 'combatif') scores.liquider += 1;
+  // Antécédents : récidive = sauvegarde / RJ déjà tentés, liquidation devient plus probable
+  if (r.antecedents === 'oui') scores.liquider += 1;
 
-  if (ei && r.effectif === 'independant') scores.rebondir += 2;
+  // Rebondir : PRP réservé aux EI/micro/EIRL sans salariés ni gros actifs
+  const eligiblePRP = (forme === 'micro' || forme === 'ei' || forme === 'eirl') && r.effectif === 'independant';
+  if (eligiblePRP) scores.rebondir += 3;
   if (ei && r.situation === 'redressement') scores.rebondir += 2;
-  if (r.moral === 'perdu') scores.rebondir += 1;
+  if (r.moral === 'perdu' && eligiblePRP) scores.rebondir += 1;
+  // Antécédent : si liquidation antérieure, le rebond passe par 60 000 Rebonds plutôt que PRP
+  if (r.antecedents === 'oui' && eligiblePRP) scores.rebondir += 1;
 
   return scores;
 }
@@ -110,7 +138,9 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
         etapes: [
           'Prévisionnel de trésorerie à 6 mois avec votre expert-comptable',
           'Demandes de délais : URSSAF, SIE, bailleur, fournisseurs (courriers Avelor)',
-          'Saisine médiation du crédit si tension bancaire',
+          r.pgeEnCours === 'oui'
+            ? 'PGE en cours : demande de restructuration auprès de votre banque, puis Médiation du crédit (3414) — étalement jusqu\'à 10 ans, sans perte de la garantie d\'État'
+            : 'Saisine médiation du crédit si tension bancaire',
           'Audit des coûts fixes — éliminer le non-essentiel',
           'RDV CCI / CIP pour un diagnostic externe gratuit',
         ],
@@ -211,20 +241,30 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
         ],
       };
 
-    case 'rebondir':
+    case 'rebondir': {
+      const forme = getFormeDetail(c.formeJuridique);
+      const labelForme =
+        forme === 'micro' ? 'micro-entrepreneur'
+        : forme === 'eirl' ? 'EIRL (statut figé depuis 2022 mais procédure ouverte)'
+        : forme === 'ei' ? 'entrepreneur individuel'
+        : 'entrepreneur';
+      const pourquoi = [
+        'La procédure est rapide (4 mois) et allégée.',
+        "Pas d'inventaire complexe, pas de mandataire liquidateur désigné.",
+        'Vous pouvez recréer une activité dès la clôture.',
+      ];
+      if (r.antecedents === 'oui') {
+        pourquoi.push('Vous avez déjà connu une procédure : le rebond accompagné (60 000 Rebonds, mentor) est crucial pour ne pas répéter les mêmes pièges.');
+      }
       return {
         axe,
         score,
         titre: 'Rétablissement professionnel (PRP) puis rebond',
         verdict:
-          "Vous êtes entrepreneur individuel sans (ou peu de) salariés ni gros actifs. Le rétablissement professionnel efface les dettes professionnelles en 4 mois, sans liquidation longue, pour vous permettre de repartir.",
-        pourquoi: [
-          'La procédure est rapide (4 mois) et allégée.',
-          "Pas d'inventaire complexe, pas de mandataire liquidateur désigné.",
-          'Vous pouvez recréer une activité dès la clôture.',
-        ],
+          `Vous êtes ${labelForme} sans (ou peu de) salariés ni gros actifs. Le rétablissement professionnel efface les dettes professionnelles en 4 mois, sans liquidation longue, pour vous permettre de repartir.`,
+        pourquoi,
         etapes: [
-          "Vérifier l'éligibilité : EI, aucun salarié, actifs < 15 000 €",
+          "Vérifier l'éligibilité : EI/micro/EIRL, aucun salarié, actifs < 15 000 €",
           `Dépôt de la requête au ${juridictionLabel}`,
           "Désignation d'un mandataire qui examine votre situation",
           'Clôture : effacement des dettes professionnelles',
@@ -233,8 +273,10 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
         alternatives: [
           'Si actifs > 15 000 € : liquidation judiciaire simplifiée',
           'Si salariés : redressement classique',
+          forme === 'micro' ? 'Micro : radiation simple si CA nul depuis 2 ans (formulaire P2-P4 unifié)' : 'EI société personne morale : pas d\'option, la procédure collective s\'impose',
         ],
       };
+    }
   }
 }
 

@@ -5,6 +5,7 @@ import type {
   Reponses, Situation, Probleme, Effectif, Moral,
   Caution, RegimeMatrimonial, Patrimoine, VenteEnvisagee,
   MontantDettes, AgeDirigeant, Franchise, AntecedentsBodacc,
+  PgeEnCours, Rqth, ConjointStatut, CoGerants, Saisonnalite,
 } from '@/lib/types';
 
 interface Choice<T extends string> {
@@ -97,7 +98,37 @@ const ANTECEDENTS: Choice<AntecedentsBodacc>[] = [
   { value: 'ne-sais-pas', label: 'Je ne suis pas sûr·e' },
 ];
 
-const TOTAL_SLIDES = 12;
+const PGE_EN_COURS: Choice<PgeEnCours>[] = [
+  { value: 'oui', label: 'Oui, j’ai un PGE en cours', hint: 'Prêt Garanti par l’État (Covid 2020-2021)' },
+  { value: 'non', label: 'Non, pas de PGE' },
+  { value: 'ne-sais-pas', label: 'Je ne sais pas' },
+];
+
+const RQTH: Choice<Rqth>[] = [
+  { value: 'oui', label: 'Oui, RQTH ou handicap reconnu', hint: 'Permet de mobiliser AGEFIPH, Cap Emploi, MDPH (consentement RGPD)' },
+  { value: 'non', label: 'Non / je préfère ne pas répondre' },
+];
+
+const CONJOINT: Choice<ConjointStatut>[] = [
+  { value: 'salarie', label: 'Mon conjoint·e est salarié·e de la société', hint: 'Statut conjoint salarié — protections licenciement éco' },
+  { value: 'collaborateur', label: 'Mon conjoint·e est conjoint collaborateur', hint: 'Inscrit au RCS/RM, cotise sans rémunération' },
+  { value: 'associe', label: 'Mon conjoint·e est associé·e', hint: 'Détient des parts sociales' },
+  { value: 'aucun', label: 'Mon conjoint·e n’a pas de rôle dans la société' },
+  { value: 'sans-conjoint', label: 'Je n’ai pas de conjoint·e' },
+];
+
+const CO_GERANTS: Choice<CoGerants>[] = [
+  { value: 'oui', label: 'Oui, il y a plusieurs gérants/dirigeants', hint: 'Solidarité fiscale et sociale possible (art. L267 LPF, L243-6-2 CSS)' },
+  { value: 'non', label: 'Non, je suis seul·e' },
+  { value: 'sans-objet', label: 'Sans objet (entrepreneur individuel)' },
+];
+
+const SAISONNALITE: Choice<Saisonnalite>[] = [
+  { value: 'oui', label: 'Oui, activité saisonnière', hint: 'HCR, agri, tourisme — impacte activité partielle et trésorerie' },
+  { value: 'non', label: 'Non, activité régulière toute l’année' },
+];
+
+const TOTAL_SLIDES = 17;
 
 interface Props {
   siret: string;
@@ -266,6 +297,41 @@ export default function Questionnaire({ siret }: Props) {
       subtitle: 'Sauvegarde, redressement ou liquidation — sur cette entreprise ou une autre.',
       key: 'antecedents',
       choices: ANTECEDENTS,
+      skippable: true,
+    },
+    {
+      title: 'Avez-vous un PGE en cours ?',
+      subtitle: 'Le Prêt Garanti par l’État pèse sur 30 % des défaillances 2024-2025.',
+      key: 'pgeEnCours',
+      choices: PGE_EN_COURS,
+      skippable: true,
+    },
+    {
+      title: 'Avez-vous une RQTH ou un handicap reconnu ?',
+      subtitle: 'Optionnel — sert à mobiliser AGEFIPH, Cap Emploi, MDPH. Donnée non partagée sans votre accord (RGPD).',
+      key: 'rqth',
+      choices: RQTH,
+      skippable: true,
+    },
+    {
+      title: 'Votre conjoint·e a-t-il un rôle dans la société ?',
+      subtitle: 'Statut conjoint salarié, collaborateur ou associé : protections et risques différents.',
+      key: 'conjointStatut',
+      choices: CONJOINT,
+      skippable: true,
+    },
+    {
+      title: 'Êtes-vous co-gérant ou seul à la tête ?',
+      subtitle: 'La pluralité de dirigeants déclenche une solidarité fiscale et sociale.',
+      key: 'coGerants',
+      choices: CO_GERANTS,
+      skippable: true,
+    },
+    {
+      title: 'Votre activité est-elle saisonnière ?',
+      subtitle: 'HCR, tourisme, agriculture, pêche — change les arbitrages activité partielle et trésorerie.',
+      key: 'saisonnalite',
+      choices: SAISONNALITE,
       skippable: true,
     },
   ];

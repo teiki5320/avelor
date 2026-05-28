@@ -9,7 +9,7 @@ Le dirigeant entre son SIRET, répond à un questionnaire, et reçoit une fiche 
 npm run dev      # Serveur local (port 3000)
 npm run build    # Build de production
 npm run lint     # ESLint (config: next/core-web-vitals)
-npm test         # Vitest (173 tests dans lib/__tests__/)
+npm test         # Vitest (188 tests dans lib/__tests__/)
 ```
 
 Déploiement automatique sur Vercel depuis la branche `main` → https://avelor.vercel.app
@@ -24,7 +24,7 @@ Déploiement automatique sur Vercel depuis la branche `main` → https://avelor.
 - **Email** : Resend (magic link pour retrouver sa fiche + rappels cron quotidiens)
 - **APIs externes** : INSEE Sirene (gouv.fr + INSEE fallback), BODACC, Google Places (avocats locaux), Infogreffe (signaux)
 - **Validation** : Zod (schémas dans `lib/schemas.ts`)
-- **Tests** : Vitest (173 tests, 14 fichiers)
+- **Tests** : Vitest (188 tests, 14 fichiers)
 - **CI** : GitHub Actions (lint → build → test)
 - **Rate limiting** : middleware in-memory (à passer Upstash en prod)
 - **PWA** : manifest.json + icônes 512/192/favicon
@@ -39,7 +39,7 @@ Voir `.env.example` — clés nécessaires en production :
 ```
 app/
   page.tsx                    # Home — saisie SIRET
-  questionnaire/              # 12 étapes (8 base + 4 optionnelles : montantDettes, ageDirigeant, franchise, antecedents)
+  questionnaire/              # 17 étapes (8 base + 9 optionnelles : montantDettes, ageDirigeant, franchise, antecedents, pgeEnCours, rqth, conjointStatut, coGerants, saisonnalite)
   fiche/[token]/              # Fiche personnalisée (dashboard, SSR)
   situation/[slug]/           # 4 pages informatives par situation
   courriers/[slug]/           # 12 modèles de courriers personnalisés
@@ -62,9 +62,10 @@ components/
     dashboard/                # IdentiteHero, PriorityCards (splitté), QuickLinks, SectionNav, StrategieHero
     layouts/LayoutDashboard   # Layout principal de la fiche (FicheProvider)
     BlocAccordeon.tsx         # Composant accordéon (aria-expanded/controls/region)
-    Bloc*.tsx                 # ~28 blocs (accordéons interactifs)
+    Bloc*.tsx                 # ~31 blocs (accordéons interactifs)
+    ModePerdu.tsx             # Carte radicale (3 infos max) si moral === 'perdu'
     ProgressTracker.tsx       # Suivi de progression (localStorage)
-  Questionnaire.tsx           # 12 slides
+  Questionnaire.tsx           # 17 slides (5 nouveaux : pgeEnCours, rqth, conjointStatut, coGerants, saisonnalite)
   SiretInput.tsx              # Input SIRET avec validation
   Nav.tsx                     # Navigation (focus trap, aria-current, Escape ferme menu)
   Background.tsx              # Animations blob framer-motion
@@ -73,8 +74,8 @@ components/
 
 lib/
   types.ts                    # Types partagés (Reponses, CompanyData, Rappel, etc.)
-  strategie.ts                # Moteur stratégie (5 axes) + getJuridiction() (TJ vs TC)
-  priorites.ts                # Scoring 10 cartes prioritaires
+  strategie.ts                # Moteur stratégie (5 axes) + getJuridiction() (TJ vs TC) + getFormeDetail() (micro/ei/eirl/societe)
+  priorites.ts                # Scoring 13 cartes prioritaires (top 4 sélectionnées)
   courriers.ts                # 12 courriers, personnalisation tone/situation
   secteur.ts                  # 15 secteurs (BTP, agri, HCR, santé, libéral, pêche…) + caisses retraite + ordres + CSP
   aidesRegionales.ts          # Aides régionales (13 régions + DOM)
@@ -89,7 +90,7 @@ lib/
   schemas.ts                  # Schémas Zod pour validation API
   hooks.ts                    # useLocalStorage
   FicheContext.tsx            # React Context pour la fiche (utilisé par 18 blocs)
-  __tests__/                  # 173 tests Vitest
+  __tests__/                  # 188 tests Vitest
 
 data/
   organismes.json             # 107 territoires (96 dpts + 11 DOM-TOM), ~20 organismes par dpt
@@ -126,19 +127,20 @@ vercel.json                   # Cron rappels quotidiens 7h
 
 ## Données clés
 
-- **Reponses** : 12 champs (situation, probleme, effectif, effectifDetail, moral, caution, regime, patrimoine, vente, montantDettes, ageDirigeant, franchise, antecedents)
+- **Reponses** : 17 champs (situation, probleme, effectif, effectifDetail, moral, caution, regime, patrimoine, vente, montantDettes, ageDirigeant, franchise, antecedents, **pgeEnCours, rqth, conjointStatut, coGerants, saisonnalite**)
 - **CompanyData** : données INSEE (siret, nom, formeJuridique, naf, dateCreation, effectif, adresse, codePostal, ville, departement, fetched)
-- **Stratégie** : 5 axes possibles avec scoring, chacun a titre/verdict/etapes/pourquoi/alternatives
-- **PriorityCards** : 10 cartes possibles, top 4 sélectionnées par scoring selon les réponses
-- **Blocs fiche** : ~28 blocs (Aides, Strategie, Checklist, PlanAction, Calendrier, Cessation45j, Trésorerie, Timeline, Rappels, ProtectionFamille, AuditCaution, Patrimoine, ConsequencesPerso, Aides, AidesEtat, Prescription, Organismes, CCSF, BailCommercial, Obligations, SanteSecteur, Soutien, Alertes, **PGE, Surendettement, Franchise, CreditBail, SCOP, Reclassement**)
+- **Stratégie** : 5 axes possibles avec scoring, chacun a titre/verdict/etapes/pourquoi/alternatives. Distingue micro/EI/EIRL/société (`getFormeDetail`). Exploite pgeEnCours et antecedents.
+- **PriorityCards** : 13 cartes possibles, top 4 sélectionnées par scoring selon les réponses (ajout : pge, conjoint, cogerance)
+- **Blocs fiche** : ~31 blocs (Aides, Strategie, Checklist, PlanAction, Calendrier, Cessation45j, Trésorerie, Timeline, Rappels, ProtectionFamille, AuditCaution, Patrimoine, ConsequencesPerso, Aides, AidesEtat, Prescription, Organismes, CCSF, BailCommercial, Obligations, SanteSecteur, Soutien, Alertes, PGE, Surendettement, Franchise, CreditBail, SCOP, Reclassement, **APLDR, PeriodeSuspecte, ConjointCollaborateur**)
+- **Mode perdu** : si moral === 'perdu', composant `ModePerdu` affiché en haut avec 3 infos seulement (qui appeler / action semaine / soutien). Bouton "Voir tout" pour ouvrir la fiche complète.
 - **Organismes par dpt** (data/organismes.json) : tribunal, cci, urssaf (ou cgss DOM), sie, banqueDeFrance, dreets, ddfip, cma, prefecture, pointJustice, carsat, conciliateur, ordreMedecins, ordreAvocats, chambreNotaires, ordrePharmaciens, urpsMedecins, urssafRegional, bge, initiativeFrance, franceActive, mdph, maisonJustice, solidaritePaysans (si agri), + DOM : cgss, bpiOutreMer, afd, ladom, cafat/cps/ieom (selon territoire)
 
 ## Couverture estimée
 
-- **~78% de la pertinence** pour les profils-types de dirigeants en difficulté
+- **~82% de la pertinence** pour les profils-types de dirigeants en difficulté
 - **107 territoires** couverts (96 départements + 11 DOM-TOM)
 - **15 secteurs** (agri, BTP, commerce, HCR, transport, industrie, finance, immobilier, libéral, santé, éducation, artisanat, information, **pêche**, autre)
-- **173 tests** verts (Vitest)
+- **188 tests** verts (Vitest)
 
 ## Roadmap
 

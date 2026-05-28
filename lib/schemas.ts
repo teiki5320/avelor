@@ -14,6 +14,11 @@ const reponsesSchema = z.object({
   ageDirigeant: z.enum(['moins-25', '25-50', '50-60', 'plus-60']).optional(),
   franchise: z.enum(['oui', 'non']).optional(),
   antecedents: z.enum(['oui', 'non', 'ne-sais-pas']).optional(),
+  pgeEnCours: z.enum(['oui', 'non', 'ne-sais-pas']).optional(),
+  rqth: z.enum(['oui', 'non']).optional(),
+  conjointStatut: z.enum(['salarie', 'collaborateur', 'associe', 'aucun', 'sans-conjoint']).optional(),
+  coGerants: z.enum(['oui', 'non', 'sans-objet']).optional(),
+  saisonnalite: z.enum(['oui', 'non']).optional(),
 }).passthrough();
 
 export const fichePayloadSchema = z.object({

@@ -39,6 +39,21 @@ function buildDefaultActions(r: Reponses, c: CompanyData, s: SectorInfo): Action
   if (r.probleme === 'fournisseurs') {
     actions.push({ id: 'fournisseur-lettre', texte: 'Écrire une lettre de demande de délai au fournisseur principal', done: false });
   }
+  if (r.pgeEnCours === 'oui') {
+    actions.push({ id: 'pge-restructure', texte: 'Demander à ma banque la restructuration du PGE (protocole de place — étalement 10 ans, garantie maintenue)', done: false });
+  }
+  if (r.conjointStatut === 'aucun') {
+    actions.push({ id: 'conjoint-statut', texte: 'Vérifier le statut de mon conjoint (loi du 2 août 2005 — risque de reconnaissance « collaborateur de fait »)', done: false });
+  }
+  if (r.conjointStatut === 'collaborateur') {
+    actions.push({ id: 'conjoint-duree', texte: 'Vérifier la durée du statut de conjoint collaborateur (limite 5 ans — loi du 14 fév. 2022)', done: false });
+  }
+  if (r.coGerants === 'oui') {
+    actions.push({ id: 'cogerance-pv', texte: 'Établir un PV de répartition des fonctions entre co-gérants (protection contre l\'action en comblement de passif)', done: false });
+  }
+  if (r.rqth === 'oui') {
+    actions.push({ id: 'rqth-agefiph', texte: 'Contacter l\'AGEFIPH ou Cap Emploi pour l\'aide à la création/reprise d\'activité spécifique RQTH', done: false });
+  }
 
   actions.push({ id: 'chambre', texte: `Prendre RDV avec la ${s.chambre}${dep ? ` (${dep})` : ''} — accompagnement gratuit`, done: false });
   if (s.syndicats.length > 0) {

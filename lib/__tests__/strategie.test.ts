@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isEI, computeScores, buildStrategie, resolveStrategie } from '../strategie';
+import { isEI, computeScores, buildStrategie, resolveStrategie, getFormeDetail } from '../strategie';
 import type { Reponses, CompanyData } from '../types';
 
 /* ─── Helpers ─── */
@@ -51,6 +51,32 @@ describe('isEI', () => {
   });
 });
 
+/* ─── getFormeDetail ─── */
+
+describe('getFormeDetail', () => {
+  it('classe les micro-entreprises', () => {
+    expect(getFormeDetail('Micro-entreprise')).toBe('micro');
+    expect(getFormeDetail('Auto-entrepreneur')).toBe('micro');
+    expect(getFormeDetail('Auto entrepreneur')).toBe('micro');
+  });
+
+  it('classe les EIRL', () => {
+    expect(getFormeDetail('EIRL')).toBe('eirl');
+  });
+
+  it('classe les EI classiques', () => {
+    expect(getFormeDetail('Entrepreneur individuel')).toBe('ei');
+    expect(getFormeDetail('EI')).toBe('ei');
+  });
+
+  it('classe les sociétés', () => {
+    expect(getFormeDetail('SARL')).toBe('societe');
+    expect(getFormeDetail('SAS')).toBe('societe');
+    expect(getFormeDetail('SA')).toBe('societe');
+    expect(getFormeDetail('SCI')).toBe('societe');
+  });
+});
+
 /* ─── computeScores ─── */
 
 describe('computeScores', () => {
@@ -97,6 +123,62 @@ describe('computeScores', () => {
   it('gère une date de création vide sans erreur', () => {
     const scores = computeScores(makeReponses(), makeCompany({ dateCreation: '' }));
     expect(scores.restructurer).toBeGreaterThanOrEqual(0);
+  });
+
+  it('PGE en cours augmente le score restructurer hors assignation', () => {
+    const sansPge = computeScores(
+      makeReponses({ situation: 'tresorie', moral: 'combatif' }),
+      makeCompany(),
+    );
+    const avecPge = computeScores(
+      makeReponses({ situation: 'tresorie', moral: 'combatif', pgeEnCours: 'oui' }),
+      makeCompany(),
+    );
+    expect(avecPge.restructurer).toBeGreaterThan(sansPge.restructurer);
+  });
+
+  it('PGE en cours pénalise légèrement sauvegarder (perte garantie État)', () => {
+    const sansPge = computeScores(
+      makeReponses({ situation: 'tresorie', moral: 'combatif' }),
+      makeCompany(),
+    );
+    const avecPge = computeScores(
+      makeReponses({ situation: 'tresorie', moral: 'combatif', pgeEnCours: 'oui' }),
+      makeCompany(),
+    );
+    expect(avecPge.sauvegarder).toBeLessThan(sansPge.sauvegarder);
+  });
+
+  it('antécédents = oui augmente liquider', () => {
+    const base = computeScores(
+      makeReponses({ situation: 'redressement', moral: 'epuise' }),
+      makeCompany(),
+    );
+    const recidive = computeScores(
+      makeReponses({ situation: 'redressement', moral: 'epuise', antecedents: 'oui' }),
+      makeCompany(),
+    );
+    expect(recidive.liquider).toBeGreaterThan(base.liquider);
+  });
+
+  it('rebondir privilégié pour micro-entreprise indépendante', () => {
+    const scores = computeScores(
+      makeReponses({ situation: 'redressement', effectif: 'independant', moral: 'perdu' }),
+      makeCompany({ formeJuridique: 'Micro-entreprise' }),
+    );
+    expect(scores.rebondir).toBeGreaterThanOrEqual(5);
+  });
+
+  it('rebondir non favorisé pour société classique', () => {
+    const ei = computeScores(
+      makeReponses({ situation: 'redressement', effectif: 'independant', moral: 'perdu' }),
+      makeCompany({ formeJuridique: 'Entrepreneur individuel' }),
+    );
+    const sarl = computeScores(
+      makeReponses({ situation: 'redressement', effectif: 'independant', moral: 'perdu' }),
+      makeCompany({ formeJuridique: 'SARL' }),
+    );
+    expect(ei.rebondir).toBeGreaterThan(sarl.rebondir);
   });
 });
 

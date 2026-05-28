@@ -117,6 +117,32 @@ export default function BlocAidesEtat() {
     });
   }
 
+  // FSE+ : restructurations sociales avec salariés
+  if (reponses.effectif === 'salaries') {
+    dispositifs.push({
+      cle: 'fseplus',
+      nom: 'FSE+ — Fonds Social Européen Plus (2021-2027)',
+      description:
+        "Cofinancement européen pour les actions de reclassement, formation et accompagnement des salariés lors de restructurations. Géré par les Régions (volet décentralisé) et la DGEFP (volet national). Mobilisable en complément d'un PSE ou d'un plan de reclassement.",
+      site: 'https://www.fse.gouv.fr',
+      badge: 'Cofinancement UE · jusqu\'à 60 %',
+      accent: 'bleu',
+    });
+  }
+
+  // FNE-Formation : restructuration formation collective
+  if (reponses.effectif === 'salaries' && (reponses.situation === 'tresorie' || reponses.situation === 'redressement')) {
+    dispositifs.push({
+      cle: 'fne',
+      nom: 'FNE-Formation',
+      description:
+        "Financement public de la formation des salariés pendant une baisse d'activité ou une restructuration. Cumulable avec activité partielle classique ou APLD-R. Demande déposée à l'OPCO via la téléprocédure.",
+      site: 'https://www.travail-emploi.gouv.fr/emploi-et-insertion/accompagnement-des-mutations-economiques/article/fne-formation',
+      badge: 'Maintien dans l\'emploi',
+      accent: 'vert',
+    });
+  }
+
   if (!dispositifs.length) return null;
 
   return (

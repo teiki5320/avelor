@@ -601,10 +601,11 @@ export function buildReseauxSpecifiques(
     });
   }
 
-  // ----- Handicap : toujours affiché (le questionnaire ne demande pas la RQTH)
+  // ----- Handicap : priorisé si RQTH déclarée, sinon affiché en réseau standard
+  const rqthDeclaree = reponses.rqth === 'oui';
   groupes.push({
     cle: 'reseaux-handicap',
-    titre: 'Handicap et accessibilité',
+    titre: rqthDeclaree ? 'Handicap et RQTH — vos interlocuteurs prioritaires' : 'Handicap et accessibilité',
     couleur: 'vert',
     icone: '♿',
     cartes: [
@@ -613,13 +614,13 @@ export function buildReseauxSpecifiques(
         type: 'Secteur privé · handicap au travail',
         telephone: '0 800 11 10 09',
         site: 'https://www.agefiph.fr',
-        badge: 'Aides dirigeant et salariés',
+        badge: rqthDeclaree ? 'Prioritaire pour vous' : 'Aides dirigeant et salariés',
       },
       {
         nom: 'Cap Emploi',
         type: 'Réseau spécialisé handicap',
         site: 'https://www.capemploi.com',
-        badge: 'Accompagnement gratuit',
+        badge: rqthDeclaree ? 'RDV gratuit recommandé' : 'Accompagnement gratuit',
       },
       {
         nom: 'FIPHFP',
@@ -633,6 +634,14 @@ export function buildReseauxSpecifiques(
         site: 'https://www.mdph.fr',
         badge: 'RQTH, AAH, PCH',
       },
+      ...(rqthDeclaree
+        ? [{
+            nom: 'Comète France',
+            type: 'Reconversion professionnelle après accident/maladie',
+            site: 'https://www.cometefrance.com',
+            badge: 'Reconversion adaptée',
+          }]
+        : []),
     ],
   });
 
