@@ -5,6 +5,7 @@ import Background from '@/components/Background';
 import Nav from '@/components/Nav';
 import Compteur from '@/components/Compteur';
 import LazyMotionProvider from '@/components/LazyMotionProvider';
+import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -73,6 +74,7 @@ export default function RootLayout({
         )}
       </head>
       <body>
+        <ServiceWorkerRegister />
         <LazyMotionProvider>
         <Background />
         <Nav />

@@ -5,7 +5,7 @@ import type {
   Reponses, Situation, Probleme, Effectif, Moral,
   Caution, RegimeMatrimonial, Patrimoine, VenteEnvisagee,
   MontantDettes, AgeDirigeant, Franchise, AntecedentsBodacc,
-  PgeEnCours, Rqth, ConjointStatut, CoGerants, Saisonnalite,
+  PgeEnCours, Rqth, ConjointStatut, CoGerants, Saisonnalite, Nationalite,
 } from '@/lib/types';
 
 interface Choice<T extends string> {
@@ -128,7 +128,13 @@ const SAISONNALITE: Choice<Saisonnalite>[] = [
   { value: 'non', label: 'Non, activité régulière toute l’année' },
 ];
 
-const TOTAL_SLIDES = 17;
+const NATIONALITE: Choice<Nationalite>[] = [
+  { value: 'fr-ue-eee-suisse', label: 'France / UE / EEE / Suisse', hint: 'Pas d’impact titre de séjour' },
+  { value: 'hors-ue', label: 'Hors UE', hint: 'Conséquences sur Passeport Talent, carte de séjour entrepreneur, OFII' },
+  { value: 'sans-reponse', label: 'Je préfère ne pas répondre', hint: 'Donnée non partagée sans votre accord (RGPD)' },
+];
+
+const TOTAL_SLIDES = 18;
 
 interface Props {
   siret: string;
@@ -332,6 +338,13 @@ export default function Questionnaire({ siret }: Props) {
       subtitle: 'HCR, tourisme, agriculture, pêche — change les arbitrages activité partielle et trésorerie.',
       key: 'saisonnalite',
       choices: SAISONNALITE,
+      skippable: true,
+    },
+    {
+      title: 'Quelle est votre nationalité ?',
+      subtitle: 'Impact spécifique pour les dirigeants hors UE (titre de séjour entrepreneur, Passeport Talent). Optionnel — RGPD.',
+      key: 'nationalite',
+      choices: NATIONALITE,
       skippable: true,
     },
   ];

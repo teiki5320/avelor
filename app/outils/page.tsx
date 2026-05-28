@@ -89,6 +89,14 @@ const OUTILS: Outil[] = [
       "Multiples sectoriels appliqués à votre EBE et CA. Fourchette pour préparer une cession.",
     source: 'Bpifrance, INSEE Esane',
   },
+  {
+    href: '/outils/stocks',
+    icone: '📦',
+    titre: 'Valorisation des stocks',
+    description:
+      "Estimez la valeur de réalisation de vos stocks selon la nature et la voie (amiable, RJ, liquidation, enchères).",
+    source: 'Pratique CNAJMJ / CSCPJ',
+  },
 ];
 
 const jsonLdBreadcrumb = {

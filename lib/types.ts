@@ -15,6 +15,7 @@ export type Rqth = 'oui' | 'non';
 export type ConjointStatut = 'salarie' | 'collaborateur' | 'associe' | 'aucun' | 'sans-conjoint';
 export type CoGerants = 'oui' | 'non' | 'sans-objet';
 export type Saisonnalite = 'oui' | 'non';
+export type Nationalite = 'fr-ue-eee-suisse' | 'hors-ue' | 'sans-reponse';
 
 export interface Reponses {
   situation: Situation;
@@ -35,6 +36,7 @@ export interface Reponses {
   conjointStatut?: ConjointStatut;
   coGerants?: CoGerants;
   saisonnalite?: Saisonnalite;
+  nationalite?: Nationalite;
 }
 
 export interface CompanyData {

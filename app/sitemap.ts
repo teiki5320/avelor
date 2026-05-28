@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/outils/licenciement',
     '/outils/prescription',
     '/outils/valorisation',
+    '/outils/stocks',
     '/annuaires',
     '/annuaires/ags',
     '/annuaires/tae',
@@ -40,6 +41,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/courriers',
     '/accompagnant',
     '/faq',
+    '/faq/urssaf-impayee',
+    '/faq/pge-en-difficulte',
+    '/faq/assignation-tribunal',
   ];
 
   return routes.map((route) => ({

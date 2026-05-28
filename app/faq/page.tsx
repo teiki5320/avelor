@@ -223,10 +223,37 @@ export default function FAQPage() {
         personnalisé.
       </p>
 
+      {/* FAQ ciblées par situation */}
+      <nav className="mt-8 rounded-2xl border border-bleu/30 bg-bleu/5 p-5" aria-label="FAQ ciblées">
+        <p className="text-sm font-medium text-bleu-fonce uppercase tracking-wide">
+          FAQ ciblées
+        </p>
+        <p className="mt-1 text-sm text-navy/70">
+          Réponses spécifiques à votre situation
+        </p>
+        <ul className="mt-3 grid gap-2 sm:grid-cols-3">
+          <li>
+            <Link href="/faq/urssaf-impayee" className="block rounded-lg bg-white/80 px-3 py-2 text-sm text-bleu-fonce hover:bg-white">
+              💼 URSSAF impayée
+            </Link>
+          </li>
+          <li>
+            <Link href="/faq/pge-en-difficulte" className="block rounded-lg bg-white/80 px-3 py-2 text-sm text-bleu-fonce hover:bg-white">
+              💳 PGE en difficulté
+            </Link>
+          </li>
+          <li>
+            <Link href="/faq/assignation-tribunal" className="block rounded-lg bg-white/80 px-3 py-2 text-sm text-bleu-fonce hover:bg-white">
+              ⚖️ Assignation au tribunal
+            </Link>
+          </li>
+        </ul>
+      </nav>
+
       {/* Sommaire */}
       <nav className="mt-8 glass-soft rounded-2xl p-5" aria-label="Sommaire FAQ">
         <p className="text-sm font-medium text-navy/50 uppercase tracking-wide">
-          Sommaire
+          Sommaire général
         </p>
         <ul className="mt-3 space-y-1.5">
           {SECTIONS.map((s) => (

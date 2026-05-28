@@ -19,6 +19,7 @@ const reponsesSchema = z.object({
   conjointStatut: z.enum(['salarie', 'collaborateur', 'associe', 'aucun', 'sans-conjoint']).optional(),
   coGerants: z.enum(['oui', 'non', 'sans-objet']).optional(),
   saisonnalite: z.enum(['oui', 'non']).optional(),
+  nationalite: z.enum(['fr-ue-eee-suisse', 'hors-ue', 'sans-reponse']).optional(),
 }).passthrough();
 
 export const fichePayloadSchema = z.object({

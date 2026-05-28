@@ -32,6 +32,11 @@ import BlocReclassement from '@/components/fiche/BlocReclassement';
 import BlocAPLDR from '@/components/fiche/BlocAPLDR';
 import BlocPeriodeSuspecte from '@/components/fiche/BlocPeriodeSuspecte';
 import BlocConjointCollaborateur from '@/components/fiche/BlocConjointCollaborateur';
+import BlocPlateformes from '@/components/fiche/BlocPlateformes';
+import BlocCSP from '@/components/fiche/BlocCSP';
+import BlocGarantieBPI from '@/components/fiche/BlocGarantieBPI';
+import BlocArretLongueDuree from '@/components/fiche/BlocArretLongueDuree';
+import BlocNationaliteSejour from '@/components/fiche/BlocNationaliteSejour';
 import ModePerdu from '@/components/fiche/ModePerdu';
 import IdentiteHero from '@/components/fiche/dashboard/IdentiteHero';
 import PriorityCards from '@/components/fiche/dashboard/PriorityCards';
@@ -120,6 +125,9 @@ export default function LayoutDashboard({
             <div data-section="reclassement">
               <BlocReclassement />
             </div>
+            <div data-section="csp">
+              <BlocCSP />
+            </div>
           </>
         }
       />
@@ -159,6 +167,9 @@ export default function LayoutDashboard({
             <div data-section="pge">
               <BlocPGE />
             </div>
+            <div data-section="garantie-bpi">
+              <BlocGarantieBPI />
+            </div>
             <div data-section="calendrier">
               <BlocCalendrier />
             </div>
@@ -171,6 +182,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="periode-suspecte">
               <BlocPeriodeSuspecte />
+            </div>
+            <div data-section="arret-longue-duree">
+              <BlocArretLongueDuree />
             </div>
             <div data-section="rappels">
               <BlocRappels />
@@ -208,6 +222,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="consequences">
               <BlocConsequencesPerso />
+            </div>
+            <div data-section="nationalite">
+              <BlocNationaliteSejour />
             </div>
           </>
         }
@@ -254,6 +271,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="scop">
               <BlocSCOP />
+            </div>
+            <div data-section="plateformes">
+              <BlocPlateformes />
             </div>
           </>
         }

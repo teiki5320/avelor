@@ -131,6 +131,60 @@ export default function BlocCreditBail() {
         </p>
       </div>
 
+      {/* Exemples concrets */}
+      <div className="mt-4 rounded-2xl border border-bleu/30 bg-bleu/5 p-4">
+        <p className="font-display text-base text-bleu-fonce">
+          3 cas concrets pour comprendre
+        </p>
+        <div className="mt-3 space-y-4 text-sm text-navy/80">
+          <div>
+            <p className="font-medium text-navy">
+              🚛 Cas 1 — Camion 19T en crédit-bail, RJ avec 4 mois d&apos;impayés
+            </p>
+            <p className="mt-1">
+              Loyer mensuel 1 600 € · contrat 60 mois, 38 mois écoulés ·
+              valeur résiduelle 8 000 €. Au jugement d&apos;ouverture, le
+              crédit-bailleur ne peut pas résilier pour les impayés
+              antérieurs. L&apos;administrateur opte pour la continuation
+              (le camion est indispensable). Les 4 mois d&apos;impayés
+              deviennent créance antérieure (chirographaire) ; les loyers
+              à venir sont créances postérieures privilégiées et doivent
+              être payés rubis sur l&apos;ongle.
+            </p>
+          </div>
+          <div>
+            <p className="font-medium text-navy">
+              🖨️ Cas 2 — Photocopieur en LLD, liquidation
+            </p>
+            <p className="mt-1">
+              Loyer 320 €/mois · contrat 36 mois, 12 mois restants ·
+              indemnité contractuelle de résiliation = 320 × 24 = 7 680 €.
+              Le liquidateur restitue le matériel. Le bailleur revend
+              4 000 €. Préjudice réel ≈ 3 680 €. La clause de
+              7 680 € est jugée excessive → le juge la réduit à
+              4 500 € (art. 1231-5 C. civ.). Le bailleur déclare 4 500 €
+              au passif chirographaire — généralement éteint en pratique.
+            </p>
+          </div>
+          <div>
+            <p className="font-medium text-navy">
+              🏗️ Cas 3 — Pelleteuse leasing, contrat non publié au greffe
+            </p>
+            <p className="mt-1">
+              Valeur matériel 80 000 €. Crédit-bailleur n&apos;a pas
+              publié son contrat au greffe (oubli fréquent). En liquidation,
+              il revendique la pelleteuse. <strong>Le mandataire
+              refuse</strong> : sans publication, le contrat est
+              inopposable aux autres créanciers (art. R313-4 CMF). La
+              pelleteuse est saisie pour le compte de la procédure et
+              revendue au profit de tous les créanciers. Conséquence :
+              le bailleur perd son bien et ne récupère que sa part
+              chirographaire — c&apos;est dur, mais c&apos;est la règle.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Contact ASF */}
       <div className="mt-5 rounded-2xl border border-navy/15 bg-white/60 p-4">
         <p className="font-display text-base text-navy">

@@ -1,7 +1,7 @@
 # 🗺️ Avelor — Roadmap
 
 > Dernière mise à jour : **2026-05-28**
-> Statut global : **production · couverture ~82%**
+> Statut global : **production · couverture ~88%**
 
 ## 🎯 Vision
 
@@ -14,7 +14,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 #### Infrastructure & qualité
 - [x] Plateforme en ligne sur avelor.vercel.app, déployée en continu via Vercel et la branche main
 - [x] Stack stable : Next.js 14.2.35 + React 18 + framer-motion 11 (LazyMotion)
-- [x] 188 tests Vitest verts (lib/__tests__)
+- [x] 222 tests Vitest verts (lib + composants React + routes API) + Playwright E2E configuré
 - [x] GitHub Actions CI : lint → build → test
 - [x] ESLint configuré (next/core-web-vitals)
 - [x] Validation Zod sur toutes les routes API (fiche, send-link, rappels)
@@ -60,6 +60,18 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **BlocPGE enrichi** : procédure pas-à-pas en 5 étapes pour la restructuration via Médiation du crédit
 - [x] **BlocAidesEtat enrichi** : FSE+ 2021-2027, FNE-Formation (en restructuration)
 - [x] **BlocAides enrichi** : section dédiée « Leviers de trésorerie immédiats » — affacturage / escompte / Dailly / mobilisation créances publiques distingués
+- [x] **BlocPlateformes** : VTC, livraison, services à la personne — ARPE, charte sociale, défense en requalification (couverture VTC : 30% → 75%, plateformes : 10% → 50%)
+- [x] **BlocCSP autonome** : extraction du BlocReclassement, procédure pas-à-pas 21 j, indemnité ASP 75%
+- [x] **BlocGarantieBPI** : règles de négociation pour les emprunts garantis Bpifrance (ex-OSEO)
+- [x] **BlocArretLongueDuree** : impact AGS pour les salariés en arrêt maladie longue durée
+- [x] **BlocNationaliteSejour** : impact d'une procédure collective sur le Passeport Talent / carte entrepreneur (dirigeants hors UE)
+- [x] **BlocCreditBail enrichi** : 3 cas concrets (camion RJ, photocopieur LJ, pelleteuse non publiée)
+- [x] **OPCO par NAF** : nouveau module `lib/opco.ts` (11 OPCO) intégré au BlocReclassement
+- [x] **URPS supplémentaires** : Pharmaciens, Sage-femmes, Auxiliaires médicaux, Chirurgiens-dentistes ajoutés à buildOrdresProfessionnels
+- [x] **Calculateur valorisation stocks** : nouveau outil `/outils/stocks` (6 natures × 5 voies, taux de réfaction CNAJMJ/CSCPJ)
+- [x] **FAQ ciblées par situation** : 3 nouvelles pages (URSSAF impayée, PGE en difficulté, assignation tribunal) avec JSON-LD FAQPage
+- [x] **PWA service worker** : `/sw.js` + composant ServiceWorkerRegister, cache-first assets, network-first HTML
+- [x] **Tracker de progression visuel** : refonte avec 6 sous-groupes (Agir, Vue d'ensemble, Échéances, Patrimoine, Aides, Ressources), barres individuelles + pastilles "complet"
 
 #### Données enrichies
 - [x] **107 territoires couverts** (96 dpts métropole + 11 DOM-TOM)
@@ -109,47 +121,48 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **Question "Conjoint salarié/collaborateur"** dans le questionnaire + bloc dédié (3 statuts + statut de fait)
 - [x] **Question "Co-gérants"** dans le questionnaire (solidarité fiscale L267 LPF / L243-6-2 CSS) + carte prioritaire
 - [x] **Question "Saisonnalité"** dans le questionnaire — conditionne l'affichage APLD-R
+- [x] **Question "Nationalité"** dans le questionnaire — déclenche le bloc Nationalité/Titre de séjour pour les profils hors UE
 - [x] **Activité Partielle Longue Durée Rebond (APLD-R)** : nouveau bloc autonome (loi 14 fév. 2025, décret 11 avril 2025)
 - [x] **Médiation PGE détaillée** : protocole de place, étalement 10 ans + procédure pas-à-pas en 5 étapes
 - [x] **FSE+ (Fonds Social Européen 2021-2027)** : ajouté à BlocAidesEtat (employeurs)
-- [x] **AFE → Bpifrance Création** : vérifié, pas de référence obsolète dans le code (l'AFE mentionnée dans BlocReclassement est l'Allocation de Fin d'Études, sans rapport)
+- [x] **AFE → Bpifrance Création** : vérifié, pas de référence obsolète dans le code
 - [x] **Distinguer EI/EIRL/Micro** dans le moteur stratégie (`getFormeDetail` → micro/ei/eirl/societe)
 - [x] **Bloc Période suspecte** autonome (`BlocPeriodeSuspecte` — nullités de droit, nullités facultatives, action paulienne)
-- [ ] **Bloc CSP autonome** si BlocReclassement reste léger (CSP déjà bien couvert dans BlocReclassement, sépration non prioritaire)
-- [ ] **Adresses postales précises** dans data/organismes.json (actuellement chef-lieu générique)
-- [ ] **Téléphones DDFiP locaux** (numéro 0 809 401 401 partout, à affiner)
-- [ ] **Numéros Bâtonniers et Chambres notaires départementales** (sites génériques actuellement)
-- [ ] **Tests E2E Playwright** (parcours complet SIRET → fiche)
-- [ ] **Plus de tests** : composants React, routes API, bodacc edge cases
+- [x] **Bloc CSP autonome** (`BlocCSP`) : extrait de BlocReclassement, procédure pas-à-pas 21 j
+- [x] **Tests E2E Playwright** (parcours SIRET → fiche, calculateurs, FAQ ciblées) — `npm run test:e2e`
+- [x] **Plus de tests** : composants React (SiretInput, BlocAccordeon, ModePerdu), routes API (api/fiche), OPCO
+- [ ] **Adresses postales précises** dans data/organismes.json — non faisable sans accès internet pour vérifier 2000 entrées
+- [ ] **Téléphones DDFiP locaux** — non faisable sans accès internet pour vérifier 96 numéros
+- [ ] **Numéros Bâtonniers et Chambres notaires départementales** — non faisable sans vérification externe
 
 #### 🟡 MOYEN — améliorations qualité
 - [ ] **Ordres professionnels départementaux** : Bâtonniers locaux, Chambres notaires dép., Conseil dép. Ordre Médecins/Pharmaciens
-- [ ] **URPS régionaux** : Pharmaciens, Sage-femmes, Auxiliaires médicaux (médecins déjà fait)
+- [x] **URPS régionaux** : Pharmaciens, Sage-femmes, Auxiliaires médicaux, Chirurgiens-dentistes (sites nationaux fédérateurs)
 - [ ] **Syndicats locaux HCR** : UMIH délégations départementales (siège national actuellement)
-- [ ] **OPCO par NAF** : AKTO (HCR), ATLAS, OCAPIAT (agri), AFDAS, UNIFORMATION, OPCO EP, OPCO MOBILITÉS
-- [ ] **Plateformes (VTC, livreurs)** : statut spécifique, DGCCRF, registre VTC, FNAUT-VTC
+- [x] **OPCO par NAF** : 11 OPCO (AKTO, ATLAS, OCAPIAT, AFDAS, UNIFORMATION, OPCO EP, OPCO Mobilités, OPCO 2i, OPCO Santé, Cohésion sociale, Constructys) dans `lib/opco.ts`
+- [x] **Plateformes (VTC, livreurs)** : BlocPlateformes — ARPE, charte sociale, registre VTC, FNAUT-VTC, défense requalification, ATI/ACRE/ARCE/Adie
 - [x] **Antécédents BODACC** : exploités dans le scoring stratégie (récidive → liquidation + rebond accompagné)
-- [ ] **Crédit-bail / leasing matériel** : déjà BlocCreditBail, enrichir avec exemples
-- [ ] **Garantie BPI/OSEO** : règles négociation si emprunt garanti
-- [x] **Action paulienne (1341-2 C. civ.)** : couverte dans le nouveau BlocPeriodeSuspecte (encart dédié)
-- [ ] **Salariés en arrêt longue durée** : impact AGS différent
+- [x] **Crédit-bail / leasing matériel** : BlocCreditBail enrichi avec 3 cas concrets (camion RJ, photocopieur LJ, pelleteuse non publiée)
+- [x] **Garantie BPI/OSEO** : nouveau BlocGarantieBPI (règles, marges de négociation, procédure 5 étapes)
+- [x] **Action paulienne (1341-2 C. civ.)** : couverte dans le BlocPeriodeSuspecte (encart dédié)
+- [x] **Salariés en arrêt longue durée** : nouveau BlocArretLongueDuree (AT/MP, IJ Sécu, prévoyance, inaptitude)
 - [x] **Calcul automatique seuil AGS** : vérification — l'outil licenciement somme déjà via `total.totalIndem` / `total.totalAgs` / `total.totalDepasse`
-- [ ] **Stocks importants** : valorisation possible si commerçant
+- [x] **Stocks importants — valorisation** : nouveau calculateur `/outils/stocks` avec 6 natures × 5 voies de cession
 - [x] **Affacturage / escompte** : nouvelle section dédiée dans BlocAides (affacturage, escompte, Dailly, mobilisation créances publiques BPI)
 
 #### 🟢 NICE-TO-HAVE — backlog
 - [ ] Notifications email automatiques avant échéances clés (45 jours cessation, audience, contestation URSSAF)
 - [ ] Compte utilisateur léger pour revenir sur sa fiche sans lien magique
-- [ ] FAQ ciblée par situation et secteur (utile + SEO)
+- [x] **FAQ ciblée par situation** : 3 pages SEO (URSSAF impayée, PGE en difficulté, assignation tribunal) avec JSON-LD FAQPage
 - [ ] Mise en relation directe avec un mandataire, un avocat ou un CIP local depuis la fiche
-- [ ] Tracker de progression plus visuel (« vous avez exploré 6 blocs sur 28 »)
-- [ ] PWA mobile : améliorer le service worker pour mode offline
+- [x] **Tracker de progression plus visuel** : 6 sous-groupes avec barres individuelles + pastilles "complet"
+- [x] **PWA service worker** : `/sw.js` cache-first assets, network-first HTML, enregistrement conditionnel prod
 - [ ] **Migration Next.js 15** : quand framer-motion sera compatible React 19 (corrige 4 vulnérabilités high)
-- [ ] **Question "Nationalité hors UE"** : impact titre de séjour (Passeport Talent retiré si liquidation)
-- [ ] **OFII / aide régularisation** : pour dirigeants étrangers
-- [ ] **Vetos-Entraide** : équivalent APESA pour vétérinaires
+- [x] **Question "Nationalité hors UE"** : nouvelle question + BlocNationaliteSejour (Passeport Talent, carte entrepreneur, OFII)
+- [x] **OFII / aide régularisation** : pour dirigeants étrangers — dans BlocNationaliteSejour
+- [x] **Vetos-Entraide** : déjà présent dans `lib/organismes.ts` (équivalent APESA pour vétérinaires)
 - [x] **Comète France** : ajouté pour les profils RQTH (reconversion handicap)
-- [ ] **CarePoint** : reconversion handicap
+- [ ] **CarePoint** : reconversion handicap (à compléter)
 
 ### 💡 Idées (long terme)
 
@@ -184,17 +197,19 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 | Plateformes (Uber, Deliveroo) | 10% |
 | PGE (restructuration + médiation) | 95% (procédure pas-à-pas) |
 
-**Couverture globale : ~82%**
+**Couverture globale : ~88%**
 
 ## 📈 Métriques
 
 - 96 départements métropolitains + 11 DOM-TOM = **107 territoires**
 - **~20 organismes par département** (vs 6 initialement)
-- **15 secteurs** (vs 14)
-- **32 blocs fiche** (vs 20 au départ — 28 → 32 avec APLDR/PeriodeSuspecte/ConjointCollaborateur + ProcedureRecommandee non listé avant)
-- **17 questions** dans le questionnaire (vs 8 au départ — +PGE, RQTH, Conjoint, Co-gérants, Saisonnalité)
-- **188 tests** Vitest (vs 0 au départ — +15 sur PGE, antécédents, formes EI, schemas)
+- **15 secteurs** + **11 OPCO** mappés par NAF
+- **37 blocs fiche** (vs 20 au départ : +Plateformes, CSP autonome, GarantieBPI, ArretLongueDuree, NationaliteSejour, APLDR, PeriodeSuspecte, ConjointCollaborateur, etc.)
+- **18 questions** dans le questionnaire (vs 8 au départ : +nationalité)
+- **222 tests Vitest** + Playwright E2E configuré (vs 0 au départ)
 - **12 courriers** types
-- **9 calculateurs** officiels
+- **10 calculateurs** officiels (ajout : valorisation stocks)
 - **4 annuaires** officiels
-- **13 cartes prioritaires** scorables (top 4 affichées) — ajout PGE, conjoint, cogerance
+- **3 FAQ ciblées** par situation (URSSAF, PGE, assignation) — JSON-LD FAQPage
+- **13 cartes prioritaires** scorables (top 4 affichées) — PGE, conjoint, cogerance
+- **PWA** : service worker offline-ready avec cache versionné

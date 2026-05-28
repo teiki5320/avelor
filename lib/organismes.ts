@@ -392,6 +392,36 @@ export function buildOrdresProfessionnels(
     });
   }
 
+  // URPS supplémentaires (Pharmaciens, Sage-femmes, Auxiliaires médicaux,
+  // Chirurgiens-dentistes) — sites nationaux fédérateurs. Les URPS Médecins
+  // régionales sont déjà gérées dans data/organismes.json par département.
+  if (sector.secteur === 'sante') {
+    cartes.push({
+      nom: 'URPS Pharmaciens',
+      type: 'Union régionale des professionnels de santé',
+      site: 'https://urps-pharmaciens.org',
+      badge: 'Trouver l\'antenne régionale',
+    });
+    cartes.push({
+      nom: 'URPS Sage-femmes',
+      type: 'Union régionale des professionnels de santé',
+      site: 'https://www.urpssagefemmes.fr',
+      badge: 'Trouver l\'antenne régionale',
+    });
+    cartes.push({
+      nom: 'URPS Chirurgiens-dentistes',
+      type: 'Union régionale des professionnels de santé',
+      site: 'https://www.lesurps.fr/chirurgiens-dentistes',
+      badge: 'Trouver l\'antenne régionale',
+    });
+    cartes.push({
+      nom: 'URPS Auxiliaires médicaux (kinés, infirmiers, orthophonistes)',
+      type: 'Union régionale des professionnels de santé',
+      site: 'https://www.lesurps.fr',
+      badge: 'Trouver l\'antenne régionale',
+    });
+  }
+
   if (cartes.length === 0) return null;
 
   return {
