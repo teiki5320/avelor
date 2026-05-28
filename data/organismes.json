@@ -140,6 +140,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Aube",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Espace Régley, 1 boulevard Charles Baltet, 10000 Troyes",
+      "telephone": "03 25 43 72 72",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "11": {
@@ -283,6 +290,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Aude",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "ZA de Sautès - Trèbes, 11878 Carcassonne Cedex 9",
+      "telephone": "04 68 11 79 79",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "12": {
@@ -426,6 +440,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Aveyron",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "5c boulevard du 122e RI, 12026 Rodez Cedex 9",
+      "telephone": "05 65 73 79 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "13": {
@@ -563,6 +584,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Marseille",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Bouches-du-Rhône",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "22 avenue Henri Pontier, 13626 Aix-en-Provence Cedex 1",
+      "telephone": "04 42 23 06 11",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "14": {
@@ -700,6 +728,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Caen",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Calvados",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "6 avenue de Dubna, CS 90218, 14209 Hérouville-Saint-Clair Cedex",
+      "telephone": "02 31 70 25 25",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "15": {
@@ -843,6 +878,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Cantal",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "26 rue du 139e Régiment d'Infanterie, BP 239, 15002 Aurillac Cedex",
+      "telephone": "04 71 45 55 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "16": {
@@ -986,6 +1028,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Charente",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "ZE Ma Campagne, 66 impasse Niépce, 16016 Angoulême Cedex",
+      "telephone": "05 45 24 49 49",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "17": {
@@ -1129,6 +1178,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre interdép. d'agriculture Charente-Maritime - Deux-Sèvres (site 17)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "2 avenue de Fétilly, CS 85074, 17074 La Rochelle Cedex 9",
+      "telephone": "05 46 50 45 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "18": {
@@ -1272,6 +1328,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Cher",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "2701 route d'Orléans, BP 10, 18230 Saint-Doulchard",
+      "telephone": "02 48 23 04 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "19": {
@@ -1415,6 +1478,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Corrèze",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Puy-Pinçon, 22 avenue Albert Schweitzer, BP 30, 19001 Tulle Cedex",
+      "telephone": "05 55 21 55 21",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "21": {
@@ -1558,6 +1628,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Côte-d'Or",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "1 rue des Coulots, 21110 Bretenière",
+      "telephone": "03 80 68 66 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "22": {
@@ -1701,6 +1778,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Côtes-d'Armor",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "4 avenue du Chalutier Sans Pitié, 22190 Plérin",
+      "telephone": "02 96 79 22 22",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "23": {
@@ -1844,6 +1928,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Creuse",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Maison de l'Économie, 8 avenue d'Auvergne, CS 60089, 23011 Guéret Cedex",
+      "telephone": "05 55 61 50 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "24": {
@@ -1987,6 +2078,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Dordogne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "295 boulevard des Saveurs, CréaVallée Nord, 24660 Coulounieix-Chamiers",
+      "telephone": "05 53 35 88 88",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "25": {
@@ -2130,6 +2228,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre interdép. d'agriculture Doubs - Territoire de Belfort (siège)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "130 bis rue de Belfort, CS 40939, 25021 Besançon Cedex",
+      "telephone": "03 81 65 52 52",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "26": {
@@ -2273,6 +2378,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Drôme",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "145 avenue Georges Brassens, CS 30418, 26504 Bourg-lès-Valence Cedex",
+      "telephone": "04 75 82 40 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "27": {
@@ -2416,6 +2528,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Eure",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "9 rue de la Petite Cité, CS 80882, 27008 Évreux Cedex",
+      "telephone": "02 32 78 80 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "28": {
@@ -2559,6 +2678,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture d'Eure-et-Loir",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "10 rue Dieudonné Costes, CS 10399, 28008 Chartres Cedex",
+      "telephone": "02 37 24 45 45",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "29": {
@@ -2702,6 +2828,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Finistère",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "24 route de Cuzon, 29000 Quimper",
+      "telephone": "02 98 52 49 49",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "30": {
@@ -2839,6 +2972,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Nîmes",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Gard",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "1120 route de Saint-Gilles, CS 38283, 30942 Nîmes Cedex 9",
+      "telephone": "04 66 04 50 60",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "31": {
@@ -2976,6 +3116,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Toulouse",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Haute-Garonne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "32 rue de Lisieux, CS 90105, 31026 Toulouse Cedex 3",
+      "telephone": "05 61 10 42 50",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "32": {
@@ -3119,6 +3266,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Gers",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "3 chemin de la Caillaouère, CS 70161, 32003 Auch Cedex",
+      "telephone": "05 62 61 77 77",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "33": {
@@ -3256,6 +3410,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Bordeaux",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Gironde",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "17 cours Xavier Arnozan, 33082 Bordeaux Cedex",
+      "telephone": "05 56 79 64 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "34": {
@@ -3393,6 +3554,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Montpellier",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Hérault",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Mas de Saporta, CS 10010, 34875 Lattes Cedex",
+      "telephone": "04 67 20 88 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "35": {
@@ -3536,6 +3704,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture d'Ille-et-Vilaine",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Rond-point Maurice Le Lannou, CS 14226, 35042 Rennes Cedex",
+      "telephone": "02 23 48 23 23",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "36": {
@@ -3679,6 +3854,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Indre",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "24 rue des Ingrains, 36022 Châteauroux Cedex",
+      "telephone": "02 54 61 61 61",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "37": {
@@ -3822,6 +4004,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture d'Indre-et-Loire",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "38 rue Augustin Fresnel, BP 50139, 37171 Chambray-lès-Tours Cedex",
+      "telephone": "02 47 48 37 37",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "38": {
@@ -3965,6 +4154,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Isère",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "34 rue du Rocher de Lorzier, ZA Centr'Alp, 38430 Moirans",
+      "telephone": "04 76 20 67 11",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "39": {
@@ -4108,6 +4304,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Jura",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "455 rue du Colonel de Casteljau, 39000 Lons-le-Saunier",
+      "telephone": "03 84 35 14 14",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "40": {
@@ -4251,6 +4454,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Landes",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Cité Galliane, BP 279, 40005 Mont-de-Marsan Cedex",
+      "telephone": "05 58 85 45 45",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "41": {
@@ -4394,6 +4604,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Loir-et-Cher",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "11-15 rue Louis-Joseph Philippe, CS 40808, 41018 Blois Cedex",
+      "telephone": "02 54 55 20 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "42": {
@@ -4531,6 +4748,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Saint-Étienne",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Loire",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "43 avenue Albert Raimond, BP 40050, 42272 Saint-Priest-en-Jarez Cedex",
+      "telephone": "04 77 92 12 12",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "43": {
@@ -4674,6 +4898,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Haute-Loire",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Hôtel interconsulaire, 16 boulevard Bertrand, BP 343, 43012 Le Puy-en-Velay Cedex",
+      "telephone": "04 71 07 21 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "44": {
@@ -4817,6 +5048,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture Pays de la Loire - Loire-Atlantique",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "La Géraudière, rue Pierre-Adolphe-Bobierre, 44939 Nantes Cedex 9",
+      "telephone": "02 53 46 60 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "45": {
@@ -4960,6 +5198,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Loiret",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "13 avenue des Droits de l'Homme, 45921 Orléans Cedex 9",
+      "telephone": "02 38 71 90 10",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "46": {
@@ -5103,6 +5348,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Lot",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "430 avenue Jean Jaurès, CS 60199, 46004 Cahors Cedex 9",
+      "telephone": "05 65 23 22 21",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "47": {
@@ -5246,6 +5498,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Lot-et-Garonne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "271 rue Péchabout, BP 80349, 47008 Agen Cedex",
+      "telephone": "05 53 77 83 83",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "48": {
@@ -5383,6 +5642,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Mende",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Lozère",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "25 avenue Foch, 48004 Mende Cedex",
+      "telephone": "04 66 65 62 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "49": {
@@ -5526,6 +5792,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture Pays de la Loire - Maine-et-Loire",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "9 rue André Brouard, CS 70510, 49105 Angers Cedex 2",
+      "telephone": "02 41 96 75 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "50": {
@@ -5669,6 +5942,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Manche",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Maison de l'agriculture, avenue de Paris, 50009 Saint-Lô Cedex",
+      "telephone": "02 33 06 48 48",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "51": {
@@ -5812,6 +6092,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Marne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Complexe agricole du Mont Bernard, CS 90525, 51009 Châlons-en-Champagne Cedex",
+      "telephone": "03 26 64 08 13",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "52": {
@@ -5955,6 +6242,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Haute-Marne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "26 avenue du 109e RI, BP 82138, 52905 Chaumont Cedex 9",
+      "telephone": "03 25 35 00 60",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "53": {
@@ -6098,6 +6392,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture Pays de la Loire - Mayenne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Parc Technopole, rue Albert Einstein, BP 36135, 53061 Laval Cedex 9",
+      "telephone": "02 43 67 37 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "54": {
@@ -6235,6 +6536,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Nancy",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Meurthe-et-Moselle",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "5 rue de la Vologne, Bâtiment A, 54520 Laxou",
+      "telephone": "03 83 93 34 10",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "55": {
@@ -6378,6 +6686,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Meuse",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Les Roises, Savonnières-devant-Bar, CS 10229, 55005 Bar-le-Duc Cedex",
+      "telephone": "03 29 83 30 30",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "56": {
@@ -6521,6 +6836,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Morbihan",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Avenue Borgnis Desbordes, BP 398, 56009 Vannes Cedex",
+      "telephone": "02 97 46 22 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "57": {
@@ -6658,6 +6980,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Metz",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Moselle",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "64 avenue André Malraux, CS 80015, 57045 Metz Cedex 1",
+      "telephone": "03 87 66 12 30",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "58": {
@@ -6801,6 +7130,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Nièvre",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "25 boulevard Léon Blum, BP 80, 58028 Nevers Cedex",
+      "telephone": "03 86 93 40 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "59": {
@@ -6938,6 +7274,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Lille",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre interdép. d'agriculture Nord-Pas-de-Calais (siège Lille)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "140 boulevard de la Liberté, BP 1177, 59013 Lille Cedex",
+      "telephone": "03 20 88 67 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "60": {
@@ -7081,6 +7424,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Oise",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Rue Frère Gagne, BP 40463, 60021 Beauvais Cedex",
+      "telephone": "03 44 11 44 11",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "61": {
@@ -7224,6 +7574,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Orne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "52 boulevard du 1er Chasseurs, CS 80036, 61001 Alençon Cedex",
+      "telephone": "02 33 31 48 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "62": {
@@ -7367,6 +7724,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre interdép. d'agriculture Nord-Pas-de-Calais (site 62)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "56 avenue Roger Salengro, 62223 Saint-Laurent-Blangy",
+      "telephone": "03 21 60 57 57",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "63": {
@@ -7510,6 +7874,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Puy-de-Dôme",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "11 allée Pierre de Fermat, 63170 Aubière",
+      "telephone": "04 73 44 45 46",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "64": {
@@ -7653,6 +8024,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Pyrénées-Atlantiques",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "124 boulevard Tourasse, 64078 Pau Cedex",
+      "telephone": "05 59 80 70 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "65": {
@@ -7796,6 +8174,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Hautes-Pyrénées",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "20 place du Foirail, 65917 Tarbes Cedex 9",
+      "telephone": "05 62 34 66 74",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "66": {
@@ -7933,6 +8318,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Perpignan",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Pyrénées-Orientales",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "19 avenue de Grande-Bretagne, 66025 Perpignan Cedex",
+      "telephone": "04 68 35 74 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "67": {
@@ -8070,6 +8462,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Strasbourg",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture Alsace (interdép. 67+68)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "2 rue de Rome, BP 30022, 67013 Schiltigheim Cedex",
+      "telephone": "03 88 19 17 17",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "68": {
@@ -8207,6 +8606,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Colmar",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture Alsace (interdép. 67+68)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "2 rue de Rome, BP 30022, 67013 Schiltigheim Cedex",
+      "telephone": "03 88 19 17 17",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "69": {
@@ -8344,6 +8750,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Lyon",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Rhône",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "18 avenue des Monts d'Or, 69890 La Tour-de-Salvagny",
+      "telephone": "04 78 19 61 10",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "70": {
@@ -8487,6 +8900,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Haute-Saône",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "17 quai Yves Barbier, BP 20189, 70004 Vesoul Cedex",
+      "telephone": "03 84 77 14 40",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "71": {
@@ -8630,6 +9050,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Saône-et-Loire",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "59 rue du 19 Mars 1962, CS 70610, 71010 Mâcon Cedex",
+      "telephone": "03 85 29 55 50",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "72": {
@@ -8773,6 +9200,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture Pays de la Loire - Sarthe",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "15 rue Jean Grémillon, CS 21312, 72013 Le Mans Cedex 2",
+      "telephone": "02 43 29 24 24",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "73": {
@@ -8910,6 +9344,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Chambéry",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre interdép. d'agriculture Savoie Mont-Blanc (siège 73)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "40 rue du Terraillet, 73190 Saint-Baldoph",
+      "telephone": "04 79 33 43 36",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "74": {
@@ -9047,6 +9488,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Annecy",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre interdép. d'agriculture Savoie Mont-Blanc (site 74)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "52 avenue des Iles, 74994 Annecy Cedex 9",
+      "telephone": "04 50 88 18 01",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "75": {
@@ -9184,6 +9632,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Paris",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Région Île-de-France (siège)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "19 rue d'Anjou, 75008 Paris",
+      "telephone": "01 39 23 42 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "76": {
@@ -9327,6 +9782,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Seine-Maritime",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Chemin de la Bretèque, CS 30059, 76237 Bois-Guillaume Cedex",
+      "telephone": "02 35 59 47 47",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "77": {
@@ -9470,6 +9932,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Région Île-de-France (site 77)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "418 rue Aristide Briand, 77350 Le Mée-sur-Seine",
+      "telephone": "01 64 79 30 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "78": {
@@ -9607,6 +10076,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Versailles",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Région Île-de-France (site 78)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "2 avenue Jeanne d'Arc, 78153 Le Chesnay Cedex",
+      "telephone": "01 39 23 42 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "79": {
@@ -9750,6 +10226,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre interdép. d'agriculture Charente-Maritime - Deux-Sèvres (site 79)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Maison de l'agriculture, CS 80004, 79231 Prahecq Cedex",
+      "telephone": "05 49 77 15 15",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "80": {
@@ -9893,6 +10376,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Somme",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "19 bis rue Alexandre Dumas, 80096 Amiens Cedex 3",
+      "telephone": "03 22 33 69 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "81": {
@@ -10036,6 +10526,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Tarn",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "96 rue des Agriculteurs, CS 53270, 81011 Albi Cedex 9",
+      "telephone": "05 63 48 83 83",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "82": {
@@ -10179,6 +10676,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Tarn-et-Garonne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "130 avenue Marcel Unal, 82017 Montauban Cedex",
+      "telephone": "05 63 63 30 25",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "83": {
@@ -10316,6 +10820,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Toulon",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture du Var",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "26 boulevard Jean Jaurès, CS 40203, 83006 Draguignan Cedex",
+      "telephone": "04 94 50 54 50",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "84": {
@@ -10453,6 +10964,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Avignon",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Vaucluse",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Site Agroparc, TSA 58432, 84912 Avignon Cedex 9",
+      "telephone": "04 90 23 65 65",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "85": {
@@ -10596,6 +11114,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture Pays de la Loire - Vendée",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "21 boulevard Réaumur, 85013 La Roche-sur-Yon Cedex",
+      "telephone": "02 51 36 82 22",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "86": {
@@ -10739,6 +11264,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Vienne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Agropole, 2133 route de Chauvigny, CS 35001, 86550 Mignaloux-Beauvoir",
+      "telephone": "05 49 44 74 74",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "87": {
@@ -10882,6 +11414,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Haute-Vienne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "2 avenue Georges Guingouin, CS 80912 Panazol, 87017 Limoges Cedex 1",
+      "telephone": "05 87 50 40 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "88": {
@@ -11025,6 +11564,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Vosges",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "La Colombière, 17 rue André Vitu, 88026 Épinal Cedex",
+      "telephone": "03 29 29 23 23",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "89": {
@@ -11168,6 +11714,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Yonne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "14 bis rue Guynemer, CS 80289, 89015 Auxerre Cedex",
+      "telephone": "03 86 94 22 22",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "90": {
@@ -11305,6 +11858,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Belfort",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre interdép. d'agriculture Doubs - Territoire de Belfort (site 90)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "1 rue de la Gare TGV, 90400 Meroux-Moval",
+      "telephone": "03 84 46 61 50",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "91": {
@@ -11442,6 +12002,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Évry-Courcouronnes",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Région Île-de-France (site 91)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "6 avenue Pierre Richier, 91150 Étampes",
+      "telephone": "01 60 80 07 29",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "92": {
@@ -11579,6 +12146,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Nanterre",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Région Île-de-France (siège, couvre 92)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "19 rue d'Anjou, 75008 Paris",
+      "telephone": "01 39 23 42 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "93": {
@@ -11716,6 +12290,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Bobigny",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Région Île-de-France (siège, couvre 93)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "19 rue d'Anjou, 75008 Paris",
+      "telephone": "01 39 23 42 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "94": {
@@ -11853,6 +12434,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Créteil",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Région Île-de-France (siège, couvre 94)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "19 rue d'Anjou, 75008 Paris",
+      "telephone": "01 39 23 42 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "95": {
@@ -11990,6 +12578,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Cergy",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de Région Île-de-France (site 95)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "10 chaussée Jules César, 95520 Osny",
+      "telephone": "01 64 79 30 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "971": {
@@ -12101,6 +12696,13 @@
       "adresse": "Immeuble Le Diamant, Rue Ferdinand Forest prolongée, ZI Jarry, 97122 Baie-Mahault",
       "telephone": "05 90 38 11 52",
       "site": "https://www.notaires.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Guadeloupe",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Espace Régional Agricole - Convenance, BP 35, 97122 Baie-Mahault Cedex",
+      "telephone": "05 90 25 17 17",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "972": {
@@ -12212,6 +12814,13 @@
       "adresse": "Résidence Le Patio de Cluny, 97233 Schoelcher",
       "telephone": "05 96 60 62 75",
       "site": "https://www.notaires.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Martinique",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Place d'Armes, BP 312, 97286 Le Lamentin Cedex 02",
+      "telephone": "05 96 51 75 75",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "973": {
@@ -12323,6 +12932,13 @@
       "adresse": "Résidence Le Patio de Cluny, 97233 Schoelcher",
       "telephone": "05 96 60 62 75",
       "site": "https://www.notaires.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de la Guyane",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "1 avenue des Jardins de Sainte-Agathe, 97355 Macouria",
+      "telephone": "05 94 29 61 95",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "974": {
@@ -12434,6 +13050,13 @@
       "adresse": "63 rue Alexis de Villeneuve, BP 61, 97462 Saint-Denis Cedex",
       "telephone": "02 62 94 79 65",
       "site": "https://www.notaires.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de La Réunion",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "24 rue de la Source, CS 11048, 97404 Saint-Denis Cedex",
+      "telephone": "02 62 94 25 94",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "975": {
@@ -12641,6 +13264,13 @@
       "adresse": "63 rue Alexis de Villeneuve, BP 61, 97462 Saint-Denis Cedex",
       "telephone": "02 62 94 79 65",
       "site": "https://www.notaires.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre de l'agriculture, de la pêche et de l'aquaculture de Mayotte",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Place Mariage, BP 782, 97600 Mamoudzou",
+      "telephone": "02 69 61 68 65",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "977": {
@@ -13268,6 +13898,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Ain",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "4 avenue du Champ-de-Foire, BP 84, 01003 Bourg-en-Bresse Cedex",
+      "telephone": "04 74 45 47 43",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "02": {
@@ -13411,6 +14048,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Aisne",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "1 rue René Blondelle, 02007 Laon Cedex",
+      "telephone": "03 23 22 50 50",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "03": {
@@ -13554,6 +14198,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Allier",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "60 cours Jean Jaurès, BP 1727, 03017 Moulins Cedex",
+      "telephone": "04 70 48 42 42",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "04": {
@@ -13691,6 +14342,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Digne-les-Bains",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Alpes-de-Haute-Provence",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "66 boulevard Gassendi, CS 90117, 04995 Digne-les-Bains Cedex 9",
+      "telephone": "04 92 30 57 57",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "05": {
@@ -13828,6 +14486,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Gap",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Hautes-Alpes",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "2 rue Paul Aubert, 05010 Gap Cedex",
+      "telephone": "04 92 52 53 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "06": {
@@ -13965,6 +14630,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Nice",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Alpes-Maritimes",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "MIN Fleurs 17 - Box 85, 06296 Nice Cedex 3",
+      "telephone": "04 93 18 45 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "07": {
@@ -14108,6 +14780,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Ardèche",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "4 avenue de l'Europe Unie, BP 114, 07001 Privas Cedex",
+      "telephone": "04 75 20 28 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "08": {
@@ -14251,6 +14930,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture des Ardennes",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "1 rue Jacquemart Templeux, CS 70733, 08000 Charleville-Mézières Cedex",
+      "telephone": "03 24 56 89 40",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "09": {
@@ -14388,6 +15074,13 @@
       "type": "Accès au droit gratuit",
       "adresse": "Foix",
       "site": "https://www.justice.fr"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de l'Ariège",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "32 avenue du Général de Gaulle, 09000 Foix",
+      "telephone": "05 61 02 14 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "2A": {
@@ -14531,6 +15224,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de région Corse (antenne 2A)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Immeuble Castellani Bât. G, CC Saint-Joseph, 20700 Ajaccio",
+      "telephone": "04 95 29 26 00",
+      "site": "https://chambres-agriculture.fr"
     }
   },
   "2B": {
@@ -14674,6 +15374,13 @@
       "type": "Accompagnement agriculteurs en difficulté",
       "telephone": "01 43 63 83 83",
       "site": "https://solidaritepaysans.org"
+    },
+    "chambreAgriculture": {
+      "nom": "Chambre d'agriculture de région Corse (siège 2B)",
+      "type": "Chambre d'agriculture — accompagnement gratuit",
+      "adresse": "Lieu-dit Petraolo, Route du Stade, 20215 Vescovato",
+      "telephone": "04 95 32 84 40",
+      "site": "https://chambres-agriculture.fr"
     }
   }
 }

@@ -23,6 +23,7 @@ export interface DepartementData {
   dreets?: OrganismeLocal;
   ddfip?: OrganismeLocal;
   cma?: OrganismeLocal;
+  chambreAgriculture?: OrganismeLocal;
   prefecture?: OrganismeLocal;
   pointJustice?: OrganismeLocal;
   carsat?: OrganismeLocal;
@@ -58,7 +59,8 @@ export interface GroupeOrganismes {
 export function buildOrganismes(
   dep: DepartementData | null,
   reponses: Reponses,
-  avocats: OrganismeCard[]
+  avocats: OrganismeCard[],
+  sectorKey?: string,
 ): GroupeOrganismes[] {
   const groups: GroupeOrganismes[] = [];
 
@@ -106,6 +108,18 @@ export function buildOrganismes(
       adresse: dep.cci.adresse,
       site: dep.cci.site,
       badge: 'Accompagnement gratuit',
+    });
+  }
+  // Chambre d'agriculture départementale (CDA) — pour les exploitants agricoles
+  // et la pêche (CDA Mayotte couvre aussi pêche/aquaculture).
+  if ((sectorKey === 'agriculture' || sectorKey === 'peche') && dep?.chambreAgriculture) {
+    inst.push({
+      nom: dep.chambreAgriculture.nom,
+      type: 'Chambre d\'agriculture',
+      telephone: dep.chambreAgriculture.telephone,
+      adresse: dep.chambreAgriculture.adresse,
+      site: dep.chambreAgriculture.site,
+      badge: 'Diagnostic gratuit',
     });
   }
   if (reponses.situation === 'redressement' || reponses.situation === 'assignation') {

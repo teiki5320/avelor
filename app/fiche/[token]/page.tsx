@@ -123,7 +123,7 @@ async function renderFiche(tokenParam: string, d?: string) {
     sector = getSectorInfo(company_data);
     companyAge = getCompanyAge(company_data.dateCreation);
     seuils = getEffectifSeuils(company_data.effectif);
-    const groupesBase = buildOrganismes(dep, reponses, avocats);
+    const groupesBase = buildOrganismes(dep, reponses, avocats, sector.secteur);
     const groupeOrdres = buildOrdresProfessionnels(sector);
     const groupeSoutien = buildSoutien(reponses);
     const groupeAidesPerso = buildAidesPersonnelles(reponses);

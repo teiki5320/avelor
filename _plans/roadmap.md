@@ -131,7 +131,14 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **Bloc CSP autonome** (`BlocCSP`) : extrait de BlocReclassement, procédure pas-à-pas 21 j
 - [x] **Tests E2E Playwright** (parcours SIRET → fiche, calculateurs, FAQ ciblées) — `npm run test:e2e`
 - [x] **Plus de tests** : composants React (SiretInput, BlocAccordeon, ModePerdu), routes API (api/fiche), OPCO
-- [x] **Adresses postales précises** : 101 DDFiP, 101 Barreaux, 101 Chambres notaires enrichis (métropole + DOM) — sources mon-administration.com, annuaire-administration.com, notaires.fr (28/05/2026)
+- [x] **Adresses postales précises** : 101 DDFiP, 101 Barreaux, 101 Chambres notaires, **101 Chambres d'agriculture** enrichis (métropole + DOM) — sources officielles (28/05/2026)
+- [x] **Audit représentants par métier** : 15 secteurs auditésFinance/Information/Education sortis de l'état « critique »
+- [x] **Enrichissement secteur finance** : FBF, ASF, AFG, FFA, AGEA, CSCA (avant : 0 syndicat)
+- [x] **Enrichissement secteur information/IT** : Numeum, CINOV-IT, France Digitale, Fevad + JEI/CIR (avant : Syntec seul)
+- [x] **Enrichissement secteur éducation** : FFP, SYNOFDES, CINOV Formation, Fnogec + recours Qualiopi (avant : 0 syndicat)
+- [x] **Enrichissement secteur immobilier** : FNAIM, UNIS, FPI, LCA-FFB, SNPI + alerte carte T/G (avant : FNAIM seul)
+- [x] **Enrichissement secteur santé** : FHP, FEHAP, SYNERPA, Vetos-Entraide + 5 nouveaux ordres (vétérinaires, dentistes, infirmiers, kinés, sages-femmes)
+- [x] **Enrichissement secteur pêche** : Solidarité Marins, SNSM, AGISM ajoutés (soutien psy maritime spécialisé)
 - [x] **Téléphones DDFiP locaux** : 99/101 numéros directs (2 conservent le 0 809 401 401)
 - [x] **Numéros Bâtonniers et Chambres notaires départementales** : 101 chambres notaires avec téléphones directs ; bâtonniers avec adresses (téléphones non publiés sur l'annuaire récap CNB)
 
