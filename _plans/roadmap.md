@@ -191,7 +191,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - 96 départements métropolitains + 11 DOM-TOM = **107 territoires**
 - **~20 organismes par département** (vs 6 initialement)
 - **15 secteurs** (vs 14)
-- **31 blocs fiche** (vs 20 au départ — 28 → 31 avec APLDR/PeriodeSuspecte/ConjointCollaborateur)
+- **32 blocs fiche** (vs 20 au départ — 28 → 32 avec APLDR/PeriodeSuspecte/ConjointCollaborateur + ProcedureRecommandee non listé avant)
 - **17 questions** dans le questionnaire (vs 8 au départ — +PGE, RQTH, Conjoint, Co-gérants, Saisonnalité)
 - **188 tests** Vitest (vs 0 au départ — +15 sur PGE, antécédents, formes EI, schemas)
 - **12 courriers** types

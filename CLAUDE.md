@@ -62,7 +62,7 @@ components/
     dashboard/                # IdentiteHero, PriorityCards (splitté), QuickLinks, SectionNav, StrategieHero
     layouts/LayoutDashboard   # Layout principal de la fiche (FicheProvider)
     BlocAccordeon.tsx         # Composant accordéon (aria-expanded/controls/region)
-    Bloc*.tsx                 # ~31 blocs (accordéons interactifs)
+    Bloc*.tsx                 # 32 blocs (accordéons interactifs)
     ModePerdu.tsx             # Carte radicale (3 infos max) si moral === 'perdu'
     ProgressTracker.tsx       # Suivi de progression (localStorage)
   Questionnaire.tsx           # 17 slides (5 nouveaux : pgeEnCours, rqth, conjointStatut, coGerants, saisonnalite)
@@ -131,7 +131,7 @@ vercel.json                   # Cron rappels quotidiens 7h
 - **CompanyData** : données INSEE (siret, nom, formeJuridique, naf, dateCreation, effectif, adresse, codePostal, ville, departement, fetched)
 - **Stratégie** : 5 axes possibles avec scoring, chacun a titre/verdict/etapes/pourquoi/alternatives. Distingue micro/EI/EIRL/société (`getFormeDetail`). Exploite pgeEnCours et antecedents.
 - **PriorityCards** : 13 cartes possibles, top 4 sélectionnées par scoring selon les réponses (ajout : pge, conjoint, cogerance)
-- **Blocs fiche** : ~31 blocs (Aides, Strategie, Checklist, PlanAction, Calendrier, Cessation45j, Trésorerie, Timeline, Rappels, ProtectionFamille, AuditCaution, Patrimoine, ConsequencesPerso, Aides, AidesEtat, Prescription, Organismes, CCSF, BailCommercial, Obligations, SanteSecteur, Soutien, Alertes, PGE, Surendettement, Franchise, CreditBail, SCOP, Reclassement, **APLDR, PeriodeSuspecte, ConjointCollaborateur**)
+- **Blocs fiche** : 32 blocs : PlanAction, ProcedureRecommandee, Checklist, Reclassement, StrategieHero (composant dashboard), Soutien, CessationDecompte, Tresorerie, PGE, Calendrier, Timeline, PeriodeSuspecte, Rappels, ProtectionFamille, AuditCaution, ConjointCollaborateur, Patrimoine, ConsequencesPerso, Aides, AidesEtat, Surendettement, BailCommercial, Franchise, CreditBail, CCSF, Obligations, SCOP, Organismes, Alertes, Prescription, SanteSecteur, APLDR — + ModePerdu (carte radicale moral=perdu)
 - **Mode perdu** : si moral === 'perdu', composant `ModePerdu` affiché en haut avec 3 infos seulement (qui appeler / action semaine / soutien). Bouton "Voir tout" pour ouvrir la fiche complète.
 - **Organismes par dpt** (data/organismes.json) : tribunal, cci, urssaf (ou cgss DOM), sie, banqueDeFrance, dreets, ddfip, cma, prefecture, pointJustice, carsat, conciliateur, ordreMedecins, ordreAvocats, chambreNotaires, ordrePharmaciens, urpsMedecins, urssafRegional, bge, initiativeFrance, franceActive, mdph, maisonJustice, solidaritePaysans (si agri), + DOM : cgss, bpiOutreMer, afd, ladom, cafat/cps/ieom (selon territoire)
 
