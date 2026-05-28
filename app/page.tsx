@@ -21,7 +21,6 @@ const RESSOURCES = [
   { href: '/glossaire', icone: '📖', label: 'Glossaire', desc: '18 termes expliqués simplement' },
   { href: '/outils', icone: '🧮', label: 'Boîte à outils', desc: 'Calculateurs et vérificateurs officiels' },
   { href: '/annuaires', icone: '📇', label: 'Annuaires officiels', desc: 'AGS, TAE, mandataires, CIP…' },
-  { href: '/exemples', icone: '📋', label: 'Exemples concrets', desc: 'Cas réels par secteur' },
   { href: '/parler', icone: '📞', label: 'Parler à quelqu\'un', desc: 'Numéros gratuits 24/7' },
 ];
 

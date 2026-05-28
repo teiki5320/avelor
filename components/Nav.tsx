@@ -14,7 +14,6 @@ const LINKS = [
   { href: '/rebond', label: 'Rebondir', desc: 'Après une liquidation' },
   { href: '/faq', label: 'FAQ', desc: 'Questions fréquentes' },
   { href: '/glossaire', label: 'Glossaire', desc: '18 termes expliqués' },
-  { href: '/exemples', label: 'Exemples', desc: 'Cas concrets par secteur' },
   { href: '/accompagnant', label: "J'accompagne", desc: 'Pour les proches' },
   { href: '/parler', label: 'Parler', desc: 'Numéros gratuits 24/7' },
 ];
