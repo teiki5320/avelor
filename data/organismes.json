@@ -41,8 +41,8 @@
     "ddfip": {
       "nom": "DDFiP Aube",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Troyes",
-      "telephone": "0 809 401 401",
+      "adresse": "22 boulevard Gambetta, 10000 Troyes Cedex",
+      "telephone": "03 25 41 68 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -80,9 +80,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Troyes",
+      "nom": "Barreau de l'Aube",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Troyes",
+      "adresse": "44 boulevard Gambetta, 10000 Troyes",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -183,8 +183,8 @@
     "ddfip": {
       "nom": "DDFiP Aude",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Carcassonne",
-      "telephone": "0 809 401 401",
+      "adresse": "Cité administrative, 1 place Gaston-Jourdanne, 11833 Carcassonne Cedex",
+      "telephone": "04 68 77 44 44",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -224,7 +224,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Carcassonne",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Carcassonne",
+      "adresse": "Palais de justice, boulevard Jean Jaurès, 11000 Carcassonne",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -325,8 +325,8 @@
     "ddfip": {
       "nom": "DDFiP Aveyron",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Rodez",
-      "telephone": "0 809 401 401",
+      "adresse": "2 place d'Armes, CS 53513, 12035 Rodez Cedex 9",
+      "telephone": "05 65 75 40 40",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -364,9 +364,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Rodez",
+      "nom": "Barreau de l'Aveyron",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Rodez",
+      "adresse": "Palais de Justice, boulevard de Guizard, 12000 Rodez",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -467,8 +467,8 @@
     "ddfip": {
       "nom": "DDFiP Bouches-du-Rhône",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Marseille",
-      "telephone": "0 809 401 401",
+      "adresse": "16 rue Borde, 13357 Marseille Cedex 20",
+      "telephone": "04 91 17 91 17",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -508,7 +508,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Marseille",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Marseille",
+      "adresse": "Maison de l'Avocat, 51 rue Grignan, 13006 Marseille",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -603,8 +603,8 @@
     "ddfip": {
       "nom": "DDFiP Calvados",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Caen",
-      "telephone": "0 809 401 401",
+      "adresse": "7 boulevard Bertrand, 14034 Caen Cedex",
+      "telephone": "02 31 38 34 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -644,7 +644,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Caen",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Caen",
+      "adresse": "3 avenue de l'Hippodrome, Maison de l'Avocat, ZAC Gardin, 14000 Caen",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -739,8 +739,8 @@
     "ddfip": {
       "nom": "DDFiP Cantal",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Aurillac",
-      "telephone": "0 809 401 401",
+      "adresse": "39 rue des Carmes, 15012 Aurillac Cedex",
+      "telephone": "04 71 43 45 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -778,9 +778,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Aurillac",
+      "nom": "Barreau d'Aurillac",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Aurillac",
+      "adresse": "21 place du Square, Palais de Justice, 15000 Aurillac",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -881,8 +881,8 @@
     "ddfip": {
       "nom": "DDFiP Charente",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Angoulême",
-      "telephone": "0 809 401 401",
+      "adresse": "3 rue Pierre-Labachot, CS 12222, 16022 Angoulême Cedex",
+      "telephone": "05 45 94 37 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -920,9 +920,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Angoulême",
+      "nom": "Barreau de la Charente",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Angoulême",
+      "adresse": "4 place Francis Louvel, 16000 Angoulême",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -1023,8 +1023,8 @@
     "ddfip": {
       "nom": "DDFiP Charente-Maritime",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "La Rochelle",
-      "telephone": "0 809 401 401",
+      "adresse": "24 avenue de Fétilly, BP 40587, 17021 La Rochelle Cedex 1",
+      "telephone": "05 46 00 39 39",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -1062,9 +1062,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de La Rochelle",
+      "nom": "Barreau de La Rochelle-Rochefort",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "La Rochelle",
+      "adresse": "32-34 rue Gargoulleau, Maison des Avocats, 17000 La Rochelle",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -1165,8 +1165,8 @@
     "ddfip": {
       "nom": "DDFiP Cher",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Bourges",
-      "telephone": "0 809 401 401",
+      "adresse": "2 boulevard Lahitolle, 18021 Bourges Cedex",
+      "telephone": "02 48 69 71 71",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -1206,7 +1206,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Bourges",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Bourges",
+      "adresse": "8 rue des Arènes, Palais de Justice, 18000 Bourges",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -1307,8 +1307,8 @@
     "ddfip": {
       "nom": "DDFiP Corrèze",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Tulle",
-      "telephone": "0 809 401 401",
+      "adresse": "15 avenue Henri-de-Bournazel, BP 239, 19012 Tulle Cedex",
+      "telephone": "05 55 20 08 38",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -1346,9 +1346,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Tulle",
+      "nom": "Barreau de Tulle-Ussel",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Tulle",
+      "adresse": "9 quai Gabriel Peri, 19000 Tulle",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -1449,8 +1449,8 @@
     "ddfip": {
       "nom": "DDFiP Côte-d'Or",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Dijon",
-      "telephone": "0 809 401 401",
+      "adresse": "1 bis place de la Banque, 21000 Dijon",
+      "telephone": "03 80 59 26 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -1490,7 +1490,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Dijon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Dijon",
+      "adresse": "6 rue Philibert Papillon, Maison des Avocats, 21000 Dijon",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -1591,8 +1591,8 @@
     "ddfip": {
       "nom": "DDFiP Côtes-d'Armor",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Saint-Brieuc",
-      "telephone": "0 809 401 401",
+      "adresse": "17 rue de la Gare, 22023 Saint-Brieuc Cedex 1",
+      "telephone": "02 96 75 41 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -1632,7 +1632,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Saint-Brieuc",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Saint-Brieuc",
+      "adresse": "Palais de Justice, allée des Promenades, 22023 Saint-Brieuc Cedex 01",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -1733,8 +1733,8 @@
     "ddfip": {
       "nom": "DDFiP Creuse",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Guéret",
-      "telephone": "0 809 401 401",
+      "adresse": "2 boulevard Saint-Pardoux, BP 149, 23011 Guéret Cedex",
+      "telephone": "05 55 51 37 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -1772,9 +1772,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Guéret",
+      "nom": "Barreau de la Creuse",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Guéret",
+      "adresse": "23 place Bonnyaud, BP 90275, Palais de Justice, 23008 Guéret Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -1875,8 +1875,8 @@
     "ddfip": {
       "nom": "DDFiP Dordogne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Périgueux",
-      "telephone": "0 809 401 401",
+      "adresse": "15 rue du 26è-Régiment-d'Infanterie, CS 61000, 24053 Périgueux Cedex",
+      "telephone": "05 53 03 35 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -1916,7 +1916,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Périgueux",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Périgueux",
+      "adresse": "19 bis cours Montaigne, Palais de Justice, 24000 Périgueux",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -2017,8 +2017,8 @@
     "ddfip": {
       "nom": "DDFiP Doubs",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Besançon",
-      "telephone": "0 809 401 401",
+      "adresse": "63 quai Veil-Picard, 25030 Besançon Cedex",
+      "telephone": "03 81 25 20 20",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -2058,7 +2058,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Besançon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Besançon",
+      "adresse": "1 rue Megevand, BP 167, 25000 Besançon",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -2159,8 +2159,8 @@
     "ddfip": {
       "nom": "DDFiP Drôme",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Valence",
-      "telephone": "0 809 401 401",
+      "adresse": "20 avenue du Président-Herriot, BP 1002, 26015 Valence Cedex",
+      "telephone": "04 75 78 21 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -2198,9 +2198,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Valence",
+      "nom": "Barreau de la Drôme",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Valence",
+      "adresse": "2 place du Palais, Palais de Justice, 26000 Valence",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -2301,8 +2301,8 @@
     "ddfip": {
       "nom": "DDFiP Eure",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Évreux",
-      "telephone": "0 809 401 401",
+      "adresse": "Cité administrative, Boulevard Georges-Chauvin, 27023 Évreux Cedex",
+      "telephone": "02 32 24 87 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -2340,9 +2340,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Évreux",
+      "nom": "Barreau de l'Eure",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Évreux",
+      "adresse": "Maison de l'Avocat, 3 rue de Verdun, 27000 Evreux",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -2443,8 +2443,8 @@
     "ddfip": {
       "nom": "DDFiP Eure-et-Loir",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Chartres",
-      "telephone": "0 809 401 401",
+      "adresse": "Cité administrative, 3 place de la République, 28019 Chartres Cedex",
+      "telephone": "02 37 20 72 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -2484,7 +2484,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Chartres",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Chartres",
+      "adresse": "3 rue Saint-Jacques, Palais de Justice, 28000 Chartres",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -2585,8 +2585,8 @@
     "ddfip": {
       "nom": "DDFiP Finistère",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Quimper",
-      "telephone": "0 809 401 401",
+      "adresse": "7A allée Chouchouren, 29000 Quimper",
+      "telephone": "02 98 65 10 40",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -2626,7 +2626,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Quimper",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Quimper",
+      "adresse": "7 rue du Palais, Maison de l'Avocat, 29000 Quimper",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -2727,8 +2727,8 @@
     "ddfip": {
       "nom": "DDFiP Gard",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Nîmes",
-      "telephone": "0 809 401 401",
+      "adresse": "22 avenue Carnot, 30943 Nîmes Cedex 9",
+      "telephone": "04 66 36 49 49",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -2768,7 +2768,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Nîmes",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Nîmes",
+      "adresse": "16 rue Régale, Maison de l'Avocat, 30000 Nîmes",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -2863,8 +2863,8 @@
     "ddfip": {
       "nom": "DDFiP Haute-Garonne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Toulouse",
-      "telephone": "0 809 401 401",
+      "adresse": "34 rue des Lois, 31039 Toulouse Cedex 09",
+      "telephone": "05 61 26 57 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -2904,7 +2904,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Toulouse",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Toulouse",
+      "adresse": "13 rue des Fleurs, 31000 Toulouse",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -2999,8 +2999,8 @@
     "ddfip": {
       "nom": "DDFiP Gers",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Auch",
-      "telephone": "0 809 401 401",
+      "adresse": "2 place Jean-David, CS 70352, 32010 Auch Cedex",
+      "telephone": "05 62 61 64 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -3038,9 +3038,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Auch",
+      "nom": "Barreau du Gers",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Auch",
+      "adresse": "Palais de Justice, 13 bis rue Docteur Samalens, 32000 Auch",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -3141,8 +3141,8 @@
     "ddfip": {
       "nom": "DDFiP Gironde",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Bordeaux",
-      "telephone": "0 809 401 401",
+      "adresse": "24 rue François-de-Sourdis, BP 908, 33060 Bordeaux Cedex",
+      "telephone": "05 56 90 76 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -3182,7 +3182,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Bordeaux",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Bordeaux",
+      "adresse": "1 rue de Cursol, Maison de l'Avocat, 33077 Bordeaux Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -3277,8 +3277,8 @@
     "ddfip": {
       "nom": "DDFiP Hérault",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Montpellier",
-      "telephone": "0 809 401 401",
+      "adresse": "334 allée Henri-II-de-Montmorency, 34954 Montpellier Cedex 2",
+      "telephone": "04 67 15 75 15",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -3318,7 +3318,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Montpellier",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Montpellier",
+      "adresse": "14 rue Marcel de Serres, CS 49503, Maison des Avocats, 34961 Montpellier Cedex 2",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -3413,8 +3413,8 @@
     "ddfip": {
       "nom": "DDFiP Ille-et-Vilaine",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Rennes",
-      "telephone": "0 809 401 401",
+      "adresse": "Cité administrative, Avenue Janvier, BP 72102, 35021 Rennes Cedex 9",
+      "telephone": "02 99 79 80 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -3454,7 +3454,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Rennes",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Rennes",
+      "adresse": "Maison des Avocats, 6 rue Hoche, 35000 Rennes",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -3555,8 +3555,8 @@
     "ddfip": {
       "nom": "DDFiP Indre",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Châteauroux",
-      "telephone": "0 809 401 401",
+      "adresse": "10 rue Albert-1er, BP 595, 36019 Châteauroux Cedex",
+      "telephone": "02 54 60 34 34",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -3596,7 +3596,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Châteauroux",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Châteauroux",
+      "adresse": "Palais de Justice, Place Lucien Germereau, 36000 Châteauroux",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -3697,8 +3697,8 @@
     "ddfip": {
       "nom": "DDFiP Indre-et-Loire",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Tours",
-      "telephone": "0 809 401 401",
+      "adresse": "94 boulevard Béranger, CS 33228, 37032 Tours Cedex 1",
+      "telephone": "02 47 21 73 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -3738,7 +3738,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Tours",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Tours",
+      "adresse": "5 place Jean Jaurès, Palais de Justice, 37000 Tours",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -3839,8 +3839,8 @@
     "ddfip": {
       "nom": "DDFiP Isère",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Grenoble",
-      "telephone": "0 809 401 401",
+      "adresse": "8 rue de Belgrade, 38022 Grenoble Cedex",
+      "telephone": "04 76 85 74 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -3880,7 +3880,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Grenoble",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Grenoble",
+      "adresse": "Maison de l'Avocat, 45 avenue Pierre Sémard, 38026 Grenoble Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -3981,8 +3981,8 @@
     "ddfip": {
       "nom": "DDFiP Jura",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Lons-le-Saunier",
-      "telephone": "0 809 401 401",
+      "adresse": "8 avenue Thurel, BP 640, 39021 Lons-le-Saunier Cedex",
+      "telephone": "03 84 35 15 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -4020,9 +4020,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Lons-le-Saunier",
+      "nom": "Barreau du Jura",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Lons-le-Saunier",
+      "adresse": "3 rue du Marché au Bois Blanc, 39000 Lons-le-Saunier",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -4123,8 +4123,8 @@
     "ddfip": {
       "nom": "DDFiP Landes",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Mont-de-Marsan",
-      "telephone": "0 809 401 401",
+      "adresse": "23 rue Armand-Dulamon, BP 309, 40011 Mont-de-Marsan Cedex",
+      "telephone": "05 58 46 61 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -4164,7 +4164,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Mont-de-Marsan",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Mont-de-Marsan",
+      "adresse": "22 rue Maubec, 40000 Mont-de-Marsan",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -4265,8 +4265,8 @@
     "ddfip": {
       "nom": "DDFiP Loir-et-Cher",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Blois",
-      "telephone": "0 809 401 401",
+      "adresse": "10 rue Louis-Bodin, CS 50001, 41026 Blois Cedex",
+      "telephone": "02 54 55 70 80",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -4306,7 +4306,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Blois",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Blois",
+      "adresse": "Palais de Justice, place de la République, 41000 Blois",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -4407,7 +4407,7 @@
     "ddfip": {
       "nom": "DDFiP Loire",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Saint-Étienne",
+      "adresse": "11 rue Mi-Carême, BP 20502, 42007 Saint-Étienne Cedex 1",
       "telephone": "0 809 401 401",
       "site": "https://www.impots.gouv.fr/contacts"
     },
@@ -4446,9 +4446,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Saint-Étienne",
+      "nom": "Barreau de Saint-Etienne",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Saint-Étienne",
+      "adresse": "36 rue de la Résistance, Maison des Avocats, 42000 Saint-Étienne",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -4543,8 +4543,8 @@
     "ddfip": {
       "nom": "DDFiP Haute-Loire",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Le Puy-en-Velay",
-      "telephone": "0 809 401 401",
+      "adresse": "17 rue des Moulins, BP 10351, 43012 Le Puy-en-Velay Cedex",
+      "telephone": "04 71 09 84 20",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -4582,9 +4582,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Le Puy-en-Velay",
+      "nom": "Barreau de la Haute-Loire",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Le Puy-en-Velay",
+      "adresse": "place du Breuil, Palais de Justice, 43000 Le Puy-en-Velay",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -4685,8 +4685,8 @@
     "ddfip": {
       "nom": "DDFiP Loire-Atlantique",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Nantes",
-      "telephone": "0 809 401 401",
+      "adresse": "4 quai de Versailles, BP 93503, 44035 Nantes Cedex 1",
+      "telephone": "02 40 20 50 50",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -4726,7 +4726,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Nantes",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Nantes",
+      "adresse": "25 rue La Noüe Bras de Fer, Maison de l'Avocat, 44202 Nantes Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -4827,8 +4827,8 @@
     "ddfip": {
       "nom": "DDFiP Loiret",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Orléans",
-      "telephone": "0 809 401 401",
+      "adresse": "4 place du Martroi, BP 2435, 45032 Orléans Cedex 1",
+      "telephone": "02 38 79 69 59",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -4866,9 +4866,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Orléans",
+      "nom": "Barreau d'Orléans",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Orléans",
+      "adresse": "44 rue de la Bretonnerie, Palais de Justice, 45000 Orléans",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -4969,8 +4969,8 @@
     "ddfip": {
       "nom": "DDFiP Lot",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Cahors",
-      "telephone": "0 809 401 401",
+      "adresse": "190 rue du Président-Wilson, 46000 Cahors",
+      "telephone": "05 65 20 32 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -5008,9 +5008,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Cahors",
+      "nom": "Barreau du Lot",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Cahors",
+      "adresse": "Square de Verdun, Palais de Justice, 46000 Cahors",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -5111,8 +5111,8 @@
     "ddfip": {
       "nom": "DDFiP Lot-et-Garonne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Agen",
-      "telephone": "0 809 401 401",
+      "adresse": "1 place des Jacobins, BP 70016, 47916 Agen Cedex 9",
+      "telephone": "05 53 77 51 51",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -5150,9 +5150,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Agen",
+      "nom": "Barreau d'Agen",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Agen",
+      "adresse": "42 rue Montaigne, Maison de l'Avocat, 47000 Agen",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -5253,8 +5253,8 @@
     "ddfip": {
       "nom": "DDFiP Lozère",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Mende",
-      "telephone": "0 809 401 401",
+      "adresse": "1 ter boulevard Lucien-Arnault, BP 131, 48005 Mende Cedex",
+      "telephone": "04 66 42 51 60",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -5292,9 +5292,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Mende",
+      "nom": "Barreau de la Lozère",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Mende",
+      "adresse": "27 boulevard Henri Bourrillon, Palais de Justice, 48000 Mende",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -5389,8 +5389,8 @@
     "ddfip": {
       "nom": "DDFiP Maine-et-Loire",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Angers",
-      "telephone": "0 809 401 401",
+      "adresse": "1 rue Talot, BP 84112, 49041 Angers Cedex 01",
+      "telephone": "02 41 20 22 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -5428,9 +5428,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Angers",
+      "nom": "Barreau d'Angers",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Angers",
+      "adresse": "4 Avenue Pasteur, 49100 Angers",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -5531,8 +5531,8 @@
     "ddfip": {
       "nom": "DDFiP Manche",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Saint-Lô",
-      "telephone": "0 809 401 401",
+      "adresse": "Cité administrative, Place de la Préfecture, BP 225, 50015 Saint-Lô Cedex",
+      "telephone": "02 33 77 51 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -5570,9 +5570,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Saint-Lô",
+      "nom": "Barreau de Coutances-Avranches",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Saint-Lô",
+      "adresse": "6 rue Tourville, Maison de l'Avocat, 50200 Coutances",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -5673,8 +5673,8 @@
     "ddfip": {
       "nom": "DDFiP Marne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Châlons-en-Champagne",
-      "telephone": "0 809 401 401",
+      "adresse": "12 rue Sainte-Marguerite, 51022 Châlons-en-Champagne Cedex",
+      "telephone": "03 26 69 53 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -5714,7 +5714,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Châlons-en-Champagne",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Châlons-en-Champagne",
+      "adresse": "1 rue Perrot d'Ablancourt, Maison de l'Avocat, 51000 Châlons-en-Champagne",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -5815,8 +5815,8 @@
     "ddfip": {
       "nom": "DDFiP Haute-Marne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Chaumont",
-      "telephone": "0 809 401 401",
+      "adresse": "5 rue de Lorraine, CS 10523, 52011 Chaumont Cedex",
+      "telephone": "03 25 30 68 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -5854,9 +5854,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Chaumont",
+      "nom": "Barreau de la Haute-Marne",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Chaumont",
+      "adresse": "Palais de justice, 52000 Chaumont",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -5957,8 +5957,8 @@
     "ddfip": {
       "nom": "DDFiP Mayenne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Laval",
-      "telephone": "0 809 401 401",
+      "adresse": "24 allée de Cambrai, BP 1439, 53014 Laval Cedex",
+      "telephone": "02 43 49 74 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -5998,7 +5998,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Laval",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Laval",
+      "adresse": "place Saint-Tugal, 53006 Laval Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -6099,8 +6099,8 @@
     "ddfip": {
       "nom": "DDFiP Meurthe-et-Moselle",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Nancy",
-      "telephone": "0 809 401 401",
+      "adresse": "50 rue des Ponts, CS 60069, 54036 Nancy Cedex",
+      "telephone": "03 83 17 70 10",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -6140,7 +6140,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Nancy",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Nancy",
+      "adresse": "Cité Judiciaire, rue du Général Fabvier, 54000 Nancy",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -6235,8 +6235,8 @@
     "ddfip": {
       "nom": "DDFiP Meuse",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Bar-le-Duc",
-      "telephone": "0 809 401 401",
+      "adresse": "17 rue du Général-de-Gaulle, 55000 Bar-le-Duc",
+      "telephone": "03 29 45 70 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -6274,9 +6274,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Bar-le-Duc",
+      "nom": "Barreau de la Meuse",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Bar-le-Duc",
+      "adresse": "2 place Saint-Pierre, 55000 Bar-le-Duc",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -6377,8 +6377,8 @@
     "ddfip": {
       "nom": "DDFiP Morbihan",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Vannes",
-      "telephone": "0 809 401 401",
+      "adresse": "35 boulevard de la Paix, BP 510, 56019 Vannes Cedex",
+      "telephone": "02 97 68 17 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -6418,7 +6418,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Vannes",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Vannes",
+      "adresse": "7 rue Pasteur, BP 43932, 56039 Vannes Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -6519,8 +6519,8 @@
     "ddfip": {
       "nom": "DDFiP Moselle",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Metz",
-      "telephone": "0 809 401 401",
+      "adresse": "1 rue François de Curel, BP 41054, 57036 Metz Cedex 1",
+      "telephone": "03 87 38 68 68",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -6560,7 +6560,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Metz",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Metz",
+      "adresse": "3 rue Haute Pierre, BP 80225, Palais de justice, 57005 Metz Cedex 01",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -6655,8 +6655,8 @@
     "ddfip": {
       "nom": "DDFiP Nièvre",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Nevers",
-      "telephone": "0 809 401 401",
+      "adresse": "12 rue Henri-Barbusse, BP 28, 58019 Nevers Cedex",
+      "telephone": "03 86 71 96 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -6696,7 +6696,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Nevers",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Nevers",
+      "adresse": "BP 420, Palais de Justice, Place du Palais, 58004 Nevers Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -6797,8 +6797,8 @@
     "ddfip": {
       "nom": "DDFiP Nord",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Lille",
-      "telephone": "0 809 401 401",
+      "adresse": "82 avenue Président-Kennedy, BP 70689, 59033 Lille Cedex",
+      "telephone": "03 20 62 42 42",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -6838,7 +6838,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Lille",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Lille",
+      "adresse": "Palais de Justice, 13 avenue du Peuple Belge, 59000 Lille",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -6933,8 +6933,8 @@
     "ddfip": {
       "nom": "DDFiP Oise",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Beauvais",
-      "telephone": "0 809 401 401",
+      "adresse": "2 rue Molière, BP 80323, 60021 Beauvais Cedex",
+      "telephone": "03 44 06 35 35",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -6974,7 +6974,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Beauvais",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Beauvais",
+      "adresse": "20 boulevard Saint-Jean, Palais de Justice, 60000 Beauvais",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -7075,8 +7075,8 @@
     "ddfip": {
       "nom": "DDFiP Orne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Alençon",
-      "telephone": "0 809 401 401",
+      "adresse": "29 rue du Pont-Neuf, BP 344, 61014 Alençon Cedex",
+      "telephone": "02 33 82 52 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -7114,9 +7114,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Alençon",
+      "nom": "Barreau d'Alençon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Alençon",
+      "adresse": "Palais de Justice, 7 rue de Bretagne, 61000 Alençon",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -7217,8 +7217,8 @@
     "ddfip": {
       "nom": "DDFiP Pas-de-Calais",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Arras",
-      "telephone": "0 809 401 401",
+      "adresse": "5 rue du Docteur-Brassart, BP 30015, 62034 Arras Cedex",
+      "telephone": "03 21 23 68 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -7256,9 +7256,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Arras",
+      "nom": "Barreau d'Arras",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Arras",
+      "adresse": "2 place des Etats d'Artois, Maison de l'Avocat, 62000 Arras",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -7359,8 +7359,8 @@
     "ddfip": {
       "nom": "DDFiP Puy-de-Dôme",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Clermont-Ferrand",
-      "telephone": "0 809 401 401",
+      "adresse": "2 rue Gilbert-Morel, 63033 Clermont-Ferrand Cedex 1",
+      "telephone": "04 73 43 10 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -7400,7 +7400,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Clermont-Ferrand",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Clermont-Ferrand",
+      "adresse": "16 place de l'Étoile, Palais de Justice, 63000 Clermont-Ferrand",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -7501,8 +7501,8 @@
     "ddfip": {
       "nom": "DDFiP Pyrénées-Atlantiques",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Pau",
-      "telephone": "0 809 401 401",
+      "adresse": "8 place d'Espagne, 64019 Pau Cedex",
+      "telephone": "05 59 82 24 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -7542,7 +7542,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Pau",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Pau",
+      "adresse": "3 bis rue Gassiot, Maison de l'Avocat, 64000 Pau",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -7643,8 +7643,8 @@
     "ddfip": {
       "nom": "DDFiP Hautes-Pyrénées",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Tarbes",
-      "telephone": "0 809 401 401",
+      "adresse": "4 chemin de l'Ormeau, BP 1346, 65013 Tarbes Cedex",
+      "telephone": "05 62 44 60 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -7684,7 +7684,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Tarbes",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Tarbes",
+      "adresse": "6 rue Maréchal Foch, Maison de l'avocat, 65000 Tarbes",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -7785,8 +7785,8 @@
     "ddfip": {
       "nom": "DDFiP Pyrénées-Orientales",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Perpignan",
-      "telephone": "0 809 401 401",
+      "adresse": "Square Arago, BP 950, 66950 Perpignan Cedex",
+      "telephone": "04 68 35 81 81",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -7824,9 +7824,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Perpignan",
+      "nom": "Barreau des Pyrénées-Orientales",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Perpignan",
+      "adresse": "CS 40017, Palais de Justice, 66029 Perpignan Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -7921,8 +7921,8 @@
     "ddfip": {
       "nom": "DDFiP Bas-Rhin",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Strasbourg",
-      "telephone": "0 809 401 401",
+      "adresse": "4 place de la République, CS 51022, 67070 Strasbourg Cedex",
+      "telephone": "03 88 25 37 37",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -7962,7 +7962,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Strasbourg",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Strasbourg",
+      "adresse": "3 rue du Général Frère, CS 10033, 67081 Strasbourg Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -8057,8 +8057,8 @@
     "ddfip": {
       "nom": "DDFiP Haut-Rhin",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Colmar",
-      "telephone": "0 809 401 401",
+      "adresse": "6 rue Bruat, BP 60449, 68020 Colmar Cedex",
+      "telephone": "03 89 24 53 53",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -8098,7 +8098,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Colmar",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Colmar",
+      "adresse": "Maison de l'Avocat, 24 avenue de la République, 68000 Colmar",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -8193,8 +8193,8 @@
     "ddfip": {
       "nom": "DDFiP Rhône",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Lyon",
-      "telephone": "0 809 401 401",
+      "adresse": "3 rue de la Charité, 69002 Lyon",
+      "telephone": "04 72 40 84 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -8234,7 +8234,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Lyon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Lyon",
+      "adresse": "176 rue de Créqui, 69484 Lyon Cedex 3",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -8329,8 +8329,8 @@
     "ddfip": {
       "nom": "DDFiP Haute-Saône",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Vesoul",
-      "telephone": "0 809 401 401",
+      "adresse": "8 place Pierre-Renet, BP 399, 70014 Vesoul Cedex",
+      "telephone": "03 84 96 14 14",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -8368,9 +8368,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Vesoul",
+      "nom": "Barreau de la Haute-Saône",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Vesoul",
+      "adresse": "16 rue du Palais, BP 70115, 70002 Vesoul Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -8471,8 +8471,8 @@
     "ddfip": {
       "nom": "DDFiP Saône-et-Loire",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Mâcon",
-      "telephone": "0 809 401 401",
+      "adresse": "29 rue Lamartine, 71017 Mâcon Cedex",
+      "telephone": "03 85 39 65 65",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -8512,7 +8512,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Mâcon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Mâcon",
+      "adresse": "3 rue des Ursulines, 71000 Mâcon",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -8613,8 +8613,8 @@
     "ddfip": {
       "nom": "DDFiP Sarthe",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Le Mans",
-      "telephone": "0 809 401 401",
+      "adresse": "23 place des Comtes-du-Maine, 72000 Le Mans",
+      "telephone": "02 43 43 58 58",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -8652,9 +8652,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Le Mans",
+      "nom": "Barreau du Mans",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Le Mans",
+      "adresse": "1 rue Montauban, Maison des Avocats, 72000 Le Mans",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -8755,8 +8755,8 @@
     "ddfip": {
       "nom": "DDFiP Savoie",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Chambéry",
-      "telephone": "0 809 401 401",
+      "adresse": "5 rue Jean Girard-Madoux, 73011 Chambéry Cedex",
+      "telephone": "04 79 33 32 09",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -8796,7 +8796,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Chambéry",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Chambéry",
+      "adresse": "200 avenue du Maréchal Leclerc, Maison de l'Avocat, 73000 Chambéry",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -8891,8 +8891,8 @@
     "ddfip": {
       "nom": "DDFiP Haute-Savoie",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Annecy",
-      "telephone": "0 809 401 401",
+      "adresse": "18 rue de la Gare, BP 330, 74008 Annecy Cedex",
+      "telephone": "04 50 51 16 10",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -8930,9 +8930,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Annecy",
+      "nom": "Barreau d'Annecy",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Annecy",
+      "adresse": "9 rue Guillaume Fichet, Maison des avocats, 74000 Annecy",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -9027,8 +9027,8 @@
     "ddfip": {
       "nom": "DDFiP Paris",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Paris",
-      "telephone": "0 809 401 401",
+      "adresse": "94 rue Réaumur, 75104 Paris Cedex 02",
+      "telephone": "01 55 80 85 85",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -9068,7 +9068,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Paris",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Paris",
+      "adresse": "11 place Dauphine, 75053 Paris Cedex 01",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -9163,8 +9163,8 @@
     "ddfip": {
       "nom": "DDFiP Seine-Maritime",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Rouen",
-      "telephone": "0 809 401 401",
+      "adresse": "21 quai Jean-Moulin, 76037 Rouen Cedex",
+      "telephone": "02 35 58 37 37",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -9204,7 +9204,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Rouen",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Rouen",
+      "adresse": "6 allée Eugène Delacroix, Maison de l'Avocat, 76000 Rouen",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -9305,8 +9305,8 @@
     "ddfip": {
       "nom": "DDFiP Seine-et-Marne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Melun",
-      "telephone": "0 809 401 401",
+      "adresse": "38 avenue Thiers, 77011 Melun Cedex",
+      "telephone": "01 64 87 58 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -9346,7 +9346,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Melun",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Melun",
+      "adresse": "Palais de Justice, 2 avenue du Général Leclerc, 77008 Melun Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -9447,8 +9447,8 @@
     "ddfip": {
       "nom": "DDFiP Yvelines",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Versailles",
-      "telephone": "0 809 401 401",
+      "adresse": "16 avenue de Saint-Cloud, 78018 Versailles Cedex",
+      "telephone": "01 30 84 62 90",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -9488,7 +9488,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Versailles",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Versailles",
+      "adresse": "Palais de Justice, 3 place André Mignot, 78005 Versailles Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -9583,8 +9583,8 @@
     "ddfip": {
       "nom": "DDFiP Deux-Sèvres",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Niort",
-      "telephone": "0 809 401 401",
+      "adresse": "44 rue d'Alsace-Lorraine, BP 19149, 79061 Niort Cedex 9",
+      "telephone": "05 49 06 36 36",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -9622,9 +9622,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Niort",
+      "nom": "Barreau des Deux-Sèvres",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Niort",
+      "adresse": "18 rue Marcel Paul, BP 8820, Espace Thémis, 79028 Niort Cedex 9",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -9725,8 +9725,8 @@
     "ddfip": {
       "nom": "DDFiP Somme",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Amiens",
-      "telephone": "0 809 401 401",
+      "adresse": "22 rue de l'Amiral-Courbet, CS 12613, 80026 Amiens Cedex",
+      "telephone": "03 22 71 42 42",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -9764,9 +9764,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Amiens",
+      "nom": "Barreau d'Amiens",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Amiens",
+      "adresse": "21 square Jules Bocquet, Maison de l'Avocat, 80000 Amiens",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -9867,8 +9867,8 @@
     "ddfip": {
       "nom": "DDFiP Tarn",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Albi",
-      "telephone": "0 809 401 401",
+      "adresse": "18 avenue Charles-de-Gaulle, 81013 Albi Cedex 9",
+      "telephone": "05 63 49 58 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -9906,9 +9906,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Albi",
+      "nom": "Barreau d'Albi",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Albi",
+      "adresse": "Maison de l'Avocat, 1 rue de la Berchère, 81000 Albi",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -10009,8 +10009,8 @@
     "ddfip": {
       "nom": "DDFiP Tarn-et-Garonne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Montauban",
-      "telephone": "0 809 401 401",
+      "adresse": "5-7 allée de Mortarieu, CS 70770, 82037 Montauban Cedex",
+      "telephone": "05 63 21 47 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -10048,9 +10048,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Montauban",
+      "nom": "Barreau du Tarn-et-Garonne",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Montauban",
+      "adresse": "5 place du Coq, 82000 Montauban Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -10151,8 +10151,8 @@
     "ddfip": {
       "nom": "DDFiP Var",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Toulon",
-      "telephone": "0 809 401 401",
+      "adresse": "Place de Besagne, CS 91409, 83056 Toulon Cedex",
+      "telephone": "04 94 03 82 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -10192,7 +10192,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Toulon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Toulon",
+      "adresse": "13 rue Berrier Fontaine, CS 20508, 83041 Toulon Cedex 9",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -10287,8 +10287,8 @@
     "ddfip": {
       "nom": "DDFiP Vaucluse",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Avignon",
-      "telephone": "0 809 401 401",
+      "adresse": "Cité administrative, avenue du 7ème Génie, BP 31091, 84097 Avignon Cedex 9",
+      "telephone": "04 90 80 41 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -10326,9 +10326,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Avignon",
+      "nom": "Barreau d'Avignon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Avignon",
+      "adresse": "Maison de l'Avocat, 22 boulevard Limbert, 84000 Avignon",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -10423,8 +10423,8 @@
     "ddfip": {
       "nom": "DDFiP Vendée",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "La Roche-sur-Yon",
-      "telephone": "0 809 401 401",
+      "adresse": "26 rue Jean-Jaurès, 85024 La Roche-sur-Yon Cedex",
+      "telephone": "02 51 36 58 58",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -10464,7 +10464,7 @@
     "ordreAvocats": {
       "nom": "Barreau de La Roche-sur-Yon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "La Roche-sur-Yon",
+      "adresse": "54 rue de Verdun, Maison de l'Avocat, 85000 La Roche-sur-Yon",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -10565,8 +10565,8 @@
     "ddfip": {
       "nom": "DDFiP Vienne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Poitiers",
-      "telephone": "0 809 401 401",
+      "adresse": "11 rue Riffault, BP 549, 86020 Poitiers Cedex",
+      "telephone": "05 49 55 62 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -10606,7 +10606,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Poitiers",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Poitiers",
+      "adresse": "Palais de Justice, 5 rue Thiers, 86000 Poitiers",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -10707,8 +10707,8 @@
     "ddfip": {
       "nom": "DDFiP Haute-Vienne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Limoges",
-      "telephone": "0 809 401 401",
+      "adresse": "31 rue Montmailler, 87043 Limoges Cedex",
+      "telephone": "05 55 45 69 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -10748,7 +10748,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Limoges",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Limoges",
+      "adresse": "Maison de l'Avocat, 4 rue Aimé Césaire, 87000 Limoges",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -10849,8 +10849,8 @@
     "ddfip": {
       "nom": "DDFiP Vosges",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Épinal",
-      "telephone": "0 809 401 401",
+      "adresse": "25 rue Antoine-Hurault, 88026 Épinal Cedex",
+      "telephone": "03 29 69 25 25",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -10888,9 +10888,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Épinal",
+      "nom": "Barreau d'Épinal",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Épinal",
+      "adresse": "Palais de Justice, Place de la Préfecture, 88000 Épinal",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -10991,8 +10991,8 @@
     "ddfip": {
       "nom": "DDFiP Yonne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Auxerre",
-      "telephone": "0 809 401 401",
+      "adresse": "9 rue Marie-Noël, BP 109, 89011 Auxerre Cedex",
+      "telephone": "03 86 72 36 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -11030,9 +11030,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Auxerre",
+      "nom": "Barreau d'Auxerre",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Auxerre",
+      "adresse": "Palais de Justice, 5 rue Joubert, 89000 Auxerre",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -11133,8 +11133,8 @@
     "ddfip": {
       "nom": "DDFiP Territoire de Belfort",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Belfort",
-      "telephone": "0 809 401 401",
+      "adresse": "9 bis Faubourg de Montbéliard, BP 10489, 90016 Belfort Cedex",
+      "telephone": "03 84 36 62 20",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -11174,7 +11174,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Belfort",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Belfort",
+      "adresse": "Palais de Justice, Place d'Armes, 90000 Belfort",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -11269,8 +11269,8 @@
     "ddfip": {
       "nom": "DDFiP Essonne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Évry-Courcouronnes",
-      "telephone": "0 809 401 401",
+      "adresse": "27 rue de Mazières, 91011 Évry Cedex",
+      "telephone": "01 69 13 26 40",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -11308,9 +11308,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Évry-Courcouronnes",
+      "nom": "Barreau d'Évry",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Évry-Courcouronnes",
+      "adresse": "Maison de l'Avocat, 40 boulevard de France, 91000 Évry",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -11405,8 +11405,8 @@
     "ddfip": {
       "nom": "DDFiP Hauts-de-Seine",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Nanterre",
-      "telephone": "0 809 401 401",
+      "adresse": "167 avenue Joliot-Curie, 92013 Nanterre Cedex",
+      "telephone": "01 40 97 30 30",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -11444,9 +11444,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Nanterre",
+      "nom": "Barreau des Hauts-de-Seine",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Nanterre",
+      "adresse": "Palais de Justice, 1 place Paul Verlaine, 92014 Nanterre Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -11541,7 +11541,7 @@
     "ddfip": {
       "nom": "DDFiP Seine-Saint-Denis",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Bobigny",
+      "adresse": "7 rue Hector-Berlioz, 93000 Bobigny",
       "telephone": "0 809 401 401",
       "site": "https://www.impots.gouv.fr/contacts"
     },
@@ -11580,9 +11580,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Bobigny",
+      "nom": "Barreau de Seine-Saint-Denis",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Bobigny",
+      "adresse": "Palais de Justice, 1 allée du Progrès, 93009 Bobigny Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -11677,8 +11677,8 @@
     "ddfip": {
       "nom": "DDFiP Val-de-Marne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Créteil",
-      "telephone": "0 809 401 401",
+      "adresse": "1 place du Général-Billotte, 94040 Créteil Cedex",
+      "telephone": "01 43 99 38 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -11716,9 +11716,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Créteil",
+      "nom": "Barreau du Val-de-Marne",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Créteil",
+      "adresse": "Palais de Justice, 1 avenue Pasteur, 94010 Créteil Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -11813,8 +11813,8 @@
     "ddfip": {
       "nom": "DDFiP Val-d'Oise",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Cergy",
-      "telephone": "0 809 401 401",
+      "adresse": "5 avenue Bernard-Hirsch, 95010 Cergy-Pontoise Cedex",
+      "telephone": "01 34 25 27 02",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -11852,9 +11852,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Cergy",
+      "nom": "Barreau du Val-d'Oise",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Cergy",
+      "adresse": "Palais de Justice, rue Paul Claudel, 95303 Pontoise Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -11971,8 +11971,8 @@
     "ddfip": {
       "nom": "DDFiP Guadeloupe",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Basse-Terre",
-      "telephone": "0 809 401 401",
+      "adresse": "Route de Bologne, ZI de Calebassier, 97100 Basse-Terre",
+      "telephone": "05 90 99 24 27",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -12003,6 +12003,12 @@
       "type": "Règlement amiable gratuit",
       "adresse": "Mairie de Basse-Terre",
       "site": "https://www.conciliateurs.fr"
+    },
+    "ordreAvocats": {
+      "nom": "Barreau de la Guadeloupe",
+      "type": "Ordre des avocats — commission entraide",
+      "adresse": "Palais de Justice, Rue de Nozières, 97110 Pointe-à-Pitre",
+      "site": "https://www.cnb.avocat.fr"
     }
   },
   "972": {
@@ -12069,8 +12075,8 @@
     "ddfip": {
       "nom": "DDFiP Martinique",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Fort-de-France",
-      "telephone": "0 809 401 401",
+      "adresse": "Jardin Desclieux, BP 654 et 655, 97263 Fort-de-France Cedex",
+      "telephone": "05 96 59 07 07",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -12101,6 +12107,12 @@
       "type": "Règlement amiable gratuit",
       "adresse": "Mairie de Fort-de-France",
       "site": "https://www.conciliateurs.fr"
+    },
+    "ordreAvocats": {
+      "nom": "Barreau de la Martinique",
+      "type": "Ordre des avocats — commission entraide",
+      "adresse": "Palais de Justice, 97200 Fort-de-France",
+      "site": "https://www.cnb.avocat.fr"
     }
   },
   "973": {
@@ -12167,8 +12179,8 @@
     "ddfip": {
       "nom": "DDFiP Guyane",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Cayenne",
-      "telephone": "0 809 401 401",
+      "adresse": "Rue Fiedmond, 97300 Cayenne",
+      "telephone": "05 94 29 91 91",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -12199,6 +12211,12 @@
       "type": "Règlement amiable gratuit",
       "adresse": "Mairie de Cayenne",
       "site": "https://www.conciliateurs.fr"
+    },
+    "ordreAvocats": {
+      "nom": "Barreau de la Guyane",
+      "type": "Ordre des avocats — commission entraide",
+      "adresse": "Palais de Justice, 97300 Cayenne",
+      "site": "https://www.cnb.avocat.fr"
     }
   },
   "974": {
@@ -12265,8 +12283,8 @@
     "ddfip": {
       "nom": "DDFiP La Réunion",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Saint-Denis",
-      "telephone": "0 809 401 401",
+      "adresse": "7 avenue André-Malraux, CS 21015, 97744 Saint-Denis Cedex 9",
+      "telephone": "02 62 90 88 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -12297,6 +12315,12 @@
       "type": "Règlement amiable gratuit",
       "adresse": "Mairie de Saint-Denis",
       "site": "https://www.conciliateurs.fr"
+    },
+    "ordreAvocats": {
+      "nom": "Barreau de Saint-Denis de la Réunion",
+      "type": "Ordre des avocats — commission entraide",
+      "adresse": "Palais de Justice, 97400 Saint-Denis",
+      "site": "https://www.cnb.avocat.fr"
     }
   },
   "975": {
@@ -12459,8 +12483,8 @@
     "ddfip": {
       "nom": "DDFiP Mayotte",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Mamoudzou",
-      "telephone": "0 809 401 401",
+      "adresse": "Avenue de la Préfecture, BP 501, 97600 Mamoudzou",
+      "telephone": "02 69 61 16 40",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -12491,6 +12515,12 @@
       "type": "Règlement amiable gratuit",
       "adresse": "Mairie de Mamoudzou",
       "site": "https://www.conciliateurs.fr"
+    },
+    "ordreAvocats": {
+      "nom": "Barreau de Mayotte",
+      "type": "Ordre des avocats — commission entraide",
+      "adresse": "Palais de Justice, 97600 Mamoudzou",
+      "site": "https://www.cnb.avocat.fr"
     }
   },
   "977": {
@@ -13019,8 +13049,8 @@
     "ddfip": {
       "nom": "DDFiP Ain",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Bourg-en-Bresse",
-      "telephone": "0 809 401 401",
+      "adresse": "11 boulevard Maréchal-Leclerc, BP 40423, 01012 Bourg-en-Bresse Cedex",
+      "telephone": "04 74 45 68 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -13058,9 +13088,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Bourg-en-Bresse",
+      "nom": "Barreau de l'Ain",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Bourg-en-Bresse",
+      "adresse": "18 rue Bourgmayer, Maison de l'avocat, 01000 Bourg-en-Bresse",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -13161,8 +13191,8 @@
     "ddfip": {
       "nom": "DDFiP Aisne",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Laon",
-      "telephone": "0 809 401 401",
+      "adresse": "28 rue Saint-Martin, 02025 Laon Cedex 9",
+      "telephone": "03 23 26 31 31",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -13202,7 +13232,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Laon",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Laon",
+      "adresse": "3 Place Aubry, Palais de Justice, 02011 Laon Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -13303,8 +13333,8 @@
     "ddfip": {
       "nom": "DDFiP Allier",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Moulins",
-      "telephone": "0 809 401 401",
+      "adresse": "9 avenue Victor-Hugo, 03016 Moulins Cedex",
+      "telephone": "04 70 35 12 35",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -13344,7 +13374,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Moulins",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Moulins",
+      "adresse": "20 rue de Paris, Palais de Justice, 03000 Moulins",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -13445,8 +13475,8 @@
     "ddfip": {
       "nom": "DDFiP Alpes-de-Haute-Provence",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Digne-les-Bains",
-      "telephone": "0 809 401 401",
+      "adresse": "51 avenue du 8 Mai-1945, 04017 Digne-les-Bains Cedex",
+      "telephone": "04 92 30 86 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -13484,9 +13514,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Digne-les-Bains",
+      "nom": "Barreau des Alpes de Haute-Provence",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Digne-les-Bains",
+      "adresse": "6 Cours du Tribunal, 04000 Digne-les-Bains",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -13581,8 +13611,8 @@
     "ddfip": {
       "nom": "DDFiP Hautes-Alpes",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Gap",
-      "telephone": "0 809 401 401",
+      "adresse": "Cours Ladoucette, BP 104, 05007 Gap Cedex",
+      "telephone": "04 92 52 59 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -13620,9 +13650,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Gap",
+      "nom": "Barreau des Hautes-Alpes",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Gap",
+      "adresse": "7 avenue Jean Jaurès, 05000 Gap",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -13717,8 +13747,8 @@
     "ddfip": {
       "nom": "DDFiP Alpes-Maritimes",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Nice",
-      "telephone": "0 809 401 401",
+      "adresse": "15 bis rue Delille, 06073 Nice Cedex 1",
+      "telephone": "04 92 17 60 00",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -13758,7 +13788,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Nice",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Nice",
+      "adresse": "Palais de Justice, Place du Palais, 06300 Nice",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -13853,8 +13883,8 @@
     "ddfip": {
       "nom": "DDFiP Ardèche",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Privas",
-      "telephone": "0 809 401 401",
+      "adresse": "1 avenue du Vanel, BP 714, 07007 Privas Cedex",
+      "telephone": "04 75 65 55 55",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -13892,9 +13922,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Privas",
+      "nom": "Barreau de l'Ardèche",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Privas",
+      "adresse": "8 cours du Palais, Maison de l'Avocat, 07000 Privas",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -13995,8 +14025,8 @@
     "ddfip": {
       "nom": "DDFiP Ardennes",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Charleville-Mézières",
-      "telephone": "0 809 401 401",
+      "adresse": "50 avenue d'Arches, CS 60005, 08011 Charleville-Mézières Cedex",
+      "telephone": "03 24 33 75 75",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -14034,9 +14064,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Charleville-Mézières",
+      "nom": "Barreau des Ardennes",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Charleville-Mézières",
+      "adresse": "Esplanade du Palais de Justice, 08000 Charleville-Mézières",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -14137,8 +14167,8 @@
     "ddfip": {
       "nom": "DDFiP Ariège",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Foix",
-      "telephone": "0 809 401 401",
+      "adresse": "55 cours Gabriel-Fauré, BP 86, 09007 Foix Cedex",
+      "telephone": "05 61 05 45 50",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -14176,9 +14206,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Foix",
+      "nom": "Barreau de l'Ariège",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Foix",
+      "adresse": "14 boulevard du Sud, 09000 Foix",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -14273,8 +14303,8 @@
     "ddfip": {
       "nom": "DDFiP Corse-du-Sud",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Ajaccio",
-      "telephone": "0 809 401 401",
+      "adresse": "2 avenue de la Grande-Armée, BP 410, 20191 Ajaccio Cedex",
+      "telephone": "04 95 23 51 50",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -14312,9 +14342,9 @@
       "site": "https://www.conseil-national.medecin.fr"
     },
     "ordreAvocats": {
-      "nom": "Barreau de Ajaccio",
+      "nom": "Barreau d'Ajaccio",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Ajaccio",
+      "adresse": "2 boulevard Masseria, Palais de Justice, 20181 Ajaccio Cedex 1",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {
@@ -14415,8 +14445,8 @@
     "ddfip": {
       "nom": "DDFiP Haute-Corse",
       "type": "Direction Départementale des Finances Publiques (CCSF)",
-      "adresse": "Bastia",
-      "telephone": "0 809 401 401",
+      "adresse": "Square Saint-Victor, BP 110, 20291 Bastia Cedex",
+      "telephone": "04 95 32 81 20",
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
@@ -14456,7 +14486,7 @@
     "ordreAvocats": {
       "nom": "Barreau de Bastia",
       "type": "Ordre des avocats — commission entraide",
-      "adresse": "Bastia",
+      "adresse": "Palais de Justice, rue du Rond-Point de Moro Giafferi, 20407 Bastia Cedex",
       "site": "https://www.cnb.avocat.fr"
     },
     "chambreNotaires": {

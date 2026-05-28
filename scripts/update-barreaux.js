@@ -1,0 +1,130 @@
+// Mise à jour des Barreaux (ordres des avocats) par département.
+// Données collectées via annuaire-administration.com (28/05/2026).
+// Téléphones non publiés sur la page récap — adresses postales complètes.
+// Lancement : node scripts/update-barreaux.js
+
+const fs = require('fs');
+const path = require('path');
+
+const BARREAUX = {
+  "01": { nom: "Barreau de l'Ain", adresse: "18 rue Bourgmayer, Maison de l'avocat, 01000 Bourg-en-Bresse" },
+  "02": { nom: "Barreau de Laon", adresse: "3 Place Aubry, Palais de Justice, 02011 Laon Cedex" },
+  "03": { nom: "Barreau de Moulins", adresse: "20 rue de Paris, Palais de Justice, 03000 Moulins" },
+  "04": { nom: "Barreau des Alpes de Haute-Provence", adresse: "6 Cours du Tribunal, 04000 Digne-les-Bains" },
+  "05": { nom: "Barreau des Hautes-Alpes", adresse: "7 avenue Jean Jaurès, 05000 Gap" },
+  "06": { nom: "Barreau de Nice", adresse: "Palais de Justice, Place du Palais, 06300 Nice" },
+  "07": { nom: "Barreau de l'Ardèche", adresse: "8 cours du Palais, Maison de l'Avocat, 07000 Privas" },
+  "08": { nom: "Barreau des Ardennes", adresse: "Esplanade du Palais de Justice, 08000 Charleville-Mézières" },
+  "09": { nom: "Barreau de l'Ariège", adresse: "14 boulevard du Sud, 09000 Foix" },
+  "10": { nom: "Barreau de l'Aube", adresse: "44 boulevard Gambetta, 10000 Troyes" },
+  "11": { nom: "Barreau de Carcassonne", adresse: "Palais de justice, boulevard Jean Jaurès, 11000 Carcassonne" },
+  "12": { nom: "Barreau de l'Aveyron", adresse: "Palais de Justice, boulevard de Guizard, 12000 Rodez" },
+  "13": { nom: "Barreau de Marseille", adresse: "Maison de l'Avocat, 51 rue Grignan, 13006 Marseille" },
+  "14": { nom: "Barreau de Caen", adresse: "3 avenue de l'Hippodrome, Maison de l'Avocat, ZAC Gardin, 14000 Caen" },
+  "15": { nom: "Barreau d'Aurillac", adresse: "21 place du Square, Palais de Justice, 15000 Aurillac" },
+  "16": { nom: "Barreau de la Charente", adresse: "4 place Francis Louvel, 16000 Angoulême" },
+  "17": { nom: "Barreau de La Rochelle-Rochefort", adresse: "32-34 rue Gargoulleau, Maison des Avocats, 17000 La Rochelle" },
+  "18": { nom: "Barreau de Bourges", adresse: "8 rue des Arènes, Palais de Justice, 18000 Bourges" },
+  "19": { nom: "Barreau de Tulle-Ussel", adresse: "9 quai Gabriel Peri, 19000 Tulle" },
+  "21": { nom: "Barreau de Dijon", adresse: "6 rue Philibert Papillon, Maison des Avocats, 21000 Dijon" },
+  "22": { nom: "Barreau de Saint-Brieuc", adresse: "Palais de Justice, allée des Promenades, 22023 Saint-Brieuc Cedex 01" },
+  "23": { nom: "Barreau de la Creuse", adresse: "23 place Bonnyaud, BP 90275, Palais de Justice, 23008 Guéret Cedex" },
+  "24": { nom: "Barreau de Périgueux", adresse: "19 bis cours Montaigne, Palais de Justice, 24000 Périgueux" },
+  "25": { nom: "Barreau de Besançon", adresse: "1 rue Megevand, BP 167, 25000 Besançon" },
+  "26": { nom: "Barreau de la Drôme", adresse: "2 place du Palais, Palais de Justice, 26000 Valence" },
+  "27": { nom: "Barreau de l'Eure", adresse: "Maison de l'Avocat, 3 rue de Verdun, 27000 Evreux" },
+  "28": { nom: "Barreau de Chartres", adresse: "3 rue Saint-Jacques, Palais de Justice, 28000 Chartres" },
+  "29": { nom: "Barreau de Quimper", adresse: "7 rue du Palais, Maison de l'Avocat, 29000 Quimper" },
+  "2A": { nom: "Barreau d'Ajaccio", adresse: "2 boulevard Masseria, Palais de Justice, 20181 Ajaccio Cedex 1" },
+  "2B": { nom: "Barreau de Bastia", adresse: "Palais de Justice, rue du Rond-Point de Moro Giafferi, 20407 Bastia Cedex" },
+  "30": { nom: "Barreau de Nîmes", adresse: "16 rue Régale, Maison de l'Avocat, 30000 Nîmes" },
+  "31": { nom: "Barreau de Toulouse", adresse: "13 rue des Fleurs, 31000 Toulouse" },
+  "32": { nom: "Barreau du Gers", adresse: "Palais de Justice, 13 bis rue Docteur Samalens, 32000 Auch" },
+  "33": { nom: "Barreau de Bordeaux", adresse: "1 rue de Cursol, Maison de l'Avocat, 33077 Bordeaux Cedex" },
+  "34": { nom: "Barreau de Montpellier", adresse: "14 rue Marcel de Serres, CS 49503, Maison des Avocats, 34961 Montpellier Cedex 2" },
+  "35": { nom: "Barreau de Rennes", adresse: "Maison des Avocats, 6 rue Hoche, 35000 Rennes" },
+  "36": { nom: "Barreau de Châteauroux", adresse: "Palais de Justice, Place Lucien Germereau, 36000 Châteauroux" },
+  "37": { nom: "Barreau de Tours", adresse: "5 place Jean Jaurès, Palais de Justice, 37000 Tours" },
+  "38": { nom: "Barreau de Grenoble", adresse: "Maison de l'Avocat, 45 avenue Pierre Sémard, 38026 Grenoble Cedex" },
+  "39": { nom: "Barreau du Jura", adresse: "3 rue du Marché au Bois Blanc, 39000 Lons-le-Saunier" },
+  "40": { nom: "Barreau de Mont-de-Marsan", adresse: "22 rue Maubec, 40000 Mont-de-Marsan" },
+  "41": { nom: "Barreau de Blois", adresse: "Palais de Justice, place de la République, 41000 Blois" },
+  "42": { nom: "Barreau de Saint-Etienne", adresse: "36 rue de la Résistance, Maison des Avocats, 42000 Saint-Étienne" },
+  "43": { nom: "Barreau de la Haute-Loire", adresse: "place du Breuil, Palais de Justice, 43000 Le Puy-en-Velay" },
+  "44": { nom: "Barreau de Nantes", adresse: "25 rue La Noüe Bras de Fer, Maison de l'Avocat, 44202 Nantes Cedex" },
+  "45": { nom: "Barreau d'Orléans", adresse: "44 rue de la Bretonnerie, Palais de Justice, 45000 Orléans" },
+  "46": { nom: "Barreau du Lot", adresse: "Square de Verdun, Palais de Justice, 46000 Cahors" },
+  "47": { nom: "Barreau d'Agen", adresse: "42 rue Montaigne, Maison de l'Avocat, 47000 Agen" },
+  "48": { nom: "Barreau de la Lozère", adresse: "27 boulevard Henri Bourrillon, Palais de Justice, 48000 Mende" },
+  "49": { nom: "Barreau d'Angers", adresse: "4 Avenue Pasteur, 49100 Angers" },
+  "50": { nom: "Barreau de Coutances-Avranches", adresse: "6 rue Tourville, Maison de l'Avocat, 50200 Coutances" },
+  "51": { nom: "Barreau de Châlons-en-Champagne", adresse: "1 rue Perrot d'Ablancourt, Maison de l'Avocat, 51000 Châlons-en-Champagne" },
+  "52": { nom: "Barreau de la Haute-Marne", adresse: "Palais de justice, 52000 Chaumont" },
+  "53": { nom: "Barreau de Laval", adresse: "place Saint-Tugal, 53006 Laval Cedex" },
+  "54": { nom: "Barreau de Nancy", adresse: "Cité Judiciaire, rue du Général Fabvier, 54000 Nancy" },
+  "55": { nom: "Barreau de la Meuse", adresse: "2 place Saint-Pierre, 55000 Bar-le-Duc" },
+  "56": { nom: "Barreau de Vannes", adresse: "7 rue Pasteur, BP 43932, 56039 Vannes Cedex" },
+  "57": { nom: "Barreau de Metz", adresse: "3 rue Haute Pierre, BP 80225, Palais de justice, 57005 Metz Cedex 01" },
+  "58": { nom: "Barreau de Nevers", adresse: "BP 420, Palais de Justice, Place du Palais, 58004 Nevers Cedex" },
+  "59": { nom: "Barreau de Lille", adresse: "Palais de Justice, 13 avenue du Peuple Belge, 59000 Lille" },
+  "60": { nom: "Barreau de Beauvais", adresse: "20 boulevard Saint-Jean, Palais de Justice, 60000 Beauvais" },
+  "61": { nom: "Barreau d'Alençon", adresse: "Palais de Justice, 7 rue de Bretagne, 61000 Alençon" },
+  "62": { nom: "Barreau d'Arras", adresse: "2 place des Etats d'Artois, Maison de l'Avocat, 62000 Arras" },
+  "63": { nom: "Barreau de Clermont-Ferrand", adresse: "16 place de l'Étoile, Palais de Justice, 63000 Clermont-Ferrand" },
+  "64": { nom: "Barreau de Pau", adresse: "3 bis rue Gassiot, Maison de l'Avocat, 64000 Pau" },
+  "65": { nom: "Barreau de Tarbes", adresse: "6 rue Maréchal Foch, Maison de l'avocat, 65000 Tarbes" },
+  "66": { nom: "Barreau des Pyrénées-Orientales", adresse: "CS 40017, Palais de Justice, 66029 Perpignan Cedex" },
+  "67": { nom: "Barreau de Strasbourg", adresse: "3 rue du Général Frère, CS 10033, 67081 Strasbourg Cedex" },
+  "68": { nom: "Barreau de Colmar", adresse: "Maison de l'Avocat, 24 avenue de la République, 68000 Colmar" },
+  "69": { nom: "Barreau de Lyon", adresse: "176 rue de Créqui, 69484 Lyon Cedex 3" },
+  "70": { nom: "Barreau de la Haute-Saône", adresse: "16 rue du Palais, BP 70115, 70002 Vesoul Cedex" },
+  "71": { nom: "Barreau de Mâcon", adresse: "3 rue des Ursulines, 71000 Mâcon" },
+  "72": { nom: "Barreau du Mans", adresse: "1 rue Montauban, Maison des Avocats, 72000 Le Mans" },
+  "73": { nom: "Barreau de Chambéry", adresse: "200 avenue du Maréchal Leclerc, Maison de l'Avocat, 73000 Chambéry" },
+  "74": { nom: "Barreau d'Annecy", adresse: "9 rue Guillaume Fichet, Maison des avocats, 74000 Annecy" },
+  "75": { nom: "Barreau de Paris", adresse: "11 place Dauphine, 75053 Paris Cedex 01" },
+  "76": { nom: "Barreau de Rouen", adresse: "6 allée Eugène Delacroix, Maison de l'Avocat, 76000 Rouen" },
+  "77": { nom: "Barreau de Melun", adresse: "Palais de Justice, 2 avenue du Général Leclerc, 77008 Melun Cedex" },
+  "78": { nom: "Barreau de Versailles", adresse: "Palais de Justice, 3 place André Mignot, 78005 Versailles Cedex" },
+  "79": { nom: "Barreau des Deux-Sèvres", adresse: "18 rue Marcel Paul, BP 8820, Espace Thémis, 79028 Niort Cedex 9" },
+  "80": { nom: "Barreau d'Amiens", adresse: "21 square Jules Bocquet, Maison de l'Avocat, 80000 Amiens" },
+  "81": { nom: "Barreau d'Albi", adresse: "Maison de l'Avocat, 1 rue de la Berchère, 81000 Albi" },
+  "82": { nom: "Barreau du Tarn-et-Garonne", adresse: "5 place du Coq, 82000 Montauban Cedex" },
+  "83": { nom: "Barreau de Toulon", adresse: "13 rue Berrier Fontaine, CS 20508, 83041 Toulon Cedex 9" },
+  "84": { nom: "Barreau d'Avignon", adresse: "Maison de l'Avocat, 22 boulevard Limbert, 84000 Avignon" },
+  "85": { nom: "Barreau de La Roche-sur-Yon", adresse: "54 rue de Verdun, Maison de l'Avocat, 85000 La Roche-sur-Yon" },
+  "86": { nom: "Barreau de Poitiers", adresse: "Palais de Justice, 5 rue Thiers, 86000 Poitiers" },
+  "87": { nom: "Barreau de Limoges", adresse: "Maison de l'Avocat, 4 rue Aimé Césaire, 87000 Limoges" },
+  "88": { nom: "Barreau d'Épinal", adresse: "Palais de Justice, Place de la Préfecture, 88000 Épinal" },
+  "89": { nom: "Barreau d'Auxerre", adresse: "Palais de Justice, 5 rue Joubert, 89000 Auxerre" },
+  "90": { nom: "Barreau de Belfort", adresse: "Palais de Justice, Place d'Armes, 90000 Belfort" },
+  "91": { nom: "Barreau d'Évry", adresse: "Maison de l'Avocat, 40 boulevard de France, 91000 Évry" },
+  "92": { nom: "Barreau des Hauts-de-Seine", adresse: "Palais de Justice, 1 place Paul Verlaine, 92014 Nanterre Cedex" },
+  "93": { nom: "Barreau de Seine-Saint-Denis", adresse: "Palais de Justice, 1 allée du Progrès, 93009 Bobigny Cedex" },
+  "94": { nom: "Barreau du Val-de-Marne", adresse: "Palais de Justice, 1 avenue Pasteur, 94010 Créteil Cedex" },
+  "95": { nom: "Barreau du Val-d'Oise", adresse: "Palais de Justice, rue Paul Claudel, 95303 Pontoise Cedex" },
+  "971": { nom: "Barreau de la Guadeloupe", adresse: "Palais de Justice, Rue de Nozières, 97110 Pointe-à-Pitre" },
+  "972": { nom: "Barreau de la Martinique", adresse: "Palais de Justice, 97200 Fort-de-France" },
+  "973": { nom: "Barreau de la Guyane", adresse: "Palais de Justice, 97300 Cayenne" },
+  "974": { nom: "Barreau de Saint-Denis de la Réunion", adresse: "Palais de Justice, 97400 Saint-Denis" },
+  "976": { nom: "Barreau de Mayotte", adresse: "Palais de Justice, 97600 Mamoudzou" },
+};
+
+const inputPath = path.join(__dirname, '..', 'data', 'organismes.json');
+const raw = fs.readFileSync(inputPath, 'utf-8');
+const data = JSON.parse(raw);
+
+let updated = 0;
+for (const [code, barreau] of Object.entries(BARREAUX)) {
+  if (!data[code]) continue;
+  data[code].ordreAvocats = {
+    nom: barreau.nom,
+    type: "Ordre des avocats — commission entraide",
+    adresse: barreau.adresse,
+    site: "https://www.cnb.avocat.fr",
+  };
+  updated++;
+}
+
+fs.writeFileSync(inputPath, JSON.stringify(data, null, 2) + '\n');
+console.log(`Barreaux mis à jour : ${updated} départements / ${Object.keys(BARREAUX).length} attendus`);
