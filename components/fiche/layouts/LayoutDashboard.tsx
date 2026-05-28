@@ -20,6 +20,8 @@ import BlocTresorerie from '@/components/fiche/BlocTresorerie';
 import BlocCessationDecompte from '@/components/fiche/BlocCessationDecompte';
 import BlocCCSF from '@/components/fiche/BlocCCSF';
 import BlocAidesEtat from '@/components/fiche/BlocAidesEtat';
+import BlocSurendettement from '@/components/fiche/BlocSurendettement';
+import BlocPGE from '@/components/fiche/BlocPGE';
 import BlocBailCommercial from '@/components/fiche/BlocBailCommercial';
 import BlocConsequencesPerso from '@/components/fiche/BlocConsequencesPerso';
 import BlocRappels from '@/components/fiche/BlocRappels';
@@ -137,6 +139,9 @@ export default function LayoutDashboard({
             <div data-section="tresorerie">
               <BlocTresorerie />
             </div>
+            <div data-section="pge">
+              <BlocPGE />
+            </div>
             <div data-section="calendrier">
               <BlocCalendrier />
             </div>
@@ -201,6 +206,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="aides-etat">
               <BlocAidesEtat />
+            </div>
+            <div data-section="surendettement">
+              <BlocSurendettement />
             </div>
             <div data-section="bail">
               <BlocBailCommercial />

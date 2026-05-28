@@ -10,6 +10,10 @@ const reponsesSchema = z.object({
   regime: z.string().optional(),
   patrimoine: z.string().optional(),
   vente: z.string().optional(),
+  montantDettes: z.enum(['moins-10k', '10k-50k', '50k-200k', '200k-1m', 'plus-1m']).optional(),
+  ageDirigeant: z.enum(['moins-25', '25-50', '50-60', 'plus-60']).optional(),
+  franchise: z.enum(['oui', 'non']).optional(),
+  antecedents: z.enum(['oui', 'non', 'ne-sais-pas']).optional(),
 }).passthrough();
 
 export const fichePayloadSchema = z.object({

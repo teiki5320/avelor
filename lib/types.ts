@@ -6,6 +6,10 @@ export type Caution = 'oui' | 'non' | 'ne-sais-pas';
 export type RegimeMatrimonial = 'communaute' | 'separation' | 'non-marie' | 'ne-sais-pas';
 export type Patrimoine = 'proprietaire' | 'locataire';
 export type VenteEnvisagee = 'oui' | 'peut-etre' | 'non';
+export type MontantDettes = 'moins-10k' | '10k-50k' | '50k-200k' | '200k-1m' | 'plus-1m';
+export type AgeDirigeant = 'moins-25' | '25-50' | '50-60' | 'plus-60';
+export type Franchise = 'oui' | 'non';
+export type AntecedentsBodacc = 'oui' | 'non' | 'ne-sais-pas';
 
 export interface Reponses {
   situation: Situation;
@@ -17,6 +21,10 @@ export interface Reponses {
   regime?: RegimeMatrimonial;
   patrimoine?: Patrimoine;
   vente?: VenteEnvisagee;
+  montantDettes?: MontantDettes;
+  ageDirigeant?: AgeDirigeant;
+  franchise?: Franchise;
+  antecedents?: AntecedentsBodacc;
 }
 
 export interface CompanyData {

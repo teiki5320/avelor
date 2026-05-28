@@ -6476,10 +6476,16 @@
       "site": "https://www.cci.fr"
     },
     "urssaf": {
-      "nom": "URSSAF Guadeloupe",
-      "type": "URSSAF",
-      "telephone": "36 98",
-      "site": "https://www.urssaf.fr"
+      "nom": "CGSS Guadeloupe",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 971",
+      "site": "https://www.cgss-guadeloupe.fr"
+    },
+    "cgss": {
+      "nom": "CGSS Guadeloupe",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 971",
+      "site": "https://www.cgss-guadeloupe.fr"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Basse-Terre",
@@ -6492,6 +6498,22 @@
       "type": "Médiation du crédit",
       "telephone": "0810 00 12 10",
       "site": "https://mediateur-credit.banque-france.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Antilles-Guyane",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Guadeloupe",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
     },
     "dreets": {
       "nom": "DREETS Guadeloupe",
@@ -6552,10 +6574,16 @@
       "site": "https://www.cci.fr"
     },
     "urssaf": {
-      "nom": "URSSAF Martinique",
-      "type": "URSSAF",
-      "telephone": "36 98",
-      "site": "https://www.urssaf.fr"
+      "nom": "CGSS Martinique",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 972",
+      "site": "https://www.cgss-martinique.fr"
+    },
+    "cgss": {
+      "nom": "CGSS Martinique",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 972",
+      "site": "https://www.cgss-martinique.fr"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Fort-de-France",
@@ -6568,6 +6596,22 @@
       "type": "Médiation du crédit",
       "telephone": "0810 00 12 10",
       "site": "https://mediateur-credit.banque-france.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Antilles-Guyane",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Martinique",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
     },
     "dreets": {
       "nom": "DREETS Martinique",
@@ -6628,10 +6672,16 @@
       "site": "https://www.cci.fr"
     },
     "urssaf": {
-      "nom": "URSSAF Guyane",
-      "type": "URSSAF",
-      "telephone": "36 98",
-      "site": "https://www.urssaf.fr"
+      "nom": "CGSS Guyane",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 973",
+      "site": "https://www.cgss-guyane.fr"
+    },
+    "cgss": {
+      "nom": "CGSS Guyane",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 973",
+      "site": "https://www.cgss-guyane.fr"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Cayenne",
@@ -6644,6 +6694,22 @@
       "type": "Médiation du crédit",
       "telephone": "0810 00 12 10",
       "site": "https://mediateur-credit.banque-france.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Antilles-Guyane",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Guyane",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
     },
     "dreets": {
       "nom": "DREETS Guyane",
@@ -6704,10 +6770,16 @@
       "site": "https://www.cci.fr"
     },
     "urssaf": {
-      "nom": "URSSAF La Réunion",
-      "type": "URSSAF",
-      "telephone": "36 98",
-      "site": "https://www.urssaf.fr"
+      "nom": "CGSS La Réunion",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 974",
+      "site": "https://www.cgss.re"
+    },
+    "cgss": {
+      "nom": "CGSS La Réunion",
+      "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
+      "telephone": "0 820 000 974",
+      "site": "https://www.cgss.re"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Saint-Denis",
@@ -6720,6 +6792,22 @@
       "type": "Médiation du crédit",
       "telephone": "0810 00 12 10",
       "site": "https://mediateur-credit.banque-france.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Océan Indien",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD La Réunion",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
     },
     "dreets": {
       "nom": "DREETS La Réunion",
@@ -6780,10 +6868,16 @@
       "site": "https://www.cci.fr"
     },
     "urssaf": {
-      "nom": "URSSAF Mayotte",
-      "type": "URSSAF",
-      "telephone": "36 98",
-      "site": "https://www.urssaf.fr"
+      "nom": "CSSM Mayotte",
+      "type": "Caisse de Sécurité Sociale de Mayotte (URSSAF + CPAM + CARSAT)",
+      "telephone": "02 69 61 91 91",
+      "site": "https://www.cssm.fr"
+    },
+    "cgss": {
+      "nom": "CSSM Mayotte",
+      "type": "Caisse de Sécurité Sociale de Mayotte (URSSAF + CPAM + CARSAT)",
+      "telephone": "02 69 61 91 91",
+      "site": "https://www.cssm.fr"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Mamoudzou",
@@ -6796,6 +6890,22 @@
       "type": "Médiation du crédit",
       "telephone": "0810 00 12 10",
       "site": "https://mediateur-credit.banque-france.fr"
+    },
+    "bpiOutreMer": {
+      "nom": "BPI France Océan Indien",
+      "type": "Financement entreprises Outre-mer",
+      "telephone": "3247",
+      "site": "https://www.bpifrance.fr"
+    },
+    "afd": {
+      "nom": "AFD Mayotte",
+      "type": "Agence Française de Développement (financement Outre-mer)",
+      "site": "https://www.afd.fr"
+    },
+    "ladom": {
+      "nom": "LADOM",
+      "type": "Continuité territoriale Outre-mer",
+      "site": "https://www.ladom.fr"
     },
     "dreets": {
       "nom": "DREETS Mayotte",

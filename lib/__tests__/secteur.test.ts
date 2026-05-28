@@ -74,14 +74,26 @@ describe('getSectorInfo', () => {
     expect(info).toHaveProperty('conseilsSpecifiques');
   });
 
-  it('les 14 secteurs ont des données définies', () => {
+  it('mappe un code NAF pêche (03.xx) au secteur peche', () => {
+    const info = getSectorInfo(makeCompany({ naf: '03.11Z' }));
+    expect(info.secteur).toBe('peche');
+    expect(info.cotisationOrg).toContain('ENIM');
+  });
+
+  it('injecte le CSP dans obligationsLicenciement de tout secteur', () => {
+    const info = getSectorInfo(makeCompany({ naf: '47.11D' }));
+    expect(info.obligationsLicenciement).toBeDefined();
+    expect(info.obligationsLicenciement!.some((o) => o.sigle === 'CSP')).toBe(true);
+  });
+
+  it('les 15 secteurs ont des données définies', () => {
     const secteurs = [
-      'agriculture', 'industrie', 'btp', 'commerce', 'transport',
+      'agriculture', 'peche', 'industrie', 'btp', 'commerce', 'transport',
       'hotellerie', 'information', 'finance', 'immobilier', 'liberal',
       'education', 'sante', 'artisanat', 'autre',
     ];
     // On vérifie que chaque secteur peut être obtenu via un mapping NAF approprié
-    expect(secteurs.length).toBe(14);
+    expect(secteurs.length).toBe(15);
   });
 });
 

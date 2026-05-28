@@ -17,6 +17,32 @@ export function isEI(forme: string): boolean {
   return /individuel|ei|eirl|micro|auto/i.test(forme);
 }
 
+/**
+ * Détermine la juridiction compétente en cas de procédure collective.
+ *
+ * Depuis la loi du 22 décembre 2021 :
+ * - Tribunal de commerce (TC) : commerçants et sociétés commerciales (par défaut)
+ * - Tribunal judiciaire (TJ) : professions libérales (NAF 69-74),
+ *   agriculteurs (NAF 01-03) et artisans non commerçants.
+ */
+export function getJuridiction(company: CompanyData): 'TC' | 'TJ' {
+  const naf = company.naf?.replace(/\./g, '').toUpperCase() ?? '';
+  // Libéraux (section M, codes 69-74 : juridique, comptable, conseil, archi, R&D, pub, autres)
+  if (/^(69|70|71|72|73|74)/.test(naf)) return 'TJ';
+  // Agriculteurs (section A : agriculture, sylviculture, pêche)
+  if (/^(01|02|03)/.test(naf)) return 'TJ';
+  // Activités de santé humaine (section Q, codes 86-88 : médecins, infirmiers…)
+  if (/^(86|87|88)/.test(naf)) return 'TJ';
+  // Tous les autres → tribunal de commerce
+  return 'TC';
+}
+
+export function getJuridictionLabel(company: CompanyData, ville?: string): string {
+  const j = getJuridiction(company);
+  const v = ville || company.ville || 'votre ville';
+  return j === 'TJ' ? `tribunal judiciaire de ${v}` : `tribunal de commerce de ${v}`;
+}
+
 export function computeScores(r: Reponses, c: CompanyData): Record<Axe, number> {
   const age = getCompanyAge(c.dateCreation) ?? 0;
   const ei = isEI(c.formeJuridique);
@@ -62,6 +88,7 @@ export function computeScores(r: Reponses, c: CompanyData): Record<Axe, number> 
 
 export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: number): Strategie {
   const ville = c.ville || 'votre ville';
+  const juridictionLabel = getJuridictionLabel(c, ville);
 
   switch (axe) {
     case 'restructurer':
@@ -109,7 +136,7 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
         ],
         etapes: [
           "Rendez-vous confidentiel avec un avocat en droit des entreprises en difficulté",
-          `Préparation du dossier (bilan, trésorerie, passif exigible) — tribunal de commerce de ${ville}`,
+          `Préparation du dossier (bilan, trésorerie, passif exigible) — ${juridictionLabel}`,
           "Dépôt de la requête en sauvegarde",
           "Audience d'ouverture et désignation du juge-commissaire / mandataire",
           "Élaboration du plan de sauvegarde avec l'administrateur",
@@ -198,7 +225,7 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
         ],
         etapes: [
           "Vérifier l'éligibilité : EI, aucun salarié, actifs < 15 000 €",
-          'Dépôt de la requête au tribunal de commerce',
+          `Dépôt de la requête au ${juridictionLabel}`,
           "Désignation d'un mandataire qui examine votre situation",
           'Clôture : effacement des dettes professionnelles',
           'Reprise : 60 000 Rebonds + BPI Prêt rebond pour relancer',

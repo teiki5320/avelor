@@ -1,0 +1,155 @@
+'use client';
+import { useFiche } from '@/lib/FicheContext';
+import BlocAccordeon from './BlocAccordeon';
+
+/**
+ * Bloc dédié aux difficultés liées au remboursement d'un PGE (Prêt
+ * Garanti par l'État) souscrit pendant la crise Covid. La restructuration
+ * d'un PGE est l'une des principales causes de défaillance entre 2024
+ * et 2025 ; ce bloc s'affiche dès qu'un signal bancaire/trésorerie
+ * apparaît dans les réponses.
+ */
+export default function BlocPGE() {
+  const { reponses } = useFiche();
+
+  const pertinent =
+    reponses.probleme === 'banque' || reponses.situation === 'tresorie';
+
+  if (!pertinent) return null;
+
+  return (
+    <BlocAccordeon
+      icone="💳"
+      titre="PGE en difficulté ? Restructuration possible"
+      soustitre="Médiation du Crédit BdF — étalement jusqu'à 10 ans avant la procédure collective"
+    >
+      <p className="text-sm text-navy/80">
+        Le <strong>PGE — Prêt Garanti par l&apos;État</strong>, distribué
+        pendant la crise sanitaire (2020-2021), entre dans sa phase de
+        remboursement la plus tendue. Près de <strong>30 % des
+        défaillances 2024-2025</strong> sont liées à un PGE qui pèse
+        désormais sur la trésorerie. Une <strong>restructuration
+        amiable</strong> est possible — et largement préférable à
+        l&apos;ouverture d&apos;une procédure collective.
+      </p>
+
+      {/* Qu'est-ce que le PGE */}
+      <div className="mt-5 rounded-2xl border border-bleu/30 bg-bleu/5 p-4">
+        <p className="font-display text-base text-bleu-fonce">
+          Rappel : qu&apos;est-ce que le PGE&nbsp;?
+        </p>
+        <p className="mt-2 text-sm text-navy/80">
+          Prêt distribué par votre banque, <strong>garanti à 70 à 90 %
+          par l&apos;État via Bpifrance</strong>. Différé de remboursement
+          d&apos;1 ou 2 ans, puis amortissement initial sur 1 à 5 ans.
+          La garantie d&apos;État porte sur le capital, pas sur les
+          intérêts.
+        </p>
+      </div>
+
+      {/* Accord-cadre & restructuration */}
+      <div className="mt-4 rounded-2xl border border-vert/30 bg-vert/5 p-4">
+        <p className="font-display text-base text-vert">
+          Accord-cadre BdF / Fédération bancaire française
+        </p>
+        <p className="mt-2 text-sm text-navy/80">
+          Un protocole de place signé entre la Banque de France, la
+          Médiation du crédit, la Fédération bancaire française et
+          Bpifrance permet de <strong>réétaler le PGE jusqu&apos;à 10 ans
+          au total</strong> (au lieu des 6 ans initiaux), <strong>sans
+          perte de la garantie d&apos;État</strong> et sans inscription
+          défavorable au fichier des incidents.
+        </p>
+        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-navy/80">
+          <li>
+            Demande à formuler à votre banque dès les premiers signes
+            de tension de trésorerie.
+          </li>
+          <li>
+            En cas de refus, saisine gratuite et confidentielle de la
+            <strong> Médiation du crédit</strong>.
+          </li>
+          <li>
+            La restructuration peut s&apos;accompagner d&apos;une période
+            de différé supplémentaire (6 à 12 mois).
+          </li>
+        </ul>
+      </div>
+
+      {/* Priorité avant la procédure collective */}
+      <div className="mt-4 rounded-2xl border border-rouge/30 bg-rouge/5 p-4">
+        <p className="font-display text-base text-rouge">
+          ⚠️ À traiter AVANT une procédure collective
+        </p>
+        <p className="mt-2 text-sm text-navy/80">
+          L&apos;ouverture d&apos;une sauvegarde, d&apos;un redressement ou
+          d&apos;une liquidation <strong>fait perdre la garantie de
+          l&apos;État</strong> sur le PGE pour la banque, qui devient un
+          créancier ordinaire. Conséquence : la banque n&apos;a plus
+          d&apos;intérêt à négocier amiablement <em>après</em> le
+          jugement d&apos;ouverture. La restructuration doit donc être
+          tentée en amont, idéalement via la Médiation du crédit ou un
+          mandat ad hoc / conciliation.
+        </p>
+      </div>
+
+      {/* Contacts */}
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        <div className="rounded-2xl border border-navy/15 bg-white/60 p-4">
+          <p className="font-display text-base text-navy">
+            Médiation du crédit aux entreprises
+          </p>
+          <p className="mt-1 text-xs text-navy/60">
+            Confidentiel, gratuit, taux de succès supérieur à 60 %
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2 text-sm">
+            <a
+              href="tel:3414"
+              className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
+            >
+              ☎ 34 14
+            </a>
+            <a
+              href="https://mediateur-credit.banque-france.fr"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
+            >
+              🌐 mediateur-credit.banque-france.fr
+            </a>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-navy/15 bg-white/60 p-4">
+          <p className="font-display text-base text-navy">
+            Correspondant TPE-PME · Banque de France
+          </p>
+          <p className="mt-1 text-xs text-navy/60">
+            Premier diagnostic confidentiel
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2 text-sm">
+            <a
+              href="tel:3414"
+              className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
+            >
+              ☎ 34 14
+            </a>
+            <a
+              href="https://entreprises.banque-france.fr"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
+            >
+              🌐 entreprises.banque-france.fr
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-5 text-xs text-navy/50">
+        Sources : protocole de place « Restructuration des PGE » du 19
+        janvier 2022 (BdF, FBF, Bpifrance) ; Médiation du crédit aux
+        entreprises ; loi de finances rectificative 2020 (PGE — art. 6).
+      </p>
+    </BlocAccordeon>
+  );
+}

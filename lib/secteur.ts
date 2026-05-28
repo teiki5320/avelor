@@ -2,6 +2,7 @@ import type { CompanyData } from './types';
 
 export type Secteur =
   | 'agriculture'
+  | 'peche'
   | 'industrie'
   | 'btp'
   | 'commerce'
@@ -40,6 +41,25 @@ export interface SectorInfo {
   ordresProfessionnels?: OrdreProfessionnel[];
   /** Niveau de tension du secteur (utilisé pour modérer les attentes du dirigeant). */
   santeSecteur?: SanteSecteur;
+  /** Obligations spécifiques en cas de licenciement économique (CSP, PSE, congé de reclassement…). */
+  obligationsLicenciement?: ObligationLicenciement[];
+}
+
+export interface ObligationLicenciement {
+  /** Sigle court (ex: "CSP", "PSE"). */
+  sigle: string;
+  /** Nom complet de l'obligation. */
+  nom: string;
+  /** Description courte. */
+  description: string;
+  /** Seuil maximal d'effectif (en nombre de salariés). null = applicable à tous. */
+  seuilMax?: number;
+  /** Téléphone de contact (ex: France Travail). */
+  telephone?: string;
+  /** Site officiel. */
+  site?: string;
+  /** Badge informatif court (ex: "Obligatoire"). */
+  badge?: string;
 }
 
 export interface CaisseRetraite {
@@ -130,6 +150,23 @@ function isArtisan(naf: string, forme: string): boolean {
   return false;
 }
 
+/**
+ * Obligation CSP (Contrat de Sécurisation Professionnelle).
+ * À proposer obligatoirement à tout salarié licencié pour motif économique
+ * dans une entreprise de moins de 1 000 salariés (et hors procédure collective où c'est le CRP).
+ * Source : Code du travail L1233-65 et suivants.
+ */
+export const CSP_OBLIGATION: ObligationLicenciement = {
+  sigle: 'CSP',
+  nom: 'Contrat de Sécurisation Professionnelle',
+  description:
+    "Obligatoire pour tout licenciement économique en entreprise de moins de 1 000 salariés. À proposer au salarié avant la notification du licenciement (délai de réflexion : 21 jours). En cas d'acceptation : indemnités à 75 % du salaire brut antérieur pendant 12 mois (sous conditions d'ancienneté), accompagnement personnalisé France Travail. Le non-respect expose l'employeur à payer une contribution équivalente à 2 mois de salaire.",
+  seuilMax: 1000,
+  telephone: '39 49',
+  site: 'https://www.france-travail.fr/candidat/en-cas-de/le-contrat-de-securisation-pro.html',
+  badge: 'Obligatoire si licenciement éco',
+};
+
 const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
   agriculture: {
     label: 'Agriculture',
@@ -137,28 +174,83 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationTel: '36 98',
     cotisationSite: 'https://www.msa.fr',
     syndicats: [
-      { nom: 'FNSEA', role: 'Syndicat agricole', site: 'https://www.fnsea.fr' },
+      { nom: 'FNSEA', role: 'Syndicat agricole majoritaire', site: 'https://www.fnsea.fr' },
       { nom: 'Jeunes Agriculteurs', role: 'Accompagnement jeunes exploitants', site: 'https://www.jeunes-agriculteurs.fr' },
+      { nom: 'Confédération paysanne', role: 'Syndicat de l\'agriculture paysanne', site: 'https://www.confederationpaysanne.fr' },
+      { nom: 'Coordination Rurale', role: 'Syndicat agricole', site: 'https://www.coordinationrurale.fr' },
       { nom: 'Chambre d\'agriculture', role: 'Conseil technique et économique', site: 'https://chambres-agriculture.fr' },
     ],
     aidesSpecifiques: [
       { nom: 'Aide d\'urgence MSA', description: 'Action sociale pour exploitants en difficulté. Aide financière directe possible.', site: 'https://www.msa.fr', badge: 'Gratuit' },
       { nom: 'Aide à la relance agricole', description: 'Prêts bonifiés et subventions régionales pour exploitations en difficulté.', site: 'https://www.agriculture.gouv.fr' },
       { nom: 'Fonds d\'allègement des charges', description: 'Prise en charge partielle des cotisations MSA et des prêts bancaires.', site: 'https://www.agriculture.gouv.fr', badge: 'Sous conditions' },
+      { nom: 'AREA (Aide à la Relance des Exploitations Agricoles)', description: 'Dispositif national pour exploitations viables mais en difficulté. Audit + plan de redressement financés.', site: 'https://www.agriculture.gouv.fr', badge: 'Sur dossier' },
     ],
     soutien: { nom: 'Agri\'Écoute', description: 'Écoute psychologique pour agriculteurs en détresse · 24h/24', telephone: '09 69 39 29 19', site: 'https://www.msa.fr' },
     conseilsSpecifiques: [
       'Contactez la MSA (pas l\'URSSAF) pour vos cotisations sociales',
       'La Chambre d\'agriculture propose un diagnostic gratuit de votre exploitation',
       'Agri\'Écoute est disponible 24h/24 si vous avez besoin de parler',
+      'Solidarité Paysans est l\'équivalent du CIP pour le monde rural — accompagnement gratuit et confidentiel par bénévoles, souvent d\'anciens agriculteurs (INDISPENSABLE)',
+      'Cerfrance (centre de gestion agréé spécialisé agricole) est souvent le mieux placé pour reconstruire vos prévisionnels',
+      'L\'ADEAR accompagne installations, transmissions et reconversions paysannes',
     ],
     chambre: 'CA',
+    caissesRetraite: [
+      { profession: 'Exploitant agricole', caisse: 'MSA', telephone: '36 98', site: 'https://www.msa.fr' },
+    ],
+    ordresProfessionnels: [
+      { profession: 'Exploitant en difficulté', nom: 'Solidarité Paysans', telephone: 'Variable selon département (voir site)', site: 'https://solidaritepaysans.org', note: 'Équivalent CIP pour le monde rural · accompagnement gratuit et confidentiel par bénévoles' },
+      { profession: 'Gestion / comptabilité agricole', nom: 'Cerfrance (CER France)', telephone: 'Variable selon territoire', site: 'https://www.cerfrance.fr', note: 'Expert-comptable spécialisé agriculture · présent sur tout le territoire' },
+      { profession: 'Installation / transmission paysanne', nom: 'ADEAR', telephone: 'Variable selon département', site: 'https://www.jeminstallepaysan.org', note: 'Association pour le Développement de l\'Emploi Agricole et Rural' },
+    ],
     santeSecteur: {
       niveau: 'crise',
       titre: 'Secteur agricole sous tension durable',
       message:
         'Vous n\'êtes pas seul·e : le secteur agricole cumule hausse des charges, aléas climatiques et pression sur les prix. Des dispositifs nationaux et MSA existent spécifiquement pour cette crise.',
       ressource: { label: 'Aide d\'urgence MSA', url: 'https://www.msa.fr' },
+    },
+  },
+  peche: {
+    label: 'Pêche / Aquaculture',
+    cotisationOrg: 'ENIM (Établissement National des Invalides de la Marine)',
+    cotisationTel: '02 40 41 39 39',
+    cotisationSite: 'https://www.enim.eu',
+    syndicats: [
+      { nom: 'CNPMEM', role: 'Comité National des Pêches Maritimes et des Élevages Marins', telephone: '01 72 71 18 00', site: 'https://www.comite-peches.fr' },
+      { nom: 'CRPMEM', role: 'Comité Régional des Pêches Maritimes (par façade littorale)', site: 'https://www.comite-peches.fr' },
+      { nom: 'France Filière Pêche', role: 'Interprofession pêche fraîche française', site: 'https://www.francefilierepeche.fr' },
+      { nom: 'CNC (Comité National de la Conchyliculture)', role: 'Interprofession ostréiculture / mytiliculture', site: 'https://www.cnc-france.com' },
+    ],
+    aidesSpecifiques: [
+      { nom: 'ENIM · Action sociale', description: 'Aide d\'urgence et accompagnement pour marins-pêcheurs en difficulté. Fonds de secours.', site: 'https://www.enim.eu', badge: 'Marins uniquement' },
+      { nom: 'FEAMPA', description: 'Fonds européen pour les affaires maritimes, la pêche et l\'aquaculture (2021-2027) : modernisation, arrêts temporaires indemnisés, transition écologique.', site: 'https://www.europe-en-france.gouv.fr', badge: 'Européen' },
+      { nom: 'Aide carburant pêche', description: 'Dispositif d\'aide au gazole de pêche déclenché en cas de hausse durable des cours.', site: 'https://agriculture.gouv.fr', badge: 'Selon conjoncture' },
+      { nom: 'Plan de sortie de flotte', description: 'Indemnisation publique en cas de retrait définitif d\'un navire de pêche du registre.', site: 'https://agriculture.gouv.fr', badge: 'Sur dossier' },
+    ],
+    soutien: { nom: 'Agri\'Écoute (étendu marins-pêcheurs)', description: 'Écoute psychologique 24h/24 ouverte aux marins-pêcheurs', telephone: '09 69 39 29 19', site: 'https://www.msa.fr' },
+    conseilsSpecifiques: [
+      'Pour vos cotisations sociales, contactez l\'ENIM — caisse spécifique des marins-pêcheurs (pas l\'URSSAF ni la MSA)',
+      'La DDTM (Direction Départementale des Territoires et de la Mer) est votre autorité de tutelle pour licences, quotas et contrôles',
+      'Le CRPMEM de votre façade peut vous orienter vers les aides régionales et les arrêts temporaires indemnisés',
+      'Les aides européennes FEAMPA peuvent financer modernisation et transition écologique de votre navire',
+      'France Filière Pêche défend la pêche fraîche française — utile pour la valorisation commerciale',
+    ],
+    chambre: 'CCI',
+    caissesRetraite: [
+      { profession: 'Marin-pêcheur', caisse: 'ENIM', telephone: '02 40 41 39 39', site: 'https://www.enim.eu' },
+    ],
+    ordresProfessionnels: [
+      { profession: 'Pêche maritime', nom: 'CNPMEM (Comité National des Pêches)', telephone: '01 72 71 18 00', site: 'https://www.comite-peches.fr', note: 'Organisation professionnelle obligatoire pour les pêcheurs' },
+      { profession: 'Autorité maritime', nom: 'DDTM (Direction Départementale des Territoires et de la Mer)', telephone: 'Variable selon département littoral', site: 'https://www.mer.gouv.fr', note: 'Autorité de tutelle · licences, quotas, contrôles, autorisations de pêche' },
+    ],
+    santeSecteur: {
+      niveau: 'crise',
+      titre: 'Pêche : flotte vieillissante et pression européenne',
+      message:
+        "Hausse du gazole, quotas européens en baisse sur plusieurs espèces, sortie progressive du chalutage de fond dans certaines aires marines protégées : la pêche française vit une transition difficile. Sollicitez tôt l'ENIM, le CRPMEM et la DDTM — des dispositifs FEAMPA et plans de sortie de flotte indemnisés existent.",
+      ressource: { label: 'ENIM · Action sociale', url: 'https://www.enim.eu' },
     },
   },
   btp: {
@@ -442,6 +534,12 @@ export function getSectorInfo(company: CompanyData): SectorInfo {
   const section = sectionFromNaf(naf);
   let secteur = secteurFromSection(section);
 
+  // Pêche et aquaculture (NAF 03.xx) : secteur dédié avec organismes spécifiques (ENIM, CNPMEM…)
+  const nafPrefix = naf.replace(/\./g, '').slice(0, 2);
+  if (nafPrefix === '03') {
+    secteur = 'peche';
+  }
+
   if (secteur === 'commerce' && isArtisan(naf, company.formeJuridique)) {
     secteur = 'artisanat';
   }
@@ -449,10 +547,55 @@ export function getSectorInfo(company: CompanyData): SectorInfo {
     secteur = 'artisanat';
   }
 
+  const data = SECTOR_DATA[secteur];
+  // Le CSP s'applique à tous les secteurs dès lors qu'il y a un licenciement économique.
+  // Pré-injection systématique : les composants l'affichent uniquement
+  // si reponses.effectif === 'salaries' (filtrage métier en aval).
+  const obligationsLicenciement: ObligationLicenciement[] = [
+    CSP_OBLIGATION,
+    ...(data.obligationsLicenciement ?? []),
+  ];
+
   return {
     secteur,
-    ...SECTOR_DATA[secteur],
+    ...data,
+    obligationsLicenciement,
   };
+}
+
+/**
+ * Retourne les obligations spécifiques à un licenciement économique selon l'effectif.
+ * Utile pour les composants de la fiche qui affichent les démarches employeur.
+ * - < 1 000 salariés : CSP obligatoire
+ * - ≥ 1 000 salariés : congé de reclassement obligatoire
+ * - ≥ 50 salariés ET ≥ 10 licenciements / 30 j : PSE
+ */
+export function getObligationsLicenciement(effectifApprox: number): ObligationLicenciement[] {
+  const obligations: ObligationLicenciement[] = [];
+  if (effectifApprox < 1000) {
+    obligations.push(CSP_OBLIGATION);
+  } else {
+    obligations.push({
+      sigle: 'Congé de reclassement',
+      nom: 'Congé de reclassement',
+      description:
+        "Obligatoire pour tout licenciement économique en entreprise de 1 000 salariés et plus. Durée de 4 à 12 mois. Pendant ce congé, le salarié perçoit sa rémunération habituelle (puis 65 % du salaire brut au-delà du préavis). Accompagnement par une cellule de reclassement.",
+      telephone: '39 49',
+      site: 'https://www.service-public.fr/particuliers/vosdroits/F2906',
+      badge: 'Obligatoire ≥ 1 000 salariés',
+    });
+  }
+  if (effectifApprox >= 50) {
+    obligations.push({
+      sigle: 'PSE',
+      nom: "Plan de Sauvegarde de l'Emploi",
+      description:
+        "Obligatoire pour tout licenciement collectif d'au moins 10 salariés sur 30 jours en entreprise d'au moins 50 salariés. Doit inclure mesures de reclassement, formation, accompagnement. Soumis à validation (accord majoritaire) ou homologation (document unilatéral) par la DREETS.",
+      site: 'https://www.travail-emploi.gouv.fr',
+      badge: '≥ 50 sal. · ≥ 10 licenciements / 30 j',
+    });
+  }
+  return obligations;
 }
 
 export function getCompanyAge(dateCreation: string): number | null {

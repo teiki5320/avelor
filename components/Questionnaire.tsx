@@ -4,6 +4,7 @@ import { m, AnimatePresence } from 'framer-motion';
 import type {
   Reponses, Situation, Probleme, Effectif, Moral,
   Caution, RegimeMatrimonial, Patrimoine, VenteEnvisagee,
+  MontantDettes, AgeDirigeant, Franchise, AntecedentsBodacc,
 } from '@/lib/types';
 
 interface Choice<T extends string> {
@@ -17,6 +18,7 @@ interface SlideConfig {
   subtitle: string;
   key: keyof Reponses;
   choices: Choice<string>[];
+  skippable?: boolean;
 }
 
 const SITUATIONS: Choice<Situation>[] = [
@@ -69,7 +71,33 @@ const VENTES: Choice<VenteEnvisagee>[] = [
   { value: 'non', label: 'Non, je veux garder mon entreprise', hint: 'Chercher d’autres solutions' },
 ];
 
-const TOTAL_SLIDES = 8;
+const MONTANTS_DETTES: Choice<MontantDettes>[] = [
+  { value: 'moins-10k', label: 'Moins de 10 000 €' },
+  { value: '10k-50k', label: 'Entre 10 et 50 000 €' },
+  { value: '50k-200k', label: 'Entre 50 et 200 000 €' },
+  { value: '200k-1m', label: 'Entre 200 000 € et 1 million' },
+  { value: 'plus-1m', label: 'Plus d’1 million' },
+];
+
+const AGES_DIRIGEANT: Choice<AgeDirigeant>[] = [
+  { value: 'moins-25', label: 'Moins de 25 ans' },
+  { value: '25-50', label: 'Entre 25 et 50 ans' },
+  { value: '50-60', label: 'Entre 50 et 60 ans' },
+  { value: 'plus-60', label: 'Plus de 60 ans' },
+];
+
+const FRANCHISES: Choice<Franchise>[] = [
+  { value: 'oui', label: 'Oui, contrat de franchise', hint: 'Vous exploitez une enseigne sous contrat' },
+  { value: 'non', label: 'Non, indépendant', hint: 'Activité sans contrat de franchise' },
+];
+
+const ANTECEDENTS: Choice<AntecedentsBodacc>[] = [
+  { value: 'non', label: 'Non, jamais' },
+  { value: 'oui', label: 'Oui, déjà eu', hint: 'Procédure collective antérieure (sauvegarde, redressement, liquidation)' },
+  { value: 'ne-sais-pas', label: 'Je ne suis pas sûr·e' },
+];
+
+const TOTAL_SLIDES = 12;
 
 interface Props {
   siret: string;
@@ -132,6 +160,11 @@ export default function Questionnaire({ siret }: Props) {
       if (step < TOTAL_SLIDES - 1) setStep((s) => s + 1);
       else submit({ ...answers, [key]: value, ...(detail ? { effectifDetail: detail } : {}) });
     }, 280);
+  }
+
+  function skip() {
+    if (step < TOTAL_SLIDES - 1) setStep((s) => s + 1);
+    else submit(answers);
   }
 
   async function submit(final: Partial<Reponses>) {
@@ -206,6 +239,34 @@ export default function Questionnaire({ siret }: Props) {
       subtitle: 'Votre réponse reste entre vous et nous.',
       key: 'moral',
       choices: MORAUX,
+    },
+    {
+      title: 'Quel est le montant total de vos dettes ?',
+      subtitle: 'Une estimation suffit — elle nous aide à calibrer les solutions.',
+      key: 'montantDettes',
+      choices: MONTANTS_DETTES,
+      skippable: true,
+    },
+    {
+      title: 'Quel est votre âge ?',
+      subtitle: 'L’âge influe sur les aides au rebond accessibles.',
+      key: 'ageDirigeant',
+      choices: AGES_DIRIGEANT,
+      skippable: true,
+    },
+    {
+      title: 'Êtes-vous franchisé ?',
+      subtitle: 'Un contrat de franchise change les obligations en cas de difficulté.',
+      key: 'franchise',
+      choices: FRANCHISES,
+      skippable: true,
+    },
+    {
+      title: 'Avez-vous déjà eu une procédure collective ?',
+      subtitle: 'Sauvegarde, redressement ou liquidation — sur cette entreprise ou une autre.',
+      key: 'antecedents',
+      choices: ANTECEDENTS,
+      skippable: true,
     },
   ];
 
@@ -294,6 +355,15 @@ export default function Questionnaire({ siret }: Props) {
             >
               ← Précédent
             </button>
+            {current.skippable && !submitting && (
+              <button
+                type="button"
+                onClick={skip}
+                className="text-navy/50 underline hover:text-navy"
+              >
+                Passer cette question
+              </button>
+            )}
             {submitting && (
               <span className="text-navy/50">Préparation de votre fiche…</span>
             )}

@@ -7,7 +7,14 @@ import { getFicheByToken } from '@/lib/supabase';
 import { fetchSirene } from '@/lib/sirene';
 import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodacc';
 import { searchAvocats } from '@/lib/googlePlaces';
-import { buildOrganismes, getDepartement, OrganismeCard } from '@/lib/organismes';
+import {
+  buildOrganismes,
+  buildOrdresProfessionnels,
+  buildAidesPersonnelles,
+  buildSoutien,
+  getDepartement,
+  OrganismeCard,
+} from '@/lib/organismes';
 import { getSectorInfo, getCompanyAge, getEffectifSeuils } from '@/lib/secteur';
 import type { CompanyData, Reponses, BodaccItem } from '@/lib/types';
 
@@ -115,7 +122,16 @@ async function renderFiche(tokenParam: string, d?: string) {
     sector = getSectorInfo(company_data);
     companyAge = getCompanyAge(company_data.dateCreation);
     seuils = getEffectifSeuils(company_data.effectif);
-    groupes = buildOrganismes(dep, reponses, avocats);
+    const groupesBase = buildOrganismes(dep, reponses, avocats);
+    const groupeOrdres = buildOrdresProfessionnels(sector);
+    const groupeSoutien = buildSoutien(reponses);
+    const groupeAidesPerso = buildAidesPersonnelles(reponses);
+    groupes = [
+      ...groupesBase,
+      ...(groupeOrdres ? [groupeOrdres] : []),
+      groupeSoutien,
+      groupeAidesPerso,
+    ];
   } catch (e) {
     console.error('[fiche] Erreur calcul données:', e);
     sector = getSectorInfo({ ...company_data, naf: '' });
