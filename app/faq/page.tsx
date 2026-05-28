@@ -247,6 +247,21 @@ export default function FAQPage() {
               ⚖️ Assignation au tribunal
             </Link>
           </li>
+          <li>
+            <Link href="/faq/caution-personnelle" className="block rounded-lg bg-white/80 px-3 py-2 text-sm text-bleu-fonce hover:bg-white">
+              🛡️ Caution personnelle
+            </Link>
+          </li>
+          <li>
+            <Link href="/faq/cessation-paiements" className="block rounded-lg bg-white/80 px-3 py-2 text-sm text-bleu-fonce hover:bg-white">
+              ⏰ Cessation des paiements
+            </Link>
+          </li>
+          <li>
+            <Link href="/faq/rebondir-apres-liquidation" className="block rounded-lg bg-white/80 px-3 py-2 text-sm text-bleu-fonce hover:bg-white">
+              ♻️ Rebondir après liquidation
+            </Link>
+          </li>
         </ul>
       </nav>
 

@@ -21,6 +21,11 @@ import type { CompanyData, Reponses, BodaccItem } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 
+// Les fiches sont des contenus personnels — ne pas indexer.
+export const metadata = {
+  robots: { index: false, follow: false, noarchive: true, nosnippet: true },
+};
+
 interface PageProps {
   params: { token: string };
   searchParams: { d?: string };

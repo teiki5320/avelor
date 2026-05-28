@@ -97,6 +97,14 @@ const OUTILS: Outil[] = [
       "Estimez la valeur de réalisation de vos stocks selon la nature et la voie (amiable, RJ, liquidation, enchères).",
     source: 'Pratique CNAJMJ / CSCPJ',
   },
+  {
+    href: '/outils/seuils-effectif',
+    icone: '📐',
+    titre: 'Vérificateur de seuils d\'effectif',
+    description:
+      "Saisissez votre effectif et découvrez les obligations applicables : CSE, PSE, participation, AGEFIPH, RPS, BDESE, congé reclassement.",
+    source: 'Code du travail, loi PACTE',
+  },
 ];
 
 const jsonLdBreadcrumb = {

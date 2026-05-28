@@ -139,6 +139,19 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **Enrichissement secteur immobilier** : FNAIM, UNIS, FPI, LCA-FFB, SNPI + alerte carte T/G (avant : FNAIM seul)
 - [x] **Enrichissement secteur santé** : FHP, FEHAP, SYNERPA, Vetos-Entraide + 5 nouveaux ordres (vétérinaires, dentistes, infirmiers, kinés, sages-femmes)
 - [x] **Enrichissement secteur pêche** : Solidarité Marins, SNSM, AGISM ajoutés (soutien psy maritime spécialisé)
+- [x] **Enrichissement secteur HCR** : GHR, SYNHORCAT, HCR Prévoyance/Klesia, Atout France (avant : UMIH+GNI+SNRTC)
+- [x] **Enrichissement secteur commerce** : FCD, CGI, CGAD, Procos, Fevad, USPF, Action Cœur de Ville, Petites Villes Demain
+- [x] **Enrichissement secteur transport** : Unostra, FNTV, CNPA/Mobilians, CSD déménageurs, TLF + dispositifs décarbonation
+- [x] **Enrichissement secteur artisanat** : CAPEB, CGAD, UNEC, CNEC + AGEFICE + cellule prévention CMA + SSI
+- [x] **Enrichissement libéral** : CNB, CSN, OEC, CNOA, OGE, CNCJ + caisses CAVOM (géomètres/huissiers), CAVAMAC (agents assurance)
+- [x] **Calculateur seuils d'effectif** : 15 seuils (CSE, PSE, participation, AGEFIPH, RPS, BDESE, index égalité, congé reclassement)
+- [x] **3 nouvelles FAQ ciblées** : caution-personnelle (10 Q), cessation-paiements (12 Q), rebondir-apres-liquidation (12 Q)
+- [x] **Glossaire enrichi** : 20 nouveaux termes (PGE, APLD-R, CCSF, CRP, CIRI, AGS, CSP, PSE, ATI, ACRE/ARCE, FSE+, FNE, Médiation crédit, Médiation entreprises, Conseillers-Entreprises, Période suspecte, Action paulienne, APESA, 60 000 Rebonds, Surendettement)
+- [x] **3 courriers** ajoutés : saisine CCSF, restructuration PGE, notification ACPR + APESA + aide juridictionnelle
+- [x] **Page Comparatif des 8 procédures** : tableau visuel, 8 critères, aide à la décision
+- [x] **Page Obligations du dirigeant** : 6 obligations à faire + 6 à ne pas faire, références légales et sanctions
+- [x] **Mentions légales** + **Politique RGPD** : compliance complète, conforme RGPD
+- [x] **Robots noindex** sur /fiche/[token] : fiches personnelles non indexées
 - [x] **Téléphones DDFiP locaux** : 99/101 numéros directs (2 conservent le 0 809 401 401)
 - [x] **Numéros Bâtonniers et Chambres notaires départementales** : 101 chambres notaires avec téléphones directs ; bâtonniers avec adresses (téléphones non publiés sur l'annuaire récap CNB)
 

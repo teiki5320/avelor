@@ -44,6 +44,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/faq/urssaf-impayee',
     '/faq/pge-en-difficulte',
     '/faq/assignation-tribunal',
+    '/faq/caution-personnelle',
+    '/faq/cessation-paiements',
+    '/faq/rebondir-apres-liquidation',
+    '/outils/seuils-effectif',
+    '/mentions-legales',
+    '/politique-donnees',
+    '/procedures-comparaison',
+    '/obligations-dirigeant',
   ];
 
   return routes.map((route) => ({
