@@ -25,6 +25,10 @@ import BlocPGE from '@/components/fiche/BlocPGE';
 import BlocBailCommercial from '@/components/fiche/BlocBailCommercial';
 import BlocConsequencesPerso from '@/components/fiche/BlocConsequencesPerso';
 import BlocRappels from '@/components/fiche/BlocRappels';
+import BlocFranchise from '@/components/fiche/BlocFranchise';
+import BlocCreditBail from '@/components/fiche/BlocCreditBail';
+import BlocSCOP from '@/components/fiche/BlocSCOP';
+import BlocReclassement from '@/components/fiche/BlocReclassement';
 import IdentiteHero from '@/components/fiche/dashboard/IdentiteHero';
 import PriorityCards from '@/components/fiche/dashboard/PriorityCards';
 import QuickLinks from '@/components/fiche/dashboard/QuickLinks';
@@ -102,6 +106,9 @@ export default function LayoutDashboard({
           <>
             <div data-section="checklist">
               <BlocChecklist defaultOpen />
+            </div>
+            <div data-section="reclassement">
+              <BlocReclassement />
             </div>
           </>
         }
@@ -213,6 +220,12 @@ export default function LayoutDashboard({
             <div data-section="bail">
               <BlocBailCommercial />
             </div>
+            <div data-section="franchise">
+              <BlocFranchise />
+            </div>
+            <div data-section="credit-bail">
+              <BlocCreditBail />
+            </div>
           </>
         }
         right={
@@ -222,6 +235,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="obligations">
               <BlocObligations />
+            </div>
+            <div data-section="scop">
+              <BlocSCOP />
             </div>
           </>
         }

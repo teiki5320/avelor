@@ -12,6 +12,7 @@ import {
   buildOrdresProfessionnels,
   buildAidesPersonnelles,
   buildSoutien,
+  buildReseauxSpecifiques,
   getDepartement,
   OrganismeCard,
 } from '@/lib/organismes';
@@ -126,11 +127,13 @@ async function renderFiche(tokenParam: string, d?: string) {
     const groupeOrdres = buildOrdresProfessionnels(sector);
     const groupeSoutien = buildSoutien(reponses);
     const groupeAidesPerso = buildAidesPersonnelles(reponses);
+    const groupesReseaux = buildReseauxSpecifiques(reponses, sector);
     groupes = [
       ...groupesBase,
       ...(groupeOrdres ? [groupeOrdres] : []),
       groupeSoutien,
       groupeAidesPerso,
+      ...groupesReseaux,
     ];
   } catch (e) {
     console.error('[fiche] Erreur calcul données:', e);

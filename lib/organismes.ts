@@ -460,3 +460,311 @@ export function buildSoutien(reponses: Reponses): GroupeOrganismes {
     cartes,
   };
 }
+
+/**
+ * Réseaux d'accompagnement spécifiques selon le profil du dirigeant :
+ * femmes, jeunes, seniors, handicap, soutien psy, reprise après liquidation,
+ * et entraide sectorielle (marin-pêcheur, vétérinaire…). Retourne plusieurs
+ * groupes possibles (chacun affiché comme une section indépendante).
+ */
+export function buildReseauxSpecifiques(
+  reponses: Reponses,
+  sector?: Pick<SectorInfo, 'secteur'>
+): GroupeOrganismes[] {
+  const groupes: GroupeOrganismes[] = [];
+  const age = reponses.ageDirigeant;
+
+  // ----- Femmes dirigeantes (réseaux mixtes-femmes affichés systématiquement
+  // car le questionnaire ne renseigne pas le genre ; Force Femmes ajouté si >45 ans)
+  const femmes: OrganismeCard[] = [
+    {
+      nom: "Action'elles",
+      type: 'Réseau · femmes entrepreneures',
+      site: 'https://www.action-elles.fr',
+      badge: 'Accompagnement gratuit',
+    },
+    {
+      nom: 'Bouge ta Boîte',
+      type: 'Réseau business · femmes',
+      site: 'https://www.bougetaboite.com',
+      badge: 'Cercles locaux',
+    },
+    {
+      nom: "Femmes Chefs d'Entreprise (FCE France)",
+      type: 'Réseau national',
+      site: 'https://www.fcefrance.com',
+      badge: 'Entraide entre dirigeantes',
+    },
+    {
+      nom: 'Garantie Égalité Femmes (ex-FGIF)',
+      type: 'France Active · garantie de prêt',
+      site: 'https://www.franceactive.org',
+      badge: 'Garantie jusqu\'à 80 % du prêt',
+    },
+  ];
+  if (age === 'plus-60' || age === '50-60') {
+    femmes.push({
+      nom: 'Force Femmes',
+      type: 'Femmes > 45 ans · accompagnement emploi/création',
+      telephone: '01 44 51 03 53',
+      site: 'https://www.forcefemmes.com',
+      badge: 'Gratuit · > 45 ans',
+    });
+  }
+  groupes.push({
+    cle: 'reseaux-femmes',
+    titre: 'Réseaux femmes dirigeantes',
+    couleur: 'violet',
+    icone: '👩‍💼',
+    cartes: femmes,
+  });
+
+  // ----- Jeunes dirigeants (< 25 ans)
+  if (age === 'moins-25') {
+    groupes.push({
+      cle: 'reseaux-jeunes',
+      titre: 'Réseaux jeunes dirigeants',
+      couleur: 'bleu',
+      icone: '🌱',
+      cartes: [
+        {
+          nom: '1 jeune 1 mentor',
+          type: 'Mentorat · 16-30 ans',
+          telephone: '0 800 712 712',
+          site: 'https://www.1jeune1mentor.fr',
+          badge: 'Gratuit · numéro vert',
+        },
+        {
+          nom: 'Mission Locale',
+          type: 'Accompagnement < 26 ans',
+          site: 'https://www.unml.info',
+          badge: 'Réseau national · gratuit',
+        },
+        {
+          nom: 'France Active Jeunes',
+          type: 'Financement solidaire',
+          site: 'https://www.franceactive.org',
+          badge: 'Prêts d\'honneur, garanties',
+        },
+        {
+          nom: 'Adie Créajeunes',
+          type: 'Microcrédit + accompagnement',
+          telephone: '0 969 328 110',
+          site: 'https://www.adie.org',
+          badge: 'Spécial < 32 ans',
+        },
+        {
+          nom: 'CitésLab',
+          type: 'Quartiers prioritaires (QPV)',
+          site: 'https://www.citeslab.fr',
+          badge: 'Si vous habitez un QPV',
+        },
+      ],
+    });
+  }
+
+  // ----- Seniors (50-60 ou plus-60) : entraide bénévole d'anciens dirigeants
+  if (age === 'plus-60' || age === '50-60') {
+    groupes.push({
+      cle: 'reseaux-seniors',
+      titre: 'Réseaux seniors et entraide bénévole',
+      couleur: 'bleu-fonce',
+      icone: '🧓',
+      cartes: [
+        {
+          nom: "EGEE · Entente des Générations pour l'Emploi",
+          type: 'Anciens dirigeants bénévoles',
+          telephone: '01 47 05 57 71',
+          site: 'https://www.egee.asso.fr',
+          badge: 'Conseil gratuit · présentiel',
+        },
+        {
+          nom: 'ECTI · Experts retraités',
+          type: 'Échanges et Consultations Techniques Internationaux',
+          telephone: '01 53 41 80 80',
+          site: 'https://www.ecti.org',
+          badge: 'Mission de conseil',
+        },
+        {
+          nom: 'AGIRabcd',
+          type: 'Retraités bénévoles · accompagnement',
+          site: 'https://www.agirabcd.org',
+          badge: 'Délégations départementales',
+        },
+        {
+          nom: 'Réseau Entreprendre Repreneurs',
+          type: 'Cession et transmission',
+          site: 'https://www.reseau-entreprendre.org',
+          badge: 'Si vous envisagez de céder',
+        },
+      ],
+    });
+  }
+
+  // ----- Handicap : toujours affiché (le questionnaire ne demande pas la RQTH)
+  groupes.push({
+    cle: 'reseaux-handicap',
+    titre: 'Handicap et accessibilité',
+    couleur: 'vert',
+    icone: '♿',
+    cartes: [
+      {
+        nom: 'AGEFIPH',
+        type: 'Secteur privé · handicap au travail',
+        telephone: '0 800 11 10 09',
+        site: 'https://www.agefiph.fr',
+        badge: 'Aides dirigeant et salariés',
+      },
+      {
+        nom: 'Cap Emploi',
+        type: 'Réseau spécialisé handicap',
+        site: 'https://www.capemploi.com',
+        badge: 'Accompagnement gratuit',
+      },
+      {
+        nom: 'FIPHFP',
+        type: 'Secteur public · handicap',
+        site: 'https://www.fiphfp.fr',
+        badge: 'Pour les agents publics',
+      },
+      {
+        nom: 'MDPH',
+        type: 'Maison Départementale des Personnes Handicapées',
+        site: 'https://www.mdph.fr',
+        badge: 'RQTH, AAH, PCH',
+      },
+    ],
+  });
+
+  // ----- Soutien psy public renforcé (si moral fragile)
+  if (reponses.moral === 'perdu' || reponses.moral === 'epuise') {
+    groupes.push({
+      cle: 'reseaux-psy',
+      titre: 'Soutien psychologique — dispositifs publics',
+      couleur: 'rouge',
+      icone: '💚',
+      cartes: [
+        {
+          nom: 'CMP · Centre Médico-Psychologique',
+          type: 'Suivi gratuit · par département',
+          site: 'https://www.service-public.fr/particuliers/vosdroits/F12368',
+          badge: 'Secteur public · sans avance',
+        },
+        {
+          nom: 'CUMP · Cellule d\'Urgence Médico-Psychologique',
+          type: 'Choc aigu · activation via SAMU',
+          telephone: '15',
+          site: 'https://www.santepubliquefrance.fr',
+          badge: 'Pour situation de crise',
+        },
+        {
+          nom: 'SAMU + Psy Centre 15',
+          type: 'Urgence psychiatrique',
+          telephone: '15',
+          badge: '24h/24 · gratuit',
+        },
+        {
+          nom: 'SOS Suicide Phénix',
+          type: 'Écoute · prévention suicide',
+          telephone: '01 40 44 46 45',
+          site: 'https://www.sos-suicide-phenix.org',
+          badge: 'Tous les jours · gratuit',
+        },
+        {
+          nom: 'Suicide Écoute',
+          type: 'Ligne d\'écoute · 24h/24',
+          telephone: '01 45 39 40 00',
+          site: 'https://suicide-ecoute.fr',
+          badge: 'Bénévoles formés',
+        },
+        {
+          nom: '3114 · Numéro national de prévention du suicide',
+          type: 'Professionnels de santé',
+          telephone: '3114',
+          site: 'https://3114.fr',
+          badge: '24h/24 · gratuit · confidentiel',
+        },
+        {
+          nom: '3919 · Violences faites aux femmes',
+          type: 'Si applicable · écoute et orientation',
+          telephone: '3919',
+          site: 'https://www.solidaritefemmes.org',
+          badge: 'Anonyme · 24h/24',
+        },
+      ],
+    });
+  }
+
+  // ----- Reprise après liquidation (toujours utile à connaître)
+  groupes.push({
+    cle: 'reseaux-rebond',
+    titre: 'Rebond après liquidation',
+    couleur: 'jaune',
+    icone: '🔄',
+    cartes: [
+      {
+        nom: '60 000 Rebonds',
+        type: 'Accompagnement post-liquidation',
+        site: 'https://www.60000rebonds.com',
+        badge: 'Bénévoles · 2 ans de suivi',
+      },
+      {
+        nom: 'Second Souffle',
+        type: 'Entraide dirigeants en rebond',
+        site: 'https://second-souffle.com',
+        badge: 'Communauté + ateliers',
+      },
+      {
+        nom: 'Re-Création',
+        type: 'Rebond entrepreneurial',
+        site: 'https://www.re-creation.org',
+        badge: 'Accompagnement gratuit',
+      },
+    ],
+  });
+
+  // ----- Pêche : entraide sectorielle spécifique
+  const secteur: Secteur | undefined = sector?.secteur;
+  if (secteur === 'peche') {
+    groupes.push({
+      cle: 'reseaux-peche',
+      titre: 'Entraide marins-pêcheurs',
+      couleur: 'bleu-fonce',
+      icone: '⚓',
+      cartes: [
+        {
+          nom: 'Solidarité Marins',
+          type: 'Société Nationale de Sauvetage en Mer · volet social',
+          site: 'https://www.snsm.org',
+          badge: 'Aide aux familles de marins',
+        },
+        {
+          nom: 'Société de Secours des Marins (SSM)',
+          type: 'Action sociale · ENIM',
+          site: 'https://www.enim.eu',
+          badge: 'Aides d\'urgence',
+        },
+      ],
+    });
+  }
+
+  // ----- Vétérinaires (libéral / santé) : Vetos-Entraide
+  if (secteur === 'liberal' || secteur === 'sante') {
+    groupes.push({
+      cle: 'reseaux-veto',
+      titre: 'Entraide vétérinaires (si applicable)',
+      couleur: 'violet',
+      icone: '🐾',
+      cartes: [
+        {
+          nom: 'Vetos-Entraide',
+          type: 'Vétérinaires en difficulté · équivalent APESA',
+          site: 'https://www.vetos-entraide.com',
+          badge: 'Écoute par des confrères · gratuit',
+        },
+      ],
+    });
+  }
+
+  return groupes;
+}
