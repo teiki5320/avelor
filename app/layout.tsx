@@ -89,6 +89,7 @@ export default function RootLayout({
             <a href="/temoignages" className="hover:text-navy/70">Témoignages</a>
             <a href="/mentions-legales" className="hover:text-navy/70">Mentions légales</a>
             <a href="/politique-donnees" className="hover:text-navy/70">RGPD</a>
+            <a href="/accessibilite" className="hover:text-navy/70">Accessibilité</a>
           </div>
         </footer>
         </LazyMotionProvider>

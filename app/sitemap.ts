@@ -52,6 +52,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/politique-donnees',
     '/procedures-comparaison',
     '/obligations-dirigeant',
+    '/mediation-vs-conciliation',
+    '/accessibilite',
   ];
 
   return routes.map((route) => ({
