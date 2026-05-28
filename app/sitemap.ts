@@ -55,6 +55,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/mediation-vs-conciliation',
     '/accessibilite',
     '/penalites-fiscales',
+    '/ciri-codefi',
+    '/residence-principale-insaisissable',
   ];
 
   return routes.map((route) => ({
