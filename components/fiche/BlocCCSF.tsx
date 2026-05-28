@@ -1,6 +1,7 @@
 'use client';
 import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
+import { getDepartement } from '@/lib/organismes';
 
 export default function BlocCCSF() {
   const { reponses, company } = useFiche();
@@ -13,6 +14,8 @@ export default function BlocCCSF() {
   if (!pertinent) return null;
 
   const dep = company.departement || '';
+  const depData = dep ? getDepartement(dep) : null;
+  const ddfip = depData?.ddfip ?? null;
 
   return (
     <BlocAccordeon
@@ -77,6 +80,36 @@ export default function BlocCCSF() {
         </ol>
       </div>
 
+      {ddfip && (
+        <div className="mt-4 rounded-2xl border border-vert/30 bg-vert/5 p-4">
+          <p className="font-display text-base text-vert">
+            Votre DDFiP de rattachement
+          </p>
+          <p className="mt-1 text-sm text-navy/80">{ddfip.nom}</p>
+          {ddfip.adresse && (
+            <p className="mt-0.5 text-xs text-navy/60">{ddfip.adresse}</p>
+          )}
+          <div className="mt-3 flex flex-wrap gap-2 text-xs">
+            <a
+              href={`tel:${(ddfip.telephone ?? '0809401401').replace(/\s/g, '')}`}
+              className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
+            >
+              ☎ {ddfip.telephone ?? '0 809 401 401'}
+            </a>
+            {ddfip.site && (
+              <a
+                href={ddfip.site}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
+              >
+                🌐 contacts impots.gouv.fr
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="mt-5 flex flex-wrap gap-2 text-sm">
         <a
           href="https://www.impots.gouv.fr/professionnel/commission-des-chefs-des-services-financiers-ccsf"
@@ -85,6 +118,20 @@ export default function BlocCCSF() {
           className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
         >
           🌐 impots.gouv.fr — page officielle CCSF
+        </a>
+        <a
+          href="https://www.formulaires.service-public.fr/gf/cerfa_15772.do"
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
+        >
+          📄 Formulaire Cerfa n°15772*02
+        </a>
+        <a
+          href="tel:0809401401"
+          className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
+        >
+          ☎ 0 809 401 401 (renseignements fiscaux)
         </a>
         <a
           href="https://www.economie.gouv.fr/entreprises/commission-chefs-services-financiers-ccsf"

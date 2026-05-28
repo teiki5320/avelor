@@ -1,10 +1,58 @@
 'use client';
 import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
+import type { CaisseRetraite } from '@/lib/secteur';
+
+/**
+ * Sélectionne la caisse sociale spécifique au dirigeant en fonction de son
+ * code NAF (libéral, santé, vétérinaire, etc.). Renvoie null si aucune
+ * caisse spécifique n'est identifiée.
+ */
+function caisseFromNaf(
+  naf: string,
+  caisses: CaisseRetraite[] | undefined,
+): CaisseRetraite | null {
+  if (!naf || !caisses?.length) return null;
+  const code = naf.replace(/\./g, '').toUpperCase();
+  const find = (sigle: string) =>
+    caisses.find((c) => c.caisse.toUpperCase() === sigle) ?? null;
+
+  // Avocat
+  if (code.startsWith('6910')) return find('CNBF');
+  // Notaire / huissier
+  if (code.startsWith('6910')) return find('CRPCEN');
+  // Expertise comptable
+  if (code.startsWith('6920')) return find('CAVEC');
+  // Architecture
+  if (code.startsWith('7111')) return find('CIPAV');
+  // Pharmacie (commerce de détail pharmaceutique)
+  if (code.startsWith('4773')) return find('CAVP');
+  // Vétérinaire
+  if (code.startsWith('7500')) return find('CARPV');
+  // Auxiliaires médicaux (kiné, infirmier, orthophoniste…)
+  if (code.startsWith('8690')) return find('CARPIMKO');
+  // Médecins, dentistes, sages-femmes…
+  if (code.startsWith('862')) {
+    // Dentaire (86.23Z)
+    if (code.startsWith('8623')) return find('CARCDSF');
+    // Médecine générale / spécialisée
+    return find('CARMF');
+  }
+  // Autres libéraux (services professionnels, conseil…) → CIPAV par défaut
+  if (
+    code.startsWith('74') ||
+    code.startsWith('69') ||
+    code.startsWith('70')
+  ) {
+    return find('CIPAV');
+  }
+  return null;
+}
 
 export default function BlocSoutien() {
-  const { reponses, sector } = useFiche();
+  const { reponses, company, sector } = useFiche();
   const epuise = reponses.moral === 'epuise' || reponses.moral === 'perdu';
+  const caisseSociale = caisseFromNaf(company.naf, sector.caissesRetraite);
 
   const message = epuise
     ? 'Ce que vous ressentez est légitime. Beaucoup de dirigeants traversent cette épreuve, et la plupart s\'en sortent mieux qu\'ils ne le croient — souvent parce qu\'ils ont osé demander de l\'aide. Vous venez de le faire.'
@@ -70,6 +118,49 @@ export default function BlocSoutien() {
           <p className="mt-3 text-sm text-bleu-fonce">Appeler 3114 →</p>
         </a>
       </div>
+      {caisseSociale && (
+        <div className="mt-5 rounded-2xl border border-vert/30 bg-vert/5 p-4">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="font-display text-base text-vert">
+                {caisseSociale.caisse} · Action sociale
+              </p>
+              <p className="mt-1 text-xs text-navy/70">
+                Caisse de retraite des {caisseSociale.profession.toLowerCase()}s.
+                Un fonds d&apos;action sociale peut vous accorder une aide
+                financière d&apos;urgence (cotisations, perte de revenus,
+                situations exceptionnelles).
+              </p>
+            </div>
+            <span className="shrink-0 rounded-full bg-white/80 px-2 py-1 text-[10px] font-semibold text-vert">
+              Spécifique {caisseSociale.profession}
+            </span>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2 text-xs">
+            <a
+              href={`tel:${caisseSociale.telephone.replace(/\s/g, '')}`}
+              className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
+            >
+              ☎ {caisseSociale.telephone}
+            </a>
+            <a
+              href={caisseSociale.site}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
+            >
+              🌐 {(() => {
+                try {
+                  return new URL(caisseSociale.site).hostname.replace('www.', '');
+                } catch {
+                  return 'site officiel';
+                }
+              })()}
+            </a>
+          </div>
+        </div>
+      )}
+
       <p className="mt-5 text-xs text-navy/50">
         Ces services sont gratuits et confidentiels. Ils sont tenus au secret
         professionnel.

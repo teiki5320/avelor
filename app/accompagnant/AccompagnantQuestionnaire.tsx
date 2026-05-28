@@ -22,6 +22,12 @@ interface DepartementData {
   mandataires?: OrganismeLocal[];
   banqueDeFrance?: OrganismeLocal;
   dreets?: OrganismeLocal;
+  ddfip?: OrganismeLocal;
+  cma?: OrganismeLocal;
+  prefecture?: OrganismeLocal;
+  pointJustice?: OrganismeLocal;
+  carsat?: OrganismeLocal;
+  conciliateur?: OrganismeLocal;
 }
 
 const ORGANISMES = data as Record<string, DepartementData>;

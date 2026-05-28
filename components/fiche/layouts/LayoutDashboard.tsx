@@ -19,6 +19,7 @@ import BlocPatrimoine from '@/components/fiche/BlocPatrimoine';
 import BlocTresorerie from '@/components/fiche/BlocTresorerie';
 import BlocCessationDecompte from '@/components/fiche/BlocCessationDecompte';
 import BlocCCSF from '@/components/fiche/BlocCCSF';
+import BlocAidesEtat from '@/components/fiche/BlocAidesEtat';
 import BlocBailCommercial from '@/components/fiche/BlocBailCommercial';
 import BlocConsequencesPerso from '@/components/fiche/BlocConsequencesPerso';
 import BlocRappels from '@/components/fiche/BlocRappels';
@@ -197,6 +198,9 @@ export default function LayoutDashboard({
           <>
             <div data-section="aides">
               <BlocAides />
+            </div>
+            <div data-section="aides-etat">
+              <BlocAidesEtat />
             </div>
             <div data-section="bail">
               <BlocBailCommercial />
