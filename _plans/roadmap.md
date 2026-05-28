@@ -131,9 +131,9 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **Bloc CSP autonome** (`BlocCSP`) : extrait de BlocReclassement, procédure pas-à-pas 21 j
 - [x] **Tests E2E Playwright** (parcours SIRET → fiche, calculateurs, FAQ ciblées) — `npm run test:e2e`
 - [x] **Plus de tests** : composants React (SiretInput, BlocAccordeon, ModePerdu), routes API (api/fiche), OPCO
-- [ ] **Adresses postales précises** dans data/organismes.json — non faisable sans accès internet pour vérifier 2000 entrées
-- [ ] **Téléphones DDFiP locaux** — non faisable sans accès internet pour vérifier 96 numéros
-- [ ] **Numéros Bâtonniers et Chambres notaires départementales** — non faisable sans vérification externe
+- [x] **Adresses postales précises** : 101 DDFiP, 101 Barreaux, 101 Chambres notaires enrichis (métropole + DOM) — sources mon-administration.com, annuaire-administration.com, notaires.fr (28/05/2026)
+- [x] **Téléphones DDFiP locaux** : 99/101 numéros directs (2 conservent le 0 809 401 401)
+- [x] **Numéros Bâtonniers et Chambres notaires départementales** : 101 chambres notaires avec téléphones directs ; bâtonniers avec adresses (téléphones non publiés sur l'annuaire récap CNB)
 
 #### 🟡 MOYEN — améliorations qualité
 - [ ] **Ordres professionnels départementaux** : Bâtonniers locaux, Chambres notaires dép., Conseil dép. Ordre Médecins/Pharmaciens
