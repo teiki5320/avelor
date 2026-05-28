@@ -1,7 +1,7 @@
 # 🗺️ Avelor — Roadmap
 
 > Dernière mise à jour : **2026-05-28**
-> Statut global : **production · couverture ~88%**
+> Statut global : **production · couverture ~94%**
 
 ## 🎯 Vision
 
@@ -223,7 +223,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 | Plateformes (Uber, Deliveroo) | 10% |
 | PGE (restructuration + médiation) | 95% (procédure pas-à-pas) |
 
-**Couverture globale : ~88%**
+**Couverture globale : ~94%**
 
 ## 📈 Métriques
 
