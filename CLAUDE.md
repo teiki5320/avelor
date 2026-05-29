@@ -140,7 +140,8 @@ vercel.json                   # Cron rappels quotidiens 7h
 ## Couverture estimée
 
 - **~94% de la pertinence** pour les profils-types de dirigeants en difficulté
-- **107 territoires** couverts (96 départements + 11 DOM-TOM) — **6 datasets enrichis** avec adresses + téléphones réels (DDFiP, Barreaux, Chambres notaires, Chambres agriculture, URSSAF, Tribunaux commerce)
+- **107 territoires** couverts (96 départements + 11 DOM-TOM) — **8 datasets enrichis** avec adresses + téléphones réels (DDFiP, Barreaux, Chambres notaires, Chambres agriculture, URSSAF, Tribunaux commerce, CCI, CMA)
+- **3 thèmes** : clair (défaut) · sombre · contraste élevé (RGAA AAA) — bascule dans la Nav, persistance localStorage
 - **15 secteurs** enrichis (incluant finance, IT, éducation, immobilier) + mapping 11 OPCO par NAF
 - **222 tests Vitest** + Playwright E2E configuré
 - **11 calculateurs officiels** (ajout : valorisation stocks, seuils d'effectif)

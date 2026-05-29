@@ -158,6 +158,11 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **Page Médiation vs conciliation** : différences entre médiation crédit/entreprises, mandat ad hoc, conciliation
 - [x] **Page Accessibilité** : déclaration RGAA, limitations, voies de recours
 - [x] **CSS print enrichi** : @page A4, marges, mode économie d'encre, anti-orphelins
+- [x] **Adresses précises CCI + CMA** : 101 dpts chacune (métropole + DOM), adresses + téléphones réels
+- [x] **OG image dynamique par page** : /api/og (titre adaptatif + sous-titre + accent par catégorie) + helper lib/og.ts appliqué aux pages SEO clés
+- [x] **Mode sombre** : thème complet via variables CSS (couleurs, surfaces, glass, boutons colorés, blobs) — bascule Nav + persistance + anti-FOUC
+- [x] **Mode contraste élevé (RGAA AAA)** : panneaux opaques, bordures noires, blur off, textes faibles relevés, focus renforcé
+- [x] Thèmes vérifiés visuellement par captures (clair/sombre/contraste) — aucune régression
 - [x] **Téléphones DDFiP locaux** : 99/101 numéros directs (2 conservent le 0 809 401 401)
 - [x] **Numéros Bâtonniers et Chambres notaires départementales** : 101 chambres notaires avec téléphones directs ; bâtonniers avec adresses (téléphones non publiés sur l'annuaire récap CNB)
 

@@ -11,9 +11,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Aube",
+      "nom": "CCI de Troyes et de l'Aube",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Troyes",
+      "adresse": "Espace Régley, 1 boulevard Charles-Baltet, CS 60706, 10001 Troyes Cedex",
+      "telephone": "03 25 43 70 00",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -48,9 +49,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Aube",
+      "nom": "CMA Grand Est - Aube",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Troyes",
+      "adresse": "6 rue Jeanne-d'Arc, BP 4104, 10018 Troyes Cedex",
+      "telephone": "03 25 82 62 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -163,9 +165,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Aude",
+      "nom": "CCI de l'Aude",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Carcassonne",
+      "adresse": "3 boulevard Camille-Pelletan, CS 30011, 11890 Carcassonne Cedex",
+      "telephone": "04 68 10 36 00",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -200,9 +203,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Aude",
+      "nom": "CMA Occitanie - Aude",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Carcassonne",
+      "adresse": "20 avenue du Maréchal-Juin, CS 70051, 11890 Carcassonne Cedex 9",
+      "telephone": "04 68 11 20 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -315,9 +319,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Aveyron",
+      "nom": "CCI de l'Aveyron",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Rodez",
+      "adresse": "17 rue Aristide-Briand, BP 3349, 12033 Rodez Cedex 9",
+      "telephone": "05 65 77 77 00",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -352,9 +357,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Aveyron",
+      "nom": "CMA Occitanie - Aveyron",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Rodez",
+      "adresse": "341 rue des Métiers, BP 3350, 12850 Onet-le-Château",
+      "telephone": "05 65 77 56 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -467,9 +473,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Bouches-du-Rhône",
+      "nom": "CCI Aix-Marseille-Provence (Marseille)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Marseille",
+      "adresse": "Palais de la Bourse, 9 la Canebière, CS 21856, 13221 Marseille Cedex 01",
+      "telephone": "08 10 11 31 13",
       "site": "https://www.paca.cci.fr"
     },
     "urssaf": {
@@ -504,9 +511,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Bouches-du-Rhône",
+      "nom": "CMA des Bouches-du-Rhône",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Marseille",
+      "adresse": "117 avenue du Prado, 13008 Marseille",
+      "telephone": "04 91 32 24 24",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -613,9 +621,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Calvados",
+      "nom": "CCI Normandie - Caen",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Caen",
+      "adresse": "1 rue René-Cassin, Saint-Contest, 14911 Caen Cedex 9",
+      "telephone": "02 31 54 54 54",
       "site": "https://www.normandie.cci.fr"
     },
     "urssaf": {
@@ -650,9 +659,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Calvados",
+      "nom": "CMA Normandie - Calvados",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Caen",
+      "adresse": "2 rue Claude-Bloch, CS 25059, 14077 Caen Cedex 5",
+      "telephone": "02 31 53 25 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -759,9 +769,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Cantal",
+      "nom": "CCI du Cantal",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Aurillac",
+      "adresse": "44 boulevard du Pont-Rouge, 15013 Aurillac Cedex",
+      "telephone": "04 71 45 40 40",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -796,9 +807,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Cantal",
+      "nom": "CMA Auvergne-Rhône-Alpes - Cantal",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Aurillac",
+      "adresse": "45 avenue de la République, CS 9511, 15005 Aurillac Cedex",
+      "telephone": "04 71 45 65 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -911,9 +923,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Charente",
+      "nom": "CCI de la Charente (Angoulême)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Angoulême",
+      "adresse": "27 place Bouillaud, CS 12124, 16021 Angoulême Cedex",
+      "telephone": "05 45 20 55 55",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -948,9 +961,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Charente",
+      "nom": "CMA Nouvelle-Aquitaine - Charente",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Angoulême",
+      "adresse": "68 avenue Gambetta, 16021 Angoulême Cedex",
+      "telephone": "05 45 90 47 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -1063,9 +1077,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Charente-Maritime",
+      "nom": "CCI de La Rochelle",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "La Rochelle",
+      "adresse": "21 chemin du Prieuré, 17024 La Rochelle Cedex 1",
+      "telephone": "05 46 00 54 00",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -1100,9 +1115,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Charente-Maritime",
+      "nom": "CMA Nouvelle-Aquitaine - Charente-Maritime",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "La Rochelle",
+      "adresse": "107 avenue Michel-Crépeau, 17024 La Rochelle Cedex 1",
+      "telephone": "05 46 50 00 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -1215,9 +1231,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Cher",
+      "nom": "CCI du Cher",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Bourges",
+      "adresse": "Avenue d'Issoudun, CS 70237, 18022 Bourges Cedex",
+      "telephone": "02 48 67 80 80",
       "site": "https://www.centre.cci.fr"
     },
     "urssaf": {
@@ -1252,9 +1269,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Cher",
+      "nom": "CMA Centre-Val de Loire - Cher",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Bourges",
+      "adresse": "15 rue Henri-Dunant, CS 80345, 18005 Bourges Cedex",
+      "telephone": "02 48 69 70 71",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -1367,9 +1385,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Corrèze",
+      "nom": "CCI de la Corrèze",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Tulle",
+      "adresse": "Immeuble du Puy-Pinçon, Avenue Docteur-Schweitzer, CS 50030, 19001 Tulle Cedex",
+      "telephone": "05 55 21 55 21",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -1404,9 +1423,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Corrèze",
+      "nom": "CMA Nouvelle-Aquitaine - Corrèze",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Tulle",
+      "adresse": "8 avenue Alsace-Lorraine, BP 72, 19002 Tulle Cedex",
+      "telephone": "05 55 29 95 95",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -1519,9 +1539,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Côte-d'Or",
+      "nom": "CCI de la Côte-d'Or",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Dijon",
+      "adresse": "2 avenue de Marbotte, BP 17440, 21074 Dijon Cedex",
+      "telephone": "03 80 65 91 00",
       "site": "https://www.bourgognefranchecomte.cci.fr"
     },
     "urssaf": {
@@ -1556,9 +1577,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Côte-d'Or",
+      "nom": "CMA Bourgogne-Franche-Comté - Côte-d'Or",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Dijon",
+      "adresse": "65-69 rue Daubenton, BP 37451, 21074 Dijon Cedex",
+      "telephone": "03 80 63 13 53",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -1671,9 +1693,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Côtes-d'Armor",
+      "nom": "CCI des Côtes-d'Armor",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Saint-Brieuc",
+      "adresse": "16 rue de Guernesey, CS 10514, 22005 Saint-Brieuc Cedex 1",
+      "telephone": "02 96 78 62 00",
       "site": "https://www.bretagne.cci.fr"
     },
     "urssaf": {
@@ -1708,9 +1731,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Côtes-d'Armor",
+      "nom": "CMA Bretagne - Côtes-d'Armor",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Saint-Brieuc",
+      "adresse": "Campus de l'artisanat, CS 90051, 22440 Ploufragan",
+      "telephone": "02 96 76 26 26",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -1823,9 +1847,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Creuse",
+      "nom": "CCI de la Creuse",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Guéret",
+      "adresse": "Maison de l'économie, 8 avenue d'Auvergne, 23000 Guéret",
+      "telephone": "05 55 51 96 60",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -1860,9 +1885,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Creuse",
+      "nom": "CMA Nouvelle-Aquitaine - Creuse",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Guéret",
+      "adresse": "8 avenue d'Auvergne, BP 49, 23011 Guéret Cedex",
+      "telephone": "05 55 51 95 30",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -1975,9 +2001,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Dordogne",
+      "nom": "CCI de la Dordogne",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Périgueux",
+      "adresse": "Pôle interconsulaire, Cré@Vallée Nord, 24660 Coulounieix-Chamiers",
+      "telephone": "05 53 35 80 80",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -2012,9 +2039,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Dordogne",
+      "nom": "CMA Nouvelle-Aquitaine - Dordogne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Périgueux",
+      "adresse": "295 boulevard des Saveurs, 24660 Coulounieix-Chamiers",
+      "telephone": "05 53 35 87 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -2127,9 +2155,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Doubs",
+      "nom": "CCI du Doubs",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Besançon",
+      "adresse": "46 avenue Villarceau, 25042 Besançon Cedex",
+      "telephone": "03 81 25 25 25",
       "site": "https://www.bourgognefranchecomte.cci.fr"
     },
     "urssaf": {
@@ -2164,9 +2193,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Doubs",
+      "nom": "CMA Bourgogne-Franche-Comté - Doubs",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Besançon",
+      "adresse": "101 rue de Vesoul, Nef aux Métiers, 25000 Besançon",
+      "telephone": "03 39 21 22 23",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -2279,9 +2309,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Drôme",
+      "nom": "CCI de la Drôme",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Valence",
+      "adresse": "52-74 rue Barthélemy-de-Laffemas, BP 1023, 26010 Valence Cedex",
+      "telephone": "04 75 75 70 00",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -2316,9 +2347,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Drôme",
+      "nom": "CMA Auvergne-Rhône-Alpes - Drôme",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Valence",
+      "adresse": "Rue Étienne-Dolet, BP 153, 26104 Romans-sur-Isère Cedex",
+      "telephone": "04 75 48 72 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -2431,9 +2463,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Eure",
+      "nom": "CCI Portes de Normandie (Évreux)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Évreux",
+      "adresse": "215 route de Paris, CS 80187, 27001 Évreux Cedex",
+      "telephone": "02 77 27 00 27",
       "site": "https://www.normandie.cci.fr"
     },
     "urssaf": {
@@ -2468,9 +2501,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Eure",
+      "nom": "CMA Normandie - Eure",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Évreux",
+      "adresse": "8 boulevard Allende, BP 219, 27092 Évreux Cedex 9",
+      "telephone": "02 32 39 41 81",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -2583,9 +2617,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Eure-et-Loir",
+      "nom": "CCI d'Eure-et-Loir",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Chartres",
+      "adresse": "5 bis avenue Marcel-Proust, CS 80062, 28008 Chartres Cedex",
+      "telephone": "02 37 84 28 28",
       "site": "https://www.centre.cci.fr"
     },
     "urssaf": {
@@ -2620,9 +2655,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Eure-et-Loir",
+      "nom": "CMA Centre-Val de Loire - Eure-et-Loir",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Chartres",
+      "adresse": "24 boulevard de la Courtille, 28000 Chartres",
+      "telephone": "02 37 91 57 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -2735,9 +2771,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Finistère",
+      "nom": "CCI Métropolitaine Bretagne Ouest (Quimper)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Quimper",
+      "adresse": "145 avenue de Kéradennec, CS 76029, 29330 Quimper Cedex",
+      "telephone": "02 98 98 29 29",
       "site": "https://www.bretagne.cci.fr"
     },
     "urssaf": {
@@ -2772,9 +2809,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Finistère",
+      "nom": "CMA Bretagne - Finistère",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Quimper",
+      "adresse": "24 route de Cuzon, CS 21037, 29196 Quimper Cedex",
+      "telephone": "02 98 76 46 46",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -2887,9 +2925,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Gard",
+      "nom": "CCI du Gard",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Nîmes",
+      "adresse": "12 rue de la République, 30032 Nîmes Cedex 1",
+      "telephone": "04 66 87 98 79",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -2924,9 +2963,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Gard",
+      "nom": "CMA Occitanie - Gard",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Nîmes",
+      "adresse": "904 avenue du Maréchal-Juin, CS 83012, 30908 Nîmes Cedex 2",
+      "telephone": "04 66 62 80 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -3033,9 +3073,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Haute-Garonne",
+      "nom": "CCI de Toulouse Haute-Garonne",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Toulouse",
+      "adresse": "2 rue Alsace-Lorraine, BP 10202, 31002 Toulouse Cedex 6",
+      "telephone": "05 61 33 65 00",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -3070,9 +3111,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Haute-Garonne",
+      "nom": "CMA Occitanie - Haute-Garonne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Toulouse",
+      "adresse": "18 bis boulevard Lascrosses, BP 91030, 31010 Toulouse Cedex 6",
+      "telephone": "05 61 10 47 47",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -3179,9 +3221,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Gers",
+      "nom": "CCI du Gers",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Auch",
+      "adresse": "Place Jean-David, BP 10181, 32004 Auch Cedex",
+      "telephone": "05 62 61 62 61",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -3216,9 +3259,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Gers",
+      "nom": "CMA Occitanie - Gers",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Auch",
+      "adresse": "1 avenue de la République, 32550 Pavie",
+      "telephone": "05 62 61 22 22",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -3331,9 +3375,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Gironde",
+      "nom": "CCI Bordeaux Gironde",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Bordeaux",
+      "adresse": "17 place de la Bourse, CS 61274, 33076 Bordeaux Cedex",
+      "telephone": "05 56 79 50 00",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -3368,9 +3413,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Gironde",
+      "nom": "CMA Nouvelle-Aquitaine - Gironde",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Bordeaux",
+      "adresse": "46 rue du Général-de-Larminat, CS 81423, 33073 Bordeaux Cedex",
+      "telephone": "05 56 99 91 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -3477,9 +3523,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Hérault",
+      "nom": "CCI de l'Hérault (Montpellier)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Montpellier",
+      "adresse": "Zone aéroportuaire Montpellier-Méditerranée, CS 90066, 34137 Mauguio Cedex",
+      "telephone": "04 99 51 52 00",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -3514,9 +3561,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Hérault",
+      "nom": "CMA Occitanie - Hérault",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Montpellier",
+      "adresse": "154 rue Bernard-Giraudeau, CS 59999, 34187 Montpellier Cedex 4",
+      "telephone": "04 67 72 72 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -3623,9 +3671,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Ille-et-Vilaine",
+      "nom": "CCI d'Ille-et-Vilaine (Rennes)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Rennes",
+      "adresse": "2 avenue de la Préfecture, CS 64204, 35042 Rennes Cedex",
+      "telephone": "02 99 33 66 66",
       "site": "https://www.bretagne.cci.fr"
     },
     "urssaf": {
@@ -3660,9 +3709,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Ille-et-Vilaine",
+      "nom": "CMA Bretagne - Ille-et-Vilaine",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Rennes",
+      "adresse": "2 cours des Alliés, CS 51218, 35012 Rennes Cedex",
+      "telephone": "02 23 50 05 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -3775,9 +3825,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Indre",
+      "nom": "CCI de l'Indre",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Châteauroux",
+      "adresse": "24 place Gambetta, 36028 Châteauroux Cedex",
+      "telephone": "02 54 53 52 51",
       "site": "https://www.centre.cci.fr"
     },
     "urssaf": {
@@ -3812,9 +3863,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Indre",
+      "nom": "CMA Centre-Val de Loire - Indre",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Châteauroux",
+      "adresse": "31 rue Robert-Mallet-Stevens, BP 296, 36006 Châteauroux Cedex",
+      "telephone": "02 54 08 80 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -3927,9 +3979,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Indre-et-Loire",
+      "nom": "CCI de Touraine",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Tours",
+      "adresse": "1 rue Schiller, BP 80415, 37204 Tours Cedex 03",
+      "telephone": "02 47 47 20 00",
       "site": "https://www.centre.cci.fr"
     },
     "urssaf": {
@@ -3964,9 +4017,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Indre-et-Loire",
+      "nom": "CMA Centre-Val de Loire - Indre-et-Loire",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Tours",
+      "adresse": "36-42 route de Saint-Avertin, CS 50412, 37204 Tours Cedex 3",
+      "telephone": "02 47 25 24 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -4079,9 +4133,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Isère",
+      "nom": "CCI de Grenoble",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Grenoble",
+      "adresse": "1 place André-Malraux, CS 90297, 38016 Grenoble Cedex 1",
+      "telephone": "04 76 28 28 28",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -4116,9 +4171,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Isère",
+      "nom": "CMA Auvergne-Rhône-Alpes - Isère",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Grenoble",
+      "adresse": "20 rue des Arts-et-Métiers, CS 20055, 38026 Grenoble Cedex 1",
+      "telephone": "04 76 70 82 09",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -4231,9 +4287,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Jura",
+      "nom": "CCI du Jura",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Lons-le-Saunier",
+      "adresse": "33 place de la Comédie, BP 377, 39016 Lons-le-Saunier Cedex",
+      "telephone": "03 84 24 15 76",
       "site": "https://www.bourgognefranchecomte.cci.fr"
     },
     "urssaf": {
@@ -4268,9 +4325,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Jura",
+      "nom": "CMA Bourgogne-Franche-Comté - Jura",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Lons-le-Saunier",
+      "adresse": "17 rue Jules-Bury, BP 40408, 39016 Lons-le-Saunier Cedex",
+      "telephone": "03 39 21 22 23",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -4383,9 +4441,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Landes",
+      "nom": "CCI des Landes (Mont-de-Marsan)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Mont-de-Marsan",
+      "adresse": "293 avenue du Maréchal-Foch, BP 137, 40003 Mont-de-Marsan Cedex",
+      "telephone": "05 58 05 44 50",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -4420,9 +4479,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Landes",
+      "nom": "CMA Nouvelle-Aquitaine - Landes",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Mont-de-Marsan",
+      "adresse": "41 avenue Henri-Farbos, BP 199, 40004 Mont-de-Marsan Cedex",
+      "telephone": "05 58 05 81 81",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -4535,9 +4595,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Loir-et-Cher",
+      "nom": "CCI de Loir-et-Cher",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Blois",
+      "adresse": "16 rue de la Vallée-Maillard, 41018 Blois Cedex",
+      "telephone": "02 54 44 64 00",
       "site": "https://www.centre.cci.fr"
     },
     "urssaf": {
@@ -4572,9 +4633,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Loir-et-Cher",
+      "nom": "CMA Centre-Val de Loire - Loir-et-Cher",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Blois",
+      "adresse": "16 rue de la Vallée-Maillard, 41018 Blois Cedex",
+      "telephone": "02 54 44 65 83",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -4687,9 +4749,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Loire",
+      "nom": "CCI Lyon Métropole Saint-Étienne Roanne (Saint-Étienne)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Saint-Étienne",
+      "adresse": "57 cours Fauriel, 42000 Saint-Étienne",
+      "telephone": "04 77 43 04 00",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -4724,9 +4787,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Loire",
+      "nom": "CMA Auvergne-Rhône-Alpes - Loire",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Saint-Étienne",
+      "adresse": "9 rue de l'Artisanat-et-du-Concept, BP 724, 42951 Saint-Étienne Cedex 9",
+      "telephone": "04 77 92 38 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -4833,9 +4897,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Haute-Loire",
+      "nom": "CCI de la Haute-Loire",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Le Puy-en-Velay",
+      "adresse": "16 boulevard Président-Bertrand, BP 30127, 43004 Le Puy-en-Velay Cedex",
+      "telephone": "04 71 09 90 00",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -4870,9 +4935,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Haute-Loire",
+      "nom": "CMA Auvergne-Rhône-Alpes - Haute-Loire",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Le Puy-en-Velay",
+      "adresse": "13 avenue André-Soulier, BP 60104, 43003 Le Puy-en-Velay Cedex",
+      "telephone": "04 71 02 34 56",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -4985,9 +5051,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Loire-Atlantique",
+      "nom": "CCI Nantes Saint-Nazaire",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Nantes",
+      "adresse": "Centre des Salorges, 16 quai Ernest-Renaud, CS 90517, 44105 Nantes Cedex 4",
+      "telephone": "02 40 44 60 00",
       "site": "https://www.paysdelaloire.cci.fr"
     },
     "urssaf": {
@@ -5022,9 +5089,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Loire-Atlantique",
+      "nom": "CMA Pays de la Loire - Loire-Atlantique",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Nantes",
+      "adresse": "5 allée des Liards, 44981 Sainte-Luce-sur-Loire Cedex",
+      "telephone": "02 51 13 83 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -5137,9 +5205,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Loiret",
+      "nom": "CCI du Loiret",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Orléans",
+      "adresse": "23 place du Martroi, 45000 Orléans",
+      "telephone": "02 38 77 77 77",
       "site": "https://www.centre.cci.fr"
     },
     "urssaf": {
@@ -5174,9 +5243,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Loiret",
+      "nom": "CMA Centre-Val de Loire - Loiret",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Orléans",
+      "adresse": "28 rue du Faubourg-Bourgogne, CS 22249, 45012 Orléans Cedex 1",
+      "telephone": "02 38 68 08 68",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -5289,9 +5359,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Lot",
+      "nom": "CCI du Lot",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Cahors",
+      "adresse": "107 quai Eugène-Cavaignac, CS 10079, 46002 Cahors Cedex 9",
+      "telephone": "05 65 20 35 01",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -5326,9 +5397,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Lot",
+      "nom": "CMA Occitanie - Lot",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Cahors",
+      "adresse": "Rue Saint-Ambroise, BP 99, 46002 Cahors Cedex 9",
+      "telephone": "05 65 35 13 55",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -5441,9 +5513,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Lot-et-Garonne",
+      "nom": "CCI de Lot-et-Garonne (Agen)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Agen",
+      "adresse": "52 cours Gambetta, BP 90279, 47007 Agen Cedex",
+      "telephone": "05 53 77 10 00",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -5478,9 +5551,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Lot-et-Garonne",
+      "nom": "CMA Nouvelle-Aquitaine - Lot-et-Garonne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Agen",
+      "adresse": "2 impasse Morère, CS 70118, 47004 Agen Cedex",
+      "telephone": "05 53 77 47 77",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -5593,9 +5667,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Lozère",
+      "nom": "CCI de la Lozère",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Mende",
+      "adresse": "16 boulevard du Soubeyran, BP 81, 48002 Mende Cedex",
+      "telephone": "04 66 49 00 33",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -5630,9 +5705,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Lozère",
+      "nom": "CMA Occitanie - Lozère",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Mende",
+      "adresse": "2 boulevard Soubeyran, BP 90, 48003 Mende Cedex",
+      "telephone": "04 66 49 12 66",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -5739,9 +5815,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Maine-et-Loire",
+      "nom": "CCI de Maine-et-Loire",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Angers",
+      "adresse": "8 boulevard du Roi-René, CS 60626, 49006 Angers Cedex 1",
+      "telephone": "02 41 20 49 00",
       "site": "https://www.paysdelaloire.cci.fr"
     },
     "urssaf": {
@@ -5776,9 +5853,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Maine-et-Loire",
+      "nom": "CMA Pays de la Loire - Maine-et-Loire",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Angers",
+      "adresse": "5 rue Darwin, CS 80806, 49008 Angers Cedex 01",
+      "telephone": "02 41 22 61 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -5891,9 +5969,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Manche",
+      "nom": "CCI Ouest Normandie - Cherbourg-Cotentin",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Saint-Lô",
+      "adresse": "Boulevard Félix-Amiot, BP 839, 50108 Cherbourg-en-Cotentin",
+      "telephone": "02 33 23 32 00",
       "site": "https://www.normandie.cci.fr"
     },
     "urssaf": {
@@ -5928,9 +6007,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Manche",
+      "nom": "CMA Normandie - Manche",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Saint-Lô",
+      "adresse": "Avenue du Général-Patton, BP 139, 50201 Coutances Cedex",
+      "telephone": "02 33 76 62 62",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -6043,9 +6123,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Marne",
+      "nom": "CCI de la Marne (Châlons-en-Champagne)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Châlons-en-Champagne",
+      "adresse": "Mess des Entrepreneurs, 42 rue Grande-Étape, CS 90533, 51010 Châlons-en-Champagne Cedex",
+      "telephone": "03 26 50 62 50",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -6080,9 +6161,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Marne",
+      "nom": "CMA Grand Est - Marne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Châlons-en-Champagne",
+      "adresse": "68 boulevard Lundy, BP 62746, 51062 Reims Cedex",
+      "telephone": "03 26 40 64 94",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -6195,9 +6277,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Haute-Marne",
+      "nom": "CCI de la Haute-Marne",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Chaumont",
+      "adresse": "55 rue du Président-Carnot, 52115 Saint-Dizier Cedex",
+      "telephone": "03 25 07 32 00",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -6232,9 +6315,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Haute-Marne",
+      "nom": "CMA Grand Est - Haute-Marne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Chaumont",
+      "adresse": "9 rue Decrès, CS 12053, 52902 Chaumont Cedex 9",
+      "telephone": "03 25 32 19 77",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -6347,9 +6431,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Mayenne",
+      "nom": "CCI de la Mayenne",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Laval",
+      "adresse": "12 rue de Verdun, CS 60239, 53002 Laval Cedex",
+      "telephone": "02 43 49 50 00",
       "site": "https://www.paysdelaloire.cci.fr"
     },
     "urssaf": {
@@ -6384,9 +6469,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Mayenne",
+      "nom": "CMA Pays de la Loire - Mayenne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Laval",
+      "adresse": "39 quai Gambetta, CS 30227, 53002 Laval Cedex",
+      "telephone": "02 43 49 88 88",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -6499,9 +6585,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Meurthe-et-Moselle",
+      "nom": "CCI de Meurthe-et-Moselle",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Nancy",
+      "adresse": "53 rue Stanislas, CS 24226, 54042 Nancy Cedex",
+      "telephone": "03 83 85 54 54",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -6536,9 +6623,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Meurthe-et-Moselle",
+      "nom": "CMA Grand Est - Meurthe-et-Moselle",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Nancy",
+      "adresse": "4 rue de la Vologne, 54520 Laxou",
+      "telephone": "03 83 95 60 60",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -6645,9 +6733,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Meuse",
+      "nom": "CCI de la Meuse",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Bar-le-Duc",
+      "adresse": "6 rue Antoine-Durenne, 55014 Bar-le-Duc Cedex",
+      "telephone": "03 29 76 83 00",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -6682,9 +6771,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Meuse",
+      "nom": "CMA Grand Est - Meuse",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Bar-le-Duc",
+      "adresse": "Bâtiment les Roises, Route du Pont-de-Dammarie, BP 90237, 55005 Savonnières-devant-Bar Cedex",
+      "telephone": "03 29 79 20 11",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -6797,9 +6887,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Morbihan",
+      "nom": "CCI du Morbihan (Lorient)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Vannes",
+      "adresse": "21 quai des Indes, CS 30362, 56323 Lorient Cedex",
+      "telephone": "02 97 02 40 00",
       "site": "https://www.bretagne.cci.fr"
     },
     "urssaf": {
@@ -6834,9 +6925,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Morbihan",
+      "nom": "CMA Bretagne - Morbihan",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Vannes",
+      "adresse": "10 boulevard des Îles, BP 311, 56008 Vannes Cedex",
+      "telephone": "02 97 63 95 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -6949,9 +7041,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Moselle",
+      "nom": "CCI de la Moselle",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Metz",
+      "adresse": "10-12 avenue Foch, BP 70330, 57016 Metz Cedex 1",
+      "telephone": "03 87 52 31 00",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -6986,9 +7079,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Moselle",
+      "nom": "CMA Grand Est - Moselle",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Metz",
+      "adresse": "5 boulevard de la Défense, 57078 Metz Cedex 3",
+      "telephone": "03 87 39 31 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -7095,9 +7189,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Nièvre",
+      "nom": "CCI de la Nièvre",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Nevers",
+      "adresse": "Place Carnot, BP 438, 58004 Nevers Cedex",
+      "telephone": "03 86 60 61 62",
       "site": "https://www.bourgognefranchecomte.cci.fr"
     },
     "urssaf": {
@@ -7132,9 +7227,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Nièvre",
+      "nom": "CMA Bourgogne-Franche-Comté - Nièvre",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Nevers",
+      "adresse": "9 rue Romain-Baron, CS 80040, 58027 Nevers Cedex",
+      "telephone": "03 86 71 80 60",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -7247,9 +7343,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Nord",
+      "nom": "CCI Grand Lille",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Lille",
+      "adresse": "40 place du Théâtre, CS 60359, 59020 Lille Cedex",
+      "telephone": "03 20 63 77 77",
       "site": "https://www.hautsdefrance.cci.fr"
     },
     "urssaf": {
@@ -7284,9 +7381,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Nord",
+      "nom": "CMA Hauts-de-France - Nord",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Lille",
+      "adresse": "Place des Artisans, CS 12010, 59011 Lille Cedex",
+      "telephone": "09 72 72 72 07",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -7393,9 +7491,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Oise",
+      "nom": "CCI de l'Oise",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Beauvais",
+      "adresse": "18 rue d'Allonne, CS 60250, 60002 Beauvais Cedex",
+      "telephone": "03 44 79 80 81",
       "site": "https://www.hautsdefrance.cci.fr"
     },
     "urssaf": {
@@ -7430,9 +7529,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Oise",
+      "nom": "CMA Hauts-de-France - Oise",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Beauvais",
+      "adresse": "3 rue Léonard-de-Vinci, BP 10691, 60006 Beauvais Cedex",
+      "telephone": "09 72 72 72 07",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -7545,9 +7645,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Orne",
+      "nom": "CCI d'Alençon (Orne)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Alençon",
+      "adresse": "23 boulevard de Strasbourg, BP 42, 61002 Alençon Cedex",
+      "telephone": "02 33 82 82 82",
       "site": "https://www.normandie.cci.fr"
     },
     "urssaf": {
@@ -7582,9 +7683,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Orne",
+      "nom": "CMA Normandie - Orne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Alençon",
+      "adresse": "52 boulevard du 1er-Chasseur, BP 19, 61001 Alençon Cedex",
+      "telephone": "02 33 80 00 50",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -7697,9 +7799,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Pas-de-Calais",
+      "nom": "CCI Artois (Arras)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Arras",
+      "adresse": "8 rue du 29-Juillet, BP 70540, 62008 Arras Cedex",
+      "telephone": "03 21 23 24 24",
       "site": "https://www.hautsdefrance.cci.fr"
     },
     "urssaf": {
@@ -7734,9 +7837,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Pas-de-Calais",
+      "nom": "CMA Hauts-de-France - Pas-de-Calais",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Arras",
+      "adresse": "14 bis rue des Rosati, 62027 Arras Cedex",
+      "telephone": "09 72 72 72 07",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -7849,9 +7953,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Puy-de-Dôme",
+      "nom": "CCI du Puy-de-Dôme (Clermont-Ferrand)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Clermont-Ferrand",
+      "adresse": "148 boulevard Lavoisier, 63037 Clermont-Ferrand Cedex 1",
+      "telephone": "04 73 43 43 43",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -7886,9 +7991,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Puy-de-Dôme",
+      "nom": "CMA Auvergne-Rhône-Alpes - Puy-de-Dôme",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Clermont-Ferrand",
+      "adresse": "17 boulevard Berthelot, 63407 Chamalières Cedex",
+      "telephone": "04 73 31 52 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -8001,9 +8107,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Pyrénées-Atlantiques",
+      "nom": "CCI Pau Béarn",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Pau",
+      "adresse": "21 rue Louis-Barthou, BP 128, 64001 Pau Cedex",
+      "telephone": "05 59 82 51 11",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -8038,9 +8145,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Pyrénées-Atlantiques",
+      "nom": "CMA Nouvelle-Aquitaine - Pyrénées-Atlantiques",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Pau",
+      "adresse": "11 rue de Solférino, 64000 Pau",
+      "telephone": "05 59 83 83 62",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -8153,9 +8261,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Hautes-Pyrénées",
+      "nom": "CCI des Hautes-Pyrénées",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Tarbes",
+      "adresse": "Centre Kennedy, 1 rue des Évadés-de-France, BP 350, 65003 Tarbes Cedex",
+      "telephone": "05 62 51 88 88",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -8190,9 +8299,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Hautes-Pyrénées",
+      "nom": "CMA Occitanie - Hautes-Pyrénées",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Tarbes",
+      "adresse": "10 bis rue du 4-Septembre, BP 336, 65003 Tarbes Cedex",
+      "telephone": "05 62 56 60 60",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -8305,9 +8415,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Pyrénées-Orientales",
+      "nom": "CCI de Perpignan et des Pyrénées-Orientales",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Perpignan",
+      "adresse": "Quai De-Lattre-de-Tassigny, BP 10941, 66020 Perpignan Cedex",
+      "telephone": "04 68 35 66 33",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -8342,9 +8453,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Pyrénées-Orientales",
+      "nom": "CMA Occitanie - Pyrénées-Orientales",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Perpignan",
+      "adresse": "9 avenue Alfred-Sauvy, BP 20, 66601 Rivesaltes Cedex",
+      "telephone": "04 68 51 40 26",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -8451,9 +8563,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Bas-Rhin",
+      "nom": "CCI Alsace Eurométropole - Strasbourg Bas-Rhin",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Strasbourg",
+      "adresse": "10 place Gutenberg, BP 70012, 67085 Strasbourg Cedex",
+      "telephone": "03 88 76 45 00",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -8488,9 +8601,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Bas-Rhin",
+      "nom": "CMA Alsace - Bas-Rhin",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Strasbourg",
+      "adresse": "30 avenue de l'Europe, CS 111, 67300 Schiltigheim",
+      "telephone": "03 88 19 60 65",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -8597,9 +8711,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Haut-Rhin",
+      "nom": "CCI Alsace Eurométropole - Sud Alsace Mulhouse",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Colmar",
+      "adresse": "8 rue du 17-Novembre, BP 1088, 68051 Mulhouse Cedex",
+      "telephone": "03 90 20 67 68",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -8634,9 +8749,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Haut-Rhin",
+      "nom": "CMA Alsace - Haut-Rhin (Colmar)",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Colmar",
+      "adresse": "13 avenue de la République, CS 20044, 68025 Colmar Cedex",
+      "telephone": "03 89 20 84 50",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -8743,9 +8859,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Rhône",
+      "nom": "CCI Lyon Métropole Saint-Étienne Roanne (Lyon)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Lyon",
+      "adresse": "Place de la Bourse, 69289 Lyon Cedex 02",
+      "telephone": "04 72 40 58 58",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -8780,9 +8897,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Rhône",
+      "nom": "CMA Auvergne-Rhône-Alpes - Rhône",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Lyon",
+      "adresse": "10 rue Paul-Montrochet, 69002 Lyon",
+      "telephone": "04 72 43 43 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -8889,9 +9007,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Haute-Saône",
+      "nom": "CCI de la Haute-Saône",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Vesoul",
+      "adresse": "Zone Technologia, 1 rue Victor-Dolli, 70000 Vesoul",
+      "telephone": "03 84 96 71 00",
       "site": "https://www.bourgognefranchecomte.cci.fr"
     },
     "urssaf": {
@@ -8926,9 +9045,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Haute-Saône",
+      "nom": "CMA Bourgogne-Franche-Comté - Haute-Saône",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Vesoul",
+      "adresse": "6 rue Victor-Hugo, BP 175, 70204 Lure Cedex",
+      "telephone": "03 39 21 22 23",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -9041,9 +9161,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Saône-et-Loire",
+      "nom": "CCI de Saône-et-Loire (Chalon-sur-Saône)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Mâcon",
+      "adresse": "1 avenue de Verdun, BP 60190, 71105 Chalon-sur-Saône Cedex",
+      "telephone": "03 85 42 36 00",
       "site": "https://www.bourgognefranchecomte.cci.fr"
     },
     "urssaf": {
@@ -9078,9 +9199,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Saône-et-Loire",
+      "nom": "CMA Bourgogne-Franche-Comté - Saône-et-Loire",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Mâcon",
+      "adresse": "185 avenue Boucicaut, BP 10052, 71103 Chalon-sur-Saône Cedex",
+      "telephone": "03 85 41 14 41",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -9193,9 +9315,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Sarthe",
+      "nom": "CCI du Mans et de la Sarthe",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Le Mans",
+      "adresse": "1 boulevard René-Levasseur, CS 91435, 72002 Le Mans Cedex 2",
+      "telephone": "02 43 21 00 00",
       "site": "https://www.paysdelaloire.cci.fr"
     },
     "urssaf": {
@@ -9230,9 +9353,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Sarthe",
+      "nom": "CMA Pays de la Loire - Sarthe",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Le Mans",
+      "adresse": "5 cour Étienne-Jules-Marey, CS 81630, 72016 Le Mans Cedex 2",
+      "telephone": "02 43 74 53 53",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -9345,9 +9469,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Savoie",
+      "nom": "CCI de la Savoie",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Chambéry",
+      "adresse": "5 rue Salteur, CS 22416, 73024 Chambéry Cedex",
+      "telephone": "04 57 73 73 73",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -9382,9 +9507,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Savoie",
+      "nom": "CMA Auvergne-Rhône-Alpes - Savoie",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Chambéry",
+      "adresse": "17 allée du Lac-de-Tignes, 73290 La Motte-Servolex",
+      "telephone": "04 79 69 94 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -9491,9 +9617,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Haute-Savoie",
+      "nom": "CCI de la Haute-Savoie",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Annecy",
+      "adresse": "5 rue du 27e-BCA, CS 62072, 74011 Annecy Cedex",
+      "telephone": "04 50 33 72 00",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -9528,9 +9655,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Haute-Savoie",
+      "nom": "CMA Auvergne-Rhône-Alpes - Haute-Savoie",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Annecy",
+      "adresse": "28 avenue de France, BP 2015, 74011 Annecy Cedex",
+      "telephone": "04 50 23 92 22",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -9637,9 +9765,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Paris",
+      "nom": "CCI Paris Île-de-France - Paris",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Paris",
+      "adresse": "9 rue Coquillière, 75001 Paris",
+      "telephone": "08 20 01 21 12",
       "site": "https://www.cci-paris-idf.fr"
     },
     "urssaf": {
@@ -9674,9 +9803,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Paris",
+      "nom": "CMA Île-de-France - Paris",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Paris",
+      "adresse": "72 rue de Reuilly, 75592 Paris Cedex 12",
+      "telephone": "01 53 33 53 33",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -9783,9 +9913,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Seine-Maritime",
+      "nom": "CCI Rouen Métropole (Seine-Maritime)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Rouen",
+      "adresse": "20 passage de la Luciline, CS 40641, 76007 Rouen Cedex 1",
+      "telephone": "02 32 10 05 00",
       "site": "https://www.normandie.cci.fr"
     },
     "urssaf": {
@@ -9820,9 +9951,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Seine-Maritime",
+      "nom": "CMA Normandie - Seine-Maritime",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Rouen",
+      "adresse": "135 boulevard de l'Europe, 76043 Rouen Cedex 1",
+      "telephone": "02 32 18 23 23",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -9937,7 +10069,8 @@
     "cci": {
       "nom": "CCI Seine-et-Marne",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Melun",
+      "adresse": "1 avenue Johannes-Gutenberg, Serris, CS 70045, 77776 Marne-la-Vallée Cedex 4",
+      "telephone": "01 74 60 51 00",
       "site": "https://www.cci-paris-idf.fr"
     },
     "urssaf": {
@@ -9972,9 +10105,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Seine-et-Marne",
+      "nom": "CMA Île-de-France - Seine-et-Marne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Melun",
+      "adresse": "Château Gruber, 4 avenue du Général-Leclerc, 77000 Melun",
+      "telephone": "01 64 79 26 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -10087,9 +10221,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Yvelines",
+      "nom": "CCI Paris Île-de-France - Yvelines (Versailles)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Versailles",
+      "adresse": "21 avenue de Paris, 78021 Versailles Cedex",
+      "telephone": "08 20 01 21 12",
       "site": "https://www.cci-paris-idf.fr"
     },
     "urssaf": {
@@ -10124,9 +10259,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Yvelines",
+      "nom": "CMA Île-de-France - Yvelines",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Versailles",
+      "adresse": "19 avenue du Général-Mangin, 78000 Versailles",
+      "telephone": "01 39 43 43 43",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -10233,9 +10369,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Deux-Sèvres",
+      "nom": "CCI des Deux-Sèvres (Niort)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Niort",
+      "adresse": "10 place du Temple, BP 90314, 79003 Niort Cedex",
+      "telephone": "05 49 28 79 79",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -10270,9 +10407,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Deux-Sèvres",
+      "nom": "CMA Nouvelle-Aquitaine - Deux-Sèvres",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Niort",
+      "adresse": "22 rue des Herbillaux, BP 1089, 79010 Niort Cedex 9",
+      "telephone": "05 49 77 22 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -10385,9 +10523,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Somme",
+      "nom": "CCI Amiens-Picardie (Somme)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Amiens",
+      "adresse": "36 rue des Otages, CS 23701, 80037 Amiens Cedex 1",
+      "telephone": "03 22 82 80 80",
       "site": "https://www.hautsdefrance.cci.fr"
     },
     "urssaf": {
@@ -10422,9 +10561,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Somme",
+      "nom": "CMA Hauts-de-France - Somme",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Amiens",
+      "adresse": "Cité des Métiers, 7 rue de l'Île-Mystérieuse, CS 51006, 80440 Boves",
+      "telephone": "03 60 12 71 27",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -10537,9 +10677,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Tarn",
+      "nom": "CCI du Tarn (Albi)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Albi",
+      "adresse": "Maison de l'économie, 1 avenue Général-Hoche, 81012 Albi Cedex 9",
+      "telephone": "05 67 46 60 00",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -10574,9 +10715,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Tarn",
+      "nom": "CMA Occitanie - Tarn",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Albi",
+      "adresse": "112 route des Templiers, Cunac, CS 22340, 81020 Albi Cedex 9",
+      "telephone": "05 63 48 43 53",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -10689,9 +10831,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Tarn-et-Garonne",
+      "nom": "CCI de Montauban et de Tarn-et-Garonne",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Montauban",
+      "adresse": "53-61 avenue Gambetta, CS 80527, 82065 Montauban Cedex",
+      "telephone": "05 63 22 26 26",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -10726,9 +10869,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Tarn-et-Garonne",
+      "nom": "CMA Occitanie - Tarn-et-Garonne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Montauban",
+      "adresse": "11 rue du Lycée, 82000 Montauban",
+      "telephone": "05 63 63 09 58",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -10841,9 +10985,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Var",
+      "nom": "CCI du Var (Toulon)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Toulon",
+      "adresse": "236 boulevard Général-Leclerc, 83000 Toulon",
+      "telephone": "04 94 22 80 00",
       "site": "https://www.paca.cci.fr"
     },
     "urssaf": {
@@ -10878,9 +11023,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Var",
+      "nom": "CMA PACA - Var",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Toulon",
+      "adresse": "CS 70558, 83041 Toulon Cedex 9",
+      "telephone": "04 94 61 99 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -10987,9 +11133,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Vaucluse",
+      "nom": "CCI de Vaucluse (Avignon)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Avignon",
+      "adresse": "46 cours Jean-Jaurès, BP 70158, 84008 Avignon Cedex 1",
+      "telephone": "04 90 14 87 00",
       "site": "https://www.paca.cci.fr"
     },
     "urssaf": {
@@ -11024,9 +11171,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Vaucluse",
+      "nom": "CMA PACA - Vaucluse",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Avignon",
+      "adresse": "35 rue Joseph-Vernet, 84000 Avignon",
+      "telephone": "04 90 80 65 65",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -11133,9 +11281,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Vendée",
+      "nom": "CCI de la Vendée (La Roche-sur-Yon)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "La Roche-sur-Yon",
+      "adresse": "16 rue Olivier-de-Clisson, CS 10049, 85002 La Roche-sur-Yon Cedex",
+      "telephone": "02 51 45 32 32",
       "site": "https://www.paysdelaloire.cci.fr"
     },
     "urssaf": {
@@ -11170,9 +11319,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Vendée",
+      "nom": "CMA Pays de la Loire - Vendée",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "La Roche-sur-Yon",
+      "adresse": "35 rue Sarah-Bernhardt, CS 90075, 85002 La Roche-sur-Yon Cedex",
+      "telephone": "02 51 44 35 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -11285,9 +11435,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Vienne",
+      "nom": "CCI de la Vienne",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Poitiers",
+      "adresse": "7 avenue du Tour-de-France, Chasseneuil, 86961 Futuroscope Cedex",
+      "telephone": "05 49 60 98 00",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -11322,9 +11473,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Vienne",
+      "nom": "CMA Nouvelle-Aquitaine - Vienne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Poitiers",
+      "adresse": "19 rue Salvador-Allende, BP 10409, 86010 Poitiers Cedex",
+      "telephone": "05 49 88 13 01",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -11437,9 +11589,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Haute-Vienne",
+      "nom": "CCI de la Haute-Vienne (Limoges)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Limoges",
+      "adresse": "16 place Jourdan, BP 403, 87011 Limoges Cedex 1",
+      "telephone": "05 55 45 15 15",
       "site": "https://www.nouvelle-aquitaine.cci.fr"
     },
     "urssaf": {
@@ -11474,9 +11627,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Haute-Vienne",
+      "nom": "CMA Nouvelle-Aquitaine - Haute-Vienne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Limoges",
+      "adresse": "12 avenue Garibaldi, BP 3803, 87038 Limoges Cedex",
+      "telephone": "05 55 45 27 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -11589,9 +11743,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Vosges",
+      "nom": "CCI des Vosges (Épinal)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Épinal",
+      "adresse": "10 rue Claude-Gelée, BP 41071, 88051 Épinal Cedex 9",
+      "telephone": "03 29 33 88 88",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -11626,9 +11781,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Vosges",
+      "nom": "CMA Grand Est - Vosges",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Épinal",
+      "adresse": "22 rue Léo-Valentin, BP 21159, 88060 Épinal Cedex",
+      "telephone": "03 29 69 55 55",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -11741,9 +11897,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Yonne",
+      "nom": "CCI de l'Yonne (Auxerre)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Auxerre",
+      "adresse": "26 rue Étienne-Dolet, CS 20286, 89005 Auxerre Cedex",
+      "telephone": "03 86 49 40 00",
       "site": "https://www.bourgognefranchecomte.cci.fr"
     },
     "urssaf": {
@@ -11778,9 +11935,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Yonne",
+      "nom": "CMA Bourgogne-Franche-Comté - Yonne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Auxerre",
+      "adresse": "56-58 rue du Moulin-du-Président, BP 337, 89005 Auxerre Cedex",
+      "telephone": "03 86 42 05 89",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -11893,9 +12051,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Territoire de Belfort",
+      "nom": "CCI du Territoire de Belfort",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Belfort",
+      "adresse": "1 rue du Docteur-Charles-Fréry, CS 50199, 90004 Belfort Cedex",
+      "telephone": "03 84 54 54 54",
       "site": "https://www.bourgognefranchecomte.cci.fr"
     },
     "urssaf": {
@@ -11930,9 +12089,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Territoire de Belfort",
+      "nom": "CMA Bourgogne-Franche-Comté - Territoire de Belfort",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Belfort",
+      "adresse": "CS 50217, 90004 Belfort Cedex",
+      "telephone": "03 39 21 22 23",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -12039,9 +12199,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Essonne",
+      "nom": "CCI de l'Essonne (Évry)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Évry-Courcouronnes",
+      "adresse": "2 cours Monseigneur-Roméro, CS 50135, 91004 Évry Cedex",
+      "telephone": "01 60 79 91 91",
       "site": "https://www.cci-paris-idf.fr"
     },
     "urssaf": {
@@ -12076,9 +12237,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Essonne",
+      "nom": "CMA Île-de-France - Essonne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Évry-Courcouronnes",
+      "adresse": "29 allée Jean-Rostand, 91025 Évry Cedex",
+      "telephone": "01 69 47 54 20",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -12185,9 +12347,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Hauts-de-Seine",
+      "nom": "CCI des Hauts-de-Seine (Courbevoie)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Nanterre",
+      "adresse": "Cœur Défense Tour A, 110 esplanade du Général-de-Gaulle, 92400 Courbevoie",
+      "telephone": "01 55 65 44 44",
       "site": "https://www.cci-paris-idf.fr"
     },
     "urssaf": {
@@ -12222,9 +12385,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Hauts-de-Seine",
+      "nom": "CMA Île-de-France - Hauts-de-Seine",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Nanterre",
+      "adresse": "17 bis rue des Venêts, BP 1410, 92014 Nanterre",
+      "telephone": "01 47 29 43 43",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -12331,9 +12495,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Seine-Saint-Denis",
+      "nom": "CCI de Seine-Saint-Denis (Bobigny)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Bobigny",
+      "adresse": "191 avenue Paul-Vaillant-Couturier, 93000 Bobigny",
+      "telephone": "01 48 95 10 00",
       "site": "https://www.cci-paris-idf.fr"
     },
     "urssaf": {
@@ -12368,9 +12533,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Seine-Saint-Denis",
+      "nom": "CMA Île-de-France - Seine-Saint-Denis",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Bobigny",
+      "adresse": "91-129 rue Édouard-Renard, 93013 Bobigny Cedex 13",
+      "telephone": "01 41 60 75 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -12477,9 +12643,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Val-de-Marne",
+      "nom": "CCI du Val-de-Marne (Créteil)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Créteil",
+      "adresse": "8 place Salvador-Allende, 94011 Créteil",
+      "telephone": "01 55 65 44 44",
       "site": "https://www.cci-paris-idf.fr"
     },
     "urssaf": {
@@ -12514,9 +12681,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Val-de-Marne",
+      "nom": "CMA Île-de-France - Val-de-Marne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Créteil",
+      "adresse": "27 avenue Raspail, 94100 Saint-Maur-des-Fossés",
+      "telephone": "01 49 76 50 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -12623,9 +12791,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Val-d'Oise",
+      "nom": "CCI du Val-d'Oise (Cergy)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Cergy",
+      "adresse": "35 boulevard du Port, CS 20209, 95031 Cergy-Pontoise Cedex",
+      "telephone": "01 30 75 35 95",
       "site": "https://www.cci-paris-idf.fr"
     },
     "urssaf": {
@@ -12660,9 +12829,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Val-d'Oise",
+      "nom": "CMA Île-de-France - Val-d'Oise",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Cergy",
+      "adresse": "1 avenue du Parc, 95015 Cergy-Pontoise Cedex",
+      "telephone": "01 34 35 80 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -12769,9 +12939,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Guadeloupe",
+      "nom": "CCI des Îles de Guadeloupe",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Basse-Terre",
+      "adresse": "Rue Félix-Éboué, 97159 Pointe-à-Pitre Cedex",
+      "telephone": "05 90 93 76 00",
       "site": "https://www.cci.fr"
     },
     "urssaf": {
@@ -12828,9 +12999,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Guadeloupe",
+      "nom": "CMA de Région Guadeloupe",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Basse-Terre",
+      "adresse": "30 boulevard Félix-Éboué, 97100 Basse-Terre",
+      "telephone": "05 90 80 23 33",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -12889,9 +13061,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Martinique",
+      "nom": "CCI de la Martinique (Fort-de-France)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Fort-de-France",
+      "adresse": "50 rue Ernest-Deproge, 97200 Fort-de-France",
+      "telephone": "05 96 55 28 00",
       "site": "https://www.cci.fr"
     },
     "urssaf": {
@@ -12948,9 +13121,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Martinique",
+      "nom": "CMA de Région Martinique",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Fort-de-France",
+      "adresse": "Morne Tartenson, 2 rue du Temple, BP 1194, 97249 Fort-de-France Cedex",
+      "telephone": "05 96 71 32 22",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -13009,9 +13183,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Guyane",
+      "nom": "CCI de Guyane (Cayenne)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Cayenne",
+      "adresse": "Place de l'Esplanade, BP 49, 97321 Cayenne Cedex",
+      "telephone": "05 94 29 96 00",
       "site": "https://www.cci.fr"
     },
     "urssaf": {
@@ -13068,9 +13243,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Guyane",
+      "nom": "CMA de Région Guyane",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Cayenne",
+      "adresse": "41 ZA Galmot, 97300 Cayenne",
+      "telephone": "05 94 25 24 70",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -13129,9 +13305,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI La Réunion",
+      "nom": "CCI de La Réunion (Saint-Denis)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Saint-Denis",
+      "adresse": "5 bis rue de Paris, BP 120, 97463 Saint-Denis Cedex",
+      "telephone": "02 62 94 20 00",
       "site": "https://www.cci.fr"
     },
     "urssaf": {
@@ -13188,9 +13365,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA La Réunion",
+      "nom": "CMA de Région La Réunion",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Saint-Denis",
+      "adresse": "BP 10034, 97491 Sainte-Clotilde Cedex",
+      "telephone": "02 62 21 04 35",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -13345,9 +13523,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Mayotte",
+      "nom": "CCI de Mayotte (Mamoudzou)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Mamoudzou",
+      "adresse": "Place Mariage, BP 635, 97600 Mamoudzou",
+      "telephone": "02 69 61 04 26",
       "site": "https://www.cci.fr"
     },
     "urssaf": {
@@ -13404,9 +13583,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Mayotte",
+      "nom": "CMA de Région Mayotte",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Mamoudzou",
+      "adresse": "Place Mariage, BP 248, 97600 Mamoudzou",
+      "telephone": "02 69 61 73 45",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -13949,9 +14129,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Ain",
+      "nom": "CCI de l'Ain",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Bourg-en-Bresse",
+      "adresse": "1 rue Joseph-Bernier, CS 60048, 01002 Bourg-en-Bresse Cedex",
+      "telephone": "04 74 32 13 00",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -13986,9 +14167,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Ain",
+      "nom": "CMA Auvergne-Rhône-Alpes - Ain",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Bourg-en-Bresse",
+      "adresse": "102 boulevard Édouard-Herriot, CS 20123, 01004 Bourg-en-Bresse",
+      "telephone": "04 74 47 49 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -14101,9 +14283,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Aisne",
+      "nom": "CCI de l'Aisne",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Laon",
+      "adresse": "83 boulevard Jean-Bouin, BP 630, 02322 Saint-Quentin Cedex",
+      "telephone": "03 23 06 02 02",
       "site": "https://www.hautsdefrance.cci.fr"
     },
     "urssaf": {
@@ -14138,9 +14321,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Aisne",
+      "nom": "CMA Hauts-de-France - Aisne",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Laon",
+      "adresse": "Château de Mailly, RN 2, Urcel, CS 60618, 02007 Laon Cedex",
+      "telephone": "03 23 21 86 86",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -14253,9 +14437,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Allier",
+      "nom": "CCI de l'Allier (Moulins)",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Moulins",
+      "adresse": "17 cours Jean-Jaurès, BP 1729, 03000 Moulins",
+      "telephone": "04 70 35 40 00",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -14290,9 +14475,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Allier",
+      "nom": "CMA Auvergne-Rhône-Alpes - Allier",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Moulins",
+      "adresse": "7 rue Émile-Guillaumin, BP 03017, 03017 Moulins Cedex",
+      "telephone": "04 70 46 20 20",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -14405,9 +14591,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Alpes-de-Haute-Provence",
+      "nom": "CCI des Alpes-de-Haute-Provence",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Digne-les-Bains",
+      "adresse": "60 boulevard Gassendi, 04000 Digne-les-Bains",
+      "telephone": "04 92 30 80 80",
       "site": "https://www.paca.cci.fr"
     },
     "urssaf": {
@@ -14442,9 +14629,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Alpes-de-Haute-Provence",
+      "nom": "CMA PACA - Alpes-de-Haute-Provence",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Digne-les-Bains",
+      "adresse": "23 allée des Fontainiers, BP 9125, 04991 Digne-les-Bains Cedex",
+      "telephone": "04 92 30 90 90",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -14551,9 +14739,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Hautes-Alpes",
+      "nom": "CCI des Hautes-Alpes",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Gap",
+      "adresse": "18-20 rue Carnot, CS 96006, 05001 Gap Cedex",
+      "telephone": "04 92 56 56 05",
       "site": "https://www.paca.cci.fr"
     },
     "urssaf": {
@@ -14588,9 +14777,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Hautes-Alpes",
+      "nom": "CMA PACA - Hautes-Alpes",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Gap",
+      "adresse": "Square Voltaire, BP 70168, 05005 Gap Cedex",
+      "telephone": "04 92 51 06 89",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -14697,9 +14887,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Alpes-Maritimes",
+      "nom": "CCI Nice Côte d'Azur",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Nice",
+      "adresse": "20 boulevard Carabacel, BP 1259, 06005 Nice Cedex 1",
+      "telephone": "0820 42 22 22",
       "site": "https://www.paca.cci.fr"
     },
     "urssaf": {
@@ -14734,9 +14925,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Alpes-Maritimes",
+      "nom": "CMA PACA - Alpes-Maritimes",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Nice",
+      "adresse": "81 avenue Léon-Bérenger, CS 30219, 06704 Saint-Laurent-du-Var Cedex",
+      "telephone": "04 93 14 16 14",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -14843,9 +15035,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Ardèche",
+      "nom": "CCI de l'Ardèche",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Privas",
+      "adresse": "140 chemin de Saint-Clair, 07000 Privas",
+      "telephone": "04 75 88 07 07",
       "site": "https://www.auvergne-rhone-alpes.cci.fr"
     },
     "urssaf": {
@@ -14880,9 +15073,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Ardèche",
+      "nom": "CMA Auvergne-Rhône-Alpes - Ardèche",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Privas",
+      "adresse": "70 allée des Ondines, BP 356, 07503 Guilherand-Granges",
+      "telephone": "04 75 07 54 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -14995,9 +15189,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Ardennes",
+      "nom": "CCI des Ardennes",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Charleville-Mézières",
+      "adresse": "18 A avenue Georges-Corneau, CS 60044, 08104 Charleville-Mézières Cedex",
+      "telephone": "03 24 56 62 62",
       "site": "https://www.grandest.cci.fr"
     },
     "urssaf": {
@@ -15032,9 +15227,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Ardennes",
+      "nom": "CMA Grand Est - Ardennes",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Charleville-Mézières",
+      "adresse": "8 rue de Clèves, CS 80734, 08109 Charleville-Mézières Cedex",
+      "telephone": "03 24 56 81 81",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -15147,9 +15343,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Ariège",
+      "nom": "CCI de l'Ariège",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Foix",
+      "adresse": "21 cours Gabriel-Fauré, BP 30011, 09001 Foix Cedex",
+      "telephone": "05 61 02 03 04",
       "site": "https://www.occitanie.cci.fr"
     },
     "urssaf": {
@@ -15184,9 +15381,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Ariège",
+      "nom": "CMA Occitanie - Ariège",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Foix",
+      "adresse": "2 rue Jean-Moulin-Labarre, BP 26, 09001 Foix Cedex",
+      "telephone": "05 34 09 88 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -15293,9 +15491,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Corse-du-Sud",
+      "nom": "CCI de la Corse-du-Sud",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Ajaccio",
+      "adresse": "Quai l'Herminier, CS 30253, 20179 Ajaccio Cedex 1",
+      "telephone": "04 95 51 55 55",
       "site": "https://www.ccihc.fr"
     },
     "urssaf": {
@@ -15330,9 +15529,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Corse-du-Sud",
+      "nom": "CMA de Corse (siège - Ajaccio)",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Ajaccio",
+      "adresse": "Lieu-dit Bacciochi, Chemin de la Sposata, BP 40958, 20700 Ajaccio Cedex 9",
+      "telephone": "04 95 23 53 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {
@@ -15445,9 +15645,10 @@
       "site": "https://www.tribunal-de-commerce.fr"
     },
     "cci": {
-      "nom": "CCI Haute-Corse",
+      "nom": "CCI de la Haute-Corse",
       "type": "Chambre de commerce et d’industrie",
-      "adresse": "Bastia",
+      "adresse": "Rue du Nouveau-Port, BP 210, 20293 Bastia Cedex",
+      "telephone": "04 95 54 44 44",
       "site": "https://www.ccihc.fr"
     },
     "urssaf": {
@@ -15482,9 +15683,10 @@
       "site": "https://www.impots.gouv.fr/contacts"
     },
     "cma": {
-      "nom": "CMA Haute-Corse",
+      "nom": "CMA de Corse - Haute-Corse",
       "type": "Chambre de Métiers et de l'Artisanat",
-      "adresse": "Bastia",
+      "adresse": "Résidence Rive-Gauche, 25 rue du Juge-Falcone, 20200 Bastia",
+      "telephone": "04 95 32 83 00",
       "site": "https://www.cma-france.fr"
     },
     "prefecture": {

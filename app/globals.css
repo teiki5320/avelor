@@ -201,6 +201,21 @@ h1, h2, h3, h4, .font-display {
 [data-theme='dark'] .bg-navy { background-color: #1b2a44 !important; }
 [data-theme='contrast'] .bg-navy { background-color: #000 !important; }
 
+/* Boutons à FOND coloré plein + texte blanc : en sombre, les couleurs
+   "accent" sont éclaircies (pour les liens/textes), ce qui ruinerait le
+   contraste sur un fond plein. On force donc des teintes foncées et
+   saturées sur les remplissages pleins (et quasi-pleins /90, /70). */
+[data-theme='dark'] .bg-bleu-fonce,
+[data-theme='dark'] .bg-bleu-fonce\/90 { background-color: #21478f !important; }
+[data-theme='dark'] .bg-bleu { background-color: #355c95 !important; }
+[data-theme='dark'] .bg-vert,
+[data-theme='dark'] .bg-vert\/70 { background-color: #1d7a3c !important; }
+[data-theme='dark'] .bg-rouge,
+[data-theme='dark'] .bg-rouge\/90,
+[data-theme='dark'] .bg-rouge\/70 { background-color: #a82f2f !important; }
+[data-theme='dark'] .bg-jaune,
+[data-theme='dark'] .bg-jaune\/70 { background-color: #98571e !important; }
+
 /* En contraste élevé : panneaux opaques, bordures nettes, ombres off */
 [data-theme='contrast'] .glass,
 [data-theme='contrast'] .glass-soft,
