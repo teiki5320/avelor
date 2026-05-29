@@ -7,13 +7,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: '#0A1628',
-        ink: '#0A1628',
-        bleu: '#4A72B8',
-        'bleu-fonce': '#1E3D82',
-        rouge: '#C94040',
-        jaune: '#C97830',
-        vert: '#28A050',
+        // Couleurs pilotées par variables CSS (R G B) pour permettre les
+        // thèmes (clair / sombre / contraste élevé) sans toucher les
+        // classes utilitaires des composants. Valeurs dans globals.css :root.
+        navy: 'rgb(var(--c-navy) / <alpha-value>)',
+        ink: 'rgb(var(--c-navy) / <alpha-value>)',
+        bleu: 'rgb(var(--c-bleu) / <alpha-value>)',
+        'bleu-fonce': 'rgb(var(--c-bleu-fonce) / <alpha-value>)',
+        rouge: 'rgb(var(--c-rouge) / <alpha-value>)',
+        jaune: 'rgb(var(--c-jaune) / <alpha-value>)',
+        vert: 'rgb(var(--c-vert) / <alpha-value>)',
       },
       fontFamily: {
         display: ['var(--font-playfair)', 'Georgia', 'serif'],

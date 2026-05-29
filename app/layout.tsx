@@ -48,6 +48,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${playfair.variable} ${outfit.variable}`}>
       <head>
+        {/* Applique le thème enregistré avant le rendu (anti-FOUC) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('avelor_theme');if(t==='sombre')document.documentElement.setAttribute('data-theme','dark');else if(t==='contraste')document.documentElement.setAttribute('data-theme','contrast');}catch(e){}})();`,
+          }}
+        />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/icon-512.png" />

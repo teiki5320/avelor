@@ -172,9 +172,22 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { situation: string } }): Promise<Metadata> {
   const data = FAQ_PAR_SITUATION[params.situation];
   if (!data) return {};
+  const ogUrl = `/api/og?${new URLSearchParams({ titre: data.titre.replace(/^FAQ — /, ''), sous: 'Questions fréquentes', cat: 'faq' }).toString()}`;
   return {
     title: data.metaTitle,
     description: data.metaDesc,
+    openGraph: {
+      title: data.titre,
+      description: data.metaDesc,
+      type: 'article',
+      images: [{ url: ogUrl, width: 1200, height: 630, alt: data.titre }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: data.titre,
+      description: data.metaDesc,
+      images: [ogUrl],
+    },
   };
 }
 

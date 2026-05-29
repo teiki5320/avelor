@@ -1,9 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ogMeta } from '@/lib/og';
 
-export const metadata: Metadata = {
-  title: 'Médiation, mandat ad hoc, conciliation : différences — AVELOR',
-  description: 'Quelle procédure amiable choisir entre la médiation (crédit ou entreprises), le mandat ad hoc et la conciliation : critères, durée, coût, confidentialité.',
+export const metadata = {
+  ...ogMeta({
+    titre: 'Médiation, mandat ad hoc, conciliation',
+    sous: 'Quelle procédure amiable choisir ?',
+    description: 'Quelle procédure amiable choisir entre la médiation (crédit ou entreprises), le mandat ad hoc et la conciliation : critères, durée, coût, confidentialité.',
+    cat: 'procedure',
+    pageTitle: 'Médiation, mandat ad hoc, conciliation : différences — AVELOR',
+  }),
   robots: { index: true, follow: true },
 };
 

@@ -1,10 +1,13 @@
-import type { Metadata } from 'next';
+import { ogMeta } from '@/lib/og';
 
-export const metadata: Metadata = {
-  title: 'Glossaire des procédures · AVELOR',
+export const metadata = ogMeta({
+  titre: 'Le glossaire, expliqué simplement',
+  sous: 'Procédures, dispositifs, sigles — sans jargon',
   description:
-    'Les procédures collectives expliquées simplement : mandat ad hoc, conciliation, sauvegarde, redressement, liquidation, PRP, cession.',
-};
+    'Les procédures collectives et dispositifs expliqués simplement : mandat ad hoc, conciliation, sauvegarde, RJ, LJ, PRP, PGE, CCSF, AGS, CSP, ATI…',
+  cat: 'procedure',
+  pageTitle: 'Glossaire des procédures · AVELOR',
+});
 
 interface Term {
   name: string;

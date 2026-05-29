@@ -1,9 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ogMeta } from '@/lib/og';
 
-export const metadata: Metadata = {
-  title: 'CIRI vs CODEFI : quel dispositif pour ma taille ? — AVELOR',
-  description: 'CIRI (Comité Interministériel de Restructuration Industrielle) et CODEFI (Comité Départemental) : conditions, saisine, accompagnement État pour entreprises en difficulté.',
+export const metadata = {
+  ...ogMeta({
+    titre: 'CIRI / CODEFI : l\'accompagnement de l\'État',
+    sous: 'Quel dispositif selon votre taille',
+    description: 'CIRI (Comité Interministériel de Restructuration Industrielle) et CODEFI (Comité Départemental) : conditions, saisine, accompagnement État pour entreprises en difficulté.',
+    cat: 'aide',
+    pageTitle: 'CIRI vs CODEFI : quel dispositif pour ma taille ? — AVELOR',
+  }),
   robots: { index: true, follow: true },
 };
 

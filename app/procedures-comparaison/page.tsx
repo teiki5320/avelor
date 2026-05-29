@@ -1,9 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ogMeta } from '@/lib/og';
 
-export const metadata: Metadata = {
-  title: 'Comparatif des procédures collectives — AVELOR',
-  description: 'Mandat ad hoc, conciliation, sauvegarde, redressement, liquidation, PRP : comparaison détaillée des procédures (confidentialité, durée, coût, conditions).',
+export const metadata = {
+  ...ogMeta({
+    titre: 'Comparatif des 8 procédures collectives',
+    sous: 'Mandat ad hoc, conciliation, sauvegarde, RJ, LJ, PRP',
+    description: 'Mandat ad hoc, conciliation, sauvegarde, redressement, liquidation, PRP : comparaison détaillée des procédures (confidentialité, durée, coût, conditions).',
+    cat: 'procedure',
+    pageTitle: 'Comparatif des procédures collectives — AVELOR',
+  }),
   robots: { index: true, follow: true },
 };
 

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { COURRIERS } from '@/lib/courriers';
+import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
   { href: '/procedures', label: 'Procédures', desc: 'Comprendre vos options' },
@@ -13,7 +14,7 @@ const LINKS = [
   { href: '/vendre', label: 'Vendre / Céder', desc: 'Cession, location-gérance' },
   { href: '/rebond', label: 'Rebondir', desc: 'Après une liquidation' },
   { href: '/faq', label: 'FAQ', desc: 'Questions fréquentes' },
-  { href: '/glossaire', label: 'Glossaire', desc: '18 termes expliqués' },
+  { href: '/glossaire', label: 'Glossaire', desc: '38 termes expliqués' },
   { href: '/accompagnant', label: "J'accompagne", desc: 'Pour les proches' },
   { href: '/parler', label: 'Parler', desc: 'Numéros gratuits 24/7' },
 ];
@@ -61,6 +62,8 @@ export default function Nav() {
           <Link href="/aides" aria-current={pathname === '/aides' ? 'page' : undefined} className="transition hover:text-navy">Aides</Link>
           <Link href="/parler" aria-current={pathname === '/parler' ? 'page' : undefined} className="transition hover:text-navy">Parler</Link>
         </div>
+
+        <ThemeToggle />
 
         <button
           type="button"

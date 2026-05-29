@@ -1,9 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ogMeta } from '@/lib/og';
 
-export const metadata: Metadata = {
-  title: 'Pénalités fiscales : intérêts, majorations, remises — AVELOR',
-  description: 'Comprendre les pénalités fiscales (intérêts de retard, majorations 10/40/80 %), les voies de recours et de remise gracieuse.',
+export const metadata = {
+  ...ogMeta({
+    titre: 'Pénalités fiscales : comprendre et contester',
+    sous: 'Intérêts, majorations 10/40/80 %, remises',
+    description: 'Comprendre les pénalités fiscales (intérêts de retard, majorations 10/40/80 %), les voies de recours et de remise gracieuse.',
+    cat: 'aide',
+    pageTitle: 'Pénalités fiscales : intérêts, majorations, remises — AVELOR',
+  }),
   robots: { index: true, follow: true },
 };
 

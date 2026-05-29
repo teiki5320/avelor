@@ -5,6 +5,7 @@ export default function Background() {
   return (
     <div
       aria-hidden
+      data-bg-blobs
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
       <m.div

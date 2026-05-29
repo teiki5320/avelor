@@ -1,9 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ogMeta } from '@/lib/og';
 
-export const metadata: Metadata = {
-  title: 'Obligations du dirigeant en difficulté — AVELOR',
-  description: 'Ce que vous devez faire (et éviter) en tant que dirigeant d\'une entreprise en difficulté : déclaration de cessation, coopération mandataire, comptabilité, période suspecte.',
+export const metadata = {
+  ...ogMeta({
+    titre: 'Obligations du dirigeant en difficulté',
+    sous: 'Ce qu\'il faut faire — et ne pas faire',
+    description: 'Ce que vous devez faire (et éviter) en tant que dirigeant d\'une entreprise en difficulté : déclaration de cessation, coopération mandataire, comptabilité, période suspecte.',
+    cat: 'procedure',
+    pageTitle: 'Obligations du dirigeant en difficulté — AVELOR',
+  }),
   robots: { index: true, follow: true },
 };
 

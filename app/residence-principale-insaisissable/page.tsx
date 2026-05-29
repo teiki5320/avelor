@@ -1,9 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ogMeta } from '@/lib/og';
 
-export const metadata: Metadata = {
-  title: 'Résidence principale insaisissable : ce que vous devez savoir — AVELOR',
-  description: 'Protection de la résidence principale du dirigeant : insaisissabilité légale (loi Macron 2015), déclaration notariée, EI loi 2022. Limites, conjoint, cautions.',
+export const metadata = {
+  ...ogMeta({
+    titre: 'Résidence principale insaisissable',
+    sous: 'Protéger son logement en cas de difficulté',
+    description: 'Protection de la résidence principale du dirigeant : insaisissabilité légale (loi Macron 2015), déclaration notariée, EI loi 2022. Limites, conjoint, cautions.',
+    cat: 'situation',
+    pageTitle: 'Résidence principale insaisissable : ce que vous devez savoir — AVELOR',
+  }),
   robots: { index: true, follow: true },
 };
 
