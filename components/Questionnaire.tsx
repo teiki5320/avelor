@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import type {
   Reponses, Situation, Probleme, Effectif, Moral,
@@ -171,6 +171,10 @@ export default function Questionnaire({ siret }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [answers, setAnswers] = useState<Partial<Reponses>>({});
   const [restored, setRestored] = useState(false);
+  // Verrou anti double-clic pendant l'animation de transition (280 ms).
+  // Un useRef évite un re-render et permet une vérification synchrone.
+  const lockedRef = useRef(false);
+  const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
     const saved = loadSaved(siret);
@@ -188,20 +192,43 @@ export default function Questionnaire({ siret }: Props) {
   const progress = useMemo(() => ((step + 1) / TOTAL_SLIDES) * 100, [step]);
 
   function select(key: keyof Reponses, value: string, detail?: string) {
-    setAnswers((prev) => ({
-      ...prev,
+    // Bloque toute action si une transition est en cours (anti double-clic /
+    // tap accidentel) ou si on est déjà en soumission.
+    if (lockedRef.current || submitting) return;
+    lockedRef.current = true;
+    setTransitioning(true);
+
+    const nextAnswers: Partial<Reponses> = {
+      ...answers,
       [key]: value,
       ...(detail && key === 'effectif' ? { effectifDetail: detail } : {}),
-    }));
+    };
+    setAnswers(nextAnswers);
+
     setTimeout(() => {
-      if (step < TOTAL_SLIDES - 1) setStep((s) => s + 1);
-      else submit({ ...answers, [key]: value, ...(detail ? { effectifDetail: detail } : {}) });
+      if (step < TOTAL_SLIDES - 1) {
+        setStep((s) => s + 1);
+        // Libère le verrou après le changement d'étape.
+        lockedRef.current = false;
+        setTransitioning(false);
+      } else {
+        // Dernière étape : on lance la soumission. Le verrou reste actif
+        // (submitting prend le relais).
+        submit(nextAnswers);
+      }
     }, 280);
   }
 
   function skip() {
-    if (step < TOTAL_SLIDES - 1) setStep((s) => s + 1);
-    else submit(answers);
+    if (lockedRef.current || submitting) return;
+    lockedRef.current = true;
+    if (step < TOTAL_SLIDES - 1) {
+      setStep((s) => s + 1);
+      // Petit délai avant de relâcher pour éviter le double-skip.
+      setTimeout(() => { lockedRef.current = false; }, 280);
+    } else {
+      submit(answers);
+    }
   }
 
   async function submit(final: Partial<Reponses>) {
@@ -399,7 +426,7 @@ export default function Questionnaire({ siret }: Props) {
               <button
                 key={`${current.key}-${idx}`}
                 type="button"
-                disabled={submitting}
+                disabled={submitting || transitioning}
                 aria-label={c.hint ? `${c.label} — ${c.hint}` : c.label}
                 onClick={() => {
                   if (current.key === 'effectif') {
@@ -408,7 +435,7 @@ export default function Questionnaire({ siret }: Props) {
                     select(current.key, c.value);
                   }
                 }}
-                className="group flex w-full items-start gap-4 rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-left transition hover:border-bleu hover:bg-white"
+                className="group flex w-full items-start gap-4 rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-left transition hover:border-bleu hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <span className="mt-1 h-5 w-5 shrink-0 rounded-full border border-navy/20 group-hover:border-bleu" aria-hidden="true" />
                 <span>
@@ -438,7 +465,8 @@ export default function Questionnaire({ siret }: Props) {
               <button
                 type="button"
                 onClick={skip}
-                className="text-navy/50 underline hover:text-navy"
+                disabled={transitioning}
+                className="text-navy/50 underline hover:text-navy disabled:opacity-40"
               >
                 Passer cette question
               </button>

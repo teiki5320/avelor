@@ -37,6 +37,16 @@ export default function ThemeToggle() {
     } catch {}
   }, []);
 
+  // Fermeture au clavier (Escape) tant que le menu est ouvert.
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false);
+    }
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
+
   function choose(t: Theme) {
     setTheme(t);
     setOpen(false);
@@ -62,12 +72,16 @@ export default function ThemeToggle() {
       </button>
       {open && (
         <>
+          {/* Overlay de fermeture : invisible, mais on lui donne un fond
+              légèrement teinté + curseur pointer pour signaler au moins
+              visuellement que le clic ferme le menu. Z-index inférieur
+              au menu pour ne pas intercepter les clics du menu lui-même. */}
           <button
             type="button"
-            aria-hidden
+            aria-label="Fermer le menu de thème"
             tabIndex={-1}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-40 cursor-default"
+            className="fixed inset-0 z-40 cursor-pointer bg-navy/[0.02]"
           />
           <div
             role="menu"
