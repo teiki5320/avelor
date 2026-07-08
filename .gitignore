@@ -18,3 +18,6 @@ tsconfig.tsbuildinfo
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Scripts d'audit / simulation ad-hoc (artefacts de session, non livrables)
+_*.mjs
