@@ -16,6 +16,8 @@ export type Secteur =
   | 'sante'
   | 'artisanat'
   | 'ess'
+  | 'services'
+  | 'culture-sport'
   | 'autre';
 
 interface OrganismeSecteur {
@@ -133,14 +135,15 @@ function secteurFromSection(section: string): Secteur {
     K: 'finance',
     L: 'immobilier',
     M: 'liberal',
-    // Section N = services administratifs et de soutien (nettoyage, intérim,
-    // sécurité, location…) : activités commerciales de services, pas des
-    // professions libérales.
-    N: 'autre',
+    // Section N = services administratifs et de soutien : location (77),
+    // intérim (78), voyage (79), sécurité privée (80), nettoyage/paysage (81),
+    // soutien administratif (82).
+    N: 'services',
     O: 'autre',
     P: 'education',
     Q: 'sante',
-    R: 'autre',
+    // Section R = arts et spectacles (90), musées (91), jeux (92), sport (93).
+    R: 'culture-sport',
     S: 'artisanat',
   };
   return map[section] ?? 'autre';
@@ -657,6 +660,57 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'Une association peut faire l\'objet d\'une procédure collective (sauvegarde, RJ, LJ) comme une entreprise dès lors qu\'elle a une activité économique',
       'Vérifiez vos subventions : une collectivité ne peut pas combler le passif, mais un fonds de soutien exceptionnel peut être sollicité',
       'L\'UDES et Le Mouvement associatif ont des cellules d\'appui juridique pour leurs adhérents',
+    ],
+    chambre: 'CCI',
+  },
+  services: {
+    label: 'Services aux entreprises',
+    cotisationOrg: 'URSSAF',
+    cotisationTel: '3957',
+    cotisationSite: 'https://www.urssaf.fr',
+    syndicats: [
+      { nom: 'FEP', role: 'Fédération des Entreprises de Propreté et services associés', site: 'https://www.monde-proprete.com' },
+      { nom: 'GES', role: 'Groupement des Entreprises de Sécurité (sécurité privée)', site: 'https://ges-securite-privee.org' },
+      { nom: 'Prism\'emploi', role: 'Syndicat professionnel du travail temporaire et du recrutement', site: 'https://www.prismemploi.eu' },
+      { nom: 'EdV — Entreprises du Voyage', role: 'Syndicat des agences de voyage et tour-opérateurs', site: 'https://www.entreprisesduvoyage.org' },
+      { nom: 'UNEP', role: 'Union Nationale des Entreprises du Paysage', site: 'https://www.lesentreprisesdupaysage.fr' },
+    ],
+    aidesSpecifiques: [
+      { nom: 'APST — garantie financière voyage', description: 'Garantie financière obligatoire des agences de voyage : protège les fonds clients et peut accompagner un adhérent fragilisé. À contacter dès les premières difficultés.', site: 'https://www.apst.travel', badge: 'Agences de voyage' },
+      { nom: 'AKTO — FNE-Formation', description: 'OPCO des services à forte main-d\'œuvre (propreté, sécurité, intérim) : financement de formations pendant les baisses d\'activité.', site: 'https://www.akto.fr', badge: 'Employeurs' },
+    ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre aux services : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    conseilsSpecifiques: [
+      'Sécurité privée : informez le CNAPS en cas de procédure collective — l\'autorisation d\'exercer n\'est pas retirée automatiquement',
+      'Agences de voyage : sans garantie financière (APST ou équivalent), l\'immatriculation Atout France tombe — c\'est votre licence d\'exploitation, anticipez son renouvellement',
+      'Intérim : la garantie financière est une condition légale d\'exercice (art. L1251-49 du Code du travail) — son renouvellement se négocie plusieurs mois à l\'avance',
+      'Propreté et sécurité : en cas de perte d\'un marché, les salariés qui y sont affectés sont en principe repris par le nouveau titulaire (transfert conventionnel de la CCN Propreté et de la CCN Prévention-sécurité), ce qui réduit le coût social d\'un repli',
+    ],
+    chambre: 'CCI',
+  },
+  'culture-sport': {
+    label: 'Culture / Sport / Loisirs',
+    cotisationOrg: 'URSSAF',
+    cotisationTel: '3957',
+    cotisationSite: 'https://www.urssaf.fr',
+    syndicats: [
+      { nom: 'CoSMoS', role: 'Conseil Social du Mouvement Sportif — employeurs du sport', site: 'https://cosmos.asso.fr' },
+      { nom: 'PRODISS', role: 'Syndicat national du spectacle musical et de variété', site: 'https://www.prodiss.org' },
+      { nom: 'La Maison des Artistes', role: 'Association de gestion et d\'entraide des artistes plasticiens', site: 'https://www.lamaisondesartistes.fr' },
+      { nom: 'Union Sport & Cycle', role: 'Entreprises du sport, des loisirs et du cycle (salles de sport incluses)', site: 'https://www.unionsportcycle.com' },
+    ],
+    aidesSpecifiques: [
+      { nom: 'CNM — Centre National de la Musique', description: 'Aides aux entreprises de la filière musicale : labels, salles de concert, producteurs de spectacles.', site: 'https://cnm.fr', badge: 'Musique · spectacle' },
+      { nom: 'ASTP — théâtre privé', description: 'Fonds de soutien du théâtre privé : appui à l\'exploitation et à la trésorerie des théâtres adhérents.', site: 'https://www.astp.asso.fr', badge: 'Théâtres' },
+      { nom: 'Urssaf artistes-auteurs', description: 'Guichet unique des cotisations artistes-auteurs (ex-Maison des Artistes / AGESSA) : échéanciers et action sociale possibles en cas de difficulté.', site: 'https://www.artistes-auteurs.urssaf.fr' },
+      { nom: 'Agence nationale du Sport', description: 'Subventions d\'équipement et d\'emploi sportif, versées via les fédérations et les projets sportifs territoriaux.', site: 'https://www.agencedusport.fr', badge: 'Sport' },
+    ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à la culture ou au sport : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    conseilsSpecifiques: [
+      'Employeur occasionnel de spectacle vivant : le GUSO (www.guso.fr) simplifie les déclarations et cotisations des artistes et techniciens (annexes 8 et 10 de l\'assurance chômage)',
+      'Une procédure collective n\'entraîne pas le retrait automatique du récépissé d\'entrepreneur de spectacles vivants',
+      'Salles de sport : le loyer est souvent la première charge — renégociation du bail commercial et gel des loyers antérieurs en procédure collective sont vos leviers principaux',
+      'Le CoSMoS offre un appui juridique et social à ses adhérents employeurs du sport',
     ],
     chambre: 'CCI',
   },

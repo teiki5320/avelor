@@ -169,7 +169,7 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
   });
 
   // 9. Bail commercial
-  const secteursBail = ['hotellerie', 'commerce', 'artisanat', 'liberal', 'sante'];
+  const secteursBail = ['hotellerie', 'commerce', 'artisanat', 'liberal', 'sante', 'culture-sport'];
   if (secteursBail.includes(sector.secteur)) {
     // BlocBailCommercial affiche 6 leviers, + 1 si procédure collective en cours
     const nbLeviers =

@@ -113,11 +113,11 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 > Scan programmatique : 88 divisions NAF + 35 métiers précis passés dans le vrai moteur (`getSectorInfo`, `getOpcoFromNaf`, `getJuridiction`). **Filet générique garanti pour tous** (BlocSoutien affiche toujours APESA + 3114, organismes départementaux + CIP + BPI pour tout le monde). Mais des métiers courants n'ont **aucune personnalisation sectorielle**.
 >
-> ✅ **Correction partielle le 18/07/2026** : points 3 à 6 corrigés (secteur `ess` créé, raffinements pharmacien/vétérinaire/boulanger/auto-école, OPCO étendus, soutien psy explicite dans les 16 secteurs — 255 tests verts). Restent les points 1 (secteur `services` pour la section N) et 2 (secteur `culture-sport` pour la section R), en attente de validation.
+> ✅ **Correction complète le 18/07/2026** : les 6 points sont corrigés. Secteurs `ess`, `services` (section N) et `culture-sport` (section R) créés, raffinements pharmacien/vétérinaire/boulanger/auto-école, OPCO étendus, soutien psy explicite dans les 18 secteurs — 259 tests verts, lint + build OK.
 
 ### 🔴 PROBLÈMES — métiers sans solution personnalisée (secteur « autre » : 0 syndicat, 0 conseil, 0 aide)
-- [ ] **Section NAF N (77-82) orpheline** : location (77), **intérim (78)**, **agences de voyage (79)**, **sécurité privée (80)**, **nettoyage/paysagistes (81)**, soutien administratif (82) → tombés dans « autre » depuis la correction du 18/07 (avant ils étaient mal classés « libéral », maintenant ils n'ont plus rien). Créer un secteur `services` avec : SNES/GES (sécurité), FEP/Monde de la Propreté (propreté), Prism'emploi (intérim), EdV — Entreprises du Voyage + APST (voyage), UNEP (paysage). `lib/secteur.ts:138`
-- [ ] **Section NAF R (90-93) orpheline** : artistes (90), musées (91), jeux (92), **sport/salles de sport (93)** → « autre » sans rien. Créer un secteur `culture-sport` : Maison des Artistes/AGESSA, CoSMoS (sport), FNEAPL — l'OPCO AFDAS est déjà bien mappé
+- [x] **Section NAF N (77-82) orpheline** : corrigé — secteur `services` créé (FEP propreté, GES sécurité, Prism'emploi intérim, EdV + APST voyage, UNEP paysage) avec conseils garanties financières (CNAPS, Atout France, L1251-49, transfert conventionnel des marchés)
+- [x] **Section NAF R (90-93) orpheline** : corrigé — secteur `culture-sport` créé (CoSMoS, PRODISS, Maison des Artistes, Union Sport & Cycle ; aides CNM, ASTP, Urssaf artistes-auteurs, Agence nationale du Sport ; conseils GUSO/intermittents, licence spectacles, bail des salles de sport). Ajouté aux secteurs « bail commercial » (priorités + BlocBailCommercial)
 - [x] **Associations (94) classées « artisanat »** : corrigé — secteur `ess` créé (UDES, Le Mouvement associatif, ESS France, France Générosités, DLA, France Active, FONJEP) + OPCO 94 → Uniformation
 
 ### 🟠 PROBLÈMES — classification sectorielle douteuse (métiers réglementés mal orientés)

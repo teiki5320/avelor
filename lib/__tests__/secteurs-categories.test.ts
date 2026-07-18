@@ -4,7 +4,7 @@ import { getOpcoFromNaf, type Opco } from '../opco';
 import type { CompanyData } from '../types';
 
 /**
- * Test paramétré couvrant les 15 catégories de métiers d'Avelor.
+ * Test paramétré couvrant les 18 catégories de métiers d'Avelor.
  * Pour chaque secteur : un NAF représentatif + des assertions ciblées
  * sur les données métier (label, syndicats clés, soutien, ordres,
  * caisses retraite, OPCO compétent…).
@@ -157,6 +157,22 @@ const CAS: SecteurCase[] = [
     opcoAttendu: 'uniformation',
   },
   {
+    cle: 'services',
+    naf: '80.10Z', // Activités de sécurité privée
+    labelContient: /Services/i,
+    syndicatsAttendus: ['GES', 'FEP', 'Prism\'emploi', 'EdV', 'UNEP'],
+    soutienAttendu: /APESA/i,
+    opcoAttendu: 'akto',
+  },
+  {
+    cle: 'culture-sport',
+    naf: '93.13Z', // Activités des centres de culture physique (salles de sport)
+    labelContient: /Culture|Sport/i,
+    syndicatsAttendus: ['CoSMoS', 'PRODISS', 'Maison des Artistes', 'Union Sport & Cycle'],
+    soutienAttendu: /APESA/i,
+    opcoAttendu: 'afdas',
+  },
+  {
     cle: 'autre',
     naf: '', // NAF vide → fallback "autre"
     labelContient: /Autre/i,
@@ -165,16 +181,17 @@ const CAS: SecteurCase[] = [
   },
 ];
 
-describe('Catégories de métiers : couverture complète des 15 secteurs', () => {
-  // Sanity check : on couvre bien les 15 secteurs définis
-  it('couvre exactement les 16 secteurs définis par lib/secteur.ts', () => {
+describe('Catégories de métiers : couverture complète des 18 secteurs', () => {
+  // Sanity check : on couvre bien les 18 secteurs définis
+  it('couvre exactement les 18 secteurs définis par lib/secteur.ts', () => {
     const cles = new Set(CAS.map((c) => c.cle));
     const attendus: Secteur[] = [
       'agriculture', 'peche', 'industrie', 'btp', 'commerce', 'transport',
       'hotellerie', 'information', 'finance', 'immobilier', 'liberal',
-      'education', 'sante', 'artisanat', 'ess', 'autre',
+      'education', 'sante', 'artisanat', 'ess', 'services', 'culture-sport',
+      'autre',
     ];
-    expect(cles.size).toBe(16);
+    expect(cles.size).toBe(18);
     for (const s of attendus) expect(cles.has(s)).toBe(true);
   });
 
@@ -298,6 +315,23 @@ describe('Catégories de métiers : règles spéciales de classement', () => {
     expect(getSectorInfo(makeCompany('94.20Z')).secteur).toBe('ess');
   });
 
+  it('Section N (77-82) est routée vers "services" : location, intérim, voyage, sécurité, nettoyage', () => {
+    expect(getSectorInfo(makeCompany('77.11A')).secteur).toBe('services'); // location voitures
+    expect(getSectorInfo(makeCompany('78.20Z')).secteur).toBe('services'); // intérim
+    expect(getSectorInfo(makeCompany('79.11Z')).secteur).toBe('services'); // agence de voyage
+    expect(getSectorInfo(makeCompany('80.10Z')).secteur).toBe('services'); // sécurité privée
+    expect(getSectorInfo(makeCompany('81.21Z')).secteur).toBe('services'); // nettoyage
+    expect(getSectorInfo(makeCompany('81.30Z')).secteur).toBe('services'); // paysagistes
+    expect(getSectorInfo(makeCompany('82.11Z')).secteur).toBe('services'); // soutien administratif
+  });
+
+  it('Section R (90-93) est routée vers "culture-sport" : artistes, musées, jeux, sport', () => {
+    expect(getSectorInfo(makeCompany('90.01Z')).secteur).toBe('culture-sport'); // spectacle vivant
+    expect(getSectorInfo(makeCompany('91.02Z')).secteur).toBe('culture-sport'); // musées
+    expect(getSectorInfo(makeCompany('92.00Z')).secteur).toBe('culture-sport'); // jeux
+    expect(getSectorInfo(makeCompany('93.13Z')).secteur).toBe('culture-sport'); // salle de sport
+  });
+
   it('Tous les secteurs marchands ont désormais un dispositif de soutien psy', () => {
     // Seul le fallback "autre" peut ne pas en avoir (le BlocSoutien affiche
     // APESA + 3114 dans tous les cas).
@@ -306,7 +340,8 @@ describe('Catégories de métiers : règles spéciales de classement', () => {
       commerce: '47.11D', transport: '49.32Z', hotellerie: '56.10A',
       information: '62.01Z', finance: '64.19Z', immobilier: '68.31Z',
       liberal: '69.10Z', education: '85.59A', sante: '86.21Z',
-      artisanat: '96.02A', ess: '94.99Z',
+      artisanat: '96.02A', ess: '94.99Z', services: '80.10Z',
+      'culture-sport': '93.13Z',
     };
     for (const [secteur, naf] of Object.entries(nafParSecteur)) {
       const info = getSectorInfo(makeCompany(naf));

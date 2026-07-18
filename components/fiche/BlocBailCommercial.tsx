@@ -95,7 +95,7 @@ const LABELS = {
 export default function BlocBailCommercial() {
   const { reponses, company, sector } = useFiche();
   // On affiche pour les secteurs avec local commercial fort
-  const secteursAvecLocal = ['commerce', 'hotellerie', 'artisanat', 'liberal', 'sante'];
+  const secteursAvecLocal = ['commerce', 'hotellerie', 'artisanat', 'liberal', 'sante', 'culture-sport'];
   const pertinent =
     secteursAvecLocal.includes(sector.secteur) ||
     reponses.probleme === 'fournisseurs' ||
