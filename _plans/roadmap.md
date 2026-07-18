@@ -109,6 +109,41 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 ---
 
+## 🧭 AUDIT DE COUVERTURE MÉTIER du 18/07/2026 — trous détectés
+
+> Scan programmatique : 88 divisions NAF + 35 métiers précis passés dans le vrai moteur (`getSectorInfo`, `getOpcoFromNaf`, `getJuridiction`). **Filet générique garanti pour tous** (BlocSoutien affiche toujours APESA + 3114, organismes départementaux + CIP + BPI pour tout le monde). Mais des métiers courants n'ont **aucune personnalisation sectorielle**.
+
+### 🔴 PROBLÈMES — métiers sans solution personnalisée (secteur « autre » : 0 syndicat, 0 conseil, 0 aide)
+- [ ] **Section NAF N (77-82) orpheline** : location (77), **intérim (78)**, **agences de voyage (79)**, **sécurité privée (80)**, **nettoyage/paysagistes (81)**, soutien administratif (82) → tombés dans « autre » depuis la correction du 18/07 (avant ils étaient mal classés « libéral », maintenant ils n'ont plus rien). Créer un secteur `services` avec : SNES/GES (sécurité), FEP/Monde de la Propreté (propreté), Prism'emploi (intérim), EdV — Entreprises du Voyage + APST (voyage), UNEP (paysage). `lib/secteur.ts:138`
+- [ ] **Section NAF R (90-93) orpheline** : artistes (90), musées (91), jeux (92), **sport/salles de sport (93)** → « autre » sans rien. Créer un secteur `culture-sport` : Maison des Artistes/AGESSA, CoSMoS (sport), FNEAPL — l'OPCO AFDAS est déjà bien mappé
+- [ ] **Associations (94) classées « artisanat »** : une asso 94.xx reçoit CMA + U2P (hors sujet). Router vers ESS : UDES, Le Mouvement associatif, France Générosités ; OPCO à corriger → Uniformation (actuellement « autre »)
+
+### 🟠 PROBLÈMES — classification sectorielle douteuse (métiers réglementés mal orientés)
+- [ ] **Pharmacien d'officine (47.73Z) → « commerce »** : reçoit FCD/CdCF au lieu de l'Ordre des pharmaciens, CAVP, USPO/FSPF. Raffiner : 47.73 → `sante`. `lib/secteur.ts getSectorInfo`
+- [ ] **Vétérinaire (75.00Z) → « libéral »** : rate Vetos-Entraide, CARPV et l'Ordre des vétérinaires qui sont dans le secteur `sante`. Raffiner : 75 → `sante` + OPCO EP (actuellement « autre »)
+- [ ] **Boulanger artisanal (10.71C) → OPCO OCAPIAT** : la boulangerie-pâtisserie artisanale relève d'OPCO EP (branche boulangerie), OCAPIAT ne vaut que pour l'industrie agroalimentaire. Raffiner par classe 10.71C/D → opco-ep
+- [ ] **Auto-école (85.53Z) → Uniformation** : la branche des services de l'automobile relève d'OPCO Mobilités. Raffiner 85.53 → opco-mobilites
+
+### 🟡 PROBLÈMES — OPCO « non identifié » sur des pans entiers
+- [ ] **Industrie extractive/énergie/eau/déchets (05-09, 12, 35-39)** → OPCO « autre ». En réalité OPCO 2i (industries) couvre l'essentiel : étendre le mapping. `lib/opco.ts`
+- [ ] **Agences de voyage (79)** → OPCO Mobilités (tourisme)
+- [ ] **Associations (94)** → Uniformation
+
+### 🟢 AMÉLIORATIONS — soutien psy sectoriel (le fallback APESA/3114 existe partout, mais 65/88 divisions n'ont pas de dispositif dédié)
+- [ ] Commerce : rattacher explicitement APESA-CCI / réseau des CIP au champ `soutien`
+- [ ] Transport : pas de dispositif dédié connu — a minima référencer APESA transporteurs (FNTR sociale)
+- [ ] Libéral : mentionner l'entraide ordinale dans `soutien` (elle existe déjà dans `ordresProfessionnels` mais le BlocSoutien ne la met pas en avant)
+- [ ] Information/finance/immobilier/éducation : `soutien` vide → afficher explicitement APESA comme dispositif principal plutôt que rien
+
+### ✅ CE QUI EST VALIDÉ PAR LE SCAN
+- 29/35 métiers précis ont une couverture personnalisée complète (secteur + syndicats + OPCO + juridiction justes)
+- Juridictions 100 % correctes (TC pour sociétés commerciales, TJ pour EI libéraux/santé/agri — la correction du 18/07 tient)
+- Artisans bien détectés (boulanger, coiffeur, bijoutier, réparateurs → CMA + APESA/CMA Entraide)
+- Santé/agri/pêche/BTP/HCR : soutien psy dédié en place (MOTS, Agri'Écoute, Solidarité Marins, APESA+FFB, UMIH Entraide)
+- Personne n'est à zéro solution : organismes départementaux, CIP, BPI, APESA + 3114 garantis pour tous
+
+---
+
 ## 🔎 AUDIT COMPLET du 30/05/2026 — findings à corriger
 
 > Audit orchestré (7 auditeurs de code + 12 simulations Playwright réelles + vérification adversariale, 85 agents). **Verdict : le parcours va au bout dans les 12 cas, aucun blocage.** Le problème est la fiabilité du contenu juridique. 44 findings confirmés avec preuve.
