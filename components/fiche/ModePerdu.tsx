@@ -106,9 +106,9 @@ export default function ModePerdu() {
             {contact.tel && (
               <a
                 href={`tel:${contact.tel.replace(/\s/g, '')}`}
-                className="rounded-full bg-vert px-4 py-2 font-medium text-white hover:bg-vert/90"
+                className="rounded-full bg-vert-fonce px-4 py-2 font-medium text-white hover:bg-vert-fonce/90"
               >
-                ☎ {contact.tel}
+                <span aria-hidden>☎</span> {contact.tel}
               </a>
             )}
             <a
@@ -117,7 +117,7 @@ export default function ModePerdu() {
               rel="noreferrer"
               className="rounded-full bg-white px-3 py-2 text-navy/80 ring-1 ring-navy/15 hover:bg-navy/5"
             >
-              🌐 {contact.labelSite}
+              <span aria-hidden>🌐</span> {contact.labelSite}
             </a>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function ModePerdu() {
               href="tel:3114"
               className="rounded-full bg-rouge px-4 py-2 font-medium text-white hover:bg-rouge/90"
             >
-              ☎ 3114
+              <span aria-hidden>☎</span> 3114
             </a>
             <a
               href="https://apesa.fr"
@@ -155,7 +155,7 @@ export default function ModePerdu() {
               rel="noreferrer"
               className="rounded-full bg-white px-3 py-2 text-navy/80 ring-1 ring-navy/15 hover:bg-navy/5"
             >
-              🌐 apesa.fr
+              <span aria-hidden>🌐</span> apesa.fr
             </a>
           </div>
         </div>

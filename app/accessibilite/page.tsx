@@ -38,8 +38,8 @@ export default function AccessibilitePage() {
             <li><strong>Hiérarchie sémantique</strong> respectée (H1 unique, H2/H3 imbriqués)</li>
             <li><strong>Contraste de couleurs</strong> respectant WCAG AA sur la majorité des textes</li>
             <li><strong>Lang=&quot;fr&quot;</strong> déclaré sur la balise HTML</li>
-            <li><strong>Polices lisibles</strong> (Outfit + Playfair Display, taille minimale 14 px / 11 pt en print)</li>
-            <li><strong>Animations</strong> : utilisent `prefers-reduced-motion` (LazyMotion respecte cette préférence)</li>
+            <li><strong>Polices lisibles</strong> (Outfit + Playfair Display), tailles définies en unités relatives — le zoom navigateur jusqu&apos;à 200 % est pris en charge sans perte de contenu</li>
+            <li><strong>Animations décoratives</strong> (fonds animés) désactivées lorsque la préférence système <code>prefers-reduced-motion</code> est active</li>
             <li><strong>Formulaires</strong> : labels visibles, messages d&apos;erreur explicites</li>
             <li><strong>Impression</strong> : feuille de style dédiée pour une lecture papier sobre</li>
             <li><strong>Emojis décoratifs</strong> marqués <code>aria-hidden=&quot;true&quot;</code> pour ne pas perturber les lecteurs d&apos;écran</li>

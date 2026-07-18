@@ -10,6 +10,9 @@
   --c-rouge: 201 64 64;
   --c-jaune: 201 120 48;
   --c-vert: 40 160 80;
+  /* Vert foncé pour les boutons à texte blanc : bg-vert (#28A050) + blanc
+     ne fait que 3.37:1 — sous le seuil AA de 4.5:1. */
+  --c-vert-fonce: 22 110 52;
 
   /* Alias hex hérités (utilisés par quelques composants CSS custom) */
   --navy: rgb(var(--c-navy));
@@ -36,6 +39,7 @@
   --c-rouge: 232 116 116;
   --c-jaune: 224 160 96;
   --c-vert: 74 192 120;
+  --c-vert-fonce: 29 122 60;
 
   --bg-gradient: linear-gradient(150deg, #0A1220 0%, #0E1A2E 55%, #10182B 100%);
   --surface: 24 36 56;
@@ -52,6 +56,7 @@
   --c-rouge: 158 18 18;
   --c-jaune: 124 64 0;
   --c-vert: 13 92 42;
+  --c-vert-fonce: 13 92 42;
 
   --bg-gradient: #ffffff;
   --surface: 255 255 255;
@@ -244,6 +249,29 @@ h1, h2, h3, h4, .font-display {
 [data-theme='dark'] .text-navy\/40,
 [data-theme='dark'] .text-navy\/45,
 [data-theme='dark'] .text-navy\/50 { color: rgb(var(--c-navy) / 0.62) !important; }
+
+/* Thème clair : sous 0.60 d'alpha, le navy passe sous 4.5:1 (AA) sur fond
+   blanc — text-navy/45 = 2.97:1, /50 = 3.46:1, souvent sur des corps de
+   10-12 px (hints, footer, méta). On relève le plancher à 0.62 (≈ 5:1). */
+.text-navy\/40,
+.text-navy\/45,
+.text-navy\/50 { color: rgb(var(--c-navy) / 0.62); }
+
+/* Dégradés passant par du blanc (IdentiteHero, ModePerdu, StrategieHero) :
+   non pilotés par les variables de thème, ils gardaient un fond blanc sous
+   le texte devenu clair en sombre → illisible. Remplacés par un aplat de
+   surface, la bordure colorée est conservée. */
+[data-theme='dark'] .via-white,
+[data-theme='dark'] .via-white\/80,
+[data-theme='dark'] .via-white\/40,
+[data-theme='dark'] .from-white\/90,
+[data-theme='contrast'] .via-white,
+[data-theme='contrast'] .via-white\/80,
+[data-theme='contrast'] .via-white\/40,
+[data-theme='contrast'] .from-white\/90 {
+  background-image: none !important;
+  background-color: rgb(var(--surface) / 0.9) !important;
+}
 
 /* Blobs animés du fond : atténués en sombre, masqués en contraste élevé */
 [data-theme='dark'] [data-bg-blobs] { opacity: 0.55; }
