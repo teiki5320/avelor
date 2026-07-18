@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
 import { getTonePreset } from '@/lib/tone';
-import { useFiche } from '@/lib/FicheContext';
+import { useFiche, useFicheStorageKey } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Props {
@@ -75,10 +75,9 @@ function buildDefaultActions(r: Reponses, c: CompanyData, s: SectorInfo): Action
   return actions;
 }
 
-const STORAGE_KEY = 'avelor_plan_action';
-
 export default function BlocPlanAction({ defaultOpen }: Props) {
   const { reponses, company, sector } = useFiche();
+  const storageKey = useFicheStorageKey('avelor_plan_action');
   const [actions, setActions] = useState<Action[]>([]);
   const [newText, setNewText] = useState('');
   const [loaded, setLoaded] = useState(false);
@@ -86,7 +85,7 @@ export default function BlocPlanAction({ defaultOpen }: Props) {
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = localStorage.getItem(storageKey);
       if (saved) {
         setActions(JSON.parse(saved));
         setLoaded(true);
@@ -95,13 +94,13 @@ export default function BlocPlanAction({ defaultOpen }: Props) {
     } catch {}
     setActions(buildDefaultActions(reponses, company, sector));
     setLoaded(true);
-  }, [reponses, company, sector]);
+  }, [reponses, company, sector, storageKey]);
 
   useEffect(() => {
     if (loaded) {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(actions)); } catch {}
+      try { localStorage.setItem(storageKey, JSON.stringify(actions)); } catch {}
     }
-  }, [actions, loaded]);
+  }, [actions, loaded, storageKey]);
 
   function toggle(id: string) {
     setActions((prev) =>
@@ -158,7 +157,7 @@ export default function BlocPlanAction({ defaultOpen }: Props) {
               onClick={() => toggle(a.id)}
               className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-xs ${
                 a.done
-                  ? 'border-vert bg-vert text-white'
+                  ? 'border-vert-fonce bg-vert-fonce text-white'
                   : 'border-navy/25'
               }`}
               aria-label={a.done ? 'Marquer comme non fait' : 'Marquer comme fait'}

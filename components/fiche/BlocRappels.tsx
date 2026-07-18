@@ -1,8 +1,9 @@
 'use client';
 import { useState, useMemo, useEffect } from 'react';
-import { useFiche } from '@/lib/FicheContext';
+import { useFiche, useFicheStorageKey } from '@/lib/FicheContext';
 import { buildIcs, downloadIcs, type IcsEvent } from '@/lib/ics';
 import BlocAccordeon from './BlocAccordeon';
+import { CESSATION_DATE_EVENT } from './BlocCessationDecompte';
 
 interface Echeance {
   cle: string;
@@ -35,13 +36,29 @@ export default function BlocRappels() {
   const [dateMiseDemeure, setDateMiseDemeure] = useState<string>('');
   const [dateJugement, setDateJugement] = useState<string>('');
 
-  // Tente de récupérer la date de cessation déjà saisie dans BlocCessationDecompte
+  // Récupère la date de cessation saisie dans BlocCessationDecompte, et se
+  // resynchronise quand elle change — dans le même onglet (événement custom,
+  // car `storage` ne se déclenche pas localement) comme dans un autre onglet.
+  const cessationKey = useFicheStorageKey('avelor_cessation_date');
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('avelor_cessation_date');
+      const stored = localStorage.getItem(cessationKey);
       if (stored) setDateCessation(stored);
     } catch {}
-  }, []);
+
+    function onLocalChange(e: Event) {
+      setDateCessation((e as CustomEvent<string>).detail ?? '');
+    }
+    function onStorage(e: StorageEvent) {
+      if (e.key === cessationKey) setDateCessation(e.newValue ?? '');
+    }
+    window.addEventListener(CESSATION_DATE_EVENT, onLocalChange);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener(CESSATION_DATE_EVENT, onLocalChange);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, [cessationKey]);
 
   const echeances = useMemo<Echeance[]>(() => {
     const items: Echeance[] = [];

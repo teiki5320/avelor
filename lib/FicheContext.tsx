@@ -5,6 +5,7 @@ import type { SectorInfo, EffectifSeuils } from './secteur';
 import type { GroupeOrganismes } from './organismes';
 
 export interface FicheContextType {
+  token: string;
   reponses: Reponses;
   company: CompanyData;
   sector: SectorInfo;
@@ -44,6 +45,7 @@ const DEFAULT_COMPANY: CompanyData = {
 };
 
 const DEFAULT_CONTEXT: FicheContextType = {
+  token: '',
   reponses: DEFAULT_REPONSES,
   company: DEFAULT_COMPANY,
   sector: {} as SectorInfo,
@@ -58,4 +60,15 @@ const DEFAULT_CONTEXT: FicheContextType = {
 export function useFiche(): FicheContextType {
   const ctx = useContext(FicheContext);
   return ctx ?? DEFAULT_CONTEXT;
+}
+
+/**
+ * Clé localStorage propre à la fiche courante. Sans suffixe, un second
+ * SIRET consulté sur le même navigateur verrait les données saisies pour
+ * le premier (plan d'action, trésorerie, cautions…). On suffixe par le
+ * SIRET (stable entre régénérations de fiche) ou à défaut par le token.
+ */
+export function useFicheStorageKey(base: string): string {
+  const { token, company } = useFiche();
+  return `${base}_${company.siret || token || 'anon'}`;
 }

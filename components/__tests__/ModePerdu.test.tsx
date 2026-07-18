@@ -27,6 +27,7 @@ function makeContext(overrides: Partial<Reponses> = {}): FicheContextType {
     fetched: true,
   };
   return {
+    token: 'test-token',
     reponses,
     company,
     sector: {} as never,

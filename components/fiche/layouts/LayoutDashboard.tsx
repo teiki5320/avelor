@@ -73,7 +73,7 @@ export default function LayoutDashboard({
   seuils,
 }: LayoutData) {
   return (
-    <FicheProvider value={{ reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
+    <FicheProvider value={{ token, reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
     <div className="space-y-6">
       {/* Mode perdu : remplace temporairement le détail si moral === 'perdu' */}
       <ModePerdu />
