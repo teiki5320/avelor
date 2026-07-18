@@ -169,8 +169,9 @@ export async function generateStaticParams() {
   return Object.keys(FAQ_PAR_SITUATION).map((situation) => ({ situation }));
 }
 
-export async function generateMetadata({ params }: { params: { situation: string } }): Promise<Metadata> {
-  const data = FAQ_PAR_SITUATION[params.situation];
+export async function generateMetadata({ params }: { params: Promise<{ situation: string }> }): Promise<Metadata> {
+  const { situation } = await params;
+  const data = FAQ_PAR_SITUATION[situation];
   if (!data) return {};
   const ogUrl = `/api/og?${new URLSearchParams({ titre: data.titre.replace(/^FAQ — /, ''), sous: 'Questions fréquentes', cat: 'faq' }).toString()}`;
   return {
@@ -191,8 +192,9 @@ export async function generateMetadata({ params }: { params: { situation: string
   };
 }
 
-export default function FaqCibleePage({ params }: { params: { situation: string } }) {
-  const data = FAQ_PAR_SITUATION[params.situation];
+export default async function FaqCibleePage({ params }: { params: Promise<{ situation: string }> }) {
+  const { situation } = await params;
+  const data = FAQ_PAR_SITUATION[situation];
   if (!data) return notFound();
 
   const jsonLdFaq = {

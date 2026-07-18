@@ -16,7 +16,7 @@ export async function sendMagicLink(email: string, token: string): Promise<boole
   const base = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://avelor.fr';
   const from =
     process.env.RESEND_FROM ?? 'AVELOR <onboarding@resend.dev>';
-  const url = `${base}/fiche/${token}`;
+  const url = `${base}/fiche/${encodeURIComponent(token)}`;
 
   try {
     const { error } = await resend.emails.send({
