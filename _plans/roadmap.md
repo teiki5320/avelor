@@ -107,6 +107,65 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [ ] Faire tester la fiche par 2 ou 3 vrais dirigeants ou conseillers pour valider la pertinence en condition réelle
 - [ ] Vérifier le rendu sur iPhone et petit écran (mobile)
 
+---
+
+## 🔎 AUDIT COMPLET du 30/05/2026 — findings à corriger
+
+> Audit orchestré (7 auditeurs de code + 12 simulations Playwright réelles + vérification adversariale, 85 agents). **Verdict : le parcours va au bout dans les 12 cas, aucun blocage.** Le problème est la fiabilité du contenu juridique. 44 findings confirmés avec preuve. **Rien n'est encore corrigé.**
+
+### 🔴 ERREURS — Contenu juridique FAUX (priorité absolue, oriente de mauvaises décisions)
+- [ ] **Contresens PGE / garantie BPI** : « ouvrir une procédure fait perdre la garantie de l'État » = FAUX (c'est l'inverse, la procédure déclenche l'appel de la garantie). `lib/strategie.ts:88` (+ `scores.sauvegarder -= 1` à supprimer), `BlocPGE.tsx:120`, `BlocGarantieBPI.tsx:82`
+- [ ] **Mauvais tribunal** : `getJuridiction` ignore la forme juridique → SARL/SAS de conseil (NAF 70) envoyée au TJ au lieu du TC. `lib/strategie.ts:45` — tester la forme d'abord (sociétés commerciales = TC)
+- [ ] **Axe « Restructurer » recommandé en cessation** avec verdict qui nie la cessation. `lib/strategie.ts:127` — adapter le verdict selon `situation`
+- [ ] **AGS : plafond faux 24 000 € au lieu de 92 736 €** dans la FAQ. `app/faq/page.tsx:114`
+- [ ] **Index égalité F/H placé à 250 salariés** (obligatoire dès 50) + **CICE cité comme actif** (supprimé 2019). `lib/secteur.ts:792`
+- [ ] **OPCO : doublon Uniformation = OPCO Cohésion sociale** (même organisme) + **Opcommerce manquant** ; commerce mal rattaché. `lib/opco.ts:89`
+- [ ] **Section NAF N** (nettoyage, intérim, sécurité, services admin) classée « Professions libérales ». `lib/secteur.ts:135`
+- [ ] **CCSF : source légale erronée** (L611-7 = conciliation, pas la CCSF). `BlocCCSF.tsx:147`
+- [ ] **Cautionnement : art. L341-4 / L341-6 C. conso abrogés** (→ 2300 / 2303 C. civ.). `BlocGarantieBPI.tsx:90`
+- [ ] **Prescription : délai TVA annoncé à 4 ans au lieu de 3** (confusion reprise/recouvrement). `BlocPrescription.tsx:30`
+- [ ] **CIRI/CODEFI : bascule à 250 salariés mais textes disent 400.** `BlocAidesEtat.tsx:76`
+- [ ] **Carte « audience » : tribunal de commerce codé en dur**, contredit `getJuridiction`. `lib/priorites.ts:76`
+- [ ] **Plafonds AGS étiquetés « 2025 » mais valeurs 2024.** `BlocArretLongueDuree.tsx:80`
+- [ ] **Carte « bail » promet « 7 dispositifs », le bloc n'en liste que 6.** `lib/priorites.ts:181`
+
+### 🔴 ERREURS — Sécurité
+- [ ] **`/api/fiche/send-link` = relais d'email ouvert** : aucune vérif d'existence/propriété de la fiche → mails « Votre fiche Avelor » vers victime arbitraire + injection. `send-link/route.ts:22`
+- [ ] **`/api/fiche/rappels` = phishing** : email/libellé arbitraires poussés dans les rappels cron → mails HTML contrôlés depuis le domaine Avelor. `rappels/route.ts:39`
+- [ ] **next@14.2.35 : 9 vulnérabilités (6 high)** dont SSRF (CVSS 8.6) + DoS Server Components. `package.json:19`
+
+### 🟠 ERREURS — Bugs techniques
+- [ ] **Fuite de données entre fiches** : clés localStorage non préfixées par token (`avelor_plan_action`, `avelor_tresorerie`, `avelor_audit_caution`) → 2e SIRET voit les données du 1er. `BlocPlanAction.tsx:78` + 2 autres
+- [ ] **Hydration mismatch** : `ProgressTracker` lit localStorage dans l'init `useState`. `ProgressTracker.tsx:42`
+- [ ] **`BlocRappels` ne resync pas la date de cessation** saisie dans le même onglet. `BlocRappels.tsx:39`
+
+### 🟠 ERREURS — Thème sombre / accessibilité cassés (confirmé visuellement)
+- [ ] **Carte d'identité illisible en sombre** (`from-white/via-white` non piloté par le thème → fond blanc + texte clair). `IdentiteHero.tsx:19`
+- [ ] **ModePerdu illisible en sombre** (même cause `via-white`). `ModePerdu.tsx:72`
+- [ ] **Contrastes sous AA en clair** : `text-navy/45` (2.97:1), `/50` (3.46:1) sur textes 10-12px. `Nav.tsx:109`, footer, hints
+- [ ] **Bouton d'appel vert** (`bg-vert` + `text-white`) = 3.37:1, sous AA. `ModePerdu.tsx:109`
+- [ ] **Déclaration d'accessibilité inexacte** (affirme « 14px min » et « prefers-reduced-motion » — faux). `accessibilite/page.tsx:41`
+
+### 🟡 ERREURS — Liens cassés & incohérences visibles
+- [ ] **3 liens internes 404** : `/courriers/urssaf-delai`, `/outils/ccsf`, `/outils/caution`. `app/faq/page.tsx:99,100,139`
+- [ ] **Médiation du crédit : 2 numéros contradictoires** (3414 vs 0810 00 12 10 selon la page). `PriorityCards.tsx:112`
+- [ ] **Compteurs faux** : courriers 12 vs 17, glossaire 18 vs 38, outils 9 vs 11. `courriers/page.tsx:48`, `page.tsx:21`, `QuickLinks.tsx:23`
+- [ ] **Tous les barèmes datés « 2025 » alors qu'on est en 2026.** `outils/licenciement`, etc.
+- [ ] **URLs préfecture malformées** sur 93 départements (`www.10.gouv.fr` n'existe pas → `aube.gouv.fr`). `data/organismes.json`
+- [ ] **Fautes d'élision** : « Ordre des médecins du Ain / du Allier ». `data/organismes.json:82`
+- [ ] **`getFormeDetail` : branche `'micro'` morte** (INSEE renvoie « Entrepreneur individuel »). `lib/strategie.ts:29`
+
+### 🟢 AMÉLIORATIONS issues de l'audit (renforcements, pas des bugs)
+- [ ] **Résilience réseau** : aucun timeout/AbortController sur INSEE/BODACC/Google Places → fiche SSR peut se figer. Ajouter timeout ~3s + fallback
+- [ ] **Accessibilité clavier questionnaire** : déplacer le focus vers le nouveau titre + `aria-live` au changement d'étape
+- [ ] **Nav** : remplacer `role="menu"/menuitem"` par `<nav>` + liste de liens
+- [ ] **Emojis décoratifs** à masquer (`aria-hidden`) — actuellement vocalisés
+- [ ] **`prefers-reduced-motion`** : couper les 3 blobs animés en boucle infinie (WCAG 2.2.2)
+- [ ] **Navigation flèches** dans le menu ThemeToggle (rôle `menuitemradio` annoncé mais non câblé)
+- [ ] **`ThemeToggle`** : appeler `applyTheme` au montage (sync `meta theme-color`)
+
+---
+
 ### 📋 À faire (par priorité)
 
 #### 🔴 CRITIQUE — bloque la qualité du conseil
