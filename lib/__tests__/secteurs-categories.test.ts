@@ -79,7 +79,7 @@ const CAS: SecteurCase[] = [
     naf: '47.11D', // Supermarchés
     labelContient: /commerce/i,
     syndicatsAttendus: ['CdCF', 'FCD', 'CGI'],
-    opcoAttendu: 'opco-ep', // 47 → OPCO EP dans notre mapping
+    opcoAttendu: 'opcommerce', // 47 → L'Opcommerce (OPCO du commerce)
   },
   {
     cle: 'transport',

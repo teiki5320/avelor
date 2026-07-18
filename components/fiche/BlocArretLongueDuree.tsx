@@ -77,8 +77,9 @@ export default function BlocArretLongueDuree() {
             les payer.
           </li>
           <li>
-            <strong>Plafonds AGS 2025</strong> : 61 824 € (entreprise &lt;
-            6 mois), 77 280 € (6 mois à 2 ans), 92 736 € (au-delà).
+            <strong>Plafonds AGS</strong> (valeurs 2024, art. D3253-5
+            C. trav.) : 61 824 € (contrat &lt; 6 mois), 77 280 € (6 mois
+            à 2 ans), 92 736 € (au-delà de 2 ans).
           </li>
           <li>
             <strong>Délai de versement</strong> : l&apos;AGS verse sous
@@ -160,14 +161,14 @@ export default function BlocArretLongueDuree() {
           <div>
             <p className="text-xs font-medium text-navy">AGS — garantie salaires</p>
             <div className="mt-1 flex flex-wrap gap-2 text-sm">
-              <a href="tel:0155902700" className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white">☎ 01 55 90 27 00</a>
+              <a href="tel:0155902700" className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"><span aria-hidden>☎</span> 01 55 90 27 00</a>
               <a
                 href="https://www.ags-garantie-salaires.org"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full bg-white/80 px-3 py-1 text-bleu-fonce hover:bg-white"
               >
-                🌐 ags-garantie-salaires.org
+                <span aria-hidden>🌐</span> ags-garantie-salaires.org
               </a>
             </div>
           </div>
@@ -180,7 +181,7 @@ export default function BlocArretLongueDuree() {
                 rel="noreferrer"
                 className="rounded-full bg-white/80 px-3 py-1 text-bleu-fonce hover:bg-white"
               >
-                🌐 Trouver mon SPST
+                <span aria-hidden>🌐</span> Trouver mon SPST
               </a>
             </div>
           </div>

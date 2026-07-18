@@ -118,13 +118,14 @@ export default function BlocPGE() {
         </p>
         <p className="mt-2 text-sm text-navy/80">
           L&apos;ouverture d&apos;une sauvegarde, d&apos;un redressement ou
-          d&apos;une liquidation <strong>fait perdre la garantie de
-          l&apos;État</strong> sur le PGE pour la banque, qui devient un
-          créancier ordinaire. Conséquence : la banque n&apos;a plus
-          d&apos;intérêt à négocier amiablement <em>après</em> le
-          jugement d&apos;ouverture. La restructuration doit donc être
-          tentée en amont, idéalement via la Médiation du crédit ou un
-          mandat ad hoc / conciliation.
+          d&apos;une liquidation <strong>déclenche l&apos;appel de la
+          garantie de l&apos;État</strong> : la banque est indemnisée par
+          Bpifrance (70 à 90 % du capital restant dû) et l&apos;État,
+          subrogé, déclare sa créance à la procédure. Conséquence : une
+          fois couverte, la banque n&apos;a plus d&apos;intérêt à négocier
+          amiablement <em>après</em> le jugement d&apos;ouverture. La
+          restructuration doit donc être tentée en amont, idéalement via
+          la Médiation du crédit ou un mandat ad hoc / conciliation.
         </p>
       </div>
 
@@ -142,7 +143,7 @@ export default function BlocPGE() {
               href="tel:3414"
               className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
             >
-              ☎ 34 14
+              <span aria-hidden>☎</span> 34 14
             </a>
             <a
               href="https://mediateur-credit.banque-france.fr"
@@ -150,7 +151,7 @@ export default function BlocPGE() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 mediateur-credit.banque-france.fr
+              <span aria-hidden>🌐</span> mediateur-credit.banque-france.fr
             </a>
           </div>
         </div>
@@ -166,7 +167,7 @@ export default function BlocPGE() {
               href="tel:3414"
               className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
             >
-              ☎ 34 14
+              <span aria-hidden>☎</span> 34 14
             </a>
             <a
               href="https://entreprises.banque-france.fr"
@@ -174,7 +175,7 @@ export default function BlocPGE() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 entreprises.banque-france.fr
+              <span aria-hidden>🌐</span> entreprises.banque-france.fr
             </a>
           </div>
         </div>

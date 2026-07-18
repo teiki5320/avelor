@@ -79,16 +79,21 @@ export default function BlocGarantieBPI() {
             votre dispositif spécifique).
           </li>
           <li>
-            <strong>Une procédure collective fait perdre la garantie</strong>{' '}
-            de la même manière que le PGE — donc à éviter quand c&apos;est
-            possible, ou à anticiper avec un mandat ad hoc / conciliation
+            <strong>Une procédure collective déclenche l&apos;appel de la
+            garantie</strong> — comme pour le PGE : la banque est
+            indemnisée par Bpifrance, qui devient créancier à la
+            procédure. Après le jugement d&apos;ouverture, la banque
+            couverte négocie beaucoup moins — d&apos;où l&apos;intérêt
+            d&apos;anticiper avec un mandat ad hoc / conciliation
             (confidentiels).
           </li>
           <li>
             <strong>Caution personnelle BPI</strong> : si vous avez signé
             une caution personnelle pour la part NON garantie, vérifiez
-            sa proportionnalité (art. L341-4 C. conso) et l&apos;information
-            annuelle (art. L341-6). Beaucoup sont contestables.
+            sa proportionnalité et l&apos;information annuelle — art. 2300
+            et 2302 du code civil pour les cautions signées depuis 2022,
+            anciens art. L341-4 et L341-6 C. conso pour les plus
+            anciennes. Beaucoup sont contestables.
           </li>
         </ul>
       </div>
@@ -162,14 +167,14 @@ export default function BlocGarantieBPI() {
           <p className="font-display text-base text-navy">Bpifrance Direction Régionale</p>
           <p className="mt-1 text-xs text-navy/60">Conseil sur le statut de votre garantie</p>
           <div className="mt-3 flex flex-wrap gap-2 text-sm">
-            <a href="tel:3247" className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white">☎ 32 47</a>
+            <a href="tel:3247" className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"><span aria-hidden>☎</span> 32 47</a>
             <a
               href="https://www.bpifrance.fr/contactez-nous"
               target="_blank"
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 bpifrance.fr/contactez-nous
+              <span aria-hidden>🌐</span> bpifrance.fr/contactez-nous
             </a>
           </div>
         </div>
@@ -177,14 +182,14 @@ export default function BlocGarantieBPI() {
           <p className="font-display text-base text-navy">Médiation du crédit BdF</p>
           <p className="mt-1 text-xs text-navy/60">Gratuit, confidentiel, taux succès &gt; 60 %</p>
           <div className="mt-3 flex flex-wrap gap-2 text-sm">
-            <a href="tel:3414" className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white">☎ 34 14</a>
+            <a href="tel:3414" className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"><span aria-hidden>☎</span> 34 14</a>
             <a
               href="https://mediateur-credit.banque-france.fr"
               target="_blank"
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 mediateur-credit.banque-france.fr
+              <span aria-hidden>🌐</span> mediateur-credit.banque-france.fr
             </a>
           </div>
         </div>

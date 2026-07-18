@@ -10,8 +10,8 @@
  * arrêté du 17 mars 2020 (couverture des branches par OPCO).
  *
  * 11 OPCO depuis 2019 — pour rappel : AFDAS, AKTO, ATLAS, OPCO 2i,
- * OPCO Construction, OPCO EP, OPCO Mobilités, OPCO Santé, Uniformation,
- * OCAPIAT, OPCO Cohésion sociale.
+ * OPCO Construction, OPCO EP, OPCO Mobilités, OPCO Santé,
+ * Uniformation (OPCO de la Cohésion sociale), OCAPIAT, L'Opcommerce.
  */
 
 export type Opco =
@@ -21,7 +21,7 @@ export type Opco =
   | 'opco-construction'
   | 'opco-mobilites'
   | 'opco-sante'
-  | 'opco-cohesion-sociale'
+  | 'opcommerce'
   | 'uniformation'
   | 'afdas'
   | 'atlas'
@@ -86,21 +86,20 @@ export const OPCO_DATA: Record<Opco, OpcoInfo> = {
     site: 'https://www.opco-sante.fr',
     secteursClefs: 'santé, médico-social, aide à domicile',
   },
-  'opco-cohesion-sociale': {
-    cle: 'opco-cohesion-sociale',
-    nom: 'OPCO Cohésion sociale',
-    description: 'Branche associative, animation, sport, accueil enfants, insertion par l\'économique.',
-    telephone: '01 53 02 13 50',
-    site: 'https://www.opcocohesionsociale.fr',
-    secteursClefs: 'animation, sport, insertion, associations',
+  'opcommerce': {
+    cle: 'opcommerce',
+    nom: "L'Opcommerce",
+    description: 'Commerce de détail et de gros : distribution, habillement, bricolage, optique, jardineries, commerces alimentaires… Finance FNE-Formation et reconversion des salariés du commerce.',
+    site: 'https://www.lopcommerce.com',
+    secteursClefs: 'commerce de détail, commerce de gros, distribution',
   },
   'uniformation': {
     cle: 'uniformation',
-    nom: 'Uniformation',
-    description: 'Économie sociale, habitat social, mutualité, ESS (économie sociale et solidaire), accueil petite enfance.',
+    nom: 'Uniformation — OPCO de la Cohésion sociale',
+    description: "Économie sociale et solidaire, habitat social, mutualité, branche associative, animation, sport, accueil enfants, insertion par l'économique.",
     telephone: '0 805 50 22 24',
     site: 'https://www.uniformation.fr',
-    secteursClefs: 'ESS, mutualité, habitat social',
+    secteursClefs: 'ESS, mutualité, habitat social, animation, sport, insertion, associations',
   },
   'afdas': {
     cle: 'afdas',
@@ -166,9 +165,10 @@ export function getOpcoFromNaf(naf: string): OpcoInfo {
     return OPCO_DATA['opco-mobilites'];
   }
 
-  // Commerce détail (section G hors auto)
+  // Commerce détail et gros (section G hors auto) → L'Opcommerce
+  // (les artisans-commerçants de bouche 1071C etc. sont captés plus haut par OPCO 2i/EP)
   if (/^(46|47)/.test(prefix2)) {
-    return OPCO_DATA['opco-ep']; // approximation : artisanat-proximité
+    return OPCO_DATA['opcommerce'];
   }
 
   // Hôtellerie-restauration (section I)

@@ -96,8 +96,8 @@ const SECTIONS: SectionFAQ[] = [
         reponse:
           "Oui. Vous pouvez demander des délais de paiement directement à l'URSSAF (numéro 3957) ou via la Commission des chefs de services financiers (CCSF) de votre département, qui regroupe tous les créanciers publics (URSSAF, impôts, douanes). La CCSF peut accorder un plan d'échelonnement sur 12 à 36 mois. L'URSSAF peut aussi accorder une remise partielle des majorations de retard (article L243-5 du Code de la sécurité sociale).",
         liens: [
-          { href: '/courriers/urssaf-delai', label: 'Modèle courrier URSSAF' },
-          { href: '/outils/ccsf', label: 'Simulateur CCSF' },
+          { href: '/courriers/echelonnement-urssaf', label: 'Modèle courrier URSSAF' },
+          { href: '/courriers/saisine-ccsf', label: 'Courrier de saisine CCSF' },
         ],
       },
       {
@@ -111,7 +111,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Que couvre la garantie AGS pour mes salariés ?',
         reponse:
-          "L'AGS (Association pour la gestion du régime de Garantie des créances des Salariés) avance les salaires, indemnités de licenciement, préavis et congés payés impayés en cas de procédure collective. Les plafonds sont fixés par décret : le plafond 6 couvre jusqu'à 6 fois le plafond mensuel de la Sécurité sociale (soit environ 24 000 euros en 2024). La demande est faite par le mandataire judiciaire, pas par le dirigeant.",
+          "L'AGS (Association pour la gestion du régime de Garantie des créances des Salariés) avance les salaires, indemnités de licenciement, préavis et congés payés impayés en cas de procédure collective. Les plafonds sont fixés par décret (article D3253-5 du Code du travail) : la garantie maximale (« plafond 6 », contrats de plus de 2 ans) atteint 6 fois le plafond mensuel retenu pour les contributions d'assurance chômage, soit 92 736 euros en 2024. La demande est faite par le mandataire judiciaire, pas par le dirigeant.",
         liens: [
           { href: '/annuaires/ags', label: 'Contacts AGS' },
           { href: '/outils/licenciement', label: 'Calculateur indemnités' },
@@ -134,9 +134,9 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Ma caution personnelle peut-elle être annulée ?',
         reponse:
-          "Une caution personnelle peut être contestée dans plusieurs cas : si elle est disproportionnée par rapport à vos revenus et patrimoine au moment de la signature (article L332-1 du Code de la consommation), si la banque ne vous a pas averti de la défaillance du débiteur principal (obligation d'information annuelle, article L333-2), ou si les conditions de mise en jeu ne sont pas respectées. Un avocat peut analyser votre acte de cautionnement pour identifier des failles.",
+          "Une caution personnelle peut être contestée dans plusieurs cas : si elle est disproportionnée par rapport à vos revenus et patrimoine au moment de la signature (article 2300 du Code civil pour les cautions signées depuis 2022, ancien article L332-1 du Code de la consommation pour les plus anciennes), si la banque n'a pas respecté son obligation d'information annuelle (article 2302 du Code civil), ou si les conditions de mise en jeu ne sont pas respectées. Un avocat peut analyser votre acte de cautionnement pour identifier des failles.",
         liens: [
-          { href: '/outils/caution', label: 'Audit caution en ligne' },
+          { href: '/proteger-famille', label: 'Cautions : vos protections' },
         ],
       },
       {

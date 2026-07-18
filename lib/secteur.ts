@@ -132,7 +132,10 @@ function secteurFromSection(section: string): Secteur {
     K: 'finance',
     L: 'immobilier',
     M: 'liberal',
-    N: 'liberal',
+    // Section N = services administratifs et de soutien (nettoyage, intérim,
+    // sécurité, location…) : activités commerciales de services, pas des
+    // professions libérales.
+    N: 'autre',
     O: 'autre',
     P: 'education',
     Q: 'sante',
@@ -783,18 +786,18 @@ export function getObligationsEffectif(seuils: EffectifSeuils): ObligationSeuil[
         "À partir de 50 salariés, le CSE doit être consulté chaque année sur les orientations stratégiques. En difficulté, il peut exercer un droit d'alerte économique et se faire assister d'un expert-comptable aux frais de l'entreprise.",
     },
     {
+      seuilMin: 50,
+      atteint: n >= 50,
+      titre: 'Index égalité professionnelle',
+      description:
+        "Publication annuelle obligatoire de l'index égalité femmes-hommes dès 50 salariés (article L1142-8 du Code du travail), avant le 1er mars sur le site de l'entreprise.",
+    },
+    {
       seuilMin: 100,
       atteint: n >= 100,
       titre: 'Bilan social annuel',
       description:
         "Obligatoire à partir de 300 salariés mais recommandé dès 100. Agrège indicateurs emploi, rémunération, formation sur 3 ans.",
-    },
-    {
-      seuilMin: 250,
-      atteint: n >= 250,
-      titre: 'Index égalité professionnelle',
-      description:
-        'Publication obligatoire de l\'index égalité F/H. Au-delà de 250 salariés, plusieurs autres obligations sociales et fiscales (CICE, taxe sur les salaires, etc.) s\'appliquent.',
     },
     {
       seuilMin: 300,

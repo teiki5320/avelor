@@ -25,6 +25,12 @@ export type FormeJuridiqueDetail = 'micro' | 'ei' | 'eirl' | 'societe';
  * - eirl : entrepreneur individuel à responsabilité limitée (patrimoine affecté, statut éteint depuis 2022 mais EIRL existants conservent leur statut)
  * - ei : entrepreneur individuel classique (statut unifié depuis loi du 14 fév. 2022 — séparation patrimoine pro/perso de droit)
  * - societe : SARL, SAS, SA, SCI, SNC… (personne morale, responsabilité limitée par défaut)
+ *
+ * Limite : l'INSEE renvoie « Entrepreneur individuel » (cat. juridique 1000)
+ * pour TOUS les EI, micro-entrepreneurs compris — le régime micro n'est pas
+ * dans Sirene. La branche 'micro' n'est donc atteinte que si la source de
+ * données le précise explicitement ; les contenus destinés aux 'ei' doivent
+ * rester valables pour un micro-entrepreneur.
  */
 export function getFormeDetail(forme: string): FormeJuridiqueDetail {
   const f = (forme || '').toLowerCase();
@@ -38,11 +44,28 @@ export function getFormeDetail(forme: string): FormeJuridiqueDetail {
  * Détermine la juridiction compétente en cas de procédure collective.
  *
  * Depuis la loi du 22 décembre 2021 :
- * - Tribunal de commerce (TC) : commerçants et sociétés commerciales (par défaut)
- * - Tribunal judiciaire (TJ) : professions libérales (NAF 69-74),
- *   agriculteurs (NAF 01-03) et artisans non commerçants.
+ * - Tribunal de commerce (TC) : commerçants et artisans — dont toutes les
+ *   sociétés commerciales par la forme (art. L210-1 C. com. : SARL, SAS, SA,
+ *   SNC, commandites), quel que soit leur code NAF. Les SEL, commerciales
+ *   par la forme malgré leur objet civil, relèvent aussi du TC.
+ * - Tribunal judiciaire (TJ) : les autres débiteurs — professions libérales
+ *   en nom propre, agriculteurs, sociétés civiles, associations.
  */
 export function getJuridiction(company: CompanyData): 'TC' | 'TJ' {
+  const forme = (company.formeJuridique || '').toLowerCase();
+
+  // 1. Formes civiles et agricoles → TJ (à tester avant les formes commerciales :
+  //    « exploitation agricole à responsabilité limitée » contient « responsabilité limitée »)
+  if (/(soci[ée]t[ée] civile|\bsci\b|\bscp\b|\bscm\b|exploitation agricole|\bgaec\b|\bearl\b|\bscea\b|association|fondation|syndicat|copropri)/.test(forme)) {
+    return 'TJ';
+  }
+
+  // 2. Sociétés commerciales par la forme → TC quel que soit le NAF
+  if (/(\bsarl\b|\beurl\b|\bsas\b|\bsasu\b|\bsnc\b|responsabilit[ée] limit[ée]e|par actions|anonyme|nom collectif|commandite|exercice lib[ée]ral|coop[ée]rative de commer[çc]ants)/.test(forme)) {
+    return 'TC';
+  }
+
+  // 3. Entrepreneurs individuels : on distingue selon l'activité (NAF)
   const naf = company.naf?.replace(/\./g, '').toUpperCase() ?? '';
   // Libéraux (section M, codes 69-74 : juridique, comptable, conseil, archi, R&D, pub, autres)
   if (/^(69|70|71|72|73|74)/.test(naf)) return 'TJ';
@@ -50,7 +73,7 @@ export function getJuridiction(company: CompanyData): 'TC' | 'TJ' {
   if (/^(01|02|03)/.test(naf)) return 'TJ';
   // Activités de santé humaine (section Q, codes 86-88 : médecins, infirmiers…)
   if (/^(86|87|88)/.test(naf)) return 'TJ';
-  // Tous les autres → tribunal de commerce
+  // Tous les autres (commerçants, artisans) → tribunal de commerce
   return 'TC';
 }
 
@@ -85,8 +108,6 @@ export function computeScores(r: Reponses, c: CompanyData): Record<Axe, number> 
   if (r.situation === 'prevention') scores.sauvegarder += 1;
   if (r.effectif === 'salaries') scores.sauvegarder += 1;
   if (r.vente === 'non') scores.sauvegarder += 1;
-  // La sauvegarde fait perdre la garantie d'État du PGE — pénalise légèrement
-  if (r.pgeEnCours === 'oui') scores.sauvegarder -= 1;
 
   if (r.vente === 'oui') scores.ceder += 4;
   if (r.vente === 'peut-etre') scores.ceder += 2;
@@ -119,13 +140,15 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
   const juridictionLabel = getJuridictionLabel(c, ville);
 
   switch (axe) {
-    case 'restructurer':
+    case 'restructurer': {
+      const enCessation = r.situation === 'redressement' || r.situation === 'assignation';
       return {
         axe,
         score,
         titre: 'Restructurer en interne',
-        verdict:
-          "Votre situation est encore récupérable sans procédure publique. La stratégie : négocier des délais, couper les coûts non vitaux, et sécuriser la trésorerie à 6 mois.",
+        verdict: enCessation
+          ? "Vous êtes probablement déjà en cessation des paiements : la restructuration reste possible, mais elle passera par le cadre judiciaire (redressement avec plan de continuation) plutôt que par la seule voie amiable. La stratégie : préparer un plan crédible, couper les coûts non vitaux, et sécuriser la trésorerie à 6 mois."
+          : "Votre situation est encore récupérable sans procédure publique. La stratégie : négocier des délais, couper les coûts non vitaux, et sécuriser la trésorerie à 6 mois.",
         pourquoi: [
           r.situation === 'prevention' || r.situation === 'tresorie'
             ? "Vous n'êtes pas (ou pas depuis plus de 45 j) en cessation des paiements — les outils amiables restent accessibles."
@@ -144,11 +167,17 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
           'Audit des coûts fixes — éliminer le non-essentiel',
           'RDV CCI / CIP pour un diagnostic externe gratuit',
         ],
-        alternatives: [
-          'Si les négociations échouent : bascule en mandat ad hoc ou conciliation',
-          'Si la situation se dégrade rapidement : sauvegarde judiciaire',
-        ],
+        alternatives: enCessation
+          ? [
+              "Si un accord global avec les créanciers est encore possible : conciliation (cessation < 45 j)",
+              'Si le redressement échoue : plan de cession ou liquidation',
+            ]
+          : [
+              'Si les négociations échouent : bascule en mandat ad hoc ou conciliation',
+              'Si la situation se dégrade rapidement : sauvegarde judiciaire',
+            ],
       };
+    }
 
     case 'sauvegarder':
       return {
@@ -246,7 +275,7 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
       const labelForme =
         forme === 'micro' ? 'micro-entrepreneur'
         : forme === 'eirl' ? 'EIRL (statut figé depuis 2022 mais procédure ouverte)'
-        : forme === 'ei' ? 'entrepreneur individuel'
+        : forme === 'ei' ? 'entrepreneur individuel (micro-entreprise comprise)'
         : 'entrepreneur';
       const pourquoi = [
         'La procédure est rapide (4 mois) et allégée.',
@@ -273,7 +302,9 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
         alternatives: [
           'Si actifs > 15 000 € : liquidation judiciaire simplifiée',
           'Si salariés : redressement classique',
-          forme === 'micro' ? 'Micro : radiation simple si CA nul depuis 2 ans (formulaire P2-P4 unifié)' : 'EI société personne morale : pas d\'option, la procédure collective s\'impose',
+          forme === 'micro' || forme === 'ei'
+            ? 'Si vous êtes au régime micro : radiation simple possible si CA nul depuis 2 ans (guichet unique formalites.entreprises.gouv.fr)'
+            : 'Société personne morale : pas d\'option, la procédure collective s\'impose',
         ],
       };
     }

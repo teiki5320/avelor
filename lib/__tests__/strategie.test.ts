@@ -137,7 +137,7 @@ describe('computeScores', () => {
     expect(avecPge.restructurer).toBeGreaterThan(sansPge.restructurer);
   });
 
-  it('PGE en cours pénalise légèrement sauvegarder (perte garantie État)', () => {
+  it('PGE en cours ne pénalise pas sauvegarder (la procédure déclenche la garantie, elle ne la fait pas perdre)', () => {
     const sansPge = computeScores(
       makeReponses({ situation: 'tresorie', moral: 'combatif' }),
       makeCompany(),
@@ -146,7 +146,7 @@ describe('computeScores', () => {
       makeReponses({ situation: 'tresorie', moral: 'combatif', pgeEnCours: 'oui' }),
       makeCompany(),
     );
-    expect(avecPge.sauvegarder).toBeLessThan(sansPge.sauvegarder);
+    expect(avecPge.sauvegarder).toBe(sansPge.sauvegarder);
   });
 
   it('antécédents = oui augmente liquider', () => {
