@@ -30,7 +30,7 @@ const OUTILS: Outil[] = [
     icone: '📄',
     titre: 'Indemnité de licenciement économique',
     description:
-      "Calcul selon ancienneté et salaire brut. Plafond AGS 2025 : 92 736 €.",
+      "Calcul selon ancienneté et salaire brut. Plafond AGS 2024 : 92 736 €.",
     source: 'C. trav. L1234-9, ags-garantie-salaires.org',
   },
   {

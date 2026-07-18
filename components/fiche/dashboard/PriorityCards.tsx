@@ -109,7 +109,7 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>Prévisionnel 6 mois avec votre expert-comptable (2-4 h)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>Médiation du crédit</strong> — Banque de France, gratuit, réponse sous 5 j (0810 00 12 10)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>Médiation du crédit</strong> — Banque de France, gratuit, réponse sous 5 j (34 14)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Moratoire URSSAF (3957) / SIE (téléprocédure) / bailleur (LRAR)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>CCSF si dettes fiscales ET sociales (guichet unique, CERFA 15772*02)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Affacturage / escompte pour accélérer les encaissements</li>

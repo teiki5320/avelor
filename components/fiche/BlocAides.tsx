@@ -55,7 +55,7 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
     specifiques.push({
       nom: `Médiation du crédit${dep ? ` · Banque de France (${dep})` : ''}`,
       description: 'Gratuit et confidentiel. Le médiateur contacte votre banque et négocie pour vous. Taux de succès élevé.',
-      telephone: '0810 00 12 10',
+      telephone: '34 14',
       site: 'https://mediateur-credit.banque-france.fr',
       badge: 'Prioritaire pour vous',
     });
@@ -298,7 +298,7 @@ export default function BlocAides() {
                           href={`tel:${a.telephone.replace(/\s/g, '')}`}
                           className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
                         >
-                          ☎ {a.telephone}
+                          <span aria-hidden>☎</span> {a.telephone}
                         </a>
                       )}
                       {a.site && (
@@ -308,7 +308,7 @@ export default function BlocAides() {
                           rel="noreferrer"
                           className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
                         >
-                          🌐 {(() => { try { return new URL(a.site).hostname.replace('www.', ''); } catch { return a.nom; } })()}
+                          <span aria-hidden>🌐</span> {(() => { try { return new URL(a.site).hostname.replace('www.', ''); } catch { return a.nom; } })()}
                         </a>
                       )}
                     </div>

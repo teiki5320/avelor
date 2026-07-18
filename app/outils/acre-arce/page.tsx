@@ -322,7 +322,7 @@ export default function AcreArcePage() {
       <p className="mt-6 text-xs text-navy/50">
         Sources : Code de la Sécurité sociale art. L131-6-4 ; décret
         n°2019-1215 (ACRE) ; Code du travail art. R5141-2 (ARCE) ;
-        urssaf.fr et francetravail.fr. PASS 2025 : 47 100 €.
+        urssaf.fr et francetravail.fr. PASS 2025 : 47 100 € (dernier vérifié).
       </p>
     </section>
   );

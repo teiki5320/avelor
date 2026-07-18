@@ -212,7 +212,7 @@ export function buildOrganismes(
     fin.push({
       nom: dep.banqueDeFrance.nom,
       type: 'Médiation du crédit',
-      telephone: dep.banqueDeFrance.telephone ?? '0810 00 12 10',
+      telephone: dep.banqueDeFrance.telephone ?? '34 14',
       site: 'https://mediateur-credit.banque-france.fr',
       badge: 'Gratuit · confidentiel',
     });

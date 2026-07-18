@@ -20,7 +20,7 @@ const LINKS: QuickLink[] = [
     href: '/outils',
     icone: '🧮',
     titre: 'Calculateurs',
-    sousTitre: '9 outils officiels',
+    sousTitre: '11 outils officiels',
     couleur: 'vert',
   },
   {
@@ -34,7 +34,7 @@ const LINKS: QuickLink[] = [
     href: '/glossaire',
     icone: '📖',
     titre: 'Glossaire',
-    sousTitre: '19 termes juridiques',
+    sousTitre: '38 termes juridiques',
     couleur: 'navy',
   },
 ];
