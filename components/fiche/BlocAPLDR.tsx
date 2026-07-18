@@ -144,7 +144,7 @@ export default function BlocAPLDR() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 Trouver ma DREETS
+              <span aria-hidden>🌐</span> Trouver ma DREETS
             </a>
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function BlocAPLDR() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 activitepartielle.emploi.gouv.fr
+              <span aria-hidden>🌐</span> activitepartielle.emploi.gouv.fr
             </a>
           </div>
         </div>

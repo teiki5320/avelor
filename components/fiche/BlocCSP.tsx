@@ -164,7 +164,7 @@ export default function BlocCSP() {
             href="tel:3995"
             className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
           >
-            ☎ 39 95
+            <span aria-hidden>☎</span> 39 95
           </a>
           <a
             href="https://www.francetravail.fr/employeur"
@@ -172,7 +172,7 @@ export default function BlocCSP() {
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
           >
-            🌐 francetravail.fr/employeur
+            <span aria-hidden>🌐</span> francetravail.fr/employeur
           </a>
           <a
             href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F31432"
@@ -180,7 +180,7 @@ export default function BlocCSP() {
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
           >
-            🌐 Fiche service-public
+            <span aria-hidden>🌐</span> Fiche service-public
           </a>
         </div>
       </div>

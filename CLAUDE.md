@@ -9,7 +9,7 @@ Le dirigeant entre son SIRET, répond à un questionnaire, et reçoit une fiche 
 npm run dev      # Serveur local (port 3000)
 npm run build    # Build de production
 npm run lint     # ESLint (config: next/core-web-vitals)
-npm test         # Vitest (222 tests dans lib/__tests__/, components/__tests__/, app/api/__tests__/)
+npm test         # Vitest (245 tests dans lib/__tests__/, components/__tests__/, app/api/__tests__/)
 npm run test:e2e # Playwright (parcours utilisateur)
 ```
 
@@ -17,7 +17,7 @@ Déploiement automatique sur Vercel depuis la branche `main` → https://avelor.
 
 ## Stack
 
-- **Framework** : Next.js 14.2.35 App Router, TypeScript, React 18
+- **Framework** : Next.js 15.5.20 App Router, TypeScript, React 19
 - **CSS** : Tailwind 3.4 (JIT) + classes custom (voir `tailwind.config.js`)
 - **Animations** : Framer Motion 11 (avec `LazyMotion` pour réduire le bundle)
 - **UI** : Glass morphism (backdrop-blur, ombres glass), polices Playfair Display + Outfit
@@ -25,7 +25,7 @@ Déploiement automatique sur Vercel depuis la branche `main` → https://avelor.
 - **Email** : Resend (magic link pour retrouver sa fiche + rappels cron quotidiens)
 - **APIs externes** : INSEE Sirene (gouv.fr + INSEE fallback), BODACC, Google Places (avocats locaux), Infogreffe (signaux)
 - **Validation** : Zod (schémas dans `lib/schemas.ts`)
-- **Tests** : Vitest (222 tests, 19 fichiers) + Playwright (E2E)
+- **Tests** : Vitest (245 tests, 21 fichiers) + Playwright (E2E)
 - **CI** : GitHub Actions (lint → build → test)
 - **Rate limiting** : middleware in-memory (à passer Upstash en prod)
 - **PWA** : manifest.json + icônes 512/192/favicon
@@ -43,8 +43,8 @@ app/
   questionnaire/              # 18 étapes (8 base + 10 optionnelles dont nationalite)
   fiche/[token]/              # Fiche personnalisée (dashboard, SSR)
   situation/[slug]/           # 4 pages informatives par situation
-  courriers/[slug]/           # 12 modèles de courriers personnalisés
-  outils/                     # 9 calculateurs (ATI, licenciement, prescription, AGS, etc.)
+  courriers/[slug]/           # 17 modèles de courriers personnalisés
+  outils/                     # 11 calculateurs (ATI, licenciement, prescription, AGS, stocks, seuils, etc.)
   annuaires/                  # 4 annuaires (mandataires, CIP, AGS, TAE)
   accompagnant/               # Parcours « j'accompagne un proche » + bandeau urgence + code postal
   faq/                        # FAQ avec JSON-LD FAQPage
@@ -77,7 +77,7 @@ lib/
   types.ts                    # Types partagés (Reponses, CompanyData, Rappel, etc.)
   strategie.ts                # Moteur stratégie (5 axes) + getJuridiction() (TJ vs TC) + getFormeDetail() (micro/ei/eirl/societe)
   priorites.ts                # Scoring 13 cartes prioritaires (top 4 sélectionnées)
-  courriers.ts                # 12 courriers, personnalisation tone/situation
+  courriers.ts                # 17 courriers, personnalisation tone/situation
   secteur.ts                  # 15 secteurs (BTP, agri, HCR, santé, libéral, pêche…) + caisses retraite + ordres + CSP
   aidesRegionales.ts          # Aides régionales (13 régions + DOM)
   bodacc.ts                   # Détection incohérences BODACC vs situation
@@ -91,7 +91,7 @@ lib/
   schemas.ts                  # Schémas Zod pour validation API
   hooks.ts                    # useLocalStorage
   FicheContext.tsx            # React Context pour la fiche (utilisé par 18 blocs)
-  __tests__/                  # 222 tests Vitest (lib + components + API routes)
+  __tests__/                  # 245 tests Vitest (lib + components + API routes)
   opco.ts                     # Mapping NAF → OPCO (11 OPCO de la branche)
 
 data/
@@ -111,6 +111,7 @@ vercel.json                   # Cron rappels quotidiens 7h
 | `rouge`     | `#C94040` | Axe rebondir, alertes      |
 | `jaune`     | `#C97830` | Axe céder, warnings        |
 | `vert`      | `#28A050` | Axe sauvegarder, succès    |
+| `vert-fonce`| `#166E34` | Boutons verts à texte blanc (AA) |
 
 ## Conventions
 
@@ -143,7 +144,7 @@ vercel.json                   # Cron rappels quotidiens 7h
 - **107 territoires** couverts (96 départements + 11 DOM-TOM) — **8 datasets enrichis** avec adresses + téléphones réels (DDFiP, Barreaux, Chambres notaires, Chambres agriculture, URSSAF, Tribunaux commerce, CCI, CMA)
 - **3 thèmes** : clair (défaut) · sombre · contraste élevé (RGAA AAA) — bascule dans la Nav, persistance localStorage
 - **15 secteurs** enrichis (incluant finance, IT, éducation, immobilier) + mapping 11 OPCO par NAF
-- **222 tests Vitest** + Playwright E2E configuré
+- **245 tests Vitest** + Playwright E2E configuré
 - **11 calculateurs officiels** (ajout : valorisation stocks, seuils d'effectif)
 - **18 questions** au questionnaire
 

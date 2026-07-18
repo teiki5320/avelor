@@ -191,6 +191,19 @@ export default function Questionnaire({ siret }: Props) {
 
   const progress = useMemo(() => ((step + 1) / TOTAL_SLIDES) * 100, [step]);
 
+  // Accessibilité clavier/lecteur d'écran : au changement d'étape, replacer le
+  // focus sur le titre de la question (sinon le focus reste sur le bouton
+  // cliqué, désormais démonté, et le lecteur d'écran n'annonce rien).
+  const titreRef = useRef<HTMLHeadingElement>(null);
+  const premierRendu = useRef(true);
+  useEffect(() => {
+    if (premierRendu.current) {
+      premierRendu.current = false;
+      return;
+    }
+    titreRef.current?.focus();
+  }, [step]);
+
   function select(key: keyof Reponses, value: string, detail?: string) {
     // Bloque toute action si une transition est en cours (anti double-clic /
     // tap accidentel) ou si on est déjà en soumission.
@@ -393,6 +406,9 @@ export default function Questionnaire({ siret }: Props) {
           </button>
         </div>
       )}
+      <p className="sr-only" aria-live="polite">
+        Étape {step + 1} sur {TOTAL_SLIDES} : {current.title}
+      </p>
       <div className="mb-8">
         <div className="mb-2 flex items-center justify-between text-xs text-navy/50">
           <span>Étape {step + 1} sur {TOTAL_SLIDES}</span>
@@ -417,7 +433,12 @@ export default function Questionnaire({ siret }: Props) {
           transition={{ duration: 0.35, ease: 'easeOut' }}
           className="glass card-top-line p-6 sm:p-10"
         >
-          <h2 id={`question-${current.key}`} className="font-display text-2xl text-navy sm:text-3xl">
+          <h2
+            id={`question-${current.key}`}
+            ref={titreRef}
+            tabIndex={-1}
+            className="font-display text-2xl text-navy outline-none sm:text-3xl"
+          >
             {current.title}
           </h2>
           <p className="mt-2 text-sm text-navy/60">{current.subtitle}</p>

@@ -172,7 +172,7 @@ export default function BlocNationaliteSejour() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 lacimade.org/permanences
+              <span aria-hidden>🌐</span> lacimade.org/permanences
             </a>
           </div>
         </div>
@@ -186,7 +186,7 @@ export default function BlocNationaliteSejour() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 ofii.fr/aide-au-retour
+              <span aria-hidden>🌐</span> ofii.fr/aide-au-retour
             </a>
           </div>
         </div>
@@ -200,7 +200,7 @@ export default function BlocNationaliteSejour() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 ANEF
+              <span aria-hidden>🌐</span> ANEF
             </a>
           </div>
         </div>
@@ -214,7 +214,7 @@ export default function BlocNationaliteSejour() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 gisti.org
+              <span aria-hidden>🌐</span> gisti.org
             </a>
             <a
               href="https://www.adde.fr"
@@ -222,7 +222,7 @@ export default function BlocNationaliteSejour() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 adde.fr
+              <span aria-hidden>🌐</span> adde.fr
             </a>
           </div>
         </div>

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Theme = 'clair' | 'sombre' | 'contraste';
 
@@ -29,12 +29,18 @@ function applyTheme(theme: Theme) {
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>('clair');
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let initial: Theme = 'clair';
     try {
       const saved = localStorage.getItem(STORAGE_KEY) as Theme | null;
-      if (saved && THEMES.some((t) => t.value === saved)) setTheme(saved);
+      if (saved && THEMES.some((t) => t.value === saved)) initial = saved;
     } catch {}
+    setTheme(initial);
+    // Synchronise aussi la meta theme-color : le script inline du layout ne
+    // pose que l'attribut data-theme, pas la couleur de barre mobile.
+    applyTheme(initial);
   }, []);
 
   // Fermeture au clavier (Escape) tant que le menu est ouvert.
@@ -46,6 +52,32 @@ export default function ThemeToggle() {
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
+
+  // Pattern ARIA menu : à l'ouverture, focus sur l'option cochée.
+  useEffect(() => {
+    if (!open) return;
+    const items = menuRef.current?.querySelectorAll<HTMLButtonElement>('[role="menuitemradio"]');
+    if (!items?.length) return;
+    const checked = Array.from(items).find((b) => b.getAttribute('aria-checked') === 'true');
+    (checked ?? items[0]).focus();
+  }, [open]);
+
+  // Le rôle menuitemradio annonce « utilisez les flèches » aux lecteurs
+  // d'écran — on câble donc réellement ArrowUp/ArrowDown/Home/End.
+  function onMenuKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(e.key)) return;
+    e.preventDefault();
+    const items = Array.from(
+      menuRef.current?.querySelectorAll<HTMLButtonElement>('[role="menuitemradio"]') ?? [],
+    );
+    if (!items.length) return;
+    const i = items.indexOf(document.activeElement as HTMLButtonElement);
+    let next = 0;
+    if (e.key === 'ArrowDown') next = (i + 1) % items.length;
+    else if (e.key === 'ArrowUp') next = (i - 1 + items.length) % items.length;
+    else if (e.key === 'End') next = items.length - 1;
+    items[next].focus();
+  }
 
   function choose(t: Theme) {
     setTheme(t);
@@ -84,8 +116,10 @@ export default function ThemeToggle() {
             className="fixed inset-0 z-40 cursor-pointer bg-navy/[0.02]"
           />
           <div
+            ref={menuRef}
             role="menu"
             aria-label="Choix du thème"
+            onKeyDown={onMenuKeyDown}
             className="absolute right-0 z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-navy/10 bg-white/95 p-1 shadow-glass backdrop-blur-xl"
           >
             {THEMES.map((t) => (

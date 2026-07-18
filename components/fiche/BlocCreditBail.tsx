@@ -199,7 +199,7 @@ export default function BlocCreditBail() {
             href="tel:0153815151"
             className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
           >
-            ☎ 01 53 81 51 51
+            <span aria-hidden>☎</span> 01 53 81 51 51
           </a>
           <a
             href="https://www.asf-france.com"
@@ -207,7 +207,7 @@ export default function BlocCreditBail() {
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
           >
-            🌐 asf-france.com
+            <span aria-hidden>🌐</span> asf-france.com
           </a>
         </div>
       </div>

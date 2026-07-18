@@ -1,7 +1,7 @@
 # 🗺️ Avelor — Roadmap
 
-> Dernière mise à jour : **2026-05-28**
-> Statut global : **production · couverture ~94%**
+> Dernière mise à jour : **2026-07-18**
+> Statut global : **production · couverture ~94% · 44 findings de l'audit du 30/05 corrigés**
 
 ## 🎯 Vision
 
@@ -13,8 +13,8 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 #### Infrastructure & qualité
 - [x] Plateforme en ligne sur avelor.vercel.app, déployée en continu via Vercel et la branche main
-- [x] Stack stable : Next.js 14.2.35 + React 18 + framer-motion 11 (LazyMotion)
-- [x] 222 tests Vitest verts (lib + composants React + routes API) + Playwright E2E configuré
+- [x] Stack stable : Next.js 15.5.20 + React 19 + framer-motion 11 (LazyMotion) — 0 vulnérabilité npm audit
+- [x] 245 tests Vitest verts (lib + composants React + routes API) + Playwright E2E configuré
 - [x] GitHub Actions CI : lint → build → test
 - [x] ESLint configuré (next/core-web-vitals)
 - [x] Validation Zod sur toutes les routes API (fiche, send-link, rappels)
@@ -35,15 +35,15 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 #### Questionnaire & fiche
 - [x] Questionnaire en 17 étapes (8 base + 9 optionnelles : montant dettes, âge, franchise, antécédents, **PGE en cours, RQTH, statut conjoint, co-gérants, saisonnalité**)
 - [x] **Moteur stratégie** distingue micro / EI / EIRL / société (`getFormeDetail`) — PRP priorisé pour les personnes physiques uniquement
-- [x] **Scoring stratégie enrichi** : PGE en cours favorise restructuration amiable et pénalise sauvegarde (perte garantie État) ; antécédents BODACC poussent vers liquidation / rebond accompagné
+- [x] **Scoring stratégie enrichi** : PGE en cours favorise restructuration amiable (la procédure collective déclenche l'appel de la garantie d'État, elle ne la fait pas perdre) ; antécédents BODACC poussent vers liquidation / rebond accompagné
 - [x] **Mode « perdu » radical** (`ModePerdu`) : 3 infos max si moral === 'perdu' (qui appeler / 1 action semaine / soutien APESA-3114). Bouton « Voir tout » pour ouvrir la fiche complète.
 - [x] Fiche personnalisée organisée en dashboard avec 4 cartes prioritaires adaptatives (parmi 10) et 6 sections thématiques
 - [x] Croisement avec les annonces BODACC pour détecter les incohérences
 - [x] Stratégie sur 5 axes (restructurer, sauvegarder, céder, liquider, rebondir) avec scoring
 - [x] Ton du site et des courriers adapté au moral déclaré (combatif, épuisé, perdu)
 - [x] État de santé sectoriel mis en avant pour les secteurs en crise (HCR, BTP, agriculture)
-- [x] 12 modèles de courriers contextualisés
-- [x] 9 calculateurs (prescription, licenciement+AGS, ATI, coût procédures, aide juridictionnelle, ACRE/ARCE, calendrier fiscal, data-room, valorisation)
+- [x] 17 modèles de courriers contextualisés
+- [x] 11 calculateurs (prescription, licenciement+AGS, ATI, coût procédures, aide juridictionnelle, ACRE/ARCE, calendrier fiscal, data-room, valorisation, stocks, seuils d'effectif)
 - [x] Page FAQ (18 questions), page Témoignages (4 cas anonymisés)
 
 #### Blocs fiche (28 au total)
@@ -111,58 +111,60 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 ## 🔎 AUDIT COMPLET du 30/05/2026 — findings à corriger
 
-> Audit orchestré (7 auditeurs de code + 12 simulations Playwright réelles + vérification adversariale, 85 agents). **Verdict : le parcours va au bout dans les 12 cas, aucun blocage.** Le problème est la fiabilité du contenu juridique. 44 findings confirmés avec preuve. **Rien n'est encore corrigé.**
+> Audit orchestré (7 auditeurs de code + 12 simulations Playwright réelles + vérification adversariale, 85 agents). **Verdict : le parcours va au bout dans les 12 cas, aucun blocage.** Le problème est la fiabilité du contenu juridique. 44 findings confirmés avec preuve.
+>
+> ✅ **Correction complète le 18/07/2026** : les 44 findings ci-dessous sont corrigés (lint + build + 245 tests Vitest + E2E chromium verts, npm audit à 0 vulnérabilité). Migration Next 15.5.20 + React 19 incluse.
 
 ### 🔴 ERREURS — Contenu juridique FAUX (priorité absolue, oriente de mauvaises décisions)
-- [ ] **Contresens PGE / garantie BPI** : « ouvrir une procédure fait perdre la garantie de l'État » = FAUX (c'est l'inverse, la procédure déclenche l'appel de la garantie). `lib/strategie.ts:88` (+ `scores.sauvegarder -= 1` à supprimer), `BlocPGE.tsx:120`, `BlocGarantieBPI.tsx:82`
-- [ ] **Mauvais tribunal** : `getJuridiction` ignore la forme juridique → SARL/SAS de conseil (NAF 70) envoyée au TJ au lieu du TC. `lib/strategie.ts:45` — tester la forme d'abord (sociétés commerciales = TC)
-- [ ] **Axe « Restructurer » recommandé en cessation** avec verdict qui nie la cessation. `lib/strategie.ts:127` — adapter le verdict selon `situation`
-- [ ] **AGS : plafond faux 24 000 € au lieu de 92 736 €** dans la FAQ. `app/faq/page.tsx:114`
-- [ ] **Index égalité F/H placé à 250 salariés** (obligatoire dès 50) + **CICE cité comme actif** (supprimé 2019). `lib/secteur.ts:792`
-- [ ] **OPCO : doublon Uniformation = OPCO Cohésion sociale** (même organisme) + **Opcommerce manquant** ; commerce mal rattaché. `lib/opco.ts:89`
-- [ ] **Section NAF N** (nettoyage, intérim, sécurité, services admin) classée « Professions libérales ». `lib/secteur.ts:135`
-- [ ] **CCSF : source légale erronée** (L611-7 = conciliation, pas la CCSF). `BlocCCSF.tsx:147`
-- [ ] **Cautionnement : art. L341-4 / L341-6 C. conso abrogés** (→ 2300 / 2303 C. civ.). `BlocGarantieBPI.tsx:90`
-- [ ] **Prescription : délai TVA annoncé à 4 ans au lieu de 3** (confusion reprise/recouvrement). `BlocPrescription.tsx:30`
-- [ ] **CIRI/CODEFI : bascule à 250 salariés mais textes disent 400.** `BlocAidesEtat.tsx:76`
-- [ ] **Carte « audience » : tribunal de commerce codé en dur**, contredit `getJuridiction`. `lib/priorites.ts:76`
-- [ ] **Plafonds AGS étiquetés « 2025 » mais valeurs 2024.** `BlocArretLongueDuree.tsx:80`
-- [ ] **Carte « bail » promet « 7 dispositifs », le bloc n'en liste que 6.** `lib/priorites.ts:181`
+- [x] **Contresens PGE / garantie BPI** : « ouvrir une procédure fait perdre la garantie de l'État » = FAUX (c'est l'inverse, la procédure déclenche l'appel de la garantie). `lib/strategie.ts:88` (+ `scores.sauvegarder -= 1` à supprimer), `BlocPGE.tsx:120`, `BlocGarantieBPI.tsx:82`
+- [x] **Mauvais tribunal** : `getJuridiction` ignore la forme juridique → SARL/SAS de conseil (NAF 70) envoyée au TJ au lieu du TC. `lib/strategie.ts:45` — tester la forme d'abord (sociétés commerciales = TC)
+- [x] **Axe « Restructurer » recommandé en cessation** avec verdict qui nie la cessation. `lib/strategie.ts:127` — adapter le verdict selon `situation`
+- [x] **AGS : plafond faux 24 000 € au lieu de 92 736 €** dans la FAQ. `app/faq/page.tsx:114`
+- [x] **Index égalité F/H placé à 250 salariés** (obligatoire dès 50) + **CICE cité comme actif** (supprimé 2019). `lib/secteur.ts:792`
+- [x] **OPCO : doublon Uniformation = OPCO Cohésion sociale** (même organisme) + **Opcommerce manquant** ; commerce mal rattaché. `lib/opco.ts:89`
+- [x] **Section NAF N** (nettoyage, intérim, sécurité, services admin) classée « Professions libérales ». `lib/secteur.ts:135`
+- [x] **CCSF : source légale erronée** (L611-7 = conciliation, pas la CCSF). `BlocCCSF.tsx:147`
+- [x] **Cautionnement : art. L341-4 / L341-6 C. conso abrogés** (→ 2300 / 2303 C. civ.). `BlocGarantieBPI.tsx:90`
+- [x] **Prescription : délai TVA annoncé à 4 ans au lieu de 3** (confusion reprise/recouvrement). `BlocPrescription.tsx:30`
+- [x] **CIRI/CODEFI : bascule à 250 salariés mais textes disent 400.** `BlocAidesEtat.tsx:76`
+- [x] **Carte « audience » : tribunal de commerce codé en dur**, contredit `getJuridiction`. `lib/priorites.ts:76`
+- [x] **Plafonds AGS étiquetés « 2025 » mais valeurs 2024.** `BlocArretLongueDuree.tsx:80`
+- [x] **Carte « bail » promet « 7 dispositifs », le bloc n'en liste que 6.** `lib/priorites.ts:181`
 
 ### 🔴 ERREURS — Sécurité
-- [ ] **`/api/fiche/send-link` = relais d'email ouvert** : aucune vérif d'existence/propriété de la fiche → mails « Votre fiche Avelor » vers victime arbitraire + injection. `send-link/route.ts:22`
-- [ ] **`/api/fiche/rappels` = phishing** : email/libellé arbitraires poussés dans les rappels cron → mails HTML contrôlés depuis le domaine Avelor. `rappels/route.ts:39`
-- [ ] **next@14.2.35 : 9 vulnérabilités (6 high)** dont SSRF (CVSS 8.6) + DoS Server Components. `package.json:19`
+- [x] **`/api/fiche/send-link` = relais d'email ouvert** : aucune vérif d'existence/propriété de la fiche → mails « Votre fiche Avelor » vers victime arbitraire + injection. `send-link/route.ts:22`
+- [x] **`/api/fiche/rappels` = phishing** : email/libellé arbitraires poussés dans les rappels cron → mails HTML contrôlés depuis le domaine Avelor. `rappels/route.ts:39`
+- [x] **next@14.2.35 : 9 vulnérabilités (6 high)** dont SSRF (CVSS 8.6) + DoS Server Components. `package.json:19`
 
 ### 🟠 ERREURS — Bugs techniques
-- [ ] **Fuite de données entre fiches** : clés localStorage non préfixées par token (`avelor_plan_action`, `avelor_tresorerie`, `avelor_audit_caution`) → 2e SIRET voit les données du 1er. `BlocPlanAction.tsx:78` + 2 autres
-- [ ] **Hydration mismatch** : `ProgressTracker` lit localStorage dans l'init `useState`. `ProgressTracker.tsx:42`
-- [ ] **`BlocRappels` ne resync pas la date de cessation** saisie dans le même onglet. `BlocRappels.tsx:39`
+- [x] **Fuite de données entre fiches** : clés localStorage non préfixées par token (`avelor_plan_action`, `avelor_tresorerie`, `avelor_audit_caution`) → 2e SIRET voit les données du 1er. `BlocPlanAction.tsx:78` + 2 autres
+- [x] **Hydration mismatch** : `ProgressTracker` lit localStorage dans l'init `useState`. `ProgressTracker.tsx:42`
+- [x] **`BlocRappels` ne resync pas la date de cessation** saisie dans le même onglet. `BlocRappels.tsx:39`
 
 ### 🟠 ERREURS — Thème sombre / accessibilité cassés (confirmé visuellement)
-- [ ] **Carte d'identité illisible en sombre** (`from-white/via-white` non piloté par le thème → fond blanc + texte clair). `IdentiteHero.tsx:19`
-- [ ] **ModePerdu illisible en sombre** (même cause `via-white`). `ModePerdu.tsx:72`
-- [ ] **Contrastes sous AA en clair** : `text-navy/45` (2.97:1), `/50` (3.46:1) sur textes 10-12px. `Nav.tsx:109`, footer, hints
-- [ ] **Bouton d'appel vert** (`bg-vert` + `text-white`) = 3.37:1, sous AA. `ModePerdu.tsx:109`
-- [ ] **Déclaration d'accessibilité inexacte** (affirme « 14px min » et « prefers-reduced-motion » — faux). `accessibilite/page.tsx:41`
+- [x] **Carte d'identité illisible en sombre** (`from-white/via-white` non piloté par le thème → fond blanc + texte clair). `IdentiteHero.tsx:19`
+- [x] **ModePerdu illisible en sombre** (même cause `via-white`). `ModePerdu.tsx:72`
+- [x] **Contrastes sous AA en clair** : `text-navy/45` (2.97:1), `/50` (3.46:1) sur textes 10-12px. `Nav.tsx:109`, footer, hints
+- [x] **Bouton d'appel vert** (`bg-vert` + `text-white`) = 3.37:1, sous AA. `ModePerdu.tsx:109`
+- [x] **Déclaration d'accessibilité inexacte** (affirme « 14px min » et « prefers-reduced-motion » — faux). `accessibilite/page.tsx:41`
 
 ### 🟡 ERREURS — Liens cassés & incohérences visibles
-- [ ] **3 liens internes 404** : `/courriers/urssaf-delai`, `/outils/ccsf`, `/outils/caution`. `app/faq/page.tsx:99,100,139`
-- [ ] **Médiation du crédit : 2 numéros contradictoires** (3414 vs 0810 00 12 10 selon la page). `PriorityCards.tsx:112`
-- [ ] **Compteurs faux** : courriers 12 vs 17, glossaire 18 vs 38, outils 9 vs 11. `courriers/page.tsx:48`, `page.tsx:21`, `QuickLinks.tsx:23`
-- [ ] **Tous les barèmes datés « 2025 » alors qu'on est en 2026.** `outils/licenciement`, etc.
-- [ ] **URLs préfecture malformées** sur 93 départements (`www.10.gouv.fr` n'existe pas → `aube.gouv.fr`). `data/organismes.json`
-- [ ] **Fautes d'élision** : « Ordre des médecins du Ain / du Allier ». `data/organismes.json:82`
-- [ ] **`getFormeDetail` : branche `'micro'` morte** (INSEE renvoie « Entrepreneur individuel »). `lib/strategie.ts:29`
+- [x] **3 liens internes 404** : `/courriers/urssaf-delai`, `/outils/ccsf`, `/outils/caution`. `app/faq/page.tsx:99,100,139`
+- [x] **Médiation du crédit : 2 numéros contradictoires** (3414 vs 0810 00 12 10 selon la page). `PriorityCards.tsx:112`
+- [x] **Compteurs faux** : courriers 12 vs 17, glossaire 18 vs 38, outils 9 vs 11. `courriers/page.tsx:48`, `page.tsx:21`, `QuickLinks.tsx:23`
+- [x] **Tous les barèmes datés « 2025 » alors qu'on est en 2026.** `outils/licenciement`, etc.
+- [x] **URLs préfecture malformées** sur 93 départements (`www.10.gouv.fr` n'existe pas → `aube.gouv.fr`). `data/organismes.json`
+- [x] **Fautes d'élision** : « Ordre des médecins du Ain / du Allier ». `data/organismes.json:82`
+- [x] **`getFormeDetail` : branche `'micro'` morte** (INSEE renvoie « Entrepreneur individuel »). `lib/strategie.ts:29`
 
 ### 🟢 AMÉLIORATIONS issues de l'audit (renforcements, pas des bugs)
-- [ ] **Résilience réseau** : aucun timeout/AbortController sur INSEE/BODACC/Google Places → fiche SSR peut se figer. Ajouter timeout ~3s + fallback
-- [ ] **Accessibilité clavier questionnaire** : déplacer le focus vers le nouveau titre + `aria-live` au changement d'étape
-- [ ] **Nav** : remplacer `role="menu"/menuitem"` par `<nav>` + liste de liens
-- [ ] **Emojis décoratifs** à masquer (`aria-hidden`) — actuellement vocalisés
-- [ ] **`prefers-reduced-motion`** : couper les 3 blobs animés en boucle infinie (WCAG 2.2.2)
-- [ ] **Navigation flèches** dans le menu ThemeToggle (rôle `menuitemradio` annoncé mais non câblé)
-- [ ] **`ThemeToggle`** : appeler `applyTheme` au montage (sync `meta theme-color`)
+- [x] **Résilience réseau** : aucun timeout/AbortController sur INSEE/BODACC/Google Places → fiche SSR peut se figer. Ajouter timeout ~3s + fallback
+- [x] **Accessibilité clavier questionnaire** : déplacer le focus vers le nouveau titre + `aria-live` au changement d'étape
+- [x] **Nav** : remplacer `role="menu"/menuitem"` par `<nav>` + liste de liens
+- [x] **Emojis décoratifs** à masquer (`aria-hidden`) — actuellement vocalisés
+- [x] **`prefers-reduced-motion`** : couper les 3 blobs animés en boucle infinie (WCAG 2.2.2)
+- [x] **Navigation flèches** dans le menu ThemeToggle (rôle `menuitemradio` annoncé mais non câblé)
+- [x] **`ThemeToggle`** : appeler `applyTheme` au montage (sync `meta theme-color`)
 
 ---
 

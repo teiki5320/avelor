@@ -1,3 +1,4 @@
+import { fetchWithTimeout } from './fetchTimeout';
 import type { AlerteSignal, BodaccItem } from './types';
 
 /* ---------- Interfaces API ---------- */
@@ -68,7 +69,7 @@ export async function fetchBodacc(siret: string): Promise<BodaccItem[]> {
   const where = encodeURIComponent(`siren = "${sn}"`);
   try {
     const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=${where}&limit=10&order_by=dateparution%20desc`;
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+    const res = await fetchWithTimeout(url, { next: { revalidate: 3600 } });
     if (!res.ok) return [];
     const json: BodaccApiResponse = await res.json();
     const records: BodaccRecord[] = json?.records ?? [];
@@ -89,7 +90,7 @@ export async function fetchInfogreffeSignals(
   );
   try {
     const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=${where}&limit=5&order_by=dateparution%20desc`;
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+    const res = await fetchWithTimeout(url, { next: { revalidate: 3600 } });
     if (!res.ok) return [];
     const json: BodaccApiResponse = await res.json();
     const records: BodaccRecord[] = json?.records ?? [];

@@ -164,7 +164,7 @@ export default function BlocReclassement() {
                 href={`tel:${opco.telephone.replace(/\s/g, '')}`}
                 className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
               >
-                ☎ {opco.telephone}
+                <span aria-hidden>☎</span> {opco.telephone}
               </a>
             )}
             <a
@@ -173,7 +173,7 @@ export default function BlocReclassement() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 {(() => { try { return new URL(opco.site).hostname.replace('www.', ''); } catch { return 'site'; } })()}
+              <span aria-hidden>🌐</span> {(() => { try { return new URL(opco.site).hostname.replace('www.', ''); } catch { return 'site'; } })()}
             </a>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function BlocReclassement() {
               href="tel:3995"
               className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
             >
-              ☎ 39 95
+              <span aria-hidden>☎</span> 39 95
             </a>
             <a
               href="https://www.francetravail.fr/employeur"
@@ -201,7 +201,7 @@ export default function BlocReclassement() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 francetravail.fr/employeur
+              <span aria-hidden>🌐</span> francetravail.fr/employeur
             </a>
           </div>
         </div>
@@ -220,7 +220,7 @@ export default function BlocReclassement() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 Trouver ma DREETS
+              <span aria-hidden>🌐</span> Trouver ma DREETS
             </a>
           </div>
         </div>

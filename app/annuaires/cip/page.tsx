@@ -260,13 +260,13 @@ export default function CipPage() {
             rel="noreferrer"
             className="inline-flex rounded-full bg-bleu-fonce px-4 py-2 text-sm font-medium text-white hover:bg-navy"
           >
-            🌐 cip-national.fr — toutes les antennes
+            <span aria-hidden>🌐</span> cip-national.fr — toutes les antennes
           </a>
           <a
             href="tel:0186216684"
             className="inline-flex rounded-full bg-white/80 px-4 py-2 text-sm font-medium text-bleu-fonce hover:bg-white"
           >
-            ☎ 01 86 21 66 84
+            <span aria-hidden>☎</span> 01 86 21 66 84
           </a>
         </div>
       </div>

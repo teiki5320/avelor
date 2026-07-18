@@ -30,7 +30,7 @@ describe('Questionnaire — anti double-clic', () => {
   it('le double-clic rapide sur un choix ne saute pas l\'étape suivante', async () => {
     render(<Questionnaire siret="12345678901234" />);
     // On est à l'étape 1 (situation)
-    expect(screen.getByText(/Étape 1 sur 18/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Étape 1 sur 18/).length).toBeGreaterThan(0);
 
     // Le premier choix : "Je sens que ça se dégrade"
     const choix = screen.getAllByRole('button').filter((b) => /Je sens que ça se dégrade/i.test(b.getAttribute('aria-label') ?? ''));
@@ -44,7 +44,7 @@ describe('Questionnaire — anti double-clic', () => {
     act(() => { vi.advanceTimersByTime(300); });
 
     // On doit être à l'étape 2 (et pas étape 3 — pas de saut)
-    expect(screen.getByText(/Étape 2 sur 18/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Étape 2 sur 18/).length).toBeGreaterThan(0);
   });
 
   it('les boutons-choix sont désactivés pendant la transition', () => {
@@ -62,10 +62,10 @@ describe('Questionnaire — anti double-clic', () => {
     const choix = screen.getAllByRole('button').filter((b) => /Je sens que ça se dégrade/i.test(b.getAttribute('aria-label') ?? ''));
     fireEvent.click(choix[0]);
     act(() => { vi.advanceTimersByTime(300); });
-    expect(screen.getByText(/Étape 2 sur 18/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Étape 2 sur 18/).length).toBeGreaterThan(0);
 
     const prev = screen.getByRole('button', { name: /Précédent/i });
     fireEvent.click(prev);
-    expect(screen.getByText(/Étape 1 sur 18/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Étape 1 sur 18/).length).toBeGreaterThan(0);
   });
 });

@@ -81,7 +81,7 @@ export default function BlocPlateformes() {
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
           >
-            🌐 arpe.gouv.fr
+            <span aria-hidden>🌐</span> arpe.gouv.fr
           </a>
         </div>
       </div>
@@ -207,7 +207,7 @@ export default function BlocPlateformes() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 signal.conso.gouv.fr
+              <span aria-hidden>🌐</span> signal.conso.gouv.fr
             </a>
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function BlocPlateformes() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 Saisine ARPE
+              <span aria-hidden>🌐</span> Saisine ARPE
             </a>
           </div>
         </div>

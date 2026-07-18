@@ -109,7 +109,7 @@ export default function BlocSurendettement() {
           href="tel:3414"
           className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
         >
-          ☎ 34 14 — Correspondant BdF
+          <span aria-hidden>☎</span> 34 14 — Correspondant BdF
         </a>
         <a
           href="https://particuliers.banque-france.fr/surendettement"
@@ -117,7 +117,7 @@ export default function BlocSurendettement() {
           rel="noreferrer"
           className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
         >
-          🌐 particuliers.banque-france.fr/surendettement
+          <span aria-hidden>🌐</span> particuliers.banque-france.fr/surendettement
         </a>
       </div>
 

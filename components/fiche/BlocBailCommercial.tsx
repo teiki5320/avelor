@@ -161,7 +161,7 @@ export default function BlocBailCommercial() {
           rel="noreferrer"
           className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
         >
-          🌐 LegiFrance — statut des baux commerciaux
+          <span aria-hidden>🌐</span> LegiFrance — statut des baux commerciaux
         </a>
         <a
           href="https://www.economie.gouv.fr/mediateur-des-entreprises"
@@ -169,7 +169,7 @@ export default function BlocBailCommercial() {
           rel="noreferrer"
           className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
         >
-          🌐 Médiateur des entreprises
+          <span aria-hidden>🌐</span> Médiateur des entreprises
         </a>
       </div>
 

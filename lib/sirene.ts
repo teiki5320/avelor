@@ -1,3 +1,4 @@
+import { fetchWithTimeout } from './fetchTimeout';
 import type { CompanyData } from './types';
 
 /* ---------- Interfaces API ---------- */
@@ -133,7 +134,7 @@ async function fetchFromRechercheEntreprises(
 ): Promise<CompanyData | null> {
   try {
     const url = `${RECHERCHE_BASE}?q=${siret}&page=1&per_page=1`;
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+    const res = await fetchWithTimeout(url, { next: { revalidate: 3600 } });
     if (!res.ok) return null;
     const json: SireneApiResponse = await res.json();
     const result = json?.results?.[0];
@@ -180,7 +181,7 @@ async function fetchFromInseeSirene(
   if (!apiKey) return null;
 
   try {
-    const res = await fetch(`${SIRENE_BASE}/siret/${siret}`, {
+    const res = await fetchWithTimeout(`${SIRENE_BASE}/siret/${siret}`, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         Accept: 'application/json',
