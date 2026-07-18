@@ -15,6 +15,7 @@ export type Secteur =
   | 'education'
   | 'sante'
   | 'artisanat'
+  | 'ess'
   | 'autre';
 
 interface OrganismeSecteur {
@@ -346,6 +347,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'Action Cœur de Ville', description: 'Plan national de revitalisation des centres-villes — aides foncières et travaux.', site: 'https://agence-cohesion-territoires.gouv.fr/action-coeur-de-ville-42' },
       { nom: 'Petites Villes de Demain', description: 'Pour communes < 20 000 hab. — accompagnement commerces.', site: 'https://agence-cohesion-territoires.gouv.fr/petites-villes-de-demain-45' },
     ],
+    soutien: { nom: 'APESA + réseau CCI', description: 'Pas de dispositif d\'écoute propre au commerce : APESA est le réflexe n°1 (sentinelles dans les tribunaux de commerce et les CCI). Gratuit et confidentiel.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'Négociez avec votre bailleur commercial — le Code de commerce vous protège',
       'Les impayés de loyer commercial ont des procédures spécifiques',
@@ -380,6 +382,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'Aide à la décarbonation transport', description: 'Subvention à l\'achat de véhicules électriques/hydrogène, retrofit, formation.', site: 'https://www.ademe.fr' },
       { nom: 'Bonus écologique flotte', description: 'Subvention véhicules utilitaires propres.', site: 'https://www.service-public.fr' },
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre au transport : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'La DREAL est votre interlocuteur pour les licences de transport (capacité, attestation transport)',
       'Vérifiez le remboursement de la TICPE si vous êtes transporteur routier — trimestriel, à demander',
@@ -415,6 +418,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'CIPAV · Action sociale', description: 'Aide financière d\'urgence pour professions libérales affiliées à la CIPAV.', site: 'https://www.lacipav.fr', badge: 'Si affilié CIPAV' },
       { nom: 'Fonds de solidarité libéral', description: 'Aides spécifiques via les ordres professionnels (avocats, médecins, architectes…).', badge: 'Selon profession' },
     ],
+    soutien: { nom: 'Entraide ordinale + APESA', description: 'Chaque Ordre professionnel (avocats, experts-comptables, architectes…) dispose d\'une cellule d\'entraide confidentielle pour ses membres. APESA vient en complément pour l\'écoute psychologique.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'Contactez votre Ordre professionnel — beaucoup proposent une aide confidentielle',
       'Votre caisse de retraite (CIPAV, CNBF, CRPCEN, CAVEC, CAVP…) dispose d\'un fonds d\'action sociale',
@@ -499,6 +503,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'BPI France propose un diagnostic industriel gratuit',
       'Le MEDEF territorial peut vous mettre en relation avec des repreneurs potentiels',
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à l\'industrie : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
     chambre: 'CCI',
   },
   information: {
@@ -517,6 +522,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'BPI Aide Innovation', description: 'Prêt innovation, prêt amorçage, garantie innovation pour TPE/PME numériques.', site: 'https://www.bpifrance.fr' },
       { nom: 'CIR / JEI', description: 'Crédit d\'impôt recherche + statut Jeune Entreprise Innovante : avantages fiscaux et sociaux à préserver.', site: 'https://www.entreprises.gouv.fr/jei' },
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre au numérique : APESA est le réflexe n°1 pour les fondateurs et dirigeants tech en souffrance. Gratuit et confidentiel.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'Numeum et CINOV-IT accompagnent les TPE/PME numériques en difficulté (médiation, conseils)',
       'French Tech Tremplin pour les fondateurs en post-liquidation (rebond)',
@@ -541,6 +547,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'ACPR', description: 'Autorité de contrôle prudentiel et de résolution — saisine si difficulté grave + dispositif de résolution bancaire.', site: 'https://acpr.banque-france.fr' },
       { nom: 'ORIAS', description: 'Registre unique des intermédiaires (assurance/banque/finance) — radiation possible si non-conformité.', site: 'https://www.orias.fr' },
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à la finance/assurance : APESA est le réflexe n°1. Gratuit, confidentiel, activable via le tribunal de commerce ou apesa.fr.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'Toute difficulté grave doit être notifiée à l\'ACPR (votre régulateur) — éventuellement résolution organisée',
       'Vérifiez votre inscription ORIAS à jour : la radiation = arrêt d\'activité immédiat',
@@ -564,6 +571,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'Garantie financière FNAIM/UNIS', description: 'Si vous gérez des fonds de tiers (location, copropriété), votre garantie financière est obligatoire — vérifier renouvellement.', badge: 'Obligatoire' },
       { nom: 'Carte T / Carte G', description: 'La perte de carte professionnelle (transaction T, gestion G) = arrêt d\'activité. Préserver à tout prix.', badge: 'Critique' },
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à l\'immobilier : APESA est le réflexe n°1. Gratuit, confidentiel, activable via le tribunal de commerce ou apesa.fr.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'Si vous gérez des fonds clients (location, copropriété), votre garantie financière est CRITIQUE — sa perte = liquidation immédiate',
       'FPI, UNIS et FNAIM accompagnent leurs adhérents en difficulté (conseil juridique, médiation)',
@@ -587,6 +595,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'DGEFP — médiation OF', description: 'Délégation générale à l\'emploi et à la formation professionnelle : médiation possible en cas de litige avec un OPCO.', site: 'https://travail-emploi.gouv.fr/le-ministere-en-action/dgefp' },
       { nom: 'France compétences', description: 'Régulateur de la formation et de l\'apprentissage. Peut intervenir sur les certifications RNCP et RS.', site: 'https://www.francecompetences.fr' },
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à la formation : APESA est le réflexe n°1 pour les dirigeants d\'organismes en souffrance. Gratuit et confidentiel.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'Qualiopi retirée = perte d\'accès aux financements CPF/OPCO. Recours sous 30 jours à activer immédiatement',
       'Les Acteurs de la Compétence (ex-FFP) accompagnent leurs adhérents en difficulté (juriste dédié, médiation)',
@@ -626,6 +635,31 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { profession: 'Artisan (régime général SSI)', caisse: 'SSI (CNAV TI)', telephone: '3698', site: 'https://www.secu-independants.fr' },
     ],
   },
+  ess: {
+    label: 'Association / ESS',
+    cotisationOrg: 'URSSAF',
+    cotisationTel: '3957',
+    cotisationSite: 'https://www.urssaf.fr',
+    syndicats: [
+      { nom: 'UDES', role: 'Union des employeurs de l\'économie sociale et solidaire', telephone: '01 43 41 71 72', site: 'https://www.udes.fr' },
+      { nom: 'Le Mouvement associatif', role: 'Porte-voix des associations (700 000 structures)', telephone: '01 40 36 80 10', site: 'https://lemouvementassociatif.org' },
+      { nom: 'ESS France', role: 'Chambre française de l\'économie sociale et solidaire', site: 'https://www.ess-france.org' },
+      { nom: 'France Générosités', role: 'Syndicat des organisations faisant appel aux dons', site: 'https://www.francegenerosites.org' },
+    ],
+    aidesSpecifiques: [
+      { nom: 'DLA — Dispositif Local d\'Accompagnement', description: 'LE dispositif public d\'accompagnement des structures ESS en difficulté : diagnostic gratuit + accompagnement par un consultant financé par l\'État. Porté localement (souvent par France Active ou BGE).', site: 'https://www.info-dla.fr', badge: 'Gratuit · prioritaire' },
+      { nom: 'France Active — financement solidaire', description: 'Garanties de prêts, prêts solidaires et fonds d\'amorçage dédiés aux structures de l\'ESS.', site: 'https://www.franceactive.org', badge: 'ESS' },
+      { nom: 'FONJEP', description: 'Postes FONJEP : subvention pérenne pour les postes d\'animation et de coordination associatifs (jeunesse, éducation populaire).', site: 'https://www.fonjep.org' },
+    ],
+    soutien: { nom: 'APESA + DLA', description: 'APESA pour l\'écoute psychologique du dirigeant ou responsable associatif ; le DLA pour poser un diagnostic et sortir la structure de l\'impasse.', site: 'https://apesa.fr' },
+    conseilsSpecifiques: [
+      'Le DLA (info-dla.fr) est votre premier réflexe : diagnostic gratuit financé par l\'État, spécifique aux associations et structures ESS en difficulté',
+      'Une association peut faire l\'objet d\'une procédure collective (sauvegarde, RJ, LJ) comme une entreprise dès lors qu\'elle a une activité économique',
+      'Vérifiez vos subventions : une collectivité ne peut pas combler le passif, mais un fonds de soutien exceptionnel peut être sollicité',
+      'L\'UDES et Le Mouvement associatif ont des cellules d\'appui juridique pour leurs adhérents',
+    ],
+    chambre: 'CCI',
+  },
   autre: {
     label: 'Autre',
     cotisationOrg: 'URSSAF',
@@ -644,9 +678,16 @@ export function getSectorInfo(company: CompanyData): SectorInfo {
   let secteur = secteurFromSection(section);
 
   // Pêche et aquaculture (NAF 03.xx) : secteur dédié avec organismes spécifiques (ENIM, CNPMEM…)
-  const nafPrefix = naf.replace(/\./g, '').slice(0, 2);
+  const nafCompact = naf.replace(/\./g, '');
+  const nafPrefix = nafCompact.slice(0, 2);
   if (nafPrefix === '03') {
     secteur = 'peche';
+  }
+
+  // Associations et organisations (NAF 94.xx) : ESS, pas artisanat —
+  // UDES / Mouvement associatif / DLA au lieu de CMA / U2P.
+  if (nafPrefix === '94') {
+    secteur = 'ess';
   }
 
   if (secteur === 'commerce' && isArtisan(naf, company.formeJuridique)) {
@@ -654,6 +695,15 @@ export function getSectorInfo(company: CompanyData): SectorInfo {
   }
   if (secteur === 'industrie' && isArtisan(naf, company.formeJuridique)) {
     secteur = 'artisanat';
+  }
+
+  // Professions de santé réglementées hors section Q :
+  // - Pharmacie d'officine (47.73Z) : classée commerce par la NAF mais relève
+  //   de l'Ordre des pharmaciens, de la CAVP et des syndicats d'officine.
+  // - Vétérinaires (75.00Z) : section M mais caisse CARPV, Ordre des
+  //   vétérinaires et Vetos-Entraide sont dans le secteur santé.
+  if (nafCompact.startsWith('4773') || nafPrefix === '75') {
+    secteur = 'sante';
   }
 
   const data = SECTOR_DATA[secteur];

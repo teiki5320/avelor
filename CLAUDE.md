@@ -9,7 +9,7 @@ Le dirigeant entre son SIRET, répond à un questionnaire, et reçoit une fiche 
 npm run dev      # Serveur local (port 3000)
 npm run build    # Build de production
 npm run lint     # ESLint (config: next/core-web-vitals)
-npm test         # Vitest (245 tests dans lib/__tests__/, components/__tests__/, app/api/__tests__/)
+npm test         # Vitest (255 tests dans lib/__tests__/, components/__tests__/, app/api/__tests__/)
 npm run test:e2e # Playwright (parcours utilisateur)
 ```
 
@@ -25,7 +25,7 @@ Déploiement automatique sur Vercel depuis la branche `main` → https://avelor.
 - **Email** : Resend (magic link pour retrouver sa fiche + rappels cron quotidiens)
 - **APIs externes** : INSEE Sirene (gouv.fr + INSEE fallback), BODACC, Google Places (avocats locaux), Infogreffe (signaux)
 - **Validation** : Zod (schémas dans `lib/schemas.ts`)
-- **Tests** : Vitest (245 tests, 21 fichiers) + Playwright (E2E)
+- **Tests** : Vitest (255 tests, 21 fichiers) + Playwright (E2E)
 - **CI** : GitHub Actions (lint → build → test)
 - **Rate limiting** : middleware in-memory (à passer Upstash en prod)
 - **PWA** : manifest.json + icônes 512/192/favicon
@@ -78,7 +78,7 @@ lib/
   strategie.ts                # Moteur stratégie (5 axes) + getJuridiction() (TJ vs TC) + getFormeDetail() (micro/ei/eirl/societe)
   priorites.ts                # Scoring 13 cartes prioritaires (top 4 sélectionnées)
   courriers.ts                # 17 courriers, personnalisation tone/situation
-  secteur.ts                  # 15 secteurs (BTP, agri, HCR, santé, libéral, pêche…) + caisses retraite + ordres + CSP
+  secteur.ts                  # 16 secteurs (BTP, agri, HCR, santé, libéral, pêche, ESS…) + caisses retraite + ordres + CSP
   aidesRegionales.ts          # Aides régionales (13 régions + DOM)
   bodacc.ts                   # Détection incohérences BODACC vs situation
   tone.ts                     # Présets de ton (combatif/épuisé/perdu)
@@ -91,7 +91,7 @@ lib/
   schemas.ts                  # Schémas Zod pour validation API
   hooks.ts                    # useLocalStorage
   FicheContext.tsx            # React Context pour la fiche (utilisé par 18 blocs)
-  __tests__/                  # 245 tests Vitest (lib + components + API routes)
+  __tests__/                  # 255 tests Vitest (lib + components + API routes)
   opco.ts                     # Mapping NAF → OPCO (11 OPCO de la branche)
 
 data/
@@ -143,8 +143,8 @@ vercel.json                   # Cron rappels quotidiens 7h
 - **~94% de la pertinence** pour les profils-types de dirigeants en difficulté
 - **107 territoires** couverts (96 départements + 11 DOM-TOM) — **8 datasets enrichis** avec adresses + téléphones réels (DDFiP, Barreaux, Chambres notaires, Chambres agriculture, URSSAF, Tribunaux commerce, CCI, CMA)
 - **3 thèmes** : clair (défaut) · sombre · contraste élevé (RGAA AAA) — bascule dans la Nav, persistance localStorage
-- **15 secteurs** enrichis (incluant finance, IT, éducation, immobilier) + mapping 11 OPCO par NAF
-- **245 tests Vitest** + Playwright E2E configuré
+- **16 secteurs** enrichis (incluant finance, IT, éducation, immobilier, ESS/associations) + mapping 11 OPCO par NAF
+- **255 tests Vitest** + Playwright E2E configuré
 - **11 calculateurs officiels** (ajout : valorisation stocks, seuils d'effectif)
 - **18 questions** au questionnaire
 

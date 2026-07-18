@@ -47,6 +47,33 @@ describe('getOpcoFromNaf', () => {
     expect(getOpcoFromNaf('95.21Z').cle).toBe('opco-ep'); // réparation
   });
 
+  it('raffinements par classe : boulangerie, pharmacie, auto-école', () => {
+    expect(getOpcoFromNaf('10.71C').cle).toBe('opco-ep'); // boulangerie artisanale (branche boulangerie)
+    expect(getOpcoFromNaf('10.89Z').cle).toBe('ocapiat'); // industrie agroalimentaire = OCAPIAT inchangé
+    expect(getOpcoFromNaf('47.73Z').cle).toBe('opco-ep'); // pharmacie d'officine
+    expect(getOpcoFromNaf('47.11D').cle).toBe('opcommerce'); // supermarché = Opcommerce inchangé
+    expect(getOpcoFromNaf('85.53Z').cle).toBe('opco-mobilites'); // auto-école (services de l'automobile)
+    expect(getOpcoFromNaf('85.59A').cle).toBe('uniformation'); // formation continue inchangée
+  });
+
+  it('renvoie OPCO EP pour les vétérinaires (75)', () => {
+    expect(getOpcoFromNaf('75.00Z').cle).toBe('opco-ep');
+  });
+
+  it('renvoie OPCO 2i pour extraction, énergie, eau et déchets', () => {
+    expect(getOpcoFromNaf('08.11Z').cle).toBe('opco-2i'); // carrières
+    expect(getOpcoFromNaf('35.11Z').cle).toBe('opco-2i'); // production électricité
+    expect(getOpcoFromNaf('38.11Z').cle).toBe('opco-2i'); // collecte déchets
+  });
+
+  it('renvoie OPCO Mobilités pour les agences de voyage (79)', () => {
+    expect(getOpcoFromNaf('79.11Z').cle).toBe('opco-mobilites');
+  });
+
+  it('renvoie Uniformation pour les associations (94)', () => {
+    expect(getOpcoFromNaf('94.99Z').cle).toBe('uniformation');
+  });
+
   it('renvoie un OPCO valide même pour un NAF inconnu', () => {
     const opco = getOpcoFromNaf('99.99Z');
     expect(opco).toBeDefined();

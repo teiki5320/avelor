@@ -149,6 +149,14 @@ const CAS: SecteurCase[] = [
     opcoAttendu: 'opco-ep',
   },
   {
+    cle: 'ess',
+    naf: '94.99Z', // Autres organisations (associations)
+    labelContient: /Association|ESS/i,
+    syndicatsAttendus: ['UDES', 'Le Mouvement associatif'],
+    soutienAttendu: /APESA/i,
+    opcoAttendu: 'uniformation',
+  },
+  {
     cle: 'autre',
     naf: '', // NAF vide → fallback "autre"
     labelContient: /Autre/i,
@@ -159,14 +167,14 @@ const CAS: SecteurCase[] = [
 
 describe('Catégories de métiers : couverture complète des 15 secteurs', () => {
   // Sanity check : on couvre bien les 15 secteurs définis
-  it('couvre exactement les 15 secteurs définis par lib/secteur.ts', () => {
+  it('couvre exactement les 16 secteurs définis par lib/secteur.ts', () => {
     const cles = new Set(CAS.map((c) => c.cle));
     const attendus: Secteur[] = [
       'agriculture', 'peche', 'industrie', 'btp', 'commerce', 'transport',
       'hotellerie', 'information', 'finance', 'immobilier', 'liberal',
-      'education', 'sante', 'artisanat', 'autre',
+      'education', 'sante', 'artisanat', 'ess', 'autre',
     ];
-    expect(cles.size).toBe(15);
+    expect(cles.size).toBe(16);
     for (const s of attendus) expect(cles.has(s)).toBe(true);
   });
 
@@ -265,5 +273,44 @@ describe('Catégories de métiers : règles spéciales de classement', () => {
   it('"autre" est retourné pour un NAF vide ou inconnu', () => {
     expect(getSectorInfo(makeCompany('')).secteur).toBe('autre');
     expect(getSectorInfo(makeCompany('99.99Z')).secteur).toBe('autre');
+  });
+
+  it('Pharmacien d\'officine (47.73Z) est routé vers le secteur santé, pas commerce', () => {
+    const info = getSectorInfo(makeCompany('47.73Z'));
+    expect(info.secteur).toBe('sante');
+    // Il retrouve sa caisse (CAVP) et l'Ordre des pharmaciens via le secteur santé
+    const caisses = (info.caissesRetraite ?? []).map((c) => c.caisse).join(' ');
+    expect(caisses).toContain('CAVP');
+  });
+
+  it('Vétérinaire (75.00Z) est routé vers le secteur santé, pas libéral', () => {
+    const info = getSectorInfo(makeCompany('75.00Z'));
+    expect(info.secteur).toBe('sante');
+    // Il retrouve la CARPV et Vetos-Entraide
+    const caisses = (info.caissesRetraite ?? []).map((c) => c.caisse).join(' ');
+    expect(caisses).toContain('CARPV');
+    const syndicats = info.syndicats.map((s) => s.nom).join(' ');
+    expect(syndicats).toContain('Vetos-Entraide');
+  });
+
+  it('Association (94.xx) est routée vers le secteur ESS, pas artisanat', () => {
+    expect(getSectorInfo(makeCompany('94.99Z')).secteur).toBe('ess');
+    expect(getSectorInfo(makeCompany('94.20Z')).secteur).toBe('ess');
+  });
+
+  it('Tous les secteurs marchands ont désormais un dispositif de soutien psy', () => {
+    // Seul le fallback "autre" peut ne pas en avoir (le BlocSoutien affiche
+    // APESA + 3114 dans tous les cas).
+    const nafParSecteur: Record<string, string> = {
+      agriculture: '01.11Z', peche: '03.11Z', industrie: '20.13B', btp: '41.20A',
+      commerce: '47.11D', transport: '49.32Z', hotellerie: '56.10A',
+      information: '62.01Z', finance: '64.19Z', immobilier: '68.31Z',
+      liberal: '69.10Z', education: '85.59A', sante: '86.21Z',
+      artisanat: '96.02A', ess: '94.99Z',
+    };
+    for (const [secteur, naf] of Object.entries(nafParSecteur)) {
+      const info = getSectorInfo(makeCompany(naf));
+      expect(info.soutien?.nom, `secteur ${secteur} doit avoir un soutien`).toBeTruthy();
+    }
   });
 });

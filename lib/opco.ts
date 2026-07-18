@@ -148,15 +148,24 @@ export function getOpcoFromNaf(naf: string): OpcoInfo {
   const prefix2 = code.slice(0, 2);
   const prefix4 = code.slice(0, 4);
 
+  // ── Raffinements par classe (testés AVANT les règles par division) ──
+  // Boulangerie-pâtisserie artisanale (10.71) : branche boulangerie → OPCO EP
+  // (OCAPIAT ne vaut que pour l'industrie agroalimentaire).
+  if (prefix4 === '1071') return OPCO_DATA['opco-ep'];
+  // Pharmacie d'officine (47.73) : branche pharmacie → OPCO EP.
+  if (prefix4 === '4773') return OPCO_DATA['opco-ep'];
+  // Auto-écoles (85.53) : branche des services de l'automobile → OPCO Mobilités.
+  if (prefix4 === '8553') return OPCO_DATA['opco-mobilites'];
+
   // Agriculture, pêche (section A)
   if (/^(01|02|03|10|11)/.test(prefix2)) return OPCO_DATA['ocapiat'];
 
   // BTP (section F) + génie civil
   if (/^(41|42|43)/.test(prefix2)) return OPCO_DATA['opco-construction'];
 
-  // Industrie (sections B-E principalement)
-  // 12-22 : chimie/pharma/plastiques, métallurgie, électronique
-  if (/^(13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33)/.test(prefix2)) {
+  // Industrie (sections B-E) : extraction (05-09), tabac (12),
+  // manufacture (13-33), énergie (35), eau/déchets/dépollution (36-39)
+  if (/^(05|06|07|08|09|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|35|36|37|38|39)/.test(prefix2)) {
     return OPCO_DATA['opco-2i'];
   }
 
@@ -184,6 +193,8 @@ export function getOpcoFromNaf(naf: string): OpcoInfo {
 
   // Finance, assurance, conseil (sections K, M)
   if (/^(64|65|66)/.test(prefix2)) return OPCO_DATA['atlas'];
+  // Vétérinaires (75) : branche vétérinaire → OPCO EP
+  if (prefix2 === '75') return OPCO_DATA['opco-ep'];
   if (/^(69|70|71|72|73|74)/.test(prefix2)) {
     // Avocats, experts-comptables → ATLAS ; conseil divers → AKTO
     if (/^(69|692)/.test(prefix4) || /^(692|6920)/.test(prefix4)) return OPCO_DATA['atlas'];
@@ -196,6 +207,8 @@ export function getOpcoFromNaf(naf: string): OpcoInfo {
 
   // Services administratifs et soutien (section N)
   if (/^(77|78|80|81|82)/.test(prefix2)) return OPCO_DATA['akto'];
+  // Agences de voyage et tourisme (79) → OPCO Mobilités (branche tourisme)
+  if (prefix2 === '79') return OPCO_DATA['opco-mobilites'];
 
   // Enseignement (section P)
   if (/^(85)/.test(prefix2)) return OPCO_DATA['uniformation'];
@@ -208,6 +221,9 @@ export function getOpcoFromNaf(naf: string): OpcoInfo {
     if (/^(92|93)/.test(prefix2)) return OPCO_DATA['afdas']; // sport, jeux
     return OPCO_DATA['afdas'];
   }
+
+  // Associations, organisations (94) → Uniformation (Cohésion sociale)
+  if (prefix2 === '94') return OPCO_DATA['uniformation'];
 
   // Services aux ménages, artisans (section S)
   if (/^(95|96)/.test(prefix2)) return OPCO_DATA['opco-ep'];
