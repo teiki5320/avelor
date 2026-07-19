@@ -114,7 +114,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 > Le site est prêt : 259 tests verts, build OK, audit couverture métier 6/6, pages légales en place.
 > Décision : achat du domaine (idéalement **avelor.fr**, de préférence chez Vercel pour que le DNS soit pilotable en CLI) + adresse email de contact. Session Claude Code locale sur le Mac pour piloter le CLI Vercel.
 
-1. [ ] **Sur le Mac** : `vercel login` (une fois, par Teiki) puis `vercel link` sur le projet
+1. [ ] **Sur le Mac** : `vercel login` + `supabase login` (une fois chacun, par Teiki — auth navigateur, accès CLI validé pour les deux) puis `vercel link` sur le projet. Via le CLI Supabase : récupérer `SUPABASE_URL`/`SUPABASE_ANON_KEY` (`supabase projects api-keys`) et vérifier table `fiches` + RLS en prod
 2. [ ] **Acheter le domaine** (dashboard Vercel → Domains, paiement par Teiki) et l'ajouter au projet (`vercel domains add`)
 3. [ ] **Email de contact** : boîte ou redirection `contact@<domaine>` → Gmail (ImprovMX gratuit via `vercel dns add` si domaine chez Vercel)
 4. [ ] **Resend** : vérifier le domaine (ajouter SPF/DKIM via `vercel dns add`) puis `RESEND_FROM="AVELOR <contact@<domaine>>"`
