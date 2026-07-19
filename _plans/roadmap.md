@@ -109,6 +109,23 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 ---
 
+## 🚀 MISE EN LIGNE — plan validé le 19/07/2026 (à dérouler depuis le Mac)
+
+> Le site est prêt : 259 tests verts, build OK, audit couverture métier 6/6, pages légales en place.
+> Décision : achat du domaine (idéalement **avelor.fr**, de préférence chez Vercel pour que le DNS soit pilotable en CLI) + adresse email de contact. Session Claude Code locale sur le Mac pour piloter le CLI Vercel.
+
+1. [ ] **Sur le Mac** : `vercel login` (une fois, par Teiki) puis `vercel link` sur le projet
+2. [ ] **Acheter le domaine** (dashboard Vercel → Domains, paiement par Teiki) et l'ajouter au projet (`vercel domains add`)
+3. [ ] **Email de contact** : boîte ou redirection `contact@<domaine>` → Gmail (ImprovMX gratuit via `vercel dns add` si domaine chez Vercel)
+4. [ ] **Resend** : vérifier le domaine (ajouter SPF/DKIM via `vercel dns add`) puis `RESEND_FROM="AVELOR <contact@<domaine>>"`
+5. [ ] **Variables d'environnement production** (`vercel env add`) : `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_BASE_URL=https://<domaine>`, `CRON_SECRET` (générer : `openssl rand -hex 32`) — optionnelles : `INSEE_API_KEY` (fallback Sirene), `GOOGLE_PLACES_API_KEY` (avocats locaux), `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (stats). Vérifier d'abord ce qui existe déjà (`vercel env ls`)
+6. [ ] **Code** : remplacer `avelor.vercel.app` par le domaine (~30 fichiers : canoniques, OG, sitemap, robots, mentions légales) + remplacer `contact@avelor.vercel.app` (⚠️ adresse actuellement morte — bloquant RGPD) par la vraie adresse
+7. [ ] **PR branche `claude/blissful-clarke-ycvXl` → `main`** (26+ commits d'avance) puis merge → déploiement Vercel automatique
+8. [ ] **Vérifier en prod** : création de fiche, magic link reçu (pas en spam), cron rappels, avocats locaux
+9. [ ] Après lancement : migrer le rate limiting in-memory vers Upstash
+
+---
+
 ## 🧭 AUDIT DE COUVERTURE MÉTIER du 18/07/2026 — trous détectés
 
 > Scan programmatique : 88 divisions NAF + 35 métiers précis passés dans le vrai moteur (`getSectorInfo`, `getOpcoFromNaf`, `getJuridiction`). **Filet générique garanti pour tous** (BlocSoutien affiche toujours APESA + 3114, organismes départementaux + CIP + BPI pour tout le monde). Mais des métiers courants n'ont **aucune personnalisation sectorielle**.
