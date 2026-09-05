@@ -141,7 +141,7 @@ export default function AgsPage() {
               href={`tel:${d.telephone.replace(/\s/g, '')}`}
               className="mt-2 inline-flex rounded-full bg-white/80 px-3 py-1 text-sm text-bleu-fonce hover:bg-white"
             >
-              ☎ {d.telephone}
+              <span aria-hidden>☎</span> {d.telephone}
             </a>
             <p className="mt-3 text-[11px] text-navy/55">
               <strong>Ressort :</strong> {d.ressort}

@@ -18,7 +18,7 @@ const RESSOURCES = [
   { href: '/vendre', icone: '🔑', label: 'Vendre / Céder', desc: 'Cession, location-gérance…' },
   { href: '/procedures', icone: '⚖️', label: 'Procédures', desc: 'Tableau comparatif clair' },
   { href: '/rebond', icone: '🚀', label: 'Rebondir', desc: 'Recréer après une liquidation' },
-  { href: '/glossaire', icone: '📖', label: 'Glossaire', desc: '18 termes expliqués simplement' },
+  { href: '/glossaire', icone: '📖', label: 'Glossaire', desc: '38 termes expliqués simplement' },
   { href: '/outils', icone: '🧮', label: 'Boîte à outils', desc: 'Calculateurs et vérificateurs officiels' },
   { href: '/annuaires', icone: '📇', label: 'Annuaires officiels', desc: 'AGS, TAE, mandataires, CIP…' },
   { href: '/parler', icone: '📞', label: 'Parler à quelqu\'un', desc: 'Numéros gratuits 24/7' },

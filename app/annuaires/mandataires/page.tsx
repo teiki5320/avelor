@@ -225,7 +225,7 @@ export default function MandatairesPage() {
                       href={`tel:${e.telephone.replace(/\s/g, '')}`}
                       className="shrink-0 rounded-full bg-white/80 px-3 py-1 text-sm text-bleu-fonce hover:bg-white"
                     >
-                      ☎ {e.telephone}
+                      <span aria-hidden>☎</span> {e.telephone}
                     </a>
                   )}
                 </div>
@@ -256,7 +256,7 @@ export default function MandatairesPage() {
           rel="noreferrer"
           className="mt-3 inline-flex rounded-full bg-bleu-fonce px-4 py-2 text-sm font-medium text-white hover:bg-navy"
         >
-          🌐 cnajmj.fr — annuaire officiel
+          <span aria-hidden>🌐</span> cnajmj.fr — annuaire officiel
         </a>
       </div>
 

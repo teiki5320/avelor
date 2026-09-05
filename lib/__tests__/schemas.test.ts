@@ -37,6 +37,66 @@ describe('fichePayloadSchema', () => {
     expect(result.success).toBe(true);
   });
 
+  it('accepte les nouveaux champs (PGE, RQTH, conjoint, co-gérants, saisonnalité)', () => {
+    const result = fichePayloadSchema.safeParse({
+      siret: '12345678901234',
+      reponses: {
+        situation: 'tresorie',
+        probleme: 'banque',
+        effectif: 'salaries',
+        moral: 'combatif',
+        pgeEnCours: 'oui',
+        rqth: 'non',
+        conjointStatut: 'collaborateur',
+        coGerants: 'non',
+        saisonnalite: 'oui',
+      },
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('accepte le champ nationalité', () => {
+    const result = fichePayloadSchema.safeParse({
+      siret: '12345678901234',
+      reponses: {
+        situation: 'tresorie',
+        probleme: 'banque',
+        effectif: 'salaries',
+        moral: 'combatif',
+        nationalite: 'hors-ue',
+      },
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('rejette une nationalité invalide', () => {
+    const result = fichePayloadSchema.safeParse({
+      siret: '12345678901234',
+      reponses: {
+        situation: 'prevention',
+        probleme: 'urssaf',
+        effectif: 'independant',
+        moral: 'combatif',
+        nationalite: 'apatride',
+      },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it('rejette une valeur invalide sur conjointStatut', () => {
+    const result = fichePayloadSchema.safeParse({
+      siret: '12345678901234',
+      reponses: {
+        situation: 'prevention',
+        probleme: 'urssaf',
+        effectif: 'independant',
+        moral: 'combatif',
+        conjointStatut: 'inconnu',
+      },
+    });
+    expect(result.success).toBe(false);
+  });
+
   it('rejette un SIRET avec moins de 14 chiffres', () => {
     const result = fichePayloadSchema.safeParse({
       ...payloadValide,

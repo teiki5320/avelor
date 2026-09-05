@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { COURRIERS } from '@/lib/courriers';
+import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
   { href: '/procedures', label: 'Procédures', desc: 'Comprendre vos options' },
@@ -13,7 +14,7 @@ const LINKS = [
   { href: '/vendre', label: 'Vendre / Céder', desc: 'Cession, location-gérance' },
   { href: '/rebond', label: 'Rebondir', desc: 'Après une liquidation' },
   { href: '/faq', label: 'FAQ', desc: 'Questions fréquentes' },
-  { href: '/glossaire', label: 'Glossaire', desc: '18 termes expliqués' },
+  { href: '/glossaire', label: 'Glossaire', desc: '38 termes expliqués' },
   { href: '/accompagnant', label: "J'accompagne", desc: 'Pour les proches' },
   { href: '/parler', label: 'Parler', desc: 'Numéros gratuits 24/7' },
 ];
@@ -62,6 +63,8 @@ export default function Nav() {
           <Link href="/parler" aria-current={pathname === '/parler' ? 'page' : undefined} className="transition hover:text-navy">Parler</Link>
         </div>
 
+        <ThemeToggle />
+
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
@@ -74,10 +77,10 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div
+        <nav
+          aria-label="Menu principal"
           className="glass mt-2 max-h-[70vh] w-[280px] overflow-y-auto rounded-2xl p-2 sm:w-[320px]"
           style={{ position: 'absolute', right: 0, top: '100%' }}
-          role="menu"
           onKeyDown={(e) => {
             if (e.key !== 'Tab') return;
             const focusable = e.currentTarget.querySelectorAll<HTMLElement>('a, button');
@@ -93,20 +96,22 @@ export default function Nav() {
             }
           }}
         >
-          {LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              role="menuitem"
-              aria-current={pathname === l.href ? 'page' : undefined}
-              className="flex flex-col rounded-xl px-4 py-2.5 transition hover:bg-navy/5"
-            >
-              <span className="text-sm font-medium text-navy">{l.label}</span>
-              <span className="text-xs text-navy/45">{l.desc}</span>
-            </Link>
-          ))}
-        </div>
+          <ul>
+            {LINKS.map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={pathname === l.href ? 'page' : undefined}
+                  className="flex flex-col rounded-xl px-4 py-2.5 transition hover:bg-navy/5"
+                >
+                  <span className="text-sm font-medium text-navy">{l.label}</span>
+                  <span className="text-xs text-navy/45">{l.desc}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       )}
     </header>
   );

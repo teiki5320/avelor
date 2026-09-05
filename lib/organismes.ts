@@ -23,6 +23,7 @@ export interface DepartementData {
   dreets?: OrganismeLocal;
   ddfip?: OrganismeLocal;
   cma?: OrganismeLocal;
+  chambreAgriculture?: OrganismeLocal;
   prefecture?: OrganismeLocal;
   pointJustice?: OrganismeLocal;
   carsat?: OrganismeLocal;
@@ -58,7 +59,8 @@ export interface GroupeOrganismes {
 export function buildOrganismes(
   dep: DepartementData | null,
   reponses: Reponses,
-  avocats: OrganismeCard[]
+  avocats: OrganismeCard[],
+  sectorKey?: string,
 ): GroupeOrganismes[] {
   const groups: GroupeOrganismes[] = [];
 
@@ -106,6 +108,18 @@ export function buildOrganismes(
       adresse: dep.cci.adresse,
       site: dep.cci.site,
       badge: 'Accompagnement gratuit',
+    });
+  }
+  // Chambre d'agriculture départementale (CDA) — pour les exploitants agricoles
+  // et la pêche (CDA Mayotte couvre aussi pêche/aquaculture).
+  if ((sectorKey === 'agriculture' || sectorKey === 'peche') && dep?.chambreAgriculture) {
+    inst.push({
+      nom: dep.chambreAgriculture.nom,
+      type: 'Chambre d\'agriculture',
+      telephone: dep.chambreAgriculture.telephone,
+      adresse: dep.chambreAgriculture.adresse,
+      site: dep.chambreAgriculture.site,
+      badge: 'Diagnostic gratuit',
     });
   }
   if (reponses.situation === 'redressement' || reponses.situation === 'assignation') {
@@ -198,7 +212,7 @@ export function buildOrganismes(
     fin.push({
       nom: dep.banqueDeFrance.nom,
       type: 'Médiation du crédit',
-      telephone: dep.banqueDeFrance.telephone ?? '0810 00 12 10',
+      telephone: dep.banqueDeFrance.telephone ?? '34 14',
       site: 'https://mediateur-credit.banque-france.fr',
       badge: 'Gratuit · confidentiel',
     });
@@ -389,6 +403,36 @@ export function buildOrdresProfessionnels(
       telephone: caisse.telephone,
       site: caisse.site,
       badge: 'Aide d\'urgence possible',
+    });
+  }
+
+  // URPS supplémentaires (Pharmaciens, Sage-femmes, Auxiliaires médicaux,
+  // Chirurgiens-dentistes) — sites nationaux fédérateurs. Les URPS Médecins
+  // régionales sont déjà gérées dans data/organismes.json par département.
+  if (sector.secteur === 'sante') {
+    cartes.push({
+      nom: 'URPS Pharmaciens',
+      type: 'Union régionale des professionnels de santé',
+      site: 'https://urps-pharmaciens.org',
+      badge: 'Trouver l\'antenne régionale',
+    });
+    cartes.push({
+      nom: 'URPS Sage-femmes',
+      type: 'Union régionale des professionnels de santé',
+      site: 'https://www.urpssagefemmes.fr',
+      badge: 'Trouver l\'antenne régionale',
+    });
+    cartes.push({
+      nom: 'URPS Chirurgiens-dentistes',
+      type: 'Union régionale des professionnels de santé',
+      site: 'https://www.lesurps.fr/chirurgiens-dentistes',
+      badge: 'Trouver l\'antenne régionale',
+    });
+    cartes.push({
+      nom: 'URPS Auxiliaires médicaux (kinés, infirmiers, orthophonistes)',
+      type: 'Union régionale des professionnels de santé',
+      site: 'https://www.lesurps.fr',
+      badge: 'Trouver l\'antenne régionale',
     });
   }
 
@@ -601,10 +645,11 @@ export function buildReseauxSpecifiques(
     });
   }
 
-  // ----- Handicap : toujours affiché (le questionnaire ne demande pas la RQTH)
+  // ----- Handicap : priorisé si RQTH déclarée, sinon affiché en réseau standard
+  const rqthDeclaree = reponses.rqth === 'oui';
   groupes.push({
     cle: 'reseaux-handicap',
-    titre: 'Handicap et accessibilité',
+    titre: rqthDeclaree ? 'Handicap et RQTH — vos interlocuteurs prioritaires' : 'Handicap et accessibilité',
     couleur: 'vert',
     icone: '♿',
     cartes: [
@@ -613,13 +658,13 @@ export function buildReseauxSpecifiques(
         type: 'Secteur privé · handicap au travail',
         telephone: '0 800 11 10 09',
         site: 'https://www.agefiph.fr',
-        badge: 'Aides dirigeant et salariés',
+        badge: rqthDeclaree ? 'Prioritaire pour vous' : 'Aides dirigeant et salariés',
       },
       {
         nom: 'Cap Emploi',
         type: 'Réseau spécialisé handicap',
         site: 'https://www.capemploi.com',
-        badge: 'Accompagnement gratuit',
+        badge: rqthDeclaree ? 'RDV gratuit recommandé' : 'Accompagnement gratuit',
       },
       {
         nom: 'FIPHFP',
@@ -633,6 +678,14 @@ export function buildReseauxSpecifiques(
         site: 'https://www.mdph.fr',
         badge: 'RQTH, AAH, PCH',
       },
+      ...(rqthDeclaree
+        ? [{
+            nom: 'Comète France',
+            type: 'Reconversion professionnelle après accident/maladie',
+            site: 'https://www.cometefrance.com',
+            badge: 'Reconversion adaptée',
+          }]
+        : []),
     ],
   });
 

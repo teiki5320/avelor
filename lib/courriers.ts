@@ -389,6 +389,222 @@ Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées
 
 Important : ce courrier doit être envoyé en recommandé avec accusé de réception dans un délai de 2 mois à compter de la réception de la mise en demeure.`,
   },
+  {
+    slug: 'saisine-ccsf',
+    titre: 'Saisine de la CCSF (échelonnement fiscal + social)',
+    destinataire: 'Commission des Chefs de Services Financiers — DDFiP',
+    categorie: 'impots',
+    icone: '🏛️',
+    description: 'Demande d\'échelonnement global de vos dettes fiscales ET sociales en un seul dossier (jusqu\'à 36 mois).',
+    objet: 'Demande de saisine de la CCSF — plan d\'apurement global',
+    corps: `Madame, Monsieur,
+
+Je sollicite la saisine de la Commission des Chefs de Services Financiers (CCSF) du département pour une demande de plan d'apurement global de mes dettes fiscales et sociales.
+
+SITUATION DE L'ENTREPRISE
+- Dénomination : {{NOM_ENTREPRISE}}
+- SIRET : {{SIRET}}
+- Forme juridique : {{FORME_JURIDIQUE}}
+- Effectif : {{EFFECTIF}}
+- Activité principale : {{ACTIVITE}}
+
+MONTANT DES DETTES À TRAITER
+- Dettes fiscales (TVA, IS, CFE, TVA…) : {{MONTANT_FISCAL}} €
+- Dettes sociales (URSSAF, RSI, MSA…) : {{MONTANT_SOCIAL}} €
+- TOTAL : {{MONTANT_TOTAL}} €
+
+ORIGINES DES DIFFICULTÉS
+{{ORIGINES_DIFFICULTES}}
+
+ACTIONS DÉJÀ ENGAGÉES
+- Cotisations courantes : à jour depuis le {{DATE_REPRISE_COURANT}}
+- {{ACTIONS_REDRESSEMENT}}
+
+PROPOSITION DE PLAN D'APUREMENT
+- Durée souhaitée : {{DUREE_PLAN}} mois
+- Mensualité proposée : {{MENSUALITE}} €
+- Premier versement : {{DATE_PREMIER_VERSEMENT}}
+
+PIÈCES JOINTES
+- Formulaire Cerfa 15772*02 dûment complété
+- Dernier bilan et liasse fiscale
+- Plan de trésorerie prévisionnel sur 12 mois
+- Attestation de paiement à jour des cotisations courantes
+- Tableau récapitulatif des dettes (échéances, montants, créanciers)
+
+Je m'engage à respecter scrupuleusement ce plan et à maintenir le paiement des échéances courantes. Je reste à votre disposition pour tout complément d'information.
+
+Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+Important : ce courrier doit être adressé à la DDFiP de votre département (service CCSF). La saisine est gratuite et confidentielle. Délai de réponse : généralement 2 à 3 mois.`,
+  },
+  {
+    slug: 'restructuration-pge',
+    titre: 'Demande de restructuration de PGE',
+    destinataire: 'Votre banque (à l\'attention de votre conseiller)',
+    categorie: 'banque',
+    icone: '💳',
+    description: 'Demande de réaménagement du PGE au titre du protocole de place du 19 janvier 2022 — étalement jusqu\'à 10 ans, garantie d\'État maintenue.',
+    objet: 'Demande de réaménagement du PGE n° {{REFERENCE_PGE}}',
+    corps: `Madame, Monsieur,
+
+Je sollicite par la présente le réaménagement du Prêt Garanti par l'État (PGE) n° {{REFERENCE_PGE}} contracté par la société {{NOM_ENTREPRISE}} (SIRET {{SIRET}}) auprès de votre établissement, au titre du protocole de place du 19 janvier 2022 (BdF, FBF, Bpifrance).
+
+SITUATION DU PGE
+- Montant initial : {{MONTANT_PGE}} €
+- Date de souscription : {{DATE_SOUSCRIPTION}}
+- Capital restant dû : {{CAPITAL_RESTANT}} €
+- Mensualité actuelle : {{MENSUALITE_ACTUELLE}} €
+- Échéance actuelle : {{DATE_FIN_ACTUELLE}}
+
+SITUATION ÉCONOMIQUE
+{{SITUATION_ECONOMIQUE}}
+
+DEMANDE DE RÉAMÉNAGEMENT
+Conformément à l'accord de place signé entre la Banque de France, la Médiation du crédit, la Fédération bancaire française et Bpifrance, je sollicite :
+- Allongement de la durée totale du PGE à {{DUREE_DEMANDEE}} ans (plafond 10 ans)
+- {{DIFFERE_DEMANDE}}
+- Nouvelle mensualité cible : {{MENSUALITE_CIBLE}} €
+
+Je rappelle que cet aménagement, encadré par le protocole de place, est réalisé sans perte de la garantie d'État (Bpifrance) et sans inscription défavorable au fichier des incidents bancaires.
+
+PIÈCES JOINTES
+- Plan de trésorerie prévisionnel sur 24 mois
+- Dernier bilan et compte de résultat
+- Justificatifs des actions correctives engagées
+- Avis de votre expert-comptable
+
+Je vous remercie de bien vouloir examiner cette demande et de m'apporter votre réponse motivée par écrit dans les 15 jours, conformément au protocole.
+
+À défaut de réponse positive sous ce délai, je me réserve le droit de saisir gratuitement la Médiation du crédit (3414 / mediateur-credit.banque-france.fr), conformément au dispositif officiel.
+
+Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+Important : ce courrier doit être envoyé par LRAR ou e-mail avec accusé de réception à votre conseiller bancaire. En cas de refus ou silence > 15 jours : saisir la Médiation du crédit gratuitement.`,
+  },
+  {
+    slug: 'demande-acpr',
+    titre: 'Notification ACPR (entreprise du secteur financier)',
+    destinataire: 'Autorité de contrôle prudentiel et de résolution (ACPR)',
+    categorie: 'banque',
+    icone: '🏦',
+    description: 'Pour les entreprises du secteur financier (banque, assurance, intermédiaire ORIAS) en difficulté : notification de la situation et demande d\'accompagnement.',
+    objet: 'Notification de situation difficile — demande d\'accompagnement',
+    corps: `Madame, Monsieur,
+
+Conformément à mes obligations en tant que dirigeant d'un organisme contrôlé par l'ACPR, je vous notifie par la présente la situation difficile dans laquelle se trouve la société {{NOM_ENTREPRISE}}.
+
+IDENTIFICATION
+- Dénomination : {{NOM_ENTREPRISE}}
+- Numéro ORIAS / Agrément : {{REFERENCE_AGREMENT}}
+- Catégorie d'activité : {{CATEGORIE_ACTIVITE}}
+- Effectif : {{EFFECTIF}}
+
+NATURE DE LA DIFFICULTÉ
+{{NATURE_DIFFICULTE}}
+
+INDICATEURS DE SOLVABILITÉ
+- {{INDICATEURS_FINANCIERS}}
+
+ACTIONS DÉJÀ ENGAGÉES
+{{ACTIONS_REDRESSEMENT}}
+
+DEMANDE
+Je sollicite un entretien avec votre cellule dédiée pour :
+- Examiner les voies de résolution organisée envisageables
+- Vérifier la compatibilité de mes actions avec mes obligations prudentielles
+- Bénéficier le cas échéant d'un accompagnement préventif
+
+Je m'engage à maintenir un dialogue transparent avec vos services et à informer immédiatement votre cellule de toute évolution significative de ma situation.
+
+PIÈCES JOINTES
+- Dernier bilan et compte de résultat
+- États financiers prudentiels récents
+- Plan d'action de redressement
+- Décisions des organes de gouvernance
+
+Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+Important : ce courrier doit être adressé à l'ACPR (4 place de Budapest, CS 92459, 75436 Paris Cedex 09). La notification précoce est non seulement une obligation mais aussi un atout : l'ACPR peut vous orienter vers un dispositif de résolution organisée.`,
+  },
+  {
+    slug: 'demande-apesa',
+    titre: 'Demande de soutien APESA (urgence psychologique)',
+    destinataire: 'APESA — Aide Psychologique aux Entrepreneurs en Souffrance Aiguë',
+    categorie: 'social',
+    icone: '🤝',
+    description: 'Saisir directement APESA pour bénéficier de 5 séances gratuites avec un psychologue clinicien (entrepreneurs en grande souffrance).',
+    objet: 'Demande de prise en charge psychologique APESA',
+    corps: `Madame, Monsieur,
+
+Je vous contacte en tant que chef d'entreprise traversant une période de très forte tension psychique liée à mes difficultés professionnelles.
+
+SITUATION PROFESSIONNELLE
+- Activité : {{ACTIVITE}}
+- Statut : {{STATUT_DIRIGEANT}} ({{FORME_JURIDIQUE}})
+- Effectif : {{EFFECTIF}}
+- Stade actuel : {{STADE_DIFFICULTE}}
+
+ÉTAT PERSONNEL
+Sans entrer dans le détail clinique, je traverse actuellement {{ETAT_PERSONNEL}} qui affectent significativement ma capacité à piloter la situation et à prendre des décisions sereines.
+
+Je sollicite le bénéfice du dispositif APESA, qui permet d'accéder à 5 séances gratuites avec un psychologue clinicien spécialisé dans l'accompagnement des dirigeants.
+
+INFORMATIONS UTILES
+- Disponibilité : {{DISPONIBILITES}}
+- Préférence présentiel / visio : {{PREFERENCE_CONSULTATION}}
+- Ville / région : {{LOCALISATION}}
+- Contact privilégié : {{COORDONNEES}}
+
+Je m'engage à respecter la confidentialité du dispositif et à honorer les rendez-vous fixés.
+
+Je vous remercie pour votre écoute et votre accompagnement.
+
+Bien à vous.
+
+Important : APESA peut aussi être saisi via le tribunal de commerce, votre expert-comptable, votre avocat, ou directement par téléphone. La saisine est confidentielle et gratuite (apesa.fr).`,
+  },
+  {
+    slug: 'demande-aide-juridictionnelle',
+    titre: 'Demande d\'aide juridictionnelle',
+    destinataire: 'Bureau d\'aide juridictionnelle du tribunal',
+    categorie: 'tribunal',
+    icone: '⚖️',
+    description: 'Demander la prise en charge totale ou partielle des frais d\'avocat et d\'huissier pour vos procédures (perso ou pro).',
+    objet: 'Demande d\'aide juridictionnelle — référence Cerfa 16146*03',
+    corps: `Madame, Monsieur,
+
+Je sollicite le bénéfice de l'aide juridictionnelle pour une procédure {{NATURE_PROCEDURE}} en application de la loi n° 91-647 du 10 juillet 1991.
+
+NATURE DU DOSSIER
+{{DETAIL_DOSSIER}}
+
+SITUATION FINANCIÈRE
+- Revenu fiscal de référence (avis d'imposition N-1) : {{RFR}} €
+- Composition du foyer fiscal : {{COMPOSITION_FOYER}}
+- Patrimoine immobilier (hors résidence principale) : {{PATRIMOINE_IMMO}} €
+- Patrimoine financier (épargne, valeurs mobilières) : {{PATRIMOINE_FIN}} €
+
+Au vu de mon RFR, je sollicite :
+- [ ] L'aide juridictionnelle TOTALE (RFR ≤ 12 957 € en 2025)
+- [ ] L'aide juridictionnelle PARTIELLE (RFR > 12 957 € et ≤ 19 411 €)
+
+AVOCAT SOUHAITÉ
+{{AVOCAT_CHOISI}}
+
+PIÈCES JOINTES
+- Cerfa 16146*03 dûment complété
+- Avis d'imposition de l'année N-1 (recto-verso)
+- Justificatifs de patrimoine (relevés bancaires, taxe foncière)
+- Justificatif d'identité
+- Justificatif de domicile
+- Convocation au tribunal ou copie de l'assignation
+- {{AUTRES_PIECES}}
+
+Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+Important : à déposer au bureau d'aide juridictionnelle du tribunal compétent (TJ ou TC selon votre forme juridique). Délai de réponse : 1 à 3 mois. L'AJ totale couvre 100 % des frais ; l'AJ partielle couvre 55 % (RFR jusqu'à 15 547 €) ou 25 % (RFR jusqu'à 19 411 €).`,
+  },
 ];
 
 export function getCourrier(slug: string): CourrierTemplate | undefined {

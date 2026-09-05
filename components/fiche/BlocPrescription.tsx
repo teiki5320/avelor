@@ -29,9 +29,9 @@ function buildAlertes(r: Reponses, age: number | null, seuils: { cse: boolean; o
 
   if (r.probleme === 'impots') {
     alertes.push({
-      texte: 'Les dettes fiscales se prescrivent généralement par 4 ans',
+      texte: 'Dettes fiscales : reprise 3 ans, recouvrement 4 ans',
       detail:
-        'Le délai de reprise de l\'administration fiscale est de 3 ans pour l\'impôt sur le revenu et l\'IS, et de 4 ans pour la TVA (à partir de l\'année suivant celle au titre de laquelle l\'impôt est dû).',
+        'Le délai de reprise de l\'administration fiscale est de 3 ans pour l\'impôt sur le revenu, l\'IS et la TVA (articles L169 et L176 du Livre des procédures fiscales). Une fois l\'impôt mis en recouvrement, le comptable public dispose de 4 ans pour agir (article L274) — au-delà, la dette est prescrite.',
       urgence: 'info',
     });
   }

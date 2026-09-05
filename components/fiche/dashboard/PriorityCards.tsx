@@ -109,7 +109,7 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>Prévisionnel 6 mois avec votre expert-comptable (2-4 h)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>Médiation du crédit</strong> — Banque de France, gratuit, réponse sous 5 j (0810 00 12 10)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>Médiation du crédit</strong> — Banque de France, gratuit, réponse sous 5 j (34 14)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Moratoire URSSAF (3957) / SIE (téléprocédure) / bailleur (LRAR)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>CCSF si dettes fiscales ET sociales (guichet unique, CERFA 15772*02)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Affacturage / escompte pour accélérer les encaissements</li>
@@ -231,6 +231,63 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
         </div>
       );
     }
+    case 'pge':
+      return (
+        <div className="space-y-3 text-sm text-navy/80">
+          <p>
+            Le Prêt Garanti par l&apos;État pèse sur 30 % des défaillances
+            2024-2025. <strong>Restructuration à tenter AVANT toute
+            procédure</strong> — l&apos;ouverture d&apos;une sauvegarde
+            ou d&apos;un RJ fait perdre la garantie d&apos;État pour la
+            banque.
+          </p>
+          <ul className="space-y-1.5">
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Demande de réaménagement à la banque (protocole de place 19 janv. 2022)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>En cas de refus : <strong>Médiation du crédit 3414</strong> (gratuit, 5 j, taux succès &gt; 60 %)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Étalement possible jusqu&apos;à 10 ans, sans perte de garantie d&apos;État</li>
+          </ul>
+          <button type="button" onClick={() => scrollToId('echeances')} className="inline-flex text-sm font-medium text-jaune hover:underline">
+            Voir le détail PGE ↓
+          </button>
+        </div>
+      );
+    case 'conjoint':
+      return (
+        <div className="space-y-3 text-sm text-navy/80">
+          <p>
+            Le statut de votre conjoint détermine ses protections
+            (AGS, chômage, retraite) et les risques personnels qui
+            pèsent sur vous deux.
+          </p>
+          <ul className="space-y-1.5">
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Vérifier les droits AGS et chômage selon le statut</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Conjoint collaborateur : durée plafonnée à 5 ans (loi 14 fév. 2022)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Conjoint co-gérant : risque d&apos;extension de la responsabilité</li>
+          </ul>
+          <button type="button" onClick={() => scrollToId('patrimoine')} className="inline-flex text-sm font-medium text-jaune hover:underline">
+            Voir le bloc Conjoint ↓
+          </button>
+        </div>
+      );
+    case 'cogerance':
+      return (
+        <div className="space-y-3 text-sm text-navy/80">
+          <p>
+            Plusieurs dirigeants = <strong>solidarité fiscale et
+            sociale</strong>. Le SIE (L267 LPF) et l&apos;URSSAF
+            (L243-6-2 CSS) peuvent poursuivre n&apos;importe quel
+            co-gérant pour la totalité des dettes en cas de faute.
+          </p>
+          <ul className="space-y-1.5">
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Établir un PV de répartition des fonctions (gérance technique, financière, commerciale)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Documenter qui décide quoi — utile en défense L651-2 (insuffisance d&apos;actif)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Faire un point individuel avec son avocat</li>
+          </ul>
+          <button type="button" onClick={() => scrollToId('patrimoine')} className="inline-flex text-sm font-medium text-jaune hover:underline">
+            Voir les conséquences personnelles ↓
+          </button>
+        </div>
+      );
     default:
       return null;
   }

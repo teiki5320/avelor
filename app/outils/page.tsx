@@ -30,7 +30,7 @@ const OUTILS: Outil[] = [
     icone: '📄',
     titre: 'Indemnité de licenciement économique',
     description:
-      "Calcul selon ancienneté et salaire brut. Plafond AGS 2025 : 92 736 €.",
+      "Calcul selon ancienneté et salaire brut. Plafond AGS 2024 : 92 736 €.",
     source: 'C. trav. L1234-9, ags-garantie-salaires.org',
   },
   {
@@ -88,6 +88,22 @@ const OUTILS: Outil[] = [
     description:
       "Multiples sectoriels appliqués à votre EBE et CA. Fourchette pour préparer une cession.",
     source: 'Bpifrance, INSEE Esane',
+  },
+  {
+    href: '/outils/stocks',
+    icone: '📦',
+    titre: 'Valorisation des stocks',
+    description:
+      "Estimez la valeur de réalisation de vos stocks selon la nature et la voie (amiable, RJ, liquidation, enchères).",
+    source: 'Pratique CNAJMJ / CSCPJ',
+  },
+  {
+    href: '/outils/seuils-effectif',
+    icone: '📐',
+    titre: 'Vérificateur de seuils d\'effectif',
+    description:
+      "Saisissez votre effectif et découvrez les obligations applicables : CSE, PSE, participation, AGEFIPH, RPS, BDESE, congé reclassement.",
+    source: 'Code du travail, loi PACTE',
   },
 ];
 

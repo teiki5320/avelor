@@ -1,9 +1,12 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import { useFiche } from '@/lib/FicheContext';
+import { useFiche, useFicheStorageKey } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
-const STORAGE_KEY = 'avelor_cessation_date';
+/** Événement custom : l'event `storage` du navigateur ne se déclenche que
+ *  dans les AUTRES onglets — BlocRappels s'appuie sur celui-ci pour se
+ *  resynchroniser quand la date est saisie dans le même onglet. */
+export const CESSATION_DATE_EVENT = 'avelor:cessation-date';
 
 function daysBetween(from: Date, to: Date): number {
   return Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
@@ -100,24 +103,26 @@ const STYLES: Record<Verdict['niveau'], { bg: string; border: string; text: stri
 
 export default function BlocCessationDecompte() {
   const { reponses } = useFiche();
+  const storageKey = useFicheStorageKey('avelor_cessation_date');
   const [dateStr, setDateStr] = useState<string>('');
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = localStorage.getItem(storageKey);
       if (stored) setDateStr(stored);
     } catch {}
     setLoaded(true);
-  }, []);
+  }, [storageKey]);
 
   useEffect(() => {
     if (!loaded) return;
     try {
-      if (dateStr) localStorage.setItem(STORAGE_KEY, dateStr);
-      else localStorage.removeItem(STORAGE_KEY);
+      if (dateStr) localStorage.setItem(storageKey, dateStr);
+      else localStorage.removeItem(storageKey);
     } catch {}
-  }, [dateStr, loaded]);
+    window.dispatchEvent(new CustomEvent(CESSATION_DATE_EVENT, { detail: dateStr }));
+  }, [dateStr, loaded, storageKey]);
 
   const pertinent =
     reponses.situation === 'redressement' ||

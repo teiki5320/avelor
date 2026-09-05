@@ -55,7 +55,7 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
     specifiques.push({
       nom: `Médiation du crédit${dep ? ` · Banque de France (${dep})` : ''}`,
       description: 'Gratuit et confidentiel. Le médiateur contacte votre banque et négocie pour vous. Taux de succès élevé.',
-      telephone: '0810 00 12 10',
+      telephone: '34 14',
       site: 'https://mediateur-credit.banque-france.fr',
       badge: 'Prioritaire pour vous',
     });
@@ -121,6 +121,41 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
       badge: a.badge ?? `Spécifique ${s.label}`,
     }));
     sections.push({ titre: `Aides ${s.label}`, aides: sectorielles });
+  }
+
+  // Section : leviers de trésorerie immédiats (affacturage, escompte, Dailly)
+  // Pertinents pour toute entreprise qui facture des clients pros (B2B)
+  if (r.situation === 'tresorie' || r.situation === 'redressement' || r.probleme === 'banque' || r.probleme === 'fournisseurs') {
+    const tresorerieLeviers: Aide[] = [
+      {
+        nom: 'Affacturage (factoring)',
+        description:
+          'Cession de vos factures clients à un affactureur (banque, BPI, société spécialisée) qui vous avance jusqu\'à 90 % sous 48 h, puis recouvre auprès du client. Différent du crédit fournisseur : c\'est un financement, pas un délai. Commission 1-3 % + intérêts. Adapté si vous avez plusieurs clients B2B solvables.',
+        site: 'https://www.bpifrance.fr/nos-solutions/financement/financer-court-terme/affacturage',
+        badge: 'Cash sous 48 h',
+      },
+      {
+        nom: 'Escompte commercial',
+        description:
+          'Mobilisation auprès de votre banque d\'effets de commerce (lettres de change, billets à ordre) avant leur échéance. La banque vous paie immédiatement, déduction faite d\'un agio. Moins coûteux que l\'affacturage mais nécessite des effets acceptés. Différent de l\'escompte fournisseur (remise pour paiement comptant).',
+        badge: 'Si effets acceptés',
+      },
+      {
+        nom: 'Cession Dailly (loi du 2 janv. 1981)',
+        description:
+          'Cession de créances professionnelles à votre banque, via un bordereau simplifié (art. L313-23 CMF). Plus souple que l\'escompte (pas besoin d\'effet de commerce) et moins cher que l\'affacturage. Vous restez en relation avec votre client. Outil sous-utilisé en TPE/PME.',
+        badge: 'Souple · banque',
+      },
+      {
+        nom: 'Mobilisation créances publiques (Bpifrance)',
+        description:
+          'Si vous travaillez avec des collectivités ou administrations, Bpifrance avance jusqu\'à 100 % de vos factures publiques (DGFIP, conseil régional, hôpital). Délai 48 h, jusqu\'à un plafond de 30 000 € automatique, plus au-delà.',
+        telephone: '3247',
+        site: 'https://www.bpifrance.fr/nos-solutions/financement/financer-court-terme/avance-creances-publiques',
+        badge: 'Marchés publics',
+      },
+    ];
+    sections.push({ titre: 'Leviers de trésorerie immédiats', aides: tresorerieLeviers });
   }
 
   // Section 4: Aides nationales (toujours)
@@ -263,7 +298,7 @@ export default function BlocAides() {
                           href={`tel:${a.telephone.replace(/\s/g, '')}`}
                           className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
                         >
-                          ☎ {a.telephone}
+                          <span aria-hidden>☎</span> {a.telephone}
                         </a>
                       )}
                       {a.site && (
@@ -273,7 +308,7 @@ export default function BlocAides() {
                           rel="noreferrer"
                           className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
                         >
-                          🌐 {(() => { try { return new URL(a.site).hostname.replace('www.', ''); } catch { return a.nom; } })()}
+                          <span aria-hidden>🌐</span> {(() => { try { return new URL(a.site).hostname.replace('www.', ''); } catch { return a.nom; } })()}
                         </a>
                       )}
                     </div>

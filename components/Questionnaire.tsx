@@ -1,10 +1,11 @@
 'use client';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import type {
   Reponses, Situation, Probleme, Effectif, Moral,
   Caution, RegimeMatrimonial, Patrimoine, VenteEnvisagee,
   MontantDettes, AgeDirigeant, Franchise, AntecedentsBodacc,
+  PgeEnCours, Rqth, ConjointStatut, CoGerants, Saisonnalite, Nationalite,
 } from '@/lib/types';
 
 interface Choice<T extends string> {
@@ -97,7 +98,43 @@ const ANTECEDENTS: Choice<AntecedentsBodacc>[] = [
   { value: 'ne-sais-pas', label: 'Je ne suis pas sûr·e' },
 ];
 
-const TOTAL_SLIDES = 12;
+const PGE_EN_COURS: Choice<PgeEnCours>[] = [
+  { value: 'oui', label: 'Oui, j’ai un PGE en cours', hint: 'Prêt Garanti par l’État (Covid 2020-2021)' },
+  { value: 'non', label: 'Non, pas de PGE' },
+  { value: 'ne-sais-pas', label: 'Je ne sais pas' },
+];
+
+const RQTH: Choice<Rqth>[] = [
+  { value: 'oui', label: 'Oui, RQTH ou handicap reconnu', hint: 'Permet de mobiliser AGEFIPH, Cap Emploi, MDPH (consentement RGPD)' },
+  { value: 'non', label: 'Non / je préfère ne pas répondre' },
+];
+
+const CONJOINT: Choice<ConjointStatut>[] = [
+  { value: 'salarie', label: 'Mon conjoint·e est salarié·e de la société', hint: 'Statut conjoint salarié — protections licenciement éco' },
+  { value: 'collaborateur', label: 'Mon conjoint·e est conjoint collaborateur', hint: 'Inscrit au RCS/RM, cotise sans rémunération' },
+  { value: 'associe', label: 'Mon conjoint·e est associé·e', hint: 'Détient des parts sociales' },
+  { value: 'aucun', label: 'Mon conjoint·e n’a pas de rôle dans la société' },
+  { value: 'sans-conjoint', label: 'Je n’ai pas de conjoint·e' },
+];
+
+const CO_GERANTS: Choice<CoGerants>[] = [
+  { value: 'oui', label: 'Oui, il y a plusieurs gérants/dirigeants', hint: 'Solidarité fiscale et sociale possible (art. L267 LPF, L243-6-2 CSS)' },
+  { value: 'non', label: 'Non, je suis seul·e' },
+  { value: 'sans-objet', label: 'Sans objet (entrepreneur individuel)' },
+];
+
+const SAISONNALITE: Choice<Saisonnalite>[] = [
+  { value: 'oui', label: 'Oui, activité saisonnière', hint: 'HCR, agri, tourisme — impacte activité partielle et trésorerie' },
+  { value: 'non', label: 'Non, activité régulière toute l’année' },
+];
+
+const NATIONALITE: Choice<Nationalite>[] = [
+  { value: 'fr-ue-eee-suisse', label: 'France / UE / EEE / Suisse', hint: 'Pas d’impact titre de séjour' },
+  { value: 'hors-ue', label: 'Hors UE', hint: 'Conséquences sur Passeport Talent, carte de séjour entrepreneur, OFII' },
+  { value: 'sans-reponse', label: 'Je préfère ne pas répondre', hint: 'Donnée non partagée sans votre accord (RGPD)' },
+];
+
+const TOTAL_SLIDES = 18;
 
 interface Props {
   siret: string;
@@ -134,6 +171,10 @@ export default function Questionnaire({ siret }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [answers, setAnswers] = useState<Partial<Reponses>>({});
   const [restored, setRestored] = useState(false);
+  // Verrou anti double-clic pendant l'animation de transition (280 ms).
+  // Un useRef évite un re-render et permet une vérification synchrone.
+  const lockedRef = useRef(false);
+  const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
     const saved = loadSaved(siret);
@@ -150,21 +191,57 @@ export default function Questionnaire({ siret }: Props) {
 
   const progress = useMemo(() => ((step + 1) / TOTAL_SLIDES) * 100, [step]);
 
+  // Accessibilité clavier/lecteur d'écran : au changement d'étape, replacer le
+  // focus sur le titre de la question (sinon le focus reste sur le bouton
+  // cliqué, désormais démonté, et le lecteur d'écran n'annonce rien).
+  const titreRef = useRef<HTMLHeadingElement>(null);
+  const premierRendu = useRef(true);
+  useEffect(() => {
+    if (premierRendu.current) {
+      premierRendu.current = false;
+      return;
+    }
+    titreRef.current?.focus();
+  }, [step]);
+
   function select(key: keyof Reponses, value: string, detail?: string) {
-    setAnswers((prev) => ({
-      ...prev,
+    // Bloque toute action si une transition est en cours (anti double-clic /
+    // tap accidentel) ou si on est déjà en soumission.
+    if (lockedRef.current || submitting) return;
+    lockedRef.current = true;
+    setTransitioning(true);
+
+    const nextAnswers: Partial<Reponses> = {
+      ...answers,
       [key]: value,
       ...(detail && key === 'effectif' ? { effectifDetail: detail } : {}),
-    }));
+    };
+    setAnswers(nextAnswers);
+
     setTimeout(() => {
-      if (step < TOTAL_SLIDES - 1) setStep((s) => s + 1);
-      else submit({ ...answers, [key]: value, ...(detail ? { effectifDetail: detail } : {}) });
+      if (step < TOTAL_SLIDES - 1) {
+        setStep((s) => s + 1);
+        // Libère le verrou après le changement d'étape.
+        lockedRef.current = false;
+        setTransitioning(false);
+      } else {
+        // Dernière étape : on lance la soumission. Le verrou reste actif
+        // (submitting prend le relais).
+        submit(nextAnswers);
+      }
     }, 280);
   }
 
   function skip() {
-    if (step < TOTAL_SLIDES - 1) setStep((s) => s + 1);
-    else submit(answers);
+    if (lockedRef.current || submitting) return;
+    lockedRef.current = true;
+    if (step < TOTAL_SLIDES - 1) {
+      setStep((s) => s + 1);
+      // Petit délai avant de relâcher pour éviter le double-skip.
+      setTimeout(() => { lockedRef.current = false; }, 280);
+    } else {
+      submit(answers);
+    }
   }
 
   async function submit(final: Partial<Reponses>) {
@@ -268,6 +345,48 @@ export default function Questionnaire({ siret }: Props) {
       choices: ANTECEDENTS,
       skippable: true,
     },
+    {
+      title: 'Avez-vous un PGE en cours ?',
+      subtitle: 'Le Prêt Garanti par l’État pèse sur 30 % des défaillances 2024-2025.',
+      key: 'pgeEnCours',
+      choices: PGE_EN_COURS,
+      skippable: true,
+    },
+    {
+      title: 'Avez-vous une RQTH ou un handicap reconnu ?',
+      subtitle: 'Optionnel — sert à mobiliser AGEFIPH, Cap Emploi, MDPH. Donnée non partagée sans votre accord (RGPD).',
+      key: 'rqth',
+      choices: RQTH,
+      skippable: true,
+    },
+    {
+      title: 'Votre conjoint·e a-t-il un rôle dans la société ?',
+      subtitle: 'Statut conjoint salarié, collaborateur ou associé : protections et risques différents.',
+      key: 'conjointStatut',
+      choices: CONJOINT,
+      skippable: true,
+    },
+    {
+      title: 'Êtes-vous co-gérant ou seul à la tête ?',
+      subtitle: 'La pluralité de dirigeants déclenche une solidarité fiscale et sociale.',
+      key: 'coGerants',
+      choices: CO_GERANTS,
+      skippable: true,
+    },
+    {
+      title: 'Votre activité est-elle saisonnière ?',
+      subtitle: 'HCR, tourisme, agriculture, pêche — change les arbitrages activité partielle et trésorerie.',
+      key: 'saisonnalite',
+      choices: SAISONNALITE,
+      skippable: true,
+    },
+    {
+      title: 'Quelle est votre nationalité ?',
+      subtitle: 'Impact spécifique pour les dirigeants hors UE (titre de séjour entrepreneur, Passeport Talent). Optionnel — RGPD.',
+      key: 'nationalite',
+      choices: NATIONALITE,
+      skippable: true,
+    },
   ];
 
   const safeStep = Math.min(step, slides.length - 1);
@@ -287,6 +406,9 @@ export default function Questionnaire({ siret }: Props) {
           </button>
         </div>
       )}
+      <p className="sr-only" aria-live="polite">
+        Étape {step + 1} sur {TOTAL_SLIDES} : {current.title}
+      </p>
       <div className="mb-8">
         <div className="mb-2 flex items-center justify-between text-xs text-navy/50">
           <span>Étape {step + 1} sur {TOTAL_SLIDES}</span>
@@ -311,7 +433,12 @@ export default function Questionnaire({ siret }: Props) {
           transition={{ duration: 0.35, ease: 'easeOut' }}
           className="glass card-top-line p-6 sm:p-10"
         >
-          <h2 id={`question-${current.key}`} className="font-display text-2xl text-navy sm:text-3xl">
+          <h2
+            id={`question-${current.key}`}
+            ref={titreRef}
+            tabIndex={-1}
+            className="font-display text-2xl text-navy outline-none sm:text-3xl"
+          >
             {current.title}
           </h2>
           <p className="mt-2 text-sm text-navy/60">{current.subtitle}</p>
@@ -320,7 +447,7 @@ export default function Questionnaire({ siret }: Props) {
               <button
                 key={`${current.key}-${idx}`}
                 type="button"
-                disabled={submitting}
+                disabled={submitting || transitioning}
                 aria-label={c.hint ? `${c.label} — ${c.hint}` : c.label}
                 onClick={() => {
                   if (current.key === 'effectif') {
@@ -329,7 +456,7 @@ export default function Questionnaire({ siret }: Props) {
                     select(current.key, c.value);
                   }
                 }}
-                className="group flex w-full items-start gap-4 rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-left transition hover:border-bleu hover:bg-white"
+                className="group flex w-full items-start gap-4 rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-left transition hover:border-bleu hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <span className="mt-1 h-5 w-5 shrink-0 rounded-full border border-navy/20 group-hover:border-bleu" aria-hidden="true" />
                 <span>
@@ -359,7 +486,8 @@ export default function Questionnaire({ siret }: Props) {
               <button
                 type="button"
                 onClick={skip}
-                className="text-navy/50 underline hover:text-navy"
+                disabled={transitioning}
+                className="text-navy/50 underline hover:text-navy disabled:opacity-40"
               >
                 Passer cette question
               </button>

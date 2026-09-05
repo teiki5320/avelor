@@ -5,6 +5,7 @@ import Background from '@/components/Background';
 import Nav from '@/components/Nav';
 import Compteur from '@/components/Compteur';
 import LazyMotionProvider from '@/components/LazyMotionProvider';
+import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -47,6 +48,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${playfair.variable} ${outfit.variable}`}>
       <head>
+        {/* Applique le thème enregistré avant le rendu (anti-FOUC) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('avelor_theme');if(t==='sombre')document.documentElement.setAttribute('data-theme','dark');else if(t==='contraste')document.documentElement.setAttribute('data-theme','contrast');}catch(e){}})();`,
+          }}
+        />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/icon-512.png" />
@@ -73,6 +80,7 @@ export default function RootLayout({
         )}
       </head>
       <body>
+        <ServiceWorkerRegister />
         <LazyMotionProvider>
         <Background />
         <Nav />
@@ -85,6 +93,9 @@ export default function RootLayout({
             <a href="/confidentialite" className="hover:text-navy/70">Confidentialité</a>
             <a href="/parler" className="hover:text-navy/70">Parler à quelqu&apos;un</a>
             <a href="/temoignages" className="hover:text-navy/70">Témoignages</a>
+            <a href="/mentions-legales" className="hover:text-navy/70">Mentions légales</a>
+            <a href="/politique-donnees" className="hover:text-navy/70">RGPD</a>
+            <a href="/accessibilite" className="hover:text-navy/70">Accessibilité</a>
           </div>
         </footer>
         </LazyMotionProvider>

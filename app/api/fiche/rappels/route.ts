@@ -36,6 +36,15 @@ export async function POST(req: Request) {
 
     const rappels: Rappel[] = (fiche.rappels as Rappel[]) || [];
 
+    // Anti-abus : une fiche ne peut pas accumuler des rappels sans limite
+    // (l'endpoint servirait sinon de canon à spam via le cron quotidien).
+    if (rappels.length >= 20) {
+      return NextResponse.json(
+        { error: 'Nombre maximal de rappels atteint (20)' },
+        { status: 429 },
+      );
+    }
+
     rappels.push({
       email,
       echeance,

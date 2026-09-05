@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import { useFiche } from '@/lib/FicheContext';
+import { useFiche, useFicheStorageKey } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
 interface Inputs {
@@ -10,7 +10,6 @@ interface Inputs {
   detteUrgente: number;
 }
 
-const STORAGE_KEY = 'avelor_tresorerie';
 const HORIZON_MOIS = 6;
 
 const EMPTY: Inputs = {
@@ -102,23 +101,24 @@ const NIVEAU_STYLES: Record<'safe' | 'alerte' | 'cessation', { bg: string; borde
 
 export default function BlocTresorerie() {
   const { reponses } = useFiche();
+  const storageKey = useFicheStorageKey('avelor_tresorerie');
   const [inputs, setInputs] = useState<Inputs>(EMPTY);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(storageKey);
       if (raw) setInputs(JSON.parse(raw));
     } catch {}
     setLoaded(true);
-  }, []);
+  }, [storageKey]);
 
   useEffect(() => {
     if (!loaded) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(inputs));
+      localStorage.setItem(storageKey, JSON.stringify(inputs));
     } catch {}
-  }, [inputs, loaded]);
+  }, [inputs, loaded, storageKey]);
 
   const hasData = inputs.soldeInitial !== 0 || inputs.entrees > 0 || inputs.sorties > 0;
 
