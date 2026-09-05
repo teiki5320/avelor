@@ -1,154 +1,77 @@
-# INFRA — Fiche technique des services externes
+# INFRA — fiche technique
 
-> **Générée le 20/07/2026** par un scan du dépôt (dépendances, configs, variables d'environnement, workflows CI, code).
-> Pour la mettre à jour : relancer le prompt de génération dans une session Claude Code (« Génère un fichier docs/INFRA.md… »).
-> ⚠️ **Aucun secret n'est écrit dans ce fichier** — uniquement l'endroit où chaque secret vit.
+> Généré le 20/07/2026 par un scan du dépôt. Pour mettre à jour : relancer ce même prompt.
+> Aucun secret dans cette fiche — uniquement des références (noms de variables, consoles).
 
----
+## Vue d'ensemble
 
-## 1. Vercel — hébergement, déploiement, cron
+- **Stack** : Next.js 15.5.20 (App Router) · React 19 · TypeScript · Tailwind 3.4
+- **Hébergement** : Vercel (déploiement automatique depuis la branche `main`)
+- **Domaine** : avelor.vercel.app (sous-domaine Vercel, SSL auto — domaine propre à acheter)
+- **Base de données** : Supabase (PostgreSQL, table `fiches`, RLS)
+- **E-mail** : Resend (magic links + rappels quotidiens via cron Vercel 7h)
+- **CI** : GitHub Actions (lint → build → 259 tests à chaque push/PR vers `main`)
 
-| | |
-|---|---|
-| **Rôle** | Hébergement du site Next.js, déploiement automatique à chaque push sur `main`, exécution du cron quotidien des rappels email (7h UTC, `vercel.json`) |
-| **Console** | https://vercel.com/dashboard |
-| **Identifiants publics** | URL de production : `https://avelor.vercel.app` (domaine `avelor.fr` prévu — voir §11). Cron : `vercel.json` → `GET /api/cron/rappels` à `0 7 * * *` |
-| **Secrets** | Toutes les variables d'environnement de production vivent dans **Vercel → Projet → Settings → Environment Variables** (voir tableau §12). Vercel injecte automatiquement `CRON_SECRET` dans l'en-tête des appels cron |
-| **Reprise** | Compte Vercel propriétaire du projet (connecté au repo GitHub `teiki5320/avelor`). Pour reprendre : être invité comme membre du projet, ou transférer le projet |
+### 1. Vercel
 
-## 2. Supabase — base de données
+- **Rôle** : hébergement du site, déploiement auto à chaque commit sur `main`, cron quotidien des rappels (`vercel.json` → `GET /api/cron/rappels` à 7h UTC)
+- **Console** : https://vercel.com/dashboard
+- **Identifiants publics** : URL de production `https://avelor.vercel.app`
+- **Secrets** : toutes les variables d'environnement de production vivent dans Vercel → Settings → Environment Variables (`SUPABASE_URL`, `SUPABASE_ANON_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_BASE_URL`, `CRON_SECRET`, `INSEE_API_KEY`, `GOOGLE_PLACES_API_KEY`, `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`)
+- **Coût** : plan Hobby gratuit (à vérifier dans la console selon l'usage)
 
-| | |
-|---|---|
-| **Rôle** | Stockage des fiches (table `fiches` : token, siret, reponses, company_data, email, rappels), avec règles RLS |
-| **Console** | https://supabase.com/dashboard |
-| **Identifiants publics** | `SUPABASE_URL` (URL du projet, non commitée mais publique par design) et `SUPABASE_ANON_KEY` (clé anonyme, conçue pour être exposable côté client — la sécurité repose sur les règles RLS). Lues dans `lib/supabase.ts:7-8` |
-| **Secrets** | Les deux valeurs sont dans **Vercel (env production)** et **`.env.local`** (non commité) en local. La clé `service_role` (secrète, jamais utilisée par le code actuel) reste uniquement dans le dashboard Supabase |
-| **Reprise** | Compte Supabase propriétaire du projet. Vérifier la table `fiches` + RLS via le dashboard ou le CLI (`supabase login`, `supabase projects api-keys`) |
+### 2. GitHub
 
-## 3. Resend — envoi d'emails
+- **Rôle** : hébergement du code (`teiki5320/avelor`) + CI GitHub Actions (`.github/workflows/ci.yml` : lint, build, tests — sans aucun secret CI)
+- **Console** : https://github.com/teiki5320/avelor
+- **Identifiants publics** : nom du dépôt
+- **Secrets** : aucun secret CI configuré (le build fonctionne sans variable)
+- **Coût** : gratuit
 
-| | |
-|---|---|
-| **Rôle** | Envoi du magic link (retrouver sa fiche) et des rappels quotidiens du cron. Code : `lib/resend.ts`, `app/api/cron/rappels/route.ts` |
-| **Console** | https://resend.com/overview |
-| **Identifiants publics** | `RESEND_FROM` — adresse d'expéditeur (défaut code : `AVELOR <onboarding@resend.dev>`, `lib/resend.ts:18`). À passer sur l'adresse du futur domaine après vérification DNS (SPF/DKIM) dans Resend |
-| **Secrets** | `RESEND_API_KEY` : **Vercel (env production)** + `.env.local` en local |
-| **Reprise** | Compte Resend propriétaire. Après achat du domaine : vérifier le domaine dans Resend (enregistrements DNS) avant d'envoyer depuis `contact@<domaine>` |
+### 3. Supabase
 
-## 4. API Recherche d'entreprises (gouv.fr) — données SIRET principales
+- **Rôle** : stockage des fiches (table `fiches` : token, siret, reponses, company_data, email, rappels) avec règles RLS
+- **Console** : https://supabase.com/dashboard
+- **Identifiants publics** : `SUPABASE_URL` et `SUPABASE_ANON_KEY` (clé anonyme exposable par design, la sécurité repose sur RLS) — lues dans `lib/supabase.ts`
+- **Secrets** : valeurs dans Vercel (env prod) + `.env.local` (non commité) ; la clé `service_role` reste uniquement dans le dashboard Supabase (non utilisée par le code)
+- **Coût** : free tier (à vérifier dans la console selon le volume)
 
-| | |
-|---|---|
-| **Rôle** | Source **principale** des données entreprise (nom, NAF, forme juridique, adresse…) à partir du SIRET. Code : `lib/sirene.ts:65` |
-| **Console** | Aucune — API publique de l'État, **sans clé ni compte** : https://recherche-entreprises.api.gouv.fr |
-| **Identifiants publics** | URL de base dans `lib/sirene.ts` |
-| **Secrets** | Aucun |
-| **Reprise** | Rien à reprendre — service public sans authentification |
+### 4. Resend
 
-## 5. API Sirene INSEE — données SIRET (secours)
+- **Rôle** : envoi des magic links (retrouver sa fiche) et des rappels du cron — `lib/resend.ts`, `app/api/cron/rappels/route.ts`
+- **Console** : https://resend.com/overview
+- **Identifiants publics** : `RESEND_FROM` (expéditeur ; défaut code : `AVELOR <onboarding@resend.dev>` — à passer sur le futur domaine après vérification DNS)
+- **Secrets** : `RESEND_API_KEY` dans Vercel (env prod) + `.env.local`
+- **Coût** : free tier 3 000 e-mails/mois (à vérifier dans la console)
 
-| | |
-|---|---|
-| **Rôle** | **Fallback** si l'API gouv.fr échoue. Code : `lib/sirene.ts:67,180` |
-| **Console** | https://portail-api.insee.fr (créer une application, souscrire à l'API Sirene) |
-| **Identifiants publics** | URL de base `https://api.insee.fr/entreprises/sirene/V3` dans `lib/sirene.ts` |
-| **Secrets** | `INSEE_API_KEY` : **Vercel (env production)** + `.env.local`. **Optionnelle** — sans elle, seul le fallback est désactivé |
-| **Reprise** | Compte INSEE (gratuit) ; recréer une clé prend quelques minutes |
+### 5. APIs publiques de l'État (sans compte)
 
-## 6. BODACC (OpenDataSoft) — annonces légales
+- **Rôle** : Recherche d'entreprises (`recherche-entreprises.api.gouv.fr`, source principale des données SIRET — `lib/sirene.ts`) et BODACC (`bodacc-datadila.opendatasoft.com`, détection d'incohérences de procédures — `lib/bodacc.ts`)
+- **Console** : aucune — APIs open data sans authentification
+- **Identifiants publics** : URLs de base codées en dur dans `lib/sirene.ts` et `lib/bodacc.ts`
+- **Secrets** : aucun
+- **Coût** : gratuit
 
-| | |
-|---|---|
-| **Rôle** | Détection d'incohérences entre les annonces publiées (procédures collectives) et la situation déclarée par le dirigeant. Code : `lib/bodacc.ts:40` |
-| **Console** | Aucune — API open data publique : https://bodacc-datadila.opendatasoft.com |
-| **Identifiants publics** | URL de base dans `lib/bodacc.ts` |
-| **Secrets** | Aucun |
-| **Reprise** | Rien à reprendre |
+### 6. INSEE Sirene (secours)
 
-## 7. Google Places (Google Cloud) — avocats locaux
+- **Rôle** : fallback des données SIRET si l'API gouv.fr échoue — `lib/sirene.ts`
+- **Console** : https://portail-api.insee.fr
+- **Identifiants publics** : URL de base `https://api.insee.fr/entreprises/sirene/V3`
+- **Secrets** : `INSEE_API_KEY` (optionnelle) dans Vercel (env prod) + `.env.local`
+- **Coût** : gratuit
 
-| | |
-|---|---|
-| **Rôle** | Recherche d'avocats près de la ville du dirigeant, affichés sur la fiche. Code : `lib/googlePlaces.ts:20,28` |
-| **Console** | https://console.cloud.google.com (projet Google Cloud avec « Places API » activée) |
-| **Identifiants publics** | URL de base `https://maps.googleapis.com/maps/api/place` dans `lib/googlePlaces.ts` |
-| **Secrets** | `GOOGLE_PLACES_API_KEY` : **Vercel (env production)** + `.env.local`. **Optionnelle** — sans elle, le bloc avocats est simplement vide. ⚠️ Service facturable : restreindre la clé (API Places uniquement) et surveiller les quotas |
-| **Reprise** | Compte Google Cloud propriétaire du projet + moyen de paiement |
+### 7. Google Places
 
-## 8. Plausible — statistiques de visite (optionnel)
+- **Rôle** : recherche d'avocats près de la ville du dirigeant — `lib/googlePlaces.ts` (bloc vide sans clé, le reste du site fonctionne)
+- **Console** : https://console.cloud.google.com (projet avec « Places API » activée)
+- **Identifiants publics** : URL de base `https://maps.googleapis.com/maps/api/place`
+- **Secrets** : `GOOGLE_PLACES_API_KEY` (optionnelle) dans Vercel (env prod) + `.env.local` — restreindre la clé à l'API Places
+- **Coût** : pay-as-you-go avec crédit mensuel offert (à vérifier dans la console ; surveiller les quotas)
 
-| | |
-|---|---|
-| **Rôle** | Analytics sans cookies. Le script n'est chargé **que si** `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` est définie (`app/layout.tsx:74-77`) |
-| **Console** | https://plausible.io |
-| **Identifiants publics** | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (le domaine du site — public par design, préfixe `NEXT_PUBLIC_`) |
-| **Secrets** | Aucun côté code. L'accès au dashboard Plausible = compte Plausible (payant) |
-| **Reprise** | Compte Plausible, si souscrit un jour. **Actuellement non configuré** |
+### 8. Plausible (optionnel — non souscrit)
 
-## 9. GitHub + GitHub Actions — code source et CI
-
-| | |
-|---|---|
-| **Rôle** | Hébergement du code (`teiki5320/avelor`) et CI à chaque push/PR vers `main` : lint → build → tests (`.github/workflows/ci.yml`) |
-| **Console** | https://github.com/teiki5320/avelor |
-| **Identifiants publics** | Nom du dépôt. La CI n'utilise **aucun secret** (le build fonctionne sans variable d'environnement) |
-| **Secrets** | Aucun secret CI configuré à ce jour (Settings → Secrets and variables → Actions, vide) |
-| **Reprise** | Compte GitHub `teiki5320` propriétaire du dépôt ; inviter un collaborateur ou transférer le dépôt |
-
-## 10. Google Fonts — polices (build uniquement)
-
-| | |
-|---|---|
-| **Rôle** | Playfair Display + Outfit via `next/font/google` (`app/layout.tsx:2`). Les polices sont **téléchargées au build puis auto-hébergées** : aucun appel à Google au runtime, aucun compte |
-| **Secrets / reprise** | Rien |
-
-## 11. Domaine
-
-| | |
-|---|---|
-| **Actuel** | `avelor.vercel.app` (sous-domaine Vercel gratuit, codé en dur dans ~30 fichiers : métadonnées, sitemap, mentions légales…) |
-| **Prévu** | Achat d'un domaine propre (idéalement `avelor.fr`, de préférence via Vercel Domains pour un DNS pilotable en CLI) + adresse `contact@<domaine>` (l'adresse actuelle `contact@avelor.vercel.app` dans les pages légales **ne peut pas recevoir d'emails**). Plan détaillé : `_plans/roadmap.md` § « MISE EN LIGNE » |
-
----
-
-## 12. Récapitulatif — où vit chaque secret
-
-| Secret | Où il vit | Jamais dans |
-|---|---|---|
-| `SUPABASE_URL` | Vercel (env prod) + `.env.local` + dashboard Supabase | le dépôt Git |
-| `SUPABASE_ANON_KEY` | Vercel (env prod) + `.env.local` + dashboard Supabase | le dépôt Git |
-| Clé `service_role` Supabase | Dashboard Supabase uniquement (non utilisée par le code) | partout ailleurs |
-| `RESEND_API_KEY` | Vercel (env prod) + `.env.local` + dashboard Resend | le dépôt Git |
-| `INSEE_API_KEY` | Vercel (env prod) + `.env.local` + portail INSEE | le dépôt Git |
-| `GOOGLE_PLACES_API_KEY` | Vercel (env prod) + `.env.local` + console Google Cloud | le dépôt Git |
-| `CRON_SECRET` | Vercel (env prod) uniquement — généré aléatoirement (`openssl rand -hex 32`) | le dépôt Git |
-| Secrets CI GitHub | Aucun à ce jour | — |
-
-Le fichier `.env.local` est ignoré par Git (`.gitignore`) ; `.env.example` liste les noms de variables **sans valeur**.
-
-## 13. Valeurs publiques par design (aucun risque à les voir circuler)
-
-- `NEXT_PUBLIC_BASE_URL` — l'URL du site
-- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — le domaine déclaré à Plausible
-- `RESEND_FROM` — l'adresse d'expéditeur des emails
-- `SUPABASE_ANON_KEY` — clé *anonyme* Supabase, conçue pour être exposée côté client (la protection des données repose sur les règles RLS, pas sur le secret de cette clé)
-- URLs d'API codées en dur : recherche-entreprises.api.gouv.fr, api.insee.fr, bodacc-datadila.opendatasoft.com, maps.googleapis.com
-- Le nom du dépôt GitHub et l'URL de production
-
-## 14. Checklist — reprise du projet sur une machine neuve
-
-1. **Cloner** : `git clone https://github.com/teiki5320/avelor.git && cd avelor` (accès au dépôt GitHub requis)
-2. **Installer** : Node.js ≥ 20, puis `npm install`
-3. **Configurer** : `cp .env.example .env.local` et remplir les valeurs depuis les dashboards (Supabase → Settings → API ; Resend → API Keys ; INSEE et Google Cloud si besoin). *Le site démarre aussi sans aucune variable : seuls la sauvegarde de fiche, les emails et les avocats locaux sont désactivés.*
-4. **Lancer** : `npm run dev` → http://localhost:3000
-5. **Vérifier** : `npm run lint && npm run build && npm test` (259 tests) ; E2E : `npm run test:e2e`
-6. **Administrer** : accès aux consoles Vercel (déploiement + variables), Supabase (données), Resend (emails), GitHub (code + CI) — toutes rattachées au compte propriétaire du projet
-7. **Déployer** : merger sur `main` → déploiement Vercel automatique
-
-## 15. À vérifier
-
-- **« Infogreffe »** : cité dans `CLAUDE.md`, mais dans le code ce n'est qu'un nom de paramètre de `detectIncoherenceBodacc()` (`lib/bodacc.ts:116`) — les données proviennent en réalité de l'API BODACC. Aucun compte Infogreffe n'existe ni n'est nécessaire ; mettre à jour le CLAUDE.md à l'occasion
-- **Plausible** : le branchement existe dans le code mais aucun compte n'est souscrit (`NEXT_PUBLIC_PLAUSIBLE_DOMAIN` non définie) — décision à prendre au lancement
-- **Rate limiting** : actuellement en mémoire (`middleware.ts`), sans service externe. La migration prévue vers **Upstash Redis** ajoutera un service (et deux variables `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`) — mettre à jour cette fiche à ce moment-là
-- **PWA** : `manifest.json` + icônes — purement statique, aucun service externe
+- **Rôle** : analytics sans cookies ; le script n'est chargé que si `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` est définie (`app/layout.tsx`)
+- **Console** : https://plausible.io
+- **Identifiants publics** : `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (public par design)
+- **Secrets** : aucun côté code
+- **Coût** : payant (~9 €/mois) — aucun compte à ce jour
