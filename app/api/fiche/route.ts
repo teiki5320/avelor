@@ -8,9 +8,14 @@ import type { Reponses } from '@/lib/types';
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
+  let body: unknown;
   try {
-    const body = await req.json();
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Corps de requête invalide (JSON attendu)' }, { status: 400 });
+  }
 
+  try {
     const parsed = fichePayloadSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(

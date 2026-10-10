@@ -1,7 +1,14 @@
 import { NextResponse } from 'next/server';
-import { fichesAvecRappels, getDb, setRappels, type FicheAvecRappels } from '@/lib/db';
-import type { Rappel } from '@/lib/types';
+import { fichesAvecRappels, getDb, getFicheByToken, setRappels } from '@/lib/db';
+import { sendRappelEmail } from '@/lib/resend';
 
+/** Après ce nombre d'échecs d'envoi, un rappel est marqué en échec et n'est plus retenté. */
+const MAX_TENTATIVES = 3;
+
+/** Identifiant court pour les journaux : le token complet donne accès à la fiche. */
+function tokenCourt(token: string): string {
+  return `${token.slice(0, 6)}…`;
+}
 
 /**
  * GET /api/cron/rappels
@@ -9,7 +16,9 @@ import type { Rappel } from '@/lib/types';
  * Endpoint appelé chaque jour par le Cron Trigger Cloudflare (worker.ts) pour envoyer les rappels
  * email dont la dateRappel est atteinte.
  *
- * Sécurité : vérifie le header Authorization avec CRON_SECRET.
+ * Sécurité : vérifie le header Authorization avec CRON_SECRET. Un rappel n'est envoyé qu'à
+ * l'adresse actuellement enregistrée sur la fiche (protège aussi contre d'anciens rappels
+ * programmés vers une autre adresse).
  */
 export async function GET(req: Request) {
   /* Vérification du secret cron */
@@ -28,123 +37,73 @@ export async function GET(req: Request) {
     /* Récupérer toutes les fiches qui ont des rappels non vides */
     const fiches = await fichesAvecRappels();
 
-    if (fiches.length === 0) {
-      return NextResponse.json({ envoyes: 0, message: 'Aucune fiche avec rappels' });
-    }
-
-    let totalEnvoyes = 0;
+    let envoyes = 0;
+    let echecs = 0;
+    let abandonnes = 0;
     const erreurs: string[] = [];
 
     for (const fiche of fiches) {
       const rappels = fiche.rappels;
       if (!Array.isArray(rappels) || rappels.length === 0) continue;
 
-      let modifie = false;
+      const dus = rappels.filter((r) => {
+        if (r.envoye || r.echec) return false;
+        const date = r.dateRappel?.slice(0, 10);
+        return !!date && date <= aujourdhui;
+      });
+      if (dus.length === 0) continue;
 
-      for (const rappel of rappels) {
-        if (rappel.envoye) continue;
+      // Adresse actuelle de la fiche : seule destination autorisée.
+      const detail = await getFicheByToken(fiche.token);
+      const emailFiche = detail?.email?.trim().toLowerCase();
 
-        const dateRappel = rappel.dateRappel?.slice(0, 10);
-        if (!dateRappel || dateRappel > aujourdhui) continue;
+      for (const rappel of dus) {
+        const destinataireOk = !!emailFiche && rappel.email?.trim().toLowerCase() === emailFiche;
+        const envoiOk = destinataireOk && (await sendRappelEmail({
+          to: rappel.email,
+          token: fiche.token,
+          libelle: rappel.libelle,
+          echeance: rappel.echeance,
+          nomEntreprise: fiche.company_data?.nom,
+        }));
 
-        /* Envoyer l'email via Resend */
-        const envoiOk = await envoyerRappelEmail(rappel, fiche);
         if (envoiOk) {
           rappel.envoye = true;
-          modifie = true;
-          totalEnvoyes++;
-        } else {
-          erreurs.push(`Echec envoi pour ${fiche.token} / ${rappel.libelle}`);
+          envoyes++;
+          continue;
         }
+
+        echecs++;
+        rappel.tentatives = (rappel.tentatives ?? 0) + 1;
+        // Destinataire non conforme : inutile de réessayer.
+        if (!destinataireOk || rappel.tentatives >= MAX_TENTATIVES) {
+          rappel.echec = true;
+          abandonnes++;
+        }
+        erreurs.push(
+          `${destinataireOk ? 'échec envoi' : 'destinataire refusé'} pour ${tokenCourt(fiche.token)} (tentative ${rappel.tentatives})`,
+        );
       }
 
-      /* Sauvegarder les rappels mis à jour */
-      if (modifie) {
-        if (!(await setRappels(fiche.token, rappels))) {
-          erreurs.push(`Echec update pour ${fiche.token}`);
-        }
+      /* Sauvegarder les rappels mis à jour (envoyés, tentatives, échecs) */
+      if (!(await setRappels(fiche.token, rappels))) {
+        erreurs.push(`échec de mise à jour pour ${tokenCourt(fiche.token)}`);
       }
     }
 
+    console.info(`[CRON rappels] ${envoyes} envoyé(s), ${echecs} échec(s), ${abandonnes} abandonné(s)`);
+    if (erreurs.length > 0) {
+      console.warn('[CRON rappels] détails :', erreurs.join(' ; '));
+    }
+
     return NextResponse.json({
-      envoyes: totalEnvoyes,
+      envoyes,
+      echecs,
+      abandonnes,
       erreurs: erreurs.length > 0 ? erreurs : undefined,
     });
   } catch (e) {
     console.error('[CRON rappels]', e);
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
-  }
-}
-
-/**
- * Échappe les caractères HTML d'une valeur venue de la base (libellé, échéance,
- * nom d'entreprise) : ces champs sont saisis côté client et seraient sinon
- * injectés tels quels dans le HTML de l'email (phishing depuis le domaine Solelis).
- */
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-/**
- * Envoie un email de rappel via Resend.
- */
-async function envoyerRappelEmail(
-  rappel: Rappel,
-  fiche: FicheAvecRappels,
-): Promise<boolean> {
-  /* Import dynamique pour éviter un crash si Resend n'est pas configuré */
-  const resendKey = process.env.RESEND_API_KEY;
-  if (!resendKey) {
-    console.warn('[CRON rappels] RESEND_API_KEY manquant, email non envoyé');
-    return false;
-  }
-
-  const { Resend } = await import('resend');
-  const resend = new Resend(resendKey);
-  const from = process.env.RESEND_FROM ?? 'Solelis <onboarding@resend.dev>';
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://solelis.com';
-  const nomEntreprise = escapeHtml(fiche.company_data?.nom ?? 'votre entreprise');
-  const libelle = escapeHtml(String(rappel.libelle ?? '').slice(0, 120));
-  const echeance = escapeHtml(String(rappel.echeance ?? '').slice(0, 120));
-  const lienFiche = `${base}/fiche/${encodeURIComponent(fiche.token)}`;
-
-  try {
-    const { error } = await resend.emails.send({
-      from,
-      to: rappel.email,
-      subject: `Rappel Solelis : ${String(rappel.libelle ?? '').slice(0, 120)}`,
-      html: `
-<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;padding:32px;color:#0A1628">
-  <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:24px;margin:0 0 16px">Solelis</h1>
-  <p style="font-size:16px;line-height:1.6">Bonjour,</p>
-  <p style="font-size:16px;line-height:1.6">
-    Ceci est un rappel que vous avez programmé pour <strong>${nomEntreprise}</strong> :
-  </p>
-  <div style="background:#f0f4fa;border-left:4px solid #1E3D82;padding:16px 20px;margin:24px 0;border-radius:0 12px 12px 0">
-    <p style="font-size:18px;font-weight:600;margin:0;color:#1E3D82">${libelle}</p>
-    <p style="font-size:14px;color:#4A72B8;margin:8px 0 0">Échéance : ${echeance}</p>
-  </div>
-  <p style="margin:32px 0">
-    <a href="${lienFiche}" style="background:#1E3D82;color:white;padding:14px 24px;border-radius:12px;text-decoration:none;font-family:sans-serif">
-      Ouvrir ma fiche
-    </a>
-  </p>
-  <p style="font-size:13px;color:#7c8597;margin-top:32px">Solelis · rappel automatique · vous seul avez ce lien</p>
-</div>`,
-    });
-
-    if (error) {
-      console.error('[CRON rappels] Resend error:', error);
-      return false;
-    }
-    return true;
-  } catch (e) {
-    console.error('[CRON rappels] send error:', e);
-    return false;
   }
 }
