@@ -40,7 +40,7 @@ export interface PriorityCardMeta {
   tone: Tone;
   scrollTo?: string;
   score: number;
-  /** Donnees supplementaires pour construire le contenu etendu */
+  /** Données supplémentaires pour construire le contenu étendu */
   extra?: Record<string, unknown>;
 }
 
@@ -49,15 +49,15 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
   const ville = company.ville || 'votre ville';
   const dep = company.departement;
 
-  // 1. Delai 45 jours cessation
+  // 1. Délai de 45 jours pour déclarer la cessation des paiements
   if (reponses.situation === 'redressement' || reponses.situation === 'assignation') {
     const score = reponses.situation === 'assignation' ? 11 : 10;
     cards.push({
       id: 'cessation',
       icone: '⏰',
-      label: 'Delai legal',
+      label: 'Délai légal',
       valeur: '45 jours',
-      detail: 'Pour declarer la cessation des paiements',
+      detail: 'Pour déclarer la cessation des paiements',
       tone: 'rouge',
       scrollTo: 'echeances',
       score,
@@ -65,14 +65,14 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
     });
   }
 
-  // 2. Audience a preparer (si assignation)
+  // 2. Audience à préparer (si assignation)
   if (reponses.situation === 'assignation') {
     const tribunal = getJuridiction(company) === 'TJ' ? 'Tribunal judiciaire' : 'Tribunal de commerce';
     cards.push({
       id: 'audience',
       icone: '⚖️',
       label: 'Audience',
-      valeur: 'A preparer',
+      valeur: 'À préparer',
       detail: `${tribunal} · ${ville}`,
       tone: 'rouge',
       scrollTo: 'echeances',
@@ -80,7 +80,7 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
     });
   }
 
-  // 3. Strategie recommandee
+  // 3. Stratégie recommandée
   const strat = resolveStrategie(reponses, company);
   if (strat) {
     const meta = AXE_META[strat.main.axe];
@@ -97,13 +97,13 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
     });
   }
 
-  // 4. Cautions personnelles a auditer
+  // 4. Cautions personnelles à auditer
   if (reponses.caution === 'oui') {
     cards.push({
       id: 'cautions',
       icone: '🛡️',
       label: 'Cautions',
-      valeur: 'A auditer',
+      valeur: 'À auditer',
       detail: 'Risque patrimonial personnel',
       tone: 'jaune',
       scrollTo: 'patrimoine',
@@ -111,13 +111,13 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
     });
   }
 
-  // 5. Tresorerie
+  // 5. Trésorerie
   if (reponses.situation === 'tresorie' || reponses.situation === 'redressement' || reponses.probleme === 'banque') {
     cards.push({
       id: 'tresorerie',
       icone: '📊',
-      label: 'Tresorerie',
-      valeur: 'A projeter',
+      label: 'Trésorerie',
+      valeur: 'À projeter',
       detail: 'Horizon 6 mois',
       tone: 'jaune',
       scrollTo: 'echeances',
@@ -132,8 +132,8 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
       id: 'patrimoine',
       icone: '🏠',
       label: 'Patrimoine',
-      valeur: 'Proprietaire',
-      detail: reponses.regime === 'separation' ? 'Conjoint protege' : reponses.regime === 'communaute' ? 'Conjoint expose' : 'A analyser',
+      valeur: 'Propriétaire',
+      detail: reponses.regime === 'separation' ? 'Conjoint·e protégé·e' : reponses.regime === 'communaute' ? 'Conjoint·e exposé·e' : 'À analyser',
       tone: 'jaune',
       scrollTo: 'patrimoine',
       score,
@@ -161,7 +161,7 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
     icone: '💶',
     label: 'Aides',
     valeur: 'Disponibles',
-    detail: reponses.probleme === 'urssaf' ? 'URSSAF + CCSF + BPI' : reponses.probleme === 'impots' ? 'SIE + CCSF + CODEFI' : reponses.probleme === 'banque' ? 'Mediation credit' : 'Plusieurs leviers',
+    detail: reponses.probleme === 'urssaf' ? 'URSSAF + CCSF + BPI' : reponses.probleme === 'impots' ? 'SIE + CCSF + CODEFI' : reponses.probleme === 'banque' ? 'Médiation du crédit' : 'Plusieurs leviers',
     tone: 'bleu',
     scrollTo: 'aides',
     score: scoreAides,
@@ -179,7 +179,7 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
       icone: '🔑',
       label: 'Bail commercial',
       valeur: 'Leviers dispo',
-      detail: `${nbLeviers} dispositifs legaux`,
+      detail: `${nbLeviers} dispositifs légaux`,
       tone: 'bleu',
       scrollTo: 'aides',
       score: 5,
@@ -192,7 +192,7 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
       id: 'obligations',
       icone: '📐',
       label: 'Obligations',
-      valeur: `${seuils.approx}+ salaries`,
+      valeur: `${seuils.approx}+ salariés`,
       detail: seuils.obligations50 ? 'CSE + PSE + participation' : 'CSE requis',
       tone: 'navy',
       scrollTo: 'aides',
@@ -207,7 +207,7 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
       id: 'pge',
       icone: '💳',
       label: 'PGE en cours',
-      valeur: 'A restructurer',
+      valeur: 'À restructurer',
       detail: 'Médiation BdF, étalement 10 ans',
       tone: 'jaune',
       scrollTo: 'echeances',

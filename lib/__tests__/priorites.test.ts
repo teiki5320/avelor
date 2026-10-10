@@ -219,3 +219,44 @@ describe('scorePriorityCards', () => {
     expect(allCards.length).toBeGreaterThanOrEqual(1);
   });
 });
+
+/* ─── Accents des textes affichés ─── */
+
+describe('textes des cartes prioritaires', () => {
+  const SANS_ACCENT = /\b(A (preparer|auditer|projeter|analyser|restructurer)|Delai|legal|declarer|Tresorerie|Proprietaire|protege|expose|Mediation|legaux|salaries)\b/;
+
+  const scenarios: Partial<Reponses>[] = [
+    { situation: 'assignation' },
+    { situation: 'redressement', caution: 'oui' },
+    { situation: 'tresorie', probleme: 'banque' },
+    { patrimoine: 'proprietaire', regime: 'separation', caution: 'oui', moral: 'combatif' },
+    { patrimoine: 'proprietaire', regime: 'communaute', caution: 'oui' },
+    { patrimoine: 'proprietaire', caution: 'oui' },
+    { pgeEnCours: 'oui', situation: 'tresorie' },
+    { probleme: 'banque', moral: 'combatif' },
+    { effectif: 'salaries' },
+  ];
+
+  it.each(scenarios)('aucun libellé sans accent (%o)', (overrides) => {
+    const cards = scorePriorityCards({
+      reponses: makeReponses(overrides),
+      company: makeCompany(),
+      sector: makeSector({ secteur: 'commerce' }),
+      seuils: makeSeuils({ approx: 75, cse: true, obligations50: true }),
+    });
+    for (const c of cards) {
+      expect(`${c.label} · ${c.valeur} · ${c.detail}`).not.toMatch(SANS_ACCENT);
+    }
+  });
+
+  it('écrit « Délai légal » et « Pour déclarer… »', () => {
+    const [carte] = scorePriorityCards({
+      reponses: makeReponses({ situation: 'assignation' }),
+      company: makeCompany(),
+      sector: makeSector(),
+      seuils: makeSeuils(),
+    }).filter((c) => c.id === 'cessation');
+    expect(carte.label).toBe('Délai légal');
+    expect(carte.detail).toBe('Pour déclarer la cessation des paiements');
+  });
+});
