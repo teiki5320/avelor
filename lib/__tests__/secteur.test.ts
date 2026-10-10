@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { getSectorInfo, getCompanyAge, getEffectifSeuils } from '../secteur';
+import {
+  getSectorInfo,
+  getCompanyAge,
+  getEffectifSeuils,
+  TRANCHES_EFFECTIF,
+  libelleTrancheEffectif,
+} from '../secteur';
+import { formatEffectif } from '../sirene';
 import type { CompanyData } from '../types';
 
 /* ─── Helpers ─── */
@@ -147,5 +154,29 @@ describe('getEffectifSeuils', () => {
   it('retourne approx=0 pour une valeur inconnue', () => {
     const s = getEffectifSeuils('inconnu');
     expect(s.approx).toBe(0);
+  });
+
+  it('reconnaît chaque libellé produit par Sirene (codes INSEE 00 à 53)', () => {
+    for (const [code, tranche] of Object.entries(TRANCHES_EFFECTIF)) {
+      const libelle = formatEffectif(code);
+      expect(libelle).toBe(tranche.libelle);
+      expect(getEffectifSeuils(libelle).approx).toBe(tranche.approx);
+    }
+  });
+
+  it('couvre les grandes tranches 52 et 53', () => {
+    expect(formatEffectif('52')).toBe('5 000 à 9 999 salariés');
+    expect(formatEffectif('53')).toBe('10 000 salariés et plus');
+    expect(getEffectifSeuils(formatEffectif('53')).approx).toBe(12000);
+  });
+
+  it('accepte les anciens libellés sans espace de milliers (fiches existantes)', () => {
+    expect(getEffectifSeuils('1000 à 1999 salariés').approx).toBe(1500);
+    expect(getEffectifSeuils('2000 à 4999 salariés').approx).toBe(3000);
+  });
+
+  it('« NN » ou code inconnu → Non renseigné', () => {
+    expect(libelleTrancheEffectif('NN')).toBe('Non renseigné');
+    expect(libelleTrancheEffectif(undefined)).toBe('Non renseigné');
   });
 });

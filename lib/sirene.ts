@@ -1,5 +1,6 @@
 import { fetchWithTimeout } from './fetchTimeout';
 import type { CompanyData } from './types';
+import { libelleTrancheEffectif } from './secteur';
 
 /* ---------- Interfaces API ---------- */
 
@@ -176,24 +177,9 @@ export function formatForme(code: string | undefined): string {
   return FORMES_NIVEAU_II[c.slice(0, 2)] ?? `Catégorie juridique ${c}`;
 }
 
-function formatEffectif(code: string | undefined): string {
-  const map: Record<string, string> = {
-    NN: 'Non renseigné',
-    '00': '0 salarié',
-    '01': '1 ou 2 salariés',
-    '02': '3 à 5 salariés',
-    '03': '6 à 9 salariés',
-    '11': '10 à 19 salariés',
-    '12': '20 à 49 salariés',
-    '21': '50 à 99 salariés',
-    '22': '100 à 199 salariés',
-    '31': '200 à 249 salariés',
-    '32': '250 à 499 salariés',
-    '41': '500 à 999 salariés',
-    '42': '1000 à 1999 salariés',
-    '51': '2000 à 4999 salariés',
-  };
-  return map[code ?? ''] ?? 'Non renseigné';
+/** Tranche INSEE → libellé ; table partagée avec getEffectifSeuils (lib/secteur.ts). */
+export function formatEffectif(code: string | undefined): string {
+  return libelleTrancheEffectif(code);
 }
 
 /**

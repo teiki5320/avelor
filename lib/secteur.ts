@@ -825,25 +825,50 @@ export interface EffectifSeuils {
   obligations50: boolean;
 }
 
+/**
+ * Tranches d'effectif salarié de Sirene (codes INSEE) : libellé affiché,
+ * bornes et valeur approchée utilisée pour les seuils.
+ * Source unique pour lib/sirene.ts (affichage) et getEffectifSeuils.
+ */
+export const TRANCHES_EFFECTIF: Record<string, { libelle: string; min: number; max: number | null; approx: number }> = {
+  '00': { libelle: '0 salarié', min: 0, max: 0, approx: 0 },
+  '01': { libelle: '1 ou 2 salariés', min: 1, max: 2, approx: 2 },
+  '02': { libelle: '3 à 5 salariés', min: 3, max: 5, approx: 5 },
+  '03': { libelle: '6 à 9 salariés', min: 6, max: 9, approx: 9 },
+  '11': { libelle: '10 à 19 salariés', min: 10, max: 19, approx: 15 },
+  '12': { libelle: '20 à 49 salariés', min: 20, max: 49, approx: 35 },
+  '21': { libelle: '50 à 99 salariés', min: 50, max: 99, approx: 75 },
+  '22': { libelle: '100 à 199 salariés', min: 100, max: 199, approx: 150 },
+  '31': { libelle: '200 à 249 salariés', min: 200, max: 249, approx: 220 },
+  '32': { libelle: '250 à 499 salariés', min: 250, max: 499, approx: 350 },
+  '41': { libelle: '500 à 999 salariés', min: 500, max: 999, approx: 750 },
+  '42': { libelle: '1 000 à 1 999 salariés', min: 1000, max: 1999, approx: 1500 },
+  '51': { libelle: '2 000 à 4 999 salariés', min: 2000, max: 4999, approx: 3000 },
+  '52': { libelle: '5 000 à 9 999 salariés', min: 5000, max: 9999, approx: 7000 },
+  '53': { libelle: '10 000 salariés et plus', min: 10000, max: null, approx: 12000 },
+};
+
+/** Libellé affiché pour un code de tranche INSEE (« NN » ou inconnu → « Non renseigné »). */
+export function libelleTrancheEffectif(code: string | undefined): string {
+  return TRANCHES_EFFECTIF[(code ?? '').trim()]?.libelle ?? 'Non renseigné';
+}
+
+/** « 1000 à 1999 salariés » (anciennes fiches) ≡ « 1 000 à 1 999 salariés ». */
+function normaliserLibelleEffectif(libelle: string): string {
+  return (libelle || '').replace(/(\d)[\s  ]+(?=\d{3}\b)/g, '$1').trim();
+}
+
+const TRANCHE_PAR_LIBELLE: Record<string, (typeof TRANCHES_EFFECTIF)[string]> = Object.fromEntries(
+  Object.values(TRANCHES_EFFECTIF).map((t) => [normaliserLibelleEffectif(t.libelle), t]),
+);
+
+/** Tranche correspondant à un libellé d'effectif (tolère les espaces de milliers). */
+export function trancheDepuisLibelle(effectif: string): (typeof TRANCHES_EFFECTIF)[string] | null {
+  return TRANCHE_PAR_LIBELLE[normaliserLibelleEffectif(effectif)] ?? null;
+}
+
 export function getEffectifSeuils(effectif: string): EffectifSeuils {
-  const map: Record<string, number> = {
-    '0 salarié': 0,
-    '1 ou 2 salariés': 2,
-    '3 à 5 salariés': 5,
-    '6 à 9 salariés': 9,
-    '10 à 19 salariés': 15,
-    '20 à 49 salariés': 35,
-    '50 à 99 salariés': 75,
-    '100 à 199 salariés': 150,
-    '200 à 249 salariés': 220,
-    '250 à 499 salariés': 350,
-    '500 à 999 salariés': 750,
-    '1 000 à 1 999 salariés': 1500,
-    '2 000 à 4 999 salariés': 3000,
-    '5 000 à 9 999 salariés': 7000,
-    '10 000 salariés et plus': 12000,
-  };
-  const approx = map[effectif] ?? 0;
+  const approx = trancheDepuisLibelle(effectif)?.approx ?? 0;
   return {
     approx,
     cse: approx >= 11,
