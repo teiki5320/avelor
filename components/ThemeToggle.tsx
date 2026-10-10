@@ -30,6 +30,7 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>('clair');
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let initial: Theme = 'clair';
@@ -51,6 +52,17 @@ export default function ThemeToggle() {
     }
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
+
+  // Fermeture au clic en dehors. (Un voile `fixed inset-0` ne marche pas
+  // ici : le <header> parent est transformé, le voile ne couvrait que lui.)
+  useEffect(() => {
+    if (!open) return;
+    function onDown(e: PointerEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener('pointerdown', onDown);
+    return () => document.removeEventListener('pointerdown', onDown);
   }, [open]);
 
   // Pattern ARIA menu : à l'ouverture, focus sur l'option cochée.
@@ -91,30 +103,18 @@ export default function ThemeToggle() {
   const current = THEMES.find((t) => t.value === theme) ?? THEMES[0];
 
   return (
-    <div className="relative">
+    <div ref={wrapperRef} className="relative">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label={`Apparence : ${current.label}. Changer de thème`}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-navy/15 bg-white/70 text-base transition hover:bg-white"
+        className="relative flex h-9 w-9 items-center justify-center rounded-full border border-navy/15 bg-white/70 text-base transition before:absolute before:-inset-1 before:content-[''] hover:bg-white"
       >
         <span aria-hidden>{current.icone}</span>
       </button>
       {open && (
-        <>
-          {/* Overlay de fermeture : invisible, mais on lui donne un fond
-              légèrement teinté + curseur pointer pour signaler au moins
-              visuellement que le clic ferme le menu. Z-index inférieur
-              au menu pour ne pas intercepter les clics du menu lui-même. */}
-          <button
-            type="button"
-            aria-label="Fermer le menu de thème"
-            tabIndex={-1}
-            onClick={() => setOpen(false)}
-            className="fixed inset-0 z-40 cursor-pointer bg-navy/[0.02]"
-          />
           <div
             ref={menuRef}
             role="menu"
@@ -139,7 +139,6 @@ export default function ThemeToggle() {
               </button>
             ))}
           </div>
-        </>
       )}
     </div>
   );

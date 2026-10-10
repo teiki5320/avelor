@@ -5,6 +5,10 @@ import { usePathname } from 'next/navigation';
 import { COURRIERS } from '@/lib/courriers';
 import ThemeToggle from './ThemeToggle';
 
+// « Parler à quelqu'un » en tête : c'est l'entrée la plus importante pour
+// une personne en détresse — elle est mise en avant dans le menu.
+const PARLER = { href: '/parler', label: "Parler à quelqu'un", desc: "Numéros d'écoute et d'orientation" };
+
 const LINKS = [
   { href: '/procedures', label: 'Procédures', desc: 'Comprendre vos options' },
   { href: '/courriers', label: 'Courriers', desc: `${COURRIERS.length} modèles prêts` },
@@ -16,12 +20,12 @@ const LINKS = [
   { href: '/faq', label: 'FAQ', desc: 'Questions fréquentes' },
   { href: '/glossaire', label: 'Glossaire', desc: '38 termes expliqués' },
   { href: '/accompagnant', label: "J'accompagne", desc: 'Pour les proches' },
-  { href: '/parler', label: 'Parler', desc: 'Numéros gratuits 24/7' },
 ];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLElement>(null);
+  const boutonMenuRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -34,13 +38,27 @@ export default function Nav() {
 
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') {
+        setOpen(false);
+        // Rend le focus au bouton Menu (sinon il se perd en haut de page).
+        boutonMenuRef.current?.focus();
+      }
     }
     if (open) document.addEventListener('keydown', handleKey);
     return () => document.removeEventListener('keydown', handleKey);
   }, [open]);
 
   return (
+    <>
+    {/* Voile derrière le menu ouvert : isole visuellement le menu du contenu.
+        Rendu hors du <header> (transformé), sinon `fixed` serait relatif à lui. */}
+    {open && (
+      <div
+        aria-hidden
+        onClick={() => setOpen(false)}
+        className="fixed inset-0 z-30 bg-black/20"
+      />
+    )}
     <header ref={ref} className="fixed top-3 left-1/2 z-40 -translate-x-1/2 sm:top-4">
       <a
         href="#contenu-principal"
@@ -48,7 +66,7 @@ export default function Nav() {
       >
         Aller au contenu
       </a>
-      <nav className="pill-nav flex items-center gap-4 px-5 py-2.5 sm:gap-6 sm:px-6">
+      <nav aria-label="Navigation principale" className="pill-nav flex items-center gap-4 px-5 py-2.5 sm:gap-6 sm:px-6">
         <Link
           href="/"
           className="font-display text-base tracking-wide text-navy sm:text-lg"
@@ -65,12 +83,15 @@ export default function Nav() {
 
         <ThemeToggle />
 
+        {/* Cible tactile de 44 px (pseudo-élément) sans changer le visuel de 32 px. */}
         <button
+          ref={boutonMenuRef}
           type="button"
           onClick={() => setOpen((o) => !o)}
-          className="flex h-8 w-8 items-center justify-center rounded-full text-sm text-navy/60 hover:bg-navy/5"
+          className="relative flex h-8 w-8 items-center justify-center rounded-full text-sm text-navy/60 before:absolute before:-inset-1.5 before:content-[''] hover:bg-navy/5"
           aria-label="Menu"
           aria-expanded={open}
+          aria-controls="menu-complet"
         >
           {open ? '✕' : '☰'}
         </button>
@@ -78,7 +99,8 @@ export default function Nav() {
 
       {open && (
         <nav
-          aria-label="Menu principal"
+          id="menu-complet"
+          aria-label="Menu complet"
           className="glass mt-2 max-h-[70vh] w-[280px] overflow-y-auto rounded-2xl p-2 sm:w-[320px]"
           style={{ position: 'absolute', right: 0, top: '100%' }}
           onKeyDown={(e) => {
@@ -96,6 +118,18 @@ export default function Nav() {
             }
           }}
         >
+          <Link
+            href={PARLER.href}
+            onClick={() => setOpen(false)}
+            aria-current={pathname === PARLER.href ? 'page' : undefined}
+            className="mb-1 flex flex-col rounded-xl border border-bleu/25 bg-bleu/10 px-4 py-2.5 transition hover:bg-bleu/15"
+          >
+            <span className="text-sm font-semibold text-bleu-fonce">
+              <span aria-hidden className="mr-1.5">📞</span>
+              {PARLER.label}
+            </span>
+            <span className="text-xs text-navy/70">{PARLER.desc}</span>
+          </Link>
           <ul>
             {LINKS.map((l) => (
               <li key={l.href}>
@@ -114,5 +148,6 @@ export default function Nav() {
         </nav>
       )}
     </header>
+    </>
   );
 }
