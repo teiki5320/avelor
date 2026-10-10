@@ -11,3 +11,6 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+// En local (`npm run dev`), donne accès à la base D1 simulée par Wrangler.
+import('@opennextjs/cloudflare').then((m) => m.initOpenNextCloudflareForDev());

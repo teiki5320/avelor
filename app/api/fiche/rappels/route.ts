@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getSupabase } from '@/lib/supabase';
+import { getDb, getRappels, setRappels } from '@/lib/db';
 import { rappelPayloadSchema } from '@/lib/schemas';
 import type { Rappel } from '@/lib/types';
 
@@ -18,23 +18,17 @@ export async function POST(req: Request) {
 
   const { token, email, echeance, dateRappel, libelle } = result.data;
 
-  const sb = getSupabase();
-  if (!sb) {
+  if (!getDb()) {
     return NextResponse.json({ error: 'Service indisponible' }, { status: 503 });
   }
 
   try {
-    const { data: fiche, error: fetchError } = await sb
-      .from('fiches')
-      .select('*')
-      .eq('token', token)
-      .single();
-
-    if (fetchError || !fiche) {
+    const existants = await getRappels(token);
+    if (!existants) {
       return NextResponse.json({ error: 'Fiche introuvable' }, { status: 404 });
     }
 
-    const rappels: Rappel[] = (fiche.rappels as Rappel[]) || [];
+    const rappels: Rappel[] = existants;
 
     // Anti-abus : une fiche ne peut pas accumuler des rappels sans limite
     // (l'endpoint servirait sinon de canon à spam via le cron quotidien).
@@ -54,13 +48,8 @@ export async function POST(req: Request) {
       envoye: false,
     });
 
-    const { error: updateError } = await sb
-      .from('fiches')
-      .update({ rappels })
-      .eq('token', token);
-
-    if (updateError) {
-      console.error('[POST /api/fiche/rappels] update error:', updateError);
+    if (!(await setRappels(token, rappels))) {
+      console.error('[POST /api/fiche/rappels] échec de sauvegarde');
       return NextResponse.json({ error: 'Erreur lors de la sauvegarde' }, { status: 500 });
     }
 

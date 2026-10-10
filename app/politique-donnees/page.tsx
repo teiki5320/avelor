@@ -23,7 +23,7 @@ export default function PolitiqueDonneesPage() {
           <p className="font-display text-base text-vert">L&apos;essentiel</p>
           <ul className="mt-3 space-y-2 text-navy/80">
             <li><strong>Aucun cookie publicitaire</strong>, aucun traceur tiers</li>
-            <li>Vos réponses au questionnaire et votre fiche sont <strong>stockées chez Supabase (UE)</strong> derrière un token aléatoire (24 caractères)</li>
+            <li>Vos réponses au questionnaire et votre fiche sont <strong>stockées dans une base Cloudflare limitée à l&apos;UE</strong> derrière un token aléatoire (24 caractères)</li>
             <li>L&apos;<strong>email n&apos;est demandé que pour vous envoyer un lien magique</strong> de retour vers votre fiche — pas de mailing, pas de partage</li>
             <li>Vous pouvez <strong>demander la suppression</strong> de votre fiche à tout moment</li>
             <li>Aucune donnée n&apos;est <strong>transférée hors UE</strong> sauf via Cloudflare (hébergement, USA) pour l&apos;exécution technique</li>
@@ -105,7 +105,7 @@ export default function PolitiqueDonneesPage() {
           <h2 className="font-display text-lg text-navy">6. Sous-traitants et destinataires</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li><strong>Cloudflare, Inc.</strong> (USA) : hébergement de l&apos;application — transfert UE→USA encadré par les Clauses Contractuelles Types européennes (CCT)</li>
-            <li><strong>Supabase Inc.</strong> (UE - eu-central-1) : base de données fiches</li>
+            <li><strong>Cloudflare, Inc.</strong> (base Cloudflare D1, stockage limité à l&apos;UE) : base de données fiches</li>
             <li><strong>Resend</strong> (UE) : envoi du lien magique et des rappels par email</li>
             <li><strong>Plausible Analytics</strong> (UE) : statistiques d&apos;usage agrégées</li>
             <li><strong>INSEE / API Sirene</strong> : récupération des données publiques d&apos;entreprise (en lecture uniquement)</li>
@@ -123,8 +123,8 @@ export default function PolitiqueDonneesPage() {
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>Chiffrement en transit (HTTPS / TLS 1.3)</li>
-            <li>Chiffrement au repos (Supabase)</li>
-            <li>Accès à la base limité à l&apos;application via service role key</li>
+            <li>Chiffrement au repos (Cloudflare D1)</li>
+            <li>Accès à la base limité à l&apos;application, sans clé d&apos;accès exposée</li>
             <li>Tokens aléatoires (24 caractères) non devinables</li>
             <li>Validation Zod sur toutes les entrées utilisateur</li>
             <li>Rate limiting sur les routes API</li>

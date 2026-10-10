@@ -15,24 +15,19 @@ npm run dev
 
 - `INSEE_API_KEY` — API Sirene INSEE
 - `GOOGLE_PLACES_API_KEY` — Google Places
-- `SUPABASE_URL` + `SUPABASE_ANON_KEY` — Base Supabase (table `fiches`)
 - `RESEND_API_KEY` — Envoi d'emails
 - `NEXT_PUBLIC_BASE_URL` — URL publique (pour les liens magiques)
 
-## Table Supabase
+## Base de données
 
-```sql
-create table fiches (
-  id uuid primary key default gen_random_uuid(),
-  token text unique not null,
-  siret text,
-  reponses jsonb,
-  company_data jsonb,
-  email text,
-  created_at timestamptz default now()
-);
+Cloudflare D1 « solelis » (stockage limité à l'UE), reliée au Worker par le binding `DB`.
+Le schéma de la table `fiches` est dans `migrations/` :
+
+```bash
+npx wrangler d1 migrations apply DB --local    # base locale (npm run dev / cf:preview)
+npx wrangler d1 migrations apply DB --remote   # base en ligne
 ```
 
 ## Stack
 
-Next.js 14 App Router · Tailwind · Framer Motion · Supabase · Resend.
+Next.js 15 App Router · Tailwind · Framer Motion · Cloudflare Workers (OpenNext) + D1 · Resend.

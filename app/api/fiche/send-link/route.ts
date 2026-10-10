@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sendMagicLink } from '@/lib/resend';
-import { getFicheByToken, updateFicheEmail } from '@/lib/supabase';
+import { getFicheByToken, updateFicheEmail } from '@/lib/db';
 import { sendLinkPayloadSchema } from '@/lib/schemas';
 
 export const runtime = 'nodejs';

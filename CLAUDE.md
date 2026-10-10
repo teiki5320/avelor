@@ -26,7 +26,7 @@ npm run cf:deploy    # Build + mise en ligne sur Cloudflare
 - **CSS** : Tailwind 3.4 (JIT) + classes custom (voir `tailwind.config.js`)
 - **Animations** : Framer Motion 11 (avec `LazyMotion` pour réduire le bundle)
 - **UI** : Glass morphism (backdrop-blur, ombres glass), polices Playfair Display + Outfit
-- **BDD** : Supabase (table `fiches` : token/siret/reponses/company_data/email/rappels)
+- **BDD** : Cloudflare D1 « solelis » (juridiction UE, binding `DB`, schéma dans `migrations/`) — table `fiches` : token/siret/reponses/company_data/email/rappels (JSON en texte)
 - **Email** : Resend (magic link pour retrouver sa fiche + rappels cron quotidiens)
 - **APIs externes** : INSEE Sirene (gouv.fr + INSEE fallback), BODACC, Google Places (avocats locaux), Infogreffe (signaux)
 - **Validation** : Zod (schémas dans `lib/schemas.ts`)
@@ -38,7 +38,7 @@ npm run cf:deploy    # Build + mise en ligne sur Cloudflare
 ## Variables d'environnement
 
 Voir `.env.example` — clés nécessaires en production :
-`INSEE_API_KEY`, `GOOGLE_PLACES_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_BASE_URL`, `CRON_SECRET`, `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (optionnel)
+`INSEE_API_KEY`, `GOOGLE_PLACES_API_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_BASE_URL`, `CRON_SECRET`, `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (optionnel)
 
 ## Architecture
 
@@ -89,7 +89,7 @@ lib/
   tone.ts                     # Présets de ton (combatif/épuisé/perdu)
   ics.ts                      # Génération fichiers ICS
   sirene.ts                   # API gouv.fr + INSEE fallback
-  supabase.ts                 # Client Supabase
+  db.ts                       # Accès à la base D1 (fiches, rappels, stats)
   resend.ts                   # Envoi d'emails
   googlePlaces.ts             # Recherche avocats via Google Places
   organismes.ts               # buildOrganismes + buildOrdresProfessionnels + buildAidesPersonnelles + buildSoutien + buildReseauxSpecifiques
