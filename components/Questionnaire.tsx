@@ -7,6 +7,7 @@ import type {
   MontantDettes, AgeDirigeant, Franchise, AntecedentsBodacc,
   PgeEnCours, Rqth, ConjointStatut, CoGerants, Saisonnalite, Nationalite,
 } from '@/lib/types';
+import { enregistrerFicheLocale } from '@/lib/ficheLocale';
 
 interface Choice<T extends string> {
   value: T;
@@ -262,10 +263,11 @@ export default function Questionnaire({ siret }: Props) {
       }
     } catch {}
 
-    const encoded = btoa(
-      unescape(encodeURIComponent(JSON.stringify({ siret, reponses })))
-    );
-    window.location.href = `/fiche/local?d=${encoded}`;
+    // Enregistrement impossible : les réponses (dont des données sensibles —
+    // RQTH, nationalité, dettes) restent dans l'onglet (sessionStorage) et un
+    // cookie court ; rien n'est mis dans l'URL.
+    enregistrerFicheLocale({ siret, reponses });
+    window.location.href = '/fiche/local';
   }
 
   const slides: SlideConfig[] = [

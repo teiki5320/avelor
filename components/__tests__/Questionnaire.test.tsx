@@ -69,3 +69,20 @@ describe('Questionnaire — anti double-clic', () => {
     expect(screen.getAllByText(/Étape 1 sur 18/).length).toBeGreaterThan(0);
   });
 });
+
+describe('Questionnaire — enregistrement impossible', () => {
+  it('ne met pas les réponses dans l’URL : sessionStorage puis /fiche/local', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ json: async () => ({ token: 'tok', persisted: false }) })));
+    render(<Questionnaire siret="12345678901234" />);
+    for (let i = 0; i < 18; i++) {
+      const choix = screen.getAllByRole('button').filter((b) => b.getAttribute('aria-label'));
+      fireEvent.click(choix[0]);
+      await act(async () => { vi.advanceTimersByTime(300); });
+    }
+    await act(async () => { await Promise.resolve(); });
+    expect(window.location.href).toBe('/fiche/local');
+    const stocke = JSON.parse(sessionStorage.getItem('solelis_fiche_locale') ?? 'null');
+    expect(stocke.siret).toBe('12345678901234');
+    expect(stocke.reponses.situation).toBe('prevention');
+  });
+});
