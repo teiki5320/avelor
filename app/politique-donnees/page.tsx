@@ -95,7 +95,7 @@ export default function PolitiqueDonneesPage() {
           </ul>
           <p className="mt-3">
             Pour exercer ces droits, écrivez à{' '}
-            <a href="mailto:contact@avelor.vercel.app" className="text-bleu-fonce underline">contact@avelor.vercel.app</a>
+            <a href="mailto:avelor@toakeur.com" className="text-bleu-fonce underline">avelor@toakeur.com</a>
             {' '}en précisant votre token de fiche (visible dans l&apos;URL : <code>/fiche/XXXX</code>).
             Réponse sous 30 jours.
           </p>

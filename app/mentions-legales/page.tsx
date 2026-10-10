@@ -24,7 +24,7 @@ export default function MentionsLegalesPage() {
           <p className="mt-2">
             Le présent site <strong>avelor.vercel.app</strong> est édité dans le cadre d&apos;un projet d&apos;accompagnement gratuit
             des dirigeants d&apos;entreprise en difficulté. Pour toute demande relative à l&apos;édition du site,
-            contactez : <a href="mailto:contact@avelor.vercel.app" className="text-bleu-fonce underline">contact@avelor.vercel.app</a>.
+            contactez : <a href="mailto:avelor@toakeur.com" className="text-bleu-fonce underline">avelor@toakeur.com</a>.
           </p>
           <p className="mt-2">
             Avelor n&apos;est ni un cabinet d&apos;avocat, ni un mandataire judiciaire, ni un expert-comptable.
@@ -135,7 +135,7 @@ export default function MentionsLegalesPage() {
           <h2 className="font-display text-lg text-navy">9. Contact</h2>
           <p className="mt-2">
             Pour toute question, demande de rectification ou signalement d&apos;information erronée :
-            <a href="mailto:contact@avelor.vercel.app" className="text-bleu-fonce underline ml-1">contact@avelor.vercel.app</a>
+            <a href="mailto:avelor@toakeur.com" className="text-bleu-fonce underline ml-1">avelor@toakeur.com</a>
           </p>
         </section>
       </div>
