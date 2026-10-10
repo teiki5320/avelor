@@ -105,7 +105,7 @@ export default function CiriCodefiPage() {
         </p>
         <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-navy/80">
           <li>Coordination des créanciers publics et privés (banques, fournisseurs)</li>
-          <li>Mobilisation des dispositifs régionaux (BPI, FEDER, aides régionales)</li>
+          <li>Mobilisation des dispositifs régionaux (Bpifrance, FEDER, aides régionales)</li>
           <li>Médiation avec les donneurs d&apos;ordre publics</li>
           <li>Confidentialité totale, gratuit</li>
         </ul>
@@ -131,7 +131,7 @@ export default function CiriCodefiPage() {
             <strong>ETI / activité critique régionalement</strong> → CRP (régional, complémentaire)
           </li>
           <li>
-            <strong>Vous ne savez pas par où commencer</strong> → Conseillers-Entreprises (0 806 000 245), guichet unique
+            <strong>Vous ne savez pas par où commencer</strong> → Conseillers-Entreprises (demande en ligne), guichet unique
             qui vous oriente vers le bon dispositif
           </li>
         </ul>

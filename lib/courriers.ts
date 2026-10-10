@@ -476,7 +476,7 @@ PIÈCES JOINTES
 
 Je vous remercie de bien vouloir examiner cette demande et de m'apporter votre réponse motivée par écrit dans les 15 jours, conformément au protocole.
 
-À défaut de réponse positive sous ce délai, je me réserve le droit de saisir gratuitement la Médiation du crédit (3414 / mediateur-credit.banque-france.fr), conformément au dispositif officiel.
+À défaut de réponse positive sous ce délai, je me réserve le droit de saisir gratuitement la Médiation du crédit (34 14 / mediateur-credit.banque-france.fr), conformément au dispositif officiel.
 
 Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
 

@@ -178,7 +178,7 @@ function buildConseils(a: Answers) {
   // Always: aides financières
   conseils.push({
     titre: 'Des aides existent — beaucoup sont méconnues',
-    texte: 'BPI France, médiation du crédit, action sociale CPAM… Parcourez la liste ensemble.',
+    texte: 'Bpifrance, médiation du crédit, action sociale CPAM… Parcourez la liste ensemble.',
     lien: '/aides',
     lienLabel: 'Voir les aides',
   });

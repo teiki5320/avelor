@@ -82,7 +82,7 @@ export default function MentionsLegalesPage() {
             L&apos;usage personnel et l&apos;impression de votre fiche personnalisée sont libres.
           </p>
           <p className="mt-2">
-            Les marques, logos et signes distinctifs des organismes cités (URSSAF, BPI, CCSF, etc.) restent
+            Les marques, logos et signes distinctifs des organismes cités (URSSAF, Bpifrance, CCSF, etc.) restent
             la propriété de leurs détenteurs respectifs.
           </p>
         </section>

@@ -151,7 +151,7 @@ export default function RebondPage() {
               Clôture pour insuffisance d’actif
             </dt>
             <dd className="mt-0.5 leading-relaxed text-navy/65">
-              Comment 97 % des liquidations se terminent. N’efface PAS les
+              L’issue la plus fréquente d’une liquidation. N’efface PAS les
               cautions personnelles. Le liquidateur peut engager votre
               responsabilité dans les 3 ans si fautes de gestion.
             </dd>
@@ -356,9 +356,9 @@ export default function RebondPage() {
 
       {/* Footer quote */}
       <div className="dashed-band mt-12 p-6 text-center text-sm leading-relaxed text-navy/70">
-        Le rebond n’est pas un mythe. 50 % des dirigeants qui ont
-        vécu une liquidation recréent dans les 3 ans — et
-        leur deuxième entreprise est souvent plus solide.
+        Le rebond n’est pas un mythe. Une liquidation n’interdit pas
+        de recréer une entreprise : beaucoup de dirigeant·e·s le font,
+        en s’appuyant sur ce que l’expérience leur a appris.
       </div>
 
       {/* CTA */}

@@ -29,7 +29,7 @@ const SEUILS: Seuil[] = [
   { seuil: 50, nom: 'Référent harcèlement', description: 'Désignation d\'un référent harcèlement sexuel par le CSE et par l\'employeur.', reference: 'C. trav. L1153-5-1', badge: 'sante' },
   { seuil: 250, nom: 'BDESE complète', description: 'Base de données économiques, sociales et environnementales : information CSE structurée et permanente.', reference: 'C. trav. L2312-21', badge: 'social' },
   { seuil: 250, nom: 'Index égalité professionnelle', description: 'Publication obligatoire de l\'index égalité femmes-hommes, transmission à la DREETS chaque 1er mars.', reference: 'C. trav. L1142-8', badge: 'social' },
-  { seuil: 250, nom: 'PME ≤ 250 : seuil européen', description: 'En dessous : éligibilité maintenue aux aides PME (BPI, dispositif JEI/CIR renforcés, FEDER).', reference: 'Recommandation CE 2003/361', badge: 'finance' },
+  { seuil: 250, nom: 'PME ≤ 250 : seuil européen', description: 'En dessous : éligibilité maintenue aux aides PME (Bpifrance, dispositif JEI/CIR renforcés, FEDER).', reference: 'Recommandation CE 2003/361', badge: 'finance' },
   { seuil: 400, nom: 'CODEFI → CIRI', description: 'CODEFI (Comité Départemental) compétent pour < 400 salariés. Au-delà : CIRI (Comité Interministériel).', reference: 'Décret 82-307', badge: 'finance' },
   { seuil: 500, nom: 'CSRD / Bilan carbone', description: 'Obligation de publier un bilan carbone (BEGES) + reporting durabilité (CSRD pour les grandes entreprises).', reference: 'C. env. L229-25', badge: 'sante' },
   { seuil: 1000, nom: 'Congé de reclassement obligatoire', description: 'Remplace le CSP en cas de licenciement économique. Durée 4 à 12 mois, rémunéré par l\'employeur.', reference: 'C. trav. L1233-71', delai: 'Pendant la durée du congé', badge: 'social' },

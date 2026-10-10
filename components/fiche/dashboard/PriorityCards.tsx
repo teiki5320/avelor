@@ -149,9 +149,9 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
       return (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            Vous n&apos;êtes pas seul·e. <strong>1 dirigeant sur 3</strong>{' '}
-            traversant des difficultés présente des symptômes de burn-out
-            (étude Amarok 2023). Parler 10 minutes change la trajectoire.
+            Vous n&apos;êtes pas seul·e. L&apos;épuisement est
+            <strong> fréquent</strong> chez les dirigeant·e·s qui traversent
+            des difficultés. En parler tôt change la trajectoire.
             Toutes ces lignes sont tenues au secret professionnel.
           </p>
           <ul className="space-y-1.5">
@@ -186,7 +186,7 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
             {(probleme === 'urssaf' || probleme === 'impots') && (
               <li className="flex gap-2"><span className="text-navy/40">→</span><strong>CCSF</strong> — échelonnement unique fiscal + social</li>
             )}
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>BPI Prêt rebond</strong> — 10 à 300 k€, sans garantie</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>Bpifrance</strong> — prêts de renforcement de trésorerie, souvent avec les Régions (conditions sur www.bpifrance.fr)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span><strong>CIP</strong> — RDV gratuit confidentiel dans {dep ? `dép. ${dep}` : 'votre département'}</li>
           </ul>
           <button type="button" onClick={() => scrollToId('aides')} className="inline-flex text-sm font-medium text-bleu-fonce hover:underline">
@@ -237,15 +237,15 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
       return (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            Le Prêt Garanti par l&apos;État pèse sur 30 % des défaillances
-            2024-2025. <strong>Restructuration à tenter AVANT toute
+            Le remboursement du Prêt Garanti par l&apos;État pèse sur la
+            trésorerie de nombreuses entreprises. <strong>Restructuration à tenter AVANT toute
             procédure</strong> — l&apos;ouverture d&apos;une sauvegarde
             ou d&apos;un RJ fait perdre la garantie d&apos;État pour la
             banque.
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>Demande de réaménagement à la banque (protocole de place 19 janv. 2022)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>En cas de refus : <strong>Médiation du crédit 3414</strong> (gratuit, 5 j, taux succès &gt; 60 %)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>En cas de refus : <strong>Médiation du crédit 34 14</strong> (gratuit, confidentiel)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Étalement possible jusqu&apos;à 10 ans, sans perte de garantie d&apos;État</li>
           </ul>
           <button type="button" onClick={() => scrollToId('echeances')} className="inline-flex text-sm font-medium text-jaune hover:underline">

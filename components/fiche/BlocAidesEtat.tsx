@@ -38,8 +38,7 @@ export default function BlocAidesEtat() {
     nom: 'Conseillers-Entreprises',
     description:
       "Plateforme unique de l'État pour identifier l'aide ou l'interlocuteur public adapté à votre situation. Un conseiller vous rappelle gratuitement.",
-    telephone: '0 806 000 245',
-    site: 'https://conseillers-entreprises.service-public.fr',
+    site: 'https://conseillers-entreprises.service-public.gouv.fr',
     badge: 'Premier réflexe · gratuit',
     accent: 'bleu',
   });
@@ -93,7 +92,6 @@ export default function BlocAidesEtat() {
       nom: 'CODEFI — Comité Départemental d\'Examen des problèmes de Financement',
       description:
         "Cellule départementale pilotée par le préfet et le DDFiP. Coordonne créanciers publics (URSSAF, fisc) et banques pour les entreprises de moins de 400 salariés. Saisine confidentielle.",
-      telephone: '0 806 000 245',
       site: 'https://www.economie.gouv.fr/entreprises/codefi-commission-departementale-financement',
       badge: '<400 salariés',
       accent: 'navy',

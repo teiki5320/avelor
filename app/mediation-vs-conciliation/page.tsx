@@ -43,7 +43,7 @@ export default function MediationVsConciliationPage() {
             <strong>Quand l&apos;utiliser</strong> : litige bancaire (refus de prêt, PGE), différend fournisseur ou client, désaccord sur un contrat commercial.
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-navy/80">
-            <li><strong>Médiation du crédit</strong> (Banque de France, 3414) — pour les litiges bancaires</li>
+            <li><strong>Médiation du crédit</strong> (Banque de France, 34 14) — pour les litiges bancaires</li>
             <li><strong>Médiation des entreprises</strong> (Bercy, 01 53 17 87 40) — pour les litiges entre entreprises</li>
             <li><strong>ARPE</strong> — pour les travailleurs des plateformes</li>
           </ul>

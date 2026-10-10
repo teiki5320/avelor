@@ -63,7 +63,7 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
   if (r.probleme === 'fournisseurs') {
     specifiques.push({
       nom: 'Médiateur des entreprises',
-      description: 'Différend avec un fournisseur ou client ? Le médiateur obtient un accord dans 75 % des cas. Gratuit.',
+      description: 'Différend avec un fournisseur ou client ? Le Médiateur des entreprises vous aide à renouer le dialogue. Gratuit et confidentiel.',
       telephone: '01 53 17 87 40',
       site: 'https://www.economie.gouv.fr/mediateur-des-entreprises',
       badge: 'Prioritaire pour vous',
@@ -130,7 +130,7 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
       {
         nom: 'Affacturage (factoring)',
         description:
-          'Cession de vos factures clients à un affactureur (banque, BPI, société spécialisée) qui vous avance jusqu\'à 90 % sous 48 h, puis recouvre auprès du client. Différent du crédit fournisseur : c\'est un financement, pas un délai. Commission 1-3 % + intérêts. Adapté si vous avez plusieurs clients B2B solvables.',
+          'Cession de vos factures clients à un affactureur (banque, Bpifrance, société spécialisée) qui vous avance jusqu\'à 90 % sous 48 h, puis recouvre auprès du client. Différent du crédit fournisseur : c\'est un financement, pas un délai. Commission 1-3 % + intérêts. Adapté si vous avez plusieurs clients B2B solvables.',
         site: 'https://www.bpifrance.fr/nos-solutions/financement/financer-court-terme/affacturage',
         badge: 'Cash sous 48 h',
       },
@@ -150,7 +150,6 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
         nom: 'Mobilisation créances publiques (Bpifrance)',
         description:
           'Si vous travaillez avec des collectivités ou administrations, Bpifrance avance jusqu\'à 100 % de vos factures publiques (DGFIP, conseil régional, hôpital). Délai 48 h, jusqu\'à un plafond de 30 000 € automatique, plus au-delà.',
-        telephone: '3247',
         site: 'https://www.bpifrance.fr/nos-solutions/financement/financer-court-terme/avance-creances-publiques',
         badge: 'Marchés publics',
       },
@@ -161,10 +160,9 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
   // Section 4: Aides nationales (toujours)
   const nationales: Aide[] = [
     {
-      nom: 'BPI France · Prêt rebond',
-      description: `Prêt sans garantie de 10 000 à 300 000 € pour TPE/PME en difficulté${c.nom !== 'Votre entreprise' ? `. ${c.nom} peut être éligible.` : '.'}`,
-      telephone: '3247',
-      site: 'https://bpifrance.fr',
+      nom: 'Bpifrance · prêts aux TPE/PME',
+      description: `Prêts de renforcement de la trésorerie ou de développement, souvent en partenariat avec les Régions ; les offres évoluent régulièrement${c.nom !== 'Votre entreprise' ? `. Vérifiez si ${c.nom} peut être éligible auprès de votre direction régionale.` : ' : renseignez-vous auprès de votre direction régionale.'}`,
+      site: 'https://www.bpifrance.fr',
       badge: 'Entretien gratuit',
     },
   ];
