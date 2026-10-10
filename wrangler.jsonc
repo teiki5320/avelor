@@ -6,6 +6,11 @@
   "compatibility_date": "2026-10-10",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  // Adresses servies directement par ce Worker (www redirige vers solelis.com, voir worker.ts).
+  "routes": [
+    { "pattern": "solelis.com", "custom_domain": true },
+    { "pattern": "www.solelis.com", "custom_domain": true }
+  ],
   // Rappels email chaque jour à 7 h (UTC), comme l'ancien cron Vercel.
   "triggers": { "crons": ["0 7 * * *"] },
   "observability": { "enabled": true }

@@ -9,7 +9,15 @@ interface Env {
 }
 
 export default {
-  fetch: handler.fetch,
+  async fetch(request: Request, env: Env, ctx: ExecutionContext) {
+    // www.solelis.com → solelis.com (redirection permanente).
+    const url = new URL(request.url);
+    if (url.hostname === 'www.solelis.com') {
+      url.hostname = 'solelis.com';
+      return Response.redirect(url.toString(), 301);
+    }
+    return handler.fetch(request, env, ctx);
+  },
 
   async scheduled(_controller: ScheduledController, env: Env, ctx: ExecutionContext) {
     const base = env.NEXT_PUBLIC_BASE_URL || 'https://solelis.com';
