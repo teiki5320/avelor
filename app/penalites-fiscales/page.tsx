@@ -134,7 +134,7 @@ export default function PenalitesFiscalesPage() {
           <li>✓ Ne laissez jamais une mise en demeure sans réponse — l&apos;inaction est interprétée comme une reconnaissance</li>
           <li>✓ Demandez systématiquement la remise gracieuse en amont d&apos;un échéancier — c&apos;est gratuit et confidentiel</li>
           <li>✓ Conservez tous les courriers, accusés de réception, copies d&apos;écran (preuve en cas de contestation)</li>
-          <li>✓ Le conciliateur fiscal départemental est gratuit et obtient un accord dans plus de 50 % des cas</li>
+          <li>✓ Le conciliateur fiscal départemental est gratuit : saisissez-le si votre désaccord avec le service des impôts persiste</li>
           <li>✓ Si vous êtes en procédure : ne payez pas avant le mandataire (sinon paiement préférentiel annulable)</li>
         </ul>
       </div>

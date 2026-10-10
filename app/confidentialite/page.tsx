@@ -11,7 +11,7 @@ const engagements = [
   'Votre fiche n’est visible que par vous — et uniquement si vous avez le lien.',
   'Nous ne partageons rien avec l’État, les impôts, l’URSSAF ou votre banque.',
   'Aucun compte n’est créé sans votre accord.',
-  'Vous pouvez supprimer votre fiche à tout moment.',
+  'Vous pouvez faire supprimer votre fiche à tout moment, sur simple demande à solelis@toakeur.com.',
   'Solelis est un outil d’aide — pas un fichier, pas un registre.',
 ];
 
@@ -29,6 +29,7 @@ export default function ConfidentialitePage() {
           Pas de jargon juridique. Voici exactement ce que nous faisons — et ne
           faisons pas — avec vos informations.
         </p>
+        <p className="mt-3 text-sm text-navy/60">Dernière mise à jour : 10 octobre 2026</p>
       </div>
 
       <div className="mt-12 space-y-5">

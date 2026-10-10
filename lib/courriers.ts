@@ -392,14 +392,14 @@ Important : ce courrier doit être envoyé en recommandé avec accusé de récep
   {
     slug: 'saisine-ccsf',
     titre: 'Saisine de la CCSF (échelonnement fiscal + social)',
-    destinataire: 'Commission des Chefs de Services Financiers — DDFiP',
+    destinataire: 'Commission des chefs des services financiers — DDFiP',
     categorie: 'impots',
     icone: '🏛️',
     description: 'Demande d\'échelonnement global de vos dettes fiscales ET sociales en un seul dossier (jusqu\'à 36 mois).',
     objet: 'Demande de saisine de la CCSF — plan d\'apurement global',
     corps: `Madame, Monsieur,
 
-Je sollicite la saisine de la Commission des Chefs de Services Financiers (CCSF) du département pour une demande de plan d'apurement global de mes dettes fiscales et sociales.
+Je sollicite la saisine de la Commission des chefs des services financiers (CCSF) du département pour une demande de plan d'apurement global de mes dettes fiscales et sociales.
 
 SITUATION DE L'ENTREPRISE
 - Dénomination : {{NOM_ENTREPRISE}}
@@ -410,7 +410,7 @@ SITUATION DE L'ENTREPRISE
 
 MONTANT DES DETTES À TRAITER
 - Dettes fiscales (TVA, IS, CFE, TVA…) : {{MONTANT_FISCAL}} €
-- Dettes sociales (URSSAF, RSI, MSA…) : {{MONTANT_SOCIAL}} €
+- Dettes sociales (URSSAF, MSA…) : {{MONTANT_SOCIAL}} €
 - TOTAL : {{MONTANT_TOTAL}} €
 
 ORIGINES DES DIFFICULTÉS
@@ -476,7 +476,7 @@ PIÈCES JOINTES
 
 Je vous remercie de bien vouloir examiner cette demande et de m'apporter votre réponse motivée par écrit dans les 15 jours, conformément au protocole.
 
-À défaut de réponse positive sous ce délai, je me réserve le droit de saisir gratuitement la Médiation du crédit (3414 / mediateur-credit.banque-france.fr), conformément au dispositif officiel.
+À défaut de réponse positive sous ce délai, je me réserve le droit de saisir gratuitement la Médiation du crédit (34 14 / mediateur-credit.banque-france.fr), conformément au dispositif officiel.
 
 Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
 
@@ -562,7 +562,7 @@ Je vous remercie pour votre écoute et votre accompagnement.
 
 Bien à vous.
 
-Important : APESA peut aussi être saisi via le tribunal de commerce, votre expert-comptable, votre avocat, ou directement par téléphone. La saisine est confidentielle et gratuite (apesa.fr).`,
+Important : APESA peut aussi être saisi via le tribunal de commerce, votre expert-comptable, votre avocat, ou directement par téléphone. La saisine est confidentielle et gratuite (www.apesa-france.com).`,
   },
   {
     slug: 'demande-aide-juridictionnelle',
@@ -711,7 +711,7 @@ function conseilCategorie(template: CourrierTemplate, ctx: CourrierContext): str
       return "Envoyez en recommandé AR. L'URSSAF traite les demandes argumentées plus vite — joignez bilan + situation de trésorerie + prévisionnel.";
     case 'impots':
       if (ctx.situation === 'redressement' || ctx.situation === 'assignation') {
-        return "Demandez en parallèle un rendez-vous avec votre interlocuteur dédié au SIE (Service des Impôts des Entreprises) et mentionnez la possibilité d'une CCSF (Commission des Chefs de Services Financiers).";
+        return "Demandez en parallèle un rendez-vous avec votre interlocuteur dédié au SIE (Service des Impôts des Entreprises) et mentionnez la possibilité d'une CCSF (Commission des chefs des services financiers).";
       }
       return "Joignez impérativement un prévisionnel de trésorerie. Le SIE accepte plus volontiers un échelonnement quand la demande est anticipée.";
     case 'tribunal':

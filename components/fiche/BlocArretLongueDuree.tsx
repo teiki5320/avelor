@@ -77,9 +77,9 @@ export default function BlocArretLongueDuree() {
             les payer.
           </li>
           <li>
-            <strong>Plafonds AGS</strong> (valeurs 2024, art. D3253-5
-            C. trav.) : 61 824 € (contrat &lt; 6 mois), 77 280 € (6 mois
-            à 2 ans), 92 736 € (au-delà de 2 ans).
+            <strong>Plafonds AGS</strong> (valeurs 2026, art. D3253-5
+            C. trav.) : 64 080 € (contrat &lt; 6 mois), 80 100 € (6 mois
+            à 2 ans), 96 120 € (2 ans et plus).
           </li>
           <li>
             <strong>Délai de versement</strong> : l&apos;AGS verse sous
@@ -192,7 +192,7 @@ export default function BlocArretLongueDuree() {
         Sources : C. trav. art. L1132-1 (non-discrimination), L1226-1
         (complément mensualisation), L1226-9 à L1226-15 (AT/MP) ;
         décret-loi 19 janv. 1978 sur la mensualisation ; ags-garantie-
-        salaires.org (plafonds 2025) ; jurisprudence Cass. soc. sur la
+        salaires.org (plafonds 2026) ; jurisprudence Cass. soc. sur la
         suspension du préavis.
       </p>
     </BlocAccordeon>

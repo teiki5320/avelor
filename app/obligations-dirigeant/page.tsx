@@ -46,7 +46,7 @@ const OBLIGATIONS_FAIRE: Obligation[] = [
   },
   {
     titre: 'Traiter tous les créanciers à égalité',
-    description: 'Pendant la période suspecte (18 mois avant cessation) et pendant la procédure, vous ne pouvez pas privilégier un créancier (paiement d\'une dette antérieure non échue, dation en paiement, sûreté pour dette ancienne).',
+    description: 'Pendant la période suspecte (de la date de cessation des paiements, qui peut remonter jusqu\'à 18 mois avant le jugement, jusqu\'au jugement d\'ouverture) et pendant la procédure, vous ne pouvez pas privilégier un créancier (paiement d\'une dette antérieure non échue, dation en paiement, sûreté pour dette ancienne).',
     reference: 'C. com. art. L632-1 à L632-3',
     sanction: 'Nullités automatiques (de droit) et facultatives des actes accomplis. Action en responsabilité possible.',
     conseil: 'Ne payez pas en priorité un créancier "amical" (famille, fournisseur historique) — le mandataire pourra faire annuler l\'acte rétroactivement.',
@@ -54,8 +54,8 @@ const OBLIGATIONS_FAIRE: Obligation[] = [
   {
     titre: 'Informer le CSE et les salariés',
     description: 'En cas d\'ouverture de procédure ou de licenciement éco, informez et consultez le CSE avant toute décision. Remettez le CSP aux salariés concernés.',
-    reference: 'C. trav. L2312-8, L1233-65',
-    sanction: 'Délit d\'entrave (1 an de prison, 7 500 € amende) et contribution France Travail de 2 mois de salaire par salarié non informé du CSP.',
+    reference: 'C. trav. L2312-8, L2317-1, L1233-65, L1233-66',
+    sanction: 'Défaut de consultation du CSE : délit d\'entrave au fonctionnement (7 500 € d\'amende, art. L2317-1). CSP non proposé : contribution due à France Travail de 2 mois de salaire brut par salarié (3 mois s\'il adhère au CSP proposé par France Travail — art. L1233-66). Ce n\'est pas un délit d\'entrave.',
     conseil: 'L\'avocat en droit social et le DRH sont vos alliés pour cadrer la procédure. Anticipez les calendriers de réunion CSE.',
   },
   {
@@ -79,7 +79,7 @@ const OBLIGATIONS_NE_PAS_FAIRE: Obligation[] = [
     titre: 'Ne pas faire de donation ou de vente à un proche',
     description: 'Donations à un enfant/conjoint, vente d\'un immeuble à prix anormalement bas à un proche, changement de régime matrimonial : tout cela est annulable rétroactivement.',
     reference: 'C. com. art. L632-1 ; C. civ. art. 1341-2 (action paulienne)',
-    sanction: 'Nullité de droit (sans preuve à apporter). Au-delà de la période suspecte : action paulienne possible 5 ans.',
+    sanction: 'En procédure collective : nullité de droit des actes à titre gratuit faits pendant la période suspecte, ou dans les 6 mois qui la précèdent (L632-1). Hors de ces délais : action paulienne d\'un créancier, qui doit prouver la fraude (prescription 5 ans).',
     conseil: 'Avant tout acte significatif (mariage, divorce, donation, succession), consultez un avocat ET un notaire pour analyser l\'impact procédure.',
   },
   {

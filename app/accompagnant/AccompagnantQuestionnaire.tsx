@@ -7,6 +7,8 @@ interface OrganismeLocal {
   nom: string;
   type: string;
   telephone?: string;
+  /** Mention de coût pour les numéros à tarification spéciale (08 1x, 08 2x, 08 9x). */
+  telephoneNote?: string;
   adresse?: string;
   site?: string;
 }
@@ -89,9 +91,9 @@ function buildConseils(a: Answers) {
   // Always first: take care of yourself
   conseils.push({
     titre: 'Prenez soin de vous aussi',
-    texte: 'Accompagner un dirigeant en difficulté, c\'est porter du poids. Vous avez le droit de demander de l\'aide pour vous. APESA accompagne aussi les proches.',
-    lien: 'https://apesa.fr',
-    lienLabel: 'apesa.fr',
+    texte: 'Accompagner un·e dirigeant·e en difficulté, c\'est porter du poids. Vous avez le droit de demander de l\'aide pour vous : le 3114 répond aussi aux proches inquiets, 24 h/24, gratuitement.',
+    lien: 'tel:3114',
+    lienLabel: 'Appeler le 3114',
   });
 
   if (a.etat === 'epuise' || a.etat === 'ferme') {
@@ -101,7 +103,7 @@ function buildConseils(a: Answers) {
     });
     conseils.push({
       titre: 'Alertez un professionnel',
-      texte: 'Si vous êtes inquiet·e pour sa santé mentale, vous pouvez appeler APESA ou le 3114 vous-même — ils vous conseilleront sur la marche à suivre, même si ce n\'est pas vous le dirigeant.',
+      texte: 'Si vous êtes inquiet·e pour sa santé mentale, vous pouvez appeler le 3114 vous-même — il vous conseillera sur la marche à suivre, même si ce n\'est pas vous qui dirigez l\'entreprise. Pour un soutien psychologique de la personne dirigeante, orientez-la vers le numéro vert 0 805 65 50 50 (association APESA).',
       lien: 'tel:3114',
       lienLabel: 'Appeler le 3114',
     });
@@ -178,7 +180,7 @@ function buildConseils(a: Answers) {
   // Always: aides financières
   conseils.push({
     titre: 'Des aides existent — beaucoup sont méconnues',
-    texte: 'BPI France, médiation du crédit, action sociale CPAM… Parcourez la liste ensemble.',
+    texte: 'Bpifrance, médiation du crédit, action sociale CPAM… Parcourez la liste ensemble.',
     lien: '/aides',
     lienLabel: 'Voir les aides',
   });
@@ -365,6 +367,9 @@ export default function AccompagnantQuestionnaire() {
                           {departement.cci.telephone}
                         </a>
                       )}
+                      {departement.cci.telephoneNote && (
+                        <span className="block text-[11px] text-navy/55">{departement.cci.telephoneNote}</span>
+                      )}
                       {departement.cci.site && (
                         <a
                           href={departement.cci.site}
@@ -379,7 +384,7 @@ export default function AccompagnantQuestionnaire() {
                   </div>
                 )}
 
-                {/* Tribunal de commerce */}
+                {/* Tribunal compétent (commerce, activités économiques ou chambre commerciale) */}
                 {departement.tribunal && (
                   <div className="glass-soft flex items-start gap-3 rounded-2xl p-4">
                     <span className="mt-0.5 text-lg" aria-hidden="true">🏛️</span>
@@ -395,6 +400,9 @@ export default function AccompagnantQuestionnaire() {
                         >
                           {departement.tribunal.telephone}
                         </a>
+                      )}
+                      {departement.tribunal.telephoneNote && (
+                        <span className="block text-[11px] text-navy/55">{departement.tribunal.telephoneNote}</span>
                       )}
                     </div>
                   </div>

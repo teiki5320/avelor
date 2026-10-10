@@ -56,7 +56,7 @@ export default function BlocSoutien() {
 
   const message = epuise
     ? 'Ce que vous ressentez est légitime. Beaucoup de dirigeants traversent cette épreuve, et la plupart s\'en sortent mieux qu\'ils ne le croient — souvent parce qu\'ils ont osé demander de l\'aide. Vous venez de le faire.'
-    : 'Diriger une entreprise en difficulté, c\'est porter beaucoup, souvent seul. Les personnes ci-dessous sont là pour vous — gratuitement et en confidentialité.';
+    : 'Diriger une entreprise en difficulté, c\'est porter beaucoup, souvent seul·e. Les personnes ci-dessous sont là pour vous — gratuitement et en confidentialité.';
 
   const hasSectorSoutien = !!sector.soutien;
 
@@ -84,16 +84,16 @@ export default function BlocSoutien() {
           </a>
         )}
         <a
-          href="https://apesa.fr"
+          href="https://www.apesa-france.com"
           target="_blank"
           rel="noreferrer"
           className="glass-soft block p-4 transition hover:bg-white"
         >
           <p className="font-display text-lg text-navy">APESA</p>
           <p className="mt-1 text-xs text-navy/60">
-            Soutien psychologique pour dirigeants en détresse
+            Soutien psychologique gratuit pour dirigeant·e·s en détresse · numéro vert 0 805 65 50 50 (7 j/7, 8 h – 20 h)
           </p>
-          <p className="mt-3 text-sm text-bleu-fonce">apesa.fr →</p>
+          <p className="mt-3 text-sm text-bleu-fonce">www.apesa-france.com →</p>
         </a>
         <a
           href="https://www.60000rebonds.com"
@@ -113,7 +113,7 @@ export default function BlocSoutien() {
         >
           <p className="font-display text-lg text-navy">3114</p>
           <p className="mt-1 text-xs text-navy/60">
-            Numéro national de prévention du suicide · 24/7 · gratuit
+            Numéro national de prévention du suicide · 24 h/24, 7 j/7 · gratuit
           </p>
           <p className="mt-3 text-sm text-bleu-fonce">Appeler 3114 →</p>
         </a>

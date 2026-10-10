@@ -41,7 +41,7 @@ const procedures = [
     color: 'border-jaune',
     colorDot: 'bg-jaune',
     quand:
-      'Difficultés que vous ne pouvez pas surmonter seul, AVANT cessation',
+      'Difficultés que vous ne pouvez pas surmonter seul·e, AVANT cessation',
     quiDecide: 'Vous — demande au tribunal',
     confidentialite: 'Non — la procédure est publique',
     duree: '6 mois (renouvelable 6 mois)',

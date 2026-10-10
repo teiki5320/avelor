@@ -24,12 +24,13 @@ export default function BlocCCSF() {
       soustitre="Plan d'échelonnement consolidé en une seule demande"
     >
       <p className="text-sm text-navy/80">
-        La <strong>Commission des Chefs de Services Financiers</strong>{' '}
+        La <strong>Commission des chefs des services financiers</strong>{' '}
         (CCSF) est un dispositif officiel qui permet à une entreprise en
         difficulté d&apos;obtenir un <strong>plan d&apos;apurement
         unique</strong> couvrant à la fois ses dettes fiscales (impôts,
-        TVA, IS) ET ses dettes sociales (URSSAF, RSI, retraite,
-        Pôle emploi).
+        TVA, IS) ET ses dettes sociales (URSSAF, y compris la sécurité
+        sociale des indépendants, MSA, retraite complémentaire,
+        contributions d&apos;assurance chômage).
       </p>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">

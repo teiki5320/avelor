@@ -67,7 +67,7 @@ const sections: Section[] = [
         nom: 'CSS (Complémentaire Santé Solidaire, ex CMU-C)',
         description:
           'Mutuelle gratuite si vos revenus sont inférieurs à 10 166 €/an. Couvre soins, médicaments, optique et dentaire sans avance de frais.',
-        url: 'https://complementaire-sante-solidaire.gouv.fr',
+        url: 'https://www.complementaire-sante-solidaire.gouv.fr',
         urlLabel: 'complementaire-sante-solidaire.gouv.fr',
         tel: '3646',
         badge: 'Gratuit',
@@ -219,7 +219,7 @@ export default function AidesPersonnellesPage() {
       {/* Bottom CTA */}
       <div className="mt-10 text-center">
         <a href="/parler" className="btn-primary">
-          Vous n’êtes pas seul →
+          Vous n’êtes pas seul·e →
         </a>
       </div>
     </section>

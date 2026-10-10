@@ -30,7 +30,7 @@ const OUTILS: Outil[] = [
     icone: '📄',
     titre: 'Indemnité de licenciement économique',
     description:
-      "Calcul selon ancienneté et salaire brut. Plafond AGS 2024 : 92 736 €.",
+      "Calcul selon ancienneté et salaire brut. Plafond AGS 2026 : jusqu’à 96 120 € selon l’ancienneté du contrat.",
     source: 'C. trav. L1234-9, ags-garantie-salaires.org',
   },
   {
@@ -38,7 +38,7 @@ const OUTILS: Outil[] = [
     icone: '🪙',
     titre: 'Estimateur ATI (chômage indépendant)',
     description:
-      "Éligibilité et montant : 26,30 €/jour pendant 6 mois après cessation involontaire.",
+      "Éligibilité et montant : de 19,73 à 26,30 €/jour selon vos revenus, pendant 6 mois après cessation involontaire.",
     source: 'francetravail.fr',
   },
   {

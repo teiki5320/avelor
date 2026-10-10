@@ -43,7 +43,7 @@ const DATA: Record<string, SituationData> = {
     etapes: [
       { titre: 'Prenez les devants — écrivez en premier', texte: 'Un courrier proposant un échéancier montre votre bonne foi et évite l\'escalade. Les fournisseurs préfèrent un client qui communique à un client qui disparaît.' },
       { titre: 'Proposez un échéancier réaliste', texte: 'Divisez la dette en 3 à 6 mensualités. Engagez-vous à reprendre les paiements courants immédiatement. Un plan réaliste est accepté dans la majorité des cas.' },
-      { titre: 'Saisissez le Médiateur si nécessaire', texte: 'Le Médiateur des entreprises est gratuit, confidentiel, et obtient un accord dans 75 % des cas. Vous pouvez le saisir en ligne.' },
+      { titre: 'Saisissez le Médiateur si nécessaire', texte: 'Le Médiateur des entreprises est gratuit et confidentiel. Vous pouvez le saisir en ligne.' },
       { titre: 'Protégez-vous d\'une assignation', texte: 'Si un fournisseur vous assigne, consultez immédiatement un avocat. Le fait d\'avoir proposé un plan de paiement écrit joue en votre faveur devant le tribunal.' },
     ],
     courrier: { slug: 'delai-fournisseur', label: 'Modèle de courrier fournisseur' },
@@ -62,9 +62,9 @@ const DATA: Record<string, SituationData> = {
     loi: 'Une banque ne peut pas supprimer un découvert autorisé du jour au lendemain : elle doit respecter un préavis de 60 jours minimum (article L313-12 du Code monétaire et financier). Pour une dénonciation de concours bancaires, le préavis est de 60 jours également, sauf en cas de comportement gravement répréhensible ou de situation irrémédiablement compromise. La médiation du crédit, gérée par la Banque de France, est gratuite et confidentielle.',
     etapes: [
       { titre: 'Vérifiez les préavis légaux', texte: 'Si votre banque a réduit ou coupé vos concours sans préavis de 60 jours, elle est en tort. Gardez tous les courriers.' },
-      { titre: 'Saisissez la médiation du crédit', texte: 'C\'est gratuit, confidentiel, et ça prend quelques jours. Le médiateur contacte votre banque et négocie pour vous. Le taux de succès est élevé.' },
+      { titre: 'Saisissez la médiation du crédit', texte: 'C\'est gratuit, confidentiel, et ça prend quelques jours. Le médiateur contacte votre banque et cherche une solution avec elle.' },
       { titre: 'Envisagez un mandat ad hoc', texte: 'Si le problème bancaire fait partie d\'un ensemble de difficultés, un mandataire nommé par le tribunal peut négocier confidentiellement avec la banque et les autres créanciers.' },
-      { titre: 'Ne restez pas seul', texte: 'La CCI et BPI France proposent des accompagnements gratuits pour les entreprises qui cherchent des solutions de financement alternatives.' },
+      { titre: 'Ne restez pas seul·e', texte: 'La CCI et Bpifrance proposent des accompagnements gratuits pour les entreprises qui cherchent des solutions de financement alternatives.' },
     ],
     courrier: { slug: 'mediation-credit', label: 'Modèle de saisine médiation du crédit' },
     ressources: [

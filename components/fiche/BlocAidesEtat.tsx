@@ -38,8 +38,7 @@ export default function BlocAidesEtat() {
     nom: 'Conseillers-Entreprises',
     description:
       "Plateforme unique de l'État pour identifier l'aide ou l'interlocuteur public adapté à votre situation. Un conseiller vous rappelle gratuitement.",
-    telephone: '0 806 000 245',
-    site: 'https://conseillers-entreprises.service-public.fr',
+    site: 'https://conseillers-entreprises.service-public.gouv.fr',
     badge: 'Premier réflexe · gratuit',
     accent: 'bleu',
   });
@@ -62,7 +61,7 @@ export default function BlocAidesEtat() {
   if (reponses.probleme === 'urssaf' || reponses.probleme === 'impots') {
     dispositifs.push({
       cle: 'ccsf',
-      nom: 'CCSF — Commission des Chefs de Services Financiers',
+      nom: 'CCSF — Commission des chefs des services financiers',
       description:
         "Plan d'apurement unique couvrant à la fois vos dettes fiscales (impôts, TVA, IS) et sociales (URSSAF, retraite). Échelonnement jusqu'à 36 mois. Saisine via la DDFiP.",
       telephone: '0 809 401 401',
@@ -93,7 +92,6 @@ export default function BlocAidesEtat() {
       nom: 'CODEFI — Comité Départemental d\'Examen des problèmes de Financement',
       description:
         "Cellule départementale pilotée par le préfet et le DDFiP. Coordonne créanciers publics (URSSAF, fisc) et banques pour les entreprises de moins de 400 salariés. Saisine confidentielle.",
-      telephone: '0 806 000 245',
       site: 'https://www.economie.gouv.fr/entreprises/codefi-commission-departementale-financement',
       badge: '<400 salariés',
       accent: 'navy',
@@ -135,7 +133,7 @@ export default function BlocAidesEtat() {
       cle: 'fne',
       nom: 'FNE-Formation',
       description:
-        "Financement public de la formation des salariés pendant une baisse d'activité ou une restructuration. Cumulable avec activité partielle classique ou APLD-R. Demande déposée à l'OPCO via la téléprocédure.",
+        "Financement public de la formation des salariés pendant une baisse d'activité ou une restructuration. Cumulable avec l'activité partielle (et l'APLD-R pour les accords encore en vigueur). Demande déposée à l'OPCO via la téléprocédure.",
       site: 'https://www.travail-emploi.gouv.fr/emploi-et-insertion/accompagnement-des-mutations-economiques/article/fne-formation',
       badge: 'Maintien dans l\'emploi',
       accent: 'vert',

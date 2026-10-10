@@ -13,12 +13,12 @@ interface TAE {
   competence: string;
 }
 
-// Source : décret n° 2024-1225 du 30 décembre 2024 — liste des 12 TAE expérimentaux
-// Démarrage : 1er janvier 2025 pour 4 ans
+// Source : arrêté du 5 juillet 2024 relatif à l'expérimentation du tribunal des
+// activités économiques — 12 TAE, du 1er janvier 2025 au 31 décembre 2028
 const TAES: TAE[] = [
-  { ville: 'Avignon (84)', ressort: 'Vaucluse', competence: 'Procédures amiables et collectives sans distinction d\'activité (sauf libérales réglementées hors de leur ressort).' },
+  { ville: 'Avignon (84)', ressort: 'Vaucluse', competence: 'Procédures amiables et collectives quel que soit le statut, sauf pour les professions réglementées du droit (avocat, notaire, commissaire de justice, greffier de tribunal de commerce, administrateur et mandataire judiciaires), qui restent devant le tribunal judiciaire.' },
   { ville: 'Auxerre (89)', ressort: 'Yonne', competence: 'Idem' },
-  { ville: 'Le Havre (76)', ressort: 'Le Havre / Eure-Maritime', competence: 'Idem' },
+  { ville: 'Le Havre (76)', ressort: 'Le Havre (Seine-Maritime)', competence: 'Idem' },
   { ville: 'Le Mans (72)', ressort: 'Sarthe', competence: 'Idem' },
   { ville: 'Limoges (87)', ressort: 'Haute-Vienne', competence: 'Idem' },
   { ville: 'Lyon (69)', ressort: 'Rhône (partie commerce de Lyon)', competence: 'Idem' },

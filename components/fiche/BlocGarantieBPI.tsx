@@ -23,7 +23,7 @@ export default function BlocGarantieBPI() {
     <BlocAccordeon
       icone="🤝"
       titre="Emprunt garanti Bpifrance — comprendre vos marges de négociation"
-      soustitre="Tout prêt avec garantie BPI (hors PGE) : règles, leviers, médiation"
+      soustitre="Tout prêt avec garantie Bpifrance (hors PGE) : règles, leviers, médiation"
     >
       <p className="text-sm text-navy/80">
         Si votre banque a obtenu une <strong>garantie Bpifrance</strong>{' '}
@@ -37,7 +37,7 @@ export default function BlocGarantieBPI() {
       {/* Comment ça marche */}
       <div className="mt-5 rounded-2xl border border-bleu/30 bg-bleu/5 p-4">
         <p className="font-display text-base text-bleu-fonce">
-          Comment fonctionne la garantie BPI
+          Comment fonctionne la garantie Bpifrance
         </p>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-navy/80">
           <li>
@@ -74,7 +74,7 @@ export default function BlocGarantieBPI() {
           </li>
           <li>
             <strong>Demandez explicitement un moratoire</strong> de 6 à
-            12 mois sans pénalité — la convention de garantie BPI
+            12 mois sans pénalité — la convention de garantie Bpifrance
             l&apos;autorise sans perte de couverture (à vérifier sur
             votre dispositif spécifique).
           </li>
@@ -88,7 +88,7 @@ export default function BlocGarantieBPI() {
             (confidentiels).
           </li>
           <li>
-            <strong>Caution personnelle BPI</strong> : si vous avez signé
+            <strong>Caution personnelle sur un prêt garanti par Bpifrance</strong> : si vous avez signé
             une caution personnelle pour la part NON garantie, vérifiez
             sa proportionnalité et l&apos;information annuelle — art. 2300
             et 2302 du code civil pour les cautions signées depuis 2022,
@@ -101,7 +101,7 @@ export default function BlocGarantieBPI() {
       {/* Cas particuliers */}
       <div className="mt-4 rounded-2xl border border-jaune/30 bg-jaune/5 p-4">
         <p className="font-display text-base text-jaune">
-          Dispositifs BPI courants en TPE/PME
+          Dispositifs Bpifrance courants en TPE/PME
         </p>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-navy/80">
           <li>
@@ -121,9 +121,10 @@ export default function BlocGarantieBPI() {
             R&amp;D, innovation.
           </li>
           <li>
-            <strong>Prêt Croissance</strong> ou <strong>Prêt Rebond</strong>{' '}
-            : prêts directs BPI (10 à 300 k€ sans garantie) — différents
-            de la garantie sur prêt bancaire.
+            <strong>Prêts directs Bpifrance</strong> (développement,
+            renforcement de trésorerie) — différents de la garantie sur
+            prêt bancaire ; les offres et montants évoluent, vérifiez-les
+            sur www.bpifrance.fr.
           </li>
         </ul>
       </div>
@@ -143,14 +144,13 @@ export default function BlocGarantieBPI() {
             différé). Sous 15 jours, la banque doit répondre par écrit.
           </li>
           <li>
-            <strong>En parallèle, appeler Bpifrance Direction Régionale</strong>{' '}
-            (3247) — leur conseiller risque pourra confirmer si la banque
+            <strong>En parallèle, contacter la direction régionale
+            Bpifrance</strong> — son conseiller pourra confirmer si la banque
             est tenue d&apos;accepter le réaménagement.
           </li>
           <li>
             <strong>Si refus</strong> : saisir la Médiation du crédit
-            (3414, gratuit, confidentiel, sous 5 jours). Le médiateur
-            obtient un accord dans plus de 60 % des cas.
+            (34 14, gratuit, confidentiel).
           </li>
           <li>
             <strong>Mandat ad hoc</strong> si la situation est plus
@@ -167,7 +167,6 @@ export default function BlocGarantieBPI() {
           <p className="font-display text-base text-navy">Bpifrance Direction Régionale</p>
           <p className="mt-1 text-xs text-navy/60">Conseil sur le statut de votre garantie</p>
           <div className="mt-3 flex flex-wrap gap-2 text-sm">
-            <a href="tel:3247" className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"><span aria-hidden>☎</span> 32 47</a>
             <a
               href="https://www.bpifrance.fr/contactez-nous"
               target="_blank"
@@ -180,7 +179,7 @@ export default function BlocGarantieBPI() {
         </div>
         <div className="rounded-2xl border border-navy/15 bg-white/60 p-4">
           <p className="font-display text-base text-navy">Médiation du crédit BdF</p>
-          <p className="mt-1 text-xs text-navy/60">Gratuit, confidentiel, taux succès &gt; 60 %</p>
+          <p className="mt-1 text-xs text-navy/60">Gratuit et confidentiel</p>
           <div className="mt-3 flex flex-wrap gap-2 text-sm">
             <a href="tel:3414" className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"><span aria-hidden>☎</span> 34 14</a>
             <a

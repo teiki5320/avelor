@@ -129,7 +129,7 @@ export const OPCO_DATA: Record<Opco, OpcoInfo> = {
     cle: 'autre',
     nom: 'OPCO non identifié',
     description: 'Votre branche n\'a pas été identifiée. Consultez votre convention collective (article OPCO) ou demandez-le à votre expert-comptable.',
-    site: 'https://travail-emploi.gouv.fr/formation-professionnelle/acteurs-cadre-et-qualite-de-la-formation-professionnelle/article/operateurs-de-competences-opco',
+    site: 'https://www.travail-emploi.gouv.fr/formation-professionnelle/acteurs-cadre-et-qualite-de-la-formation-professionnelle/article/operateurs-de-competences-opco',
     secteursClefs: 'divers',
   },
 };

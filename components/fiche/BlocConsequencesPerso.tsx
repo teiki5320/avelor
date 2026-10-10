@@ -78,7 +78,7 @@ const SECTIONS: Section[] = [
       "Déclarez la cessation des paiements dans les 45 jours — c'est la première protection",
       "Coopérez pleinement avec le mandataire et le juge-commissaire",
       "Conservez une comptabilité à jour et sincère jusqu'au bout",
-      "Ne préférez aucun créancier pendant la période suspecte (18 mois avant cessation)",
+      "Ne préférez aucun créancier : les paiements faits pendant la période suspecte (de la cessation des paiements, qui peut remonter jusqu'à 18 mois, au jugement) peuvent être annulés",
       "Ne dissimulez pas de biens : l'inventaire est vérifié, les conséquences sont pénales",
     ],
     sources: [
@@ -100,9 +100,9 @@ const SECTIONS: Section[] = [
           "En cas de manœuvres frauduleuses OU d'inobservation grave et répétée du paiement des cotisations sociales, le dirigeant peut être condamné solidairement avec la société. Exemples typiques : déclarations délibérément minorées, non-paiement systématique des cotisations sur plusieurs trimestres consécutifs. Une simple difficulté ponctuelle (même répétée) ne suffit pas : il faut une volonté manifeste de se soustraire.",
       },
       {
-        label: 'Période suspecte — 18 mois avant cessation des paiements (art. L632-1 à L632-3 C. com.)',
+        label: 'Période suspecte — de la cessation des paiements au jugement (art. L631-8, L632-1 à L632-3 C. com.)',
         valeur:
-          "Le tribunal fixe une date de cessation des paiements ; les actes des 18 mois précédents peuvent être annulés. NULLITÉS DE DROIT (automatiques) : paiement anticipé d'une dette, dation en paiement (céder un bien à la place d'un paiement), constitution d'une sûreté pour une dette antérieure non échue. NULLITÉS FACULTATIVES (à l'appréciation du juge) : actes ayant gravement aggravé la situation — vente à prix dérisoire, donation, paiement préférentiel d'un créancier amical. Le mandataire peut faire annuler ces actes pour récupérer des fonds.",
+          "Le tribunal fixe une date de cessation des paiements, qui peut remonter jusqu'à 18 mois avant le jugement d'ouverture ; les actes accomplis entre cette date et le jugement peuvent être annulés. NULLITÉS DE DROIT : donation et acte à titre gratuit (y compris dans les 6 mois qui précèdent la cessation), contrat très déséquilibré (vente à prix dérisoire), paiement anticipé d'une dette, paiement par un moyen anormal (dation en paiement), sûreté pour une dette antérieure. NULLITÉS FACULTATIVES (à l'appréciation du juge) : paiements de dettes échues et actes à titre onéreux lorsque l'autre partie connaissait la cessation des paiements (par exemple un créancier « ami » payé en priorité). Le mandataire peut faire annuler ces actes pour récupérer des fonds.",
       },
       {
         label: 'Confusion de patrimoine — extension de procédure (art. L621-2 C. com.)',
@@ -126,7 +126,7 @@ const SECTIONS: Section[] = [
       },
     ],
     actions: [
-      "Évitez de payer un créancier « amical » avant les autres dans les 18 mois précédant une cessation potentielle",
+      "Évitez de payer un créancier « amical » avant les autres : si une procédure s'ouvre, la date de cessation des paiements peut être fixée jusqu'à 18 mois avant le jugement",
       "Tenez vos comptes professionnels et personnels strictement séparés (jamais de carte société pour des dépenses perso)",
       "Si l'URSSAF est massivement impayée, échelonnez tout de suite — c'est la trace écrite de la bonne foi",
       "En cas de poursuite pénale, ne refusez pas la CRPC par principe : faites évaluer l'option par votre avocat",

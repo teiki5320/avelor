@@ -42,7 +42,7 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>Avocat en droit des entreprises en difficulté sous 48 h</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Aide juridictionnelle possible si RFR &lt; 19 411 €/an (outil dédié)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Aide juridictionnelle possible si RFR ≤ 19 433 €/an pour une personne seule en 2026 (outil dédié)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Pièces : bilan, trésorerie &lt; 1 mois, liste créanciers, propositions</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Réfléchir à la voie : RJ, plan de cession (L642-1), ou LJ</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Appel possible sous 10 j (C. com. R661-3)</li>
@@ -88,8 +88,8 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>Demander copie de chaque acte + fiche d&apos;information patrimoniale signée</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Disproportion au jour de la signature : art. <strong>L341-4 C. conso</strong></li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Information annuelle manquante : déchéance des intérêts (art. L341-6)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Disproportion au jour de la signature : art. <strong>2300 C. civ.</strong> (anciens art. L332-1 et L343-4 C. conso pour les cautions signées avant 2022)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Information annuelle manquante : déchéance des intérêts (art. 2302 C. civ.)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Vérifier la durée : beaucoup limitées à 10 ans sans mention expresse</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Avocat en droit bancaire — premier RDV souvent gratuit</li>
           </ul>
@@ -128,11 +128,13 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
             régime matrimonial et vos cautions. Règle d&apos;or : n&apos;opérez
             <strong> aucun transfert d&apos;actif maintenant</strong> — les
             donations, ventes à proches, changements de régime peuvent
-            être annulés (action paulienne, 18 mois avant cessation).
+            être annulés (nullités de la période suspecte en procédure
+            collective — art. L632-1 C. com. — ou action paulienne d&apos;un
+            créancier qui prouve la fraude — art. 1341-2 C. civ.).
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>EI : résidence principale insaisissable de droit (loi Macron 2015)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Société : déclaration d&apos;insaisissabilité chez notaire (300-500 €)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Société : vos biens personnels ne répondent pas des dettes sociales, sauf caution ou faute de gestion. La déclaration notariée d&apos;insaisissabilité est réservée à l&apos;entrepreneur·e individuel·le (art. L526-1 C. com.)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Assurance-vie avec bénéficiaire : hors succession, difficilement saisissable</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Régime communauté : changement possible, mais opposable pour dettes FUTURES seulement</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Véhicule en LOA/LLD : reste propriété du loueur, protégé</li>
@@ -147,9 +149,9 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
       return (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            Vous n&apos;êtes pas seul·e. <strong>1 dirigeant sur 3</strong>{' '}
-            traversant des difficultés présente des symptômes de burn-out
-            (étude Amarok 2023). Parler 10 minutes change la trajectoire.
+            Vous n&apos;êtes pas seul·e. L&apos;épuisement est
+            <strong> fréquent</strong> chez les dirigeant·e·s qui traversent
+            des difficultés. En parler tôt change la trajectoire.
             Toutes ces lignes sont tenues au secret professionnel.
           </p>
           <ul className="space-y-1.5">
@@ -162,10 +164,10 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
                 </span>
               </li>
             )}
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>APESA</strong> — soutien psychologique dirigeants, activable via tribunal de commerce · apesa.fr</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>3114</strong> — prévention suicide, 24h/24, gratuit, anonyme</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>APESA</strong> — soutien psychologique gratuit des dirigeant·e·s · 0 805 65 50 50 · apesa-france.com</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>3114</strong> — prévention suicide, 24 h/24, 7 j/7, gratuit</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span><strong>60 000 Rebonds</strong> — accompagnement post-liquidation (mentor + groupe de pairs) · 60000rebonds.com</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>CIP</strong> (~105 antennes) — RDV gratuit confidentiel 1 h avec juriste + comptable + dirigeant · cip-national.fr</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>CIP</strong> (antennes locales) — RDV gratuit confidentiel 1 h avec juriste + comptable + dirigeant · cip-national.fr</li>
           </ul>
         </div>
       );
@@ -184,7 +186,7 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
             {(probleme === 'urssaf' || probleme === 'impots') && (
               <li className="flex gap-2"><span className="text-navy/40">→</span><strong>CCSF</strong> — échelonnement unique fiscal + social</li>
             )}
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>BPI Prêt rebond</strong> — 10 à 300 k€, sans garantie</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>Bpifrance</strong> — prêts de renforcement de trésorerie, souvent avec les Régions (conditions sur www.bpifrance.fr)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span><strong>CIP</strong> — RDV gratuit confidentiel dans {dep ? `dép. ${dep}` : 'votre département'}</li>
           </ul>
           <button type="button" onClick={() => scrollToId('aides')} className="inline-flex text-sm font-medium text-bleu-fonce hover:underline">
@@ -235,15 +237,15 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
       return (
         <div className="space-y-3 text-sm text-navy/80">
           <p>
-            Le Prêt Garanti par l&apos;État pèse sur 30 % des défaillances
-            2024-2025. <strong>Restructuration à tenter AVANT toute
+            Le remboursement du Prêt Garanti par l&apos;État pèse sur la
+            trésorerie de nombreuses entreprises. <strong>Restructuration à tenter AVANT toute
             procédure</strong> — l&apos;ouverture d&apos;une sauvegarde
             ou d&apos;un RJ fait perdre la garantie d&apos;État pour la
             banque.
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>Demande de réaménagement à la banque (protocole de place 19 janv. 2022)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>En cas de refus : <strong>Médiation du crédit 3414</strong> (gratuit, 5 j, taux succès &gt; 60 %)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>En cas de refus : <strong>Médiation du crédit 34 14</strong> (gratuit, confidentiel)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Étalement possible jusqu&apos;à 10 ans, sans perte de garantie d&apos;État</li>
           </ul>
           <button type="button" onClick={() => scrollToId('echeances')} className="inline-flex text-sm font-medium text-jaune hover:underline">

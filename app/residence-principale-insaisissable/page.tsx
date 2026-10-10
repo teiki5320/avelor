@@ -125,8 +125,8 @@ export default function ResidencePrincipalePage() {
           </li>
           <li>
             <strong>Action paulienne</strong> : un transfert récent de votre résidence (donation à un enfant,
-            vente à prix dérisoire à un proche) peut être annulé même au-delà des 18 mois de période suspecte
-            (art. 1341-2 C. civ., prescription 5 ans).
+            vente à prix dérisoire à un proche) peut être rendu inopposable au créancier qui prouve la fraude,
+            même en dehors de toute procédure collective et de la période suspecte (art. 1341-2 C. civ., prescription 5 ans).
           </li>
         </ul>
       </article>

@@ -2,13 +2,13 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 
-// Plafonds AGS — valeurs 2024 (art. D3253-5 C. trav.), dernières vérifiées :
+// Plafonds AGS — valeurs 2026 (art. D3253-5 C. trav.) :
 // garantie = 4, 5 ou 6 × le plafond mensuel des contributions d'assurance
-// chômage (lui-même = 4 × PMSS ; PMSS 2024 = 3 864 €/mois).
-// 4 × 4 × 3 864 = 61 824 € · 5 × → 77 280 € · 6 × → 92 736 €.
-const PLAFOND_AGS_HAUT = 92736;
-const PLAFOND_AGS_INTER = 77280;
-const PLAFOND_AGS_BAS = 61824;
+// chômage (lui-même = 4 × PMSS ; PMSS 2026 = 4 005 €/mois, arrêté du
+// 22 décembre 2025). 4 × 4 × 4 005 = 64 080 € · 5 × → 80 100 € · 6 × → 96 120 €.
+const PLAFOND_AGS_HAUT = 96120;
+const PLAFOND_AGS_INTER = 80100;
+const PLAFOND_AGS_BAS = 64080;
 
 interface Salarie {
   id: string;
@@ -41,10 +41,10 @@ function calculIndemnite(ancienneteMois: number, salaireBrutMensuel: number): {
 }
 
 function plafondAgs(ancienneteMois: number): number {
-  // Source : ags-garantie-salaires.org
-  // Plafond bas (4 PMSS) : entreprise immatriculée < 6 mois ou contrat < 6 mois
-  // Plafond intermédiaire (5 PMSS) : 6 mois à 2 ans
-  // Plafond haut (6 PMSS) : > 2 ans
+  // Source : art. D3253-5 C. trav. — ancienneté du CONTRAT au jour du jugement
+  // Plafond 4 : contrat conclu moins de 6 mois avant le jugement d'ouverture
+  // Plafond 5 : contrat conclu entre 6 mois et 2 ans avant
+  // Plafond 6 : contrat conclu au moins 2 ans avant
   if (ancienneteMois < 6) return PLAFOND_AGS_BAS;
   if (ancienneteMois < 24) return PLAFOND_AGS_INTER;
   return PLAFOND_AGS_HAUT;
@@ -282,7 +282,7 @@ export default function LicenciementPage() {
             <strong>Congés payés non pris</strong> : à indemniser en plus.
           </li>
           <li>
-            <strong>Plafonds AGS 2024</strong> : 4 PMSS si entreprise &lt; 6 mois ou contrat &lt; 6 mois ({formatEuros(PLAFOND_AGS_BAS)}), 5 PMSS si 6 mois à 2 ans ({formatEuros(PLAFOND_AGS_INTER)}), 6 PMSS au-delà ({formatEuros(PLAFOND_AGS_HAUT)}).
+            <strong>Plafonds AGS 2026</strong> : 4, 5 ou 6 fois le plafond mensuel d&apos;assurance chômage (4 × le plafond mensuel de la Sécurité sociale), selon l&apos;ancienneté du contrat de travail au jugement d&apos;ouverture — moins de 6 mois : {formatEuros(PLAFOND_AGS_BAS)} ; 6 mois à 2 ans : {formatEuros(PLAFOND_AGS_INTER)} ; 2 ans et plus : {formatEuros(PLAFOND_AGS_HAUT)}.
           </li>
           <li>
             <strong>PSE</strong> obligatoire si licenciement de 10+ salariés sur 30 jours dans une entreprise de 50+ salariés (L1233-61).
@@ -294,8 +294,8 @@ export default function LicenciementPage() {
       </div>
 
       <p className="mt-6 text-xs text-navy/50">
-        Sources : Code du travail, art. L1234-1 (préavis), L1234-9 et R1234-2 (indemnité), L1233-61 (PSE) ; ags-garantie-salaires.org
-        (plafonds AGS 2024, derniers vérifiés).
+        Sources : Code du travail, art. L1234-1 (préavis), L1234-9 et R1234-2 (indemnité), L1233-61 (PSE), D3253-5 (plafonds AGS) ;
+        arrêté du 22 décembre 2025 (plafond de la Sécurité sociale 2026 : 4 005 €/mois) ; www.ags-garantie-salaires.org.
       </p>
     </section>
   );

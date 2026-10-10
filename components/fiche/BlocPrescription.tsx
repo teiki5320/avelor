@@ -67,7 +67,7 @@ function buildAlertes(r: Reponses, age: number | null, seuils: { cse: boolean; o
     alertes.push({
       texte: 'Votre entreprise a moins de 2 ans — des protections spécifiques existent',
       detail:
-        'Les entreprises de moins de 2 ans peuvent bénéficier de dispositifs spécifiques : exonérations ACRE, prêts d\'honneur BPI France, et certaines procédures (sauvegarde) sont plus favorables aux jeunes entreprises.',
+        'Les entreprises de moins de 2 ans peuvent bénéficier de dispositifs spécifiques : exonération ACRE la première année, prêts d\'honneur (Initiative France, Réseau Entreprendre), garanties Bpifrance sur les prêts bancaires.',
       urgence: 'info',
     });
   }

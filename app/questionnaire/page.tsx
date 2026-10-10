@@ -25,7 +25,7 @@ export default async function QuestionnairePage({ searchParams }: Props) {
     <section className="pt-4">
       <div className="mx-auto max-w-2xl px-5 pb-6 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-bleu-fonce/70">
-          Questionnaire · 8 étapes
+          8 questions essentielles, 10 facultatives
         </p>
         <h1 className="mt-2 font-display text-3xl text-navy sm:text-4xl">
           Parlez-nous de votre situation

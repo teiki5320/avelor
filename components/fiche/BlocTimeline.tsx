@@ -23,14 +23,14 @@ function etapesAssignation(): Etape[] {
       jour: 'J+2 à 5',
       titre: 'Prise de contact avocat',
       description:
-        "Rendez-vous avec un avocat en droit des entreprises en difficulté. Ne restez pas seul à gérer — même une consultation de 30 min éclaire la stratégie.",
+        "Rendez-vous avec un avocat en droit des entreprises en difficulté. Ne restez pas seul·e à gérer — même une consultation de 30 min éclaire la stratégie.",
       niveau: 'urgent',
     },
     {
       jour: 'J+7 à 15',
       titre: 'Audience de comparution',
       description:
-        "Date fixée dans l'assignation. Vous pouvez vous présenter seul ou assisté/représenté par un avocat. Se présenter est crucial.",
+        "Date fixée dans l'assignation. Vous pouvez vous présenter seul·e ou assisté·e/représenté·e par un·e avocat·e. Se présenter est crucial.",
       niveau: 'urgent',
     },
     {

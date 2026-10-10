@@ -43,7 +43,7 @@ export default function MediationVsConciliationPage() {
             <strong>Quand l&apos;utiliser</strong> : litige bancaire (refus de prêt, PGE), différend fournisseur ou client, désaccord sur un contrat commercial.
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-navy/80">
-            <li><strong>Médiation du crédit</strong> (Banque de France, 3414) — pour les litiges bancaires</li>
+            <li><strong>Médiation du crédit</strong> (Banque de France, 34 14) — pour les litiges bancaires</li>
             <li><strong>Médiation des entreprises</strong> (Bercy, 01 53 17 87 40) — pour les litiges entre entreprises</li>
             <li><strong>ARPE</strong> — pour les travailleurs des plateformes</li>
           </ul>
@@ -56,7 +56,7 @@ export default function MediationVsConciliationPage() {
             La société <strong>n&apos;est pas en cessation des paiements</strong>.
           </p>
           <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
-            <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Durée</dt><dd className="font-medium text-navy">2 à 6 mois (renouvelable)</dd></div>
+            <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Durée</dt><dd className="font-medium text-navy">Fixée par le président du tribunal (pas de durée légale)</dd></div>
             <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Coût</dt><dd className="font-medium text-navy">1 500 à 5 000 €</dd></div>
             <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Confidentielle</dt><dd className="font-medium text-navy">Oui (pas de publication BODACC)</dd></div>
             <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Référence</dt><dd className="font-medium text-navy">C. com. art. L611-3</dd></div>
@@ -97,7 +97,7 @@ export default function MediationVsConciliationPage() {
           <li><strong>UN litige précis avec UN créancier</strong> → médiation (gratuit, 5 jours)</li>
           <li><strong>PLUSIEURS créanciers à restructurer + pas en cessation</strong> → mandat ad hoc</li>
           <li><strong>Situation tendue + cessation possible ou récente</strong> → conciliation</li>
-          <li><strong>Cessation depuis &gt; 45 j et besoin de protection légale</strong> → sauvegarde, RJ ou LJ</li>
+          <li><strong>Cessation depuis &gt; 45 j</strong> → redressement ou liquidation judiciaire (la sauvegarde est fermée en cas de cessation des paiements)</li>
         </ul>
       </div>
 

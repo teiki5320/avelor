@@ -55,7 +55,7 @@ export default function BlocProtectionFamille() {
   if (reponses.situation === 'redressement' || reponses.situation === 'assignation') {
     items.push({
       titre: 'Ne transférez pas d’actifs maintenant',
-      texte: "Tout transfert de patrimoine (donation aux enfants, vente à un proche) réalisé dans les 18 mois précédant la cessation des paiements peut être annulé par le tribunal (action paulienne). Attendez les conseils d’un avocat.",
+      texte: "Un transfert de patrimoine (donation aux enfants, vente à un proche) peut être annulé s'il tombe dans la période suspecte — entre la date de cessation des paiements, qui peut remonter jusqu'à 18 mois avant le jugement, et le jugement — ou, pour une donation, dans les 6 mois qui la précèdent (art. L632-1 C. com.). Hors de ces délais, un créancier peut agir en action paulienne s'il prouve la fraude. Attendez les conseils d’un avocat.",
       urgence: 'rouge',
     });
   }

@@ -31,12 +31,11 @@ const sections: Section[] = [
     colorDot: 'bg-bleu-fonce',
     aides: [
       {
-        nom: 'BPI France — Prêt rebond',
+        nom: 'Bpifrance — prêts aux TPE/PME',
         description:
           'Prêt sans garantie de 10 K à 300 K€ pour TPE/PME en difficulté',
-        url: 'https://bpifrance.fr',
-        urlLabel: 'bpifrance.fr',
-        tel: '3247',
+        url: 'https://www.bpifrance.fr',
+        urlLabel: 'www.bpifrance.fr',
       },
       {
         nom: 'Médiation du crédit',
@@ -150,10 +149,9 @@ const sections: Section[] = [
       {
         nom: 'Conseillers-Entreprises',
         description:
-          "Service public d’accompagnement. 10 000 conseillers, 40 organismes partenaires.",
+          "Service public d’accompagnement des TPE et PME : décrivez votre situation en ligne, un·e conseiller·ère de votre territoire vous rappelle.",
         url: 'https://conseillers-entreprises.service-public.gouv.fr',
         urlLabel: 'conseillers-entreprises.service-public.gouv.fr',
-        tel: '0 806 000 245',
         gratuit: true,
       },
       {

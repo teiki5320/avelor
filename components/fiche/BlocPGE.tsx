@@ -26,9 +26,8 @@ export default function BlocPGE() {
       <p className="text-sm text-navy/80">
         Le <strong>PGE — Prêt Garanti par l&apos;État</strong>, distribué
         pendant la crise sanitaire (2020-2021), entre dans sa phase de
-        remboursement la plus tendue. Près de <strong>30 % des
-        défaillances 2024-2025</strong> sont liées à un PGE qui pèse
-        désormais sur la trésorerie. Une <strong>restructuration
+        remboursement la plus tendue, qui pèse sur la trésorerie de
+        nombreuses entreprises. Une <strong>restructuration
         amiable</strong> est possible — et largement préférable à
         l&apos;ouverture d&apos;une procédure collective.
       </p>
@@ -36,7 +35,7 @@ export default function BlocPGE() {
       {/* Qu'est-ce que le PGE */}
       <div className="mt-5 rounded-2xl border border-bleu/30 bg-bleu/5 p-4">
         <p className="font-display text-base text-bleu-fonce">
-          Rappel : qu&apos;est-ce que le PGE&nbsp;?
+          Rappel : qu&apos;est-ce que le PGE ?
         </p>
         <p className="mt-2 text-sm text-navy/80">
           Prêt distribué par votre banque, <strong>garanti à 70 à 90 %
@@ -105,7 +104,7 @@ export default function BlocPGE() {
           </li>
           <li>
             <strong>Plan validé</strong> : signature d&apos;un avenant
-            au PGE — la garantie BPI/État est <strong>maintenue</strong>{' '}
+            au PGE — la garantie Bpifrance/État est <strong>maintenue</strong>{' '}
             de plein droit (pas de nouvel accord à demander à Bpifrance).
           </li>
         </ol>
@@ -136,7 +135,7 @@ export default function BlocPGE() {
             Médiation du crédit aux entreprises
           </p>
           <p className="mt-1 text-xs text-navy/60">
-            Confidentiel, gratuit, taux de succès supérieur à 60 %
+            Confidentiel et gratuit
           </p>
           <div className="mt-3 flex flex-wrap gap-2 text-sm">
             <a

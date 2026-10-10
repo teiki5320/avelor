@@ -139,7 +139,7 @@ export default function ModePerdu() {
           <p className="mt-2 font-display text-base text-navy">Vous n&apos;êtes pas seul·e</p>
           <p className="mt-2 text-xs text-navy/70">
             <strong>APESA</strong> — soutien psychologique gratuit pour
-            dirigeants, 7j/7. Si c&apos;est très lourd ce soir : <strong>3114</strong>{' '}
+            dirigeant·e·s, numéro vert 0 805 65 50 50 (7 j/7, de 8 h à 20 h). Si c&apos;est très lourd ce soir : <strong>3114</strong>{' '}
             (prévention suicide, 24h/24, gratuit, anonyme).
           </p>
           <div className="mt-4 flex flex-wrap gap-2 text-sm">
@@ -150,12 +150,12 @@ export default function ModePerdu() {
               <span aria-hidden>☎</span> 3114
             </a>
             <a
-              href="https://apesa.fr"
+              href="https://www.apesa-france.com"
               target="_blank"
               rel="noreferrer"
               className="rounded-full bg-white px-3 py-2 text-navy/80 ring-1 ring-navy/15 hover:bg-navy/5"
             >
-              <span aria-hidden>🌐</span> apesa.fr
+              <span aria-hidden>🌐</span> apesa-france.com
             </a>
           </div>
         </div>

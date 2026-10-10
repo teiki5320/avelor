@@ -138,9 +138,11 @@ export default function MandatairesPage() {
       <p className="mt-3 text-base text-navy/70">
         Les <strong>administrateurs judiciaires</strong> (AJ) et{' '}
         <strong>mandataires judiciaires</strong> (MJ) sont nommés par le
-        tribunal lors d&apos;une procédure collective. Les
-        professionnels listés ci-dessous sont inscrits sur les listes
-        officielles tenues par le Conseil National (CNAJMJ).
+        tribunal lors d&apos;une procédure collective. Ci-dessous, une{' '}
+        <strong>sélection indicative</strong> d&apos;études (elle ne couvre
+        pas tous les départements) ; l&apos;annuaire officiel complet est
+        tenu par le Conseil national (CNAJMJ) :{' '}
+        <a href="https://www.cnajmj.fr/annuaire/" target="_blank" rel="noreferrer" className="text-bleu-fonce underline">www.cnajmj.fr/annuaire</a>.
       </p>
 
       <div className="mt-6 rounded-2xl border border-bleu/30 bg-bleu/5 p-5 text-sm text-navy">
@@ -246,12 +248,11 @@ export default function MandatairesPage() {
           Annuaire officiel complet
         </p>
         <p className="mt-2">
-          Cette liste est <strong>indicative</strong> et non exhaustive
-          (~450 professionnels inscrits en France : 150 AJ et 300 MJ).
-          Pour rechercher par ressort géographique :
+          Cette liste est une <strong>sélection indicative</strong> et non
+          exhaustive. Pour rechercher par ressort géographique :
         </p>
         <a
-          href="https://www.cnajmj.fr/annuaire"
+          href="https://www.cnajmj.fr/annuaire/"
           target="_blank"
           rel="noreferrer"
           className="mt-3 inline-flex rounded-full bg-bleu-fonce px-4 py-2 text-sm font-medium text-white hover:bg-navy"

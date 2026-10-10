@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { COURRIERS } from '@/lib/courriers';
 
 interface QuickLink {
   href: string;
@@ -13,28 +14,28 @@ const LINKS: QuickLink[] = [
     href: '/courriers',
     icone: '✉️',
     titre: 'Courriers',
-    sousTitre: '13 modèles personnalisés',
+    sousTitre: `${COURRIERS.length} modèles`,
     couleur: 'bleu',
   },
   {
     href: '/outils',
     icone: '🧮',
     titre: 'Calculateurs',
-    sousTitre: '11 outils officiels',
+    sousTitre: '11 outils',
     couleur: 'vert',
   },
   {
     href: '/annuaires',
     icone: '📇',
     titre: 'Annuaires',
-    sousTitre: 'AGS, TAE, mandataires, CIP',
+    sousTitre: 'AGS, TAE, CIP…',
     couleur: 'jaune',
   },
   {
     href: '/glossaire',
     icone: '📖',
     titre: 'Glossaire',
-    sousTitre: '38 termes juridiques',
+    sousTitre: '38 termes',
     couleur: 'navy',
   },
 ];

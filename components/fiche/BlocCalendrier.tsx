@@ -32,7 +32,7 @@ function buildJalons(r: Reponses, c: CompanyData, s: SectorInfo): Jalon[] {
     jalons.push({
       delai: 'Dès aujourd\'hui',
       date: formatDate(now),
-      texte: 'Appeler APESA — gratuit et confidentiel (apesa.fr)',
+      texte: 'Appeler le numéro vert de soutien psychologique 0 805 65 50 50 (APESA) — gratuit et confidentiel',
       urgence: 'vert',
     });
   }

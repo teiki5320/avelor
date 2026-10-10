@@ -56,7 +56,7 @@ export default function BlocSCOP() {
             recevable).
           </li>
           <li>
-            <strong>Financements dédiés</strong> via SOCODEN, BPI, banques
+            <strong>Financements dédiés</strong> via SOCODEN, Bpifrance, banques
             coopératives (Crédit Coopératif, Crédit Mutuel).
           </li>
           <li>
