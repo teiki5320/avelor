@@ -260,3 +260,18 @@ describe('textes des cartes prioritaires', () => {
     expect(carte.detail).toBe('Pour déclarer la cessation des paiements');
   });
 });
+
+describe('carte soutien', () => {
+  it('n’attribue pas le 3114 à APESA et ne promet pas 24 h/24', () => {
+    const cartes = scorePriorityCards({
+      reponses: makeReponses({ moral: 'perdu' }),
+      company: makeCompany(),
+      sector: makeSector(),
+      seuils: makeSeuils(),
+    });
+    const soutien = cartes.find((c) => c.id === 'soutien')!;
+    expect(soutien.detail).not.toBe('APESA · 3114');
+    expect(soutien.detail).toMatch(/3114 en urgence/);
+    expect(soutien.valeur).not.toMatch(/24/);
+  });
+});
