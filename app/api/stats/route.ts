@@ -1,45 +1,13 @@
 import { NextResponse } from 'next/server';
-import { getDb, lignesStats } from '@/lib/db';
+import { compterFiches } from '@/lib/db';
 
-// Lue à chaque appel (la base n'existe qu'au moment de l'exécution), mise en cache 5 min.
+// Lu à l'exécution (la base n'existe pas au build) ; mis en cache 5 min par worker.ts.
 export const dynamic = 'force-dynamic';
 
+/** Compteur public : uniquement le nombre de fiches créées (aucun détail sur leur contenu). */
 export async function GET() {
-  if (!getDb()) {
-    return NextResponse.json({ count: 0 });
-  }
   try {
-    /* Récupérer les champs nécessaires pour l'agrégation */
-    const fiches = await lignesStats();
-    const total = fiches.length;
-
-    /* Agrégation par situation */
-    const parSituation: Record<string, number> = {};
-    const parProbleme: Record<string, number> = {};
-    let avecEmail = 0;
-    let derniereFiche: string | null = null;
-
-    for (const f of fiches) {
-      const rep = f.reponses;
-      if (rep?.situation) {
-        parSituation[rep.situation] = (parSituation[rep.situation] ?? 0) + 1;
-      }
-      if (rep?.probleme) {
-        parProbleme[rep.probleme] = (parProbleme[rep.probleme] ?? 0) + 1;
-      }
-      if (f.email) avecEmail++;
-      if (f.created_at && (!derniereFiche || f.created_at > derniereFiche)) {
-        derniereFiche = f.created_at;
-      }
-    }
-
-    return NextResponse.json({
-      count: total,
-      parSituation,
-      parProbleme,
-      avecEmail,
-      derniereFiche,
-    }, { headers: { 'Cache-Control': 'public, s-maxage=300' } });
+    return NextResponse.json({ count: await compterFiches() });
   } catch (e) {
     console.error('[GET /api/stats]', e);
     return NextResponse.json({ count: 0 });

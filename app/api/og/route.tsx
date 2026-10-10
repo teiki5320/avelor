@@ -17,8 +17,9 @@ const ACCENTS: Record<string, string> = {
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
-  const titre = searchParams.get('titre') || 'Aide aux chefs d\'entreprise en difficulté';
-  const sous = searchParams.get('sous') || '';
+  // Longueurs bornées : l'image ne doit pas servir à afficher n'importe quel texte.
+  const titre = (searchParams.get('titre') || 'Aide aux chefs d\'entreprise en difficulté').slice(0, 110);
+  const sous = (searchParams.get('sous') || '').slice(0, 140);
   const cat = (searchParams.get('cat') || 'defaut').toLowerCase();
   const accent = ACCENTS[cat] ?? ACCENTS.defaut;
 

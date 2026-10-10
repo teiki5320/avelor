@@ -29,12 +29,6 @@ export interface FicheAvecRappels {
   company_data: CompanyData;
 }
 
-export interface LigneStats {
-  reponses: Reponses;
-  email: string | null;
-  created_at: string | null;
-}
-
 /** Base D1 du Worker (binding `DB`), ou null hors Cloudflare (tests, build). */
 export function getDb(): D1Database | null {
   try {
@@ -132,15 +126,10 @@ export async function fichesAvecRappels(): Promise<FicheAvecRappels[]> {
   }));
 }
 
-export async function lignesStats(): Promise<LigneStats[]> {
+/** Nombre total de fiches (compteur public du pied de page). */
+export async function compterFiches(): Promise<number> {
   const db = getDb();
-  if (!db) return [];
-  const { results } = await db
-    .prepare('SELECT reponses, email, created_at FROM fiches')
-    .all<Pick<LigneFiche, 'reponses' | 'email' | 'created_at'>>();
-  return results.map((l) => ({
-    reponses: lireJson<Reponses>(l.reponses, {} as Reponses),
-    email: l.email,
-    created_at: l.created_at,
-  }));
+  if (!db) return 0;
+  const ligne = await db.prepare('SELECT COUNT(*) AS n FROM fiches').first<{ n: number }>();
+  return ligne?.n ?? 0;
 }
