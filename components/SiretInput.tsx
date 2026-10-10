@@ -51,16 +51,18 @@ export default function SiretInput() {
         name="siret"
         inputMode="numeric"
         autoComplete="off"
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? 'siret-erreur' : undefined}
         value={value}
         onChange={(e) => {
           setValue(formatSiret(e.target.value));
           setError(null);
         }}
         placeholder="123 456 789 00012"
-        className="mt-3 w-full rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-lg tracking-wider placeholder:text-navy/30 focus:border-bleu focus:outline-none"
+        className="mt-3 w-full rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-lg tracking-wider placeholder:text-navy/30 focus:border-bleu focus:outline-none focus:ring-2 focus:ring-bleu"
       />
       {error && (
-        <p className="mt-2 text-sm text-rouge" role="alert">
+        <p id="siret-erreur" className="mt-2 text-sm text-rouge" role="alert">
           {error}
         </p>
       )}
@@ -68,13 +70,13 @@ export default function SiretInput() {
         <p className="text-xs text-navy/50">
           Vos données restent privées. Aucun compte n&apos;est créé.
         </p>
-        {/* Pas de disabled quand le SIRET est incomplet : un bouton inerte ne
-            donne aucun retour (ni au clic, ni à Entrée). Le submit affiche
-            le message d'erreur via role="alert". */}
+        {/* Ni disabled ni opacité réduite quand le SIRET est incomplet : un
+            bouton qui semble inactif décourage le clic. La validation se fait
+            au clic (ou à Entrée) et affiche le message via role="alert". */}
         <button
           type="submit"
           disabled={loading}
-          className={`btn-primary ${!isValid ? 'opacity-60' : ''}`}
+          className="btn-primary"
         >
           {loading ? 'Chargement…' : 'Commencer'}
           {!loading && <span aria-hidden>→</span>}
