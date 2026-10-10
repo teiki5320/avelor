@@ -21,6 +21,7 @@ import {
 } from '@/lib/organismes';
 import { getSectorInfo, getCompanyAge, getEffectifSeuils } from '@/lib/secteur';
 import { tokenSchema } from '@/lib/schemas';
+import { getJuridiction } from '@/lib/strategie';
 import { CLE_FICHE_LOCALE } from '@/lib/ficheLocale';
 import { lireCookieFicheLocale, lireParametreD } from '@/lib/ficheLocaleServeur';
 import type { CompanyData, Reponses, BodaccItem } from '@/lib/types';
@@ -171,6 +172,7 @@ async function renderFiche(data: FicheData) {
       avocats,
       sector.secteur,
       company_data.effectif,
+      getJuridiction(company_data),
     );
     const groupeOrdres = buildOrdresProfessionnels(sector);
     const groupeSoutien = buildSoutien(reponses);
