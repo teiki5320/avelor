@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/annuaires/ags' },
   title: 'Délégations régionales AGS — Solelis',
   description:
     'Liste des 13 délégations régionales AGS (garantie des salaires) avec adresses et téléphones. Trouvez votre CGEA.',

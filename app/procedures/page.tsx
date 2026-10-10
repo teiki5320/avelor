@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Quelle procédure pour votre situation ? · Solelis',
+  alternates: { canonical: '/procedures' },
+  title: 'Quelle procédure pour votre situation ? — Solelis',
   description:
     'Tableau comparatif des procédures collectives : mandat ad hoc, conciliation, sauvegarde, redressement et liquidation judiciaire. Expliqué simplement.',
 };

@@ -2,7 +2,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Solelis · Situations d\'entreprise en difficulté',
+  alternates: { canonical: '/situation' },
+  title: 'Situations d\'entreprise en difficulté — Solelis',
   description: 'Guides pratiques pour chaque type de difficulté : URSSAF, fournisseurs, banque, impôts.',
 };
 

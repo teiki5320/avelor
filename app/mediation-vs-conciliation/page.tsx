@@ -3,6 +3,7 @@ import { ogMeta } from '@/lib/og';
 
 export const metadata = {
   ...ogMeta({
+    chemin: '/mediation-vs-conciliation',
     titre: 'Médiation, mandat ad hoc, conciliation',
     sous: 'Quelle procédure amiable choisir ?',
     description: 'Quelle procédure amiable choisir entre la médiation (crédit ou entreprises), le mandat ad hoc et la conciliation : critères, durée, coût, confidentialité.',

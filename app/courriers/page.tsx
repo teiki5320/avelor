@@ -3,7 +3,8 @@ import { COURRIERS, CATEGORIES } from '@/lib/courriers';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Solelis · Courriers types',
+  alternates: { canonical: '/courriers' },
+  title: 'Courriers types — Solelis',
   description:
     'Modèles de courriers prêts à l\'emploi pour les dirigeants en difficulté.',
 };

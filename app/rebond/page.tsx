@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Rebondir après la difficulté · Solelis',
+  alternates: { canonical: '/rebond' },
+  title: 'Rebondir après la difficulté — Solelis',
   description:
     'Vos droits après une liquidation, rétablissement professionnel, financer votre rebond, fichage bancaire, associations d\'accompagnement.',
 };

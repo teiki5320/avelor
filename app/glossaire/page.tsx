@@ -1,12 +1,13 @@
 import { ogMeta } from '@/lib/og';
 
 export const metadata = ogMeta({
+  chemin: '/glossaire',
   titre: 'Le glossaire, expliqué simplement',
   sous: 'Procédures, dispositifs, sigles — sans jargon',
   description:
     'Les procédures collectives et dispositifs expliqués simplement : mandat ad hoc, conciliation, sauvegarde, RJ, LJ, PRP, PGE, CCSF, AGS, CSP, ATI…',
   cat: 'procedure',
-  pageTitle: 'Glossaire des procédures · Solelis',
+  pageTitle: 'Glossaire des procédures — Solelis',
 });
 
 interface Term {

@@ -2,7 +2,8 @@ import AccompagnantQuestionnaire from './AccompagnantQuestionnaire';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Solelis · J\'accompagne un dirigeant',
+  alternates: { canonical: '/accompagnant' },
+  title: 'J\'accompagne un·e dirigeant·e — Solelis',
   description:
     'Vous êtes proche d\'un dirigeant en difficulté. Solelis vous aide à comprendre et à l\'accompagner.',
 };

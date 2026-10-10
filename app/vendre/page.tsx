@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Vendre ou transmettre votre entreprise · Solelis',
+  alternates: { canonical: '/vendre' },
+  title: 'Vendre ou transmettre votre entreprise — Solelis',
   description:
     'Cession de fonds de commerce, cession de parts, location-gérance, plan de cession, vente à la barre  -  toutes vos options expliquées simplement.',
 };

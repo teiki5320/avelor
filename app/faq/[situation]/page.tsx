@@ -177,6 +177,7 @@ export async function generateMetadata({ params }: { params: Promise<{ situation
   return {
     title: data.metaTitle,
     description: data.metaDesc,
+    alternates: { canonical: `/faq/${situation}` },
     openGraph: {
       title: data.titre,
       description: data.metaDesc,

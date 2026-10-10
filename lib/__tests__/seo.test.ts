@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 import { ogMeta } from '../og';
 import sitemap from '../../app/sitemap';
 import robots from '../../app/robots';
@@ -38,5 +40,44 @@ describe('robots', () => {
     const r = robots().rules as { allow: string[]; disallow: string[] };
     expect(r.allow).toContain('/api/og');
     expect(r.disallow).toEqual(expect.arrayContaining(['/api/', '/fiche/']));
+  });
+});
+
+describe('canonical', () => {
+  /**
+   * Chaque URL du sitemap doit déclarer sa canonique : `alternates.canonical`
+   * ou `chemin` (ogMeta) dans sa page, son layout ou son generateMetadata.
+   */
+  const racine = join(__dirname, '..', '..', 'app');
+
+  function sourcesDe(route: string): string {
+    const segments = route.split('/').filter(Boolean);
+    // /courriers/x → app/courriers/[slug], /faq/x → app/faq/[situation]…
+    const candidats = [segments, [...segments.slice(0, -1), '*']];
+    let texte = '';
+    for (const segs of candidats) {
+      let dossier = racine;
+      for (const seg of segs) {
+        if (seg !== '*') {
+          dossier = join(dossier, seg);
+          continue;
+        }
+        const dyn = readdirSync(dossier).find((d) => d.startsWith('['));
+        if (!dyn) return texte;
+        dossier = join(dossier, dyn);
+      }
+      for (const f of ['page.tsx', 'layout.tsx']) {
+        const chemin = join(dossier, f);
+        if (existsSync(chemin)) texte += readFileSync(chemin, 'utf8');
+      }
+      if (texte) return texte;
+    }
+    return texte;
+  }
+
+  it.each(sitemap().map((e) => new URL(e.url).pathname))('%s déclare une canonique', (route) => {
+    const texte = sourcesDe(route);
+    expect(texte, route).not.toBe('');
+    expect(texte, route).toMatch(/canonical|chemin:/);
   });
 });

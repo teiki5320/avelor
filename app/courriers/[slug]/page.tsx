@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     sous: `Modèle de courrier · ${courrier.destinataire}`,
     description: `${courrier.description} Modèle gratuit, prérempli avec les informations de votre entreprise, prêt à copier ou imprimer.`,
     cat: 'courrier',
-    pageTitle: `${courrier.titre} — modèle de courrier · Solelis`,
+    pageTitle: `${courrier.titre} : modèle de courrier — Solelis`,
     chemin: `/courriers/${courrier.slug}`,
   });
 }

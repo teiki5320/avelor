@@ -20,7 +20,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: 'Solelis · Aide aux chefs d\'entreprise',
+  title: 'Solelis — Aide aux chefs d\'entreprise',
   description:
     'Solelis accompagne les chefs d\'entreprise français en difficulté — avec tact, avec clarté, avec les bons interlocuteurs.',
   metadataBase: new URL('https://solelis.com'),

@@ -3,6 +3,7 @@ import { ogMeta } from '@/lib/og';
 
 export const metadata = {
   ...ogMeta({
+    chemin: '/procedures-comparaison',
     titre: 'Comparatif des 8 procédures collectives',
     sous: 'Mandat ad hoc, conciliation, sauvegarde, RJ, LJ, PRP',
     description: 'Mandat ad hoc, conciliation, sauvegarde, redressement, liquidation, PRP : comparaison détaillée des procédures (confidentialité, durée, coût, conditions).',

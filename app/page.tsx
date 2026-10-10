@@ -5,6 +5,7 @@ import RetourFiche from '@/components/RetourFiche';
 import { COURRIERS } from '@/lib/courriers';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/' },
   title: 'Solelis — Aide aux chefs d\'entreprise en difficulté',
   description:
     'Solelis aide les dirigeants d\'entreprise en difficulté en France. Entrez votre SIRET et recevez une fiche personnalisée gratuite : stratégie, courriers, aides, annuaires.',

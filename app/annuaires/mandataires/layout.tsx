@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/annuaires/mandataires' },
   title: 'Mandataires judiciaires par département — Solelis',
   description:
     'Liste indicative des mandataires et administrateurs judiciaires inscrits CNAJMJ, classés par région et département.',

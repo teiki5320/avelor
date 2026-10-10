@@ -3,6 +3,7 @@ import Questionnaire from '@/components/Questionnaire';
 import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/questionnaire' },
   title: 'Questionnaire — Solelis',
   description:
     'Répondez à 8 questions simples sur votre situation pour recevoir une fiche personnalisée gratuite avec vos options concrètes.',

@@ -16,6 +16,7 @@ const EDITEUR = {
 };
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/mentions-legales' },
   title: 'Mentions légales — Solelis',
   description: 'Mentions légales de la plateforme Solelis : éditeur, hébergeur, contact, propriété intellectuelle.',
   robots: { index: true, follow: true },

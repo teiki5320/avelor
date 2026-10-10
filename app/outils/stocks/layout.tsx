@@ -1,6 +1,7 @@
 import { ogMeta } from '@/lib/og';
 
 export const metadata = ogMeta({
+  chemin: '/outils/stocks',
   titre: 'Valorisation des stocks',
   sous: 'Calculateur cession / liquidation',
   description:

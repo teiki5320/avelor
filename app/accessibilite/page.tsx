@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/accessibilite' },
   title: 'Accessibilité — Solelis',
   description: 'Déclaration d\'accessibilité de Solelis : conformité RGAA, fonctionnalités d\'accessibilité, contact en cas de difficulté.',
   robots: { index: true, follow: true },

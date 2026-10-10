@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Aides financières d’urgence · Solelis',
+  alternates: { canonical: '/aides' },
+  title: 'Aides financières d’urgence — Solelis',
   description:
     'Annuaire des aides financières d’urgence pour dirigeants en difficulté : BPI France, médiation du crédit, activité partielle, aides régionales.',
 };
