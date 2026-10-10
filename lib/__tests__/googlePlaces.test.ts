@@ -7,20 +7,23 @@ const mockFetch = vi.fn();
 globalThis.fetch = mockFetch;
 
 const PLACES_RESPONSE = {
-  results: [
+  places: [
     {
-      name: 'Cabinet Dupont Avocats',
-      formatted_address: '12 rue de la Paix, 75002 Paris',
+      id: 'ChIJ_test_place_id_1',
+      displayName: { text: 'Cabinet Dupont Avocats', languageCode: 'fr' },
+      formattedAddress: '12 rue de la Paix, 75002 Paris',
       rating: 4.5,
-      user_ratings_total: 28,
-      place_id: 'ChIJ_test_place_id_1',
+      userRatingCount: 28,
+      nationalPhoneNumber: '01 23 45 67 89',
+      googleMapsUri: 'https://maps.google.com/?cid=1',
     },
     {
-      name: 'Maître Martin',
-      formatted_address: '5 avenue Foch, 75016 Paris',
+      id: 'ChIJ_test_place_id_2',
+      displayName: { text: 'Maître Martin', languageCode: 'fr' },
+      formattedAddress: '5 avenue Foch, 75016 Paris',
       rating: 4.2,
-      user_ratings_total: 15,
-      place_id: 'ChIJ_test_place_id_2',
+      userRatingCount: 15,
+      googleMapsUri: 'https://maps.google.com/?cid=2',
     },
   ],
 };
@@ -71,12 +74,18 @@ describe('googlePlaces', () => {
     const results = await searchAvocats('Paris');
 
     expect(mockFetch).toHaveBeenCalledOnce();
-    const url = mockFetch.mock.calls[0][0] as string;
-    expect(url).toContain('textsearch/json');
-    expect(url).toContain('avocat');
-    expect(url).toContain('Paris');
-    expect(url).toContain('language=fr');
-    expect(url).toContain('key=test-google-key');
+    const [url, init] = mockFetch.mock.calls[0] as [string, RequestInit];
+    expect(url).toBe('https://places.googleapis.com/v1/places:searchText');
+    expect(init.method).toBe('POST');
+    const headers = init.headers as Record<string, string>;
+    expect(headers['X-Goog-Api-Key']).toBe('test-google-key');
+    expect(headers['X-Goog-FieldMask']).toContain('places.displayName');
+    const body = JSON.parse(init.body as string);
+    expect(body.textQuery).toContain('avocat');
+    expect(body.textQuery).toContain('Paris');
+    expect(body.languageCode).toBe('fr');
+    expect(body.regionCode).toBe('FR');
+    expect(results).toHaveLength(2);
   });
 
   it('transforme correctement les résultats Google Places', async () => {
@@ -93,20 +102,30 @@ describe('googlePlaces', () => {
       address: '12 rue de la Paix, 75002 Paris',
       rating: 4.5,
       reviews: 28,
-      phone: undefined,
-      mapsUrl: 'https://www.google.com/maps/place/?q=place_id:ChIJ_test_place_id_1',
+      phone: '01 23 45 67 89',
+      mapsUrl: 'https://maps.google.com/?cid=1',
     });
   });
 
   it('retourne un tableau vide si fetch échoue (res.ok = false)', async () => {
-    mockFetch.mockResolvedValueOnce({ ok: false });
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    mockFetch.mockResolvedValueOnce({
+      ok: false,
+      status: 403,
+      json: async () => ({ error: { code: 403, status: 'PERMISSION_DENIED', message: 'Places API (New) has not been used in project' } }),
+    });
     const results = await searchAvocats('Marseille');
     expect(results).toEqual([]);
+    expect(warn).toHaveBeenCalledWith('[googlePlaces]', 403, 'PERMISSION_DENIED', expect.stringContaining('Places API (New)'));
+    expect(JSON.stringify(warn.mock.calls)).not.toContain('test-google-key');
+    warn.mockRestore();
   });
 
   it('retourne un tableau vide si fetch lance une exception', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     mockFetch.mockRejectedValueOnce(new Error('network error'));
     const results = await searchAvocats('Bordeaux');
+    warn.mockRestore();
     expect(results).toEqual([]);
   });
 
@@ -114,12 +133,12 @@ describe('googlePlaces', () => {
 
   it('respecte le paramètre limit', async () => {
     const manyResults = {
-      results: Array.from({ length: 10 }, (_, i) => ({
-        name: `Place ${i}`,
-        formatted_address: `Adresse ${i}`,
+      places: Array.from({ length: 10 }, (_, i) => ({
+        id: `id_${i}`,
+        displayName: { text: `Place ${i}` },
+        formattedAddress: `Adresse ${i}`,
         rating: 4.0,
-        user_ratings_total: 10,
-        place_id: `id_${i}`,
+        userRatingCount: 10,
       })),
     };
     mockFetch.mockResolvedValueOnce({
