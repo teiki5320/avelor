@@ -168,7 +168,7 @@ const REGION_AIDES: Record<Region, AideRegionale[]> = {
     },
     {
       nom: 'Fonds Régional de Garantie HdF',
-      description: "Garantie régionale pouvant se cumuler à celle de BPI France pour les prêts bancaires.",
+      description: "Garantie régionale pouvant se cumuler à celle de Bpifrance pour les prêts bancaires.",
       site: 'https://www.hautsdefrance.fr',
     },
   ],
@@ -252,7 +252,7 @@ const REGION_AIDES: Record<Region, AideRegionale[]> = {
       site: 'https://www.afd.fr',
     },
     {
-      nom: 'BPI France Outre-mer',
+      nom: 'Bpifrance Outre-mer',
       description: "Financements dédiés aux entreprises ultramarines en difficulté (prêt Outre-mer, garanties).",
       site: 'https://bpifrance.fr',
     },

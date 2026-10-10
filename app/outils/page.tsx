@@ -55,7 +55,7 @@ const OUTILS: Outil[] = [
     icone: '🤝',
     titre: 'Calculateur d\'aide juridictionnelle',
     description:
-      "Éligibilité selon revenu fiscal de référence et composition du foyer (plafonds 2025).",
+      "Éligibilité selon revenu fiscal de référence et composition du foyer (plafonds 2026).",
     source: 'Loi 91-647, service-public.fr',
   },
   {

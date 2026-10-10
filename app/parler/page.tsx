@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/parler' },
   title: 'Parler à quelqu\'un maintenant — Solelis',
   description:
-    'Numéros gratuits et confidentiels pour les dirigeants en difficulté. APESA, 3114, CCI, SOS Amitié.',
+    'Numéros d’écoute et d’orientation pour les dirigeant·e·s en difficulté : APESA, 3114, CCI, SOS Amitié, Conseillers-Entreprises.',
 };
 
 const contacts = [

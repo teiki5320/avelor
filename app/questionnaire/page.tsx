@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/questionnaire' },
   title: 'Questionnaire — Solelis',
   description:
-    'Répondez à 8 questions simples sur votre situation pour recevoir une fiche personnalisée gratuite avec vos options concrètes.',
+    'Répondez à 8 questions essentielles (et jusqu’à 10 facultatives) sur votre situation pour recevoir une fiche personnalisée gratuite avec vos options concrètes.',
 };
 
 export const dynamic = 'force-dynamic';

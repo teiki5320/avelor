@@ -508,11 +508,11 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'France Industrie', role: 'Organisation des industriels', site: 'https://www.franceindustrie.org' },
     ],
     aidesSpecifiques: [
-      { nom: 'BPI France Industrie', description: 'Prêts et garanties spécifiques pour PMI. Diagnostic flash gratuit.', site: 'https://bpifrance.fr', badge: 'Gratuit' },
+      { nom: 'Bpifrance Industrie', description: 'Prêts et garanties spécifiques pour PMI. Diagnostic flash gratuit.', site: 'https://bpifrance.fr', badge: 'Gratuit' },
       { nom: 'Plan de relance industriel', description: 'Subventions à la modernisation et à la transition écologique.', site: 'https://www.economie.gouv.fr', badge: 'Sous conditions' },
     ],
     conseilsSpecifiques: [
-      'BPI France propose un diagnostic industriel gratuit',
+      'Bpifrance propose un diagnostic industriel gratuit',
       'Le MEDEF territorial peut vous mettre en relation avec des repreneurs potentiels',
     ],
     soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à l\'industrie : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa-france.com. Gratuit et confidentiel.', site: 'https://www.apesa-france.com' },

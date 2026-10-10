@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/accompagnant' },
   title: 'J\'accompagne un·e dirigeant·e — Solelis',
   description:
-    'Vous êtes proche d\'un dirigeant en difficulté. Solelis vous aide à comprendre et à l\'accompagner.',
+    'Vous êtes proche d\'un·e dirigeant·e en difficulté. Solelis vous aide à comprendre et à l\'accompagner.',
 };
 
 const urgences = [

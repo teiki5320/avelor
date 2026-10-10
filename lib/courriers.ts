@@ -586,8 +586,8 @@ SITUATION FINANCIÈRE
 - Patrimoine financier (épargne, valeurs mobilières) : {{PATRIMOINE_FIN}} €
 
 Au vu de mon RFR, je sollicite :
-- [ ] L'aide juridictionnelle TOTALE (RFR ≤ 12 957 € en 2025)
-- [ ] L'aide juridictionnelle PARTIELLE (RFR > 12 957 € et ≤ 19 411 €)
+- [ ] L'aide juridictionnelle TOTALE (RFR ≤ 12 957 € en 2026)
+- [ ] L'aide juridictionnelle PARTIELLE (RFR > 12 957 € et ≤ 19 433 € en 2026)
 
 AVOCAT SOUHAITÉ
 {{AVOCAT_CHOISI}}

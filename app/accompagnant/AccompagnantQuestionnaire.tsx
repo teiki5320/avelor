@@ -99,7 +99,7 @@ function buildConseils(a: Answers) {
   if (a.etat === 'epuise' || a.etat === 'ferme') {
     conseils.push({
       titre: 'Ne restez pas seul·e face à son silence',
-      texte: 'Quand un dirigeant s\'isole, c\'est souvent par honte — pas par rejet de vous. Ne forcez pas la conversation, mais restez présent·e. Un simple « je suis là » suffit parfois.',
+      texte: 'Quand un·e dirigeant·e s\'isole, c\'est souvent par honte — pas par rejet de vous. Ne forcez pas la conversation, mais restez présent·e. Un simple « je suis là » suffit parfois.',
     });
     conseils.push({
       titre: 'Alertez un professionnel',
