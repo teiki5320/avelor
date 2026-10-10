@@ -219,12 +219,12 @@ async function renderFiche(data: FicheData) {
             APESA est disponible dès aujourd&apos;hui — gratuitement, en
             confidentialité.{' '}
             <a
-              href="https://apesa.fr"
+              href="https://www.apesa-france.com"
               target="_blank"
               rel="noreferrer"
               className="font-medium text-vert underline underline-offset-4"
             >
-              apesa.fr
+              apesa-france.com
             </a>
           </p>
         </div>

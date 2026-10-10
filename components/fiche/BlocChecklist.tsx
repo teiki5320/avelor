@@ -18,7 +18,7 @@ function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; t
   items.push({
     id: 'soin',
     texte: libelleActionSoutien(s, 'vous'),
-    lien: 'https://apesa.fr',
+    lien: 'https://www.apesa-france.com',
   });
   if (r.situation === 'assignation') {
     items.push({ id: 'avocat', texte: `Contacter un avocat en urgence${ville ? ` à ${ville}` : ''}` });

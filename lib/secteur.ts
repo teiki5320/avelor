@@ -282,7 +282,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'PRO BTP · Action sociale', description: 'Aide financière d\'urgence pour entreprises du BTP. Prêts et secours.', site: 'https://www.probtp.com', badge: 'BTP uniquement' },
       { nom: 'CIBTP · Congés et intempéries', description: 'Indemnisation en cas d\'intempéries. Vérifiez vos droits.', site: 'https://www.cibtp.fr' },
     ],
-    soutien: { nom: 'APESA + FFB', description: 'Dispositif APESA activable via le tribunal de commerce', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA + FFB', description: 'Dispositif APESA activable via le tribunal de commerce', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Vérifiez vos droits aux indemnités intempéries (CIBTP)',
       'PRO BTP propose une action sociale spécifique au secteur',
@@ -353,7 +353,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'Action Cœur de Ville', description: 'Plan national de revitalisation des centres-villes — aides foncières et travaux.', site: 'https://agence-cohesion-territoires.gouv.fr/action-coeur-de-ville-42' },
       { nom: 'Petites Villes de Demain', description: 'Pour communes < 20 000 hab. — accompagnement commerces.', site: 'https://agence-cohesion-territoires.gouv.fr/petites-villes-de-demain-45' },
     ],
-    soutien: { nom: 'APESA + réseau CCI', description: 'Pas de dispositif d\'écoute propre au commerce : APESA est le réflexe n°1 (sentinelles dans les tribunaux de commerce et les CCI). Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA + réseau CCI', description: 'Pas de dispositif d\'écoute propre au commerce : APESA est le réflexe n°1 (sentinelles dans les tribunaux de commerce et les CCI). Gratuit et confidentiel.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Négociez avec votre bailleur commercial — le Code de commerce vous protège',
       'Les impayés de loyer commercial ont des procédures spécifiques',
@@ -388,7 +388,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'Aide à la décarbonation transport', description: 'Subvention à l\'achat de véhicules électriques/hydrogène, retrofit, formation.', site: 'https://www.ademe.fr' },
       { nom: 'Bonus écologique flotte', description: 'Subvention véhicules utilitaires propres.', site: 'https://www.service-public.fr' },
     ],
-    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre au transport : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre au transport : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa-france.com. Gratuit et confidentiel.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'La DREAL est votre interlocuteur pour les licences de transport (capacité, attestation transport)',
       'Vérifiez le remboursement de la TICPE si vous êtes transporteur routier — trimestriel, à demander',
@@ -424,7 +424,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'CIPAV · Action sociale', description: 'Aide financière d\'urgence pour professions libérales affiliées à la CIPAV.', site: 'https://www.lacipav.fr', badge: 'Si affilié CIPAV' },
       { nom: 'Fonds de solidarité libéral', description: 'Aides spécifiques via les ordres professionnels (avocats, médecins, architectes…).', badge: 'Selon profession' },
     ],
-    soutien: { nom: 'Entraide ordinale + APESA', description: 'Chaque Ordre professionnel (avocats, experts-comptables, architectes…) dispose d\'une cellule d\'entraide confidentielle pour ses membres. APESA vient en complément pour l\'écoute psychologique.', site: 'https://apesa.fr' },
+    soutien: { nom: 'Entraide ordinale + APESA', description: 'Chaque Ordre professionnel (avocats, experts-comptables, architectes…) dispose d\'une cellule d\'entraide confidentielle pour ses membres. APESA vient en complément pour l\'écoute psychologique.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Contactez votre Ordre professionnel — beaucoup proposent une aide confidentielle',
       'Votre caisse de retraite (CIPAV, CNBF, CRPCEN, CAVEC, CAVP…) dispose d\'un fonds d\'action sociale',
@@ -515,7 +515,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'BPI France propose un diagnostic industriel gratuit',
       'Le MEDEF territorial peut vous mettre en relation avec des repreneurs potentiels',
     ],
-    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à l\'industrie : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à l\'industrie : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa-france.com. Gratuit et confidentiel.', site: 'https://www.apesa-france.com' },
     chambre: 'CCI',
   },
   information: {
@@ -534,7 +534,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'BPI Aide Innovation', description: 'Prêt innovation, prêt amorçage, garantie innovation pour TPE/PME numériques.', site: 'https://www.bpifrance.fr' },
       { nom: 'CIR / JEI', description: 'Crédit d\'impôt recherche + statut Jeune Entreprise Innovante : avantages fiscaux et sociaux à préserver.', site: 'https://www.entreprises.gouv.fr/jei' },
     ],
-    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre au numérique : APESA est le réflexe n°1 pour les fondateurs et dirigeants tech en souffrance. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre au numérique : APESA est le réflexe n°1 pour les fondateurs et dirigeants tech en souffrance. Gratuit et confidentiel.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Numeum et CINOV-IT accompagnent les TPE/PME numériques en difficulté (médiation, conseils)',
       'French Tech Tremplin pour les fondateurs en post-liquidation (rebond)',
@@ -559,7 +559,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'ACPR', description: 'Autorité de contrôle prudentiel et de résolution — saisine si difficulté grave + dispositif de résolution bancaire.', site: 'https://acpr.banque-france.fr' },
       { nom: 'ORIAS', description: 'Registre unique des intermédiaires (assurance/banque/finance) — radiation possible si non-conformité.', site: 'https://www.orias.fr' },
     ],
-    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à la finance/assurance : APESA est le réflexe n°1. Gratuit, confidentiel, activable via le tribunal de commerce ou apesa.fr.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à la finance/assurance : APESA est le réflexe n°1. Gratuit, confidentiel, activable via le tribunal de commerce ou apesa-france.com.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Toute difficulté grave doit être notifiée à l\'ACPR (votre régulateur) — éventuellement résolution organisée',
       'Vérifiez votre inscription ORIAS à jour : la radiation = arrêt d\'activité immédiat',
@@ -583,7 +583,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'Garantie financière FNAIM/UNIS', description: 'Si vous gérez des fonds de tiers (location, copropriété), votre garantie financière est obligatoire — vérifier renouvellement.', badge: 'Obligatoire' },
       { nom: 'Carte T / Carte G', description: 'La perte de carte professionnelle (transaction T, gestion G) = arrêt d\'activité. Préserver à tout prix.', badge: 'Critique' },
     ],
-    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à l\'immobilier : APESA est le réflexe n°1. Gratuit, confidentiel, activable via le tribunal de commerce ou apesa.fr.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à l\'immobilier : APESA est le réflexe n°1. Gratuit, confidentiel, activable via le tribunal de commerce ou apesa-france.com.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Si vous gérez des fonds clients (location, copropriété), votre garantie financière est CRITIQUE — sa perte = liquidation immédiate',
       'FPI, UNIS et FNAIM accompagnent leurs adhérents en difficulté (conseil juridique, médiation)',
@@ -607,7 +607,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'DGEFP — médiation OF', description: 'Délégation générale à l\'emploi et à la formation professionnelle : médiation possible en cas de litige avec un OPCO.', site: 'https://travail-emploi.gouv.fr/le-ministere-en-action/dgefp' },
       { nom: 'France compétences', description: 'Régulateur de la formation et de l\'apprentissage. Peut intervenir sur les certifications RNCP et RS.', site: 'https://www.francecompetences.fr' },
     ],
-    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à la formation : APESA est le réflexe n°1 pour les dirigeants d\'organismes en souffrance. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à la formation : APESA est le réflexe n°1 pour les dirigeants d\'organismes en souffrance. Gratuit et confidentiel.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Qualiopi retirée = perte d\'accès aux financements CPF/OPCO. Recours sous 30 jours à activer immédiatement',
       'Les Acteurs de la Compétence (ex-FFP) accompagnent leurs adhérents en difficulté (juriste dédié, médiation)',
@@ -635,7 +635,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'CMA · Cellule de prévention des difficultés', description: 'Permanence dédiée aux artisans en difficulté dans chaque CMA départementale.', site: 'https://www.artisanat.fr', badge: 'Confidentiel' },
       { nom: 'AGEFICE', description: 'Fonds d\'assurance formation dirigeant non-salarié — financements formations métier et gestion.', site: 'https://www.agefice.fr', badge: 'Cotisant TPE' },
     ],
-    soutien: { nom: 'APESA + CMA Entraide', description: 'APESA activable via le tribunal de commerce. Les CMA disposent aussi de cellules d\'écoute internes.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA + CMA Entraide', description: 'APESA activable via le tribunal de commerce. Les CMA disposent aussi de cellules d\'écoute internes.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'La CMA (pas la CCI) est votre interlocuteur principal en tant qu\'artisan — chaque CMA a une cellule de prévention',
       'L\'U2P défend les intérêts des artisans et TPE au niveau national',
@@ -666,7 +666,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'France Active — financement solidaire', description: 'Garanties de prêts, prêts solidaires et fonds d\'amorçage dédiés aux structures de l\'ESS.', site: 'https://www.franceactive.org', badge: 'ESS' },
       { nom: 'FONJEP', description: 'Postes FONJEP : subvention pérenne pour les postes d\'animation et de coordination associatifs (jeunesse, éducation populaire).', site: 'https://www.fonjep.org' },
     ],
-    soutien: { nom: 'APESA + DLA', description: 'APESA pour l\'écoute psychologique du dirigeant ou responsable associatif ; le DLA pour poser un diagnostic et sortir la structure de l\'impasse.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA + DLA', description: 'APESA pour l\'écoute psychologique du dirigeant ou responsable associatif ; le DLA pour poser un diagnostic et sortir la structure de l\'impasse.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Le DLA (info-dla.fr) est votre premier réflexe : diagnostic gratuit financé par l\'État, spécifique aux associations et structures ESS en difficulté',
       'Une association peut faire l\'objet d\'une procédure collective (sauvegarde, RJ, LJ) comme une entreprise dès lors qu\'elle a une activité économique',
@@ -691,7 +691,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'APST — garantie financière voyage', description: 'Garantie financière obligatoire des agences de voyage : protège les fonds clients et peut accompagner un adhérent fragilisé. À contacter dès les premières difficultés.', site: 'https://www.apst.travel', badge: 'Agences de voyage' },
       { nom: 'AKTO — FNE-Formation', description: 'OPCO des services à forte main-d\'œuvre (propreté, sécurité, intérim) : financement de formations pendant les baisses d\'activité.', site: 'https://www.akto.fr', badge: 'Employeurs' },
     ],
-    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre aux services : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre aux services : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa-france.com. Gratuit et confidentiel.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Sécurité privée : informez le CNAPS en cas de procédure collective — l\'autorisation d\'exercer n\'est pas retirée automatiquement',
       'Agences de voyage : sans garantie financière (APST ou équivalent), l\'immatriculation Atout France tombe — c\'est votre licence d\'exploitation, anticipez son renouvellement',
@@ -717,7 +717,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'Urssaf artistes-auteurs', description: 'Guichet unique des cotisations artistes-auteurs (ex-Maison des Artistes / AGESSA) : échéanciers et action sociale possibles en cas de difficulté.', site: 'https://www.artistes-auteurs.urssaf.fr' },
       { nom: 'Agence nationale du Sport', description: 'Subventions d\'équipement et d\'emploi sportif, versées via les fédérations et les projets sportifs territoriaux.', site: 'https://www.agencedusport.fr', badge: 'Sport' },
     ],
-    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à la culture ou au sport : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    soutien: { nom: 'APESA', description: 'Pas de dispositif d\'écoute propre à la culture ou au sport : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa-france.com. Gratuit et confidentiel.', site: 'https://www.apesa-france.com' },
     conseilsSpecifiques: [
       'Employeur occasionnel de spectacle vivant : le GUSO (www.guso.fr) simplifie les déclarations et cotisations des artistes et techniciens (annexes 8 et 10 de l\'assurance chômage)',
       'Une procédure collective n\'entraîne pas le retrait automatique du récépissé d\'entrepreneur de spectacles vivants',

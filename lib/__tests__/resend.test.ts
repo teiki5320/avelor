@@ -47,7 +47,7 @@ describe('sendMagicLink', () => {
     const { html } = mockSend.mock.calls[0][0];
     expect(html).toContain('épuisé·e ou perdu·e');
     expect(html).toContain('vous seul·e avez ce lien');
-    expect(html).toContain('href="https://apesa.fr"');
+    expect(html).toContain('href="https://www.apesa-france.com"');
   });
 
   it('retourne false si RESEND_API_KEY est absente', async () => {
