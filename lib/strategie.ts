@@ -13,8 +13,13 @@ export interface Strategie {
   score: number;
 }
 
+/**
+ * Entreprise individuelle (EI, EIRL, micro-entreprise) ?
+ * S'appuie sur getFormeDetail : l'ancienne regex trouvait « ei » dans
+ * « Non renseignée » ou « Société… ». Une forme inconnue n'est pas une EI.
+ */
 export function isEI(forme: string): boolean {
-  return /individuel|ei|eirl|micro|auto/i.test(forme);
+  return getFormeDetail(forme) !== 'societe';
 }
 
 export type FormeJuridiqueDetail = 'micro' | 'ei' | 'eirl' | 'societe';
@@ -83,6 +88,14 @@ export function getJuridictionLabel(company: CompanyData, ville?: string): strin
   return j === 'TJ' ? `tribunal judiciaire de ${v}` : `tribunal de commerce de ${v}`;
 }
 
+/**
+ * Situations déclarées impliquant une cessation des paiements
+ * (redressement à déclarer, ou assignation par un créancier).
+ */
+export function estEnCessation(r: Pick<Reponses, 'situation'>): boolean {
+  return r.situation === 'redressement' || r.situation === 'assignation';
+}
+
 export function computeScores(r: Reponses, c: CompanyData): Record<Axe, number> {
   const age = getCompanyAge(c.dateCreation) ?? 0;
   const ei = isEI(c.formeJuridique);
@@ -108,6 +121,9 @@ export function computeScores(r: Reponses, c: CompanyData): Record<Axe, number> 
   if (r.situation === 'prevention') scores.sauvegarder += 1;
   if (r.effectif === 'salaries') scores.sauvegarder += 1;
   if (r.vente === 'non') scores.sauvegarder += 1;
+  // La sauvegarde est fermée au débiteur en cessation des paiements
+  // (art. L620-1 C. com.) : jamais proposée, même en axe secondaire.
+  if (estEnCessation(r)) scores.sauvegarder = 0;
 
   if (r.vente === 'oui') scores.ceder += 4;
   if (r.vente === 'peut-etre') scores.ceder += 2;
@@ -141,7 +157,7 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
 
   switch (axe) {
     case 'restructurer': {
-      const enCessation = r.situation === 'redressement' || r.situation === 'assignation';
+      const enCessation = estEnCessation(r);
       return {
         axe,
         score,

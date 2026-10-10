@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { resolveStrategie, AXE_META, type Axe } from '@/lib/strategie';
+import { resolveStrategie, estEnCessation, AXE_META, type Axe } from '@/lib/strategie';
 import { useFiche } from '@/lib/FicheContext';
 
 // Classes Tailwind statiques pour que le JIT les détecte
@@ -26,7 +26,13 @@ export default function StrategieHero() {
   const res = resolveStrategie(reponses, company);
   if (!res) return null;
 
-  const { main, secondary } = res;
+  const { main } = res;
+  // Garde-fou : la sauvegarde n'est jamais présentée comme alternative à un
+  // débiteur en cessation des paiements (art. L620-1 C. com.).
+  const secondary =
+    res.secondary && !(res.secondary.axe === 'sauvegarder' && estEnCessation(reponses))
+      ? res.secondary
+      : null;
   const meta = AXE_META[main.axe];
 
   return (
