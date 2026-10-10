@@ -42,8 +42,8 @@ export default function BlocConjointCollaborateur() {
           <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-navy/80">
             <li>
               <strong>Protection AGS</strong> en cas de procédure
-              collective — salaires garantis jusqu&apos;à 6 PASS (≈ 278 k€
-              en 2025).
+              collective — créances salariales garanties jusqu&apos;à
+              96 120 € en 2026 (plafond 6, contrat d&apos;au moins 2 ans).
             </li>
             <li>
               <strong>Droits chômage</strong> à France Travail si

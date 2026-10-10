@@ -204,7 +204,7 @@ const terms: Term[] = [
   {
     name: 'AGS (Association pour la Gestion du régime de garantie des créances des Salariés)',
     enClair:
-      "L’AGS garantit le paiement des salaires et indemnités quand l’entreprise est en procédure collective et ne peut plus payer. Plafonds 2025 : 61 824 à 92 736 € selon l’ancienneté du contrat.",
+      "L’AGS garantit le paiement des salaires et indemnités quand l’entreprise est en procédure collective et ne peut plus payer. Plafonds 2026 : 64 080 €, 80 100 € ou 96 120 € selon l’ancienneté du contrat de travail (4, 5 ou 6 fois le plafond mensuel retenu pour les contributions d’assurance chômage (lui-même égal à 4 plafonds mensuels de la Sécurité sociale), art. D3253-5 C. trav.).",
     pourQui:
       "Tous les salariés d’une entreprise en RJ ou LJ.",
     duree: 'Versement sous 15 jours après transmission par le mandataire.',
@@ -228,15 +228,15 @@ const terms: Term[] = [
   {
     name: 'ATI (Allocation des Travailleurs Indépendants)',
     enClair:
-      "Allocation chômage spécifique aux indépendants : 26,30 €/jour (≈ 800 €/mois) pendant 6 mois après cessation involontaire d’activité. Sans condition de cotisation préalable.",
+      "Allocation chômage spécifique aux indépendants : de 19,73 à 26,30 €/jour (environ 600 à 800 €/mois) selon vos revenus antérieurs, pendant 6 mois. Conditions : 2 ans d’activité dans la même entreprise, au moins 10 000 € de revenus d’activité par an sur les 2 dernières années, ressources personnelles inférieures au RSA d’une personne seule.",
     pourQui:
-      "Indépendants (EI, micro, gérant majoritaire) en cessation involontaire — RJ/LJ.",
+      "Indépendants (EI, micro, gérant majoritaire) après une liquidation judiciaire, un redressement judiciaire avec remplacement du dirigeant, ou l’arrêt d’une activité non viable attesté par un tiers de confiance.",
     duree: '6 mois maximum.',
   },
   {
     name: 'ACRE / ARCE',
     enClair:
-      "ACRE = exonération partielle de cotisations sociales pendant 1 an si reprise d’activité après cessation. ARCE = versement en capital de l’allocation chômage (45 % du reste à percevoir) si vous étiez salarié auparavant et que vous créez/reprenez.",
+      "ACRE = exonération partielle de cotisations sociales pendant 1 an pour les créateurs et repreneurs (depuis 2026 : un quart des cotisations visées hors micro, et 25 % de réduction pour les micro-entreprises créées depuis le 1er juillet 2026 ; demande à l’Urssaf sous 60 jours). ARCE = versement en capital de l’allocation chômage (60 % des droits restants, moins 3 % pour la retraite complémentaire) si vous étiez salarié·e auparavant et que vous créez/reprenez.",
     pourQui:
       "Toute personne créant ou reprenant une activité — particulièrement utile pour rebondir.",
     duree: 'ACRE : 12 mois. ARCE : versement en 2 fois.',

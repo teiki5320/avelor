@@ -2,19 +2,19 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 
-// Barèmes AJ 2025 (revalorisés au 1er janvier)
-// Source : service-public.fr / loi 91-647 / décret 2020-1717
+// Barèmes AJ 2026 — circulaire du 16 janvier 2026
+// Source : www.service-public.gouv.fr (fiche F18074) / loi 91-647 / décret 2020-1717
 // RFR annuel de référence (personne seule) pour :
 // - AJ totale : ≤ 12 957 €
-// - AJ partielle 55 % : 12 958 à 15 351 €
-// - AJ partielle 25 % : 15 352 à 19 411 €
-// Majorations : +2 333 € par personne à charge (2 premières), +1 475 € au-delà
+// - AJ partielle 55 % : 12 958 à 15 316 €
+// - AJ partielle 25 % : 15 317 à 19 433 €
+// Majorations : +2 332 € par personne à charge (2 premières), +1 473 € au-delà
 
 const PLAFOND_TOTAL = 12957;
-const PLAFOND_55 = 15351;
-const PLAFOND_25 = 19411;
-const MAJORATION_2_PREMIERES = 2333;
-const MAJORATION_SUIVANTES = 1475;
+const PLAFOND_55 = 15316;
+const PLAFOND_25 = 19433;
+const MAJORATION_2_PREMIERES = 2332;
+const MAJORATION_SUIVANTES = 1473;
 
 function plafondMajore(base: number, personnesACharge: number): number {
   const p = Math.max(0, personnesACharge);
@@ -43,11 +43,14 @@ export default function AidejuridictionnellePage() {
     };
   }, [personnesACharge]);
 
-  // Plafonds de patrimoine 2025 (source service-public.fr)
-  // Mobilier : ~11 600 € (même base que AJ totale) + majorations
-  // Immobilier hors résidence principale : ~35 000 € (5 fois PMSS)
+  // Plafonds de patrimoine 2026 (service-public.gouv.fr, fiche F18074)
+  // Mobilier : même montant que le plafond de l'AJ totale + majorations
+  // Immobilier hors résidence principale : 38 866 € pour une personne seule
+  // (majoré d'environ 6 995 € pour chacune des 2 premières personnes à charge,
+  // puis d'environ 4 419 € au-delà)
   const plafondMobilier = plafondMajore(PLAFOND_TOTAL, personnesACharge);
-  const plafondImmobilier = 35000;
+  const plafondImmobilier =
+    38866 + Math.min(Math.max(0, personnesACharge), 2) * 6995 + Math.max(0, personnesACharge - 2) * 4419;
 
   const result = useMemo<{ taux: Taux; motif: string; restePayer: string }>(() => {
     // Si patrimoine dépasse un plafond → exclu
@@ -75,7 +78,7 @@ export default function AidejuridictionnellePage() {
       return { taux: 25, motif: "Aide juridictionnelle partielle à 25 %.", restePayer: "L'État prend en charge 25 %, vous réglez les 75 % restants." };
     }
     return { taux: 0, motif: `RFR (${formatEuros(rfr)}) supérieur au plafond maximal pour votre foyer (${formatEuros(plafonds.partielle25)}).`, restePayer: '' };
-  }, [rfr, plafonds, patrimoineMobilier, patrimoineImmobilier, plafondMobilier]);
+  }, [rfr, plafonds, patrimoineMobilier, patrimoineImmobilier, plafondMobilier, plafondImmobilier]);
 
   const STYLE_TAUX: Record<Taux, string> = {
     100: 'bg-vert/10 border-vert/30 text-vert',
@@ -144,7 +147,7 @@ export default function AidejuridictionnellePage() {
       <p className="mt-3 text-base text-navy/70">
         L&apos;aide juridictionnelle prend en charge, totalement ou en
         partie, les honoraires d&apos;avocat et les frais de procédure.
-        Barèmes 2025 officiels (derniers vérifiés) basés sur le Revenu Fiscal de Référence
+        Barèmes 2026 officiels (circulaire du 16 janvier 2026) basés sur le Revenu Fiscal de Référence
         (RFR) et le patrimoine.
       </p>
 
@@ -261,7 +264,7 @@ export default function AidejuridictionnellePage() {
       <p className="mt-6 text-xs text-navy/50">
         Sources officielles : Loi n°91-647 du 10 juillet 1991, décret
         n°2020-1717 du 28 décembre 2020, service-public.fr (fiche F18074).
-        Plafonds 2025 (derniers vérifiés), revalorisés chaque année au 1er janvier — vérifiez le barème en vigueur sur service-public.fr.
+        Plafonds 2026 (circulaire du 16 janvier 2026), revalorisés chaque année — vérifiez le barème en vigueur sur www.service-public.gouv.fr.
       </p>
     </section>
   );

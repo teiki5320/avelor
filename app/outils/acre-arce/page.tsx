@@ -12,9 +12,14 @@ import Link from 'next/link';
 // - Licencié d'une entreprise en RJ / LJ
 // - Contrat d'appui au projet d'entreprise (CAPE)
 // - Création en QPV
-// Exonération :
-// - Plafonnée à 30 852 €/an (1 PASS 2025 entier pour microEs, dégressive selon revenu pro)
-// - Pour entreprises normales : exo totale cotisations (hors CSG/CRDS, retraite compl., CPF, FNAL, etc.)
+// Exonération (LFSS 2026, art. 23 ; décret n° 2026-69 du 6 février 2026) :
+// - Hors micro (créations depuis le 1er janvier 2026) : exonération du QUART des
+//   cotisations maladie-maternité, allocations familiales, retraite de base et
+//   invalidité-décès si revenu ≤ 75 % du PASS, dégressive jusqu'à 100 % du PASS.
+// - Micro (créations depuis le 1er juillet 2026) : taux de cotisations réduit de 25 %
+//   jusqu'à la fin du 3e trimestre civil suivant le début d'activité.
+// - Demande à l'Urssaf obligatoire dans les 60 jours suivant le début d'activité.
+// Source : entreprendre.service-public.gouv.fr/vosdroits/F11677
 
 // ARCE : Aide à la Reprise ou Création d'Entreprise
 // Source : francetravail.fr / art. R5141-2 C. trav.
@@ -23,8 +28,14 @@ import Link from 'next/link';
 // - Être bénéficiaire de l'ARE
 // - Avoir obtenu l'ACRE
 // - Créer ou reprendre une entreprise
+// Montant : 60 % des droits restants (fins de contrat depuis le 1er juillet 2023),
+// moins 3 % pour le financement des retraites complémentaires.
 
-const PASS_2025 = 47100;
+// PASS 2026 (arrêté du 22 décembre 2025) : 48 060 €.
+const PASS_2026 = 48060;
+// Part approximative des cotisations visées par l'Acre (maladie, famille,
+// retraite de base, invalidité-décès) dans le revenu d'un·e indépendant·e.
+const PART_COTISATIONS_VISEES = 0.3;
 
 type Statut =
   | 'demandeur-indemnise'
@@ -53,19 +64,24 @@ export default function AcreArcePage() {
   const exoneration = useMemo(() => {
     if (!acreEligible) return { montant: 0, detail: '' };
     if (microEntreprise) {
-      // Micro : réduction dégressive sur cotisations, calcul simplifié
-      // Taux forfaitaire env. 50 % des cotisations pour la première année
+      // Micro : taux réduit de 25 % (créations depuis le 1er juillet 2026).
+      // Estimation sur un taux plein de 21,2 % (prestations de services BIC).
       const caBase = Math.max(0, revenuPrevisionnel);
       return {
-        montant: Math.round(caBase * 0.11), // exo ~11 % du CA (estimation)
-        detail: "Micro-entreprise : taux de cotisations divisé par 2 environ la 1re année.",
+        montant: Math.round(caBase * 0.212 * 0.25),
+        detail: "Micro-entreprise créée depuis le 1er juillet 2026 : taux de cotisations réduit de 25 % jusqu'à la fin du 3e trimestre civil suivant le début d'activité (50 % pour les créations antérieures).",
       };
     }
-    // Normal : exo totale des cotisations personnelles jusqu'au plafond
-    const assiette = Math.min(revenuPrevisionnel, PASS_2025);
+    // Hors micro : exonération du quart des cotisations visées jusqu'à 75 % du
+    // PASS, dégressive jusqu'à 100 % du PASS, nulle au-delà.
+    const revenu = Math.max(0, revenuPrevisionnel);
+    const seuilPlein = PASS_2026 * 0.75;
+    let coefficient = 1;
+    if (revenu >= PASS_2026) coefficient = 0;
+    else if (revenu > seuilPlein) coefficient = (PASS_2026 - revenu) / (PASS_2026 - seuilPlein);
     return {
-      montant: Math.round(assiette * 0.45), // taux moyen ~45 %
-      detail: `Exonération quasi totale des cotisations personnelles pendant 12 mois sur la part < 1 PASS (${formatEuros(PASS_2025)}).`,
+      montant: Math.round(revenu * PART_COTISATIONS_VISEES * 0.25 * coefficient),
+      detail: `Exonération du quart des cotisations maladie, famille, retraite de base et invalidité-décès pendant 12 mois si votre revenu est inférieur ou égal à ${formatEuros(seuilPlein)} (75 % du PASS), dégressive jusqu'à ${formatEuros(PASS_2026)} (1 PASS 2026), nulle au-delà.`,
     };
   }, [acreEligible, microEntreprise, revenuPrevisionnel]);
 
@@ -280,7 +296,7 @@ export default function AcreArcePage() {
             {aAre && acreEligible ? (
               <>
                 <p className="mt-2 text-sm text-navy/80">
-                  60 % du reliquat ARE versé en capital (2 tranches : 50 % à la création + 50 % 6 mois après).
+                  60 % du reliquat ARE (moins 3 % pour la retraite complémentaire), versé en capital en 2 fois : la moitié au démarrage, l&apos;autre moitié 6 mois après si l&apos;activité se poursuit.
                 </p>
                 <p className="mt-3 text-2xl font-display text-vert">
                   ~ {formatEuros(arceMontant)}
@@ -302,10 +318,10 @@ export default function AcreArcePage() {
         <p className="font-display text-base text-navy">Démarches</p>
         <ul className="mt-2 list-disc space-y-1.5 pl-5">
           <li>
-            <strong>ACRE</strong> : demande automatique pour les
-            micro-entrepreneurs via formulaire URSSAF ; pour les autres,
-            demande à l&apos;URSSAF dans les 45 jours suivant la création.
-            <a href="https://www.urssaf.fr/portail/home/utile-et-pratique/aide-aux-createurs-dentreprise.html" target="_blank" rel="noreferrer" className="ml-1 text-bleu-fonce underline">urssaf.fr</a>
+            <strong>ACRE</strong> : depuis le 1er janvier 2026, demande
+            obligatoire à l&apos;Urssaf (micro-entrepreneur·e·s comme autres
+            statuts) au plus tard 60 jours après le début d&apos;activité.
+            <a href="https://www.urssaf.fr/accueil/exoneration-acre-createur.html" target="_blank" rel="noreferrer" className="ml-1 text-bleu-fonce underline">urssaf.fr</a>
           </li>
           <li>
             <strong>ARCE</strong> : demande à France Travail avec
@@ -320,9 +336,10 @@ export default function AcreArcePage() {
       </div>
 
       <p className="mt-6 text-xs text-navy/50">
-        Sources : Code de la Sécurité sociale art. L131-6-4 ; décret
-        n°2019-1215 (ACRE) ; Code du travail art. R5141-2 (ARCE) ;
-        urssaf.fr et francetravail.fr. PASS 2025 : 47 100 € (dernier vérifié).
+        Sources : Code de la sécurité sociale art. L131-6-4 et D131-6-1 ;
+        décret n° 2026-69 du 6 février 2026 (ACRE) ; Code du travail
+        art. R5141-2 (ARCE) ; www.service-public.gouv.fr, www.urssaf.fr et
+        www.francetravail.fr. PASS 2026 : 48 060 € (arrêté du 22 décembre 2025).
       </p>
     </section>
   );

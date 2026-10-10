@@ -4,13 +4,16 @@ import Link from 'next/link';
 
 // ATI (Allocation des Travailleurs Indépendants)
 // Source : francetravail.fr / chomage-independant.francetravail.fr / Code du travail L5424-24 à L5424-26
-// Montant forfaitaire 2025 : 26,30 €/jour pendant 182 jours = 6 mois
-// Plafond de ressources mensuelles : RSA pour une personne seule
+// Montant : de 19,73 à 26,30 €/jour selon les revenus des 2 années précédentes
+// (décret n° 2022-450), pendant 182 jours = 6 mois. Avec un revenu moyen
+// d'au moins 10 000 €/an, le montant maximal de 26,30 €/jour s'applique.
+// Plafond de ressources mensuelles : RSA pour une personne seule (revenus
+// personnels, ceux du conjoint ne comptent pas — fiche Unédic ATI).
 // Conditions cumulatives :
 // - 2 ans d'activité non salariée
 // - Cessation judiciaire (LJ, RJ avec plan imposant remplacement, ou activité économiquement non viable)
 // - Revenus antérieurs ≥ 10 000 €/an en moyenne sur les 2 années précédentes
-// - Ressources du foyer actuelles < plafond RSA
+// - Ressources personnelles < RSA personne seule (651,69 € au 1er avril 2026)
 
 const MONTANT_JOURNALIER = 26.30;
 const DUREE_JOURS = 182;
@@ -42,15 +45,10 @@ export default function AtiPage() {
   const [typeCessation, setTypeCessation] = useState<TypeCessation>('liquidation');
   const [foyer, setFoyer] = useState(1);
 
-  // Plafond RSA forfaitaire 2025 (montant mensuel, personne seule : 635,71 €)
-  // Majorations familiales simplifiées : +50 % pour conjoint, +30 % par enfant
-  const plafondRSA = useMemo(() => {
-    const base = 635.71;
-    if (foyer === 1) return base;
-    const conjoint = base * 0.5;
-    const enfants = Math.max(0, foyer - 2) * base * 0.3;
-    return base + conjoint + enfants;
-  }, [foyer]);
+  // Plafond : montant forfaitaire du RSA pour une personne seule, quelle que
+  // soit la taille du foyer (décret n° 2026-220 du 30 mars 2026 : 651,69 €
+  // au 1er avril 2026). La taille du foyer reste affichée à titre indicatif.
+  const plafondRSA = 651.69;
 
   const result = useMemo<Result>(() => {
     const motifs: string[] = [];
@@ -130,7 +128,7 @@ export default function AtiPage() {
       {
         '@type': 'HowToStep',
         name: 'Lire le résultat',
-        text: 'L\'outil affiche votre éligibilité, les conditions remplies ou bloquantes, et le montant estimé (26,30 euros/jour pendant 182 jours).',
+        text: 'L\'outil affiche votre éligibilité, les conditions remplies ou bloquantes, et le montant estimé (de 19,73 à 26,30 euros/jour pendant 182 jours selon vos revenus).',
       },
     ],
   };
@@ -227,7 +225,7 @@ export default function AtiPage() {
             />
           </label>
           <label className="block text-sm text-navy">
-            Ressources mensuelles actuelles du foyer (€)
+            Vos ressources personnelles mensuelles (€)
             <input
               type="number"
               min={0}
@@ -236,7 +234,7 @@ export default function AtiPage() {
               className="mt-1 w-full rounded-lg border border-navy/15 bg-white/90 px-3 py-2"
             />
             <span className="mt-1 block text-[11px] text-navy/55">
-              Plafond calculé pour votre foyer : {formatEuros(plafondRSA)}/mois.
+              Plafond : RSA d&apos;une personne seule, {formatEuros(plafondRSA)}/mois depuis le 1er avril 2026 (les revenus du conjoint ne comptent pas).
             </span>
           </label>
         </div>
@@ -315,15 +313,15 @@ export default function AtiPage() {
             .
           </li>
           <li>
-            <strong>4.</strong> L&apos;ATI est cumulable avec une nouvelle activité dont les revenus sont inférieurs à 70 % du SMIC (principe de subsidiarité).
+            <strong>4.</strong> L&apos;ATI peut être cumulée avec une nouvelle activité pendant 3 mois au plus ; au-delà, elle est suspendue.
           </li>
         </ol>
       </div>
 
       <p className="mt-6 text-xs text-navy/50">
         Sources officielles : Code du travail art. L5424-24 à L5424-26 et R5424-69 à R5424-72 ;
-        décret n°2019-796 ; réforme 2022 (loi pour la liberté de choisir son avenir professionnel) ;
-        francetravail.fr — fiche « Allocation Travailleur Indépendant ». Montants réévalués au 1er avril chaque année.
+        décret n° 2019-796 ; loi n° 2022-172 du 14 février 2022 et décret n° 2022-450 du 30 mars 2022 ;
+        www.francetravail.fr et www.unedic.org (fiche ATI) ; décret n° 2026-220 du 30 mars 2026 (RSA).
       </p>
     </section>
   );

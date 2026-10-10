@@ -126,8 +126,9 @@ export default function AgsPage() {
         régime de Garantie des créances des Salariés) couvre les
         salaires, indemnités de licenciement, congés payés et autres
         créances salariales en cas de procédure collective de
-        l&apos;employeur. Plafonds 2025 : 4 à 6 PMSS selon ancienneté
-        (61 824 à 92 736 €).
+        l&apos;employeur. Plafonds 2026 : 4, 5 ou 6 fois le plafond mensuel
+        d&apos;assurance chômage (4 plafonds mensuels de la Sécurité sociale)
+        selon l&apos;ancienneté du contrat de travail, soit 64 080 € à 96 120 €.
       </p>
 
       <div className="mt-8 space-y-3">
@@ -154,16 +155,16 @@ export default function AgsPage() {
         <p className="font-display text-base text-navy">À savoir</p>
         <ul className="mt-2 list-disc space-y-1.5 pl-5">
           <li>Les fonds AGS sont avancés par l&apos;UNEDIC et récupérés sur l&apos;actif de la procédure.</li>
-          <li>Plafond 4 PMSS si entreprise &lt; 6 mois ou contrat &lt; 6 mois (61 824 €).</li>
-          <li>Plafond 5 PMSS si ancienneté 6 mois à 2 ans (77 280 €).</li>
-          <li>Plafond 6 PMSS au-delà (92 736 €).</li>
+          <li>Plafond 4 (16 PMSS) si le contrat a été conclu moins de 6 mois avant le jugement : 64 080 €.</li>
+          <li>Plafond 5 (20 PMSS) si le contrat a été conclu entre 6 mois et 2 ans avant : 80 100 €.</li>
+          <li>Plafond 6 (24 PMSS) si le contrat a au moins 2 ans : 96 120 €.</li>
           <li>L&apos;AGS ne garantit pas les indemnités transactionnelles ni les rappels au-delà de 2 mois pré-jugement.</li>
         </ul>
       </div>
 
       <p className="mt-6 text-xs text-navy/50">
         Source : ags-garantie-salaires.org (annuaire officiel des CGEA).
-        Cadre légal : C. trav. art. L3253-6 à L3253-21.
+        Cadre légal : C. trav. art. L3253-6 à L3253-21 et D3253-5 ; PMSS 2026 : 4 005 €.
       </p>
     </section>
   );

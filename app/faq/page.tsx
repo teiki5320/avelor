@@ -111,7 +111,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Que couvre la garantie AGS pour mes salariés ?',
         reponse:
-          "L'AGS (Association pour la gestion du régime de Garantie des créances des Salariés) avance les salaires, indemnités de licenciement, préavis et congés payés impayés en cas de procédure collective. Les plafonds sont fixés par décret (article D3253-5 du Code du travail) : la garantie maximale (« plafond 6 », contrats de plus de 2 ans) atteint 6 fois le plafond mensuel retenu pour les contributions d'assurance chômage, soit 92 736 euros en 2024. La demande est faite par le mandataire judiciaire, pas par le dirigeant.",
+          "L'AGS (Association pour la gestion du régime de Garantie des créances des Salariés) avance les salaires, indemnités de licenciement, préavis et congés payés impayés en cas de procédure collective. Les plafonds sont fixés par décret (article D3253-5 du Code du travail) : la garantie maximale (« plafond 6 », contrat de travail conclu au moins 2 ans avant le jugement) atteint 6 fois le plafond mensuel retenu pour les contributions d'assurance chômage (4 plafonds mensuels de la Sécurité sociale), soit 96 120 euros en 2026 ; 80 100 euros pour un contrat de 6 mois à 2 ans et 64 080 euros en dessous de 6 mois. La demande est faite par le mandataire judiciaire, pas par le dirigeant.",
         liens: [
           { href: '/annuaires/ags', label: 'Contacts AGS' },
           { href: '/outils/licenciement', label: 'Calculateur indemnités' },
@@ -142,7 +142,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Quelles sont mes aides personnelles (ATI, RSA) ?',
         reponse:
-          "L'ATI (Allocation des travailleurs indépendants) est versée par France Travail (ex-Pôle emploi) aux indépendants dont l'entreprise a fait l'objet d'une liquidation judiciaire ou d'un redressement avec plan de cession totale. Elle est d'environ 800 euros par mois pendant 6 mois (décret n°2019-796). Le RSA est accessible sous conditions de ressources. La CSS (Complémentaire santé solidaire) couvre vos frais de santé. APESA propose un soutien psychologique gratuit et confidentiel.",
+          "L'ATI (Allocation des travailleurs indépendants) est versée par France Travail aux indépendants après une liquidation judiciaire, un redressement judiciaire avec remplacement du dirigeant, ou l'arrêt d'une activité non viable attesté par un tiers de confiance. Conditions : 2 ans d'activité, au moins 10 000 euros de revenus par an sur les 2 dernières années, ressources personnelles inférieures au RSA. Elle va d'environ 600 à 800 euros par mois selon les revenus antérieurs, pendant 6 mois (décret n° 2022-450 du 30 mars 2022). Le RSA est accessible sous conditions de ressources. La CSS (Complémentaire santé solidaire) couvre vos frais de santé. APESA propose un soutien psychologique gratuit et confidentiel.",
         liens: [
           { href: '/aides-personnelles', label: 'Toutes les aides personnelles' },
           { href: '/outils/ati', label: 'Simulateur ATI' },
@@ -166,7 +166,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Quelles aides existent pour repartir (ACRE, ARCE) ?',
         reponse:
-          "L'ACRE (Aide aux créateurs et repreneurs d'entreprise) offre une exonération partielle de cotisations sociales pendant 12 mois. L'ARCE (Aide à la reprise ou à la création d'entreprise) permet de percevoir 60 % de ses droits ARE restants en deux versements pour capitaliser le projet. Le prêt d'honneur (Initiative France, Réseau Entreprendre) va de 2 000 à 50 000 euros à taux zéro. 60 000 Rebonds accompagne gratuitement les entrepreneurs après une liquidation. BPI France propose un prêt rebond jusqu'à 50 000 euros.",
+          "L'ACRE (Aide aux créateurs et repreneurs d'entreprise) offre une exonération partielle de cotisations sociales pendant 12 mois. L'ARCE (Aide à la reprise ou à la création d'entreprise) permet de percevoir 60 % de ses droits ARE restants en deux versements pour capitaliser le projet. Le prêt d'honneur (Initiative France, Réseau Entreprendre) est un prêt personnel à taux zéro et sans garantie, dont le montant dépend du réseau et du projet. 60 000 Rebonds accompagne gratuitement les entrepreneurs après une liquidation. Bpifrance et les Régions proposent aussi des prêts de développement : renseignez-vous auprès de votre direction régionale Bpifrance.",
         liens: [
           { href: '/rebond', label: 'Guide complet du rebond' },
           { href: '/aides', label: 'Toutes les aides entreprise' },
@@ -175,7 +175,7 @@ const SECTIONS: SectionFAQ[] = [
       {
         question: 'Combien de temps faut-il pour se relancer ?',
         reponse:
-          "Il n'y a pas de délai légal d'attente (sauf interdiction de gérer). En pratique, les entrepreneurs qui rebondissent mettent en moyenne 12 à 24 mois entre la clôture de la liquidation et la création d'une nouvelle activité. L'accompagnement par des réseaux spécialisés (60 000 Rebonds, BGE, CCI) réduit significativement ce délai. Le plus important est de prendre le temps de tirer les enseignements de l'expérience précédente et de se faire accompagner psychologiquement si besoin (APESA, associations de pairs).",
+          "Il n'y a pas de délai légal d'attente (sauf interdiction de gérer). En pratique, le délai varie beaucoup d'une personne à l'autre. L'accompagnement par des réseaux spécialisés (60 000 Rebonds, BGE, CCI) aide à préparer le nouveau projet. Le plus important est de prendre le temps de tirer les enseignements de l'expérience précédente et de se faire accompagner psychologiquement si besoin (APESA, associations de pairs).",
         liens: [
           { href: '/parler', label: "Parler à quelqu'un" },
           { href: '/accompagnant', label: "J'accompagne un proche" },

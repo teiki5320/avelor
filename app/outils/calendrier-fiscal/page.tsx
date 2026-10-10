@@ -138,11 +138,11 @@ function buildEcheances(
     source: 'CGI art. 1679 quinquies',
   });
 
-  // CVAE : supprimée progressivement, dernière échéance en 2026.
+  // CVAE : suppression reportée à 2030 (loi de finances pour 2025, art. 62).
   items.push({
     date: dateAt(y, 4, 4),
     titre: 'Déclaration CVAE n°1330-CVAE',
-    description: 'Cotisation sur la Valeur Ajoutée des Entreprises. Supprimée progressivement (fin prévue en 2026/27).',
+    description: 'Cotisation sur la Valeur Ajoutée des Entreprises. Suppression reportée à 2030 : taux maximal de 0,28 % en 2026 et 2027, 0,19 % en 2028, 0,09 % en 2029 (loi de finances pour 2025, art. 62).',
     categorie: 'CVAE',
     source: 'CGI art. 1586 ter',
   });
