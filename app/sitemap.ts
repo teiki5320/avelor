@@ -1,11 +1,19 @@
 import type { MetadataRoute } from 'next';
+import { COURRIERS } from '@/lib/courriers';
+
+// Généré une fois au build (pas à chaque requête).
+export const dynamic = 'force-static';
+
+// Date de dernière mise à jour des contenus, fixe : un lastmod qui change à
+// chaque build (ou requête) sans changement réel fait perdre sa valeur au
+// signal pour les moteurs. À avancer lors d'une mise à jour de contenu.
+const DERNIERE_MAJ = new Date('2026-10-10');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://solelis.com';
 
   const routes = [
     '/',
-    '/questionnaire',
     '/aides',
     '/aides-personnelles',
     '/glossaire',
@@ -57,11 +65,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/penalites-fiscales',
     '/ciri-codefi',
     '/residence-principale-insaisissable',
+    ...COURRIERS.map((c) => `/courriers/${c.slug}`),
   ];
 
   return routes.map((route) => ({
     url: `${base}${route}`,
-    lastModified: new Date(),
+    lastModified: DERNIERE_MAJ,
     changeFrequency: route === '/' ? 'weekly' : 'monthly',
     priority: route === '/' ? 1 : 0.8,
   }));
