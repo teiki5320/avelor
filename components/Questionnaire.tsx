@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import type {
   Reponses, Situation, Probleme, Effectif, Moral,
@@ -7,6 +7,7 @@ import type {
   MontantDettes, AgeDirigeant, Franchise, AntecedentsBodacc,
   PgeEnCours, Rqth, ConjointStatut, CoGerants, Saisonnalite, Nationalite,
 } from '@/lib/types';
+import { enregistrerFicheLocale } from '@/lib/ficheLocale';
 
 interface Choice<T extends string> {
   value: T;
@@ -43,8 +44,8 @@ const EFFECTIFS: Choice<Effectif>[] = [
 ];
 
 const MORAUX: Choice<Moral>[] = [
-  { value: 'combatif', label: 'Stressé mais combatif', hint: 'Vous gardez le cap' },
-  { value: 'epuise', label: 'Épuisé, j’ai besoin d’aide', hint: 'Le poids est lourd à porter' },
+  { value: 'combatif', label: 'Stressé·e mais combatif·ve', hint: 'Vous gardez le cap' },
+  { value: 'epuise', label: 'Épuisé·e, j’ai besoin d’aide', hint: 'Le poids est lourd à porter' },
   { value: 'perdu', label: 'Je ne sais plus quoi faire', hint: 'Tout se mélange' },
 ];
 
@@ -89,7 +90,7 @@ const AGES_DIRIGEANT: Choice<AgeDirigeant>[] = [
 
 const FRANCHISES: Choice<Franchise>[] = [
   { value: 'oui', label: 'Oui, contrat de franchise', hint: 'Vous exploitez une enseigne sous contrat' },
-  { value: 'non', label: 'Non, indépendant', hint: 'Activité sans contrat de franchise' },
+  { value: 'non', label: 'Non, indépendant·e', hint: 'Activité sans contrat de franchise' },
 ];
 
 const ANTECEDENTS: Choice<AntecedentsBodacc>[] = [
@@ -111,14 +112,14 @@ const RQTH: Choice<Rqth>[] = [
 
 const CONJOINT: Choice<ConjointStatut>[] = [
   { value: 'salarie', label: 'Mon conjoint·e est salarié·e de la société', hint: 'Statut conjoint salarié — protections licenciement éco' },
-  { value: 'collaborateur', label: 'Mon conjoint·e est conjoint collaborateur', hint: 'Inscrit au RCS/RM, cotise sans rémunération' },
+  { value: 'collaborateur', label: 'Mon conjoint·e est conjoint collaborateur', hint: 'Inscrit·e au RCS/RM, cotise sans rémunération' },
   { value: 'associe', label: 'Mon conjoint·e est associé·e', hint: 'Détient des parts sociales' },
   { value: 'aucun', label: 'Mon conjoint·e n’a pas de rôle dans la société' },
   { value: 'sans-conjoint', label: 'Je n’ai pas de conjoint·e' },
 ];
 
 const CO_GERANTS: Choice<CoGerants>[] = [
-  { value: 'oui', label: 'Oui, il y a plusieurs gérants/dirigeants', hint: 'Solidarité fiscale et sociale possible (art. L267 LPF, L243-6-2 CSS)' },
+  { value: 'oui', label: 'Oui, il y a plusieurs gérant·e·s ou dirigeant·e·s', hint: 'Solidarité fiscale et sociale possible (art. L267 LPF, L243-6-2 CSS)' },
   { value: 'non', label: 'Non, je suis seul·e' },
   { value: 'sans-objet', label: 'Sans objet (entrepreneur individuel)' },
 ];
@@ -194,14 +195,29 @@ export default function Questionnaire({ siret }: Props) {
   // Accessibilité clavier/lecteur d'écran : au changement d'étape, replacer le
   // focus sur le titre de la question (sinon le focus reste sur le bouton
   // cliqué, désormais démonté, et le lecteur d'écran n'annonce rien).
-  const titreRef = useRef<HTMLHeadingElement>(null);
+  // Avec AnimatePresence mode="wait", le nouveau titre n'est monté qu'après
+  // l'animation de sortie : le focus est donc posé dans la ref-callback, au
+  // montage du nouveau titre (et pas dans l'effet, qui verrait l'ancien).
+  const focusAttendu = useRef(false);
   const premierRendu = useRef(true);
+  const titreRef = useCallback((el: HTMLHeadingElement | null) => {
+    if (el && focusAttendu.current) {
+      focusAttendu.current = false;
+      // preventScroll : la page vient d'être remontée en haut ; le titre a un
+      // scroll-margin-top pour ne pas passer sous le menu flottant.
+      el.focus({ preventScroll: true });
+    }
+  }, []);
   useEffect(() => {
     if (premierRendu.current) {
       premierRendu.current = false;
       return;
     }
-    titreRef.current?.focus();
+    // Remonter en haut de page (instantané : pas d'animation imposée).
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    } catch {}
+    focusAttendu.current = true;
   }, [step]);
 
   function select(key: keyof Reponses, value: string, detail?: string) {
@@ -236,12 +252,30 @@ export default function Questionnaire({ siret }: Props) {
     if (lockedRef.current || submitting) return;
     lockedRef.current = true;
     if (step < TOTAL_SLIDES - 1) {
+      setTransitioning(true);
       setStep((s) => s + 1);
       // Petit délai avant de relâcher pour éviter le double-skip.
-      setTimeout(() => { lockedRef.current = false; }, 280);
+      setTimeout(() => {
+        lockedRef.current = false;
+        setTransitioning(false);
+      }, 280);
     } else {
       submit(answers);
     }
+  }
+
+  function precedent() {
+    // Pendant les 280 ms de transition, un retour arrière ferait sauter une
+    // étape (le changement d'étape programmé s'appliquerait après).
+    if (lockedRef.current || submitting || step === 0) return;
+    setStep((s) => Math.max(0, s - 1));
+  }
+
+  /** Le choix est-il celui déjà enregistré ? (« effectif » : deux choix ont la même valeur) */
+  function estChoisi(key: keyof Reponses, c: Choice<string>): boolean {
+    if (answers[key] !== c.value) return false;
+    if (key === 'effectif' && c.value === 'salaries') return answers.effectifDetail === c.label;
+    return true;
   }
 
   async function submit(final: Partial<Reponses>) {
@@ -262,10 +296,11 @@ export default function Questionnaire({ siret }: Props) {
       }
     } catch {}
 
-    const encoded = btoa(
-      unescape(encodeURIComponent(JSON.stringify({ siret, reponses })))
-    );
-    window.location.href = `/fiche/local?d=${encoded}`;
+    // Enregistrement impossible : les réponses (dont des données sensibles —
+    // RQTH, nationalité, dettes) restent dans l'onglet (sessionStorage) et un
+    // cookie court ; rien n'est mis dans l'URL.
+    enregistrerFicheLocale({ siret, reponses });
+    window.location.href = '/fiche/local';
   }
 
   const slides: SlideConfig[] = [
@@ -282,7 +317,7 @@ export default function Questionnaire({ siret }: Props) {
       choices: PROBLEMES,
     },
     {
-      title: 'Avez-vous des salariés ?',
+      title: 'Avez-vous des salarié·e·s ?',
       subtitle: 'Cela change les interlocuteurs à mobiliser.',
       key: 'effectif',
       choices: EFFECTIFS,
@@ -332,7 +367,7 @@ export default function Questionnaire({ siret }: Props) {
       skippable: true,
     },
     {
-      title: 'Êtes-vous franchisé ?',
+      title: 'Êtes-vous franchisé·e ?',
       subtitle: 'Un contrat de franchise change les obligations en cas de difficulté.',
       key: 'franchise',
       choices: FRANCHISES,
@@ -347,7 +382,7 @@ export default function Questionnaire({ siret }: Props) {
     },
     {
       title: 'Avez-vous un PGE en cours ?',
-      subtitle: 'Le Prêt Garanti par l’État pèse sur 30 % des défaillances 2024-2025.',
+      subtitle: 'Un Prêt Garanti par l’État en cours change les options à discuter avec votre banque.',
       key: 'pgeEnCours',
       choices: PGE_EN_COURS,
       skippable: true,
@@ -360,14 +395,14 @@ export default function Questionnaire({ siret }: Props) {
       skippable: true,
     },
     {
-      title: 'Votre conjoint·e a-t-il un rôle dans la société ?',
+      title: 'Votre conjoint·e a-t-il/elle un rôle dans la société ?',
       subtitle: 'Statut conjoint salarié, collaborateur ou associé : protections et risques différents.',
       key: 'conjointStatut',
       choices: CONJOINT,
       skippable: true,
     },
     {
-      title: 'Êtes-vous co-gérant ou seul à la tête ?',
+      title: 'Êtes-vous co-gérant·e ou seul·e à la tête ?',
       subtitle: 'La pluralité de dirigeants déclenche une solidarité fiscale et sociale.',
       key: 'coGerants',
       choices: CO_GERANTS,
@@ -382,7 +417,7 @@ export default function Questionnaire({ siret }: Props) {
     },
     {
       title: 'Quelle est votre nationalité ?',
-      subtitle: 'Impact spécifique pour les dirigeants hors UE (titre de séjour entrepreneur, Passeport Talent). Optionnel — RGPD.',
+      subtitle: 'Impact spécifique pour les dirigeant·e·s hors UE (titre de séjour entrepreneur, Passeport Talent). Optionnel — RGPD.',
       key: 'nationalite',
       choices: NATIONALITE,
       skippable: true,
@@ -400,7 +435,7 @@ export default function Questionnaire({ siret }: Props) {
           <button
             type="button"
             onClick={() => { setStep(0); setAnswers({}); clearDraft(); setRestored(false); }}
-            className="ml-3 text-xs text-navy/50 underline hover:text-navy"
+            className="ml-3 inline-flex min-h-[44px] items-center text-xs text-navy/60 underline [@media(hover:hover)]:hover:text-navy"
           >
             Recommencer
           </button>
@@ -437,17 +472,20 @@ export default function Questionnaire({ siret }: Props) {
             id={`question-${current.key}`}
             ref={titreRef}
             tabIndex={-1}
-            className="font-display text-2xl text-navy outline-none sm:text-3xl"
+            className="scroll-mt-28 font-display text-2xl text-navy outline-none sm:text-3xl"
           >
             {current.title}
           </h2>
           <p className="mt-2 text-sm text-navy/60">{current.subtitle}</p>
           <div className="mt-6 space-y-3" role="group" aria-labelledby={`question-${current.key}`}>
-            {current.choices.map((c, idx) => (
+            {current.choices.map((c, idx) => {
+              const choisi = estChoisi(current.key, c);
+              return (
               <button
                 key={`${current.key}-${idx}`}
                 type="button"
                 disabled={submitting || transitioning}
+                aria-pressed={choisi}
                 aria-label={c.hint ? `${c.label} — ${c.hint}` : c.label}
                 onClick={() => {
                   if (current.key === 'effectif') {
@@ -456,9 +494,22 @@ export default function Questionnaire({ siret }: Props) {
                     select(current.key, c.value);
                   }
                 }}
-                className="group flex w-full items-start gap-4 rounded-2xl border border-navy/10 bg-white/70 px-5 py-4 text-left transition hover:border-bleu hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                className={
+                  choisi
+                    ? 'group flex w-full items-start gap-4 rounded-2xl border-2 border-bleu-fonce bg-white px-5 py-4 text-left transition disabled:cursor-not-allowed disabled:opacity-60'
+                    : 'group flex w-full items-start gap-4 rounded-2xl border-2 border-navy/10 bg-white/70 px-5 py-4 text-left transition disabled:cursor-not-allowed disabled:opacity-60 [@media(hover:hover)]:hover:border-bleu [@media(hover:hover)]:hover:bg-white'
+                }
               >
-                <span className="mt-1 h-5 w-5 shrink-0 rounded-full border border-navy/20 group-hover:border-bleu" aria-hidden="true" />
+                <span
+                  className={
+                    choisi
+                      ? 'mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-bleu-fonce'
+                      : 'mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-navy/20 [@media(hover:hover)]:group-hover:border-bleu'
+                  }
+                  aria-hidden="true"
+                >
+                  {choisi && <span className="h-2.5 w-2.5 rounded-full bg-bleu-fonce" />}
+                </span>
                 <span>
                   <span className="block text-base font-medium text-navy">
                     {c.label}
@@ -470,15 +521,16 @@ export default function Questionnaire({ siret }: Props) {
                   )}
                 </span>
               </button>
-            ))}
+              );
+            })}
           </div>
 
           <div className="mt-6 flex items-center justify-between text-sm">
             <button
               type="button"
-              disabled={step === 0 || submitting}
-              onClick={() => setStep((s) => Math.max(0, s - 1))}
-              className="text-navy/50 hover:text-navy disabled:opacity-40"
+              disabled={step === 0 || submitting || transitioning}
+              onClick={precedent}
+              className="-ml-2 inline-flex min-h-[44px] items-center px-2 text-navy/60 disabled:opacity-40 [@media(hover:hover)]:hover:text-navy"
             >
               ← Précédent
             </button>
@@ -487,7 +539,7 @@ export default function Questionnaire({ siret }: Props) {
                 type="button"
                 onClick={skip}
                 disabled={transitioning}
-                className="text-navy/50 underline hover:text-navy disabled:opacity-40"
+                className="-mr-2 inline-flex min-h-[44px] items-center px-2 text-navy/60 underline disabled:opacity-40 [@media(hover:hover)]:hover:text-navy"
               >
                 Passer cette question
               </button>

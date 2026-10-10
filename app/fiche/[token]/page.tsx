@@ -1,8 +1,10 @@
-import { notFound } from 'next/navigation';
+import { notFound, unstable_rethrow } from 'next/navigation';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
+import FicheLocale from '@/components/fiche/FicheLocale';
 import LayoutDashboard from '@/components/fiche/layouts/LayoutDashboard';
 import { getFicheByToken } from '@/lib/db';
 import { fetchSirene } from '@/lib/sirene';
@@ -18,6 +20,9 @@ import {
   OrganismeCard,
 } from '@/lib/organismes';
 import { getSectorInfo, getCompanyAge, getEffectifSeuils } from '@/lib/secteur';
+import { tokenSchema } from '@/lib/schemas';
+import { CLE_FICHE_LOCALE } from '@/lib/ficheLocale';
+import { lireCookieFicheLocale, lireParametreD } from '@/lib/ficheLocaleServeur';
 import type { CompanyData, Reponses, BodaccItem } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
@@ -43,23 +48,24 @@ async function loadFiche(
   token: string,
   d?: string
 ): Promise<FicheData | null> {
-  if (token === 'local' && d) {
-    try {
-      const decoded = Buffer.from(d, 'base64').toString('utf8');
-      const json = JSON.parse(decoded);
-      const siret: string = (json.siret ?? '').replace(/\D/g, '');
-      if (!/^\d{14}$/.test(siret)) return null;
-      const company_data = await fetchSirene(siret);
-      return {
-        token: 'local',
-        siret,
-        reponses: json.reponses as Reponses,
-        company_data,
-      };
-    } catch {
-      return null;
-    }
+  if (token === 'local') {
+    // Ancien format ?d=<base64> (toujours lisible), sinon cookie court posé par le
+    // navigateur (voir lib/ficheLocale.ts) : les réponses ne passent plus par l'URL.
+    const locale = d
+      ? lireParametreD(d)
+      : lireCookieFicheLocale((await cookies()).get(CLE_FICHE_LOCALE)?.value);
+    if (!locale) return null;
+    const company_data = await fetchSirene(locale.siret);
+    return {
+      token: 'local',
+      siret: locale.siret,
+      reponses: locale.reponses,
+      company_data,
+    };
   }
+
+  // Token mal formé : inutile d'interroger la base.
+  if (!tokenSchema.safeParse(token).success) return null;
 
   const rec = await getFicheByToken(token);
   if (!rec) return null;
@@ -75,27 +81,45 @@ async function loadFiche(
   };
 }
 
+function ErreurChargement() {
+  return (
+    <section className="mx-auto max-w-xl px-5 py-20 text-center">
+      <h1 className="font-display text-2xl text-navy">Impossible d&apos;afficher cette fiche</h1>
+      <p className="mt-4 text-navy/60">Une erreur est survenue lors du chargement. Veuillez réessayer.</p>
+      <Link href="/" className="mt-6 inline-block rounded-full bg-bleu-fonce px-6 py-3 text-white">Retour à l&apos;accueil</Link>
+    </section>
+  );
+}
+
 export default async function FichePage({ params, searchParams }: PageProps) {
+  const { token } = await params;
+  const { d } = await searchParams;
+
+  let data: FicheData | null;
   try {
-    const { token } = await params;
-    const { d } = await searchParams;
-    return await renderFiche(token, d);
+    data = await loadFiche(token, d);
   } catch (e) {
+    console.error('[fiche] erreur de chargement :', e instanceof Error ? e.message : e);
+    return <ErreurChargement />;
+  }
+
+  if (!data) {
+    // Fiche locale : les données sont peut-être encore dans l'onglet (sessionStorage).
+    if (token === 'local') return <FicheLocale />;
+    // Hors de tout try/catch : notFound() doit remonter jusqu'à Next (vrai 404).
+    notFound();
+  }
+
+  try {
+    return await renderFiche(data);
+  } catch (e) {
+    unstable_rethrow(e);
     console.error('[fiche] CRASH:', e);
-    return (
-      <section className="mx-auto max-w-xl px-5 py-20 text-center">
-        <h1 className="font-display text-2xl text-navy">Impossible d&apos;afficher cette fiche</h1>
-        <p className="mt-4 text-navy/60">Une erreur est survenue lors du chargement. Veuillez réessayer.</p>
-        <Link href="/" className="mt-6 inline-block rounded-full bg-bleu-fonce px-6 py-3 text-white">Retour à l&apos;accueil</Link>
-      </section>
-    );
+    return <ErreurChargement />;
   }
 }
 
-async function renderFiche(tokenParam: string, d?: string) {
-  const data = await loadFiche(tokenParam, d);
-  if (!data) return notFound();
-
+async function renderFiche(data: FicheData) {
   const { token, siret, reponses, company_data } = data;
 
   let bodacc: BodaccItem[] = [];
@@ -192,7 +216,17 @@ async function renderFiche(tokenParam: string, d?: string) {
 
       <StoreCompanyData company={company_data} token={token} reponses={reponses} />
 
-      {token !== 'local' && <SaveBanner token={token} />}
+      {token !== 'local' ? (
+        <SaveBanner token={token} />
+      ) : (
+        <div role="note" className="dashed-band p-4 text-sm text-navy sm:p-5">
+          <p className="font-medium">Cette fiche n&apos;a pas pu être enregistrée.</p>
+          <p className="mt-1 text-xs text-navy/60">
+            Elle reste visible uniquement dans cet onglet, pendant environ une heure, et
+            ne pourra pas être retrouvée par e-mail. Pensez à l&apos;exporter en PDF.
+          </p>
+        </div>
+      )}
 
       <LayoutDashboard
         token={token}

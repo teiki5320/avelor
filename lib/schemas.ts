@@ -1,15 +1,21 @@
 import { z } from 'zod';
 
-const reponsesSchema = z.object({
+/**
+ * Réponses au questionnaire. Chaque champ correspond à `Reponses` (lib/types.ts)
+ * et aux choix proposés dans components/Questionnaire.tsx.
+ * `.strict()` : tout champ inconnu est refusé (pas de stockage de données arbitraires).
+ */
+export const reponsesSchema = z.object({
   situation: z.enum(['prevention', 'tresorie', 'redressement', 'assignation']),
   probleme: z.enum(['urssaf', 'fournisseurs', 'banque', 'impots']),
   effectif: z.enum(['independant', 'salaries']),
-  effectifDetail: z.string().optional(),
+  // Libellé du choix « effectif » (ex. « Oui, moins de 5 ») : texte court.
+  effectifDetail: z.string().max(100).optional(),
   moral: z.enum(['combatif', 'epuise', 'perdu']),
-  caution: z.string().optional(),
-  regime: z.string().optional(),
-  patrimoine: z.string().optional(),
-  vente: z.string().optional(),
+  caution: z.enum(['oui', 'non', 'ne-sais-pas']).optional(),
+  regime: z.enum(['communaute', 'separation', 'non-marie', 'ne-sais-pas']).optional(),
+  patrimoine: z.enum(['proprietaire', 'locataire']).optional(),
+  vente: z.enum(['oui', 'peut-etre', 'non']).optional(),
   montantDettes: z.enum(['moins-10k', '10k-50k', '50k-200k', '200k-1m', 'plus-1m']).optional(),
   ageDirigeant: z.enum(['moins-25', '25-50', '50-60', 'plus-60']).optional(),
   franchise: z.enum(['oui', 'non']).optional(),
@@ -20,28 +26,66 @@ const reponsesSchema = z.object({
   coGerants: z.enum(['oui', 'non', 'sans-objet']).optional(),
   saisonnalite: z.enum(['oui', 'non']).optional(),
   nationalite: z.enum(['fr-ue-eee-suisse', 'hors-ue', 'sans-reponse']).optional(),
-}).passthrough();
+}).strict();
+
+const siretSchema = z.string().regex(/^\d{14}$/, 'Le SIRET doit contenir exactement 14 chiffres');
 
 export const fichePayloadSchema = z.object({
-  siret: z.string().regex(/^\d{14}$/, 'Le SIRET doit contenir exactement 14 chiffres'),
+  siret: siretSchema,
   reponses: reponsesSchema,
-  companyData: z.record(z.string(), z.unknown()).optional(),
-});
+}).strict();
+
+/** Fiche « locale » (non enregistrée en base) : mêmes règles que la création. */
+export const ficheLocaleSchema = fichePayloadSchema;
 
 /** Token de fiche : hex généré par uuid() (24 car.) — on tolère 10-64 alphanum pour d'anciens formats */
-const tokenSchema = z
+export const tokenSchema = z
   .string()
   .regex(/^[A-Za-z0-9_-]{10,64}$/, 'Token invalide');
 
+const emailSchema = z.string().trim().max(254).email('Adresse e-mail invalide');
+
 export const sendLinkPayloadSchema = z.object({
   token: tokenSchema,
-  email: z.string().email('Adresse email invalide').max(254),
-});
+  email: emailSchema,
+}).strict();
+
+/** Rappels : au plus 2 ans dans le futur (au-delà, le rappel n'a plus de sens). */
+export const RAPPEL_HORIZON_JOURS = 2 * 366;
+
+/** Date du jour en UTC au format AAAA-MM-JJ. */
+export function aujourdhuiIso(maintenant: Date = new Date()): string {
+  return maintenant.toISOString().slice(0, 10);
+}
+
+/** Vrai si `s` est une date AAAA-MM-JJ qui existe vraiment au calendrier (refuse 2026-02-30). */
+export function estDateIsoValide(s: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+  const d = new Date(`${s}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s;
+}
+
+/** Vrai si la date est aujourd'hui ou plus tard, et au plus dans RAPPEL_HORIZON_JOURS jours. */
+export function estDateRappelAcceptable(s: string, maintenant: Date = new Date()): boolean {
+  if (!estDateIsoValide(s)) return false;
+  const aujourdhui = aujourdhuiIso(maintenant);
+  if (s < aujourdhui) return false;
+  const limite = new Date(`${aujourdhui}T00:00:00Z`);
+  limite.setUTCDate(limite.getUTCDate() + RAPPEL_HORIZON_JOURS);
+  return s <= limite.toISOString().slice(0, 10);
+}
+
+const dateRappelSchema = z
+  .string()
+  .refine(estDateIsoValide, 'Date invalide (format attendu AAAA-MM-JJ)')
+  .refine((s) => estDateRappelAcceptable(s), 'La date doit être comprise entre aujourd’hui et dans 2 ans');
 
 export const rappelPayloadSchema = z.object({
   token: tokenSchema,
-  email: z.string().email().max(254),
-  echeance: z.string().min(1).max(120),
-  dateRappel: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  libelle: z.string().min(1).max(120),
-});
+  // Facultatif : le rappel part toujours vers l'adresse déjà enregistrée sur la fiche.
+  // Si une adresse est fournie, elle doit être celle-là.
+  email: emailSchema.optional(),
+  echeance: dateRappelSchema,
+  dateRappel: dateRappelSchema,
+  libelle: z.string().trim().min(1).max(80),
+}).strict();

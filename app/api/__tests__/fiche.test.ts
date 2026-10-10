@@ -98,12 +98,43 @@ describe('POST /api/fiche', () => {
     expect(res.status).toBe(200);
   });
 
-  it('renvoie 500 si une exception inattendue survient', async () => {
+  it('renvoie 400 (et non 500) si le corps n’est pas du JSON', async () => {
     const res = await POST(new Request('http://localhost/api/fiche', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: 'pas du json',
     }));
+    expect(res.status).toBe(400);
+  });
+
+  it('rejette un champ inconnu dans les réponses (400)', async () => {
+    const res = await POST(makeRequest({
+      siret: '12345678901234',
+      reponses: {
+        situation: 'prevention',
+        probleme: 'urssaf',
+        effectif: 'independant',
+        moral: 'combatif',
+        commentaire: 'texte libre',
+      },
+    }));
+    expect(res.status).toBe(400);
+  });
+
+  it('renvoie 500 si une exception inattendue survient', async () => {
+    const { fetchSirene } = await import('@/lib/sirene');
+    vi.mocked(fetchSirene).mockRejectedValueOnce(new Error('panne'));
+    const err = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const res = await POST(makeRequest({
+      siret: '12345678901234',
+      reponses: {
+        situation: 'prevention',
+        probleme: 'urssaf',
+        effectif: 'independant',
+        moral: 'combatif',
+      },
+    }));
     expect(res.status).toBe(500);
+    err.mockRestore();
   });
 });

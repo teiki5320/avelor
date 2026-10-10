@@ -85,6 +85,10 @@ export interface Rappel {
   libelle: string;
   cree_le: string;
   envoye?: boolean;
+  /** Nombre d'envois échoués (le cron abandonne après 3). */
+  tentatives?: number;
+  /** Abandonné après 3 échecs : ne sera plus retenté. */
+  echec?: boolean;
 }
 
 export interface FicheRecord {

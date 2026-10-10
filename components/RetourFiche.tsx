@@ -17,6 +17,12 @@ export default function RetourFiche() {
       const raw = localStorage.getItem('solelis_last_fiche');
       if (raw) {
         const parsed = JSON.parse(raw) as LastFiche;
+        // Une fiche « local » n'a pas été enregistrée : aucun lien ne permet de
+        // la rouvrir. On ne propose que les vraies fiches (token valide).
+        if (!/^[A-Za-z0-9_-]{10,64}$/.test(String(parsed?.token ?? ''))) {
+          localStorage.removeItem('solelis_last_fiche');
+          return;
+        }
         const age = Date.now() - (parsed.ts || 0);
         if (age < 30 * 24 * 60 * 60 * 1000) {
           setFiche(parsed);
