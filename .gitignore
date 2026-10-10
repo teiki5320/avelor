@@ -21,3 +21,8 @@ tsconfig.tsbuildinfo
 
 # Scripts d'audit / simulation ad-hoc (artefacts de session, non livrables)
 _*.mjs
+
+# Cloudflare (OpenNext / Wrangler)
+.open-next/
+.wrangler/
+.dev.vars*
