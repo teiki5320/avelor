@@ -1,6 +1,20 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+/**
+ * Identification de l'éditeur (LCEN, art. 6 III).
+ * À COMPLÉTER par le ou la propriétaire du site : remplacer chaque « [à compléter] ».
+ */
+const EDITEUR = {
+  nomOuRaisonSociale: '[à compléter]',
+  formeEtCapital: '[à compléter — forme juridique et capital social, si société]',
+  adresse: '[à compléter]',
+  siren: '[à compléter — SIREN et ville d’immatriculation au RCS, ou mention « entrepreneur·e individuel·le »]',
+  directeurPublication: '[à compléter]',
+  telephone: '[à compléter]',
+  email: 'solelis@toakeur.com',
+};
+
 export const metadata: Metadata = {
   title: 'Mentions légales — Solelis',
   description: 'Mentions légales de la plateforme Solelis : éditeur, hébergeur, contact, propriété intellectuelle.',
@@ -15,17 +29,28 @@ export default function MentionsLegalesPage() {
       </Link>
 
       <h1 className="font-display text-3xl text-navy sm:text-4xl">Mentions légales</h1>
-      <p className="mt-3 text-sm text-navy/60">Dernière mise à jour : 28 mai 2026</p>
+      <p className="mt-3 text-sm text-navy/60">Dernière mise à jour : 10 octobre 2026</p>
 
       <div className="mt-10 space-y-8 text-sm leading-relaxed text-navy/80">
 
         <section>
           <h2 className="font-display text-lg text-navy">1. Éditeur du site</h2>
           <p className="mt-2">
-            Le présent site <strong>solelis.com</strong> est édité dans le cadre d&apos;un projet d&apos;accompagnement gratuit
-            des dirigeants d&apos;entreprise en difficulté. Pour toute demande relative à l&apos;édition du site,
-            contactez : <a href="mailto:solelis@toakeur.com" className="text-bleu-fonce underline">solelis@toakeur.com</a>.
+            Le présent site <strong>solelis.com</strong> est un service gratuit d&apos;information et d&apos;orientation
+            des dirigeant·e·s d&apos;entreprise en difficulté. Il est édité par :
           </p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            <li><strong>Nom ou raison sociale</strong> : {EDITEUR.nomOuRaisonSociale}</li>
+            <li><strong>Forme juridique et capital</strong> : {EDITEUR.formeEtCapital}</li>
+            <li><strong>Adresse</strong> : {EDITEUR.adresse}</li>
+            <li><strong>SIREN / RCS</strong> : {EDITEUR.siren}</li>
+            <li><strong>Directeur·rice de la publication</strong> : {EDITEUR.directeurPublication}</li>
+            <li><strong>Téléphone</strong> : {EDITEUR.telephone}</li>
+            <li>
+              <strong>Email</strong> :{' '}
+              <a href={`mailto:${EDITEUR.email}`} className="text-bleu-fonce underline">{EDITEUR.email}</a>
+            </li>
+          </ul>
           <p className="mt-2">
             Solelis n&apos;est ni un cabinet d&apos;avocat, ni un mandataire judiciaire, ni un expert-comptable.
             Il s&apos;agit d&apos;un outil d&apos;information et d&apos;orientation, qui ne se substitue en aucun cas
@@ -36,7 +61,8 @@ export default function MentionsLegalesPage() {
         <section>
           <h2 className="font-display text-lg text-navy">2. Hébergeur</h2>
           <p className="mt-2">
-            Le site est hébergé par <strong>Cloudflare, Inc.</strong> · 101 Townsend St, San Francisco, CA 94107, USA ·{' '}
+            Le site est hébergé par <strong>Cloudflare, Inc.</strong> · 101 Townsend St, San Francisco, CA 94107, États-Unis ·
+            téléphone : +1 650 319 8930 ·{' '}
             <a href="https://www.cloudflare.com" target="_blank" rel="noreferrer" className="text-bleu-fonce underline">cloudflare.com</a>
           </p>
           <p className="mt-2">
@@ -107,11 +133,17 @@ export default function MentionsLegalesPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-lg text-navy">7. Cookies et données personnelles</h2>
+          <h2 className="font-display text-lg text-navy">7. Cookies, stockage local et données personnelles</h2>
           <p className="mt-2">
-            Solelis utilise uniquement les cookies techniques strictement nécessaires au fonctionnement du
-            site (session, sauvegarde locale de votre fiche). Aucun cookie publicitaire ni traceur tiers
-            n&apos;est déposé.
+            Solelis ne dépose <strong>aucun cookie</strong> : ni cookie publicitaire, ni traceur tiers, ni cookie
+            de session.
+          </p>
+          <p className="mt-2">
+            Le site utilise seulement le <strong>stockage local de votre navigateur</strong> (localStorage et
+            sessionStorage) pour des besoins de confort : thème d&apos;affichage choisi, questionnaire en cours,
+            lien vers votre dernière fiche, progression et saisies dans les outils de la fiche. Ces informations
+            restent sur votre appareil, ne nous sont pas transmises et peuvent être effacées depuis les
+            réglages de votre navigateur.
           </p>
           <p className="mt-2">
             Les statistiques d&apos;usage agrégées sont collectées via Plausible Analytics, conforme RGPD,

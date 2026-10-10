@@ -15,7 +15,7 @@ export default function AccessibilitePage() {
       </Link>
 
       <h1 className="font-display text-3xl text-navy sm:text-4xl">Accessibilité</h1>
-      <p className="mt-3 text-sm text-navy/60">Déclaration d&apos;accessibilité — mise à jour 28 mai 2026</p>
+      <p className="mt-3 text-sm text-navy/60">Déclaration d&apos;accessibilité — mise à jour 10 octobre 2026</p>
 
       <div className="mt-10 space-y-8 text-sm leading-relaxed text-navy/80">
 
@@ -37,12 +37,13 @@ export default function AccessibilitePage() {
             <li><strong>Focus visible</strong> sur tous les éléments interactifs</li>
             <li><strong>Hiérarchie sémantique</strong> respectée (H1 unique, H2/H3 imbriqués)</li>
             <li><strong>Contraste de couleurs</strong> respectant WCAG AA sur la majorité des textes</li>
-            <li><strong>Lang=&quot;fr&quot;</strong> déclaré sur la balise HTML</li>
+            <li><strong>Lang=“fr”</strong> déclaré sur la balise HTML</li>
             <li><strong>Polices lisibles</strong> (Outfit + Playfair Display), tailles définies en unités relatives — le zoom navigateur jusqu&apos;à 200 % est pris en charge sans perte de contenu</li>
             <li><strong>Animations décoratives</strong> (fonds animés) désactivées lorsque la préférence système <code>prefers-reduced-motion</code> est active</li>
             <li><strong>Formulaires</strong> : labels visibles, messages d&apos;erreur explicites</li>
             <li><strong>Impression</strong> : feuille de style dédiée pour une lecture papier sobre</li>
-            <li><strong>Emojis décoratifs</strong> marqués <code>aria-hidden=&quot;true&quot;</code> pour ne pas perturber les lecteurs d&apos;écran</li>
+            <li><strong>Thèmes d&apos;affichage</strong> : clair, sombre et contraste élevé, au choix dans la barre de navigation (le choix est mémorisé dans votre navigateur)</li>
+            <li><strong>Emojis décoratifs</strong> marqués <code>aria-hidden=“true”</code> pour ne pas perturber les lecteurs d&apos;écran</li>
           </ul>
         </section>
 
@@ -84,10 +85,9 @@ export default function AccessibilitePage() {
         <section>
           <h2 className="font-display text-lg text-navy">Améliorations en cours</h2>
           <ul className="mt-3 list-disc space-y-1 pl-5">
-            <li>Audit RGAA complet par expert externe (T3 2026)</li>
+            <li>Audit RGAA complet par un expert externe (date à fixer)</li>
             <li>Alternative textuelle aux visualisations graphiques</li>
             <li>Sous-titres et transcriptions si vidéos ajoutées</li>
-            <li>Mode contraste élevé optionnel</li>
           </ul>
         </section>
       </div>
