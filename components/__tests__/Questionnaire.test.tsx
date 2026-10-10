@@ -70,6 +70,56 @@ describe('Questionnaire — anti double-clic', () => {
   });
 });
 
+describe('Questionnaire — ergonomie', () => {
+  function choixParLibelle(re: RegExp) {
+    return screen.getAllByRole('button').filter((b) => re.test(b.getAttribute('aria-label') ?? ''))[0];
+  }
+
+  it('« Précédent » est verrouillé pendant la transition (pas de saut d’étape)', () => {
+    render(<Questionnaire siret="12345678901234" />);
+    fireEvent.click(choixParLibelle(/Je sens que ça se dégrade/));
+    act(() => { vi.advanceTimersByTime(300); });
+    // Étape 2 : on choisit, puis on clique « Précédent » pendant la transition
+    fireEvent.click(choixParLibelle(/Dettes URSSAF/));
+    const prev = screen.getByRole('button', { name: /Précédent/i });
+    expect(prev).toBeDisabled();
+    fireEvent.click(prev);
+    act(() => { vi.advanceTimersByTime(300); });
+    expect(screen.getAllByText(/Étape 3 sur 18/).length).toBeGreaterThan(0);
+  });
+
+  it('affiche l’option déjà choisie quand on revient en arrière (aria-pressed)', () => {
+    render(<Questionnaire siret="12345678901234" />);
+    fireEvent.click(choixParLibelle(/Je ne peux plus faire face/));
+    act(() => { vi.advanceTimersByTime(300); });
+    fireEvent.click(screen.getByRole('button', { name: /Précédent/i }));
+    expect(choixParLibelle(/Je ne peux plus faire face/)).toHaveAttribute('aria-pressed', 'true');
+    expect(choixParLibelle(/Je sens que ça se dégrade/)).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  it('distingue les deux choix « salariés » qui ont la même valeur', () => {
+    render(<Questionnaire siret="12345678901234" />);
+    fireEvent.click(choixParLibelle(/Je sens que ça se dégrade/));
+    act(() => { vi.advanceTimersByTime(300); });
+    fireEvent.click(choixParLibelle(/Dettes URSSAF/));
+    act(() => { vi.advanceTimersByTime(300); });
+    fireEvent.click(choixParLibelle(/Oui, 5 ou plus/));
+    act(() => { vi.advanceTimersByTime(300); });
+    fireEvent.click(screen.getByRole('button', { name: /Précédent/i }));
+    expect(choixParLibelle(/Oui, 5 ou plus/)).toHaveAttribute('aria-pressed', 'true');
+    expect(choixParLibelle(/Oui, moins de 5/)).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  it('les boutons de navigation font au moins 44 px de haut et le survol est réservé aux appareils qui le permettent', () => {
+    render(<Questionnaire siret="12345678901234" />);
+    const prev = screen.getByRole('button', { name: /Précédent/i });
+    expect(prev.className).toContain('min-h-[44px]');
+    const choix = choixParLibelle(/Je sens que ça se dégrade/);
+    expect(choix.className).not.toMatch(/(^|\s)hover:/);
+    expect(choix.className).toContain('[@media(hover:hover)]:hover:');
+  });
+});
+
 describe('Questionnaire — enregistrement impossible', () => {
   it('ne met pas les réponses dans l’URL : sessionStorage puis /fiche/local', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => ({ json: async () => ({ token: 'tok', persisted: false }) })));
