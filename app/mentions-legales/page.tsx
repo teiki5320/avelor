@@ -40,8 +40,8 @@ export default function MentionsLegalesPage() {
             <a href="https://www.cloudflare.com" target="_blank" rel="noreferrer" className="text-bleu-fonce underline">cloudflare.com</a>
           </p>
           <p className="mt-2">
-            La base de données utilisateurs est hébergée par <strong>Supabase Inc.</strong> dans l&apos;Union européenne
-            (zone <code>eu-central-1</code>).
+            La base de données utilisateurs (Cloudflare D1) est hébergée par <strong>Cloudflare, Inc.</strong>, avec
+            un stockage limité à l&apos;Union européenne.
           </p>
         </section>
 
