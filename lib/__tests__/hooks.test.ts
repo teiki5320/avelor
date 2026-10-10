@@ -70,6 +70,38 @@ describe('useLocalStorage', () => {
     expect(result.current[0]).toBe(15);
   });
 
+  it('changement de clé : n\'écrit pas l\'état de l\'ancienne clé sous la nouvelle', async () => {
+    localStorageMock.setItem('fiche_A', JSON.stringify(['plan', 'aides']));
+    const { result, rerender } = renderHook(({ k }) => useLocalStorage<string[]>(k, []), {
+      initialProps: { k: 'fiche_A' },
+    });
+    expect(result.current[0]).toEqual(['plan', 'aides']);
+
+    rerender({ k: 'fiche_B' });
+    // La nouvelle clé n'a rien : valeur initiale, et rien n'est recopié
+    expect(result.current[0]).toEqual([]);
+    expect(localStorageMock.getItem('fiche_B')).toBe(JSON.stringify([]));
+    expect(localStorageMock.getItem('fiche_A')).toBe(JSON.stringify(['plan', 'aides']));
+  });
+
+  it('changement de clé : relit la valeur propre à la nouvelle clé', async () => {
+    localStorageMock.setItem('k1', JSON.stringify('un'));
+    localStorageMock.setItem('k2', JSON.stringify('deux'));
+    const { result, rerender } = renderHook(({ k }) => useLocalStorage(k, 'défaut'), {
+      initialProps: { k: 'k1' },
+    });
+    expect(result.current[0]).toBe('un');
+    rerender({ k: 'k2' });
+    expect(result.current[0]).toBe('deux');
+    expect(localStorageMock.getItem('k1')).toBe(JSON.stringify('un'));
+
+    await act(() => {
+      result.current[1]('modifié');
+    });
+    expect(localStorageMock.getItem('k2')).toBe(JSON.stringify('modifié'));
+    expect(localStorageMock.getItem('k1')).toBe(JSON.stringify('un'));
+  });
+
   it('retourne la valeur initiale si le JSON en localStorage est invalide', () => {
     localStorageMock.setItem('bad-json', '{invalid');
 

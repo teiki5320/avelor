@@ -2,6 +2,7 @@
 import type { Reponses, CompanyData } from '@/lib/types';
 import type { SectorInfo } from '@/lib/secteur';
 import { getEffectifSeuils } from '@/lib/secteur';
+import { isEI } from '@/lib/strategie';
 import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
@@ -15,7 +16,8 @@ interface Procedure {
 
 function buildProcedures(r: Reponses, c: CompanyData, s: SectorInfo): Procedure[] {
   const procs: Procedure[] = [];
-  const ei = /individuel|ei|eirl|micro|auto/i.test(c.formeJuridique);
+  // getFormeDetail (via isEI) : une forme inconnue (« Non renseignée ») n'est pas une EI.
+  const ei = isEI(c.formeJuridique);
   const seuils = getEffectifSeuils(c.effectif);
 
   if (r.situation === 'prevention') {

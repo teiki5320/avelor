@@ -49,6 +49,52 @@ describe('isEI', () => {
     expect(isEI('SCI')).toBe(false);
     expect(isEI('SASU')).toBe(false);
   });
+
+  it('ne traite pas une forme inconnue comme une EI (« ei » dans « Non renseignée »)', () => {
+    expect(isEI('Non renseignée')).toBe(false);
+    expect(isEI('')).toBe(false);
+    expect(isEI('Société civile immobilière (SCI)')).toBe(false);
+    expect(isEI('Association')).toBe(false);
+    expect(isEI('Société européenne (SE)')).toBe(false);
+  });
+
+  it('est cohérent avec getFormeDetail', () => {
+    for (const f of ['Entrepreneur individuel', 'EIRL', 'Micro-entreprise', 'SARL', 'Non renseignée']) {
+      expect(isEI(f)).toBe(getFormeDetail(f) !== 'societe');
+    }
+  });
+});
+
+/* ─── Sauvegarde interdite en cessation des paiements (L620-1 C. com.) ─── */
+
+describe('sauvegarde et cessation des paiements', () => {
+  it.each(['redressement', 'assignation'] as const)(
+    'score sauvegarder à 0 en situation %s',
+    (situation) => {
+      const scores = computeScores(
+        makeReponses({ situation, effectif: 'salaries', vente: 'non', moral: 'combatif' }),
+        makeCompany(),
+      );
+      expect(scores.sauvegarder).toBe(0);
+    },
+  );
+
+  it.each(['redressement', 'assignation'] as const)(
+    'la sauvegarde n\'est ni axe principal ni alternative en situation %s',
+    (situation) => {
+      const res = resolveStrategie(
+        makeReponses({ situation, effectif: 'salaries', vente: 'non', moral: 'combatif' }),
+        makeCompany(),
+      );
+      expect(res?.main.axe).not.toBe('sauvegarder');
+      expect(res?.secondary?.axe).not.toBe('sauvegarder');
+    },
+  );
+
+  it('reste proposée hors cessation (tension de trésorerie)', () => {
+    const scores = computeScores(makeReponses({ situation: 'tresorie' }), makeCompany());
+    expect(scores.sauvegarder).toBeGreaterThan(0);
+  });
 });
 
 /* ─── getFormeDetail ─── */
@@ -67,6 +113,10 @@ describe('getFormeDetail', () => {
   it('classe les EI classiques', () => {
     expect(getFormeDetail('Entrepreneur individuel')).toBe('ei');
     expect(getFormeDetail('EI')).toBe('ei');
+  });
+
+  it('ne classe pas une forme non renseignée en EI', () => {
+    expect(getFormeDetail('Non renseignée')).toBe('societe');
   });
 
   it('classe les sociétés', () => {

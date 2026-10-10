@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { getDepartement, buildOrganismes, type DepartementData } from '../organismes';
+import {
+  getDepartement,
+  buildOrganismes,
+  orientationRestructuration,
+  type DepartementData,
+} from '../organismes';
 import type { Reponses } from '../types';
 
 /* ─── Helpers ─── */
@@ -163,5 +168,50 @@ describe('buildOrganismes', () => {
     const groupes = buildOrganismes(null, makeReponses({ probleme: 'fournisseurs' }), []);
     const financier = groupes.find((g) => g.cle === 'financier')!;
     expect(financier.cartes.some((c) => c.nom.includes('Médiateur'))).toBe(true);
+  });
+});
+
+/* ─── CIRI / CODEFI selon l'effectif INSEE ─── */
+
+describe('orientation CIRI / CODEFI', () => {
+  function nomsInstitutionnels(effectifInsee?: string, detail = 'Oui, 5 ou plus') {
+    const groupes = buildOrganismes(
+      null,
+      makeReponses({ effectif: 'salaries', effectifDetail: detail }),
+      [],
+      'industrie',
+      effectifInsee,
+    );
+    return groupes.find((g) => g.cle === 'institutionnel')!.cartes.map((c) => c.nom);
+  }
+
+  it('affiche le CIRI pour une grande entreprise (tranche INSEE ≥ 500)', () => {
+    const noms = nomsInstitutionnels('1 000 à 1 999 salariés');
+    expect(noms).toContain('CIRI');
+    expect(noms).not.toContain('CODEFI');
+  });
+
+  it('reconnaît aussi les anciens libellés sans espace de milliers', () => {
+    expect(nomsInstitutionnels('2000 à 4999 salariés')).toContain('CIRI');
+  });
+
+  it('propose CIRI et CODEFI pour la tranche 250 à 499 (seuil de 400 à cheval)', () => {
+    const noms = nomsInstitutionnels('250 à 499 salariés');
+    expect(noms).toContain('CIRI');
+    expect(noms).toContain('CODEFI');
+  });
+
+  it('CODEFI seul pour une PME ou un effectif inconnu', () => {
+    expect(nomsInstitutionnels('20 à 49 salariés')).not.toContain('CIRI');
+    expect(nomsInstitutionnels('Non renseigné')).toEqual(expect.arrayContaining(['CODEFI']));
+    expect(nomsInstitutionnels(undefined)).not.toContain('CIRI');
+  });
+
+  it('orientationRestructuration', () => {
+    expect(orientationRestructuration('500 à 999 salariés')).toBe('ciri');
+    expect(orientationRestructuration('10 000 salariés et plus')).toBe('ciri');
+    expect(orientationRestructuration('200 à 249 salariés')).toBe('codefi');
+    expect(orientationRestructuration('250 à 499 salariés')).toBe('les-deux');
+    expect(orientationRestructuration('')).toBe('codefi');
   });
 });

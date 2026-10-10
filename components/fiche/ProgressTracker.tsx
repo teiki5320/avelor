@@ -1,8 +1,9 @@
 'use client';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useLocalStorage } from '@/lib/hooks';
+import { useFicheStorageKey } from '@/lib/FicheContext';
 
-const SECTION_GROUPES: { label: string; icone: string; sections: string[] }[] = [
+export const SECTION_GROUPES: { label: string; icone: string; sections: string[] }[] = [
   {
     label: 'Agir',
     icone: '✅',
@@ -35,11 +36,64 @@ const SECTION_GROUPES: { label: string; icone: string; sections: string[] }[] = 
   },
 ];
 
-const TOTAL = SECTION_GROUPES.reduce((acc, g) => acc + g.sections.length, 0);
-const STORAGE_PREFIX = 'solelis_progress_';
+const STORAGE_BASE = 'solelis_progress';
+
+/**
+ * Sections réellement affichées : un conteneur [data-section] dont le bloc
+ * renvoie null (bloc non pertinent pour ce profil) reste vide et n'est pas
+ * compté — sinon 100 % serait inatteignable.
+ */
+export function sectionsAffichees(racine: ParentNode): string[] {
+  const ids = new Set<string>();
+  racine.querySelectorAll<HTMLElement>('[data-section]').forEach((el) => {
+    const id = el.getAttribute('data-section');
+    if (id && el.childElementCount > 0) ids.add(id);
+  });
+  return Array.from(ids).sort();
+}
 
 export default function ProgressTracker({ token }: { token: string }) {
-  const [consultes, setConsultes] = useLocalStorage<string[]>(`${STORAGE_PREFIX}${token}`, []);
+  // Clé par SIRET (comme les autres données locales de la fiche) : avec
+  // l'ancienne clé par token, toutes les fiches « local » partageaient la
+  // même progression.
+  const cle = useFicheStorageKey(STORAGE_BASE);
+  const ancienneCle = `${STORAGE_BASE}_${token}`;
+
+  // Reprise unique de la progression enregistrée sous l'ancienne clé (fiches
+  // en base uniquement : la clé « local » mélangeait plusieurs entreprises).
+  // Déclaré avant useLocalStorage pour s'exécuter avant sa relecture.
+  useEffect(() => {
+    if (!token || token === 'local' || cle === ancienneCle) return;
+    try {
+      if (localStorage.getItem(cle) !== null) return;
+      const ancienne = localStorage.getItem(ancienneCle);
+      if (ancienne !== null) localStorage.setItem(cle, ancienne);
+    } catch {
+      // storage inaccessible
+    }
+  }, [cle, ancienneCle, token]);
+
+  const [consultes, setConsultes] = useLocalStorage<string[]>(cle, []);
+  const [affichees, setAffichees] = useState<string[] | null>(null);
+
+  // Recense les sections affichées (et suit les changements de la page).
+  useEffect(() => {
+    let frame = 0;
+    function recenser() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const ids = sectionsAffichees(document);
+        setAffichees((prev) => (prev && prev.join('|') === ids.join('|') ? prev : ids));
+      });
+    }
+    recenser();
+    const observer = new MutationObserver(recenser);
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, []);
 
   const ajouterSection = useCallback(
     (id: string) => {
@@ -67,16 +121,23 @@ export default function ProgressTracker({ token }: { token: string }) {
     return () => document.removeEventListener('click', handleClick);
   }, [ajouterSection]);
 
-  const fait = consultes.length;
-  const pct = Math.round((fait / TOTAL) * 100);
+  if (!affichees) return null;
 
-  if (fait === 0) return null;
+  const groupes = SECTION_GROUPES.map((g) => ({
+    ...g,
+    sections: g.sections.filter((s) => affichees.includes(s)),
+  })).filter((g) => g.sections.length > 0);
+  const total = groupes.reduce((acc, g) => acc + g.sections.length, 0);
+  const fait = consultes.filter((s) => affichees.includes(s)).length;
+  const pct = total > 0 ? Math.round((fait / total) * 100) : 0;
+
+  if (fait === 0 || total === 0) return null;
 
   return (
     <div className="glass-soft rounded-2xl p-4 no-print">
       <div className="flex items-center justify-between text-sm text-navy/70">
         <span>
-          Exploration : <strong className="text-navy">{fait}</strong> blocs sur {TOTAL}
+          Exploration : <strong className="text-navy">{fait}</strong> blocs sur {total}
         </span>
         <span className="font-display text-navy">{pct} %</span>
       </div>
@@ -89,7 +150,7 @@ export default function ProgressTracker({ token }: { token: string }) {
 
       {/* Détail par groupe */}
       <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
-        {SECTION_GROUPES.map((g) => {
+        {groupes.map((g) => {
           const consultesGroupe = g.sections.filter((s) => consultes.includes(s)).length;
           const pctGroupe = Math.round((consultesGroupe / g.sections.length) * 100);
           const complet = pctGroupe === 100;

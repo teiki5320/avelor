@@ -1,11 +1,16 @@
 import { fetchWithTimeout } from './fetchTimeout';
 import type { CompanyData } from './types';
+import { libelleTrancheEffectif } from './secteur';
 
 /* ---------- Interfaces API ---------- */
 
 interface SireneEtablissement {
   siret?: string;
   code_postal?: string;
+  /** Code commune INSEE (ex. « 2A004 », « 97411 »). */
+  commune?: string;
+  /** Code département (présent sur le siège, ex. « 2A », « 974 »). */
+  departement?: string;
   libelle_commune?: string;
   adresse?: string;
 }
@@ -34,6 +39,7 @@ interface SireneApiResponse {
 
 interface InseeAdresse {
   codePostalEtablissement?: string;
+  codeCommuneEtablissement?: string;
   libelleCommuneEtablissement?: string;
   numeroVoieEtablissement?: string;
   typeVoieEtablissement?: string;
@@ -66,51 +72,165 @@ const RECHERCHE_BASE = 'https://recherche-entreprises.api.gouv.fr/search';
 // Fallback (requires key, kept for completeness).
 const SIRENE_BASE = 'https://api.insee.fr/entreprises/sirene/V3';
 
+/**
+ * Catégories juridiques INSEE (niveau III) les plus fréquentes.
+ * Source : nomenclature INSEE des catégories juridiques (version 2022),
+ * libellés vérifiés via l'API Métadonnées de l'INSEE
+ * (https://api.insee.fr/metadonnees/codes/cj/n3/{code}).
+ *
+ * Les libellés sont aussi lus par getJuridiction() et getFormeDetail()
+ * (lib/strategie.ts) : ils doivent contenir les mots-clés de la forme
+ * (« SARL », « anonyme », « nom collectif », « société civile »…).
+ * NB : l'INSEE ne distingue ni l'EURL (5499) ni la SASU (5710).
+ */
 const FORMES: Record<string, string> = {
-  '5499': 'SAS',
-  '5710': 'SAS',
-  '5499SA': 'SA',
-  '5485': 'SARL',
-  '5498': 'SARL',
-  '5710SAS': 'SAS',
-  '5720': 'SASU',
-  '5422': 'SARL',
   '1000': 'Entrepreneur individuel',
-  '1': 'Entrepreneur individuel',
-  '5307': 'Société en nom collectif',
-  '5585': 'SCP',
-  '6540': 'SCI',
+  '5202': 'Société en nom collectif (SNC)',
+  '5203': 'Société en nom collectif coopérative',
+  '5306': 'Société en commandite simple',
+  '5307': 'Société en commandite simple coopérative',
+  '5308': 'Société en commandite par actions',
+  '5309': 'Société en commandite par actions coopérative',
+  '5385': "Société d'exercice libéral en commandite par actions (SELCA)",
+  '5458': 'SARL coopérative de production (SCOP)',
+  '5470': 'SPFPL à responsabilité limitée (SPFPL SARL)',
+  '5485': "Société d'exercice libéral à responsabilité limitée (SELARL)",
+  '5499': 'SARL',
+  '5558': 'Société anonyme coopérative de production (SCOP SA)',
+  '5585': "Société d'exercice libéral à forme anonyme (SELAFA)",
+  '5658': 'Société anonyme coopérative de production (SCOP SA)',
+  '5685': "Société d'exercice libéral à forme anonyme (SELAFA)",
+  '5710': 'SAS / SASU',
+  '5770': 'SPFPL par actions simplifiée (SPFPL SAS)',
+  '5785': "Société d'exercice libéral par actions simplifiée (SELAS)",
+  '5800': 'Société européenne (SE)',
+  '6210': "Groupement européen d'intérêt économique (GEIE)",
+  '6220': "Groupement d'intérêt économique (GIE)",
+  '6316': 'Coopérative d\'utilisation de matériel agricole (CUMA)',
+  '6317': 'Société coopérative agricole',
+  '6521': 'Société civile de placement immobilier (SCPI)',
+  '6533': "Groupement agricole d'exploitation en commun (GAEC)",
+  '6534': 'Groupement foncier agricole (société civile)',
+  '6536': 'Groupement forestier (société civile)',
+  '6540': 'Société civile immobilière (SCI)',
+  '6541': 'Société civile immobilière de construction-vente',
+  '6585': 'Société civile professionnelle (SCP)',
+  '6589': 'Société civile de moyens (SCM)',
+  '6597': "Société civile d'exploitation agricole (SCEA)",
+  '6598': 'Exploitation agricole à responsabilité limitée (EARL)',
+  '6599': 'Société civile',
+  '9220': 'Association déclarée',
+  '9230': "Association reconnue d'utilité publique",
+  '9300': 'Fondation',
 };
 
-function formatForme(code: string | undefined): string {
-  if (!code) return 'Non renseignée';
-  if (FORMES[code]) return FORMES[code];
-  if (code.startsWith('10')) return 'Entrepreneur individuel';
-  if (code.startsWith('54')) return 'SARL';
-  if (code.startsWith('57')) return 'SAS / SASU';
-  if (code.startsWith('55')) return 'SA';
-  if (code.startsWith('65')) return 'SCI';
-  return `Forme ${code}`;
+/**
+ * Repli par catégorie de niveau II (2 premiers chiffres), libellés INSEE
+ * (https://api.insee.fr/metadonnees/codes/cj/n2/{code}).
+ */
+const FORMES_NIVEAU_II: Record<string, string> = {
+  '10': 'Entrepreneur individuel',
+  '21': 'Indivision',
+  '22': 'Société créée de fait',
+  '23': 'Société en participation',
+  '24': 'Fiducie',
+  '27': 'Groupement de droit privé sans personnalité morale',
+  '29': 'Groupement de droit privé sans personnalité morale',
+  '31': 'Personne morale de droit étranger',
+  '32': 'Personne morale de droit étranger',
+  '41': 'Établissement public à caractère industriel ou commercial',
+  '51': 'Société coopérative commerciale particulière',
+  '52': 'Société en nom collectif (SNC)',
+  '53': 'Société en commandite',
+  '54': 'SARL',
+  '55': 'Société anonyme (SA)',
+  '56': 'Société anonyme (SA)',
+  '57': 'SAS / SASU',
+  '58': 'Société européenne (SE)',
+  '61': "Caisse d'épargne et de prévoyance",
+  '62': "Groupement d'intérêt économique (GIE)",
+  '63': 'Société coopérative agricole',
+  '64': "Société d'assurance mutuelle",
+  '65': 'Société civile',
+  '69': 'Autre personne morale inscrite au RCS',
+  '71': 'Personne morale de droit public',
+  '72': 'Personne morale de droit public',
+  '73': 'Personne morale de droit public',
+  '74': 'Personne morale de droit public',
+  '81': 'Organisme de protection sociale',
+  '82': 'Organisme mutualiste',
+  '83': "Comité d'entreprise",
+  '84': 'Organisme professionnel',
+  '85': 'Organisme de retraite à adhésion non obligatoire',
+  '91': 'Syndicat de copropriétaires',
+  '92': 'Association',
+  '93': 'Fondation',
+  '99': 'Autre personne morale de droit privé',
+};
+
+export function formatForme(code: string | undefined): string {
+  const c = (code ?? '').trim();
+  if (!c) return 'Non renseignée';
+  if (FORMES[c]) return FORMES[c];
+  // Sociétés civiles professionnelles : 6561 à 6578 (SCP d'avocats, de médecins…)
+  if (/^65[67]\d$/.test(c)) return 'Société civile professionnelle (SCP)';
+  return FORMES_NIVEAU_II[c.slice(0, 2)] ?? `Catégorie juridique ${c}`;
 }
 
-function formatEffectif(code: string | undefined): string {
-  const map: Record<string, string> = {
-    NN: 'Non renseigné',
-    '00': '0 salarié',
-    '01': '1 ou 2 salariés',
-    '02': '3 à 5 salariés',
-    '03': '6 à 9 salariés',
-    '11': '10 à 19 salariés',
-    '12': '20 à 49 salariés',
-    '21': '50 à 99 salariés',
-    '22': '100 à 199 salariés',
-    '31': '200 à 249 salariés',
-    '32': '250 à 499 salariés',
-    '41': '500 à 999 salariés',
-    '42': '1000 à 1999 salariés',
-    '51': '2000 à 4999 salariés',
-  };
-  return map[code ?? ''] ?? 'Non renseigné';
+/** Tranche INSEE → libellé ; table partagée avec getEffectifSeuils (lib/secteur.ts). */
+export function formatEffectif(code: string | undefined): string {
+  return libelleTrancheEffectif(code);
+}
+
+/**
+ * Département à partir du code commune INSEE (source la plus fiable) :
+ * 2 caractères en métropole (dont « 2A » / « 2B » pour la Corse),
+ * 3 chiffres outre-mer (971 à 978, 986 à 988).
+ */
+export function departementDepuisCommune(code: string | undefined): string {
+  const c = (code ?? '').trim().toUpperCase();
+  if (!/^(\d{5}|2[AB]\d{3})$/.test(c)) return '';
+  return /^9[78]/.test(c) ? c.slice(0, 3) : c.slice(0, 2);
+}
+
+/**
+ * Département à partir du code postal, à défaut de code commune :
+ * - 97xxx / 98xxx → 3 chiffres (971 Guadeloupe … 988 Nouvelle-Calédonie) ;
+ * - Corse : 200xx et 201xx → 2A (Corse-du-Sud), 202xx à 206xx → 2B (Haute-Corse).
+ * Limite : Saint-Barthélemy (97133) et Saint-Martin (97150) ont un code
+ * postal en 971 — seul le code commune (977xx / 978xx) les distingue.
+ */
+export function departementDepuisCodePostal(codePostal: string | undefined): string {
+  const c = (codePostal ?? '').trim();
+  if (!/^\d{5}$/.test(c)) return '';
+  if (/^9[78]/.test(c)) return c.slice(0, 3);
+  if (c.startsWith('20')) return c[2] === '0' || c[2] === '1' ? '2A' : '2B';
+  return c.slice(0, 2);
+}
+
+/** Commune INSEE d'abord, code postal ensuite ; jamais le SIREN. */
+export function determinerDepartement(
+  codeCommune: string | undefined,
+  codePostal: string | undefined,
+  departementApi?: string,
+): string {
+  return (
+    departementDepuisCommune(codeCommune) ||
+    (departementApi ?? '').trim().toUpperCase() ||
+    departementDepuisCodePostal(codePostal)
+  );
+}
+
+/**
+ * Premier nom non vide. `[].join(' ')` renvoie « » (chaîne vide, pas
+ * null) : avec `??` le repli « Votre entreprise » n'était jamais atteint.
+ */
+export function choisirNom(...candidats: (string | null | undefined)[]): string {
+  for (const c of candidats) {
+    const nom = (c ?? '').trim();
+    if (nom) return nom;
+  }
+  return 'Votre entreprise';
 }
 
 function fallbackFor(siret: string): CompanyData {
@@ -124,7 +244,9 @@ function fallbackFor(siret: string): CompanyData {
     adresse: '',
     codePostal: '',
     ville: '',
-    departement: siret.slice(0, 2),
+    // Inconnu : les 2 premiers chiffres du SIRET sont ceux du SIREN, sans
+    // rapport avec la localisation.
+    departement: '',
     fetched: false,
   };
 }
@@ -147,16 +269,19 @@ async function fetchFromRechercheEntreprises(
 
     const codePostal: string = matching?.code_postal ?? result.siege?.code_postal ?? '';
     const ville: string = matching?.libelle_commune ?? result.siege?.libelle_commune ?? '';
-    const departement = codePostal.slice(0, 2) || siret.slice(0, 2);
-    const nom: string =
-      result.nom_complet ??
-      result.nom_raison_sociale ??
-      [result.prenom_usuel, result.nom].filter(Boolean).join(' ') ??
-      'Votre entreprise';
+    // Département de l'établissement consulté (et non du siège s'il diffère)
+    const departement = matching?.commune || matching?.code_postal
+      ? determinerDepartement(matching.commune, matching.code_postal, matching.departement)
+      : determinerDepartement(result.siege?.commune, codePostal, result.siege?.departement);
+    const nom = choisirNom(
+      result.nom_complet,
+      result.nom_raison_sociale,
+      [result.prenom_usuel, result.nom].filter(Boolean).join(' '),
+    );
 
     return {
       siret,
-      nom: nom.trim(),
+      nom,
       formeJuridique: formatForme(result.nature_juridique),
       naf: result.activite_principale ?? '',
       nafLabel: result.libelle_activite_principale ?? undefined,
@@ -196,12 +321,12 @@ async function fetchFromInseeSirene(
     const unit = etab.uniteLegale ?? {};
     const addr = etab.adresseEtablissement ?? {};
     const codePostal: string = addr.codePostalEtablissement ?? '';
-    const departement = codePostal.slice(0, 2) || siret.slice(0, 2);
+    const departement = determinerDepartement(addr.codeCommuneEtablissement, codePostal);
 
-    const nom =
-      unit.denominationUniteLegale ??
-      [unit.prenomUsuelUniteLegale, unit.nomUniteLegale].filter(Boolean).join(' ') ??
-      'Votre entreprise';
+    const nom = choisirNom(
+      unit.denominationUniteLegale,
+      [unit.prenomUsuelUniteLegale, unit.nomUniteLegale].filter(Boolean).join(' '),
+    );
 
     const addressParts = [
       addr.numeroVoieEtablissement,
@@ -213,7 +338,7 @@ async function fetchFromInseeSirene(
 
     return {
       siret,
-      nom: nom.trim(),
+      nom,
       formeJuridique: formatForme(unit.categorieJuridiqueUniteLegale),
       naf: unit.activitePrincipaleUniteLegale ?? '',
       nafLabel: etab.activitePrincipaleEtablissement ?? unit.activitePrincipaleUniteLegale,

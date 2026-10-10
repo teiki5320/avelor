@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { getSectorInfo, getCompanyAge, getEffectifSeuils } from '../secteur';
+import {
+  getSectorInfo,
+  getCompanyAge,
+  getEffectifSeuils,
+  TRANCHES_EFFECTIF,
+  libelleTrancheEffectif,
+  libelleActionSoutien,
+  libelleContactSyndicat,
+} from '../secteur';
+import { formatEffectif } from '../sirene';
 import type { CompanyData } from '../types';
 
 /* ─── Helpers ─── */
@@ -147,5 +156,102 @@ describe('getEffectifSeuils', () => {
   it('retourne approx=0 pour une valeur inconnue', () => {
     const s = getEffectifSeuils('inconnu');
     expect(s.approx).toBe(0);
+  });
+
+  it('reconnaît chaque libellé produit par Sirene (codes INSEE 00 à 53)', () => {
+    for (const [code, tranche] of Object.entries(TRANCHES_EFFECTIF)) {
+      const libelle = formatEffectif(code);
+      expect(libelle).toBe(tranche.libelle);
+      expect(getEffectifSeuils(libelle).approx).toBe(tranche.approx);
+    }
+  });
+
+  it('couvre les grandes tranches 52 et 53', () => {
+    expect(formatEffectif('52')).toBe('5 000 à 9 999 salariés');
+    expect(formatEffectif('53')).toBe('10 000 salariés et plus');
+    expect(getEffectifSeuils(formatEffectif('53')).approx).toBe(12000);
+  });
+
+  it('accepte les anciens libellés sans espace de milliers (fiches existantes)', () => {
+    expect(getEffectifSeuils('1000 à 1999 salariés').approx).toBe(1500);
+    expect(getEffectifSeuils('2000 à 4999 salariés').approx).toBe(3000);
+  });
+
+  it('« NN » ou code inconnu → Non renseigné', () => {
+    expect(libelleTrancheEffectif('NN')).toBe('Non renseigné');
+    expect(libelleTrancheEffectif(undefined)).toBe('Non renseigné');
+  });
+});
+
+/* ─── Caisses, numéros et libellés générés ─── */
+
+const NAFS_PAR_SECTEUR = [
+  '01.11Z', '03.11Z', '25.11Z', '41.20A', '47.11D', '49.41A', '55.10Z', '62.01Z',
+  '64.19Z', '68.20A', '69.10Z', '85.59A', '86.21Z', '95.11Z', '94.99Z', '81.21Z', '90.01Z', '84.11Z',
+];
+
+describe('caisses de retraite et numéros', () => {
+  it('artisans / commerçants : Assurance retraite (3960), plus de « CNAV TI » ni de 3698 comme caisse', () => {
+    const info = getSectorInfo(makeCompany({ naf: '95.11Z' }));
+    expect(info.secteur).toBe('artisanat');
+    const caisses = info.caissesRetraite ?? [];
+    expect(caisses.map((c) => c.caisse).join(' ')).not.toMatch(/CNAV TI|SSI/);
+    expect(caisses).toContainEqual(
+      expect.objectContaining({ caisse: 'Assurance retraite', telephone: '3960' }),
+    );
+    expect(info.conseilsSpecifiques.join(' ')).not.toMatch(/libéraux artisans/);
+  });
+
+  it('libéraux non réglementés : Assurance retraite et non plus Cipav par défaut', () => {
+    const info = getSectorInfo(makeCompany({ naf: '70.22Z' }));
+    const caisses = info.caissesRetraite ?? [];
+    expect(caisses.some((c) => /autre/i.test(c.profession) && c.caisse === 'CIPAV')).toBe(false);
+    expect(caisses).toContainEqual(
+      expect.objectContaining({ caisse: 'Assurance retraite', telephone: '3960' }),
+    );
+    // Les architectes restent à la Cipav
+    expect(caisses).toContainEqual(expect.objectContaining({ profession: 'Architecte', caisse: 'CIPAV' }));
+  });
+
+  it('MSA : pas de numéro national (36 98 est la ligne Urssaf des indépendants)', () => {
+    const info = getSectorInfo(makeCompany({ naf: '01.11Z' }));
+    expect(info.cotisationTel).not.toMatch(/36 ?98/);
+    expect(info.cotisationTel).toMatch(/msa\.fr/);
+    expect((info.caissesRetraite ?? []).map((c) => c.telephone).join(' ')).not.toMatch(/36 ?98/);
+  });
+});
+
+describe('NAF 53 (poste et courrier)', () => {
+  it('La Poste (53.10Z) et les coursiers (53.20Z) ne sont pas du transport routier', () => {
+    expect(getSectorInfo(makeCompany({ naf: '53.10Z' })).secteur).toBe('services');
+    expect(getSectorInfo(makeCompany({ naf: '53.20Z' })).secteur).toBe('services');
+  });
+  it('le transport routier reste du transport', () => {
+    expect(getSectorInfo(makeCompany({ naf: '49.41A' })).secteur).toBe('transport');
+    expect(getSectorInfo(makeCompany({ naf: '52.29A' })).secteur).toBe('transport');
+  });
+});
+
+describe('textes générés pour le plan d\'action', () => {
+  it.each(NAFS_PAR_SECTEUR)('NAF %s : pas de parenthèses imbriquées ni de doublon APESA', (naf) => {
+    const info = getSectorInfo(makeCompany({ naf }));
+    const soin = libelleActionSoutien(info);
+    expect(soin.match(/APESA/g)?.length ?? 0).toBeLessThanOrEqual(1);
+    expect(soin).not.toMatch(/\([^)]*\(/);
+    for (const s of info.syndicats) {
+      expect(libelleContactSyndicat(s), s.nom).not.toMatch(/\([^)]*\(/);
+    }
+    expect(info.soutien?.nom ?? '').not.toMatch(/\(/);
+  });
+
+  it('exemples', () => {
+    const transport = getSectorInfo(makeCompany({ naf: '49.41A' }));
+    expect(libelleActionSoutien(transport)).toBe('Prendre soin de moi (APESA)');
+    expect(libelleContactSyndicat(transport.syndicats[0])).toBe(
+      'Contacter FNTR (Fédération Nationale des Transports Routiers — marchandises)',
+    );
+    const agri = getSectorInfo(makeCompany({ naf: '01.11Z' }));
+    expect(libelleActionSoutien(agri)).toBe('Prendre soin de moi (Agri\'Écoute, APESA)');
+    expect(libelleActionSoutien({})).toBe('Prendre soin de moi (APESA, médecin, sommeil)');
   });
 });

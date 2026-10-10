@@ -1,6 +1,7 @@
 import data from '@/data/organismes.json';
 import type { Reponses } from './types';
 import type { SectorInfo, Secteur } from './secteur';
+import { trancheDepuisLibelle } from './secteur';
 
 interface OrganismeLocal {
   nom: string;
@@ -56,11 +57,29 @@ export interface GroupeOrganismes {
   cartes: OrganismeCard[];
 }
 
+/**
+ * CIRI (> 400 salariés) ou CODEFI (< 400 salariés) selon la tranche
+ * d'effectif INSEE (libellé de CompanyData.effectif). La tranche
+ * « 250 à 499 salariés » chevauche le seuil : les deux sont proposés.
+ * Effectif inconnu → CODEFI (cas de loin le plus fréquent).
+ */
+export function orientationRestructuration(
+  effectifInsee: string | undefined,
+): 'ciri' | 'codefi' | 'les-deux' {
+  const tranche = trancheDepuisLibelle(effectifInsee ?? '');
+  if (!tranche) return 'codefi';
+  if (tranche.min > 400) return 'ciri';
+  if (tranche.max !== null && tranche.max < 400) return 'codefi';
+  return 'les-deux';
+}
+
 export function buildOrganismes(
   dep: DepartementData | null,
   reponses: Reponses,
   avocats: OrganismeCard[],
   sectorKey?: string,
+  /** CompanyData.effectif (tranche INSEE), pour orienter vers le CIRI ou le CODEFI. */
+  effectifInsee?: string,
 ): GroupeOrganismes[] {
   const groups: GroupeOrganismes[] = [];
 
@@ -138,12 +157,11 @@ export function buildOrganismes(
     site: 'https://conseillers-entreprises.service-public.gouv.fr',
     badge: 'Gratuit · confidentiel',
   });
-  // Cellules de l'État pour les restructurations
-  const isLargeEntreprise =
-    reponses.effectif === 'salaries' &&
-    !!reponses.effectifDetail &&
-    /(\b[4-9]\d{2}\b|\b\d{4,}\b)/.test(reponses.effectifDetail);
-  if (isLargeEntreprise) {
+  // Cellules de l'État pour les restructurations : CIRI au-delà de 400
+  // salariés, CODEFI en dessous. L'orientation se fait sur l'effectif INSEE
+  // (reponses.effectifDetail ne vaut que « Oui, moins de 5 » / « Oui, 5 ou plus »).
+  const orientation = orientationRestructuration(effectifInsee);
+  if (orientation === 'ciri' || orientation === 'les-deux') {
     inst.push({
       nom: 'CIRI',
       type: 'Comité Interministériel de Restructuration Industrielle',
@@ -151,7 +169,8 @@ export function buildOrganismes(
       site: 'https://www.economie.gouv.fr/ciri',
       badge: 'Entreprises > 400 salariés',
     });
-  } else {
+  }
+  if (orientation === 'codefi' || orientation === 'les-deux') {
     inst.push({
       nom: 'CODEFI',
       type: 'Comité Départemental d\'Examen des Problèmes de Financement',
