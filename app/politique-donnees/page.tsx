@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Politique de protection des données — AVELOR',
-  description: 'Comment Avelor protège vos données personnelles : RGPD, base légale, durée, vos droits.',
+  title: 'Politique de protection des données — Solelis',
+  description: 'Comment Solelis protège vos données personnelles : RGPD, base légale, durée, vos droits.',
   robots: { index: true, follow: true },
 };
 
@@ -26,14 +26,14 @@ export default function PolitiqueDonneesPage() {
             <li>Vos réponses au questionnaire et votre fiche sont <strong>stockées chez Supabase (UE)</strong> derrière un token aléatoire (24 caractères)</li>
             <li>L&apos;<strong>email n&apos;est demandé que pour vous envoyer un lien magique</strong> de retour vers votre fiche — pas de mailing, pas de partage</li>
             <li>Vous pouvez <strong>demander la suppression</strong> de votre fiche à tout moment</li>
-            <li>Aucune donnée n&apos;est <strong>transférée hors UE</strong> sauf via Vercel (hébergement, USA) pour l&apos;exécution technique</li>
+            <li>Aucune donnée n&apos;est <strong>transférée hors UE</strong> sauf via Cloudflare (hébergement, USA) pour l&apos;exécution technique</li>
           </ul>
         </section>
 
         <section>
           <h2 className="font-display text-lg text-navy">1. Données collectées</h2>
           <p className="mt-2">
-            Avelor ne collecte que les données strictement nécessaires à la production de votre fiche personnalisée :
+            Solelis ne collecte que les données strictement nécessaires à la production de votre fiche personnalisée :
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li><strong>SIRET</strong> de votre entreprise (saisie obligatoire)</li>
@@ -95,7 +95,7 @@ export default function PolitiqueDonneesPage() {
           </ul>
           <p className="mt-3">
             Pour exercer ces droits, écrivez à{' '}
-            <a href="mailto:avelor@toakeur.com" className="text-bleu-fonce underline">avelor@toakeur.com</a>
+            <a href="mailto:solelis@toakeur.com" className="text-bleu-fonce underline">solelis@toakeur.com</a>
             {' '}en précisant votre token de fiche (visible dans l&apos;URL : <code>/fiche/XXXX</code>).
             Réponse sous 30 jours.
           </p>
@@ -104,7 +104,7 @@ export default function PolitiqueDonneesPage() {
         <section>
           <h2 className="font-display text-lg text-navy">6. Sous-traitants et destinataires</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5">
-            <li><strong>Vercel Inc.</strong> (USA) : hébergement de l&apos;application — transfert UE→USA encadré par les Clauses Contractuelles Types européennes (CCT)</li>
+            <li><strong>Cloudflare, Inc.</strong> (USA) : hébergement de l&apos;application — transfert UE→USA encadré par les Clauses Contractuelles Types européennes (CCT)</li>
             <li><strong>Supabase Inc.</strong> (UE - eu-central-1) : base de données fiches</li>
             <li><strong>Resend</strong> (UE) : envoi du lien magique et des rappels par email</li>
             <li><strong>Plausible Analytics</strong> (UE) : statistiques d&apos;usage agrégées</li>
@@ -123,7 +123,7 @@ export default function PolitiqueDonneesPage() {
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>Chiffrement en transit (HTTPS / TLS 1.3)</li>
-            <li>Chiffrement au repos (Supabase, Vercel)</li>
+            <li>Chiffrement au repos (Supabase)</li>
             <li>Accès à la base limité à l&apos;application via service role key</li>
             <li>Tokens aléatoires (24 caractères) non devinables</li>
             <li>Validation Zod sur toutes les entrées utilisateur</li>

@@ -12,7 +12,7 @@ interface FicheAvecRappels {
 /**
  * GET /api/cron/rappels
  *
- * Endpoint appelé par un cron Vercel (vercel.json) pour envoyer les rappels
+ * Endpoint appelé chaque jour par le Cron Trigger Cloudflare (worker.ts) pour envoyer les rappels
  * email dont la dateRappel est atteinte.
  *
  * Sécurité : vérifie le header Authorization avec CRON_SECRET.
@@ -99,7 +99,7 @@ export async function GET(req: Request) {
 /**
  * Échappe les caractères HTML d'une valeur venue de la base (libellé, échéance,
  * nom d'entreprise) : ces champs sont saisis côté client et seraient sinon
- * injectés tels quels dans le HTML de l'email (phishing depuis le domaine Avelor).
+ * injectés tels quels dans le HTML de l'email (phishing depuis le domaine Solelis).
  */
 function escapeHtml(s: string): string {
   return s
@@ -126,8 +126,8 @@ async function envoyerRappelEmail(
 
   const { Resend } = await import('resend');
   const resend = new Resend(resendKey);
-  const from = process.env.RESEND_FROM ?? 'AVELOR <onboarding@resend.dev>';
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://avelor.fr';
+  const from = process.env.RESEND_FROM ?? 'Solelis <onboarding@resend.dev>';
+  const base = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://solelis.com';
   const nomEntreprise = escapeHtml(fiche.company_data?.nom ?? 'votre entreprise');
   const libelle = escapeHtml(String(rappel.libelle ?? '').slice(0, 120));
   const echeance = escapeHtml(String(rappel.echeance ?? '').slice(0, 120));
@@ -137,10 +137,10 @@ async function envoyerRappelEmail(
     const { error } = await resend.emails.send({
       from,
       to: rappel.email,
-      subject: `Rappel AVELOR : ${String(rappel.libelle ?? '').slice(0, 120)}`,
+      subject: `Rappel Solelis : ${String(rappel.libelle ?? '').slice(0, 120)}`,
       html: `
 <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;padding:32px;color:#0A1628">
-  <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:24px;margin:0 0 16px">AVELOR</h1>
+  <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:24px;margin:0 0 16px">Solelis</h1>
   <p style="font-size:16px;line-height:1.6">Bonjour,</p>
   <p style="font-size:16px;line-height:1.6">
     Ceci est un rappel que vous avez programmé pour <strong>${nomEntreprise}</strong> :
@@ -154,7 +154,7 @@ async function envoyerRappelEmail(
       Ouvrir ma fiche
     </a>
   </p>
-  <p style="font-size:13px;color:#7c8597;margin-top:32px">AVELOR · rappel automatique · vous seul avez ce lien</p>
+  <p style="font-size:13px;color:#7c8597;margin-top:32px">Solelis · rappel automatique · vous seul avez ce lien</p>
 </div>`,
     });
 
