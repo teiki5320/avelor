@@ -61,12 +61,13 @@ export function getJuridiction(company: CompanyData): 'TC' | 'TJ' {
 
   // 1. Formes civiles et agricoles → TJ (à tester avant les formes commerciales :
   //    « exploitation agricole à responsabilité limitée » contient « responsabilité limitée »)
-  if (/(soci[ée]t[ée] civile|\bsci\b|\bscp\b|\bscm\b|exploitation agricole|\bgaec\b|\bearl\b|\bscea\b|association|fondation|syndicat|copropri)/.test(forme)) {
+  if (/(soci[ée]t[ée] civile|\bsci\b|\bscp\b|\bscm\b|exploitation agricole|\bgaec\b|\bearl\b|\bscea\b|coop[ée]rative agricole|mat[ée]riel agricole|\bcuma\b|association|fondation|syndicat|copropri)/.test(forme)) {
     return 'TJ';
   }
 
   // 2. Sociétés commerciales par la forme → TC quel que soit le NAF
-  if (/(\bsarl\b|\beurl\b|\bsas\b|\bsasu\b|\bsnc\b|responsabilit[ée] limit[ée]e|par actions|anonyme|nom collectif|commandite|exercice lib[ée]ral|coop[ée]rative de commer[çc]ants)/.test(forme)) {
+  //    (la société européenne est commerciale : art. L229-1 C. com.)
+  if (/(\bsarl\b|\beurl\b|\bsas\b|\bsasu\b|\bsnc\b|\bsa\b|responsabilit[ée] limit[ée]e|par actions|anonyme|nom collectif|commandite|exercice lib[ée]ral|coop[ée]rative de commer[çc]ants|soci[ée]t[ée] europ[ée]enne)/.test(forme)) {
     return 'TC';
   }
 

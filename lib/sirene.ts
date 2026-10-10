@@ -66,31 +66,109 @@ const RECHERCHE_BASE = 'https://recherche-entreprises.api.gouv.fr/search';
 // Fallback (requires key, kept for completeness).
 const SIRENE_BASE = 'https://api.insee.fr/entreprises/sirene/V3';
 
+/**
+ * Catégories juridiques INSEE (niveau III) les plus fréquentes.
+ * Source : nomenclature INSEE des catégories juridiques (version 2022),
+ * libellés vérifiés via l'API Métadonnées de l'INSEE
+ * (https://api.insee.fr/metadonnees/codes/cj/n3/{code}).
+ *
+ * Les libellés sont aussi lus par getJuridiction() et getFormeDetail()
+ * (lib/strategie.ts) : ils doivent contenir les mots-clés de la forme
+ * (« SARL », « anonyme », « nom collectif », « société civile »…).
+ * NB : l'INSEE ne distingue ni l'EURL (5499) ni la SASU (5710).
+ */
 const FORMES: Record<string, string> = {
-  '5499': 'SAS',
-  '5710': 'SAS',
-  '5499SA': 'SA',
-  '5485': 'SARL',
-  '5498': 'SARL',
-  '5710SAS': 'SAS',
-  '5720': 'SASU',
-  '5422': 'SARL',
   '1000': 'Entrepreneur individuel',
-  '1': 'Entrepreneur individuel',
-  '5307': 'Société en nom collectif',
-  '5585': 'SCP',
-  '6540': 'SCI',
+  '5202': 'Société en nom collectif (SNC)',
+  '5203': 'Société en nom collectif coopérative',
+  '5306': 'Société en commandite simple',
+  '5307': 'Société en commandite simple coopérative',
+  '5308': 'Société en commandite par actions',
+  '5309': 'Société en commandite par actions coopérative',
+  '5385': "Société d'exercice libéral en commandite par actions (SELCA)",
+  '5458': 'SARL coopérative de production (SCOP)',
+  '5470': 'SPFPL à responsabilité limitée (SPFPL SARL)',
+  '5485': "Société d'exercice libéral à responsabilité limitée (SELARL)",
+  '5499': 'SARL',
+  '5558': 'Société anonyme coopérative de production (SCOP SA)',
+  '5585': "Société d'exercice libéral à forme anonyme (SELAFA)",
+  '5658': 'Société anonyme coopérative de production (SCOP SA)',
+  '5685': "Société d'exercice libéral à forme anonyme (SELAFA)",
+  '5710': 'SAS / SASU',
+  '5770': 'SPFPL par actions simplifiée (SPFPL SAS)',
+  '5785': "Société d'exercice libéral par actions simplifiée (SELAS)",
+  '5800': 'Société européenne (SE)',
+  '6210': "Groupement européen d'intérêt économique (GEIE)",
+  '6220': "Groupement d'intérêt économique (GIE)",
+  '6316': 'Coopérative d\'utilisation de matériel agricole (CUMA)',
+  '6317': 'Société coopérative agricole',
+  '6521': 'Société civile de placement immobilier (SCPI)',
+  '6533': "Groupement agricole d'exploitation en commun (GAEC)",
+  '6534': 'Groupement foncier agricole (société civile)',
+  '6536': 'Groupement forestier (société civile)',
+  '6540': 'Société civile immobilière (SCI)',
+  '6541': 'Société civile immobilière de construction-vente',
+  '6585': 'Société civile professionnelle (SCP)',
+  '6589': 'Société civile de moyens (SCM)',
+  '6597': "Société civile d'exploitation agricole (SCEA)",
+  '6598': 'Exploitation agricole à responsabilité limitée (EARL)',
+  '6599': 'Société civile',
+  '9220': 'Association déclarée',
+  '9230': "Association reconnue d'utilité publique",
+  '9300': 'Fondation',
 };
 
-function formatForme(code: string | undefined): string {
-  if (!code) return 'Non renseignée';
-  if (FORMES[code]) return FORMES[code];
-  if (code.startsWith('10')) return 'Entrepreneur individuel';
-  if (code.startsWith('54')) return 'SARL';
-  if (code.startsWith('57')) return 'SAS / SASU';
-  if (code.startsWith('55')) return 'SA';
-  if (code.startsWith('65')) return 'SCI';
-  return `Forme ${code}`;
+/**
+ * Repli par catégorie de niveau II (2 premiers chiffres), libellés INSEE
+ * (https://api.insee.fr/metadonnees/codes/cj/n2/{code}).
+ */
+const FORMES_NIVEAU_II: Record<string, string> = {
+  '10': 'Entrepreneur individuel',
+  '21': 'Indivision',
+  '22': 'Société créée de fait',
+  '23': 'Société en participation',
+  '24': 'Fiducie',
+  '27': 'Groupement de droit privé sans personnalité morale',
+  '29': 'Groupement de droit privé sans personnalité morale',
+  '31': 'Personne morale de droit étranger',
+  '32': 'Personne morale de droit étranger',
+  '41': 'Établissement public à caractère industriel ou commercial',
+  '51': 'Société coopérative commerciale particulière',
+  '52': 'Société en nom collectif (SNC)',
+  '53': 'Société en commandite',
+  '54': 'SARL',
+  '55': 'Société anonyme (SA)',
+  '56': 'Société anonyme (SA)',
+  '57': 'SAS / SASU',
+  '58': 'Société européenne (SE)',
+  '61': "Caisse d'épargne et de prévoyance",
+  '62': "Groupement d'intérêt économique (GIE)",
+  '63': 'Société coopérative agricole',
+  '64': "Société d'assurance mutuelle",
+  '65': 'Société civile',
+  '69': 'Autre personne morale inscrite au RCS',
+  '71': 'Personne morale de droit public',
+  '72': 'Personne morale de droit public',
+  '73': 'Personne morale de droit public',
+  '74': 'Personne morale de droit public',
+  '81': 'Organisme de protection sociale',
+  '82': 'Organisme mutualiste',
+  '83': "Comité d'entreprise",
+  '84': 'Organisme professionnel',
+  '85': 'Organisme de retraite à adhésion non obligatoire',
+  '91': 'Syndicat de copropriétaires',
+  '92': 'Association',
+  '93': 'Fondation',
+  '99': 'Autre personne morale de droit privé',
+};
+
+export function formatForme(code: string | undefined): string {
+  const c = (code ?? '').trim();
+  if (!c) return 'Non renseignée';
+  if (FORMES[c]) return FORMES[c];
+  // Sociétés civiles professionnelles : 6561 à 6578 (SCP d'avocats, de médecins…)
+  if (/^65[67]\d$/.test(c)) return 'Société civile professionnelle (SCP)';
+  return FORMES_NIVEAU_II[c.slice(0, 2)] ?? `Catégorie juridique ${c}`;
 }
 
 function formatEffectif(code: string | undefined): string {
