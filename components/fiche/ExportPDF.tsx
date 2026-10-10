@@ -7,7 +7,7 @@ interface Props {
 export default function ExportPDF({ companyName }: Props) {
   function handlePrint() {
     if (typeof window !== 'undefined') {
-      document.title = `AVELOR · Fiche ${companyName}`;
+      document.title = `Solelis · Fiche ${companyName}`;
       window.print();
     }
   }

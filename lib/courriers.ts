@@ -811,7 +811,7 @@ export function personalizeCourrier(
 export function loadContextFromStorage(): CourrierContext | null {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = sessionStorage.getItem('avelor_reponses');
+    const raw = sessionStorage.getItem('solelis_reponses');
     if (!raw) return null;
     const r = JSON.parse(raw) as Partial<Reponses>;
     return {

@@ -36,7 +36,7 @@ const SECTION_GROUPES: { label: string; icone: string; sections: string[] }[] = 
 ];
 
 const TOTAL = SECTION_GROUPES.reduce((acc, g) => acc + g.sections.length, 0);
-const STORAGE_PREFIX = 'avelor_progress_';
+const STORAGE_PREFIX = 'solelis_progress_';
 
 export default function ProgressTracker({ token }: { token: string }) {
   const [consultes, setConsultes] = useLocalStorage<string[]>(`${STORAGE_PREFIX}${token}`, []);

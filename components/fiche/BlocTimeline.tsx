@@ -150,7 +150,7 @@ function etapesTresorerie(): Etape[] {
       jour: 'Semaines 1-2',
       titre: 'Demandes de délais (URSSAF, SIE, fournisseurs, banque)',
       description:
-        "Utilisez les modèles de courriers d'Avelor. La plupart des demandes argumentées aboutissent à un accord partiel ou total.",
+        "Utilisez les modèles de courriers de Solelis. La plupart des demandes argumentées aboutissent à un accord partiel ou total.",
       niveau: 'urgent',
     },
     {

@@ -23,7 +23,7 @@ export function ogMeta(opts: {
   const ogUrl = `/api/og?${params.toString()}`;
 
   return {
-    title: opts.pageTitle ?? `${opts.titre} — AVELOR`,
+    title: opts.pageTitle ?? `${opts.titre} — Solelis`,
     description: opts.description,
     openGraph: {
       title: opts.titre,

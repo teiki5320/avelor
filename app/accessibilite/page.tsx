@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Accessibilité — AVELOR',
-  description: 'Déclaration d\'accessibilité d\'Avelor : conformité RGAA, fonctionnalités d\'accessibilité, contact en cas de difficulté.',
+  title: 'Accessibilité — Solelis',
+  description: 'Déclaration d\'accessibilité de Solelis : conformité RGAA, fonctionnalités d\'accessibilité, contact en cas de difficulté.',
   robots: { index: true, follow: true },
 };
 
@@ -22,7 +22,7 @@ export default function AccessibilitePage() {
         <section className="rounded-2xl border border-bleu/30 bg-bleu/5 p-5">
           <p className="font-display text-base text-bleu-fonce">État de conformité</p>
           <p className="mt-2">
-            Avelor est <strong>partiellement conforme</strong> au RGAA 4.1 (Référentiel Général d&apos;Amélioration
+            Solelis est <strong>partiellement conforme</strong> au RGAA 4.1 (Référentiel Général d&apos;Amélioration
             de l&apos;Accessibilité). L&apos;objectif est la conformité totale d&apos;ici fin 2026.
           </p>
         </section>
@@ -59,7 +59,7 @@ export default function AccessibilitePage() {
         <section>
           <h2 className="font-display text-lg text-navy">Compatibilité</h2>
           <p className="mt-2">
-            Avelor est testé sur :
+            Solelis est testé sur :
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>Navigateurs : Chrome, Firefox, Safari, Edge (versions des 2 dernières années)</li>
@@ -72,7 +72,7 @@ export default function AccessibilitePage() {
           <h2 className="font-display text-lg text-navy">Voie de recours</h2>
           <p className="mt-2">
             Si vous rencontrez une difficulté d&apos;accessibilité, contactez-nous à
-            <a href="mailto:accessibilite@avelor.vercel.app" className="text-bleu-fonce underline ml-1">accessibilite@avelor.vercel.app</a>
+            <a href="mailto:solelis@toakeur.com" className="text-bleu-fonce underline ml-1">solelis@toakeur.com</a>
             {' '}— nous nous engageons à proposer une réponse sous 5 jours ouvrés.
           </p>
           <p className="mt-2">

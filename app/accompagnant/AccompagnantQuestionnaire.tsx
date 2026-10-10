@@ -144,8 +144,8 @@ function buildConseils(a: Answers) {
       texte: 'La CCI propose un accompagnement gratuit et confidentiel pour les dirigeants en difficulté. Vous pouvez même appeler à sa place pour prendre un premier rendez-vous.',
     });
     conseils.push({
-      titre: 'Proposez-lui de faire le diagnostic AVELOR ensemble',
-      texte: 'Asseyez-vous avec lui/elle, entrez son SIRET sur AVELOR et parcourez la fiche ensemble. C\'est souvent plus facile à deux.',
+      titre: 'Proposez-lui de faire le diagnostic Solelis ensemble',
+      texte: 'Asseyez-vous avec lui/elle, entrez son SIRET sur Solelis et parcourez la fiche ensemble. C\'est souvent plus facile à deux.',
       lien: '/',
       lienLabel: 'Commencer le diagnostic',
     });

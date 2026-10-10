@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Parler à quelqu\'un — maintenant · AVELOR',
+  title: 'Parler à quelqu\'un — maintenant · Solelis',
   description:
     'Numéros gratuits et confidentiels pour les dirigeants en difficulté. APESA, 3114, CCI, SOS Amitié.',
 };

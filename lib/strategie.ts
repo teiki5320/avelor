@@ -160,7 +160,7 @@ export function buildStrategie(axe: Axe, r: Reponses, c: CompanyData, score: num
         ],
         etapes: [
           'Prévisionnel de trésorerie à 6 mois avec votre expert-comptable',
-          'Demandes de délais : URSSAF, SIE, bailleur, fournisseurs (courriers Avelor)',
+          'Demandes de délais : URSSAF, SIE, bailleur, fournisseurs (courriers Solelis)',
           r.pgeEnCours === 'oui'
             ? 'PGE en cours : demande de restructuration auprès de votre banque, puis Médiation du crédit (3414) — étalement jusqu\'à 10 ans, sans perte de la garantie d\'État'
             : 'Saisine médiation du crédit si tension bancaire',

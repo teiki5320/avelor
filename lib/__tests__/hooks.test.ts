@@ -29,7 +29,7 @@ describe('useLocalStorage', () => {
   });
 
   it('retourne la valeur initiale pour un objet', () => {
-    const initial = { nom: 'Avelor', actif: true };
+    const initial = { nom: 'Solelis', actif: true };
     const { result } = renderHook(() => useLocalStorage('obj-key', initial));
     expect(result.current[0]).toEqual(initial);
   });

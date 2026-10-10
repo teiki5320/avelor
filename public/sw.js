@@ -1,9 +1,9 @@
-// Service worker minimal pour Avelor — mode offline basique
+// Service worker minimal pour Solelis — mode offline basique
 // Stratégie : network-first pour le HTML / JSON, cache-first pour les
 // assets statiques (icônes, manifest). Le cache est versionné — tout
 // changement de CACHE_VERSION force la mise à jour.
 
-const CACHE_VERSION = 'avelor-v1';
+const CACHE_VERSION = 'solelis-v1';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 

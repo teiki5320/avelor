@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Checklist data room — AVELOR',
+  title: 'Checklist data room — Solelis',
   description:
     'Liste complète des documents à préparer pour une cession ou une procédure collective : juridique, financier, social, fiscal, opérationnel.',
 };

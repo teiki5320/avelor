@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AVELOR · Témoignages',
+  title: 'Solelis · Témoignages',
   description: 'Des dirigeants racontent comment ils ont traversé la difficulté.',
 };
 
@@ -149,10 +149,10 @@ export default function TemoignagesPage() {
           dirigeants ? Votre témoignage compte — même quelques phrases.
         </p>
         <a
-          href="mailto:avelor@toakeur.com?subject=Témoignage AVELOR"
+          href="mailto:solelis@toakeur.com?subject=Témoignage Solelis"
           className="mt-3 inline-flex text-bleu-fonce underline underline-offset-4"
         >
-          Écrire à AVELOR →
+          Écrire à Solelis →
         </a>
       </div>
     </section>

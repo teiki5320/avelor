@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Simulateur aide juridictionnelle — AVELOR',
+  title: 'Simulateur aide juridictionnelle — Solelis',
   description:
     'Vérifiez votre éligibilité à l\'aide juridictionnelle selon vos revenus et personnes à charge. Barèmes 2025 officiels.',
 };

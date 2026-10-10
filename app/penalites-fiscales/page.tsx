@@ -7,7 +7,7 @@ export const metadata = {
     sous: 'Intérêts, majorations 10/40/80 %, remises',
     description: 'Comprendre les pénalités fiscales (intérêts de retard, majorations 10/40/80 %), les voies de recours et de remise gracieuse.',
     cat: 'aide',
-    pageTitle: 'Pénalités fiscales : intérêts, majorations, remises — AVELOR',
+    pageTitle: 'Pénalités fiscales : intérêts, majorations, remises — Solelis',
   }),
   robots: { index: true, follow: true },
 };

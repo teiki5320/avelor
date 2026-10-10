@@ -157,7 +157,7 @@ async function renderFiche(tokenParam: string, d?: string) {
     <section className="mx-auto max-w-6xl space-y-5 px-5 pb-24 sm:space-y-6">
       {/* Print-only header */}
       <div className="print-header hidden">
-        <p style={{ fontFamily: 'Georgia, serif', fontSize: '22pt', letterSpacing: '0.05em' }}>AVELOR</p>
+        <p style={{ fontFamily: 'Georgia, serif', fontSize: '22pt', letterSpacing: '0.05em' }}>Solelis</p>
         <p style={{ fontSize: '10pt', color: '#666', marginTop: '4px' }}>
           Fiche confidentielle · {company_data.nom} · SIRET {company_data.siret}
         </p>
@@ -214,7 +214,7 @@ async function renderFiche(tokenParam: string, d?: string) {
 
       {/* Print-only footer */}
       <div className="print-footer hidden">
-        <p>AVELOR · Accompagnement gratuit, confidentiel, sans jugement</p>
+        <p>Solelis · Accompagnement gratuit, confidentiel, sans jugement</p>
         <p>Cette fiche ne remplace pas un conseil personnalisé.</p>
       </div>
     </section>

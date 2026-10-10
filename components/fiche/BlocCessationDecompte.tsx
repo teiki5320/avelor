@@ -6,7 +6,7 @@ import BlocAccordeon from './BlocAccordeon';
 /** Événement custom : l'event `storage` du navigateur ne se déclenche que
  *  dans les AUTRES onglets — BlocRappels s'appuie sur celui-ci pour se
  *  resynchroniser quand la date est saisie dans le même onglet. */
-export const CESSATION_DATE_EVENT = 'avelor:cessation-date';
+export const CESSATION_DATE_EVENT = 'solelis:cessation-date';
 
 function daysBetween(from: Date, to: Date): number {
   return Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
@@ -103,7 +103,7 @@ const STYLES: Record<Verdict['niveau'], { bg: string; border: string; text: stri
 
 export default function BlocCessationDecompte() {
   const { reponses } = useFiche();
-  const storageKey = useFicheStorageKey('avelor_cessation_date');
+  const storageKey = useFicheStorageKey('solelis_cessation_date');
   const [dateStr, setDateStr] = useState<string>('');
   const [loaded, setLoaded] = useState(false);
 

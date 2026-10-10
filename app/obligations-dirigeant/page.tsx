@@ -7,7 +7,7 @@ export const metadata = {
     sous: 'Ce qu\'il faut faire — et ne pas faire',
     description: 'Ce que vous devez faire (et éviter) en tant que dirigeant d\'une entreprise en difficulté : déclaration de cessation, coopération mandataire, comptabilité, période suspecte.',
     cat: 'procedure',
-    pageTitle: 'Obligations du dirigeant en difficulté — AVELOR',
+    pageTitle: 'Obligations du dirigeant en difficulté — Solelis',
   }),
   robots: { index: true, follow: true },
 };

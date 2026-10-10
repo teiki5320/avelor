@@ -23,7 +23,7 @@ export default function Compteur() {
 
   return (
     <p className="text-xs text-navy/40">
-      {count.toLocaleString('fr-FR')} {count === 1 ? 'fiche créée' : 'fiches créées'} sur AVELOR
+      {count.toLocaleString('fr-FR')} {count === 1 ? 'fiche créée' : 'fiches créées'} sur Solelis
     </p>
   );
 }

@@ -12,7 +12,7 @@ export default function StoreCompanyData({ company, token, reponses }: Props) {
   useEffect(() => {
     try {
       sessionStorage.setItem(
-        'avelor_company',
+        'solelis_company',
         JSON.stringify({
           NOM_ENTREPRISE: company.nom,
           SIRET: company.siret,
@@ -25,10 +25,10 @@ export default function StoreCompanyData({ company, token, reponses }: Props) {
         })
       );
       if (reponses) {
-        sessionStorage.setItem('avelor_reponses', JSON.stringify(reponses));
+        sessionStorage.setItem('solelis_reponses', JSON.stringify(reponses));
       }
       // Store last fiche token for "Retrouver ma fiche"
-      localStorage.setItem('avelor_last_fiche', JSON.stringify({
+      localStorage.setItem('solelis_last_fiche', JSON.stringify({
         token,
         nom: company.nom,
         siret: company.siret,

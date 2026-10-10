@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Aides personnelles du dirigeant · AVELOR',
+  title: 'Aides personnelles du dirigeant · Solelis',
   description:
     'Vos droits personnels en tant que dirigeant : ATI, RSA, CSS, APL, surendettement, AGEFIPH. Beaucoup de dirigeants les ignorent.',
 };

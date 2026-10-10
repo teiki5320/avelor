@@ -27,7 +27,7 @@ export default function SiretInput() {
     setLoading(true);
     setError(null);
     try {
-      sessionStorage.setItem('avelor_siret', clean);
+      sessionStorage.setItem('solelis_siret', clean);
     } catch {}
     router.push(`/questionnaire?siret=${clean}`);
   }

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Boîte à outils — AVELOR',
+  title: 'Boîte à outils — Solelis',
   description:
     'Calculateurs et vérificateurs officiels pour les dirigeants : prescription, indemnités de licenciement, ATI, aide juridictionnelle, valorisation, coûts de procédures.',
 };
@@ -111,7 +111,7 @@ const jsonLdBreadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
     { '@type': 'ListItem', position: 2, name: 'Outils' },
   ],
 };

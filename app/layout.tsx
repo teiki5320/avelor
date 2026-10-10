@@ -20,21 +20,21 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: 'AVELOR · Aide aux chefs d\'entreprise',
+  title: 'Solelis · Aide aux chefs d\'entreprise',
   description:
-    'AVELOR accompagne les chefs d\'entreprise français en difficulté — avec tact, avec clarté, avec les bons interlocuteurs.',
-  metadataBase: new URL('https://avelor.vercel.app'),
+    'Solelis accompagne les chefs d\'entreprise français en difficulté — avec tact, avec clarté, avec les bons interlocuteurs.',
+  metadataBase: new URL('https://solelis.com'),
   openGraph: {
-    title: 'AVELOR',
+    title: 'Solelis',
     description:
-      'Vous n\'êtes pas seul. AVELOR vous aide à y voir clair — en quelques minutes, gratuitement.',
+      'Vous n\'êtes pas seul. Solelis vous aide à y voir clair — en quelques minutes, gratuitement.',
     type: 'website',
-    url: 'https://avelor.vercel.app',
-    images: [{ url: '/api/og', width: 1200, height: 630, alt: 'AVELOR — Aide aux chefs d\'entreprise en difficulté' }],
+    url: 'https://solelis.com',
+    images: [{ url: '/api/og', width: 1200, height: 630, alt: 'Solelis — Aide aux chefs d\'entreprise en difficulté' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AVELOR',
+    title: 'Solelis',
     description: 'Aide gratuite et confidentielle aux chefs d\'entreprise en difficulté en France.',
     images: ['/api/og'],
   },
@@ -51,7 +51,7 @@ export default function RootLayout({
         {/* Applique le thème enregistré avant le rendu (anti-FOUC) */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('avelor_theme');if(t==='sombre')document.documentElement.setAttribute('data-theme','dark');else if(t==='contraste')document.documentElement.setAttribute('data-theme','contrast');}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('solelis_theme');if(t==='sombre')document.documentElement.setAttribute('data-theme','dark');else if(t==='contraste')document.documentElement.setAttribute('data-theme','contrast');}catch(e){}})();`,
           }}
         />
         <link rel="manifest" href="/manifest.json" />
@@ -64,8 +64,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Organization',
-              name: 'AVELOR',
-              url: 'https://avelor.vercel.app',
+              name: 'Solelis',
+              url: 'https://solelis.com',
               description:
                 'Plateforme d\'aide aux chefs d\'entreprise en difficulté en France',
             }),
@@ -86,7 +86,7 @@ export default function RootLayout({
         <Nav />
         <main id="contenu-principal" className="relative min-h-screen pt-20 sm:pt-24">{children}</main>
         <footer className="relative mt-24 space-y-2 pb-10 text-center text-xs text-navy/50">
-          <p className="font-display text-sm tracking-wide">AVELOR</p>
+          <p className="font-display text-sm tracking-wide">Solelis</p>
           <p>Accompagnement gratuit · confidentiel · sans jugement</p>
           <Compteur />
           <div className="flex flex-wrap justify-center gap-3 pt-2 text-navy/55">

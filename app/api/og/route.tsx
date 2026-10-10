@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
 
-// Couleur d'accent par catégorie (cohérent avec la charte Avelor).
+// Couleur d'accent par catégorie (cohérent avec la charte Solelis).
 const ACCENTS: Record<string, string> = {
   outil: '#4A72B8',
   courrier: '#1E3D82',
@@ -65,7 +65,7 @@ export async function GET(req: NextRequest) {
               letterSpacing: '0.18em',
             }}
           >
-            AVELOR
+            Solelis
           </div>
           <div
             style={{

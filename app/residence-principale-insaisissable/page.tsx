@@ -7,7 +7,7 @@ export const metadata = {
     sous: 'Protéger son logement en cas de difficulté',
     description: 'Protection de la résidence principale du dirigeant : insaisissabilité légale (loi Macron 2015), déclaration notariée, EI loi 2022. Limites, conjoint, cautions.',
     cat: 'situation',
-    pageTitle: 'Résidence principale insaisissable : ce que vous devez savoir — AVELOR',
+    pageTitle: 'Résidence principale insaisissable : ce que vous devez savoir — Solelis',
   }),
   robots: { index: true, follow: true },
 };

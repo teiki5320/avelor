@@ -19,7 +19,7 @@ describe('sendMagicLink', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     process.env.RESEND_API_KEY = 'test-key-123';
-    process.env.NEXT_PUBLIC_BASE_URL = 'https://test.avelor.fr';
+    process.env.NEXT_PUBLIC_BASE_URL = 'https://test.solelis.com';
     process.env.RESEND_FROM = 'Test <test@example.com>';
   });
 
@@ -51,8 +51,8 @@ describe('sendMagicLink', () => {
     const appel = mockSend.mock.calls[0][0];
     expect(appel.to).toBe('dirigeant@entreprise.fr');
     expect(appel.from).toBe('Test <test@example.com>');
-    expect(appel.subject).toContain('AVELOR');
-    expect(appel.html).toContain('https://test.avelor.fr/fiche/token-xyz');
+    expect(appel.subject).toContain('Solelis');
+    expect(appel.html).toContain('https://test.solelis.com/fiche/token-xyz');
   });
 
   it('retourne false si Resend renvoie une erreur', async () => {

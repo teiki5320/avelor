@@ -350,7 +350,7 @@ input, button, textarea {
   a[href^="/"]::after,
   a[href^="#"]::after,
   a[href^="mailto:"]::after,
-  a[href*="avelor"]::after { content: ""; }
+  a[href*="solelis"]::after { content: ""; }
   .print-header {
     display: block !important;
     text-align: center;

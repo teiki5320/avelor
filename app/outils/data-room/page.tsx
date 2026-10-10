@@ -136,7 +136,7 @@ const CHECKLIST: Section[] = [
   },
 ];
 
-const STORAGE_KEY = 'avelor_dataroom_check';
+const STORAGE_KEY = 'solelis_dataroom_check';
 
 function downloadText(text: string, filename: string) {
   const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
@@ -193,7 +193,7 @@ export default function DataRoomPage() {
 
   function exporter() {
     const lines: string[] = [];
-    lines.push('AVELOR — CHECKLIST DATA ROOM CESSION');
+    lines.push('Solelis — CHECKLIST DATA ROOM CESSION');
     lines.push(`Exporté le ${new Date().toLocaleDateString('fr-FR')}`);
     lines.push(`Avancement : ${stats.doneAll} / ${stats.total} pièces (${stats.doneObl} / ${stats.totalObl} obligatoires)`);
     lines.push('');
@@ -204,7 +204,7 @@ export default function DataRoomPage() {
       });
       lines.push('');
     });
-    downloadText(lines.join('\n'), 'avelor-data-room.txt');
+    downloadText(lines.join('\n'), 'solelis-data-room.txt');
   }
 
   const jsonLdHowTo = {
@@ -241,8 +241,8 @@ export default function DataRoomPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
-      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://solelis.com/outils' },
       { '@type': 'ListItem', position: 3, name: 'Préparateur de data room' },
     ],
   };

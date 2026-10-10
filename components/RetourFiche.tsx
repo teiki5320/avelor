@@ -14,7 +14,7 @@ export default function RetourFiche() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('avelor_last_fiche');
+      const raw = localStorage.getItem('solelis_last_fiche');
       if (raw) {
         const parsed = JSON.parse(raw) as LastFiche;
         const age = Date.now() - (parsed.ts || 0);

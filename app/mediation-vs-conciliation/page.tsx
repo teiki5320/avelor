@@ -7,7 +7,7 @@ export const metadata = {
     sous: 'Quelle procédure amiable choisir ?',
     description: 'Quelle procédure amiable choisir entre la médiation (crédit ou entreprises), le mandat ad hoc et la conciliation : critères, durée, coût, confidentialité.',
     cat: 'procedure',
-    pageTitle: 'Médiation, mandat ad hoc, conciliation : différences — AVELOR',
+    pageTitle: 'Médiation, mandat ad hoc, conciliation : différences — Solelis',
   }),
   robots: { index: true, follow: true },
 };

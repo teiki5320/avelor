@@ -7,7 +7,7 @@ export const metadata = {
     sous: 'Quel dispositif selon votre taille',
     description: 'CIRI (Comité Interministériel de Restructuration Industrielle) et CODEFI (Comité Départemental) : conditions, saisine, accompagnement État pour entreprises en difficulté.',
     cat: 'aide',
-    pageTitle: 'CIRI vs CODEFI : quel dispositif pour ma taille ? — AVELOR',
+    pageTitle: 'CIRI vs CODEFI : quel dispositif pour ma taille ? — Solelis',
   }),
   robots: { index: true, follow: true },
 };

@@ -3,7 +3,7 @@ import { COURRIERS, CATEGORIES } from '@/lib/courriers';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AVELOR · Courriers types',
+  title: 'Solelis · Courriers types',
   description:
     'Modèles de courriers prêts à l\'emploi pour les dirigeants en difficulté.',
 };
@@ -21,7 +21,7 @@ const jsonLdBreadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
     { '@type': 'ListItem', position: 2, name: 'Courriers' },
   ],
 };

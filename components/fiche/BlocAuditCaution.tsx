@@ -107,7 +107,7 @@ function formatMontant(n: number): string {
 
 export default function BlocAuditCaution() {
   const { reponses } = useFiche();
-  const storageKey = useFicheStorageKey('avelor_cautions');
+  const storageKey = useFicheStorageKey('solelis_cautions');
   const [cautions, setCautions] = useState<CautionDetail[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [draft, setDraft] = useState<Partial<CautionDetail>>({

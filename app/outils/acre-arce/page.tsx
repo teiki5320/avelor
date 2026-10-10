@@ -120,8 +120,8 @@ export default function AcreArcePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
-      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://avelor.vercel.app/outils' },
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Outils', item: 'https://solelis.com/outils' },
       { '@type': 'ListItem', position: 3, name: 'Vérificateur ACRE/ARCE' },
     ],
   };

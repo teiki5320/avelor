@@ -19,7 +19,7 @@ interface FaqCiblee {
 const FAQ_PAR_SITUATION: Record<string, FaqCiblee> = {
   'urssaf-impayee': {
     titre: 'FAQ — URSSAF impayée : vos questions, nos réponses',
-    metaTitle: 'URSSAF impayée : que faire ? Toutes vos questions — AVELOR',
+    metaTitle: 'URSSAF impayée : que faire ? Toutes vos questions — Solelis',
     metaDesc: 'Cotisations URSSAF impayées, mise en demeure, prescription, CCSF : 12 questions et réponses claires pour les dirigeants en difficulté.',
     intro: "Cotisations en retard, lettre recommandée, ATD imminent ? Vous êtes loin d'être seul·e. Voici les 12 questions qui reviennent le plus souvent — sources officielles à l'appui.",
     questions: [
@@ -45,7 +45,7 @@ const FAQ_PAR_SITUATION: Record<string, FaqCiblee> = {
 
   'pge-en-difficulte': {
     titre: 'FAQ — PGE en difficulté : restructuration, médiation, alternatives',
-    metaTitle: 'PGE en difficulté : restructurer ou pas ? — AVELOR',
+    metaTitle: 'PGE en difficulté : restructurer ou pas ? — Solelis',
     metaDesc: 'Prêt Garanti par l\'État (Covid) en remboursement : restructuration jusqu\'à 10 ans, médiation, conséquences d\'une procédure collective. 10 questions clés.',
     intro: 'Le remboursement de votre PGE pèse sur la trésorerie ? Vous avez plusieurs leviers, mais l\'ordre dans lequel vous les actionnez change tout. Voici les 10 questions essentielles.',
     questions: [
@@ -68,7 +68,7 @@ const FAQ_PAR_SITUATION: Record<string, FaqCiblee> = {
 
   'caution-personnelle': {
     titre: 'FAQ — Caution personnelle : contester, négocier, se protéger',
-    metaTitle: 'Caution personnelle : peut-elle être annulée ? — AVELOR',
+    metaTitle: 'Caution personnelle : peut-elle être annulée ? — Solelis',
     metaDesc: 'Caution bancaire signée pour votre entreprise : disproportion, défaut d\'information, durée — 10 questions et réponses pour la contester.',
     intro: 'La caution personnelle est la première source de ruine patrimoniale des dirigeants. Mais une part importante est contestable. Voici les 10 questions clés.',
     questions: [
@@ -91,7 +91,7 @@ const FAQ_PAR_SITUATION: Record<string, FaqCiblee> = {
 
   'cessation-paiements': {
     titre: 'FAQ — Cessation des paiements : déclarer, anticiper, comprendre',
-    metaTitle: 'Cessation des paiements : que faire dans les 45 jours ? — AVELOR',
+    metaTitle: 'Cessation des paiements : que faire dans les 45 jours ? — Solelis',
     metaDesc: 'Vous êtes en cessation des paiements : déclaration au tribunal, conséquences, alternatives. 12 questions clés pour les dirigeants.',
     intro: 'La cessation des paiements n\'est pas une sanction — c\'est un état juridique à déclarer. Ce que vous faites dans les 45 jours détermine la suite.',
     questions: [
@@ -117,7 +117,7 @@ const FAQ_PAR_SITUATION: Record<string, FaqCiblee> = {
 
   'rebondir-apres-liquidation': {
     titre: 'FAQ — Rebondir après une liquidation : aides, statuts, mental',
-    metaTitle: 'Rebondir après une liquidation : guide complet — AVELOR',
+    metaTitle: 'Rebondir après une liquidation : guide complet — Solelis',
     metaDesc: 'Après une liquidation : ATI, ACRE, ARCE, recréer une activité, 60 000 Rebonds, redémarrage psychologique. 12 questions essentielles.',
     intro: 'Une liquidation n\'est pas la fin. 60 % des dirigeants qui rebondissent créent une activité plus pérenne que la précédente. Voici comment.',
     questions: [
@@ -143,7 +143,7 @@ const FAQ_PAR_SITUATION: Record<string, FaqCiblee> = {
 
   'assignation-tribunal': {
     titre: 'FAQ — Assignation au tribunal : urgence et défense',
-    metaTitle: 'Assignation au tribunal : que faire ? — AVELOR',
+    metaTitle: 'Assignation au tribunal : que faire ? — Solelis',
     metaDesc: 'Vous avez reçu une assignation : audience, défense, aide juridictionnelle, plan de cession. Réponses claires aux 10 questions essentielles.',
     intro: 'Une assignation au tribunal est urgente mais pas désespérée. Voici les 10 questions à se poser ce soir.',
     questions: [
@@ -211,8 +211,8 @@ export default async function FaqCibleePage({ params }: { params: Promise<{ situ
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
-      { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://avelor.vercel.app/faq' },
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
+      { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://solelis.com/faq' },
       { '@type': 'ListItem', position: 3, name: data.titre },
     ],
   };

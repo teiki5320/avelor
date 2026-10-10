@@ -6,7 +6,7 @@ export const metadata = ogMeta({
   description:
     'Saisissez votre effectif et découvrez quelles obligations s\'appliquent : CSE, PSE, participation, contribution AGEFIPH, RPS, etc.',
   cat: 'outil',
-  pageTitle: 'Vérificateur de seuils d\'effectif — AVELOR',
+  pageTitle: 'Vérificateur de seuils d\'effectif — Solelis',
 });
 
 export default function Layout({ children }: { children: React.ReactNode }) {
