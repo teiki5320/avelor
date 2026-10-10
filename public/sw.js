@@ -3,7 +3,7 @@
 // assets statiques (icônes, manifest). Le cache est versionné — tout
 // changement de CACHE_VERSION force la mise à jour.
 
-const CACHE_VERSION = 'solelis-v2';
+const CACHE_VERSION = 'solelis-v3';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -26,6 +26,8 @@ self.addEventListener('install', (event) => {
   );
 });
 
+// À l'activation, les caches des versions précédentes (dont solelis-v2, qui a pu
+// garder des pages de fiche) sont supprimés.
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches
@@ -52,9 +54,13 @@ self.addEventListener('fetch', (event) => {
   // Ignorer les requêtes vers d'autres origines (analytics, INSEE, etc.).
   if (url.origin !== self.location.origin) return;
 
-  // Ne pas mettre en cache les API et les routes dynamiques.
+  // Ne jamais mettre en cache les API ni les pages personnelles : une fiche
+  // (/fiche/<token>, /fiche/local) contient des données sensibles (dettes, RQTH,
+  // nationalité…) qui ne doivent pas rester dans le cache du navigateur.
   if (url.pathname.startsWith('/api/')) return;
   if (url.pathname.startsWith('/_next/data/')) return;
+  if (url.pathname.startsWith('/fiche/') || url.pathname === '/fiche') return;
+  if (url.pathname.startsWith('/questionnaire')) return;
 
   // Stratégie cache-first pour les assets statiques.
   if (url.pathname.match(/\.(png|jpg|jpeg|svg|webp|ico|woff2?|ttf|css|js)$/)) {
