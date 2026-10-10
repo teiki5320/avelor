@@ -26,3 +26,6 @@ _*.mjs
 .open-next/
 .wrangler/
 .dev.vars*
+
+# Copies de travail temporaires (worktrees)
+.claude/worktrees/

@@ -8,7 +8,7 @@ export default defineConfig({
     environment: 'node',
     globals: true,
     setupFiles: ['./vitest.setup.ts'],
-    exclude: ['node_modules', 'e2e', '.next', 'dist'],
+    exclude: ['node_modules', 'e2e', '.next', 'dist', '.open-next', '.claude'],
     // Composants React → utilisent une directive `// @vitest-environment jsdom` en tête de fichier.
   },
   resolve: {

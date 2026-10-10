@@ -22,6 +22,7 @@ function requete(sql: string, valeurs: unknown[]) {
       return { meta: { changes: cible ? 1 : 0 } };
     },
     async first<T>() {
+      if (sql.includes('COUNT(*)')) return { n: lignes.length } as T;
       return (lignes.find((l) => l.token === v[0]) ?? null) as T | null;
     },
     async all<T>() {
@@ -38,7 +39,7 @@ vi.mock('@opennextjs/cloudflare', () => ({
   },
 }));
 
-import { fichesAvecRappels, getDb, getFicheByToken, getRappels, lignesStats, saveFiche, setRappels, updateFicheEmail } from '../db';
+import { compterFiches, fichesAvecRappels, getDb, getFicheByToken, getRappels, saveFiche, setRappels, updateFicheEmail } from '../db';
 
 const fiche: FicheRecord = {
   token: 'abc123',
@@ -72,7 +73,7 @@ describe('db (Cloudflare D1)', () => {
     expect(await saveFiche(fiche)).toBe(false);
     expect(await getFicheByToken('abc123')).toBeNull();
     expect(await fichesAvecRappels()).toEqual([]);
-    expect(await lignesStats()).toEqual([]);
+    expect(await compterFiches()).toBe(0);
   });
 
   it('enregistre puis relit une fiche (JSON reconstitué)', async () => {
@@ -110,11 +111,9 @@ describe('db (Cloudflare D1)', () => {
     expect(aTraiter[0].company_data.nom).toBe('LA POSTE');
   });
 
-  it('fournit les lignes des statistiques', async () => {
+  it('compte les fiches', async () => {
+    expect(await compterFiches()).toBe(0);
     await saveFiche(fiche);
-    const stats = await lignesStats();
-    expect(stats).toHaveLength(1);
-    expect(stats[0].reponses.probleme).toBe('urssaf');
-    expect(stats[0].created_at).toBe('2026-10-10T00:00:00.000Z');
+    expect(await compterFiches()).toBe(1);
   });
 });

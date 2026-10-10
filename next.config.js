@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
+  // Un package-lock.json traîne dans le dossier personnel : on fixe la racine du projet.
+  outputFileTracingRoot: __dirname,
   generateBuildId: () => process.env.WORKERS_CI_COMMIT_SHA?.slice(0, 8) ?? `dev-${Date.now()}`,
   images: {
     remotePatterns: [
