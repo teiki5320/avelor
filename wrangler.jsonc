@@ -11,6 +11,15 @@
     { "pattern": "solelis.com", "custom_domain": true },
     { "pattern": "www.solelis.com", "custom_domain": true }
   ],
+  // Base des fiches (D1, juridiction UE). Schéma : dossier migrations/.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "solelis",
+      "database_id": "b094671a-a235-449a-a06d-4d311c7a3988",
+      "migrations_dir": "migrations"
+    }
+  ],
   // Rappels email chaque jour à 7 h (UTC).
   "triggers": { "crons": ["0 7 * * *"] },
   "observability": { "enabled": true }

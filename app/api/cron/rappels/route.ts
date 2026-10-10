@@ -1,13 +1,7 @@
 import { NextResponse } from 'next/server';
-import { getSupabase } from '@/lib/supabase';
+import { fichesAvecRappels, getDb, setRappels, type FicheAvecRappels } from '@/lib/db';
 import type { Rappel } from '@/lib/types';
 
-interface FicheAvecRappels {
-  token: string;
-  siret: string;
-  rappels: Rappel[];
-  company_data: { nom?: string };
-}
 
 /**
  * GET /api/cron/rappels
@@ -24,8 +18,7 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
   }
 
-  const sb = getSupabase();
-  if (!sb) {
+  if (!getDb()) {
     return NextResponse.json({ error: 'Service indisponible' }, { status: 503 });
   }
 
@@ -33,24 +26,16 @@ export async function GET(req: Request) {
 
   try {
     /* Récupérer toutes les fiches qui ont des rappels non vides */
-    const { data: fiches, error } = await sb
-      .from('fiches')
-      .select('token, siret, rappels, company_data')
-      .not('rappels', 'is', null);
+    const fiches = await fichesAvecRappels();
 
-    if (error) {
-      console.error('[CRON rappels] fetch error:', error);
-      return NextResponse.json({ error: 'Erreur de lecture' }, { status: 500 });
-    }
-
-    if (!fiches || fiches.length === 0) {
+    if (fiches.length === 0) {
       return NextResponse.json({ envoyes: 0, message: 'Aucune fiche avec rappels' });
     }
 
     let totalEnvoyes = 0;
     const erreurs: string[] = [];
 
-    for (const fiche of fiches as FicheAvecRappels[]) {
+    for (const fiche of fiches) {
       const rappels = fiche.rappels;
       if (!Array.isArray(rappels) || rappels.length === 0) continue;
 
@@ -75,12 +60,7 @@ export async function GET(req: Request) {
 
       /* Sauvegarder les rappels mis à jour */
       if (modifie) {
-        const { error: updateError } = await sb
-          .from('fiches')
-          .update({ rappels })
-          .eq('token', fiche.token);
-
-        if (updateError) {
+        if (!(await setRappels(fiche.token, rappels))) {
           erreurs.push(`Echec update pour ${fiche.token}`);
         }
       }

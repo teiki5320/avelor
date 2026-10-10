@@ -17,7 +17,7 @@ vi.mock('@/lib/sirene', () => ({
   })),
 }));
 
-vi.mock('@/lib/supabase', () => ({
+vi.mock('@/lib/db', () => ({
   saveFiche: vi.fn(async () => true),
 }));
 

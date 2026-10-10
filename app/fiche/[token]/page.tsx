@@ -4,7 +4,7 @@ import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
 import LayoutDashboard from '@/components/fiche/layouts/LayoutDashboard';
-import { getFicheByToken } from '@/lib/supabase';
+import { getFicheByToken } from '@/lib/db';
 import { fetchSirene } from '@/lib/sirene';
 import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodacc';
 import { searchAvocats } from '@/lib/googlePlaces';

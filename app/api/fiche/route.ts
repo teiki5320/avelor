@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { randomUUID } from 'node:crypto';
 import { fetchSirene } from '@/lib/sirene';
-import { saveFiche } from '@/lib/supabase';
+import { saveFiche } from '@/lib/db';
 import { fichePayloadSchema } from '@/lib/schemas';
 import type { Reponses } from '@/lib/types';
 

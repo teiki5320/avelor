@@ -1,33 +1,17 @@
 import { NextResponse } from 'next/server';
-import { getSupabase } from '@/lib/supabase';
-import type { Reponses } from '@/lib/types';
+import { getDb, lignesStats } from '@/lib/db';
 
-export const revalidate = 300;
-
-interface FicheRow {
-  reponses: Reponses;
-  email: string | null;
-  created_at: string | null;
-}
+// Lue à chaque appel (la base n'existe qu'au moment de l'exécution), mise en cache 5 min.
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const sb = getSupabase();
-  if (!sb) {
+  if (!getDb()) {
     return NextResponse.json({ count: 0 });
   }
   try {
     /* Récupérer les champs nécessaires pour l'agrégation */
-    const { data, count, error } = await sb
-      .from('fiches')
-      .select('reponses, email, created_at', { count: 'exact' });
-
-    if (error) {
-      console.error('[GET /api/stats]', error);
-      return NextResponse.json({ count: 0 });
-    }
-
-    const fiches = (data ?? []) as FicheRow[];
-    const total = count ?? fiches.length;
+    const fiches = await lignesStats();
+    const total = fiches.length;
 
     /* Agrégation par situation */
     const parSituation: Record<string, number> = {};
@@ -55,7 +39,7 @@ export async function GET() {
       parProbleme,
       avecEmail,
       derniereFiche,
-    });
+    }, { headers: { 'Cache-Control': 'public, s-maxage=300' } });
   } catch (e) {
     console.error('[GET /api/stats]', e);
     return NextResponse.json({ count: 0 });
