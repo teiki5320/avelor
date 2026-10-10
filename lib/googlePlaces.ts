@@ -1,23 +1,37 @@
 import { fetchWithTimeout } from './fetchTimeout';
 import type { PlaceResult } from './types';
 
-/* ---------- Interfaces API ---------- */
+/* ---------- Places API (New) — Text Search ---------- */
+// https://developers.google.com/maps/documentation/places/web-service/text-search
+// L'ancienne API (maps/api/place/textsearch) n'est plus ouverte aux nouveaux projets Google.
 
-interface PlacesResult {
-  name?: string;
-  formatted_address?: string;
+interface PlaceNew {
+  id?: string;
+  displayName?: { text?: string };
+  formattedAddress?: string;
   rating?: number;
-  user_ratings_total?: number;
-  place_id?: string;
+  userRatingCount?: number;
+  nationalPhoneNumber?: string;
+  googleMapsUri?: string;
 }
 
-interface PlacesApiResponse {
-  status?: string;
-  results?: PlacesResult[];
-  error_message?: string;
+interface TextSearchResponse {
+  places?: PlaceNew[];
+  error?: { code?: number; status?: string; message?: string };
 }
 
-const BASE = 'https://maps.googleapis.com/maps/api/place';
+const URL_TEXT_SEARCH = 'https://places.googleapis.com/v1/places:searchText';
+
+// Champs demandés (la facturation Google dépend de cette liste : la garder courte).
+const CHAMPS = [
+  'places.id',
+  'places.displayName',
+  'places.formattedAddress',
+  'places.rating',
+  'places.userRatingCount',
+  'places.nationalPhoneNumber',
+  'places.googleMapsUri',
+].join(',');
 
 interface SearchOptions {
   query: string;
@@ -29,22 +43,31 @@ export async function searchPlaces({ query, limit = 3 }: SearchOptions): Promise
   if (!key) return [];
 
   try {
-    const url = `${BASE}/textsearch/json?query=${encodeURIComponent(query)}&language=fr&region=fr&key=${key}`;
-    const res = await fetchWithTimeout(url, { next: { revalidate: 21600 } });
-    if (!res.ok) return [];
-    const json: PlacesApiResponse = await res.json();
-    const results: PlacesResult[] = json?.results ?? [];
-    return results.slice(0, limit).map((r) => ({
-      name: r.name ?? '',
-      address: r.formatted_address,
-      rating: r.rating,
-      reviews: r.user_ratings_total,
-      phone: undefined,
-      mapsUrl: r.place_id
-        ? `https://www.google.com/maps/place/?q=place_id:${r.place_id}`
-        : undefined,
+    const res = await fetchWithTimeout(URL_TEXT_SEARCH, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': key,
+        'X-Goog-FieldMask': CHAMPS,
+      },
+      body: JSON.stringify({ textQuery: query, languageCode: 'fr', regionCode: 'FR', pageSize: limit }),
+    });
+    const json: TextSearchResponse = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      // Raison donnée par Google (API non activée, clé restreinte…) — jamais la clé elle-même.
+      console.warn('[googlePlaces]', res.status, json.error?.status ?? '', json.error?.message ?? '');
+      return [];
+    }
+    return (json.places ?? []).slice(0, limit).map((p) => ({
+      name: p.displayName?.text ?? '',
+      address: p.formattedAddress,
+      rating: p.rating,
+      reviews: p.userRatingCount,
+      phone: p.nationalPhoneNumber,
+      mapsUrl: p.googleMapsUri,
     }));
-  } catch {
+  } catch (e) {
+    console.warn('[googlePlaces] échec de la requête', e instanceof Error ? e.name : '');
     return [];
   }
 }
