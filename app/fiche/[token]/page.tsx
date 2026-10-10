@@ -6,7 +6,7 @@ import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
 import FicheLocale from '@/components/fiche/FicheLocale';
 import LayoutDashboard from '@/components/fiche/layouts/LayoutDashboard';
-import { getFicheByToken } from '@/lib/db';
+import { getFicheByTokenMemo } from '@/lib/db';
 import { fetchSirene } from '@/lib/sirene';
 import { fetchBodaccResultat, fetchProceduresResultat, computeAlertes } from '@/lib/bodacc';
 import { searchAvocats } from '@/lib/googlePlaces';
@@ -68,7 +68,7 @@ async function loadFiche(
   // Token mal formé : inutile d'interroger la base.
   if (!tokenSchema.safeParse(token).success) return null;
 
-  const rec = await getFicheByToken(token);
+  const rec = await getFicheByTokenMemo(token);
   if (!rec) return null;
   let company_data = rec.company_data as CompanyData;
   if (!company_data?.siret) {
