@@ -31,6 +31,15 @@ export default function PolitiqueDonneesPage() {
         </section>
 
         <section>
+          <h2 className="font-display text-lg text-navy">Responsable du traitement</h2>
+          <p className="mt-2">
+            ALOHASH (nom commercial TOA CORP), SAS au capital de 200 €, La Petite Sigonnière, 85190 Maché,
+            RCS La Roche-sur-Yon 938 522 596. Contact :{' '}
+            <a href="mailto:solelis@toakeur.com" className="text-bleu-fonce underline">solelis@toakeur.com</a>
+          </p>
+        </section>
+
+        <section>
           <h2 className="font-display text-lg text-navy">1. Données collectées</h2>
           <p className="mt-2">
             Solelis ne collecte que les données strictement nécessaires à la production de votre fiche personnalisée :
