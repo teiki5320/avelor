@@ -3,16 +3,17 @@
 // assets statiques (icônes, manifest). Le cache est versionné — tout
 // changement de CACHE_VERSION force la mise à jour.
 
-const CACHE_VERSION = 'solelis-v1';
+const CACHE_VERSION = 'solelis-v2';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
 const PRECACHE_URLS = [
   '/',
   '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/favicon.png',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  '/favicon.ico',
+  '/icon.svg',
 ];
 
 self.addEventListener('install', (event) => {
@@ -68,7 +69,7 @@ self.addEventListener('fetch', (event) => {
             }
             return response;
           })
-          .catch(() => caches.match('/icon-192.png'));
+          .catch(() => caches.match('/icons/icon-192.png'));
       })
     );
     return;
