@@ -65,7 +65,11 @@ function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; t
   items.push({
     id: 'courrier',
     texte: 'Préparer un courrier adapté à votre situation',
-    lien: `/courriers?prefill=${encodeURIComponent(JSON.stringify({ NOM_ENTREPRISE: c.nom, SIRET: c.siret, ADRESSE: [c.adresse, c.codePostal, c.ville].filter(Boolean).join(', '), VILLE: c.ville }))}`,
+    // Pas de données dans l'URL : la fiche enregistre déjà nom, SIRET et
+    // adresse dans sessionStorage (StoreCompanyData), lus par chaque modèle
+    // de courrier pour le préremplir. (L'ancien ?prefill= était ignoré par
+    // la page /courriers et exposait le SIRET dans l'adresse.)
+    lien: '/courriers',
   });
   return items;
 }
