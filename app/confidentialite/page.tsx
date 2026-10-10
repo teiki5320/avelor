@@ -52,10 +52,10 @@ export default function ConfidentialitePage() {
           <p className="text-base text-navy/70">
             Questions ? Écrivez-nous à{' '}
             <a
-              href="mailto:contact@avelor.fr"
+              href="mailto:avelor@toakeur.com"
               className="font-medium text-bleu-fonce underline underline-offset-4"
             >
-              contact@avelor.fr
+              avelor@toakeur.com
             </a>
           </p>
         </div>
