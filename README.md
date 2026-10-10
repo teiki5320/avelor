@@ -1,8 +1,10 @@
 # Solelis
 
-Plateforme d'aide aux chefs d'entreprise français en difficulté.
+Plateforme d'aide aux chefs d'entreprise français en difficulté — https://solelis.com
 
 ## Installation
+
+Node 22 (voir `.nvmrc`).
 
 ```bash
 npm install
@@ -11,12 +13,35 @@ cp .env.example .env.local
 npm run dev
 ```
 
+## Commandes
+
+```bash
+npm run dev          # Serveur local (port 3000), base D1 simulée par Wrangler
+npm run build        # Build Next.js de production
+npm run lint         # ESLint (CLI, config eslint.config.mjs — next/core-web-vitals)
+npm test             # Vitest
+npm run test:e2e     # Playwright (parcours utilisateur)
+
+npm run cf:build     # Build du Worker Cloudflare (OpenNext), sans déployer
+npm run cf:preview   # Build + aperçu local dans le simulateur Cloudflare (port 8787)
+npm run cf:deploy    # Build + mise en ligne sur Cloudflare (Worker « solelis »)
+```
+
 ## Variables d'environnement
 
-- `INSEE_API_KEY` — API Sirene INSEE
-- `GOOGLE_PLACES_API_KEY` — Google Places
-- `RESEND_API_KEY` — Envoi d'emails
-- `NEXT_PUBLIC_BASE_URL` — URL publique (pour les liens magiques)
+Voir `.env.example`. En production, elles sont définies dans la console
+Cloudflare (Worker « solelis » → Paramètres → Variables et secrets).
+
+- `INSEE_API_KEY` — API Sirene INSEE (secours si l'API gouv.fr échoue, optionnelle)
+- `GOOGLE_PLACES_API_KEY` — Google Places, recherche d'avocats (optionnelle)
+- `RESEND_API_KEY` — envoi d'emails (lien magique, rappels)
+- `RESEND_FROM` — expéditeur des emails, ex. `Solelis <contact@exemple.fr>`
+- `NEXT_PUBLIC_BASE_URL` — URL publique (liens magiques) : `https://solelis.com` en production
+- `CRON_SECRET` — secret partagé entre le Cron Trigger (`worker.ts`) et `/api/cron/rappels`
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — mesure d'audience Plausible (optionnelle)
+
+Les variables `NEXT_PUBLIC_*` sont intégrées au moment du build : elles
+doivent aussi être disponibles pour le build Cloudflare.
 
 ## Base de données
 
@@ -30,4 +55,5 @@ npx wrangler d1 migrations apply DB --remote   # base en ligne
 
 ## Stack
 
-Next.js 15 App Router · Tailwind · Framer Motion · Cloudflare Workers (OpenNext) + D1 · Resend.
+Next.js 15.5 App Router · React 19 · Tailwind 3.4 · Framer Motion 11 ·
+Cloudflare Workers (OpenNext) + D1 · Resend.
