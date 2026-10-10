@@ -112,7 +112,7 @@ export default function TemoignagesPage() {
               {t.prenom}, {t.situation.toLowerCase()}
             </p>
             <blockquote className="mt-4 border-l-2 border-bleu/30 pl-4 text-sm italic text-navy/80 leading-relaxed">
-              &laquo; {t.citation} &raquo;
+              « {t.citation} »
             </blockquote>
             <p className="mt-4 text-sm text-navy/60">
               {t.contexte}

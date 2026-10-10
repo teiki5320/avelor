@@ -64,7 +64,7 @@ const DATA: Record<string, SituationData> = {
       { titre: 'Vérifiez les préavis légaux', texte: 'Si votre banque a réduit ou coupé vos concours sans préavis de 60 jours, elle est en tort. Gardez tous les courriers.' },
       { titre: 'Saisissez la médiation du crédit', texte: 'C\'est gratuit, confidentiel, et ça prend quelques jours. Le médiateur contacte votre banque et cherche une solution avec elle.' },
       { titre: 'Envisagez un mandat ad hoc', texte: 'Si le problème bancaire fait partie d\'un ensemble de difficultés, un mandataire nommé par le tribunal peut négocier confidentiellement avec la banque et les autres créanciers.' },
-      { titre: 'Ne restez pas seul', texte: 'La CCI et Bpifrance proposent des accompagnements gratuits pour les entreprises qui cherchent des solutions de financement alternatives.' },
+      { titre: 'Ne restez pas seul·e', texte: 'La CCI et Bpifrance proposent des accompagnements gratuits pour les entreprises qui cherchent des solutions de financement alternatives.' },
     ],
     courrier: { slug: 'mediation-credit', label: 'Modèle de saisine médiation du crédit' },
     ressources: [

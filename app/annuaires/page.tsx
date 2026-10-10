@@ -20,14 +20,14 @@ const ANNUAIRES = [
     icone: '🏛️',
     titre: 'Tribunaux des Activités Économiques (TAE)',
     description: '12 tribunaux expérimentent depuis le 1er janvier 2025 le traitement unifié des entreprises en difficulté (réforme).',
-    source: 'Loi 2023-1059, decret 2024-1225',
+    source: 'Loi 2023-1059, arrêté du 5 juillet 2024',
   },
   {
     href: '/annuaires/mandataires',
     icone: '⚖️',
     titre: 'Mandataires judiciaires',
-    description: 'Liste indicative des mandataires inscrits CNAJMJ par département.',
-    source: 'cnajmj.fr',
+    description: 'Sélection indicative d\'études de mandataires et d\'administrateurs judiciaires (non exhaustive). Annuaire officiel complet : www.cnajmj.fr/annuaire.',
+    source: 'www.cnajmj.fr/annuaire',
   },
   {
     href: '/annuaires/cip',

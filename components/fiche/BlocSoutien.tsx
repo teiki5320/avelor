@@ -56,7 +56,7 @@ export default function BlocSoutien() {
 
   const message = epuise
     ? 'Ce que vous ressentez est légitime. Beaucoup de dirigeants traversent cette épreuve, et la plupart s\'en sortent mieux qu\'ils ne le croient — souvent parce qu\'ils ont osé demander de l\'aide. Vous venez de le faire.'
-    : 'Diriger une entreprise en difficulté, c\'est porter beaucoup, souvent seul. Les personnes ci-dessous sont là pour vous — gratuitement et en confidentialité.';
+    : 'Diriger une entreprise en difficulté, c\'est porter beaucoup, souvent seul·e. Les personnes ci-dessous sont là pour vous — gratuitement et en confidentialité.';
 
   const hasSectorSoutien = !!sector.soutien;
 
