@@ -41,7 +41,8 @@ export default function PriorityCard({
         onClick={onToggle}
         className={`w-full p-4 text-left transition ${t.hover}`}
         aria-expanded={isOpen}
-        aria-controls={`panel-${id}`}
+        // Le panneau n'est rendu qu'ouvert : aria-controls ne doit pas viser un id absent.
+        aria-controls={isOpen ? `panel-${id}` : undefined}
       >
         <div className="flex items-start justify-between gap-2">
           <span className="text-2xl leading-none" aria-hidden>{icone}</span>
