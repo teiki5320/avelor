@@ -25,7 +25,7 @@
   },
   "overrides": {
     "next": {
-      "postcss": "^8.5.10"
+      "postcss": "^8.5.29"
     }
   },
   "devDependencies": {
@@ -46,5 +46,8 @@
     "typescript": "^5.5.0",
     "vitest": "^4.1.7",
     "wrangler": "^4.149.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
