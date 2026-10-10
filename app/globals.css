@@ -41,15 +41,29 @@
   --c-bleu-fonce: 138 173 234;
   --c-rouge: 232 116 116;
   --c-jaune: 224 160 96;
-  --c-vert: 74 192 120;
+  --c-vert: 111 211 154;         /* vert plus lisible sur fond nuit */
   --c-vert-fonce: 29 122 60;
   --c-jaune-fonce: 152 87 30;
 
   --bg-gradient: linear-gradient(150deg, #0A1220 0%, #0E1A2E 55%, #10182B 100%);
   --surface: 24 36 56;
-  --surface-border: 90 110 150;
+  --surface-border: 40 58 88;    /* bordure plus discrète */
   --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.05);
   --ring: 124 165 232;
+}
+
+
+/* ───────── Thème sombre : touches dorées (lys) ───────── */
+[data-theme='dark'] .card-top-line::before {
+  background: linear-gradient(90deg, #C8933A, #F3D98C, #C8933A);
+}
+/* Petits libellés « Gratuit · confidentiel · humain », « Stratégie recommandée » */
+[data-theme='dark'] .tracking-\[0\.2em\].uppercase,
+[data-theme='dark'] .tracking-\[0\.15em\].uppercase { color: #D9B66A !important; }
+/* Onglet actif de la fiche */
+[data-theme='dark'] nav .bg-navy.text-white {
+  color: #F3D98C !important;
+  box-shadow: inset 0 0 0 1px rgba(217,182,106,.4);
 }
 
 /* ───────── Contraste élevé (RGAA AAA) ───────── */
