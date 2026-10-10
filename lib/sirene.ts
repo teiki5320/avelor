@@ -6,6 +6,10 @@ import type { CompanyData } from './types';
 interface SireneEtablissement {
   siret?: string;
   code_postal?: string;
+  /** Code commune INSEE (ex. « 2A004 », « 97411 »). */
+  commune?: string;
+  /** Code département (présent sur le siège, ex. « 2A », « 974 »). */
+  departement?: string;
   libelle_commune?: string;
   adresse?: string;
 }
@@ -34,6 +38,7 @@ interface SireneApiResponse {
 
 interface InseeAdresse {
   codePostalEtablissement?: string;
+  codeCommuneEtablissement?: string;
   libelleCommuneEtablissement?: string;
   numeroVoieEtablissement?: string;
   typeVoieEtablissement?: string;
@@ -191,6 +196,45 @@ function formatEffectif(code: string | undefined): string {
   return map[code ?? ''] ?? 'Non renseigné';
 }
 
+/**
+ * Département à partir du code commune INSEE (source la plus fiable) :
+ * 2 caractères en métropole (dont « 2A » / « 2B » pour la Corse),
+ * 3 chiffres outre-mer (971 à 978, 986 à 988).
+ */
+export function departementDepuisCommune(code: string | undefined): string {
+  const c = (code ?? '').trim().toUpperCase();
+  if (!/^(\d{5}|2[AB]\d{3})$/.test(c)) return '';
+  return /^9[78]/.test(c) ? c.slice(0, 3) : c.slice(0, 2);
+}
+
+/**
+ * Département à partir du code postal, à défaut de code commune :
+ * - 97xxx / 98xxx → 3 chiffres (971 Guadeloupe … 988 Nouvelle-Calédonie) ;
+ * - Corse : 200xx et 201xx → 2A (Corse-du-Sud), 202xx à 206xx → 2B (Haute-Corse).
+ * Limite : Saint-Barthélemy (97133) et Saint-Martin (97150) ont un code
+ * postal en 971 — seul le code commune (977xx / 978xx) les distingue.
+ */
+export function departementDepuisCodePostal(codePostal: string | undefined): string {
+  const c = (codePostal ?? '').trim();
+  if (!/^\d{5}$/.test(c)) return '';
+  if (/^9[78]/.test(c)) return c.slice(0, 3);
+  if (c.startsWith('20')) return c[2] === '0' || c[2] === '1' ? '2A' : '2B';
+  return c.slice(0, 2);
+}
+
+/** Commune INSEE d'abord, code postal ensuite ; jamais le SIREN. */
+export function determinerDepartement(
+  codeCommune: string | undefined,
+  codePostal: string | undefined,
+  departementApi?: string,
+): string {
+  return (
+    departementDepuisCommune(codeCommune) ||
+    (departementApi ?? '').trim().toUpperCase() ||
+    departementDepuisCodePostal(codePostal)
+  );
+}
+
 function fallbackFor(siret: string): CompanyData {
   return {
     siret,
@@ -202,7 +246,9 @@ function fallbackFor(siret: string): CompanyData {
     adresse: '',
     codePostal: '',
     ville: '',
-    departement: siret.slice(0, 2),
+    // Inconnu : les 2 premiers chiffres du SIRET sont ceux du SIREN, sans
+    // rapport avec la localisation.
+    departement: '',
     fetched: false,
   };
 }
@@ -225,7 +271,10 @@ async function fetchFromRechercheEntreprises(
 
     const codePostal: string = matching?.code_postal ?? result.siege?.code_postal ?? '';
     const ville: string = matching?.libelle_commune ?? result.siege?.libelle_commune ?? '';
-    const departement = codePostal.slice(0, 2) || siret.slice(0, 2);
+    // Département de l'établissement consulté (et non du siège s'il diffère)
+    const departement = matching?.commune || matching?.code_postal
+      ? determinerDepartement(matching.commune, matching.code_postal, matching.departement)
+      : determinerDepartement(result.siege?.commune, codePostal, result.siege?.departement);
     const nom: string =
       result.nom_complet ??
       result.nom_raison_sociale ??
@@ -274,7 +323,7 @@ async function fetchFromInseeSirene(
     const unit = etab.uniteLegale ?? {};
     const addr = etab.adresseEtablissement ?? {};
     const codePostal: string = addr.codePostalEtablissement ?? '';
-    const departement = codePostal.slice(0, 2) || siret.slice(0, 2);
+    const departement = determinerDepartement(addr.codeCommuneEtablissement, codePostal);
 
     const nom =
       unit.denominationUniteLegale ??

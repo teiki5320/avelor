@@ -1,5 +1,13 @@
-import { describe, it, expect } from 'vitest';
-import { formatForme } from '../sirene';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import {
+  formatForme,
+  fetchSirene,
+  departementDepuisCommune,
+  departementDepuisCodePostal,
+  determinerDepartement,
+} from '../sirene';
+import { getDepartement } from '../organismes';
+import { getRegionFromDepartement } from '../aidesRegionales';
 import { getJuridiction, getFormeDetail } from '../strategie';
 import type { CompanyData } from '../types';
 
@@ -89,9 +97,117 @@ describe('getJuridiction selon la catégorie juridique INSEE', () => {
     }
   });
 
-  it('entrepreneur individuel → selon le NAF', () => {
+  it('entrepreneur individuel → selon le NAF (forme inconnue aussi)', () => {
+    expect(getJuridiction(company(formatForme(undefined), '69.10Z'))).toBe('TJ');
     expect(getJuridiction(company(formatForme('1000'), '69.10Z'))).toBe('TJ');
     expect(getJuridiction(company(formatForme('1000'), '01.11Z'))).toBe('TJ');
     expect(getJuridiction(company(formatForme('1000'), '47.11Z'))).toBe('TC');
+  });
+});
+
+/* ─── Département (Corse, outre-mer) ─── */
+
+describe('département depuis le code commune INSEE', () => {
+  it('Corse : 2A / 2B', () => {
+    expect(departementDepuisCommune('2A004')).toBe('2A'); // Ajaccio
+    expect(departementDepuisCommune('2B033')).toBe('2B'); // Bastia
+  });
+  it('outre-mer : 3 chiffres', () => {
+    expect(departementDepuisCommune('97411')).toBe('974'); // Saint-Denis (La Réunion)
+    expect(departementDepuisCommune('97701')).toBe('977'); // Saint-Barthélemy
+    expect(departementDepuisCommune('98735')).toBe('987'); // Papeete
+  });
+  it('métropole : 2 chiffres', () => {
+    expect(departementDepuisCommune('75056')).toBe('75');
+    expect(departementDepuisCommune('01053')).toBe('01');
+  });
+  it('code invalide → vide', () => {
+    expect(departementDepuisCommune(undefined)).toBe('');
+    expect(departementDepuisCommune('123')).toBe('');
+  });
+});
+
+describe('département depuis le code postal', () => {
+  it('Corse-du-Sud (200xx, 201xx) et Haute-Corse (202xx à 206xx)', () => {
+    expect(departementDepuisCodePostal('20000')).toBe('2A'); // Ajaccio
+    expect(departementDepuisCodePostal('20137')).toBe('2A'); // Porto-Vecchio
+    expect(departementDepuisCodePostal('20200')).toBe('2B'); // Bastia
+    expect(departementDepuisCodePostal('20260')).toBe('2B'); // Calvi
+    expect(departementDepuisCodePostal('20600')).toBe('2B'); // Bastia
+  });
+  it('outre-mer → 3 chiffres', () => {
+    expect(departementDepuisCodePostal('97100')).toBe('971');
+    expect(departementDepuisCodePostal('97200')).toBe('972');
+    expect(departementDepuisCodePostal('97300')).toBe('973');
+    expect(departementDepuisCodePostal('97400')).toBe('974');
+    expect(departementDepuisCodePostal('97600')).toBe('976');
+    expect(departementDepuisCodePostal('98800')).toBe('988');
+  });
+  it('métropole → 2 chiffres', () => {
+    expect(departementDepuisCodePostal('69001')).toBe('69');
+    expect(departementDepuisCodePostal('01000')).toBe('01');
+  });
+  it('le code commune prime sur le code postal (Saint-Barthélemy 97133)', () => {
+    expect(determinerDepartement('97701', '97133')).toBe('977');
+    expect(determinerDepartement(undefined, '97133')).toBe('971');
+  });
+  it('les clés produites existent dans data/organismes.json et lib/aidesRegionales.ts', () => {
+    for (const cp of ['20000', '20200', '97100', '97200', '97300', '97400', '97600', '75001']) {
+      const dep = departementDepuisCodePostal(cp);
+      expect(getDepartement(dep), dep).not.toBeNull();
+      expect(getRegionFromDepartement(dep), dep).not.toBeNull();
+    }
+  });
+});
+
+describe('fetchSirene (API recherche-entreprises simulée)', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  function reponse(etab: Record<string, unknown>, extra: Record<string, unknown> = {}) {
+    return new Response(
+      JSON.stringify({
+        results: [
+          {
+            nom_complet: 'AIR CORSICA',
+            nature_juridique: '5599',
+            activite_principale: '51.10Z',
+            tranche_effectif_salarie: '41',
+            siege: { siret: '34963839500021', ...etab },
+            matching_etablissements: [{ siret: '34963839500021', ...etab }],
+            ...extra,
+          },
+        ],
+      }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } },
+    );
+  }
+
+  it('Corse : département 2A via le code commune (et non « 20 »)', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue(
+        reponse({ code_postal: '20090', commune: '2A004', libelle_commune: 'AJACCIO', departement: '2A' }),
+      ),
+    );
+    const c = await fetchSirene('34963839500021');
+    expect(c.departement).toBe('2A');
+    expect(c.formeJuridique).toBe('Société anonyme (SA)');
+  });
+
+  it('La Réunion : département 974 (et non « 97 »)', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue(reponse({ code_postal: '97400', commune: '97411', libelle_commune: 'SAINT-DENIS' })),
+    );
+    expect((await fetchSirene('34963839500021')).departement).toBe('974');
+  });
+
+  it('sans réponse : département vide, jamais les 2 premiers chiffres du SIREN', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('réseau')));
+    const c = await fetchSirene('34963839500021');
+    expect(c.fetched).toBe(false);
+    expect(c.departement).toBe('');
   });
 });
