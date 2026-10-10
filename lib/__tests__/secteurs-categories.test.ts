@@ -85,7 +85,7 @@ const CAS: SecteurCase[] = [
     cle: 'transport',
     naf: '49.32Z', // Taxis/VTC
     labelContient: /transport/i,
-    syndicatsAttendus: ['FNTR', 'OTRE', 'Mobilians'],
+    syndicatsAttendus: ['OTRE', 'Mobilians'], // FNTR réservée au fret routier (49.4)
     opcoAttendu: 'opco-mobilites',
   },
   {

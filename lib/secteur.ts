@@ -759,6 +759,66 @@ export function libelleContactSyndicat(syndicat: OrganismeSecteur): string {
   return `Contacter ${syndicat.nom} (${syndicat.role})`;
 }
 
+/**
+ * Le secteur « transport » (section H) regroupe le routier, le ferroviaire,
+ * le maritime/fluvial (50), l'aérien (51) et l'entreposage (52). Les
+ * données de base visent le transport routier : on les ajuste pour que
+ * FNTR (fret routier) ne soit proposée qu'au transport routier (49.4).
+ */
+function ajusterTransport(
+  nafCompact: string,
+  data: Omit<SectorInfo, 'secteur'>,
+): Partial<SectorInfo> {
+  const sauf = (...noms: string[]) => data.syndicats.filter((o) => !noms.includes(o.nom));
+  const enPremier = (nom: string, liste: OrganismeSecteur[]) => [
+    ...liste.filter((o) => o.nom === nom),
+    ...liste.filter((o) => o.nom !== nom),
+  ];
+  // Fret routier et déménagement (49.41, 49.42) : liste complète.
+  if (nafCompact.startsWith('494')) {
+    return nafCompact.startsWith('4942') ? { syndicats: enPremier('FNDA', data.syndicats) } : {};
+  }
+  // Maritime et aérien : organisations propres, pas de dispositifs routiers
+  // (TICPE gazole, licences DREAL, véhicules utilitaires).
+  const horsRoute = { aidesSpecifiques: [], conseilsSpecifiques: [], santeSecteur: undefined };
+  if (nafCompact.startsWith('501') || nafCompact.startsWith('502')) {
+    return {
+      ...horsRoute,
+      syndicats: [
+        {
+          nom: 'Armateurs de France',
+          role: 'Organisation professionnelle des entreprises de transport et de services maritimes',
+          site: 'https://www.armateursdefrance.org',
+        },
+      ],
+    };
+  }
+  if (nafCompact.startsWith('50')) {
+    // Transport fluvial (50.3, 50.4) : pas d'organisation sourcée ici.
+    return { ...horsRoute, syndicats: [] };
+  }
+  if (nafCompact.startsWith('51')) {
+    return {
+      ...horsRoute,
+      syndicats: [
+        {
+          nom: 'FNAM',
+          role: 'Fédération Nationale de l\'Aviation et de ses Métiers',
+          site: 'https://www.fnam.fr',
+        },
+      ],
+    };
+  }
+  // Taxis et VTC (49.32) : Mobilians d'abord.
+  if (nafCompact.startsWith('4932')) return { syndicats: enPremier('CNPA / Mobilians', sauf('FNTR')) };
+  // Autres voyageurs (49.31, 49.39 : transports urbains, autocars) : FNTV d'abord.
+  if (nafCompact.startsWith('493')) return { syndicats: enPremier('FNTV', sauf('FNTR')) };
+  // Entreposage et services auxiliaires (52) : TLF d'abord.
+  if (nafCompact.startsWith('52')) return { syndicats: enPremier('TLF', sauf('FNTR')) };
+  // Ferroviaire, conduites… : sans FNTR.
+  return { syndicats: sauf('FNTR') };
+}
+
 export function getSectorInfo(company: CompanyData): SectorInfo {
   const naf = company.naf || '';
   const section = sectionFromNaf(naf);
@@ -812,6 +872,7 @@ export function getSectorInfo(company: CompanyData): SectorInfo {
   return {
     secteur,
     ...data,
+    ...(secteur === 'transport' ? ajusterTransport(nafCompact, data) : {}),
     obligationsLicenciement,
   };
 }

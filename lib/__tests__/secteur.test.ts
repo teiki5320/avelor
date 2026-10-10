@@ -256,3 +256,36 @@ describe('textes générés pour le plan d\'action', () => {
     expect(libelleActionSoutien(transport, 'vous')).toBe('Prendre soin de vous (APESA)');
   });
 });
+
+describe('transport : FNTR réservée au transport routier (49.4)', () => {
+  const noms = (naf: string) => getSectorInfo(makeCompany({ naf })).syndicats.map((o) => o.nom);
+
+  it('fret routier et déménagement : FNTR proposée', () => {
+    expect(noms('49.41A')[0]).toBe('FNTR');
+    expect(noms('49.42Z')[0]).toBe('FNDA');
+    expect(noms('49.42Z')).toContain('FNTR');
+  });
+
+  it('maritime (50.1/50.2) : Armateurs de France, sans FNTR ni conseils routiers', () => {
+    const info = getSectorInfo(makeCompany({ naf: '50.20Z' }));
+    expect(info.syndicats.map((o) => o.nom)).toEqual(['Armateurs de France']);
+    expect(info.conseilsSpecifiques.join(' ')).not.toMatch(/TICPE|DREAL/);
+    expect(info.santeSecteur).toBeUndefined();
+  });
+
+  it('fluvial (50.4) : aucune organisation non sourcée', () => {
+    expect(noms('50.40Z')).toEqual([]);
+  });
+
+  it('aérien (51) : FNAM', () => {
+    expect(noms('51.10Z')).toEqual(['FNAM']);
+    expect(noms('51.21Z')).toEqual(['FNAM']);
+  });
+
+  it('voyageurs et entreposage : pas de FNTR', () => {
+    expect(noms('49.39A')[0]).toBe('FNTV');
+    expect(noms('49.39A')).not.toContain('FNTR');
+    expect(noms('52.29A')[0]).toBe('TLF');
+    expect(noms('52.29A')).not.toContain('FNTR');
+  });
+});
