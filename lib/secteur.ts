@@ -743,12 +743,15 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
  * APESA n'est ajouté que si le soutien sectoriel ne le cite pas déjà
  * (évite « Prendre soin de moi (APESA, APESA) »).
  */
-export function libelleActionSoutien(sector: Pick<SectorInfo, 'soutien'>): string {
+export function libelleActionSoutien(
+  sector: Pick<SectorInfo, 'soutien'>,
+  /** « moi » pour le plan d'action, « vous » pour la checklist. */
+  personne: 'moi' | 'vous' = 'moi',
+): string {
+  const debut = `Prendre soin de ${personne}`;
   const nom = sector.soutien?.nom;
-  if (!nom) return 'Prendre soin de moi (APESA, médecin, sommeil)';
-  return /apesa/i.test(nom)
-    ? `Prendre soin de moi (${nom})`
-    : `Prendre soin de moi (${nom}, APESA)`;
+  if (!nom) return `${debut} (APESA, médecin, sommeil)`;
+  return /apesa/i.test(nom) ? `${debut} (${nom})` : `${debut} (${nom}, APESA)`;
 }
 
 /** « Contacter FNTR (Fédération nationale des transports routiers — marchandises) » */

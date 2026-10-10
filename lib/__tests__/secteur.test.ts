@@ -253,5 +253,6 @@ describe('textes générés pour le plan d\'action', () => {
     const agri = getSectorInfo(makeCompany({ naf: '01.11Z' }));
     expect(libelleActionSoutien(agri)).toBe('Prendre soin de moi (Agri\'Écoute, APESA)');
     expect(libelleActionSoutien({})).toBe('Prendre soin de moi (APESA, médecin, sommeil)');
+    expect(libelleActionSoutien(transport, 'vous')).toBe('Prendre soin de vous (APESA)');
   });
 });
