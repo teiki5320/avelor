@@ -11,7 +11,7 @@
     { "pattern": "solelis.com", "custom_domain": true },
     { "pattern": "www.solelis.com", "custom_domain": true }
   ],
-  // Rappels email chaque jour à 7 h (UTC), comme l'ancien cron Vercel.
+  // Rappels email chaque jour à 7 h (UTC).
   "triggers": { "crons": ["0 7 * * *"] },
   "observability": { "enabled": true }
 }
