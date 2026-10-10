@@ -3,101 +3,190 @@ import type { AlerteSignal, BodaccItem } from './types';
 
 /* ---------- Interfaces API ---------- */
 
+/**
+ * Enregistrement renvoyé par l'API Explore v2.1 d'OpenDataSoft (jeu
+ * « annonces-commerciales » du BODACC, DILA). Les champs `listepersonnes`
+ * et `jugement` sont des chaînes JSON ; `registre` est une liste contenant
+ * le SIREN avec et sans espaces (ex. ["883847758", "883 847 758"]).
+ * Il n'existe PAS de champ `siren` (l'API répond « Unknown field: siren »).
+ */
+interface BodaccRecordFields {
+  id?: string;
+  dateparution?: string;
+  familleavis?: string;
+  familleavis_lib?: string;
+  typeavis?: string;
+  typeavis_lib?: string;
+  tribunal?: string;
+  commercant?: string;
+  registre?: string[] | string;
+  listepersonnes?: string | BodaccListePersonnes | null;
+  jugement?: string | BodaccJugement | null;
+}
+
 interface BodaccPersonne {
   denomination?: string;
+  nom?: string;
+  prenom?: string;
 }
 
 interface BodaccListePersonnes {
-  personne?: BodaccPersonne[];
+  personne?: BodaccPersonne | BodaccPersonne[];
 }
 
-interface BodaccRecordFields {
-  familleavis_lib?: string;
-  familleavis?: string;
-  typeavis_lib?: string;
-  typeavis?: string;
-  dateparution?: string;
-  tribunal?: string;
-  tribunal_lib?: string;
-  listepersonnes?: BodaccListePersonnes;
-  commercant?: string;
-  jugement?: string;
-  typeannonce_lib?: string;
-  siren?: string;
-}
-
-interface BodaccRecord {
-  record?: {
-    fields?: BodaccRecordFields;
-  };
+interface BodaccJugement {
+  famille?: string;
+  nature?: string;
+  date?: string;
 }
 
 interface BodaccApiResponse {
   total_count?: number;
-  records?: BodaccRecord[];
+  results?: BodaccRecordFields[];
 }
 
-const BODACC_BASE = 'https://bodacc-datadila.opendatasoft.com/api/v2';
-
-// BODACC indexes by SIREN (9 first digits of the SIRET).
-function siren(siret: string): string {
-  return siret.replace(/\D/g, '').slice(0, 9);
+/** Résultat d'une consultation : « indisponible » = le BODACC n'a pas pu être interrogé. */
+export interface ResultatBodacc {
+  statut: 'ok' | 'indisponible';
+  annonces: BodaccItem[];
 }
 
-function mapRecord(rec: BodaccRecordFields): BodaccItem {
+const BODACC_RECORDS =
+  'https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales/records';
+
+/**
+ * Familles d'avis correspondant à une procédure (valeurs du champ
+ * `familleavis`, vérifiées sur l'API : « collective » = « Procédures
+ * collectives », « retablissement_professionnel » = « Procédures de
+ * rétablissement professionnel »).
+ */
+const FAMILLES_PROCEDURE = ['collective', 'retablissement_professionnel'];
+
+/**
+ * Listes vides renvoyées quand le BODACC n'a pas pu être consulté. Le
+ * marquage permet à `computeAlertes` de distinguer « aucune annonce » de
+ * « vérification impossible » sans changer la signature de `fetchBodacc`.
+ */
+const LISTES_INDISPONIBLES = new WeakSet<BodaccItem[]>();
+
+/** Vrai si la liste provient d'un appel BODACC qui a échoué. */
+export function bodaccIndisponible(liste: BodaccItem[]): boolean {
+  return LISTES_INDISPONIBLES.has(liste);
+}
+
+function listeIndisponible(): BodaccItem[] {
+  const liste: BodaccItem[] = [];
+  LISTES_INDISPONIBLES.add(liste);
+  return liste;
+}
+
+/** SIREN (9 premiers chiffres du SIRET), ou null s'il est invalide. */
+export function sirenDepuisSiret(siret: string): string | null {
+  const sn = (siret || '').replace(/\D/g, '').slice(0, 9);
+  if (!/^\d{9}$/.test(sn) || sn === '000000000') return null;
+  return sn;
+}
+
+export function construireUrlBodacc(
+  siren: string,
+  options: { proceduresSeulement?: boolean; limite?: number } = {},
+): string {
+  const familles = FAMILLES_PROCEDURE.map((f) => `"${f}"`).join(', ');
+  const where = options.proceduresSeulement
+    ? `registre = "${siren}" AND familleavis IN (${familles})`
+    : `registre = "${siren}"`;
+  const params = new URLSearchParams({
+    where,
+    limit: String(options.limite ?? 10),
+    order_by: 'dateparution desc',
+  });
+  return `${BODACC_RECORDS}?${params.toString()}`;
+}
+
+function lireJson<T>(valeur: unknown): T | undefined {
+  if (!valeur) return undefined;
+  if (typeof valeur === 'object') return valeur as T;
+  if (typeof valeur !== 'string') return undefined;
+  try {
+    return JSON.parse(valeur) as T;
+  } catch {
+    return undefined;
+  }
+}
+
+function nomPersonne(liste: BodaccListePersonnes | undefined): string | undefined {
+  const brut = liste?.personne;
+  const personne = Array.isArray(brut) ? brut[0] : brut;
+  if (!personne) return undefined;
+  return (
+    personne.denomination ||
+    [personne.prenom, personne.nom].filter(Boolean).join(' ') ||
+    undefined
+  );
+}
+
+export function mapRecord(rec: BodaccRecordFields): BodaccItem {
+  const jugement = lireJson<BodaccJugement>(rec.jugement);
+  const personnes = lireJson<BodaccListePersonnes>(rec.listepersonnes);
   return {
-    type:
-      rec.familleavis_lib ??
-      rec.familleavis ??
-      rec.typeavis_lib ??
-      rec.typeavis ??
-      'Annonce',
+    type: rec.familleavis_lib || rec.typeavis_lib || 'Annonce',
     date: rec.dateparution ?? '',
-    tribunal: rec.tribunal ?? rec.tribunal_lib ?? undefined,
-    description:
-      rec.listepersonnes?.personne?.[0]?.denomination ??
-      rec.commercant ??
-      rec.jugement ??
-      rec.typeannonce_lib ??
-      undefined,
+    tribunal: rec.tribunal || undefined,
+    description: jugement?.nature || nomPersonne(personnes) || rec.commercant || undefined,
   };
 }
 
-export async function fetchBodacc(siret: string): Promise<BodaccItem[]> {
-  const sn = siren(siret);
-  if (!sn) return [];
-  const where = encodeURIComponent(`siren = "${sn}"`);
+async function interrogerBodacc(url: string): Promise<ResultatBodacc> {
   try {
-    const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=${where}&limit=10&order_by=dateparution%20desc`;
     const res = await fetchWithTimeout(url, { next: { revalidate: 3600 } });
-    if (!res.ok) return [];
+    if (!res.ok) {
+      console.error(`[bodacc] HTTP ${res.status} — vérification impossible`);
+      return { statut: 'indisponible', annonces: [] };
+    }
     const json: BodaccApiResponse = await res.json();
-    const records: BodaccRecord[] = json?.records ?? [];
-    return records.map((r) => mapRecord(r.record?.fields ?? (r as unknown as BodaccRecordFields)));
-  } catch {
-    return [];
+    if (!Array.isArray(json?.results)) {
+      console.error('[bodacc] réponse inattendue (champ results absent)');
+      return { statut: 'indisponible', annonces: [] };
+    }
+    return { statut: 'ok', annonces: json.results.map(mapRecord) };
+  } catch (e) {
+    console.error('[bodacc] appel en échec :', e instanceof Error ? e.message : e);
+    return { statut: 'indisponible', annonces: [] };
   }
 }
 
-export async function fetchInfogreffeSignals(
-  siret: string
-): Promise<BodaccItem[]> {
-  // Infogreffe public endpoint is limited; we use Bodacc judicial annonces as a proxy.
-  const sn = siren(siret);
-  if (!sn) return [];
-  const where = encodeURIComponent(
-    `siren = "${sn}" AND familleavis_lib like "procedure"`
-  );
-  try {
-    const url = `${BODACC_BASE}/catalog/datasets/annonces-commerciales/records?where=${where}&limit=5&order_by=dateparution%20desc`;
-    const res = await fetchWithTimeout(url, { next: { revalidate: 3600 } });
-    if (!res.ok) return [];
-    const json: BodaccApiResponse = await res.json();
-    const records: BodaccRecord[] = json?.records ?? [];
-    return records.map((r) => mapRecord(r.record?.fields ?? (r as unknown as BodaccRecordFields)));
-  } catch {
-    return [];
-  }
+/** Les 10 annonces BODACC les plus récentes du SIREN, avec statut explicite. */
+export async function fetchBodaccResultat(siret: string): Promise<ResultatBodacc> {
+  const sn = sirenDepuisSiret(siret);
+  if (!sn) return { statut: 'indisponible', annonces: [] };
+  return interrogerBodacc(construireUrlBodacc(sn, { limite: 10 }));
+}
+
+/** Annonces de procédures collectives / rétablissement professionnel, avec statut explicite. */
+export async function fetchProceduresResultat(siret: string): Promise<ResultatBodacc> {
+  const sn = sirenDepuisSiret(siret);
+  if (!sn) return { statut: 'indisponible', annonces: [] };
+  return interrogerBodacc(construireUrlBodacc(sn, { proceduresSeulement: true, limite: 5 }));
+}
+
+function versListe(r: ResultatBodacc): BodaccItem[] {
+  return r.statut === 'ok' ? r.annonces : listeIndisponible();
+}
+
+/**
+ * Annonces BODACC du SIREN. En cas d'échec, renvoie une liste vide marquée
+ * (voir `bodaccIndisponible`) : ne pas l'interpréter comme « aucune annonce ».
+ */
+export async function fetchBodacc(siret: string): Promise<BodaccItem[]> {
+  return versListe(await fetchBodaccResultat(siret));
+}
+
+/**
+ * Procédures publiées au BODACC (Infogreffe n'a pas d'API publique gratuite :
+ * le BODACC sert de source). Même convention d'échec que `fetchBodacc`.
+ */
+export async function fetchInfogreffeSignals(siret: string): Promise<BodaccItem[]> {
+  return versListe(await fetchProceduresResultat(siret));
 }
 
 function daysSince(date: string): number | null {
@@ -107,16 +196,40 @@ function daysSince(date: string): number | null {
   return (Date.now() - d.getTime()) / (1000 * 60 * 60 * 24);
 }
 
+export interface OptionsAlertes {
+  /**
+   * false si le BODACC n'a pas pu être consulté. Par défaut, déduit du
+   * marquage des listes renvoyées par `fetchBodacc` / `fetchInfogreffeSignals`.
+   */
+  bodaccDisponible?: boolean;
+}
+
+function estIndisponible(
+  bodacc: BodaccItem[],
+  infogreffe: BodaccItem[],
+  options?: OptionsAlertes,
+): boolean {
+  return (
+    options?.bodaccDisponible === false ||
+    bodaccIndisponible(bodacc) ||
+    bodaccIndisponible(infogreffe)
+  );
+}
+
 /**
  * Compare la situation déclarée par le dirigeant et les annonces BODACC/Infogreffe.
  * Une incohérence signale au dirigeant un décalage à clarifier.
+ * Si le BODACC n'a pas pu être consulté, aucune conclusion n'est tirée
+ * de l'absence d'annonce.
  */
 export function detectIncoherenceBodacc(
   bodacc: BodaccItem[],
   infogreffe: BodaccItem[],
-  situation: string
+  situation: string,
+  options?: OptionsAlertes,
 ): AlerteSignal | null {
   const hasProcedure = infogreffe.length > 0;
+  const indisponible = estIndisponible(bodacc, infogreffe, options);
 
   // Cas 1 : le dirigeant dit "prévention" mais une procédure collective est publiée.
   if (situation === 'prevention' && hasProcedure) {
@@ -127,6 +240,10 @@ export function detectIncoherenceBodacc(
       source: 'Bodacc · vos réponses',
     };
   }
+
+  // Les cas suivants reposent sur l'ABSENCE d'annonce : impossible à
+  // affirmer si le BODACC n'a pas répondu.
+  if (indisponible) return null;
 
   // Cas 2 : assignation déclarée mais rien au BODACC depuis 6 mois.
   if (situation === 'assignation') {
@@ -173,15 +290,25 @@ export function detectIncoherenceBodacc(
   return null;
 }
 
+export const ALERTE_BODACC_INDISPONIBLE: AlerteSignal = {
+  niveau: 'jaune',
+  titre: 'Vérification BODACC impossible',
+  message:
+    "Le BODACC n'a pas pu être consulté pour le moment : nous ne pouvons pas dire si une annonce vous concerne. Vérifiez directement sur bodacc.fr (recherche par numéro SIREN) ou rechargez la fiche plus tard.",
+  source: 'Bodacc',
+};
+
 export function computeAlertes(
   bodacc: BodaccItem[],
   infogreffe: BodaccItem[],
-  situation: string
+  situation: string,
+  options?: OptionsAlertes,
 ): AlerteSignal[] {
   const alertes: AlerteSignal[] = [];
+  const indisponible = estIndisponible(bodacc, infogreffe, options);
 
   // Priorité 1 : incohérence BODACC ↔ situation déclarée.
-  const incoherence = detectIncoherenceBodacc(bodacc, infogreffe, situation);
+  const incoherence = detectIncoherenceBodacc(bodacc, infogreffe, situation, options);
   if (incoherence) alertes.push(incoherence);
 
   if (infogreffe.length > 0 || situation === 'redressement' || situation === 'assignation') {
@@ -212,6 +339,9 @@ export function computeAlertes(
       message: `${recent.type} publiée le ${recent.date}. Vérifiez qu'elle reflète votre situation actuelle.`,
       source: 'Bodacc',
     });
+  } else if (indisponible) {
+    // Jamais « plutôt bon signe » quand on n'a pas pu vérifier.
+    alertes.push(ALERTE_BODACC_INDISPONIBLE);
   } else if (!alertes.some((a) => a.source.startsWith('Bodacc'))) {
     alertes.push({
       niveau: 'jaune',

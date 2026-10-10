@@ -1,5 +1,16 @@
-import { describe, it, expect } from 'vitest';
-import { detectIncoherenceBodacc, computeAlertes } from '../bodacc';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import {
+  detectIncoherenceBodacc,
+  computeAlertes,
+  construireUrlBodacc,
+  sirenDepuisSiret,
+  mapRecord,
+  fetchBodacc,
+  fetchBodaccResultat,
+  fetchProceduresResultat,
+  fetchInfogreffeSignals,
+  bodaccIndisponible,
+} from '../bodacc';
 import type { BodaccItem } from '../types';
 
 /* ─── Helpers ─── */
@@ -134,5 +145,187 @@ describe('computeAlertes', () => {
       expect(a.message.length).toBeGreaterThan(0);
       expect(a.source.length).toBeGreaterThan(0);
     }
+  });
+});
+
+/* ─── Appels API BODACC (réponses réalistes, fetch simulé) ─── */
+
+// Extrait réel de l'API Explore v2.1 (jeu annonces-commerciales), SIREN 883847758.
+const REPONSE_PROCEDURES = {
+  total_count: 2,
+  results: [
+    {
+      id: 'A202601942597',
+      dateparution: '2026-10-09',
+      typeavis: 'annonce',
+      typeavis_lib: 'Avis initial',
+      familleavis: 'collective',
+      familleavis_lib: 'Procédures collectives',
+      tribunal: 'Greffe du Tribunal de Commerce de Manosque',
+      commercant: 'EL RUPTOR PUB',
+      registre: ['883847758', '883 847 758'],
+      listepersonnes:
+        '{"personne": {"typePersonne": "pm", "denomination": "EL RUPTOR PUB", "formeJuridique": "Société par actions simplifiée à associé unique"}}',
+      jugement:
+        '{"type": "initial", "famille": "Extrait de jugement", "nature": "Jugement de faillite personnelle", "date": "2026-10-06"}',
+    },
+    {
+      id: 'A202500172390',
+      dateparution: '2025-01-24',
+      typeavis_lib: 'Avis initial',
+      familleavis: 'collective',
+      familleavis_lib: 'Procédures collectives',
+      tribunal: 'Greffe du Tribunal de Commerce de Manosque',
+      commercant: 'EL RUPTOR PUB',
+      registre: ['883847758', '883 847 758'],
+      listepersonnes: '{"personne": [{"typePersonne": "pp", "nom": "DUPONT", "prenom": "Marie"}]}',
+      jugement:
+        '{"type": "initial", "famille": "Jugement d\'ouverture", "nature": "Jugement d\'ouverture de liquidation judiciaire", "date": "2025-01-21"}',
+    },
+  ],
+};
+
+function reponseJson(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+
+describe('construireUrlBodacc', () => {
+  it('filtre sur le champ registre (le champ siren n\'existe pas)', () => {
+    const url = new URL(construireUrlBodacc('883847758'));
+    expect(url.pathname).toContain('/api/explore/v2.1/catalog/datasets/annonces-commerciales/records');
+    expect(url.searchParams.get('where')).toBe('registre = "883847758"');
+    expect(url.searchParams.get('order_by')).toBe('dateparution desc');
+  });
+
+  it('filtre les procédures sur familleavis (collective, rétablissement professionnel)', () => {
+    const url = new URL(construireUrlBodacc('883847758', { proceduresSeulement: true, limite: 5 }));
+    expect(url.searchParams.get('where')).toBe(
+      'registre = "883847758" AND familleavis IN ("collective", "retablissement_professionnel")',
+    );
+    expect(url.searchParams.get('limit')).toBe('5');
+    expect(url.toString()).not.toContain('siren');
+    expect(url.toString()).not.toContain('familleavis_lib');
+  });
+});
+
+describe('sirenDepuisSiret', () => {
+  it('extrait les 9 premiers chiffres', () => {
+    expect(sirenDepuisSiret('883 847 758 00018')).toBe('883847758');
+  });
+  it('rejette un SIREN invalide ou nul', () => {
+    expect(sirenDepuisSiret('1234')).toBeNull();
+    expect(sirenDepuisSiret('00000000000000')).toBeNull();
+  });
+});
+
+describe('mapRecord', () => {
+  it('lit la nature du jugement (chaîne JSON) comme description', () => {
+    const item = mapRecord(REPONSE_PROCEDURES.results[0]);
+    expect(item).toEqual({
+      type: 'Procédures collectives',
+      date: '2026-10-09',
+      tribunal: 'Greffe du Tribunal de Commerce de Manosque',
+      description: 'Jugement de faillite personnelle',
+    });
+  });
+
+  it('se rabat sur la personne si pas de jugement', () => {
+    const item = mapRecord({
+      familleavis_lib: 'Immatriculations',
+      dateparution: '2025-04-22',
+      listepersonnes: '{"personne": [{"nom": "DUPONT", "prenom": "Marie"}]}',
+      jugement: null,
+    });
+    expect(item.description).toBe('Marie DUPONT');
+  });
+});
+
+describe('fetchBodacc / fetchInfogreffeSignals', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
+
+  it('renvoie les procédures publiées pour un SIREN', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(reponseJson(REPONSE_PROCEDURES));
+    vi.stubGlobal('fetch', fetchMock);
+    const res = await fetchInfogreffeSignals('88384775800018');
+    expect(res).toHaveLength(2);
+    expect(res[1].description).toBe("Jugement d'ouverture de liquidation judiciaire");
+    expect(bodaccIndisponible(res)).toBe(false);
+    const urlAppelee = new URL(String(fetchMock.mock.calls[0][0]));
+    expect(urlAppelee.searchParams.get('where')).toContain('registre = "883847758"');
+  });
+
+  it('distingue « aucune annonce » (statut ok) de « indisponible »', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockImplementation(async () => reponseJson({ total_count: 0, results: [] })));
+    const ok = await fetchBodaccResultat('88384775800018');
+    expect(ok).toEqual({ statut: 'ok', annonces: [] });
+    expect(bodaccIndisponible(await fetchBodacc('88384775800018'))).toBe(false);
+  });
+
+  it('marque la liste comme indisponible sur une erreur HTTP (ex. 400 Unknown field)', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockImplementation(async () =>
+        reponseJson({ error_code: 'ODSQLError', message: 'Unknown field: siren' }, 400),
+      ),
+    );
+    const liste = await fetchBodacc('88384775800018');
+    expect(liste).toEqual([]);
+    expect(bodaccIndisponible(liste)).toBe(true);
+    expect((await fetchProceduresResultat('88384775800018')).statut).toBe('indisponible');
+  });
+
+  it('marque la liste comme indisponible si le réseau échoue', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('timeout')));
+    const liste = await fetchInfogreffeSignals('88384775800018');
+    expect(bodaccIndisponible(liste)).toBe(true);
+  });
+});
+
+describe('computeAlertes — BODACC indisponible', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
+
+  it('ne dit jamais « plutôt bon signe » si la vérification a échoué', () => {
+    const alertes = computeAlertes([], [], 'prevention', { bodaccDisponible: false });
+    expect(alertes.some((a) => a.message.includes('bon signe'))).toBe(false);
+    const alerte = alertes.find((a) => a.titre === 'Vérification BODACC impossible');
+    expect(alerte).toBeDefined();
+    expect(alerte!.message).toContain('pas pu être consulté');
+  });
+
+  it('détecte l\'indisponibilité via les listes marquées par fetchBodacc', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('réseau')));
+    const [bodacc, infogreffe] = await Promise.all([
+      fetchBodacc('88384775800018'),
+      fetchInfogreffeSignals('88384775800018'),
+    ]);
+    const alertes = computeAlertes(bodacc, infogreffe, 'tresorie');
+    expect(alertes.some((a) => a.message.includes('bon signe'))).toBe(false);
+    expect(alertes.some((a) => a.titre === 'Vérification BODACC impossible')).toBe(true);
+  });
+
+  it('ne conclut pas à « aucune procédure publique » en redressement si indisponible', () => {
+    const res = detectIncoherenceBodacc([], [], 'redressement', { bodaccDisponible: false });
+    expect(res).toBeNull();
+    const alertes = computeAlertes([], [], 'redressement', { bodaccDisponible: false });
+    expect(alertes.some((a) => a.titre === 'Aucune procédure publique détectée')).toBe(false);
+    expect(alertes.some((a) => a.titre === 'Procédure détectée')).toBe(true);
+  });
+
+  it('signale toujours une procédure publiée en prévention, même si l\'autre appel a échoué', () => {
+    const infogreffe = [makeBodaccItem({ type: 'Procédures collectives', date: '2025-01-24' })];
+    const res = detectIncoherenceBodacc([], infogreffe, 'prevention', { bodaccDisponible: false });
+    expect(res?.niveau).toBe('rouge');
   });
 });
