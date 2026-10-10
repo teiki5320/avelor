@@ -255,9 +255,12 @@ export default function ProtegerFamillePage() {
             <p className="mt-2 flex-1 text-sm leading-relaxed text-navy/65">
               Possible pour transférer des actifs aux enfants,
               <strong className="text-navy/80"> MAIS </strong>
-              attention à l’action paulienne — tout transfert
-              dans les 18 mois précédant la cessation des
-              paiements peut être annulé par le tribunal.
+              attention — en cas de procédure collective, une
+              donation faite pendant la période suspecte (qui peut
+              remonter jusqu’à 18 mois avant le jugement) ou dans les
+              6 mois qui la précèdent peut être annulée, et un
+              créancier peut agir en action paulienne s’il prouve la
+              fraude.
             </p>
           </article>
 

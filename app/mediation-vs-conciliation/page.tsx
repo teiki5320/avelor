@@ -56,7 +56,7 @@ export default function MediationVsConciliationPage() {
             La société <strong>n&apos;est pas en cessation des paiements</strong>.
           </p>
           <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
-            <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Durée</dt><dd className="font-medium text-navy">2 à 6 mois (renouvelable)</dd></div>
+            <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Durée</dt><dd className="font-medium text-navy">Fixée par le président du tribunal (pas de durée légale)</dd></div>
             <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Coût</dt><dd className="font-medium text-navy">1 500 à 5 000 €</dd></div>
             <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Confidentielle</dt><dd className="font-medium text-navy">Oui (pas de publication BODACC)</dd></div>
             <div className="rounded-xl bg-bleu/5 p-3"><dt className="text-navy/55">Référence</dt><dd className="font-medium text-navy">C. com. art. L611-3</dd></div>
@@ -97,7 +97,7 @@ export default function MediationVsConciliationPage() {
           <li><strong>UN litige précis avec UN créancier</strong> → médiation (gratuit, 5 jours)</li>
           <li><strong>PLUSIEURS créanciers à restructurer + pas en cessation</strong> → mandat ad hoc</li>
           <li><strong>Situation tendue + cessation possible ou récente</strong> → conciliation</li>
-          <li><strong>Cessation depuis &gt; 45 j et besoin de protection légale</strong> → sauvegarde, RJ ou LJ</li>
+          <li><strong>Cessation depuis &gt; 45 j</strong> → redressement ou liquidation judiciaire (la sauvegarde est fermée en cas de cessation des paiements)</li>
         </ul>
       </div>
 

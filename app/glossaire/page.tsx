@@ -23,7 +23,7 @@ const terms: Term[] = [
       "Un juge désigne quelqu'un (le mandataire ad hoc) pour vous aider à négocier avec vos créanciers. C'est préventif, confidentiel, et personne n'est au courant.",
     pourQui:
       'Un dirigeant qui sent que la situation se complique mais qui peut encore payer ses dettes.',
-    duree: 'Pas de limite fixe — en général 2 à 4 mois.',
+    duree: 'Pas de durée légale : elle est fixée par le président du tribunal (art. L611-3 C. com.).',
   },
   {
     name: 'Conciliation',
@@ -39,15 +39,15 @@ const terms: Term[] = [
       "Le tribunal vous protège de vos créanciers pendant que vous restructurez. Vous gardez le contrôle de l'entreprise, avec l'aide d'un administrateur.",
     pourQui:
       "Un dirigeant qui n'est PAS encore en cessation des paiements, mais qui ne peut pas surmonter ses difficultés seul.",
-    duree: '6 mois, renouvelable 6 mois.',
+    duree: 'Période d’observation de 6 mois, renouvelable une fois 6 mois (art. L621-3 C. com.).',
   },
   {
     name: 'Sauvegarde accélérée',
     enClair:
       "Version express de la sauvegarde, qui intervient après une conciliation. Le tribunal impose un plan aux créanciers récalcitrants en quelques semaines.",
     pourQui:
-      "Entreprises de plus de 20 salariés OU 3 M€ de CA. Doit avoir été en conciliation d'abord.",
-    duree: '2 mois (prolongeable à 4 mois).',
+      "Entreprise engagée dans une conciliation, qui a préparé un projet de plan susceptible d'être largement soutenu, et dont les comptes sont certifiés par un commissaire aux comptes ou établis par un expert-comptable (art. L628-1 C. com.). Il n'y a plus de seuil de salariés ou de chiffre d'affaires depuis le 1er octobre 2021.",
+    duree: '2 mois, prolongeable — 4 mois au total maximum (art. L628-8 C. com.).',
   },
   {
     name: 'Redressement judiciaire',
@@ -55,7 +55,7 @@ const terms: Term[] = [
       "Vous êtes en cessation des paiements. Le tribunal tente de sauver l'entreprise en mettant en place un plan. Un administrateur est nommé pour vous aider (ou vous remplacer dans les cas graves).",
     pourQui:
       "Un dirigeant en cessation des paiements, dont l'entreprise peut encore être sauvée.",
-    duree: '6 mois, renouvelable 6 mois.',
+    duree: '6 mois, renouvelable une fois, et exceptionnellement prolongeable de 6 mois à la demande du procureur : 18 mois au maximum (art. L621-3 et L631-7 C. com.).',
   },
   {
     name: 'Liquidation judiciaire',
@@ -70,8 +70,8 @@ const terms: Term[] = [
     enClair:
       "Version plus rapide et moins coûteuse de la liquidation, pour les petites entreprises. Même effet, procédure allégée.",
     pourQui:
-      "Obligatoire si : pas d'immobilier, 1 salarié ou moins, CA inférieur à 300 000 €. Optionnelle si 5 salariés ou moins et CA inférieur à 750 000 €.",
-    duree: '6 à 12 mois (contre plusieurs années pour une liquidation classique).',
+      "Obligatoire si : aucun bien immobilier, 5 salariés au plus sur les 6 mois précédant l'ouverture et chiffre d'affaires hors taxes de 750 000 € au plus (art. L641-2 et D641-10 C. com.).",
+    duree: 'Clôture dans les 6 mois (1 salarié au plus et CA HT de 300 000 € au plus) ou dans l’année sinon, prorogeable de 3 mois maximum (art. L644-5 et D641-10 C. com.).',
   },
   {
     name: 'Plan de continuation',
@@ -100,7 +100,7 @@ const terms: Term[] = [
   {
     name: 'Clôture pour insuffisance d’actif',
     enClair:
-      "Comment 97 % des liquidations se terminent : quand il n'y a plus assez d'actifs pour payer toutes les dettes. Ce n'est pas une sanction — c'est simplement la fin de la procédure.",
+      "La façon la plus courante de clore une liquidation : quand il n'y a plus assez d'actifs pour payer toutes les dettes. Ce n'est pas une sanction — c'est simplement la fin de la procédure.",
     pourQui:
       "Toute entreprise en liquidation dont les actifs sont épuisés.",
     duree: 'Intervient quand le liquidateur a réalisé tous les actifs.',
@@ -172,13 +172,13 @@ const terms: Term[] = [
   {
     name: 'APLD-R (Activité Partielle Longue Durée Rebond)',
     enClair:
-      "Nouveau dispositif (loi de finances 2025, décret du 11 avril 2025) qui succède à l’APLD Covid. Permet de réduire l’horaire de travail jusqu’à 40 % en contrepartie d’engagements de maintien de l’emploi et de formation. Allocation État de 60 % du salaire horaire brut.",
+      "Dispositif créé par la loi de finances 2025 (décret n° 2025-338 du 14 avril 2025) pour réduire l’horaire de travail jusqu’à 40 % en contrepartie d’engagements de maintien de l’emploi et de formation. Il ne peut plus être mis en place depuis le 1er mars 2026 : seuls les accords et documents transmis avant le 28 février 2026 continuent de s’appliquer.",
     pourQui:
-      "Employeurs confrontés à une baisse durable d’activité (non simplement conjoncturelle).",
-    duree: '24 mois maximum sur 36 mois consécutifs.',
+      "Employeurs déjà couverts par un accord ou un document APLD-R validé. Pour une nouvelle demande : activité partielle de droit commun.",
+    duree: '18 mois maximum, consécutifs ou non, sur 24 mois ; accords applicables jusqu’au 30 avril 2028 au plus tard.',
   },
   {
-    name: 'CCSF (Commission des Chefs de Services Financiers)',
+    name: 'CCSF (Commission des chefs des services financiers)',
     enClair:
       "Guichet unique qui regroupe vos dettes fiscales (SIE) et sociales (URSSAF) pour un échéancier global. Saisine confidentielle via la DDFiP, formulaire Cerfa 15772.",
     pourQui:
@@ -252,7 +252,7 @@ const terms: Term[] = [
   {
     name: 'FNE-Formation',
     enClair:
-      "Financement public de la formation des salariés pendant une baisse d’activité ou une restructuration. Cumulable avec l’activité partielle classique ou l’APLD-R.",
+      "Financement public de la formation des salariés pendant une baisse d’activité ou une restructuration. Cumulable avec l’activité partielle (et l’APLD-R pour les accords encore en vigueur).",
     pourQui:
       "Employeurs en difficulté économique, demande déposée à l’OPCO.",
     duree: 'Selon plan de formation.',
@@ -260,7 +260,7 @@ const terms: Term[] = [
   {
     name: 'Médiation du crédit (Banque de France)',
     enClair:
-      "Service gratuit et confidentiel de la Banque de France pour aider les entreprises confrontées à un refus bancaire (prêt, découvert, restructuration PGE). Taux de succès > 60 %.",
+      "Service gratuit et confidentiel de la Banque de France pour aider les entreprises confrontées à un refus bancaire (prêt, découvert, restructuration PGE).",
     pourQui:
       "Tout dirigeant face à une difficulté bancaire.",
     duree: 'Réponse sous 5 jours.',
@@ -268,7 +268,7 @@ const terms: Term[] = [
   {
     name: 'Médiation des entreprises',
     enClair:
-      "Service gratuit et confidentiel pour résoudre les litiges entre entreprises (fournisseurs, clients, donneurs d’ordres). Taux de succès dans 75 % des cas.",
+      "Service gratuit et confidentiel pour résoudre les litiges entre entreprises (fournisseurs, clients, donneurs d’ordres).",
     pourQui:
       "Tout dirigeant en litige commercial.",
     duree: 'Variable selon dossier.',
@@ -284,15 +284,15 @@ const terms: Term[] = [
   {
     name: 'Période suspecte',
     enClair:
-      "Les 18 mois précédant la date de cessation des paiements fixée par le tribunal. Certains actes (paiements anticipés, donations, ventes à prix anormal) peuvent être annulés rétroactivement par le mandataire.",
+      "La période qui va de la date de cessation des paiements fixée par le tribunal jusqu’au jugement d’ouverture. Cette date peut être reportée jusqu’à 18 mois avant le jugement (art. L631-8 C. com.). Certains actes accomplis pendant cette période (paiements anticipés, ventes à prix anormal…) peuvent être annulés ; les donations faites dans les 6 mois qui précèdent la cessation des paiements peuvent l’être aussi (art. L632-1 C. com.).",
     pourQui:
       "Toute entreprise entrant en procédure collective — important pour anticiper les actes à risque.",
-    duree: 'Étendue jusqu’à 18 mois en arrière depuis la cessation.',
+    duree: 'Au maximum 18 mois avant le jugement d’ouverture.',
   },
   {
     name: 'Action paulienne (art. 1341-2 C. civ.)',
     enClair:
-      "Procédure permettant à un créancier d’attaquer un acte fait par le débiteur en fraude de ses droits (donation à un proche, changement de régime matrimonial précipité). Va au-delà de la période suspecte.",
+      "Procédure permettant à un créancier d’attaquer un acte fait par le débiteur en fraude de ses droits (donation à un proche, changement de régime matrimonial précipité). Elle ne dépend pas d’une procédure collective ni de la période suspecte : il faut prouver la fraude.",
     pourQui:
       "Créanciers individuels — à connaître pour ne pas faire d’erreur défensive.",
     duree: 'Prescription : 5 ans à compter de la connaissance de l’acte.',

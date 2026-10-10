@@ -88,8 +88,8 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>Demander copie de chaque acte + fiche d&apos;information patrimoniale signée</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Disproportion au jour de la signature : art. <strong>L341-4 C. conso</strong></li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Information annuelle manquante : déchéance des intérêts (art. L341-6)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Disproportion au jour de la signature : art. <strong>2300 C. civ.</strong> (anciens art. L332-1 et L343-4 C. conso pour les cautions signées avant 2022)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Information annuelle manquante : déchéance des intérêts (art. 2302 C. civ.)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Vérifier la durée : beaucoup limitées à 10 ans sans mention expresse</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Avocat en droit bancaire — premier RDV souvent gratuit</li>
           </ul>
@@ -128,11 +128,13 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
             régime matrimonial et vos cautions. Règle d&apos;or : n&apos;opérez
             <strong> aucun transfert d&apos;actif maintenant</strong> — les
             donations, ventes à proches, changements de régime peuvent
-            être annulés (action paulienne, 18 mois avant cessation).
+            être annulés (nullités de la période suspecte en procédure
+            collective — art. L632-1 C. com. — ou action paulienne d&apos;un
+            créancier qui prouve la fraude — art. 1341-2 C. civ.).
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>EI : résidence principale insaisissable de droit (loi Macron 2015)</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span>Société : déclaration d&apos;insaisissabilité chez notaire (300-500 €)</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span>Société : vos biens personnels ne répondent pas des dettes sociales, sauf caution ou faute de gestion. La déclaration notariée d&apos;insaisissabilité est réservée à l&apos;entrepreneur·e individuel·le (art. L526-1 C. com.)</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Assurance-vie avec bénéficiaire : hors succession, difficilement saisissable</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Régime communauté : changement possible, mais opposable pour dettes FUTURES seulement</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span>Véhicule en LOA/LLD : reste propriété du loueur, protégé</li>

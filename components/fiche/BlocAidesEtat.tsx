@@ -135,7 +135,7 @@ export default function BlocAidesEtat() {
       cle: 'fne',
       nom: 'FNE-Formation',
       description:
-        "Financement public de la formation des salariés pendant une baisse d'activité ou une restructuration. Cumulable avec activité partielle classique ou APLD-R. Demande déposée à l'OPCO via la téléprocédure.",
+        "Financement public de la formation des salariés pendant une baisse d'activité ou une restructuration. Cumulable avec l'activité partielle (et l'APLD-R pour les accords encore en vigueur). Demande déposée à l'OPCO via la téléprocédure.",
       site: 'https://www.travail-emploi.gouv.fr/emploi-et-insertion/accompagnement-des-mutations-economiques/article/fne-formation',
       badge: 'Maintien dans l\'emploi',
       accent: 'vert',

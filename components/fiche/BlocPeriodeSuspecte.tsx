@@ -3,8 +3,9 @@ import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
 /**
- * Bloc dédié à la période suspecte (18 mois avant la cessation des
- * paiements). C. com. art. L632-1 à L632-3.
+ * Bloc dédié à la période suspecte : de la date de cessation des paiements
+ * (reportable jusqu'à 18 mois avant le jugement, C. com. art. L631-8) au
+ * jugement d'ouverture. C. com. art. L632-1 à L632-3.
  *
  * Affiché systématiquement pour toute situation à risque (tresorie /
  * redressement / assignation) — c'est l'un des sujets les plus
@@ -22,7 +23,7 @@ export default function BlocPeriodeSuspecte() {
   return (
     <BlocAccordeon
       icone="⏳"
-      titre="Période suspecte — les 18 mois qui précèdent la cessation"
+      titre="Période suspecte — de la cessation des paiements au jugement"
       soustitre="Les actes risquant l'annulation rétroactive (C. com. L632-1 à L632-3)"
     >
       <p className="text-sm text-navy/80">
@@ -122,7 +123,7 @@ export default function BlocPeriodeSuspecte() {
       {/* Action paulienne */}
       <div className="mt-4 rounded-2xl border border-rouge/30 bg-rouge/5 p-4">
         <p className="font-display text-base text-rouge">
-          Action paulienne (art. 1341-2 C. civ.) — au-delà des 18 mois
+          Action paulienne (art. 1341-2 C. civ.) — hors période suspecte
         </p>
         <p className="mt-2 text-sm text-navy/80">
           Même <strong>au-delà de la période suspecte</strong>, un

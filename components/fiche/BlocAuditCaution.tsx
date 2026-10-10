@@ -50,7 +50,7 @@ function analyseRisque(c: CautionDetail): Risque {
       "Consultez un avocat en droit bancaire SANS ATTENDRE — une caution hypothécaire importante peut entraîner la saisie de votre bien."
     );
     recos.push(
-      "Si la caution a été jugée manifestement disproportionnée à vos revenus/patrimoine au moment de la signature, elle peut être annulée (art. L341-4 Code de la consommation)."
+      "Si la caution a été jugée manifestement disproportionnée à vos revenus/patrimoine au moment de la signature, elle peut être réduite au montant que vous pouviez garantir (art. 2300 du Code civil, cautions signées depuis le 1er janvier 2022) ou devenir inopposable (anciens art. L332-1 et L343-4 du Code de la consommation, cautions plus anciennes)."
     );
   } else if (c.type === 'solidaire' && c.montant >= 100000) {
     niveau = 'eleve';

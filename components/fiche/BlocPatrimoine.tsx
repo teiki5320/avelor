@@ -87,7 +87,7 @@ function buildPoches(r: Reponses, c: CompanyData): Poche[] {
       ? "Les créanciers munis d'un titre exécutoire peuvent faire saisir vos comptes. Une fraction reste toujours insaisissable (solde bancaire insaisissable ~ 600 €)."
       : "Sans caution signée, le risque est limité à l'entreprise — sauf action en comblement de passif.",
     action:
-      "Ne videz pas vos comptes vers des proches : l'action paulienne annulerait les transferts effectués dans les 18 mois précédant la cessation.",
+      "Ne videz pas vos comptes vers des proches : en procédure collective, ces transferts peuvent être annulés s'ils tombent dans la période suspecte (jusqu'à 18 mois avant le jugement), et un créancier peut agir en action paulienne s'il prouve la fraude.",
   });
 
   // Assurance-vie
@@ -112,7 +112,7 @@ function buildPoches(r: Reponses, c: CompanyData): Poche[] {
       analyse:
         "Les biens immobiliers hors résidence principale ne bénéficient pas de l'insaisissabilité de droit. Ils sont les premières cibles des créanciers.",
       action:
-        "Un notaire peut examiner un démembrement ou une donation antérieure — mais uniquement si réalisée HORS période suspecte (18 mois avant cessation).",
+        "Un notaire peut examiner un démembrement ou une donation antérieure. Attention : en procédure collective, une donation faite pendant la période suspecte ou dans les 6 mois qui précèdent la cessation des paiements est annulable (art. L632-1 C. com.), et un créancier peut agir en action paulienne s'il prouve la fraude.",
     });
   }
 

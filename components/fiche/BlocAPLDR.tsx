@@ -4,9 +4,10 @@ import BlocAccordeon from './BlocAccordeon';
 
 /**
  * APLD-R — Activité Partielle Longue Durée Rebond.
- * Nouveau dispositif issu de la loi de finances 2025 (article 193) et du
- * décret n° 2025-338 du 11 avril 2025 — successeur de l'APLD « Covid »
- * éteinte fin 2022. Permet une baisse durable de l'horaire de travail
+ * Dispositif issu de la loi de finances 2025 (article 193) et du
+ * décret n° 2025-338 du 14 avril 2025. Fermé aux nouvelles demandes depuis
+ * le 1er mars 2026 (accords transmis avant le 28 février 2026, applicables
+ * jusqu'au 30 avril 2028 au plus tard). Permet une baisse durable de l'horaire de travail
  * en contrepartie d'engagements de maintien de l'emploi et de formation.
  *
  * S'affiche pour les employeurs (effectif === 'salaries') confrontés à
@@ -25,18 +26,25 @@ export default function BlocAPLDR() {
   return (
     <BlocAccordeon
       icone="📉"
-      titre="APLD-R — Activité Partielle Longue Durée Rebond (2025)"
-      soustitre="Baisse d'horaire jusqu'à 40 % sur 24 mois, en échange d'engagements emploi/formation"
+      titre="APLD-R — fermée aux nouvelles demandes depuis mars 2026"
+      soustitre="Seuls les accords déjà validés s'appliquent encore ; sinon, activité partielle classique"
     >
       <p className="text-sm text-navy/80">
         L&apos;<strong>APLD-R</strong>, créée par la loi de finances 2025
-        et le décret du 11 avril 2025, succède à l&apos;APLD « Covid » et
-        permet à une entreprise confrontée à une <strong>baisse durable
-        d&apos;activité</strong> (non conjoncturelle) de réduire
-        l&apos;horaire de travail tout en conservant les salariés. Le
-        dispositif est plus avantageux que l&apos;activité partielle
-        classique et particulièrement adapté aux secteurs en transition
-        (industrie, BTP, HCR, automobile).
+        et le décret n° 2025-338 du 14 avril 2025, permettait à une
+        entreprise confrontée à une <strong>baisse durable
+        d&apos;activité</strong> de réduire l&apos;horaire de travail tout
+        en conservant les salariés.
+      </p>
+      <p className="mt-3 rounded-2xl border border-jaune/30 bg-jaune/5 p-4 text-sm text-navy/80">
+        <strong>Important : le dispositif ne peut plus être mis en place
+        depuis le 1er mars 2026.</strong> Seuls les accords et documents
+        transmis à l&apos;administration avant le 28 février 2026 continuent
+        de s&apos;appliquer (au plus tard jusqu&apos;au 30 avril 2028) ; ils
+        peuvent encore être modifiés par avenant. Pour une nouvelle
+        demande, tournez-vous vers l&apos;<strong>activité partielle de
+        droit commun</strong>. Les informations ci-dessous concernent les
+        entreprises déjà couvertes par un accord APLD-R.
       </p>
 
       {/* Conditions d'éligibilité */}
@@ -73,9 +81,9 @@ export default function BlocAPLDR() {
           <p className="font-display text-base text-vert">Pour l&apos;entreprise</p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-xs text-navy/80">
             <li>Allocation versée par l&apos;État : <strong>60 % du salaire horaire brut</strong> de référence (vs 36 % en activité partielle classique).</li>
-            <li>Plafond : 4,5 SMIC.</li>
-            <li>Durée : <strong>24 mois maximum</strong> sur une période de 36 mois consécutifs.</li>
-            <li>Plancher allocation : 9,40 €/h en 2025.</li>
+            <li>Rémunération prise en compte dans la limite de 4,5 SMIC.</li>
+            <li>Durée : <strong>18 mois maximum</strong>, consécutifs ou non, sur une période de 24 mois consécutifs.</li>
+            <li>Un plancher horaire d&apos;allocation s&apos;applique (montant revalorisé avec le SMIC).</li>
           </ul>
         </div>
         <div className="rounded-2xl border border-vert/30 bg-vert/5 p-4">
@@ -166,9 +174,10 @@ export default function BlocAPLDR() {
 
       <p className="mt-5 text-xs text-navy/50">
         Sources : loi n° 2025-127 du 14 février 2025 de finances pour 2025
-        (art. 193) ; décret n° 2025-338 du 11 avril 2025 relatif à
-        l&apos;APLD-R ; Code du travail art. L5122-1 et s. ; Questions-Réponses
-        DGEFP de mai 2025.
+        (art. 193) ; décret n° 2025-338 du 14 avril 2025 relatif à
+        l&apos;APLD-R ; Code du travail art. L5122-1 et s. ;
+        www.service-public.gouv.fr (fiche F38004, fin du dispositif au
+        1er mars 2026).
       </p>
     </BlocAccordeon>
   );

@@ -220,8 +220,9 @@ export default function BlocCessationDecompte() {
       )}
 
       <p className="mt-5 text-xs text-navy/50">
-        Ce décompte est indicatif. La date exacte de cessation peut être
-        contestée par le tribunal (jusqu&apos;à 18 mois en arrière). Un
+        Ce décompte est indicatif. Le tribunal fixe la date exacte de
+        cessation, qui peut être reportée jusqu&apos;à 18 mois avant le
+        jugement d&apos;ouverture (art. L631-8 C. com.). Un
         avocat ou un mandataire peut la fixer précisément.
       </p>
       <p className="mt-1 text-xs text-navy/45">
