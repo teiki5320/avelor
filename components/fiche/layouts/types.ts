@@ -15,6 +15,8 @@ export interface LayoutData {
   alertes: AlerteSignal[];
   bodacc: BodaccItem[];
   infogreffe: BodaccItem[];
+  /** Vrai si le BODACC n'a pas pu être consulté (aucune conclusion possible). */
+  bodaccIndisponible?: boolean;
   groupes: GroupeOrganismes[];
   companyAge: number | null;
   seuils: EffectifSeuils;

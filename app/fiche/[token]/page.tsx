@@ -8,7 +8,7 @@ import FicheLocale from '@/components/fiche/FicheLocale';
 import LayoutDashboard from '@/components/fiche/layouts/LayoutDashboard';
 import { getFicheByToken } from '@/lib/db';
 import { fetchSirene } from '@/lib/sirene';
-import { fetchBodacc, fetchInfogreffeSignals, computeAlertes } from '@/lib/bodacc';
+import { fetchBodaccResultat, fetchProceduresResultat, computeAlertes } from '@/lib/bodacc';
 import { searchAvocats } from '@/lib/googlePlaces';
 import {
   buildOrganismes,
@@ -124,17 +124,27 @@ async function renderFiche(data: FicheData) {
 
   let bodacc: BodaccItem[] = [];
   let infogreffe: BodaccItem[] = [];
+  // Par défaut « indisponible » : on ne conclut jamais à l'absence d'annonce
+  // si le BODACC n'a pas pu être interrogé.
+  let bodaccIndisponible = true;
   let avocatsRaw: Awaited<ReturnType<typeof searchAvocats>> = [];
 
   try {
-    [bodacc, infogreffe, avocatsRaw] = await Promise.all([
-      fetchBodacc(siret).catch(() => []),
-      fetchInfogreffeSignals(siret).catch(() => []),
+    const [resBodacc, resProcedures, avocats] = await Promise.all([
+      fetchBodaccResultat(siret),
+      fetchProceduresResultat(siret),
       searchAvocats(company_data.ville || company_data.departement).catch(() => []),
     ]);
+    bodacc = resBodacc.annonces;
+    infogreffe = resProcedures.annonces;
+    bodaccIndisponible =
+      resBodacc.statut === 'indisponible' || resProcedures.statut === 'indisponible';
+    avocatsRaw = avocats;
   } catch {}
 
-  const alertes = computeAlertes(bodacc, infogreffe, reponses.situation);
+  const alertes = computeAlertes(bodacc, infogreffe, reponses.situation, {
+    bodaccDisponible: !bodaccIndisponible,
+  });
   const dep = getDepartement(company_data.departement);
 
   const avocats: OrganismeCard[] = avocatsRaw.map((p) => ({
@@ -155,7 +165,13 @@ async function renderFiche(data: FicheData) {
     sector = getSectorInfo(company_data);
     companyAge = getCompanyAge(company_data.dateCreation);
     seuils = getEffectifSeuils(company_data.effectif);
-    const groupesBase = buildOrganismes(dep, reponses, avocats, sector.secteur);
+    const groupesBase = buildOrganismes(
+      dep,
+      reponses,
+      avocats,
+      sector.secteur,
+      company_data.effectif,
+    );
     const groupeOrdres = buildOrdresProfessionnels(sector);
     const groupeSoutien = buildSoutien(reponses);
     const groupeAidesPerso = buildAidesPersonnelles(reponses);
@@ -236,6 +252,7 @@ async function renderFiche(data: FicheData) {
         alertes={alertes}
         bodacc={bodacc}
         infogreffe={infogreffe}
+        bodaccIndisponible={bodaccIndisponible}
         groupes={groupes}
         companyAge={companyAge}
         seuils={seuils}

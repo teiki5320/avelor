@@ -12,6 +12,8 @@ export interface FicheContextType {
   alertes: AlerteSignal[];
   bodacc: BodaccItem[];
   infogreffe: BodaccItem[];
+  /** Vrai si le BODACC n'a pas répondu : l'absence d'annonce ne prouve rien. */
+  bodaccIndisponible?: boolean;
   groupes: GroupeOrganismes[];
   companyAge: number | null;
   seuils: EffectifSeuils;
