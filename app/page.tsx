@@ -21,7 +21,7 @@ const RESSOURCES = [
   { href: '/glossaire', icone: '📖', label: 'Glossaire', desc: '38 termes expliqués simplement' },
   { href: '/outils', icone: '🧮', label: 'Boîte à outils', desc: 'Calculateurs et vérificateurs officiels' },
   { href: '/annuaires', icone: '📇', label: 'Annuaires officiels', desc: 'AGS, TAE, mandataires, CIP…' },
-  { href: '/parler', icone: '📞', label: 'Parler à quelqu\'un', desc: 'Numéros gratuits 24/7' },
+  { href: '/parler', icone: '📞', label: 'Parler à quelqu\'un', desc: 'Numéros d\'écoute et d\'orientation' },
 ];
 
 export default function HomePage() {
@@ -31,7 +31,7 @@ export default function HomePage() {
         Gratuit · confidentiel · humain
       </p>
       <h1 className="font-display text-4xl leading-tight text-navy sm:text-6xl">
-        Vous êtes dirigeant, <br />
+        Vous êtes dirigeant·e, <br />
         et quelque chose coince.
       </h1>
       <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
@@ -53,8 +53,8 @@ export default function HomePage() {
       <SiretInput />
       <RetourFiche />
       <div className="mt-12 flex flex-wrap items-center justify-center gap-3 text-sm text-navy/60">
-        <span className="pastille">⏱ 4 minutes</span>
-        <span className="pastille">🔒 Anonyme</span>
+        <span className="pastille">⏱ Environ 5 minutes</span>
+        <span className="pastille">🔒 Confidentiel</span>
         <span className="pastille">✉︎ Sauvegarde par email</span>
         <span className="pastille">🤝 Sans jugement</span>
       </div>
@@ -84,15 +84,15 @@ export default function HomePage() {
       </div>
 
       <p className="mt-14 text-sm text-navy/50">
-        Si vous vous sentez épuisé·e ou perdu·e, APESA est disponible dès
-        aujourd&apos;hui, gratuitement et en confidentialité —{' '}
+        Si vous vous sentez épuisé·e ou perdu·e, l&apos;association APESA
+        propose un soutien psychologique gratuit et confidentiel —{' '}
         <a
-          href="https://apesa.fr"
+          href="https://www.apesa-france.com"
           target="_blank"
           rel="noreferrer"
           className="text-bleu-fonce underline underline-offset-4"
         >
-          apesa.fr
+          www.apesa-france.com
         </a>
       </p>
     </section>

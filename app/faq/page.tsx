@@ -350,7 +350,7 @@ export default function FAQPage() {
           Vous ne trouvez pas la réponse à votre question ?
         </p>
         <p className="mt-2 text-sm text-navy/60">
-          Créez votre fiche personnalisée en 2 minutes pour obtenir des réponses
+          Créez votre fiche personnalisée en 5 minutes environ pour obtenir des réponses
           adaptées à votre situation.
         </p>
         <Link

@@ -300,10 +300,10 @@ const terms: Term[] = [
   {
     name: 'APESA (Aide Psychologique aux Entrepreneurs en Souffrance Aiguë)',
     enClair:
-      "Dispositif d’écoute psychologique gratuit pour dirigeants en grande souffrance. Activable via le tribunal de commerce, l’expert-comptable, ou directement par le dirigeant.",
+      "Dispositif de soutien psychologique gratuit pour les dirigeant·e·s en grande souffrance. Une alerte peut être donnée, avec votre accord, par une « sentinelle » formée (tribunal de commerce, expert-comptable, CCI…) ; vous pouvez aussi appeler le numéro vert 0 805 65 50 50 (7 j/7, de 8 h à 20 h). Site : www.apesa-france.com.",
     pourQui:
       "Tout dirigeant traversant une crise psychique.",
-    duree: 'Jusqu’à 5 séances gratuites avec un psychologue.',
+    duree: 'Prise en charge rapide, gratuite et confidentielle par un·e psychologue formé·e.',
   },
   {
     name: '60 000 Rebonds',

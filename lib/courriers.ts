@@ -562,7 +562,7 @@ Je vous remercie pour votre écoute et votre accompagnement.
 
 Bien à vous.
 
-Important : APESA peut aussi être saisi via le tribunal de commerce, votre expert-comptable, votre avocat, ou directement par téléphone. La saisine est confidentielle et gratuite (apesa.fr).`,
+Important : APESA peut aussi être saisi via le tribunal de commerce, votre expert-comptable, votre avocat, ou directement par téléphone. La saisine est confidentielle et gratuite (www.apesa-france.com).`,
   },
   {
     slug: 'demande-aide-juridictionnelle',

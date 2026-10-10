@@ -10,30 +10,30 @@ export const metadata: Metadata = {
 const urgences = [
   {
     nom: 'APESA',
-    telephone: '08 05 65 50 50',
+    telephone: '0 805 65 50 50',
     tel: '0805655050',
-    description: 'Psychologues · Gratuit · Confidentiel',
+    description: 'Soutien psychologique · 7 j/7, 8 h – 20 h · Gratuit',
     couleur: 'bg-bleu/10 text-bleu-fonce',
   },
   {
     nom: '3114',
     telephone: '3114',
     tel: '3114',
-    description: 'Prévention du suicide · 24h/24',
+    description: 'Prévention du suicide · 24 h/24, 7 j/7 · Répond aussi aux proches',
     couleur: 'bg-rouge/10 text-rouge',
   },
   {
     nom: 'CCI',
     telephone: '0 820 012 112',
     tel: '+33820012112',
-    description: 'Conseiller entreprise · Gratuit',
+    description: 'Conseiller entreprise · Numéro non gratuit (service payant + prix d’un appel)',
     couleur: 'bg-jaune/10 text-jaune',
   },
   {
-    nom: 'Conseillers-Entreprises',
-    telephone: '0 806 000 245',
-    tel: '0806000245',
-    description: 'Service public · Rappel sous 5 jours',
+    nom: 'SOS Amitié',
+    telephone: '09 72 39 40 50',
+    tel: '0972394050',
+    description: 'Écoute anonyme · 24 h/24, 7 j/7',
     couleur: 'bg-vert/10 text-vert',
   },
 ];
@@ -43,13 +43,13 @@ export default function AccompagnantPage() {
     <section className="mx-auto max-w-3xl px-5 pt-4 pb-20">
       <div className="mb-8 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-vert/80">
-          Aux côtés d&apos;un dirigeant
+          Aux côtés d&apos;un·e dirigeant·e
         </p>
         <h1 className="mt-2 font-display text-3xl text-navy sm:text-4xl">
-          Vous accompagnez un dirigeant
+          Vous accompagnez un·e dirigeant·e
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-navy/70">
-          Vous n&apos;êtes pas le dirigeant, mais quelqu&apos;un qui
+          Vous n&apos;êtes pas le ou la dirigeant·e, mais quelqu&apos;un qui
           veut l&apos;aider. Merci d&apos;être là — c&apos;est déjà
           énorme.
         </p>

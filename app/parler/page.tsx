@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 const contacts = [
   {
     name: 'APESA',
-    phone: '08 05 65 50 50',
+    phone: '0 805 65 50 50',
     tel: '0805655050',
     description:
-      'Psychologues formés à la souffrance des dirigeants · Gratuit · Confidentiel',
-    url: 'https://apesa.fr',
-    urlLabel: 'apesa.fr',
+      'Numéro vert de soutien psychologique aux chef·fe·s d’entreprise, avec l’association APESA · 7 j/7, de 8 h à 20 h · Gratuit · Confidentiel',
+    url: 'https://www.apesa-france.com',
+    urlLabel: 'www.apesa-france.com',
     color: 'bg-bleu/10 text-bleu-fonce',
   },
   {
@@ -22,7 +22,7 @@ const contacts = [
     phone: '3114',
     tel: '3114',
     description:
-      'Numéro national de prévention du suicide · 24h/24 · Gratuit',
+      'Numéro national de prévention du suicide · 24 h/24, 7 j/7 · Gratuit',
     url: null,
     urlLabel: null,
     color: 'bg-rouge/10 text-rouge',
@@ -31,7 +31,8 @@ const contacts = [
     name: 'CCI "Entreprise en difficulté"',
     phone: '0 820 012 112',
     tel: '+33820012112',
-    description: 'Premier rendez-vous gratuit avec un conseiller',
+    description:
+      'Orientation par le réseau des CCI · Numéro non gratuit (08 20 : service payant + prix d’un appel) — vous pouvez aussi contacter directement votre CCI',
     url: null,
     urlLabel: null,
     color: 'bg-jaune/10 text-jaune',
@@ -40,17 +41,17 @@ const contacts = [
     name: 'SOS Amitié',
     phone: '09 72 39 40 50',
     tel: '+33972394050',
-    description: 'Écoute anonyme · 24h/24',
+    description: 'Écoute anonyme · 24 h/24, 7 j/7',
     url: null,
     urlLabel: null,
     color: 'bg-vert/10 text-vert',
   },
   {
     name: 'Conseillers-Entreprises',
-    phone: '0 806 000 245',
-    tel: '0806000245',
+    phone: 'Demande en ligne',
+    tel: null,
     description:
-      'Service public gratuit · 10 000 conseillers · Rappel sous 5 jours',
+      'Service public gratuit · Décrivez votre situation en ligne : un·e conseiller·ère de votre territoire vous rappelle',
     url: 'https://conseillers-entreprises.service-public.gouv.fr',
     urlLabel: 'conseillers-entreprises.service-public.gouv.fr',
     color: 'bg-bleu/10 text-bleu-fonce',
@@ -60,7 +61,7 @@ const contacts = [
     phone: '34 14',
     tel: '3414',
     description:
-      'Correspondant TPE-PME · Orientation gratuite · Diagnostic financier',
+      'Correspondant TPE-PME · Orientation gratuite · Prix d’un appel local',
     url: 'https://entreprises.banque-france.fr',
     urlLabel: 'entreprises.banque-france.fr',
     color: 'bg-navy/10 text-navy',
@@ -105,7 +106,8 @@ export default function ParlerPage() {
             </span>
 
             <a
-              href={`tel:${c.tel}`}
+              href={c.tel ? `tel:${c.tel}` : (c.url ?? undefined)}
+              {...(c.tel ? {} : { target: '_blank', rel: 'noreferrer' })}
               className="btn-primary mt-6 w-full text-xl tracking-wide sm:text-2xl"
             >
               <span aria-hidden="true" className="mr-1">📞</span>
@@ -131,7 +133,7 @@ export default function ParlerPage() {
       </div>
 
       <p className="mt-14 text-center text-base text-navy/60 sm:text-lg">
-        Ces services sont gratuits et confidentiels.<br />
+        Ces services sont confidentiels, et la plupart sont gratuits.<br />
         Personne ne vous jugera.
       </p>
     </section>

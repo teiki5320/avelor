@@ -162,8 +162,8 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
                 </span>
               </li>
             )}
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>APESA</strong> — soutien psychologique dirigeants, activable via tribunal de commerce · apesa.fr</li>
-            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>3114</strong> — prévention suicide, 24h/24, gratuit, anonyme</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>APESA</strong> — soutien psychologique gratuit des dirigeant·e·s · 0 805 65 50 50 · apesa-france.com</li>
+            <li className="flex gap-2"><span className="text-navy/40">→</span><strong>3114</strong> — prévention suicide, 24 h/24, 7 j/7, gratuit</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span><strong>60 000 Rebonds</strong> — accompagnement post-liquidation (mentor + groupe de pairs) · 60000rebonds.com</li>
             <li className="flex gap-2"><span className="text-navy/40">→</span><strong>CIP</strong> (~105 antennes) — RDV gratuit confidentiel 1 h avec juriste + comptable + dirigeant · cip-national.fr</li>
           </ul>

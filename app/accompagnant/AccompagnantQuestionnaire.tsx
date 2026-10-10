@@ -89,9 +89,9 @@ function buildConseils(a: Answers) {
   // Always first: take care of yourself
   conseils.push({
     titre: 'Prenez soin de vous aussi',
-    texte: 'Accompagner un dirigeant en difficulté, c\'est porter du poids. Vous avez le droit de demander de l\'aide pour vous. APESA accompagne aussi les proches.',
-    lien: 'https://apesa.fr',
-    lienLabel: 'apesa.fr',
+    texte: 'Accompagner un·e dirigeant·e en difficulté, c\'est porter du poids. Vous avez le droit de demander de l\'aide pour vous : le 3114 répond aussi aux proches inquiets, 24 h/24, gratuitement.',
+    lien: 'tel:3114',
+    lienLabel: 'Appeler le 3114',
   });
 
   if (a.etat === 'epuise' || a.etat === 'ferme') {
@@ -101,7 +101,7 @@ function buildConseils(a: Answers) {
     });
     conseils.push({
       titre: 'Alertez un professionnel',
-      texte: 'Si vous êtes inquiet·e pour sa santé mentale, vous pouvez appeler APESA ou le 3114 vous-même — ils vous conseilleront sur la marche à suivre, même si ce n\'est pas vous le dirigeant.',
+      texte: 'Si vous êtes inquiet·e pour sa santé mentale, vous pouvez appeler le 3114 vous-même — il vous conseillera sur la marche à suivre, même si ce n\'est pas vous qui dirigez l\'entreprise. Pour un soutien psychologique de la personne dirigeante, orientez-la vers le numéro vert 0 805 65 50 50 (association APESA).',
       lien: 'tel:3114',
       lienLabel: 'Appeler le 3114',
     });
