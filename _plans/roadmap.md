@@ -1,4 +1,4 @@
-# 🗺️ Avelor — Roadmap
+# 🗺️ Solelis — Roadmap
 
 > Dernière mise à jour : **2026-07-18**
 > Statut global : **production · couverture ~94% · 44 findings de l'audit du 30/05 corrigés**
@@ -12,7 +12,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 ### ✅ Fait
 
 #### Infrastructure & qualité
-- [x] Plateforme en ligne sur avelor.vercel.app, déployée en continu via Vercel et la branche main
+- [x] Plateforme en ligne sur solelis.com, déployée en continu via Vercel et la branche main
 - [x] Stack stable : Next.js 15.5.20 + React 19 + framer-motion 11 (LazyMotion) — 0 vulnérabilité npm audit
 - [x] 245 tests Vitest verts (lib + composants React + routes API) + Playwright E2E configuré
 - [x] GitHub Actions CI : lint → build → test
@@ -112,14 +112,14 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 ## 🚀 MISE EN LIGNE — plan validé le 19/07/2026 (à dérouler depuis le Mac)
 
 > Le site est prêt : 259 tests verts, build OK, audit couverture métier 6/6, pages légales en place.
-> Décision : achat du domaine (idéalement **avelor.fr**, de préférence chez Vercel pour que le DNS soit pilotable en CLI) + adresse email de contact. Session Claude Code locale sur le Mac pour piloter le CLI Vercel.
+> Décision : achat du domaine (idéalement **solelis.com**, de préférence chez Vercel pour que le DNS soit pilotable en CLI) + adresse email de contact. Session Claude Code locale sur le Mac pour piloter le CLI Vercel.
 
 1. [ ] **Sur le Mac** : `vercel login` + `supabase login` (une fois chacun, par Teiki — auth navigateur, accès CLI validé pour les deux) puis `vercel link` sur le projet. Via le CLI Supabase : récupérer `SUPABASE_URL`/`SUPABASE_ANON_KEY` (`supabase projects api-keys`) et vérifier table `fiches` + RLS en prod
 2. [ ] **Acheter le domaine** (dashboard Vercel → Domains, paiement par Teiki) et l'ajouter au projet (`vercel domains add`)
 3. [ ] **Email de contact** : boîte ou redirection `contact@<domaine>` → Gmail (ImprovMX gratuit via `vercel dns add` si domaine chez Vercel)
-4. [ ] **Resend** : vérifier le domaine (ajouter SPF/DKIM via `vercel dns add`) puis `RESEND_FROM="AVELOR <contact@<domaine>>"`
+4. [ ] **Resend** : vérifier le domaine (ajouter SPF/DKIM via `vercel dns add`) puis `RESEND_FROM="Solelis <contact@<domaine>>"`
 5. [ ] **Variables d'environnement production** (`vercel env add`) : `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_BASE_URL=https://<domaine>`, `CRON_SECRET` (générer : `openssl rand -hex 32`) — optionnelles : `INSEE_API_KEY` (fallback Sirene), `GOOGLE_PLACES_API_KEY` (avocats locaux), `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (stats). Vérifier d'abord ce qui existe déjà (`vercel env ls`)
-6. [ ] **Code** : remplacer `avelor.vercel.app` par le domaine (~30 fichiers : canoniques, OG, sitemap, robots, mentions légales) + remplacer `contact@avelor.vercel.app` (⚠️ adresse actuellement morte — bloquant RGPD) par la vraie adresse
+6. [ ] **Code** : remplacer `solelis.com` par le domaine (~30 fichiers : canoniques, OG, sitemap, robots, mentions légales) + remplacer `solelis@toakeur.com` (⚠️ adresse actuellement morte — bloquant RGPD) par la vraie adresse
 7. [ ] **PR branche `claude/blissful-clarke-ycvXl` → `main`** (26+ commits d'avance) puis merge → déploiement Vercel automatique
 8. [ ] **Vérifier en prod** : création de fiche, magic link reçu (pas en spam), cron rappels, avocats locaux
 9. [ ] Après lancement : migrer le rate limiting in-memory vers Upstash
@@ -186,12 +186,12 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **Carte « bail » promet « 7 dispositifs », le bloc n'en liste que 6.** `lib/priorites.ts:181`
 
 ### 🔴 ERREURS — Sécurité
-- [x] **`/api/fiche/send-link` = relais d'email ouvert** : aucune vérif d'existence/propriété de la fiche → mails « Votre fiche Avelor » vers victime arbitraire + injection. `send-link/route.ts:22`
-- [x] **`/api/fiche/rappels` = phishing** : email/libellé arbitraires poussés dans les rappels cron → mails HTML contrôlés depuis le domaine Avelor. `rappels/route.ts:39`
+- [x] **`/api/fiche/send-link` = relais d'email ouvert** : aucune vérif d'existence/propriété de la fiche → mails « Votre fiche Solelis » vers victime arbitraire + injection. `send-link/route.ts:22`
+- [x] **`/api/fiche/rappels` = phishing** : email/libellé arbitraires poussés dans les rappels cron → mails HTML contrôlés depuis le domaine Solelis. `rappels/route.ts:39`
 - [x] **next@14.2.35 : 9 vulnérabilités (6 high)** dont SSRF (CVSS 8.6) + DoS Server Components. `package.json:19`
 
 ### 🟠 ERREURS — Bugs techniques
-- [x] **Fuite de données entre fiches** : clés localStorage non préfixées par token (`avelor_plan_action`, `avelor_tresorerie`, `avelor_audit_caution`) → 2e SIRET voit les données du 1er. `BlocPlanAction.tsx:78` + 2 autres
+- [x] **Fuite de données entre fiches** : clés localStorage non préfixées par token (`solelis_plan_action`, `solelis_tresorerie`, `solelis_audit_caution`) → 2e SIRET voit les données du 1er. `BlocPlanAction.tsx:78` + 2 autres
 - [x] **Hydration mismatch** : `ProgressTracker` lit localStorage dans l'init `useState`. `ProgressTracker.tsx:42`
 - [x] **`BlocRappels` ne resync pas la date de cessation** saisie dans le même onglet. `BlocRappels.tsx:39`
 

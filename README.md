@@ -1,4 +1,4 @@
-# AVELOR
+# Solelis
 
 Plateforme d'aide aux chefs d'entreprise français en difficulté.
 
