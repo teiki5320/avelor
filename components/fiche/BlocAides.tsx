@@ -45,7 +45,7 @@ function buildAides(r: Reponses, c: CompanyData, s: SectorInfo): { titre: string
       badge: 'Prioritaire pour vous',
     });
     specifiques.push({
-      nom: 'CCSF · Commission des chefs de services financiers',
+      nom: 'CCSF · Commission des chefs des services financiers',
       description: 'Échelonnement global de toutes vos dettes fiscales ET sociales en une seule demande. Un seul interlocuteur.',
       site: 'https://www.impots.gouv.fr',
       badge: 'Guichet unique',

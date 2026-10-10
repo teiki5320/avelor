@@ -156,7 +156,7 @@ const terms: Term[] = [
   {
     name: 'CIP (Centre d’Information sur la Prévention)',
     enClair:
-      "Réseau de 60 centres locaux qui informent gratuitement et confidentiellement les dirigeants sur les options de prévention. Animé par des bénévoles (anciens chefs d'entreprise, avocats, comptables).",
+      "Réseau de centres locaux qui informent gratuitement et confidentiellement les dirigeants sur les options de prévention. Animé par des bénévoles (anciens chefs d'entreprise, avocats, comptables).",
     pourQui:
       "Tout dirigeant inquiet pour son entreprise, à n'importe quel stade.",
     duree: 'Rendez-vous ponctuel, gratuit.',

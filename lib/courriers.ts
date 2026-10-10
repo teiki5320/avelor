@@ -392,14 +392,14 @@ Important : ce courrier doit être envoyé en recommandé avec accusé de récep
   {
     slug: 'saisine-ccsf',
     titre: 'Saisine de la CCSF (échelonnement fiscal + social)',
-    destinataire: 'Commission des Chefs de Services Financiers — DDFiP',
+    destinataire: 'Commission des chefs des services financiers — DDFiP',
     categorie: 'impots',
     icone: '🏛️',
     description: 'Demande d\'échelonnement global de vos dettes fiscales ET sociales en un seul dossier (jusqu\'à 36 mois).',
     objet: 'Demande de saisine de la CCSF — plan d\'apurement global',
     corps: `Madame, Monsieur,
 
-Je sollicite la saisine de la Commission des Chefs de Services Financiers (CCSF) du département pour une demande de plan d'apurement global de mes dettes fiscales et sociales.
+Je sollicite la saisine de la Commission des chefs des services financiers (CCSF) du département pour une demande de plan d'apurement global de mes dettes fiscales et sociales.
 
 SITUATION DE L'ENTREPRISE
 - Dénomination : {{NOM_ENTREPRISE}}
@@ -711,7 +711,7 @@ function conseilCategorie(template: CourrierTemplate, ctx: CourrierContext): str
       return "Envoyez en recommandé AR. L'URSSAF traite les demandes argumentées plus vite — joignez bilan + situation de trésorerie + prévisionnel.";
     case 'impots':
       if (ctx.situation === 'redressement' || ctx.situation === 'assignation') {
-        return "Demandez en parallèle un rendez-vous avec votre interlocuteur dédié au SIE (Service des Impôts des Entreprises) et mentionnez la possibilité d'une CCSF (Commission des Chefs de Services Financiers).";
+        return "Demandez en parallèle un rendez-vous avec votre interlocuteur dédié au SIE (Service des Impôts des Entreprises) et mentionnez la possibilité d'une CCSF (Commission des chefs des services financiers).";
       }
       return "Joignez impérativement un prévisionnel de trésorerie. Le SIE accepte plus volontiers un échelonnement quand la demande est anticipée.";
     case 'tribunal':
