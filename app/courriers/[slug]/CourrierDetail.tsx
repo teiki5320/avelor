@@ -1,6 +1,7 @@
 'use client';
+// Partie interactive d'un modèle de courrier (champs, aperçu, copie,
+// impression). La page serveur (page.tsx) gère métadonnées et 404.
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import {
   getCourrier,
@@ -81,9 +82,7 @@ const FIELD_LABELS: Record<string, string> = {
   LISTE_PIECES: 'Liste des pièces justificatives',
 };
 
-export default function CourrierDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
+export default function CourrierDetail({ slug }: { slug: string }) {
   const template = getCourrier(slug);
   const textRef = useRef<HTMLDivElement>(null);
   const [values, setValues] = useState<Record<string, string>>({});
@@ -99,7 +98,9 @@ export default function CourrierDetailPage() {
     try {
       const url = new URL(window.location.href);
       const prefill = url.searchParams.get('prefill');
-      if (prefill) Object.assign(merged, JSON.parse(decodeURIComponent(prefill)));
+      // searchParams.get() renvoie déjà la valeur décodée : un second
+      // decodeURIComponent levait une URIError dès qu'un champ contenait « % ».
+      if (prefill) Object.assign(merged, JSON.parse(prefill));
     } catch {}
     merged.DATE = merged.DATE || new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
     if (Object.keys(merged).length > 0) {
@@ -118,16 +119,8 @@ export default function CourrierDetailPage() {
     [template]
   );
 
-  if (!template) {
-    return (
-      <section className="mx-auto max-w-2xl px-5 py-20 text-center">
-        <h1 className="font-display text-3xl text-navy">Modèle introuvable</h1>
-        <Link href="/courriers" className="btn-ghost mt-6 inline-flex">
-          ← Tous les modèles
-        </Link>
-      </section>
-    );
-  }
+  // Slug inconnu : page.tsx renvoie déjà une vraie 404 (notFound).
+  if (!template) return null;
 
   function rendered(text: string): string {
     return text.replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
@@ -161,22 +154,8 @@ export default function CourrierDetailPage() {
   });
   const nomEntreprise = values.NOM_ENTREPRISE || '';
 
-  const jsonLdBreadcrumb = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Courriers', item: 'https://solelis.com/courriers' },
-      { '@type': 'ListItem', position: 3, name: template?.titre ?? 'Courrier' },
-    ],
-  };
-
   return (
     <section className="courrier-page mx-auto max-w-4xl px-5 pb-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
-      />
       {/* Entête imprimable — n'apparaît qu'à l'impression */}
       <div className="courrier-print-header hidden">
         <div className="courrier-print-brand">Solelis</div>
@@ -323,7 +302,7 @@ export default function CourrierDetailPage() {
               📄 Télécharger en PDF
             </button>
           </div>
-          <p className="no-print mt-2 text-[11px] text-navy/50">
+          <p className="no-print mt-2 text-xs text-navy/50">
             « Télécharger en PDF » ouvre la boîte d&apos;impression de votre
             navigateur — choisissez « Enregistrer en PDF » comme destination.
           </p>
