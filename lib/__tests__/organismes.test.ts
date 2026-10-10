@@ -3,6 +3,7 @@ import {
   getDepartement,
   buildOrganismes,
   orientationRestructuration,
+  carteTribunal,
   type DepartementData,
 } from '../organismes';
 import type { Reponses } from '../types';
@@ -146,10 +147,10 @@ describe('buildOrganismes', () => {
     expect(financier.cartes.some((c) => c.type === 'URSSAF')).toBe(true);
   });
 
-  it('inclut BPI France dans le financier systématiquement', () => {
+  it('inclut Bpifrance dans le financier systématiquement', () => {
     const groupes = buildOrganismes(null, makeReponses(), []);
     const financier = groupes.find((g) => g.cle === 'financier')!;
-    expect(financier.cartes.some((c) => c.nom.includes('BPI'))).toBe(true);
+    expect(financier.cartes.some((c) => c.nom === 'Bpifrance')).toBe(true);
   });
 
   it('inclut SSI pour les indépendants dans le groupe social', () => {
@@ -213,5 +214,48 @@ describe('orientation CIRI / CODEFI', () => {
     expect(orientationRestructuration('200 à 249 salariés')).toBe('codefi');
     expect(orientationRestructuration('250 à 499 salariés')).toBe('les-deux');
     expect(orientationRestructuration('')).toBe('codefi');
+  });
+});
+
+/* ─── Tribunal, numéros, cartes nationales ─── */
+
+describe('carte tribunal et numéros', () => {
+  const tous = (g: ReturnType<typeof buildOrganismes>) => g.flatMap((x) => x.cartes);
+
+  it('affiche le libellé réel de la juridiction (TAE de Paris)', () => {
+    const inst = buildOrganismes(getDepartement('75'), makeReponses(), [], undefined, undefined, 'TC')
+      .find((g) => g.cle === 'institutionnel')!;
+    expect(inst.cartes[0].type).toBe('Tribunal des activités économiques');
+  });
+
+  it('chambre commerciale du TJ en Moselle', () => {
+    const carte = carteTribunal(getDepartement('57')!.tribunal, 'TC');
+    expect(carte!.type).toMatch(/Chambre commerciale/);
+  });
+
+  it('débiteur relevant du TJ hors TAE : pas de tribunal de commerce proposé', () => {
+    const carte = carteTribunal(getDepartement('01')!.tribunal, 'TJ');
+    expect(carte!.nom).toMatch(/Tribunal judiciaire/);
+    expect(carte!.type).not.toMatch(/commerce/i);
+  });
+
+  it('transmet la mention des numéros surtaxés', () => {
+    const carte = carteTribunal(getDepartement('93')!.tribunal, 'TC');
+    expect(carte!.telephoneNote).toMatch(/surtaxé/);
+  });
+
+  it('plus de 3247 ni de 0 806 000 245', () => {
+    const cartes = tous(buildOrganismes(getDepartement('75'), makeReponses(), []));
+    for (const c of cartes) {
+      expect(c.telephone ?? '').not.toMatch(/^3247$|0 806 000 245/);
+    }
+  });
+
+  it('indépendant·e : Urssaf au 3698 ; employeur : 3957', () => {
+    const indep = tous(buildOrganismes(getDepartement('75'), makeReponses({ effectif: 'independant' }), []));
+    expect(indep.find((c) => c.type === 'URSSAF')!.telephone).toBe('3698');
+    expect(indep.find((c) => c.nom.startsWith('SSI'))!.telephone).toBe('3698');
+    const empl = tous(buildOrganismes(getDepartement('75'), makeReponses({ effectif: 'salaries' }), []));
+    expect(empl.find((c) => c.type === 'URSSAF')!.telephone).toBe('3957');
   });
 });

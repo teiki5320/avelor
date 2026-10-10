@@ -116,15 +116,19 @@ export default function BlocPGE() {
           ⚠️ À traiter AVANT une procédure collective
         </p>
         <p className="mt-2 text-sm text-navy/80">
-          L&apos;ouverture d&apos;une sauvegarde, d&apos;un redressement ou
-          d&apos;une liquidation <strong>déclenche l&apos;appel de la
-          garantie de l&apos;État</strong> : la banque est indemnisée par
-          Bpifrance (70 à 90 % du capital restant dû) et l&apos;État,
-          subrogé, déclare sa créance à la procédure. Conséquence : une
-          fois couverte, la banque n&apos;a plus d&apos;intérêt à négocier
-          amiablement <em>après</em> le jugement d&apos;ouverture. La
-          restructuration doit donc être tentée en amont, idéalement via
-          la Médiation du crédit ou un mandat ad hoc / conciliation.
+          L&apos;ouverture d&apos;une sauvegarde ou d&apos;un redressement
+          <strong> ne fait pas perdre la garantie de l&apos;État</strong> :
+          c&apos;est un « évènement de crédit » qui permet à la banque de
+          l&apos;appeler. Si le PGE est rééchelonné dans le plan, la garantie
+          le suit et la banque n&apos;est indemnisée qu&apos;à la fin du prêt
+          restructuré ; en liquidation, à la remise du certificat
+          d&apos;irrecouvrabilité. Tenter d&apos;abord l&apos;amiable reste
+          préférable (confidentiel, plus souple) : Médiation du crédit,
+          mandat ad hoc ou conciliation.
+          <span className="mt-1 block text-xs text-navy/55">
+            Sources : arrêté du 23 mars 2020 modifié, art. 6 ; FAQ PGE du
+            ministère de l&apos;Économie (version du 25 mars 2026).
+          </span>
         </p>
       </div>
 

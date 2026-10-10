@@ -7,6 +7,8 @@ interface OrganismeLocal {
   nom: string;
   type: string;
   telephone?: string;
+  /** Mention à afficher à côté d'un numéro non gratuit ou surtaxé. */
+  telephoneNote?: string;
   adresse?: string;
   site?: string;
 }
@@ -41,6 +43,8 @@ export interface OrganismeCard {
   nom: string;
   type: string;
   telephone?: string;
+  /** Ex. « Numéro non gratuit (service payant + prix d'un appel) ». */
+  telephoneNote?: string;
   adresse?: string;
   site?: string;
   badge?: string;
@@ -73,6 +77,42 @@ export function orientationRestructuration(
   return 'les-deux';
 }
 
+/**
+ * Carte « tribunal » de la fiche, avec le libellé réel de la juridiction du
+ * département (tribunal de commerce, tribunal des activités économiques,
+ * chambre commerciale du tribunal judiciaire, tribunal mixte de commerce).
+ * Pour un débiteur relevant du tribunal judiciaire (art. L621-2 C. com. :
+ * activité ni commerciale ni artisanale), le tribunal de commerce du
+ * département n'est pas compétent : on oriente vers le tribunal judiciaire,
+ * sauf dans les tribunaux des activités économiques expérimentaux, qui
+ * reçoivent aussi les professions libérales (hors
+ * professions du droit : avocats, notaires, commissaires de justice…).
+ */
+export function carteTribunal(
+  tribunal: OrganismeLocal,
+  juridiction?: 'TC' | 'TJ',
+): OrganismeCard | null {
+  const carteLocale: OrganismeCard = {
+    nom: tribunal.nom,
+    type: tribunal.type || 'Tribunal de commerce',
+    telephone: tribunal.telephone,
+    telephoneNote: tribunal.telephoneNote,
+    adresse: tribunal.adresse,
+    site: tribunal.site,
+  };
+  if (juridiction !== 'TJ') return carteLocale;
+  if (/activit[ée]s [ée]conomiques/i.test(tribunal.type)) {
+    return { ...carteLocale, badge: 'Sauf professions du droit (tribunal judiciaire)' };
+  }
+  if (/tribunal judiciaire/i.test(tribunal.type)) return carteLocale;
+  return {
+    nom: 'Tribunal judiciaire de votre ressort',
+    type: 'Tribunal judiciaire · activité ni commerciale ni artisanale',
+    site: 'https://www.justice.fr',
+    badge: 'Art. L621-2 C. com.',
+  };
+}
+
 export function buildOrganismes(
   dep: DepartementData | null,
   reponses: Reponses,
@@ -80,8 +120,17 @@ export function buildOrganismes(
   sectorKey?: string,
   /** CompanyData.effectif (tranche INSEE), pour orienter vers le CIRI ou le CODEFI. */
   effectifInsee?: string,
+  /** Résultat de getJuridiction(company) : tribunal de commerce ou judiciaire. */
+  juridiction?: 'TC' | 'TJ',
 ): GroupeOrganismes[] {
   const groups: GroupeOrganismes[] = [];
+  // Urssaf : 36 98 pour les travailleurs indépendants, 39 57 pour les
+  // employeurs (urssaf.fr, rubrique « Contacter l'Urssaf »).
+  const telUrssaf = (tel?: string): string => {
+    const brut = (tel ?? '').replace(/\s/g, '');
+    if (reponses.effectif === 'independant' && (!brut || brut === '3957')) return '3698';
+    return tel ?? '3957';
+  };
 
   // Conseil juridique (violet)
   const juridique: OrganismeCard[] = [...avocats];
@@ -111,19 +160,15 @@ export function buildOrganismes(
   // Institutionnel (rouge)
   const inst: OrganismeCard[] = [];
   if (dep?.tribunal) {
-    inst.push({
-      nom: dep.tribunal.nom,
-      type: 'Tribunal de commerce',
-      telephone: dep.tribunal.telephone,
-      adresse: dep.tribunal.adresse,
-      site: dep.tribunal.site,
-    });
+    const carte = carteTribunal(dep.tribunal, juridiction);
+    if (carte) inst.push(carte);
   }
   if (dep?.cci) {
     inst.push({
       nom: dep.cci.nom,
       type: 'CCI',
       telephone: dep.cci.telephone,
+      telephoneNote: dep.cci.telephoneNote,
       adresse: dep.cci.adresse,
       site: dep.cci.site,
       badge: 'Accompagnement gratuit',
@@ -149,11 +194,12 @@ export function buildOrganismes(
       badge: 'Mandataires agréés',
     });
   }
-  // Conseillers-Entreprises : guichet unique pour les dirigeants en difficulté
+  // Conseillers-Entreprises : guichet unique pour les dirigeants en difficulté.
+  // Pas de numéro : la demande se fait en ligne, un·e conseiller·ère rappelle.
+  // (L'ancien 0 806 000 245 était la ligne DGFiP/Urssaf de la crise Covid.)
   inst.push({
     nom: 'Conseillers-Entreprises',
-    type: 'Guichet unique État',
-    telephone: '0 806 000 245',
+    type: 'Guichet unique État · demande en ligne',
     site: 'https://conseillers-entreprises.service-public.gouv.fr',
     badge: 'Gratuit · confidentiel',
   });
@@ -198,7 +244,8 @@ export function buildOrganismes(
     fin.push({
       nom: dep.urssaf.nom,
       type: 'URSSAF',
-      telephone: dep.urssaf.telephone ?? '3957',
+      telephone: telUrssaf(dep.urssaf.telephone),
+      telephoneNote: dep.urssaf.telephoneNote,
       site: dep.urssaf.site ?? 'https://www.urssaf.fr',
       badge: 'Échelonnement possible',
     });
@@ -213,10 +260,9 @@ export function buildOrganismes(
     });
   }
   fin.push({
-    nom: 'BPI France',
+    nom: 'Bpifrance',
     type: 'Diagnostic + financement',
-    telephone: '3247',
-    site: 'https://bpifrance.fr',
+    site: 'https://www.bpifrance.fr',
     badge: 'Entretien gratuit',
   });
   // Correspondant TPE-PME Banque de France — diagnostic gratuit et confidentiel
@@ -282,7 +328,7 @@ export function buildOrganismes(
     soc.push({
       nom: 'SSI · Sécurité Sociale des Indépendants',
       type: 'Action sociale dirigeants',
-      telephone: '3957',
+      telephone: '3698',
       site: 'https://www.secu-independants.fr',
       badge: 'Aides dédiées indépendants',
     });
@@ -291,7 +337,7 @@ export function buildOrganismes(
       type: 'ATI · Allocation Travailleurs Indépendants',
       telephone: '39 95',
       site: 'https://chomage-independant.francetravail.fr',
-      badge: '26,30€/jour · 182 jours max',
+      badge: '19,73 à 26,30 €/jour · 182 jours',
     });
   }
   groups.push({
@@ -320,7 +366,7 @@ export function buildAidesPersonnelles(reponses: Reponses): GroupeOrganismes {
       type: 'France Travail',
       telephone: '39 95',
       site: 'https://chomage-independant.francetravail.fr',
-      badge: '26,30€/jour · 182 jours max',
+      badge: '19,73 à 26,30 €/jour · 182 jours',
     });
   }
 
@@ -328,7 +374,8 @@ export function buildAidesPersonnelles(reponses: Reponses): GroupeOrganismes {
   cartes.push({
     nom: 'ACRE · Aide à la Création/Reprise d\'Entreprise',
     type: 'URSSAF · exonération de charges',
-    telephone: '3957',
+    // Ligne Urssaf des travailleurs indépendants (créateurs, repreneurs).
+    telephone: '3698',
     site: 'https://www.urssaf.fr',
     badge: 'Rebond après liquidation',
   });

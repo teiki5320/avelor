@@ -3,6 +3,7 @@ import { ogMeta } from '@/lib/og';
 
 export const metadata = {
   ...ogMeta({
+    chemin: '/ciri-codefi',
     titre: 'CIRI / CODEFI : l\'accompagnement de l\'État',
     sous: 'Quel dispositif selon votre taille',
     description: 'CIRI (Comité Interministériel de Restructuration Industrielle) et CODEFI (Comité Départemental) : conditions, saisine, accompagnement État pour entreprises en difficulté.',

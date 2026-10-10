@@ -68,12 +68,13 @@ export default function LayoutDashboard({
   alertes,
   bodacc,
   infogreffe,
+  bodaccIndisponible,
   groupes,
   companyAge,
   seuils,
 }: LayoutData) {
   return (
-    <FicheProvider value={{ token, reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
+    <FicheProvider value={{ token, reponses, company, sector, alertes, bodacc, infogreffe, bodaccIndisponible, groupes, companyAge, seuils }}>
     <div className="space-y-6">
       {/* Mode perdu : remplace temporairement le détail si moral === 'perdu' */}
       <ModePerdu />

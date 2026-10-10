@@ -37,8 +37,12 @@ export default function IdentiteHero() {
               <>
                 <span className="text-navy/25">·</span>
                 <span>
-                  {company.codePostal && `${company.codePostal} `}
-                  {company.ville || `Dép. ${company.departement}`}
+                  {[
+                    company.codePostal,
+                    company.ville || (company.departement ? `Dép. ${company.departement}` : ''),
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
                 </span>
               </>
             )}

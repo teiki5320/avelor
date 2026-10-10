@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
-import type { SectorInfo } from '@/lib/secteur';
+import { libelleActionSoutien, libelleContactSyndicat, type SectorInfo } from '@/lib/secteur';
 import { getTonePreset } from '@/lib/tone';
 import { useFiche, useFicheStorageKey } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
@@ -22,7 +22,7 @@ function buildDefaultActions(r: Reponses, c: CompanyData, s: SectorInfo): Action
   const dep = c.departement || '';
   const ville = c.ville || '';
 
-  actions.push({ id: 'soin', texte: `Prendre soin de moi${s.soutien ? ` (${s.soutien.nom}, APESA)` : ' (APESA, médecin, sommeil)'}`, done: false });
+  actions.push({ id: 'soin', texte: libelleActionSoutien(s), done: false });
 
   if (r.situation === 'assignation') {
     actions.push({ id: 'avocat-urgence', texte: `Contacter un avocat en urgence${ville ? ` à ${ville}` : ''} (assignation reçue)`, done: false });
@@ -57,7 +57,7 @@ function buildDefaultActions(r: Reponses, c: CompanyData, s: SectorInfo): Action
 
   actions.push({ id: 'chambre', texte: `Prendre RDV avec la ${s.chambre}${dep ? ` (${dep})` : ''} — accompagnement gratuit`, done: false });
   if (s.syndicats.length > 0) {
-    actions.push({ id: 'syndicat', texte: `Contacter ${s.syndicats[0].nom} (${s.syndicats[0].role})`, done: false });
+    actions.push({ id: 'syndicat', texte: libelleContactSyndicat(s.syndicats[0]), done: false });
   }
   actions.push({ id: 'comptable', texte: 'Faire le point avec mon expert-comptable', done: false });
 

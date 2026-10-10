@@ -87,6 +87,9 @@ function Carte({ o, couleur }: { o: OrganismeCard; couleur: string }) {
           </a>
         )}
       </div>
+      {o.telephone && o.telephoneNote && (
+        <p className="mt-2 text-xs text-navy/55">{o.telephoneNote}</p>
+      )}
     </div>
   );
 }

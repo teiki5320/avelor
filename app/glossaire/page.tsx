@@ -1,12 +1,13 @@
 import { ogMeta } from '@/lib/og';
 
 export const metadata = ogMeta({
+  chemin: '/glossaire',
   titre: 'Le glossaire, expliqué simplement',
   sous: 'Procédures, dispositifs, sigles — sans jargon',
   description:
     'Les procédures collectives et dispositifs expliqués simplement : mandat ad hoc, conciliation, sauvegarde, RJ, LJ, PRP, PGE, CCSF, AGS, CSP, ATI…',
   cat: 'procedure',
-  pageTitle: 'Glossaire des procédures · Solelis',
+  pageTitle: 'Glossaire des procédures — Solelis',
 });
 
 interface Term {
@@ -167,7 +168,7 @@ const terms: Term[] = [
       "Prêt distribué par votre banque pendant la crise Covid (2020-2021), garanti à 70 à 90 % par l’État. Le protocole de place du 19 janvier 2022 permet de l’étaler jusqu’à 10 ans sans perdre la garantie d’État.",
     pourQui:
       "Toute entreprise ayant souscrit un PGE et qui peine aujourd’hui à le rembourser.",
-    duree: 'Restructuration possible avant toute procédure collective — sinon la garantie d’État tombe.',
+    duree: 'Restructuration amiable à tenter en priorité ; en sauvegarde ou redressement, le PGE peut aussi être rééchelonné dans le plan, garantie d’État maintenue.',
   },
   {
     name: 'APLD-R (Activité Partielle Longue Durée Rebond)',

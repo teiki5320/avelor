@@ -146,8 +146,9 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
     id: 'soutien',
     icone: '🤝',
     label: 'Soutien',
-    valeur: 'Gratuit · 24h/24',
-    detail: sector.soutien ? sector.soutien.nom : 'APESA · 3114',
+    valeur: 'Gratuit · confidentiel',
+    // Le 3114 est le numéro national de prévention du suicide, pas un numéro APESA.
+    detail: sector.soutien ? sector.soutien.nom : 'APESA, ou le 3114 en urgence',
     tone: 'vert',
     scrollTo: 'vue-ensemble',
     score: moralFragile ? 9 : 4,

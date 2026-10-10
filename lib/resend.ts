@@ -31,7 +31,7 @@ function getBaseUrl(): string {
 }
 
 /** Même adresse que la page /parler (app/parler/page.tsx). */
-const APESA_URL = 'https://apesa.fr';
+const APESA_URL = 'https://www.apesa-france.com';
 
 /**
  * Échappe les caractères HTML d'une valeur venue de la base (libellé, échéance,
@@ -96,7 +96,7 @@ export async function sendMagicLink(email: string, token: string): Promise<boole
   <p style="margin:32px 0">
     <a href="${url}" style="background:#1E3D82;color:white;padding:14px 24px;border-radius:12px;text-decoration:none;font-family:sans-serif">Ouvrir ma fiche</a>
   </p>
-  <p style="font-size:14px;color:#4A72B8;line-height:1.6">Si vous vous sentez épuisé·e ou perdu·e, APESA est disponible gratuitement et en confidentialité — <a href="${APESA_URL}" style="color:#4A72B8">apesa.fr</a></p>
+  <p style="font-size:14px;color:#4A72B8;line-height:1.6">Si vous vous sentez épuisé·e ou perdu·e, APESA est disponible gratuitement et en confidentialité — <a href="${APESA_URL}" style="color:#4A72B8">apesa-france.com</a></p>
   <p style="font-size:13px;color:#7c8597;margin-top:32px">Solelis · fiche confidentielle · vous seul·e avez ce lien</p>
 </div>`,
     });
@@ -159,7 +159,7 @@ export async function sendRappelEmail(rappel: RappelEmail): Promise<boolean> {
       Ouvrir ma fiche
     </a>
   </p>
-  <p style="font-size:14px;color:#4A72B8;line-height:1.6">Si vous vous sentez épuisé·e ou perdu·e, APESA est disponible gratuitement et en confidentialité — <a href="${APESA_URL}" style="color:#4A72B8">apesa.fr</a></p>
+  <p style="font-size:14px;color:#4A72B8;line-height:1.6">Si vous vous sentez épuisé·e ou perdu·e, APESA est disponible gratuitement et en confidentialité — <a href="${APESA_URL}" style="color:#4A72B8">apesa-france.com</a></p>
   <p style="font-size:13px;color:#7c8597;margin-top:32px">Solelis · rappel automatique · vous seul·e avez ce lien</p>
 </div>`,
     });

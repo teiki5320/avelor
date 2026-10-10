@@ -3,6 +3,7 @@ import { ogMeta } from '@/lib/og';
 
 export const metadata = {
   ...ogMeta({
+    chemin: '/obligations-dirigeant',
     titre: 'Obligations du dirigeant en difficulté',
     sous: 'Ce qu\'il faut faire — et ne pas faire',
     description: 'Ce que vous devez faire (et éviter) en tant que dirigeant d\'une entreprise en difficulté : déclaration de cessation, coopération mandataire, comptabilité, période suspecte.',

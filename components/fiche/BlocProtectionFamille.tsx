@@ -1,10 +1,7 @@
 'use client';
 import { useFiche } from '@/lib/FicheContext';
+import { isEI } from '@/lib/strategie';
 import BlocAccordeon from './BlocAccordeon';
-
-function isEI(forme: string): boolean {
-  return /individuel|ei|eirl|micro|auto/i.test(forme);
-}
 
 export default function BlocProtectionFamille() {
   const { reponses, company } = useFiche();

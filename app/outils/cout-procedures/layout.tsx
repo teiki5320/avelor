@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/outils/cout-procedures' },
   title: 'Estimateur du coût des procédures — Solelis',
   description:
     'Estimez le coût d\'une procédure collective selon la taille de votre entreprise : mandat ad hoc, conciliation, sauvegarde, redressement, liquidation.',

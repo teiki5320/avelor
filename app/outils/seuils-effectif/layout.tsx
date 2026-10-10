@@ -1,6 +1,7 @@
 import { ogMeta } from '@/lib/og';
 
 export const metadata = ogMeta({
+  chemin: '/outils/seuils-effectif',
   titre: 'Vérificateur de seuils d\'effectif',
   sous: 'CSE, PSE, participation, AGEFIPH…',
   description:

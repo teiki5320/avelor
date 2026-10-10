@@ -3,17 +3,35 @@ import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
 export default function BlocAlertes() {
-  const { bodacc, infogreffe } = useFiche();
+  const { bodacc, infogreffe, bodaccIndisponible } = useFiche();
   const tout = [...infogreffe, ...bodacc];
   const aucun = tout.length === 0;
+  // BODACC injoignable : l'absence d'annonce ne prouve rien.
+  const nonVerifie = aucun && !!bodaccIndisponible;
 
   return (
     <BlocAccordeon
       icone="⚠️"
       titre="Signaux détectés"
-      soustitre={aucun ? 'Aucun signal récent — plutôt bon signe' : `${tout.length} signaux publics`}
+      soustitre={
+        nonVerifie
+          ? 'Vérification impossible pour le moment'
+          : aucun
+            ? 'Aucun signal récent — plutôt bon signe'
+            : `${tout.length} signaux publics`
+      }
     >
-      {aucun ? (
+      {nonVerifie ? (
+        <div className="glass-soft p-4 text-sm text-navy/70">
+          Les registres publics n&apos;ont pas pu être consultés pour le moment :
+          nous ne pouvons pas dire si une annonce concerne votre entreprise.
+          Vérifiez directement sur bodacc.fr (recherche par numéro SIREN) ou
+          rechargez la fiche plus tard.
+          <p className="mt-2 text-xs text-navy/45">
+            Source non joignable · BODACC (bodacc.fr)
+          </p>
+        </div>
+      ) : aucun ? (
         <div className="glass-soft p-4 text-sm text-navy/70">
           Aucune annonce récente n&apos;a été trouvée dans les registres publics
           concernant votre SIRET. Ce n&apos;est jamais une garantie absolue,

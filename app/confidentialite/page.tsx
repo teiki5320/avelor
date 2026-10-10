@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Confidentialité · Solelis',
+  alternates: { canonical: '/confidentialite' },
+  title: 'Confidentialité — Solelis',
   description:
     'Notre charte de confidentialité, en mots simples. Vos données ne sont jamais vendues.',
 };

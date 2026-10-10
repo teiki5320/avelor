@@ -239,9 +239,9 @@ function buildExpandedContent(card: PriorityCardMeta, reponses: Reponses): React
           <p>
             Le remboursement du Prêt Garanti par l&apos;État pèse sur la
             trésorerie de nombreuses entreprises. <strong>Restructuration à tenter AVANT toute
-            procédure</strong> — l&apos;ouverture d&apos;une sauvegarde
-            ou d&apos;un RJ fait perdre la garantie d&apos;État pour la
-            banque.
+            procédure</strong> — l&apos;amiable reste confidentiel. En
+            sauvegarde ou en RJ, la garantie d&apos;État n&apos;est pas
+            perdue : elle suit le PGE rééchelonné dans le plan.
           </p>
           <ul className="space-y-1.5">
             <li className="flex gap-2"><span className="text-navy/40">→</span>Demande de réaménagement à la banque (protocole de place 19 janv. 2022)</li>

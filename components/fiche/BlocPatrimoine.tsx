@@ -1,6 +1,7 @@
 'use client';
 import type { Reponses, CompanyData } from '@/lib/types';
 import { useFiche } from '@/lib/FicheContext';
+import { isEI } from '@/lib/strategie';
 import BlocAccordeon from './BlocAccordeon';
 
 type Niveau = 'protege' | 'mixte' | 'expose';
@@ -12,10 +13,6 @@ interface Poche {
   niveau: Niveau;
   analyse: string;
   action: string;
-}
-
-function isEI(forme: string): boolean {
-  return /individuel|ei|eirl|micro|auto/i.test(forme);
 }
 
 function buildPoches(r: Reponses, c: CompanyData): Poche[] {

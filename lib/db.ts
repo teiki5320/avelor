@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import type { CompanyData, FicheRecord, Rappel, Reponses } from './types';
 
@@ -80,6 +81,13 @@ export async function getFicheByToken(token: string): Promise<FicheRecord | null
     return null;
   }
 }
+
+/**
+ * getFicheByToken mémorisé le temps d'une requête : le layout de
+ * /fiche/[token] (vérification d'existence, vrai 404) et la page partagent
+ * une seule lecture en base.
+ */
+export const getFicheByTokenMemo = cache(getFicheByToken);
 
 export async function updateFicheEmail(token: string, email: string): Promise<boolean> {
   const db = getDb();

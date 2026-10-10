@@ -3,6 +3,7 @@ import { ogMeta } from '@/lib/og';
 
 export const metadata = {
   ...ogMeta({
+    chemin: '/residence-principale-insaisissable',
     titre: 'Résidence principale insaisissable',
     sous: 'Protéger son logement en cas de difficulté',
     description: 'Protection de la résidence principale du dirigeant : insaisissabilité légale (loi Macron 2015), déclaration notariée, EI loi 2022. Limites, conjoint, cautions.',

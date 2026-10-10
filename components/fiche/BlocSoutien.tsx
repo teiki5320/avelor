@@ -8,7 +8,7 @@ import type { CaisseRetraite } from '@/lib/secteur';
  * code NAF (libéral, santé, vétérinaire, etc.). Renvoie null si aucune
  * caisse spécifique n'est identifiée.
  */
-function caisseFromNaf(
+export function caisseFromNaf(
   naf: string,
   caisses: CaisseRetraite[] | undefined,
 ): CaisseRetraite | null {
@@ -17,13 +17,12 @@ function caisseFromNaf(
   const find = (sigle: string) =>
     caisses.find((c) => c.caisse.toUpperCase() === sigle) ?? null;
 
-  // Avocat
-  if (code.startsWith('6910')) return find('CNBF');
-  // Notaire / huissier
-  if (code.startsWith('6910')) return find('CRPCEN');
+  // 69.10Z regroupe avocats (CNBF), notaires (CRPCEN) et commissaires de
+  // justice (CAVOM) : le code NAF ne permet pas de choisir, on ne devine pas.
+  if (code.startsWith('6910')) return null;
   // Expertise comptable
   if (code.startsWith('6920')) return find('CAVEC');
-  // Architecture
+  // Architecture (profession restée affiliée à la Cipav)
   if (code.startsWith('7111')) return find('CIPAV');
   // Pharmacie (commerce de détail pharmaceutique)
   if (code.startsWith('4773')) return find('CAVP');
@@ -38,14 +37,11 @@ function caisseFromNaf(
     // Médecine générale / spécialisée
     return find('CARMF');
   }
-  // Autres libéraux (services professionnels, conseil…) → CIPAV par défaut
-  if (
-    code.startsWith('74') ||
-    code.startsWith('69') ||
-    code.startsWith('70')
-  ) {
-    return find('CIPAV');
-  }
+  // Autres libéraux (conseil 70, activités spécialisées 74…) : depuis la
+  // LFSS 2018 (loi n° 2017-1836, art. 15), la Cipav n'affilie plus qu'une
+  // liste fermée de professions ; les libéraux non réglementés relèvent de
+  // la sécurité sociale des indépendants (retraite : Assurance retraite).
+  // Pas de caisse professionnelle spécifique à afficher.
   return null;
 }
 
@@ -126,7 +122,7 @@ export default function BlocSoutien() {
                 {caisseSociale.caisse} · Action sociale
               </p>
               <p className="mt-1 text-xs text-navy/70">
-                Caisse de retraite des {caisseSociale.profession.toLowerCase()}s.
+                Votre caisse de retraite ({caisseSociale.profession.toLowerCase()}).
                 Un fonds d&apos;action sociale peut vous accorder une aide
                 financière d&apos;urgence (cotisations, perte de revenus,
                 situations exceptionnelles).

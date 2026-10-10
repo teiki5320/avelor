@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import type { Reponses, CompanyData } from '@/lib/types';
-import type { SectorInfo } from '@/lib/secteur';
+import { libelleActionSoutien, libelleContactSyndicat, type SectorInfo } from '@/lib/secteur';
 import { getTonePreset } from '@/lib/tone';
 import { useFiche } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
@@ -17,8 +17,8 @@ function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; t
 
   items.push({
     id: 'soin',
-    texte: 'Prendre soin de vous',
-    lien: 'https://apesa.fr',
+    texte: libelleActionSoutien(s, 'vous'),
+    lien: 'https://www.apesa-france.com',
   });
   if (r.situation === 'assignation') {
     items.push({ id: 'avocat', texte: `Contacter un avocat en urgence${ville ? ` à ${ville}` : ''}` });
@@ -54,7 +54,7 @@ function buildItems(r: Reponses, c: CompanyData, s: SectorInfo): { id: string; t
   if (s.syndicats.length > 0) {
     items.push({
       id: 'syndicat',
-      texte: `Contacter ${s.syndicats[0].nom} (${s.syndicats[0].role})`,
+      texte: libelleContactSyndicat(s.syndicats[0]),
       lien: s.syndicats[0].site,
     });
   }
@@ -99,15 +99,22 @@ export default function BlocChecklist({ defaultOpen }: Props) {
           const checked = !!done[it.id];
           return (
             <li key={it.id}>
-              <button
-                type="button"
-                onClick={() => toggle(it.id)}
-                className={`flex w-full items-start gap-3 rounded-2xl border p-4 text-left transition ${
+              {/* <label> + case à cocher (et non <button>) : un lien <a> ne peut
+                  pas être imbriqué dans un bouton. L'anneau de focus du bouton
+                  d'origine est reporté sur l'étiquette. */}
+              <label
+                className={`flex w-full cursor-pointer items-start gap-3 rounded-2xl border p-4 text-left transition has-[input:focus-visible]:outline has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-offset-2 has-[input:focus-visible]:outline-[rgb(var(--ring))] ${
                   checked
                     ? 'border-vert/30 bg-vert/5'
                     : 'border-navy/10 bg-white/60 hover:bg-white'
                 }`}
               >
+                <input
+                  type="checkbox"
+                  className="sr-only"
+                  checked={checked}
+                  onChange={() => toggle(it.id)}
+                />
                 <span
                   className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${
                     checked
@@ -131,7 +138,6 @@ export default function BlocChecklist({ defaultOpen }: Props) {
                         href={it.lien}
                         target={it.lien.startsWith('/') ? undefined : '_blank'}
                         rel={it.lien.startsWith('/') ? undefined : 'noreferrer'}
-                        onClick={(e) => e.stopPropagation()}
                         className="text-bleu-fonce underline underline-offset-2"
                       >
                         {it.lien.startsWith('/') ? 'Voir les modèles' : new URL(it.lien).hostname.replace('www.', '')}
@@ -139,7 +145,7 @@ export default function BlocChecklist({ defaultOpen }: Props) {
                     </>
                   )}
                 </span>
-              </button>
+              </label>
             </li>
           );
         })}

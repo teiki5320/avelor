@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/outils' },
   title: 'Boîte à outils — Solelis',
   description:
     'Calculateurs et vérificateurs officiels pour les dirigeants : prescription, indemnités de licenciement, ATI, aide juridictionnelle, valorisation, coûts de procédures.',
@@ -54,7 +55,7 @@ const OUTILS: Outil[] = [
     icone: '🤝',
     titre: 'Calculateur d\'aide juridictionnelle',
     description:
-      "Éligibilité selon revenu fiscal de référence et composition du foyer (plafonds 2025).",
+      "Éligibilité selon revenu fiscal de référence et composition du foyer (plafonds 2026).",
     source: 'Loi 91-647, service-public.fr',
   },
   {

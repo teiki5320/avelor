@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/outils/prescription' },
   title: 'Vérificateur de prescription — Solelis',
   description:
     'Vérifiez si vos dettes sont prescrites : URSSAF (3 ans), fiscal (4 ans), civil (5 ans), baux (1 an). Sources légales officielles.',
