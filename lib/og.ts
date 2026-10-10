@@ -9,6 +9,10 @@ export type OgCat = 'outil' | 'courrier' | 'procedure' | 'situation' | 'aide' | 
  *
  * Usage dans une page : `export const metadata = ogMeta({ titre: '…', sous: '…', cat: 'outil' })`
  * — fusionne titre/description de la page avec l'image dynamique.
+ *
+ * `chemin` (optionnel, ex. '/courriers/echelonnement-urssaf') : ajoute
+ * og:url et l'URL canonique de la page (résolues sur metadataBase,
+ * https://solelis.com, défini dans app/layout.tsx).
  */
 export function ogMeta(opts: {
   titre: string;
@@ -16,6 +20,7 @@ export function ogMeta(opts: {
   sous?: string;
   cat?: OgCat;
   pageTitle?: string;
+  chemin?: string;
 }): Metadata {
   const params = new URLSearchParams({ titre: opts.titre });
   if (opts.sous) params.set('sous', opts.sous);
@@ -25,10 +30,14 @@ export function ogMeta(opts: {
   return {
     title: opts.pageTitle ?? `${opts.titre} — Solelis`,
     description: opts.description,
+    ...(opts.chemin ? { alternates: { canonical: opts.chemin } } : {}),
     openGraph: {
       title: opts.titre,
       description: opts.description,
       type: 'article',
+      siteName: 'Solelis',
+      locale: 'fr_FR',
+      ...(opts.chemin ? { url: opts.chemin } : {}),
       images: [{ url: ogUrl, width: 1200, height: 630, alt: opts.titre }],
     },
     twitter: {

@@ -146,38 +146,46 @@ export default function BlocPlanAction({ defaultOpen }: Props) {
         {actions.map((a, idx) => (
           <li
             key={a.id}
-            className={`flex items-start gap-2 rounded-2xl border p-3 transition ${
+            className={`flex items-start rounded-2xl border transition ${
               a.done
                 ? 'border-vert/30 bg-vert/5'
                 : 'border-navy/10 bg-white/60'
             }`}
           >
+            {/* Toute la ligne (case + texte) est cliquable : cible tactile
+                bien plus grande que la case de 20 px. */}
             <button
               type="button"
+              role="checkbox"
+              aria-checked={a.done}
               onClick={() => toggle(a.id)}
-              className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-xs ${
-                a.done
-                  ? 'border-vert-fonce bg-vert-fonce text-white'
-                  : 'border-navy/25'
-              }`}
-              aria-label={a.done ? 'Marquer comme non fait' : 'Marquer comme fait'}
+              className="flex min-h-11 flex-1 items-start gap-2 rounded-2xl p-3 text-left"
             >
-              {a.done ? '✓' : ''}
+              <span
+                aria-hidden
+                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-xs ${
+                  a.done
+                    ? 'border-vert-fonce bg-vert-fonce text-white'
+                    : 'border-navy/25'
+                }`}
+              >
+                {a.done ? '✓' : ''}
+              </span>
+              <span
+                className={`flex-1 text-sm ${
+                  a.done ? 'text-navy/50 line-through' : 'text-navy'
+                }`}
+              >
+                {a.texte}
+              </span>
             </button>
-            <span
-              className={`flex-1 text-sm ${
-                a.done ? 'text-navy/50 line-through' : 'text-navy'
-              }`}
-            >
-              {a.texte}
-            </span>
-            <div className="flex shrink-0 gap-1">
+            <div className="flex shrink-0">
               {idx > 0 && (
                 <button
                   type="button"
                   onClick={() => moveUp(idx)}
-                  className="rounded px-1 text-xs text-navy/30 hover:text-navy"
-                  aria-label="Monter"
+                  className="flex h-11 w-11 items-center justify-center rounded-xl text-xs text-navy/60 hover:text-navy"
+                  aria-label={`Monter : ${a.texte}`}
                 >
                   ↑
                 </button>
@@ -186,8 +194,8 @@ export default function BlocPlanAction({ defaultOpen }: Props) {
                 <button
                   type="button"
                   onClick={() => remove(a.id)}
-                  className="rounded px-1 text-xs text-navy/30 hover:text-rouge"
-                  aria-label="Supprimer"
+                  className="flex h-11 w-11 items-center justify-center rounded-xl text-xs text-navy/60 hover:text-rouge"
+                  aria-label={`Supprimer : ${a.texte}`}
                 >
                   ✕
                 </button>

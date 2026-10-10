@@ -1,6 +1,6 @@
 # Solelis
 
-Plateforme SaaS (Next.js 14) d'aide aux dirigeants d'entreprise en difficulté en France.
+Plateforme SaaS (Next.js 15) d'aide aux dirigeants d'entreprise en difficulté en France.
 Le dirigeant entre son SIRET, répond à un questionnaire, et reçoit une fiche personnalisée (stratégie, courriers, échéances, aides, annuaires).
 
 ## Commandes
@@ -8,21 +8,22 @@ Le dirigeant entre son SIRET, répond à un questionnaire, et reçoit une fiche 
 ```bash
 npm run dev      # Serveur local (port 3000)
 npm run build    # Build de production
-npm run lint     # ESLint (config: next/core-web-vitals)
-npm test         # Vitest (259 tests dans lib/__tests__/, components/__tests__/, app/api/__tests__/)
+npm run lint     # ESLint CLI (eslint.config.mjs : next/core-web-vitals)
+npm test         # Vitest (264 tests dans lib/__tests__/, components/__tests__/, app/api/__tests__/)
 npm run test:e2e # Playwright (parcours utilisateur)
 ```
 
 Hébergement : Worker Cloudflare « solelis » via OpenNext (`wrangler.jsonc`, `worker.ts`), déployé depuis `main` → https://solelis.com
 
 ```bash
+npm run cf:build     # Build du Worker (OpenNext), sans déployer
 npm run cf:preview   # Aperçu local dans le simulateur Cloudflare (port 8787)
 npm run cf:deploy    # Build + mise en ligne sur Cloudflare
 ```
 
 ## Stack
 
-- **Framework** : Next.js 15.5.20 App Router, TypeScript, React 19
+- **Framework** : Next.js 15.5.x App Router, TypeScript, React 19 — Node 22 (`.nvmrc`)
 - **CSS** : Tailwind 3.4 (JIT) + classes custom (voir `tailwind.config.js`)
 - **Animations** : Framer Motion 11 (avec `LazyMotion` pour réduire le bundle)
 - **UI** : Glass morphism (backdrop-blur, ombres glass), polices Playfair Display + Outfit
@@ -30,9 +31,9 @@ npm run cf:deploy    # Build + mise en ligne sur Cloudflare
 - **Email** : Resend (magic link pour retrouver sa fiche + rappels cron quotidiens)
 - **APIs externes** : INSEE Sirene (gouv.fr + INSEE fallback), BODACC, Google Places (avocats locaux), Infogreffe (signaux)
 - **Validation** : Zod (schémas dans `lib/schemas.ts`)
-- **Tests** : Vitest (259 tests, 21 fichiers) + Playwright (E2E)
-- **CI** : GitHub Actions (lint → build → test)
-- **Rate limiting** : middleware in-memory (à passer Upstash en prod)
+- **Tests** : Vitest (264 tests, 22 fichiers) + Playwright (E2E)
+- **CI** : GitHub Actions, Node 22 (lint → tsc → build → test → `opennextjs-cloudflare build`)
+- **Rate limiting** : middleware in-memory (propre à chaque instance du Worker) — limiteur Cloudflare à venir
 - **PWA** : manifest.json + icônes 512/192/favicon
 
 ## Variables d'environnement
@@ -48,7 +49,7 @@ app/
   questionnaire/              # 18 étapes (8 base + 10 optionnelles dont nationalite)
   fiche/[token]/              # Fiche personnalisée (dashboard, SSR)
   situation/[slug]/           # 4 pages informatives par situation
-  courriers/[slug]/           # 17 modèles de courriers personnalisés
+  courriers/[slug]/           # 17 modèles de courriers (page serveur + CourrierDetail client, SSG)
   outils/                     # 11 calculateurs (ATI, licenciement, prescription, AGS, stocks, seuils, etc.)
   annuaires/                  # 4 annuaires (mandataires, CIP, AGS, TAE)
   accompagnant/               # Parcours « j'accompagne un proche » + bandeau urgence + code postal
@@ -58,7 +59,7 @@ app/
   api/fiche/send-link/        # Envoi magic link par email
   api/fiche/rappels/          # POST programmer un rappel
   api/cron/rappels/           # GET cron quotidien (Cron Trigger Cloudflare 7h UTC, worker.ts)
-  api/og/                     # Image OG dynamique (Edge runtime)
+  api/og/                     # Image OG dynamique (runtime Node, autorisée dans robots.txt)
   api/stats/                  # Stats agrégées
   sitemap.ts, robots.ts       # SEO
   error.tsx, loading.tsx, not-found.tsx, global-error.tsx  # Error boundaries
@@ -102,7 +103,7 @@ lib/
 data/
   organismes.json             # 107 territoires (96 dpts + 11 DOM-TOM), ~20 organismes par dpt
 
-middleware.ts                 # Rate limiting (in-memory, à migrer Upstash)
+middleware.ts                 # Rate limiting (in-memory ; limiteur Cloudflare à venir)
 worker.ts                     # Entrée du Worker Cloudflare + Cron rappels quotidiens 7h
 ```
 
@@ -117,6 +118,9 @@ worker.ts                     # Entrée du Worker Cloudflare + Cron rappels quot
 | `jaune`     | `#C97830` | Axe céder, warnings        |
 | `vert`      | `#28A050` | Axe sauvegarder, succès    |
 | `vert-fonce`| `#166E34` | Boutons verts à texte blanc (AA) |
+| `jaune-fonce`| `#8A5418` | Texte orange lisible (AA) sur fond clair |
+
+En thème clair, `text-vert` et `text-jaune` sont rendus avec les variantes foncées (règle dans `app/globals.css`) ; `text-navy/40` à `/60` ont un plancher de contraste AA. Textes informatifs : 12 px minimum (`text-xs`).
 
 ## Conventions
 
@@ -129,6 +133,8 @@ worker.ts                     # Entrée du Worker Cloudflare + Cron rappels quot
 - **URSSAF** : numéro universel `3957` (sauf MSA agriculture : `36 98`, CGSS Outre-mer : `0 820 000 [code]`)
 - **Tribunal** : `getJuridiction(company)` → TJ pour libéraux/agri/santé (NAF 69-74, 01-03, 86-88), TC sinon (loi 22 déc. 2021)
 - **Commits** : format conventionnel `type(scope): message` en français
+- **Métadonnées** : pas de title/description/url dans l'openGraph racine (chaque page hérite des siens) ; `ogMeta({ …, chemin })` ajoute og:url + canonique. Les titres de page incluent déjà « Solelis » (pas de modèle de titre global)
+- **Cibles tactiles** : 44 × 44 px minimum (pseudo-élément `before:-inset-*` si le visuel doit rester petit)
 - **Print** : classes `no-print` sur les éléments à masquer en impression
 - **Animations** : utiliser `m.div` au lieu de `motion.div` (LazyMotion)
 - **Framer Motion** : opérateurs `??` et `?:` à parenthéser explicitement (précédence)
@@ -149,7 +155,7 @@ worker.ts                     # Entrée du Worker Cloudflare + Cron rappels quot
 - **107 territoires** couverts (96 départements + 11 DOM-TOM) — **8 datasets enrichis** avec adresses + téléphones réels (DDFiP, Barreaux, Chambres notaires, Chambres agriculture, URSSAF, Tribunaux commerce, CCI, CMA)
 - **3 thèmes** : clair (défaut) · sombre · contraste élevé (RGAA AAA) — bascule dans la Nav, persistance localStorage
 - **18 secteurs** enrichis (incluant finance, IT, éducation, immobilier, ESS/associations, services, culture/sport) + mapping 11 OPCO par NAF
-- **259 tests Vitest** + Playwright E2E configuré
+- **264 tests Vitest** + Playwright E2E configuré
 - **11 calculateurs officiels** (ajout : valorisation stocks, seuils d'effectif)
 - **18 questions** au questionnaire
 

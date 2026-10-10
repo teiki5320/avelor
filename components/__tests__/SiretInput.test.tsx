@@ -37,5 +37,14 @@ describe('SiretInput', () => {
     const form = input.closest('form')!;
     fireEvent.submit(form);
     expect(screen.getByText(/14 chiffres/i)).toBeInTheDocument();
+    expect(input).toHaveAttribute('aria-invalid', 'true');
+    expect(input).toHaveAttribute('aria-describedby', 'siret-erreur');
+  });
+
+  it('le bouton Commencer ne paraît pas désactivé quand le SIRET est incomplet', () => {
+    render(<SiretInput />);
+    const bouton = screen.getByRole('button', { name: /Commencer/i });
+    expect(bouton).not.toBeDisabled();
+    expect(bouton.className).not.toMatch(/opacity-/);
   });
 });

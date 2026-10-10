@@ -24,7 +24,9 @@ function scrollToId(id: string) {
 }
 
 export default function SectionNav() {
-  const [active, setActive] = useState<string>('vue-ensemble');
+  // La première section de la fiche est « Agir » : c'est elle qui est
+  // active à l'ouverture, avant tout défilement.
+  const [active, setActive] = useState<string>(SECTIONS[0].id);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -46,13 +48,14 @@ export default function SectionNav() {
   }, []);
 
   return (
-    <nav className="no-print sticky top-20 z-20 -mx-5 border-y border-navy/10 bg-white/90 px-5 py-2 backdrop-blur-xl sm:top-24">
+    <nav aria-label="Sections de la fiche" className="no-print sticky top-20 z-20 -mx-5 border-y border-navy/10 bg-white/90 px-5 py-2 backdrop-blur-xl sm:top-24">
       <div className="flex gap-1 overflow-x-auto">
         {SECTIONS.map((s) => (
           <button
             key={s.id}
             type="button"
             onClick={() => scrollToId(s.id)}
+            aria-current={active === s.id ? 'true' : undefined}
             className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm font-medium transition ${
               active === s.id
                 ? 'bg-navy text-white'

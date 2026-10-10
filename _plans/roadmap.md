@@ -1,6 +1,6 @@
 # 🗺️ Solelis — Roadmap
 
-> Dernière mise à jour : **2026-07-18**
+> Dernière mise à jour : **2026-10-10**
 > Statut global : **production · couverture ~94% · 44 findings de l'audit du 30/05 corrigés**
 
 ## 🎯 Vision
@@ -12,20 +12,20 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 ### ✅ Fait
 
 #### Infrastructure & qualité
-- [x] Plateforme en ligne sur solelis.com, déployée en continu via Vercel et la branche main
-- [x] Stack stable : Next.js 15.5.20 + React 19 + framer-motion 11 (LazyMotion) — 0 vulnérabilité npm audit
-- [x] 245 tests Vitest verts (lib + composants React + routes API) + Playwright E2E configuré
-- [x] GitHub Actions CI : lint → build → test
-- [x] ESLint configuré (next/core-web-vitals)
+- [x] Plateforme en ligne sur solelis.com : Worker Cloudflare « solelis » (OpenNext) déployé depuis la branche main, base Cloudflare D1 (UE)
+- [x] Stack stable : Next.js 15.5 + React 19 + framer-motion 11 (LazyMotion) — mises à jour mineures appliquées ; les alertes `npm audit` restantes viennent d'outils de build (Tailwind 3, eslint-config-next, OpenNext) et demandent des montées de version majeures
+- [x] 264 tests Vitest verts (lib + composants React + routes API) + Playwright E2E configuré
+- [x] GitHub Actions CI (Node 22) : lint → TypeScript → build → test → build OpenNext Cloudflare
+- [x] ESLint CLI (eslint.config.mjs, next/core-web-vitals) — `next lint` déprécié abandonné
 - [x] Validation Zod sur toutes les routes API (fiche, send-link, rappels)
-- [x] Rate limiting middleware (in-memory, à passer Upstash)
+- [x] Rate limiting middleware (in-memory ; limiteur Cloudflare à venir)
 - [x] Logs d'erreur sur toutes les API routes
 - [x] Error boundaries : error.tsx, global-error.tsx, loading.tsx, not-found.tsx + fiche-specific
 - [x] CRON_SECRET vérifié strictement (faille corrigée)
 - [x] FicheContext (React Context) câblé sur 18 blocs
 
 #### SEO & accessibilité
-- [x] Metadata sur 34 pages, sitemap.xml (37 routes), robots.txt
+- [x] Metadata par page (og:title propre à chaque page), sitemap.xml (69 routes dont les 17 courriers, lastmod fixe), robots.txt (autorise /api/og)
 - [x] JSON-LD : Organization, FAQPage, HowTo (calculateurs), BreadcrumbList
 - [x] OG image dynamique (`/api/og`) + Twitter card
 - [x] PWA : manifest.json, theme-color, icônes 512/192/favicon
@@ -97,9 +97,9 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] `getJuridiction(company)` : envoie au Tribunal Judiciaire pour libéraux (NAF 69-74), agriculteurs (01-03), santé (86-88) — loi du 22 décembre 2021. TC sinon.
 
 #### Persistance & email
-- [x] Sauvegarde de la fiche en base Supabase + RLS configurées
+- [x] Sauvegarde de la fiche en base Cloudflare D1 (UE)
 - [x] Envoi du magic link par email via Resend
-- [x] API rappels email + cron quotidien Vercel (7h)
+- [x] API rappels email + Cron Trigger Cloudflare quotidien (7h UTC, `worker.ts`)
 - [x] Recherche d'avocats locaux via Google Places intégrée
 
 ### 🔥 En cours
@@ -109,20 +109,15 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 ---
 
-## 🚀 MISE EN LIGNE — plan validé le 19/07/2026 (à dérouler depuis le Mac)
+## 🚀 MISE EN LIGNE — Cloudflare
 
-> Le site est prêt : 259 tests verts, build OK, audit couverture métier 6/6, pages légales en place.
-> Décision : achat du domaine (idéalement **solelis.com**, de préférence chez Vercel pour que le DNS soit pilotable en CLI) + adresse email de contact. Session Claude Code locale sur le Mac pour piloter le CLI Vercel.
+> Le site est en ligne sur https://solelis.com (Worker Cloudflare + D1). Détails : `docs/INFRA.md` et `docs/PUBLICATION.md`.
 
-1. [ ] **Sur le Mac** : `vercel login` + `supabase login` (une fois chacun, par Teiki — auth navigateur, accès CLI validé pour les deux) puis `vercel link` sur le projet. Via le CLI Supabase : récupérer `SUPABASE_URL`/`SUPABASE_ANON_KEY` (`supabase projects api-keys`) et vérifier table `fiches` + RLS en prod
-2. [ ] **Acheter le domaine** (dashboard Vercel → Domains, paiement par Teiki) et l'ajouter au projet (`vercel domains add`)
-3. [ ] **Email de contact** : boîte ou redirection `contact@<domaine>` → Gmail (ImprovMX gratuit via `vercel dns add` si domaine chez Vercel)
-4. [ ] **Resend** : vérifier le domaine (ajouter SPF/DKIM via `vercel dns add`) puis `RESEND_FROM="Solelis <contact@<domaine>>"`
-5. [ ] **Variables d'environnement production** (`vercel env add`) : `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_BASE_URL=https://<domaine>`, `CRON_SECRET` (générer : `openssl rand -hex 32`) — optionnelles : `INSEE_API_KEY` (fallback Sirene), `GOOGLE_PLACES_API_KEY` (avocats locaux), `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (stats). Vérifier d'abord ce qui existe déjà (`vercel env ls`)
-6. [ ] **Code** : remplacer `solelis.com` par le domaine (~30 fichiers : canoniques, OG, sitemap, robots, mentions légales) + remplacer `solelis@toakeur.com` (⚠️ adresse actuellement morte — bloquant RGPD) par la vraie adresse
-7. [ ] **PR branche `claude/blissful-clarke-ycvXl` → `main`** (26+ commits d'avance) puis merge → déploiement Vercel automatique
-8. [ ] **Vérifier en prod** : création de fiche, magic link reçu (pas en spam), cron rappels, avocats locaux
-9. [ ] Après lancement : migrer le rate limiting in-memory vers Upstash
+1. [ ] **E-mail de contact** : remplacer `solelis@toakeur.com` (⚠️ adresse ne recevant pas de messages — bloquant RGPD) par une vraie adresse dans les pages légales
+2. [ ] **Resend** : vérifier le domaine d'envoi (SPF/DKIM) puis régler `RESEND_FROM`
+3. [ ] **Vérifier en prod** : création de fiche, lien magique reçu (pas en spam), cron rappels, avocats locaux
+4. [ ] **Google Search Console** : déclarer le site et le sitemap
+5. [ ] **Limitation de débit** : remplacer le compteur en mémoire de `middleware.ts` par un limiteur Cloudflare
 
 ---
 
@@ -167,7 +162,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 > Audit orchestré (7 auditeurs de code + 12 simulations Playwright réelles + vérification adversariale, 85 agents). **Verdict : le parcours va au bout dans les 12 cas, aucun blocage.** Le problème est la fiabilité du contenu juridique. 44 findings confirmés avec preuve.
 >
-> ✅ **Correction complète le 18/07/2026** : les 44 findings ci-dessous sont corrigés (lint + build + 245 tests Vitest + E2E chromium verts, npm audit à 0 vulnérabilité). Migration Next 15.5.20 + React 19 incluse.
+> ✅ **Correction complète le 18/07/2026** : les 44 findings ci-dessous sont corrigés (lint + build + 245 tests Vitest + E2E chromium verts à cette date). Migration Next 15.5.20 + React 19 incluse.
 
 ### 🔴 ERREURS — Contenu juridique FAUX (priorité absolue, oriente de mauvaises décisions)
 - [x] **Contresens PGE / garantie BPI** : « ouvrir une procédure fait perdre la garantie de l'État » = FAUX (c'est l'inverse, la procédure déclenche l'appel de la garantie). `lib/strategie.ts:88` (+ `scores.sauvegarder -= 1` à supprimer), `BlocPGE.tsx:120`, `BlocGarantieBPI.tsx:82`
@@ -227,7 +222,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 #### 🔴 CRITIQUE — bloque la qualité du conseil
 - [ ] **Tester le site en navigateur réel** (mobile + desktop) sur tout le parcours
 - [x] **Mode "perdu" radical** : 3 infos max (qui appeler / 1 action semaine / soutien APESA-3114) — composant `ModePerdu`
-- [ ] **Migrer le rate limiting vers Upstash Redis** (in-memory inefficace sur Vercel serverless) — nécessite config externe
+- [ ] **Limiteur de débit Cloudflare** (le compteur en mémoire de `middleware.ts` est propre à chaque instance du Worker)
 - [ ] **Préparer la mise à jour des barèmes 2026** quand publiés (AGS 92 736€, ATI 26,30€/j, aide juridictionnelle)
 
 #### 🟠 IMPORTANT — manques fonctionnels identifiés
@@ -303,7 +298,7 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [ ] Mise en relation directe avec un mandataire, un avocat ou un CIP local depuis la fiche
 - [x] **Tracker de progression plus visuel** : 6 sous-groupes avec barres individuelles + pastilles "complet"
 - [x] **PWA service worker** : `/sw.js` cache-first assets, network-first HTML, enregistrement conditionnel prod
-- [ ] **Migration Next.js 15** : quand framer-motion sera compatible React 19 (corrige 4 vulnérabilités high)
+- [x] **Migration Next.js 15** + React 19 (faite)
 - [x] **Question "Nationalité hors UE"** : nouvelle question + BlocNationaliteSejour (Passeport Talent, carte entrepreneur, OFII)
 - [x] **OFII / aide régularisation** : pour dirigeants étrangers — dans BlocNationaliteSejour
 - [x] **Vetos-Entraide** : déjà présent dans `lib/organismes.ts` (équivalent APESA pour vétérinaires)
