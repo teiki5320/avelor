@@ -45,7 +45,7 @@ export default function CourriersPage() {
       />
       <div className="mb-10 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-bleu-fonce/70">
-          12 modèles prêts à l&apos;emploi
+          {COURRIERS.length} modèles prêts à l&apos;emploi
         </p>
         <h1 className="mt-2 font-display text-3xl text-navy sm:text-5xl">
           Courriers types

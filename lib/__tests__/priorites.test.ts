@@ -149,6 +149,56 @@ describe('scorePriorityCards', () => {
     expect(cartes1.map((c) => c.score)).toEqual(cartes2.map((c) => c.score));
   });
 
+  it('inclut la carte PGE quand pgeEnCours = oui', () => {
+    const cards = scorePriorityCards({
+      reponses: makeReponses({ pgeEnCours: 'oui' }),
+      company: makeCompany(),
+      sector: makeSector(),
+      seuils: makeSeuils(),
+    });
+    const ids = cards.map((c) => c.id);
+    expect(ids).toContain('pge');
+  });
+
+  it('inclut la carte conjoint pour un statut conjoint pertinent', () => {
+    const cards = scorePriorityCards({
+      reponses: makeReponses({ conjointStatut: 'collaborateur' }),
+      company: makeCompany(),
+      sector: makeSector(),
+      seuils: makeSeuils(),
+    });
+    const ids = cards.map((c) => c.id);
+    expect(ids).toContain('conjoint');
+  });
+
+  it('inclut la carte cogerance quand coGerants = oui', () => {
+    const cards = scorePriorityCards({
+      reponses: makeReponses({ coGerants: 'oui' }),
+      company: makeCompany(),
+      sector: makeSector(),
+      seuils: makeSeuils(),
+    });
+    const ids = cards.map((c) => c.id);
+    expect(ids).toContain('cogerance');
+  });
+
+  it('n\'inclut pas la carte conjoint pour sans-conjoint ou aucun', () => {
+    const cards1 = scorePriorityCards({
+      reponses: makeReponses({ conjointStatut: 'sans-conjoint' }),
+      company: makeCompany(),
+      sector: makeSector(),
+      seuils: makeSeuils(),
+    });
+    const cards2 = scorePriorityCards({
+      reponses: makeReponses({ conjointStatut: 'aucun' }),
+      company: makeCompany(),
+      sector: makeSector(),
+      seuils: makeSeuils(),
+    });
+    expect(cards1.map((c) => c.id)).not.toContain('conjoint');
+    expect(cards2.map((c) => c.id)).not.toContain('conjoint');
+  });
+
   it('inclut bail commercial pour un secteur éligible', () => {
     const cards = scorePriorityCards({
       reponses: makeReponses(),

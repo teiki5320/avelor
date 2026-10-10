@@ -97,6 +97,20 @@ export async function GET(req: Request) {
 }
 
 /**
+ * Échappe les caractères HTML d'une valeur venue de la base (libellé, échéance,
+ * nom d'entreprise) : ces champs sont saisis côté client et seraient sinon
+ * injectés tels quels dans le HTML de l'email (phishing depuis le domaine Avelor).
+ */
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
  * Envoie un email de rappel via Resend.
  */
 async function envoyerRappelEmail(
@@ -114,14 +128,16 @@ async function envoyerRappelEmail(
   const resend = new Resend(resendKey);
   const from = process.env.RESEND_FROM ?? 'AVELOR <onboarding@resend.dev>';
   const base = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://avelor.fr';
-  const nomEntreprise = fiche.company_data?.nom ?? 'votre entreprise';
-  const lienFiche = `${base}/fiche/${fiche.token}`;
+  const nomEntreprise = escapeHtml(fiche.company_data?.nom ?? 'votre entreprise');
+  const libelle = escapeHtml(String(rappel.libelle ?? '').slice(0, 120));
+  const echeance = escapeHtml(String(rappel.echeance ?? '').slice(0, 120));
+  const lienFiche = `${base}/fiche/${encodeURIComponent(fiche.token)}`;
 
   try {
     const { error } = await resend.emails.send({
       from,
       to: rappel.email,
-      subject: `Rappel AVELOR : ${rappel.libelle}`,
+      subject: `Rappel AVELOR : ${String(rappel.libelle ?? '').slice(0, 120)}`,
       html: `
 <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;padding:32px;color:#0A1628">
   <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:24px;margin:0 0 16px">AVELOR</h1>
@@ -130,8 +146,8 @@ async function envoyerRappelEmail(
     Ceci est un rappel que vous avez programmé pour <strong>${nomEntreprise}</strong> :
   </p>
   <div style="background:#f0f4fa;border-left:4px solid #1E3D82;padding:16px 20px;margin:24px 0;border-radius:0 12px 12px 0">
-    <p style="font-size:18px;font-weight:600;margin:0;color:#1E3D82">${rappel.libelle}</p>
-    <p style="font-size:14px;color:#4A72B8;margin:8px 0 0">Échéance : ${rappel.echeance}</p>
+    <p style="font-size:18px;font-weight:600;margin:0;color:#1E3D82">${libelle}</p>
+    <p style="font-size:14px;color:#4A72B8;margin:8px 0 0">Échéance : ${echeance}</p>
   </div>
   <p style="margin:32px 0">
     <a href="${lienFiche}" style="background:#1E3D82;color:white;padding:14px 24px;border-radius:12px;text-decoration:none;font-family:sans-serif">

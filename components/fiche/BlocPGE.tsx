@@ -76,6 +76,41 @@ export default function BlocPGE() {
         </ul>
       </div>
 
+      {/* Procédure pas-à-pas */}
+      <div className="mt-4 rounded-2xl border border-navy/15 bg-white/60 p-4 text-sm text-navy/80">
+        <p className="font-display text-base text-navy">
+          Procédure pas-à-pas — restructuration PGE en 5 étapes
+        </p>
+        <ol className="mt-2 list-decimal space-y-1.5 pl-5">
+          <li>
+            <strong>Préparer le dossier</strong> : prévisionnel de
+            trésorerie à 12 mois, dernier bilan, justificatifs de la
+            baisse d&apos;activité, plan d&apos;actions correctives.
+          </li>
+          <li>
+            <strong>Demande écrite à la banque</strong> (LRAR ou
+            courriel suivi) : « demande de réaménagement du PGE n° X
+            au titre du protocole de place du 19 janvier 2022 »,
+            durée totale ≤ 10 ans, différé éventuel.
+          </li>
+          <li>
+            <strong>RDV avec votre conseiller</strong> sous 15 jours.
+            La banque doit motiver son refus par écrit.
+          </li>
+          <li>
+            <strong>En cas de refus ou silence &gt; 15 j</strong> :
+            saisir la Médiation du crédit (formulaire en ligne,
+            entièrement gratuit). Le médiateur reprend contact avec
+            votre banque sous 48 h.
+          </li>
+          <li>
+            <strong>Plan validé</strong> : signature d&apos;un avenant
+            au PGE — la garantie BPI/État est <strong>maintenue</strong>{' '}
+            de plein droit (pas de nouvel accord à demander à Bpifrance).
+          </li>
+        </ol>
+      </div>
+
       {/* Priorité avant la procédure collective */}
       <div className="mt-4 rounded-2xl border border-rouge/30 bg-rouge/5 p-4">
         <p className="font-display text-base text-rouge">
@@ -83,13 +118,14 @@ export default function BlocPGE() {
         </p>
         <p className="mt-2 text-sm text-navy/80">
           L&apos;ouverture d&apos;une sauvegarde, d&apos;un redressement ou
-          d&apos;une liquidation <strong>fait perdre la garantie de
-          l&apos;État</strong> sur le PGE pour la banque, qui devient un
-          créancier ordinaire. Conséquence : la banque n&apos;a plus
-          d&apos;intérêt à négocier amiablement <em>après</em> le
-          jugement d&apos;ouverture. La restructuration doit donc être
-          tentée en amont, idéalement via la Médiation du crédit ou un
-          mandat ad hoc / conciliation.
+          d&apos;une liquidation <strong>déclenche l&apos;appel de la
+          garantie de l&apos;État</strong> : la banque est indemnisée par
+          Bpifrance (70 à 90 % du capital restant dû) et l&apos;État,
+          subrogé, déclare sa créance à la procédure. Conséquence : une
+          fois couverte, la banque n&apos;a plus d&apos;intérêt à négocier
+          amiablement <em>après</em> le jugement d&apos;ouverture. La
+          restructuration doit donc être tentée en amont, idéalement via
+          la Médiation du crédit ou un mandat ad hoc / conciliation.
         </p>
       </div>
 
@@ -107,7 +143,7 @@ export default function BlocPGE() {
               href="tel:3414"
               className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
             >
-              ☎ 34 14
+              <span aria-hidden>☎</span> 34 14
             </a>
             <a
               href="https://mediateur-credit.banque-france.fr"
@@ -115,7 +151,7 @@ export default function BlocPGE() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 mediateur-credit.banque-france.fr
+              <span aria-hidden>🌐</span> mediateur-credit.banque-france.fr
             </a>
           </div>
         </div>
@@ -131,7 +167,7 @@ export default function BlocPGE() {
               href="tel:3414"
               className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
             >
-              ☎ 34 14
+              <span aria-hidden>☎</span> 34 14
             </a>
             <a
               href="https://entreprises.banque-france.fr"
@@ -139,7 +175,7 @@ export default function BlocPGE() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 entreprises.banque-france.fr
+              <span aria-hidden>🌐</span> entreprises.banque-france.fr
             </a>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { v4 as uuid } from 'uuid';
+import { randomUUID } from 'node:crypto';
 import { fetchSirene } from '@/lib/sirene';
 import { saveFiche } from '@/lib/supabase';
 import { fichePayloadSchema } from '@/lib/schemas';
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     const { siret, reponses } = parsed.data;
 
     const company_data = await fetchSirene(siret);
-    const token = uuid().replace(/-/g, '').slice(0, 24);
+    const token = randomUUID().replace(/-/g, '').slice(0, 24);
 
     const saved = await saveFiche({
       token,

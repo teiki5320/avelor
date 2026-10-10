@@ -3,17 +3,72 @@
 @tailwind utilities;
 
 :root {
-  --navy: #0A1628;
-  --bleu: #4A72B8;
-  --bleu-fonce: #1E3D82;
-  --rouge: #C94040;
-  --jaune: #C97830;
-  --vert: #28A050;
+  /* Couleurs en composantes R G B (pour alpha via Tailwind rgb(var() / a)) */
+  --c-navy: 10 22 40;
+  --c-bleu: 74 114 184;
+  --c-bleu-fonce: 30 61 130;
+  --c-rouge: 201 64 64;
+  --c-jaune: 201 120 48;
+  --c-vert: 40 160 80;
+  /* Vert foncé pour les boutons à texte blanc : bg-vert (#28A050) + blanc
+     ne fait que 3.37:1 — sous le seuil AA de 4.5:1. */
+  --c-vert-fonce: 22 110 52;
+
+  /* Alias hex hérités (utilisés par quelques composants CSS custom) */
+  --navy: rgb(var(--c-navy));
+  --bleu: rgb(var(--c-bleu));
+  --bleu-fonce: rgb(var(--c-bleu-fonce));
+  --rouge: rgb(var(--c-rouge));
+  --jaune: rgb(var(--c-jaune));
+  --vert: rgb(var(--c-vert));
+
+  /* Surfaces et fonds — pilotables par thème */
+  --bg-gradient: linear-gradient(145deg, #F8F6F2 0%, #EBE8E2 55%, #E4E8F5 100%);
+  --surface: 255 255 255;        /* fond des panneaux .glass / bg-white */
+  --surface-border: 255 255 255; /* bordure claire des panneaux */
+  --glass-blur: 24px;
+  --glass-shadow: 0 12px 40px rgba(10, 22, 40, 0.09), inset 0 1px 0 white;
+  --ring: 74 114 184;            /* couleur de focus */
+}
+
+/* ───────── Thème sombre ───────── */
+[data-theme='dark'] {
+  --c-navy: 226 232 240;         /* "navy" devient clair → texte lisible */
+  --c-bleu: 124 165 232;
+  --c-bleu-fonce: 138 173 234;
+  --c-rouge: 232 116 116;
+  --c-jaune: 224 160 96;
+  --c-vert: 74 192 120;
+  --c-vert-fonce: 29 122 60;
+
+  --bg-gradient: linear-gradient(150deg, #0A1220 0%, #0E1A2E 55%, #10182B 100%);
+  --surface: 24 36 56;
+  --surface-border: 90 110 150;
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+  --ring: 124 165 232;
+}
+
+/* ───────── Contraste élevé (RGAA AAA) ───────── */
+[data-theme='contrast'] {
+  --c-navy: 0 0 0;
+  --c-bleu: 17 51 122;
+  --c-bleu-fonce: 11 34 92;
+  --c-rouge: 158 18 18;
+  --c-jaune: 124 64 0;
+  --c-vert: 13 92 42;
+  --c-vert-fonce: 13 92 42;
+
+  --bg-gradient: #ffffff;
+  --surface: 255 255 255;
+  --surface-border: 0 0 0;
+  --glass-blur: 0px;
+  --glass-shadow: none;
+  --ring: 0 0 0;
 }
 
 html, body {
   color: var(--navy);
-  background: linear-gradient(145deg, #F8F6F2 0%, #EBE8E2 55%, #E4E8F5 100%);
+  background: var(--bg-gradient);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -30,19 +85,19 @@ h1, h2, h3, h4, .font-display {
 
 @layer components {
   .glass {
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.95);
-    box-shadow: 0 12px 40px rgba(10, 22, 40, 0.09), inset 0 1px 0 white;
+    background: rgb(var(--surface) / 0.82);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgb(var(--surface-border) / 0.95);
+    box-shadow: var(--glass-shadow);
     border-radius: 24px;
   }
 
   .glass-soft {
-    background: rgba(255, 255, 255, 0.62);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: rgb(var(--surface) / 0.62);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgb(var(--surface-border) / 0.85);
     border-radius: 18px;
   }
 
@@ -60,11 +115,11 @@ h1, h2, h3, h4, .font-display {
   }
 
   .pill-nav {
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.95);
-    box-shadow: 0 12px 40px rgba(10, 22, 40, 0.09), inset 0 1px 0 white;
+    background: rgb(var(--surface) / 0.82);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgb(var(--surface-border) / 0.95);
+    box-shadow: var(--glass-shadow);
     border-radius: 999px;
   }
 
@@ -74,7 +129,7 @@ h1, h2, h3, h4, .font-display {
     gap: 6px;
     padding: 6px 12px;
     border-radius: 999px;
-    background: rgba(10, 22, 40, 0.06);
+    background: rgb(var(--c-navy) / 0.06);
     color: var(--navy);
     font-size: 0.82rem;
     font-weight: 500;
@@ -110,22 +165,117 @@ h1, h2, h3, h4, .font-display {
     gap: 8px;
     padding: 12px 20px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(10, 22, 40, 0.08);
+    background: rgb(var(--surface) / 0.7);
+    border: 1px solid rgb(var(--c-navy) / 0.08);
     color: var(--navy);
     font-weight: 500;
     transition: background 180ms ease;
   }
   .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgb(var(--surface) / 0.95);
   }
 
   .dashed-band {
-    border: 1.5px dashed rgba(74, 114, 184, 0.4);
-    background: rgba(74, 114, 184, 0.05);
+    border: 1.5px dashed rgb(var(--c-bleu) / 0.4);
+    background: rgb(var(--c-bleu) / 0.05);
     border-radius: 18px;
   }
 }
+
+/* ───────── Surfaces blanches pilotées par thème ─────────
+   Les composants utilisent `bg-white`, `bg-white/80`, etc. (literal).
+   On les redirige vers la variable de surface pour les thèmes sombre
+   et contraste, sans toucher `text-white` (réservé aux boutons colorés). */
+[data-theme='dark'] .bg-white,
+[data-theme='contrast'] .bg-white { background-color: rgb(var(--surface)) !important; }
+[data-theme='dark'] .bg-white\/90,
+[data-theme='contrast'] .bg-white\/90 { background-color: rgb(var(--surface) / 0.95) !important; }
+[data-theme='dark'] .bg-white\/80,
+[data-theme='contrast'] .bg-white\/80 { background-color: rgb(var(--surface) / 0.85) !important; }
+[data-theme='dark'] .bg-white\/70,
+[data-theme='contrast'] .bg-white\/70 { background-color: rgb(var(--surface) / 0.75) !important; }
+[data-theme='dark'] .bg-white\/60,
+[data-theme='contrast'] .bg-white\/60 { background-color: rgb(var(--surface) / 0.6) !important; }
+[data-theme='dark'] .bg-white\/40 { background-color: rgb(var(--surface) / 0.4) !important; }
+[data-theme='dark'] .bg-white\/20 { background-color: rgb(var(--surface) / 0.25) !important; }
+[data-theme='dark'] .bg-white\/10 { background-color: rgb(var(--surface) / 0.15) !important; }
+
+/* `bg-navy` est un FOND sombre plein (pastilles actives, accents) avec
+   texte blanc : en sombre, "navy" devient clair, donc on force un fond
+   sombre distinct pour préserver le contraste avec le texte blanc. */
+[data-theme='dark'] .bg-navy { background-color: #1b2a44 !important; }
+[data-theme='contrast'] .bg-navy { background-color: #000 !important; }
+
+/* Boutons à FOND coloré plein + texte blanc : en sombre, les couleurs
+   "accent" sont éclaircies (pour les liens/textes), ce qui ruinerait le
+   contraste sur un fond plein. On force donc des teintes foncées et
+   saturées sur les remplissages pleins (et quasi-pleins /90, /70). */
+[data-theme='dark'] .bg-bleu-fonce,
+[data-theme='dark'] .bg-bleu-fonce\/90 { background-color: #21478f !important; }
+[data-theme='dark'] .bg-bleu { background-color: #355c95 !important; }
+[data-theme='dark'] .bg-vert,
+[data-theme='dark'] .bg-vert\/70 { background-color: #1d7a3c !important; }
+[data-theme='dark'] .bg-rouge,
+[data-theme='dark'] .bg-rouge\/90,
+[data-theme='dark'] .bg-rouge\/70 { background-color: #a82f2f !important; }
+[data-theme='dark'] .bg-jaune,
+[data-theme='dark'] .bg-jaune\/70 { background-color: #98571e !important; }
+
+/* En contraste élevé : panneaux opaques, bordures nettes, ombres off */
+[data-theme='contrast'] .glass,
+[data-theme='contrast'] .glass-soft,
+[data-theme='contrast'] .pill-nav {
+  background: #fff;
+  border: 1.5px solid #000;
+  box-shadow: none;
+}
+[data-theme='contrast'] .card-top-line::before { height: 4px; }
+
+/* Contraste élevé : on relève les textes en faible opacité au niveau
+   AAA (les nuances /40 à /65 deviennent quasi pleines, noir sur blanc). */
+[data-theme='contrast'] .text-navy\/40,
+[data-theme='contrast'] .text-navy\/45,
+[data-theme='contrast'] .text-navy\/50,
+[data-theme='contrast'] .text-navy\/55,
+[data-theme='contrast'] .text-navy\/60,
+[data-theme='contrast'] .text-navy\/65,
+[data-theme='contrast'] .text-navy\/70,
+[data-theme='contrast'] .text-navy\/75 { color: rgb(var(--c-navy) / 0.92) !important; }
+[data-theme='contrast'] .text-navy\/80,
+[data-theme='contrast'] .text-navy\/85,
+[data-theme='contrast'] .text-navy\/90 { color: rgb(var(--c-navy)) !important; }
+
+/* En sombre, on évite que les textes très pâles disparaissent. */
+[data-theme='dark'] .text-navy\/40,
+[data-theme='dark'] .text-navy\/45,
+[data-theme='dark'] .text-navy\/50 { color: rgb(var(--c-navy) / 0.62) !important; }
+
+/* Thème clair : sous 0.60 d'alpha, le navy passe sous 4.5:1 (AA) sur fond
+   blanc — text-navy/45 = 2.97:1, /50 = 3.46:1, souvent sur des corps de
+   10-12 px (hints, footer, méta). On relève le plancher à 0.62 (≈ 5:1). */
+.text-navy\/40,
+.text-navy\/45,
+.text-navy\/50 { color: rgb(var(--c-navy) / 0.62); }
+
+/* Dégradés passant par du blanc (IdentiteHero, ModePerdu, StrategieHero) :
+   non pilotés par les variables de thème, ils gardaient un fond blanc sous
+   le texte devenu clair en sombre → illisible. Remplacés par un aplat de
+   surface, la bordure colorée est conservée. */
+[data-theme='dark'] .via-white,
+[data-theme='dark'] .via-white\/80,
+[data-theme='dark'] .via-white\/40,
+[data-theme='dark'] .from-white\/90,
+[data-theme='contrast'] .via-white,
+[data-theme='contrast'] .via-white\/80,
+[data-theme='contrast'] .via-white\/40,
+[data-theme='contrast'] .from-white\/90 {
+  background-image: none !important;
+  background-color: rgb(var(--surface) / 0.9) !important;
+}
+
+/* Blobs animés du fond : atténués en sombre, masqués en contraste élevé */
+[data-theme='dark'] [data-bg-blobs] { opacity: 0.55; }
+[data-theme='contrast'] [data-bg-blobs] { display: none; }
 
 input, button, textarea {
   font-family: inherit;
@@ -133,24 +283,39 @@ input, button, textarea {
 
 /* Focus styles */
 *:focus-visible {
-  outline: 2px solid #4A72B8;
+  outline: 2px solid rgb(var(--ring));
   outline-offset: 2px;
+}
+[data-theme='contrast'] *:focus-visible {
+  outline-width: 3px;
 }
 
 /* Custom scrollbar discretion */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-thumb { background: rgba(10,22,40,0.12); border-radius: 999px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--c-navy) / 0.12); border-radius: 999px; }
 ::-webkit-scrollbar-track { background: transparent; }
 
 /* Print styles — clean PDF export */
+@page {
+  size: A4;
+  margin: 18mm 14mm 18mm 14mm;
+}
 @media print {
   html, body {
     background: white !important;
     color: #0A1628 !important;
-    font-size: 11pt;
-    line-height: 1.5;
+    font-size: 10.5pt;
+    line-height: 1.45;
   }
-  .no-print, header, footer, .pill-nav {
+  /* Empêche les titres orphelins */
+  h1, h2, h3 { page-break-after: avoid; }
+  /* Empêche les éléments de listes coupés */
+  li, dd { page-break-inside: avoid; }
+  /* Mode économie d'encre par défaut sur les fonds colorés */
+  .glass-soft, [class*="bg-"] {
+    background: white !important;
+  }
+  .no-print, header, footer, .pill-nav, nav[aria-label="Sommaire FAQ"] {
     display: none !important;
   }
   .glass, .glass-soft {

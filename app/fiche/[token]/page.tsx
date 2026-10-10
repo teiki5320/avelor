@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import SaveBanner from '@/components/fiche/SaveBanner';
 import ExportPDF from '@/components/fiche/ExportPDF';
 import StoreCompanyData from '@/components/fiche/StoreCompanyData';
@@ -21,9 +22,14 @@ import type { CompanyData, Reponses, BodaccItem } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 
+// Les fiches sont des contenus personnels — ne pas indexer.
+export const metadata = {
+  robots: { index: false, follow: false, noarchive: true, nosnippet: true },
+};
+
 interface PageProps {
-  params: { token: string };
-  searchParams: { d?: string };
+  params: Promise<{ token: string }>;
+  searchParams: Promise<{ d?: string }>;
 }
 
 interface FicheData {
@@ -71,14 +77,16 @@ async function loadFiche(
 
 export default async function FichePage({ params, searchParams }: PageProps) {
   try {
-    return await renderFiche(params.token, searchParams.d);
+    const { token } = await params;
+    const { d } = await searchParams;
+    return await renderFiche(token, d);
   } catch (e) {
     console.error('[fiche] CRASH:', e);
     return (
       <section className="mx-auto max-w-xl px-5 py-20 text-center">
         <h1 className="font-display text-2xl text-navy">Impossible d&apos;afficher cette fiche</h1>
         <p className="mt-4 text-navy/60">Une erreur est survenue lors du chargement. Veuillez réessayer.</p>
-        <a href="/" className="mt-6 inline-block rounded-full bg-bleu-fonce px-6 py-3 text-white">Retour à l&apos;accueil</a>
+        <Link href="/" className="mt-6 inline-block rounded-full bg-bleu-fonce px-6 py-3 text-white">Retour à l&apos;accueil</Link>
       </section>
     );
   }
@@ -123,7 +131,7 @@ async function renderFiche(tokenParam: string, d?: string) {
     sector = getSectorInfo(company_data);
     companyAge = getCompanyAge(company_data.dateCreation);
     seuils = getEffectifSeuils(company_data.effectif);
-    const groupesBase = buildOrganismes(dep, reponses, avocats);
+    const groupesBase = buildOrganismes(dep, reponses, avocats, sector.secteur);
     const groupeOrdres = buildOrdresProfessionnels(sector);
     const groupeSoutien = buildSoutien(reponses);
     const groupeAidesPerso = buildAidesPersonnelles(reponses);

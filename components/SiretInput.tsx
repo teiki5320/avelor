@@ -68,10 +68,13 @@ export default function SiretInput() {
         <p className="text-xs text-navy/50">
           Vos données restent privées. Aucun compte n&apos;est créé.
         </p>
+        {/* Pas de disabled quand le SIRET est incomplet : un bouton inerte ne
+            donne aucun retour (ni au clic, ni à Entrée). Le submit affiche
+            le message d'erreur via role="alert". */}
         <button
           type="submit"
-          disabled={!isValid || loading}
-          className="btn-primary"
+          disabled={loading}
+          className={`btn-primary ${!isValid ? 'opacity-60' : ''}`}
         >
           {loading ? 'Chargement…' : 'Commencer'}
           {!loading && <span aria-hidden>→</span>}

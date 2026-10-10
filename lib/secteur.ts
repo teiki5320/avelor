@@ -15,6 +15,9 @@ export type Secteur =
   | 'education'
   | 'sante'
   | 'artisanat'
+  | 'ess'
+  | 'services'
+  | 'culture-sport'
   | 'autre';
 
 interface OrganismeSecteur {
@@ -132,11 +135,15 @@ function secteurFromSection(section: string): Secteur {
     K: 'finance',
     L: 'immobilier',
     M: 'liberal',
-    N: 'liberal',
+    // Section N = services administratifs et de soutien : location (77),
+    // intérim (78), voyage (79), sécurité privée (80), nettoyage/paysage (81),
+    // soutien administratif (82).
+    N: 'services',
     O: 'autre',
     P: 'education',
     Q: 'sante',
-    R: 'autre',
+    // Section R = arts et spectacles (90), musées (91), jeux (92), sport (93).
+    R: 'culture-sport',
     S: 'artisanat',
   };
   return map[section] ?? 'autre';
@@ -221,7 +228,10 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'CNPMEM', role: 'Comité National des Pêches Maritimes et des Élevages Marins', telephone: '01 72 71 18 00', site: 'https://www.comite-peches.fr' },
       { nom: 'CRPMEM', role: 'Comité Régional des Pêches Maritimes (par façade littorale)', site: 'https://www.comite-peches.fr' },
       { nom: 'France Filière Pêche', role: 'Interprofession pêche fraîche française', site: 'https://www.francefilierepeche.fr' },
-      { nom: 'CNC (Comité National de la Conchyliculture)', role: 'Interprofession ostréiculture / mytiliculture', site: 'https://www.cnc-france.com' },
+      { nom: 'CNC', role: 'Comité National de la Conchyliculture (ostréiculture, mytiliculture)', site: 'https://www.cnc-france.com' },
+      { nom: 'Solidarité Marins', role: 'Association d\'entraide pour marins en difficulté (toutes activités maritimes)', telephone: '02 98 89 80 80', site: 'https://www.solidaritedesgensdemer.fr' },
+      { nom: 'SNSM', role: 'Société Nationale de Sauvetage en Mer (intervention urgence, soutien familles)', telephone: '01 56 02 64 64', site: 'https://www.snsm.org' },
+      { nom: 'AGISM', role: 'Association de Gestion des Institutions Sociales Maritimes (action sociale marins)', telephone: '02 40 12 33 33', site: 'https://www.agism.com' },
     ],
     aidesSpecifiques: [
       { nom: 'ENIM · Action sociale', description: 'Aide d\'urgence et accompagnement pour marins-pêcheurs en difficulté. Fonds de secours.', site: 'https://www.enim.eu', badge: 'Marins uniquement' },
@@ -229,13 +239,15 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { nom: 'Aide carburant pêche', description: 'Dispositif d\'aide au gazole de pêche déclenché en cas de hausse durable des cours.', site: 'https://agriculture.gouv.fr', badge: 'Selon conjoncture' },
       { nom: 'Plan de sortie de flotte', description: 'Indemnisation publique en cas de retrait définitif d\'un navire de pêche du registre.', site: 'https://agriculture.gouv.fr', badge: 'Sur dossier' },
     ],
-    soutien: { nom: 'Agri\'Écoute (étendu marins-pêcheurs)', description: 'Écoute psychologique 24h/24 ouverte aux marins-pêcheurs', telephone: '09 69 39 29 19', site: 'https://www.msa.fr' },
+    soutien: { nom: 'Solidarité Marins', description: 'Association d\'entraide pour marins en difficulté : aide financière, soutien psychologique, accompagnement familial. Réseau de bénévoles littoraux.', telephone: '02 98 89 80 80', site: 'https://www.solidaritedesgensdemer.fr' },
     conseilsSpecifiques: [
       'Pour vos cotisations sociales, contactez l\'ENIM — caisse spécifique des marins-pêcheurs (pas l\'URSSAF ni la MSA)',
       'La DDTM (Direction Départementale des Territoires et de la Mer) est votre autorité de tutelle pour licences, quotas et contrôles',
       'Le CRPMEM de votre façade peut vous orienter vers les aides régionales et les arrêts temporaires indemnisés',
       'Les aides européennes FEAMPA peuvent financer modernisation et transition écologique de votre navire',
       'France Filière Pêche défend la pêche fraîche française — utile pour la valorisation commerciale',
+      'Solidarité Marins / SNSM : entraide gens de mer, aide financière d\'urgence et soutien psychologique confidentiel',
+      'Agri\'Écoute (09 69 39 29 19) est étendue aux marins-pêcheurs en complément',
     ],
     chambre: 'CCI',
     caissesRetraite: [
@@ -289,18 +301,24 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'UMIH', role: 'Union des Métiers et des Industries de l\'Hôtellerie', telephone: '01 44 94 19 94', site: 'https://www.umih.fr' },
-      { nom: 'GNI', role: 'Groupement National des Indépendants', site: 'https://www.gni-hcr.fr' },
-      { nom: 'SNRTC', role: 'Syndicat National de la Restauration Thématique', site: 'https://www.snrtc.fr' },
+      { nom: 'GNI', role: 'Groupement National des Indépendants Hôtellerie-Restauration', telephone: '01 53 04 99 03', site: 'https://www.gni-hcr.fr' },
+      { nom: 'SNRTC', role: 'Syndicat National de la Restauration Thématique et Commerciale', telephone: '01 42 96 60 75', site: 'https://www.snrtc.fr' },
+      { nom: 'GHR', role: 'Groupement des Hôtelleries et Restaurations de France', telephone: '01 47 04 04 06', site: 'https://www.ghr.fr' },
+      { nom: 'SYNHORCAT', role: 'Syndicat National des Hôteliers, Restaurateurs, Cafetiers et Traiteurs', telephone: '01 42 96 60 75', site: 'https://www.synhorcat.com' },
     ],
     aidesSpecifiques: [
       { nom: 'Aides saisonnières', description: 'Activité partielle pendant les périodes creuses. Exonérations spécifiques HCR.', site: 'https://www.travail-emploi.gouv.fr' },
       { nom: 'Fonds de modernisation CHR', description: 'Aides à la mise aux normes et à la modernisation des établissements.', badge: 'Régional' },
+      { nom: 'HCR Prévoyance / Klesia', description: 'Prévoyance santé/retraite branche HCR — action sociale dédiée en cas de difficulté de l\'employeur.', site: 'https://www.klesia.fr', badge: 'Convention HCR' },
+      { nom: 'Atout France', description: 'Agence de développement touristique : appels à projets, accompagnement transition durable.', site: 'https://www.atout-france.fr' },
     ],
-    soutien: { nom: 'UMIH Entraide', description: 'Réseau d\'entraide entre restaurateurs et hôteliers', site: 'https://www.umih.fr' },
+    soutien: { nom: 'UMIH Entraide + APESA HCR', description: 'Réseau d\'entraide entre restaurateurs et hôteliers. APESA est accessible aux dirigeants HCR via le tribunal de commerce.', telephone: '01 44 94 19 94', site: 'https://www.umih.fr' },
     conseilsSpecifiques: [
       'L\'UMIH peut négocier des accords collectifs de branche en votre faveur',
-      'Vérifiez vos droits à l\'activité partielle en période creuse',
+      'Vérifiez vos droits à l\'activité partielle en période creuse, voire APLD-R si baisse durable',
       'Les baux commerciaux HCR ont des protections spécifiques',
+      'HCR Prévoyance (Klesia) propose une action sociale pour salariés et employeur en difficulté',
+      'APESA est particulièrement actif en HCR — saisine via le tribunal de commerce ou directement',
     ],
     chambre: 'CCI',
     santeSecteur: {
@@ -318,22 +336,34 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'CCI', role: 'Chambre de commerce et d\'industrie', site: 'https://www.cci.fr' },
-      { nom: 'CDCF', role: 'Conseil du Commerce de France', site: 'https://www.cdcf.com' },
+      { nom: 'CdCF', role: 'Conseil du Commerce de France (fédération nationale)', telephone: '01 44 71 36 90', site: 'https://www.cdcf.com' },
+      { nom: 'FCD', role: 'Fédération du Commerce et de la Distribution (grande distribution, supermarchés)', telephone: '01 44 43 99 00', site: 'https://www.fcd.fr' },
+      { nom: 'CGI', role: 'Confédération Française du Commerce Interentreprises (BtoB)', telephone: '01 53 23 04 04', site: 'https://www.cgi-cf.com' },
+      { nom: 'CGAD', role: 'Confédération Générale de l\'Alimentation en Détail (boulangers, bouchers…)', telephone: '01 44 95 02 02', site: 'https://www.cgad.fr' },
+      { nom: 'Procos', role: 'Fédération du commerce spécialisé (textile, sport, équipement)', telephone: '01 44 88 95 65', site: 'https://www.procos.org' },
+      { nom: 'Fevad', role: 'Fédération du e-commerce et de la vente à distance', telephone: '01 42 56 38 86', site: 'https://www.fevad.com' },
+      { nom: 'USPF', role: 'Union des Syndicats de la Pharmacie d\'Officine', telephone: '01 46 47 20 80', site: 'https://www.uspo.fr' },
     ],
     aidesSpecifiques: [
       { nom: 'FISAC', description: 'Fonds d\'intervention pour les services, l\'artisanat et le commerce. Aide à la modernisation.', badge: 'Territorial' },
-      { nom: 'Aide au commerce de proximité', description: 'Aides communales et départementales pour maintenir le commerce local.', badge: 'Local' },
+      { nom: 'Aide au commerce de proximité', description: 'Aides communales et départementales pour maintenir le commerce local (centres-villes).', badge: 'Local' },
+      { nom: 'Action Cœur de Ville', description: 'Plan national de revitalisation des centres-villes — aides foncières et travaux.', site: 'https://agence-cohesion-territoires.gouv.fr/action-coeur-de-ville-42' },
+      { nom: 'Petites Villes de Demain', description: 'Pour communes < 20 000 hab. — accompagnement commerces.', site: 'https://agence-cohesion-territoires.gouv.fr/petites-villes-de-demain-45' },
     ],
+    soutien: { nom: 'APESA + réseau CCI', description: 'Pas de dispositif d\'écoute propre au commerce : APESA est le réflexe n°1 (sentinelles dans les tribunaux de commerce et les CCI). Gratuit et confidentiel.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'Négociez avec votre bailleur commercial — le Code de commerce vous protège',
       'Les impayés de loyer commercial ont des procédures spécifiques',
+      'CdCF, FCD, CGI ou CGAD selon votre sous-secteur — chacune a des juristes pour ses adhérents',
+      'Si vous êtes pharmacien d\'officine : URSPO et caisse CAVP spécifique',
+      'Vérifiez l\'éligibilité Action Cœur de Ville / Petites Villes de Demain de votre commune',
     ],
     chambre: 'CCI',
     santeSecteur: {
       niveau: 'tendu',
       titre: 'Commerce de détail sous pression',
       message:
-        'Inflation, e-commerce et baisse de pouvoir d\'achat pèsent sur le commerce physique. Vérifiez les aides territoriales (FISAC, aides communales) avant tout.',
+        'Inflation, e-commerce et baisse de pouvoir d\'achat pèsent sur le commerce physique. Vérifiez les aides territoriales (FISAC, Action Cœur de Ville) avant tout.',
     },
   },
   transport: {
@@ -342,15 +372,26 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
-      { nom: 'FNTR', role: 'Fédération Nationale des Transports Routiers', site: 'https://www.fntr.fr' },
-      { nom: 'OTRE', role: 'Organisation des Transporteurs Routiers Européens', site: 'https://www.otre.org' },
+      { nom: 'FNTR', role: 'Fédération Nationale des Transports Routiers (marchandises)', telephone: '01 44 29 04 29', site: 'https://www.fntr.fr' },
+      { nom: 'OTRE', role: 'Organisation des Transporteurs Routiers Européens', telephone: '01 53 62 83 40', site: 'https://www.otre.org' },
+      { nom: 'Unostra', role: 'Union Nationale des Organisations Syndicales de Transporteurs Routiers Automobiles', telephone: '01 53 23 92 92', site: 'https://www.unostra.com' },
+      { nom: 'FNTV', role: 'Fédération Nationale des Transports de Voyageurs (autocaristes)', telephone: '01 40 82 62 72', site: 'https://www.fntv.fr' },
+      { nom: 'CNPA / Mobilians', role: 'Conseil National des Professions de l\'Automobile (garages, dépanneurs, VTC)', telephone: '01 40 99 55 00', site: 'https://www.mobilians.fr' },
+      { nom: 'FNDA', role: 'Fédération Nationale des Déménageurs', telephone: '01 49 88 61 40', site: 'https://www.csdemenagement.fr' },
+      { nom: 'TLF', role: 'Union des Transports et Logistique de France', telephone: '01 53 68 40 10', site: 'https://www.e-tlf.com' },
     ],
     aidesSpecifiques: [
-      { nom: 'Aide au gazole professionnel', description: 'Remboursement partiel de la TICPE pour les transporteurs routiers.', site: 'https://www.douane.gouv.fr' },
+      { nom: 'Aide au gazole professionnel (TICPE)', description: 'Remboursement partiel de la TICPE pour les transporteurs routiers (gazole pro). Demande trimestrielle.', site: 'https://www.douane.gouv.fr' },
+      { nom: 'Aide à la décarbonation transport', description: 'Subvention à l\'achat de véhicules électriques/hydrogène, retrofit, formation.', site: 'https://www.ademe.fr' },
+      { nom: 'Bonus écologique flotte', description: 'Subvention véhicules utilitaires propres.', site: 'https://www.service-public.fr' },
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre au transport : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
-      'La DREAL est votre interlocuteur pour les licences de transport',
-      'Vérifiez le remboursement de la TICPE si vous êtes transporteur routier',
+      'La DREAL est votre interlocuteur pour les licences de transport (capacité, attestation transport)',
+      'Vérifiez le remboursement de la TICPE si vous êtes transporteur routier — trimestriel, à demander',
+      'VTC/taxis : voir le bloc dédié sur votre fiche (registre VTC, ARPE, charte sociale)',
+      'Autocaristes : FNTV a un fonds d\'aide ; vérifiez aussi l\'AOM (autorité organisatrice mobilité) locale',
+      'Déménageurs : la CSD (Chambre Syndicale du Déménagement) accompagne en difficulté',
     ],
     chambre: 'CCI',
     santeSecteur: {
@@ -366,12 +407,21 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
-      { nom: 'UNAPL', role: 'Union Nationale des Professions Libérales', site: 'https://www.unapl.fr' },
+      { nom: 'UNAPL', role: 'Union Nationale des Professions Libérales', telephone: '01 44 11 31 50', site: 'https://www.unapl.fr' },
+      { nom: 'CNB', role: 'Conseil National des Barreaux (avocats)', telephone: '01 53 30 85 60', site: 'https://www.cnb.avocat.fr' },
+      { nom: 'CSN', role: 'Conseil Supérieur du Notariat', telephone: '01 44 90 30 00', site: 'https://www.notaires.fr' },
+      { nom: 'OEC', role: 'Ordre des Experts-Comptables', telephone: '01 44 15 60 00', site: 'https://www.experts-comptables.fr' },
+      { nom: 'CNOA', role: 'Conseil National de l\'Ordre des Architectes', telephone: '01 56 81 82 83', site: 'https://www.architectes.org' },
+      { nom: 'OGE', role: 'Ordre des Géomètres-Experts', telephone: '01 53 83 88 00', site: 'https://www.geometre-expert.fr' },
+      { nom: 'CNCJ', role: 'Chambre Nationale des Commissaires de Justice (ex-huissiers + commissaires-priseurs)', telephone: '01 49 70 12 90', site: 'https://www.commissaire-justice.fr' },
+      { nom: 'AGEA', role: 'Fédération nationale des syndicats d\'agents généraux d\'assurances', telephone: '01 70 98 48 90', site: 'https://www.agea.fr' },
+      { nom: 'CSCA', role: 'Chambre Syndicale des Courtiers d\'Assurances', site: 'https://www.csca.fr' },
     ],
     aidesSpecifiques: [
       { nom: 'CIPAV · Action sociale', description: 'Aide financière d\'urgence pour professions libérales affiliées à la CIPAV.', site: 'https://www.lacipav.fr', badge: 'Si affilié CIPAV' },
       { nom: 'Fonds de solidarité libéral', description: 'Aides spécifiques via les ordres professionnels (avocats, médecins, architectes…).', badge: 'Selon profession' },
     ],
+    soutien: { nom: 'Entraide ordinale + APESA', description: 'Chaque Ordre professionnel (avocats, experts-comptables, architectes…) dispose d\'une cellule d\'entraide confidentielle pour ses membres. APESA vient en complément pour l\'écoute psychologique.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
       'Contactez votre Ordre professionnel — beaucoup proposent une aide confidentielle',
       'Votre caisse de retraite (CIPAV, CNBF, CRPCEN, CAVEC, CAVP…) dispose d\'un fonds d\'action sociale',
@@ -383,6 +433,10 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       { profession: 'Notaire', caisse: 'CRPCEN', telephone: '01 40 26 14 25', site: 'https://www.crpcen.fr' },
       { profession: 'Expert-comptable', caisse: 'CAVEC', telephone: '01 80 49 25 25', site: 'https://www.cavec.fr' },
       { profession: 'Architecte', caisse: 'CIPAV', telephone: '0 820 04 12 04', site: 'https://www.lacipav.fr' },
+      { profession: 'Géomètre-expert', caisse: 'CAVOM', telephone: '01 53 30 65 65', site: 'https://www.cavom.fr' },
+      { profession: 'Huissier / Commissaire de justice', caisse: 'CAVOM', telephone: '01 53 30 65 65', site: 'https://www.cavom.fr' },
+      { profession: 'Commissaire-priseur judiciaire', caisse: 'CAVOM', telephone: '01 53 30 65 65', site: 'https://www.cavom.fr' },
+      { profession: 'Agent général d\'assurance', caisse: 'CAVAMAC', telephone: '01 44 70 71 71', site: 'https://www.cavamac.fr' },
       { profession: 'Profession libérale autre', caisse: 'CIPAV', telephone: '0 820 04 12 04', site: 'https://www.lacipav.fr' },
     ],
     ordresProfessionnels: [
@@ -398,16 +452,23 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
       { nom: 'Ordre professionnel', role: 'Conseil de l\'Ordre (médecins, pharmaciens, infirmiers…)', site: 'https://www.conseil-national.medecin.fr' },
+      { nom: 'FHP', role: 'Fédération de l\'Hospitalisation Privée (cliniques)', telephone: '01 53 83 56 56', site: 'https://www.fhp.fr' },
+      { nom: 'FEHAP', role: 'Fédération des Établissements Hospitaliers et d\'Aide à la Personne (privé non lucratif)', telephone: '01 53 98 95 00', site: 'https://www.fehap.fr' },
+      { nom: 'SYNERPA', role: 'Syndicat National des Établissements et Résidences Privés pour Personnes Âgées', telephone: '01 40 47 75 20', site: 'https://www.synerpa.fr' },
+      { nom: 'Vetos-Entraide', role: 'Réseau d\'entraide pour vétérinaires en difficulté (équivalent APESA)', telephone: '04 87 25 04 80', site: 'https://www.vetos-entraide.com' },
     ],
     aidesSpecifiques: [
       { nom: 'Entraide ordinale', description: 'Chaque Ordre professionnel dispose d\'un fonds d\'entraide confidentiel pour les confrères en difficulté.', badge: 'Confidentiel' },
       { nom: 'CARMF / CARPIMKO · Action sociale', description: 'Aide d\'urgence via votre caisse de retraite professionnelle.', badge: 'Selon caisse' },
     ],
-    soutien: { nom: 'MOTS (Médecin Organisation Travail Santé)', description: 'Soutien psychologique pour professionnels de santé', telephone: '0 608 282 589' },
+    soutien: { nom: 'MOTS (Médecin Organisation Travail Santé)', description: 'Soutien psychologique pour professionnels de santé · 24h/24', telephone: '0 608 282 589', site: 'https://www.association-mots.org' },
     conseilsSpecifiques: [
-      'Contactez votre Ordre en priorité — ils ont un devoir d\'entraide',
+      'Contactez votre Ordre en priorité — ils ont un devoir d\'entraide confidentielle',
       'La continuité des soins aux patients doit être organisée même en difficulté',
       'Votre caisse de retraite (CARMF, CARPIMKO, CAVP, CARCDSF, CARPV…) propose une action sociale',
+      'Vétérinaires : Vetos-Entraide (équivalent APESA) — soutien psychologique gratuit et confidentiel 24h/24',
+      'Cliniques privées : FHP (Fédération de l\'Hospitalisation Privée) accompagne les établissements en difficulté',
+      'Établissements médico-sociaux : FEHAP (Fédération des Établissements Hospitaliers et d\'Aide à la Personne)',
     ],
     chambre: 'CCI',
     caissesRetraite: [
@@ -421,6 +482,11 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     ordresProfessionnels: [
       { profession: 'Médecin', nom: 'Conseil National de l\'Ordre des Médecins', telephone: '01 53 89 32 00', site: 'https://www.conseil-national.medecin.fr', note: 'Cellule d\'aide aux confrères en difficulté' },
       { profession: 'Pharmacien', nom: 'Ordre National des Pharmaciens', telephone: '01 56 21 34 34', site: 'https://www.ordre.pharmacien.fr' },
+      { profession: 'Vétérinaire', nom: 'Ordre National des Vétérinaires', telephone: '01 53 36 16 00', site: 'https://www.veterinaire.fr', note: 'Cellule d\'entraide confraternelle' },
+      { profession: 'Chirurgien-dentiste', nom: 'Ordre National des Chirurgiens-Dentistes', telephone: '01 44 34 78 80', site: 'https://www.ordre-chirurgiens-dentistes.fr' },
+      { profession: 'Infirmier', nom: 'Ordre National des Infirmiers', telephone: '01 71 93 84 67', site: 'https://www.ordre-infirmiers.fr' },
+      { profession: 'Masseur-kinésithérapeute', nom: 'Conseil National de l\'Ordre des Masseurs-Kinésithérapeutes', telephone: '01 46 22 32 97', site: 'https://www.ordremk.fr' },
+      { profession: 'Sage-femme', nom: 'Conseil National de l\'Ordre des Sages-Femmes', telephone: '01 42 86 80 06', site: 'https://www.ordre-sages-femmes.fr' },
     ],
   },
   industrie: {
@@ -440,6 +506,7 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
       'BPI France propose un diagnostic industriel gratuit',
       'Le MEDEF territorial peut vous mettre en relation avec des repreneurs potentiels',
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à l\'industrie : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
     chambre: 'CCI',
   },
   information: {
@@ -448,13 +515,21 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
-      { nom: 'Syntec Numérique', role: 'Syndicat du numérique', site: 'https://numeum.fr' },
+      { nom: 'Numeum', role: 'Syndicat patronal du numérique (ex-Syntec Numérique)', telephone: '01 44 30 49 00', site: 'https://numeum.fr' },
+      { nom: 'CINOV-IT', role: 'Fédération des TPE/PME du numérique', telephone: '01 44 30 49 24', site: 'https://www.cinov.fr/syndicats/cinov-it/' },
+      { nom: 'France Digitale', role: 'Association des startups et investisseurs numériques', site: 'https://francedigitale.org' },
+      { nom: 'Fevad', role: 'Fédération du e-commerce et de la vente à distance', site: 'https://www.fevad.com' },
     ],
     aidesSpecifiques: [
-      { nom: 'French Tech', description: 'Accompagnement et financement pour startups tech en difficulté.', site: 'https://lafrenchtech.com' },
+      { nom: 'French Tech', description: 'Accompagnement et financement pour startups tech en difficulté (Tremplin, Tickets).', site: 'https://lafrenchtech.com' },
+      { nom: 'BPI Aide Innovation', description: 'Prêt innovation, prêt amorçage, garantie innovation pour TPE/PME numériques.', site: 'https://www.bpifrance.fr' },
+      { nom: 'CIR / JEI', description: 'Crédit d\'impôt recherche + statut Jeune Entreprise Innovante : avantages fiscaux et sociaux à préserver.', site: 'https://www.entreprises.gouv.fr/jei' },
     ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre au numérique : APESA est le réflexe n°1 pour les fondateurs et dirigeants tech en souffrance. Gratuit et confidentiel.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
-      'French Tech et BPI France ont des dispositifs pour les startups en difficulté',
+      'Numeum et CINOV-IT accompagnent les TPE/PME numériques en difficulté (médiation, conseils)',
+      'French Tech Tremplin pour les fondateurs en post-liquidation (rebond)',
+      'Préservez votre statut JEI et le CIR — leur perte aggrave significativement la trésorerie',
     ],
     chambre: 'CCI',
   },
@@ -463,10 +538,23 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationOrg: 'URSSAF',
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
-    syndicats: [],
-    aidesSpecifiques: [],
+    syndicats: [
+      { nom: 'FBF', role: 'Fédération bancaire française', telephone: '01 48 00 52 52', site: 'https://www.fbf.fr' },
+      { nom: 'ASF', role: 'Association française des Sociétés Financières (crédit-bail, leasing)', telephone: '01 53 81 51 51', site: 'https://www.asf-france.com' },
+      { nom: 'AFG', role: 'Association française de la Gestion financière', telephone: '01 44 94 94 00', site: 'https://www.afg.asso.fr' },
+      { nom: 'FFA', role: 'France Assureurs (fédération des sociétés d\'assurance)', telephone: '01 42 47 90 00', site: 'https://www.franceassureurs.fr' },
+      { nom: 'AGEA', role: 'Fédération nationale des syndicats d\'agents généraux d\'assurances', telephone: '01 70 98 48 90', site: 'https://www.agea.fr' },
+      { nom: 'CSCA', role: 'Chambre syndicale des courtiers d\'assurances', site: 'https://www.csca.fr' },
+    ],
+    aidesSpecifiques: [
+      { nom: 'ACPR', description: 'Autorité de contrôle prudentiel et de résolution — saisine si difficulté grave + dispositif de résolution bancaire.', site: 'https://acpr.banque-france.fr' },
+      { nom: 'ORIAS', description: 'Registre unique des intermédiaires (assurance/banque/finance) — radiation possible si non-conformité.', site: 'https://www.orias.fr' },
+    ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à la finance/assurance : APESA est le réflexe n°1. Gratuit, confidentiel, activable via le tribunal de commerce ou apesa.fr.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
-      'L\'ACPR (Autorité de contrôle prudentiel) est votre régulateur',
+      'Toute difficulté grave doit être notifiée à l\'ACPR (votre régulateur) — éventuellement résolution organisée',
+      'Vérifiez votre inscription ORIAS à jour : la radiation = arrêt d\'activité immédiat',
+      'Agents généraux d\'assurance : votre compagnie mandante a souvent un dispositif d\'aide AGEA',
     ],
     chambre: 'CCI',
   },
@@ -476,11 +564,21 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
-      { nom: 'FNAIM', role: 'Fédération Nationale de l\'Immobilier', site: 'https://www.fnaim.fr' },
+      { nom: 'FNAIM', role: 'Fédération Nationale de l\'Immobilier (agences)', telephone: '01 44 20 77 00', site: 'https://www.fnaim.fr' },
+      { nom: 'UNIS', role: 'Union des syndicats de l\'immobilier (administrateurs de biens, syndics)', telephone: '01 55 32 01 00', site: 'https://www.unis-immo.fr' },
+      { nom: 'FPI France', role: 'Fédération des Promoteurs Immobiliers', telephone: '01 47 05 44 36', site: 'https://www.fpifrance.fr' },
+      { nom: 'LCA-FFB', role: 'Pôle Habitat des constructeurs et aménageurs (FFB)', telephone: '01 40 69 51 90', site: 'https://www.lca-ffb.fr' },
+      { nom: 'SNPI', role: 'Syndicat National des Professionnels Immobiliers', telephone: '01 47 04 27 33', site: 'https://www.snpi.fr' },
     ],
-    aidesSpecifiques: [],
+    aidesSpecifiques: [
+      { nom: 'Garantie financière FNAIM/UNIS', description: 'Si vous gérez des fonds de tiers (location, copropriété), votre garantie financière est obligatoire — vérifier renouvellement.', badge: 'Obligatoire' },
+      { nom: 'Carte T / Carte G', description: 'La perte de carte professionnelle (transaction T, gestion G) = arrêt d\'activité. Préserver à tout prix.', badge: 'Critique' },
+    ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à l\'immobilier : APESA est le réflexe n°1. Gratuit, confidentiel, activable via le tribunal de commerce ou apesa.fr.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
-      'La FNAIM propose un accompagnement pour les agences en difficulté',
+      'Si vous gérez des fonds clients (location, copropriété), votre garantie financière est CRITIQUE — sa perte = liquidation immédiate',
+      'FPI, UNIS et FNAIM accompagnent leurs adhérents en difficulté (conseil juridique, médiation)',
+      'Promoteur : prévoyez la GFA (garantie financière d\'achèvement) avant tout problème',
     ],
     chambre: 'CCI',
   },
@@ -489,12 +587,22 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationOrg: 'URSSAF',
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
-    syndicats: [],
-    aidesSpecifiques: [
-      { nom: 'Qualiopi', description: 'Si vous perdez la certification Qualiopi, des dispositifs de sauvetage existent.', badge: 'Organisme de formation' },
+    syndicats: [
+      { nom: 'FFP', role: 'Les Acteurs de la Compétence (ex-Fédération de la Formation Professionnelle)', telephone: '01 44 30 49 49', site: 'https://www.lesacteursdelacompetence.fr' },
+      { nom: 'SYNOFDES', role: 'Syndicat National des Organismes de Formation de l\'Économie Sociale', telephone: '01 53 27 30 27', site: 'https://synofdes.org' },
+      { nom: 'CINOV Formation', role: 'Fédération des indépendants et TPE de la formation', site: 'https://www.cinov.fr/syndicats/cinov-formation/' },
+      { nom: 'Fnogec', role: 'Fédération Nationale des Organismes de Gestion (enseignement catholique)', site: 'https://www.fnogec.org' },
     ],
+    aidesSpecifiques: [
+      { nom: 'Qualiopi — recours', description: 'Si la certification Qualiopi vous est retirée, recours possible auprès de l\'organisme certificateur dans les 30 jours, puis appel.', badge: 'Recours 30 j' },
+      { nom: 'DGEFP — médiation OF', description: 'Délégation générale à l\'emploi et à la formation professionnelle : médiation possible en cas de litige avec un OPCO.', site: 'https://travail-emploi.gouv.fr/le-ministere-en-action/dgefp' },
+      { nom: 'France compétences', description: 'Régulateur de la formation et de l\'apprentissage. Peut intervenir sur les certifications RNCP et RS.', site: 'https://www.francecompetences.fr' },
+    ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à la formation : APESA est le réflexe n°1 pour les dirigeants d\'organismes en souffrance. Gratuit et confidentiel.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
-      'En tant qu\'organisme de formation, la perte de Qualiopi peut être contestée',
+      'Qualiopi retirée = perte d\'accès aux financements CPF/OPCO. Recours sous 30 jours à activer immédiatement',
+      'Les Acteurs de la Compétence (ex-FFP) accompagnent leurs adhérents en difficulté (juriste dédié, médiation)',
+      'Vérifiez vos certifications RNCP : leur retrait fragilise la valeur de votre catalogue',
     ],
     chambre: 'CCI',
   },
@@ -504,18 +612,107 @@ const SECTOR_DATA: Record<Secteur, Omit<SectorInfo, 'secteur'>> = {
     cotisationTel: '3957',
     cotisationSite: 'https://www.urssaf.fr',
     syndicats: [
-      { nom: 'CMA', role: 'Chambre de Métiers et de l\'Artisanat', site: 'https://www.artisanat.fr' },
-      { nom: 'U2P', role: 'Union des entreprises de proximité', site: 'https://u2p-france.fr' },
+      { nom: 'CMA France', role: 'Chambre de Métiers et de l\'Artisanat (réseau national)', telephone: '01 44 43 10 00', site: 'https://www.artisanat.fr' },
+      { nom: 'U2P', role: 'Union des entreprises de proximité (artisans, libéraux, TPE)', telephone: '01 47 63 31 31', site: 'https://u2p-france.fr' },
+      { nom: 'CAPEB', role: 'Confédération de l\'artisanat et des PME du bâtiment', telephone: '01 53 60 50 00', site: 'https://www.capeb.fr' },
+      { nom: 'CGAD', role: 'Confédération Générale de l\'Alimentation en Détail (boulangers, bouchers, primeurs…)', telephone: '01 44 95 02 02', site: 'https://www.cgad.fr' },
+      { nom: 'UNEC', role: 'Union Nationale des Entreprises de Coiffure', telephone: '01 42 61 53 24', site: 'https://www.unec.fr' },
+      { nom: 'CNEC', role: 'Confédération Nationale Artisanale des Entreprises du Cadre de Vie (esthétique)', telephone: '01 43 56 35 35', site: 'https://www.cnec-esthetique.org' },
     ],
     aidesSpecifiques: [
       { nom: 'FISAC', description: 'Fonds d\'intervention pour les services, l\'artisanat et le commerce.', badge: 'Territorial' },
       { nom: 'CMA · Accompagnement', description: 'Diagnostic et accompagnement gratuit pour artisans en difficulté.', site: 'https://www.artisanat.fr', badge: 'Gratuit' },
+      { nom: 'CMA · Cellule de prévention des difficultés', description: 'Permanence dédiée aux artisans en difficulté dans chaque CMA départementale.', site: 'https://www.artisanat.fr', badge: 'Confidentiel' },
+      { nom: 'AGEFICE', description: 'Fonds d\'assurance formation dirigeant non-salarié — financements formations métier et gestion.', site: 'https://www.agefice.fr', badge: 'Cotisant TPE' },
     ],
+    soutien: { nom: 'APESA + CMA Entraide', description: 'APESA activable via le tribunal de commerce. Les CMA disposent aussi de cellules d\'écoute internes.', site: 'https://apesa.fr' },
     conseilsSpecifiques: [
-      'La CMA (pas la CCI) est votre interlocuteur principal en tant qu\'artisan',
-      'L\'U2P défend les intérêts des artisans et TPE',
+      'La CMA (pas la CCI) est votre interlocuteur principal en tant qu\'artisan — chaque CMA a une cellule de prévention',
+      'L\'U2P défend les intérêts des artisans et TPE au niveau national',
+      'CAPEB (artisans BTP), CGAD (alimentaire), UNEC (coiffure), CNEC (esthétique) ont des juristes dédiés aux adhérents',
+      'AGEFICE finance les formations gestion/rebond du dirigeant non-salarié',
+      'Caisse retraite : CNAVPL/CIPAV pour les libéraux artisans, SSI pour les autres',
     ],
     chambre: 'CMA',
+    caissesRetraite: [
+      { profession: 'Artisan (régime général SSI)', caisse: 'SSI (CNAV TI)', telephone: '3698', site: 'https://www.secu-independants.fr' },
+    ],
+  },
+  ess: {
+    label: 'Association / ESS',
+    cotisationOrg: 'URSSAF',
+    cotisationTel: '3957',
+    cotisationSite: 'https://www.urssaf.fr',
+    syndicats: [
+      { nom: 'UDES', role: 'Union des employeurs de l\'économie sociale et solidaire', telephone: '01 43 41 71 72', site: 'https://www.udes.fr' },
+      { nom: 'Le Mouvement associatif', role: 'Porte-voix des associations (700 000 structures)', telephone: '01 40 36 80 10', site: 'https://lemouvementassociatif.org' },
+      { nom: 'ESS France', role: 'Chambre française de l\'économie sociale et solidaire', site: 'https://www.ess-france.org' },
+      { nom: 'France Générosités', role: 'Syndicat des organisations faisant appel aux dons', site: 'https://www.francegenerosites.org' },
+    ],
+    aidesSpecifiques: [
+      { nom: 'DLA — Dispositif Local d\'Accompagnement', description: 'LE dispositif public d\'accompagnement des structures ESS en difficulté : diagnostic gratuit + accompagnement par un consultant financé par l\'État. Porté localement (souvent par France Active ou BGE).', site: 'https://www.info-dla.fr', badge: 'Gratuit · prioritaire' },
+      { nom: 'France Active — financement solidaire', description: 'Garanties de prêts, prêts solidaires et fonds d\'amorçage dédiés aux structures de l\'ESS.', site: 'https://www.franceactive.org', badge: 'ESS' },
+      { nom: 'FONJEP', description: 'Postes FONJEP : subvention pérenne pour les postes d\'animation et de coordination associatifs (jeunesse, éducation populaire).', site: 'https://www.fonjep.org' },
+    ],
+    soutien: { nom: 'APESA + DLA', description: 'APESA pour l\'écoute psychologique du dirigeant ou responsable associatif ; le DLA pour poser un diagnostic et sortir la structure de l\'impasse.', site: 'https://apesa.fr' },
+    conseilsSpecifiques: [
+      'Le DLA (info-dla.fr) est votre premier réflexe : diagnostic gratuit financé par l\'État, spécifique aux associations et structures ESS en difficulté',
+      'Une association peut faire l\'objet d\'une procédure collective (sauvegarde, RJ, LJ) comme une entreprise dès lors qu\'elle a une activité économique',
+      'Vérifiez vos subventions : une collectivité ne peut pas combler le passif, mais un fonds de soutien exceptionnel peut être sollicité',
+      'L\'UDES et Le Mouvement associatif ont des cellules d\'appui juridique pour leurs adhérents',
+    ],
+    chambre: 'CCI',
+  },
+  services: {
+    label: 'Services aux entreprises',
+    cotisationOrg: 'URSSAF',
+    cotisationTel: '3957',
+    cotisationSite: 'https://www.urssaf.fr',
+    syndicats: [
+      { nom: 'FEP', role: 'Fédération des Entreprises de Propreté et services associés', site: 'https://www.monde-proprete.com' },
+      { nom: 'GES', role: 'Groupement des Entreprises de Sécurité (sécurité privée)', site: 'https://ges-securite-privee.org' },
+      { nom: 'Prism\'emploi', role: 'Syndicat professionnel du travail temporaire et du recrutement', site: 'https://www.prismemploi.eu' },
+      { nom: 'EdV — Entreprises du Voyage', role: 'Syndicat des agences de voyage et tour-opérateurs', site: 'https://www.entreprisesduvoyage.org' },
+      { nom: 'UNEP', role: 'Union Nationale des Entreprises du Paysage', site: 'https://www.lesentreprisesdupaysage.fr' },
+    ],
+    aidesSpecifiques: [
+      { nom: 'APST — garantie financière voyage', description: 'Garantie financière obligatoire des agences de voyage : protège les fonds clients et peut accompagner un adhérent fragilisé. À contacter dès les premières difficultés.', site: 'https://www.apst.travel', badge: 'Agences de voyage' },
+      { nom: 'AKTO — FNE-Formation', description: 'OPCO des services à forte main-d\'œuvre (propreté, sécurité, intérim) : financement de formations pendant les baisses d\'activité.', site: 'https://www.akto.fr', badge: 'Employeurs' },
+    ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre aux services : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    conseilsSpecifiques: [
+      'Sécurité privée : informez le CNAPS en cas de procédure collective — l\'autorisation d\'exercer n\'est pas retirée automatiquement',
+      'Agences de voyage : sans garantie financière (APST ou équivalent), l\'immatriculation Atout France tombe — c\'est votre licence d\'exploitation, anticipez son renouvellement',
+      'Intérim : la garantie financière est une condition légale d\'exercice (art. L1251-49 du Code du travail) — son renouvellement se négocie plusieurs mois à l\'avance',
+      'Propreté et sécurité : en cas de perte d\'un marché, les salariés qui y sont affectés sont en principe repris par le nouveau titulaire (transfert conventionnel de la CCN Propreté et de la CCN Prévention-sécurité), ce qui réduit le coût social d\'un repli',
+    ],
+    chambre: 'CCI',
+  },
+  'culture-sport': {
+    label: 'Culture / Sport / Loisirs',
+    cotisationOrg: 'URSSAF',
+    cotisationTel: '3957',
+    cotisationSite: 'https://www.urssaf.fr',
+    syndicats: [
+      { nom: 'CoSMoS', role: 'Conseil Social du Mouvement Sportif — employeurs du sport', site: 'https://cosmos.asso.fr' },
+      { nom: 'PRODISS', role: 'Syndicat national du spectacle musical et de variété', site: 'https://www.prodiss.org' },
+      { nom: 'La Maison des Artistes', role: 'Association de gestion et d\'entraide des artistes plasticiens', site: 'https://www.lamaisondesartistes.fr' },
+      { nom: 'Union Sport & Cycle', role: 'Entreprises du sport, des loisirs et du cycle (salles de sport incluses)', site: 'https://www.unionsportcycle.com' },
+    ],
+    aidesSpecifiques: [
+      { nom: 'CNM — Centre National de la Musique', description: 'Aides aux entreprises de la filière musicale : labels, salles de concert, producteurs de spectacles.', site: 'https://cnm.fr', badge: 'Musique · spectacle' },
+      { nom: 'ASTP — théâtre privé', description: 'Fonds de soutien du théâtre privé : appui à l\'exploitation et à la trésorerie des théâtres adhérents.', site: 'https://www.astp.asso.fr', badge: 'Théâtres' },
+      { nom: 'Urssaf artistes-auteurs', description: 'Guichet unique des cotisations artistes-auteurs (ex-Maison des Artistes / AGESSA) : échéanciers et action sociale possibles en cas de difficulté.', site: 'https://www.artistes-auteurs.urssaf.fr' },
+      { nom: 'Agence nationale du Sport', description: 'Subventions d\'équipement et d\'emploi sportif, versées via les fédérations et les projets sportifs territoriaux.', site: 'https://www.agencedusport.fr', badge: 'Sport' },
+    ],
+    soutien: { nom: 'APESA (tous secteurs)', description: 'Pas de dispositif d\'écoute propre à la culture ou au sport : APESA est le réflexe n°1, activable via le tribunal de commerce ou directement sur apesa.fr. Gratuit et confidentiel.', site: 'https://apesa.fr' },
+    conseilsSpecifiques: [
+      'Employeur occasionnel de spectacle vivant : le GUSO (www.guso.fr) simplifie les déclarations et cotisations des artistes et techniciens (annexes 8 et 10 de l\'assurance chômage)',
+      'Une procédure collective n\'entraîne pas le retrait automatique du récépissé d\'entrepreneur de spectacles vivants',
+      'Salles de sport : le loyer est souvent la première charge — renégociation du bail commercial et gel des loyers antérieurs en procédure collective sont vos leviers principaux',
+      'Le CoSMoS offre un appui juridique et social à ses adhérents employeurs du sport',
+    ],
+    chambre: 'CCI',
   },
   autre: {
     label: 'Autre',
@@ -535,9 +732,16 @@ export function getSectorInfo(company: CompanyData): SectorInfo {
   let secteur = secteurFromSection(section);
 
   // Pêche et aquaculture (NAF 03.xx) : secteur dédié avec organismes spécifiques (ENIM, CNPMEM…)
-  const nafPrefix = naf.replace(/\./g, '').slice(0, 2);
+  const nafCompact = naf.replace(/\./g, '');
+  const nafPrefix = nafCompact.slice(0, 2);
   if (nafPrefix === '03') {
     secteur = 'peche';
+  }
+
+  // Associations et organisations (NAF 94.xx) : ESS, pas artisanat —
+  // UDES / Mouvement associatif / DLA au lieu de CMA / U2P.
+  if (nafPrefix === '94') {
+    secteur = 'ess';
   }
 
   if (secteur === 'commerce' && isArtisan(naf, company.formeJuridique)) {
@@ -545,6 +749,15 @@ export function getSectorInfo(company: CompanyData): SectorInfo {
   }
   if (secteur === 'industrie' && isArtisan(naf, company.formeJuridique)) {
     secteur = 'artisanat';
+  }
+
+  // Professions de santé réglementées hors section Q :
+  // - Pharmacie d'officine (47.73Z) : classée commerce par la NAF mais relève
+  //   de l'Ordre des pharmaciens, de la CAVP et des syndicats d'officine.
+  // - Vétérinaires (75.00Z) : section M mais caisse CARPV, Ordre des
+  //   vétérinaires et Vetos-Entraide sont dans le secteur santé.
+  if (nafCompact.startsWith('4773') || nafPrefix === '75') {
+    secteur = 'sante';
   }
 
   const data = SECTOR_DATA[secteur];
@@ -677,18 +890,18 @@ export function getObligationsEffectif(seuils: EffectifSeuils): ObligationSeuil[
         "À partir de 50 salariés, le CSE doit être consulté chaque année sur les orientations stratégiques. En difficulté, il peut exercer un droit d'alerte économique et se faire assister d'un expert-comptable aux frais de l'entreprise.",
     },
     {
+      seuilMin: 50,
+      atteint: n >= 50,
+      titre: 'Index égalité professionnelle',
+      description:
+        "Publication annuelle obligatoire de l'index égalité femmes-hommes dès 50 salariés (article L1142-8 du Code du travail), avant le 1er mars sur le site de l'entreprise.",
+    },
+    {
       seuilMin: 100,
       atteint: n >= 100,
       titre: 'Bilan social annuel',
       description:
         "Obligatoire à partir de 300 salariés mais recommandé dès 100. Agrège indicateurs emploi, rémunération, formation sur 3 ans.",
-    },
-    {
-      seuilMin: 250,
-      atteint: n >= 250,
-      titre: 'Index égalité professionnelle',
-      description:
-        'Publication obligatoire de l\'index égalité F/H. Au-delà de 250 salariés, plusieurs autres obligations sociales et fiscales (CICE, taxe sur les salaires, etc.) s\'appliquent.',
     },
     {
       seuilMin: 300,

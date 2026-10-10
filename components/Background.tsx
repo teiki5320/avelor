@@ -1,15 +1,20 @@
 'use client';
-import { m } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 export default function Background() {
+  // WCAG 2.2.2 : les 3 blobs bouclent à l'infini — on les fige si
+  // l'utilisateur a demandé de réduire les animations.
+  const reduceMotion = useReducedMotion();
+
   return (
     <div
       aria-hidden
+      data-bg-blobs
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
       <m.div
         initial={{ x: -80, y: -40, scale: 1 }}
-        animate={{ x: [-80, 40, -80], y: [-40, 30, -40], scale: [1, 1.12, 1] }}
+        animate={reduceMotion ? undefined : { x: [-80, 40, -80], y: [-40, 30, -40], scale: [1, 1.12, 1] }}
         transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full blur-3xl"
         style={{
@@ -19,7 +24,7 @@ export default function Background() {
       />
       <m.div
         initial={{ x: 0, y: 0, scale: 1 }}
-        animate={{ x: [0, -50, 0], y: [0, 40, 0], scale: [1, 1.18, 1] }}
+        animate={reduceMotion ? undefined : { x: [0, -50, 0], y: [0, 40, 0], scale: [1, 1.18, 1] }}
         transition={{ duration: 28, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-1/3 -right-32 h-[560px] w-[560px] rounded-full blur-3xl"
         style={{
@@ -29,7 +34,7 @@ export default function Background() {
       />
       <m.div
         initial={{ x: 0, y: 0, scale: 1 }}
-        animate={{ x: [0, 40, 0], y: [0, 30, 0], scale: [1, 0.92, 1] }}
+        animate={reduceMotion ? undefined : { x: [0, 40, 0], y: [0, 30, 0], scale: [1, 0.92, 1] }}
         transition={{ duration: 32, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute bottom-0 left-1/3 h-[480px] w-[480px] rounded-full blur-3xl"
         style={{

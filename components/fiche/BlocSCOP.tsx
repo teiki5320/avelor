@@ -121,7 +121,7 @@ export default function BlocSCOP() {
               href="tel:0144854700"
               className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
             >
-              ☎ 01 44 85 47 00
+              <span aria-hidden>☎</span> 01 44 85 47 00
             </a>
             <a
               href="https://www.les-scop.coop"
@@ -129,7 +129,7 @@ export default function BlocSCOP() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 les-scop.coop
+              <span aria-hidden>🌐</span> les-scop.coop
             </a>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function BlocSCOP() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 les-scop.coop/outils-financiers
+              <span aria-hidden>🌐</span> les-scop.coop/outils-financiers
             </a>
           </div>
         </div>
@@ -170,7 +170,7 @@ export default function BlocSCOP() {
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
           >
-            🌐 Trouver mon union régionale
+            <span aria-hidden>🌐</span> Trouver mon union régionale
           </a>
         </div>
       </div>

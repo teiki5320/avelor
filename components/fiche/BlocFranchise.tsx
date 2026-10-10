@@ -125,7 +125,7 @@ export default function BlocFranchise() {
             href="tel:0153752225"
             className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
           >
-            ☎ 01 53 75 22 25
+            <span aria-hidden>☎</span> 01 53 75 22 25
           </a>
           <a
             href="https://www.franchise-fff.com"
@@ -133,7 +133,7 @@ export default function BlocFranchise() {
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
           >
-            🌐 franchise-fff.com
+            <span aria-hidden>🌐</span> franchise-fff.com
           </a>
         </div>
       </div>

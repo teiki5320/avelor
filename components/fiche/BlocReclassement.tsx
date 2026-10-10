@@ -1,5 +1,6 @@
 'use client';
 import { useFiche } from '@/lib/FicheContext';
+import { getOpcoFromNaf } from '@/lib/opco';
 import BlocAccordeon from './BlocAccordeon';
 
 /**
@@ -15,9 +16,11 @@ import BlocAccordeon from './BlocAccordeon';
  * le détail des obligations selon l'effectif exact.
  */
 export default function BlocReclassement() {
-  const { reponses } = useFiche();
+  const { reponses, company } = useFiche();
 
   if (reponses.effectif !== 'salaries') return null;
+
+  const opco = getOpcoFromNaf(company.naf);
 
   return (
     <BlocAccordeon
@@ -140,6 +143,42 @@ export default function BlocReclassement() {
         </ul>
       </div>
 
+      {/* OPCO compétent */}
+      {opco.cle !== 'autre' && (
+        <div className="mt-4 rounded-2xl border border-vert/30 bg-vert/5 p-4">
+          <p className="font-display text-base text-vert">
+            Votre OPCO compétent : {opco.nom}
+          </p>
+          <p className="mt-2 text-sm text-navy/80">
+            {opco.description}
+          </p>
+          <p className="mt-2 text-sm text-navy/80">
+            <strong>Mobilisez l&apos;OPCO en priorité</strong> pour
+            financer FNE-Formation, POE individuelle, ProA, ou pour
+            commander vos formulaires CSP. Délais de réponse souvent
+            inférieurs à 15 jours pour les dossiers urgents.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2 text-sm">
+            {opco.telephone && (
+              <a
+                href={`tel:${opco.telephone.replace(/\s/g, '')}`}
+                className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
+              >
+                <span aria-hidden>☎</span> {opco.telephone}
+              </a>
+            )}
+            <a
+              href={opco.site}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
+            >
+              <span aria-hidden>🌐</span> {(() => { try { return new URL(opco.site).hostname.replace('www.', ''); } catch { return 'site'; } })()}
+            </a>
+          </div>
+        </div>
+      )}
+
       {/* Contacts */}
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-navy/15 bg-white/60 p-4">
@@ -154,7 +193,7 @@ export default function BlocReclassement() {
               href="tel:3995"
               className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
             >
-              ☎ 39 95
+              <span aria-hidden>☎</span> 39 95
             </a>
             <a
               href="https://www.francetravail.fr/employeur"
@@ -162,7 +201,7 @@ export default function BlocReclassement() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 francetravail.fr/employeur
+              <span aria-hidden>🌐</span> francetravail.fr/employeur
             </a>
           </div>
         </div>
@@ -181,7 +220,7 @@ export default function BlocReclassement() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
             >
-              🌐 Trouver ma DREETS
+              <span aria-hidden>🌐</span> Trouver ma DREETS
             </a>
           </div>
         </div>

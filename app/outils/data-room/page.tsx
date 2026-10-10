@@ -317,7 +317,7 @@ export default function DataRoomPage() {
                     <span
                       className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${
                         done[i.id]
-                          ? 'border-vert bg-vert text-white'
+                          ? 'border-vert-fonce bg-vert-fonce text-white'
                           : 'border-navy/25'
                       }`}
                       aria-hidden

@@ -1,6 +1,6 @@
 import type { Reponses, CompanyData } from './types';
 import type { SectorInfo, EffectifSeuils } from './secteur';
-import { resolveStrategie, AXE_META } from './strategie';
+import { resolveStrategie, AXE_META, getJuridiction } from './strategie';
 
 export type Tone = 'rouge' | 'jaune' | 'bleu' | 'vert' | 'navy';
 
@@ -67,12 +67,13 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
 
   // 2. Audience a preparer (si assignation)
   if (reponses.situation === 'assignation') {
+    const tribunal = getJuridiction(company) === 'TJ' ? 'Tribunal judiciaire' : 'Tribunal de commerce';
     cards.push({
       id: 'audience',
       icone: '⚖️',
       label: 'Audience',
       valeur: 'A preparer',
-      detail: `Tribunal de commerce · ${ville}`,
+      detail: `${tribunal} · ${ville}`,
       tone: 'rouge',
       scrollTo: 'echeances',
       score: 10,
@@ -168,14 +169,17 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
   });
 
   // 9. Bail commercial
-  const secteursBail = ['hotellerie', 'commerce', 'artisanat', 'liberal', 'sante'];
+  const secteursBail = ['hotellerie', 'commerce', 'artisanat', 'liberal', 'sante', 'culture-sport'];
   if (secteursBail.includes(sector.secteur)) {
+    // BlocBailCommercial affiche 6 leviers, + 1 si procédure collective en cours
+    const nbLeviers =
+      reponses.situation === 'redressement' || reponses.situation === 'assignation' ? 7 : 6;
     cards.push({
       id: 'bail',
       icone: '🔑',
       label: 'Bail commercial',
       valeur: 'Leviers dispo',
-      detail: '7 dispositifs legaux',
+      detail: `${nbLeviers} dispositifs legaux`,
       tone: 'bleu',
       scrollTo: 'aides',
       score: 5,
@@ -194,6 +198,48 @@ export function scorePriorityCards({ reponses, company, sector, seuils }: BuildC
       scrollTo: 'aides',
       score: 4,
       extra: { obligations50: seuils.obligations50 },
+    });
+  }
+
+  // 11. PGE en cours : très prioritaire (à traiter avant procédure)
+  if (reponses.pgeEnCours === 'oui') {
+    cards.push({
+      id: 'pge',
+      icone: '💳',
+      label: 'PGE en cours',
+      valeur: 'A restructurer',
+      detail: 'Médiation BdF, étalement 10 ans',
+      tone: 'jaune',
+      scrollTo: 'echeances',
+      score: 8,
+    });
+  }
+
+  // 12. Conjoint impliqué : protection à vérifier
+  if (reponses.conjointStatut && reponses.conjointStatut !== 'sans-conjoint' && reponses.conjointStatut !== 'aucun') {
+    cards.push({
+      id: 'conjoint',
+      icone: '👫',
+      label: 'Conjoint',
+      valeur: reponses.conjointStatut === 'salarie' ? 'Salarié·e (AGS)' : reponses.conjointStatut === 'collaborateur' ? 'Collaborateur·rice' : 'Associé·e',
+      detail: 'Protections et risques spécifiques',
+      tone: 'jaune',
+      scrollTo: 'patrimoine',
+      score: 5,
+    });
+  }
+
+  // 13. Co-gérance : risque solidarité fiscale/sociale
+  if (reponses.coGerants === 'oui') {
+    cards.push({
+      id: 'cogerance',
+      icone: '⚖️',
+      label: 'Co-gérance',
+      valeur: 'Solidarité',
+      detail: 'L267 LPF + L243-6-2 CSS',
+      tone: 'jaune',
+      scrollTo: 'patrimoine',
+      score: 6,
     });
   }
 

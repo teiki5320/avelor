@@ -14,6 +14,12 @@ const reponsesSchema = z.object({
   ageDirigeant: z.enum(['moins-25', '25-50', '50-60', 'plus-60']).optional(),
   franchise: z.enum(['oui', 'non']).optional(),
   antecedents: z.enum(['oui', 'non', 'ne-sais-pas']).optional(),
+  pgeEnCours: z.enum(['oui', 'non', 'ne-sais-pas']).optional(),
+  rqth: z.enum(['oui', 'non']).optional(),
+  conjointStatut: z.enum(['salarie', 'collaborateur', 'associe', 'aucun', 'sans-conjoint']).optional(),
+  coGerants: z.enum(['oui', 'non', 'sans-objet']).optional(),
+  saisonnalite: z.enum(['oui', 'non']).optional(),
+  nationalite: z.enum(['fr-ue-eee-suisse', 'hors-ue', 'sans-reponse']).optional(),
 }).passthrough();
 
 export const fichePayloadSchema = z.object({
@@ -22,15 +28,20 @@ export const fichePayloadSchema = z.object({
   companyData: z.record(z.string(), z.unknown()).optional(),
 });
 
+/** Token de fiche : hex généré par uuid() (24 car.) — on tolère 10-64 alphanum pour d'anciens formats */
+const tokenSchema = z
+  .string()
+  .regex(/^[A-Za-z0-9_-]{10,64}$/, 'Token invalide');
+
 export const sendLinkPayloadSchema = z.object({
-  token: z.string().min(10, 'Le token doit contenir au moins 10 caractères'),
-  email: z.string().email('Adresse email invalide'),
+  token: tokenSchema,
+  email: z.string().email('Adresse email invalide').max(254),
 });
 
 export const rappelPayloadSchema = z.object({
-  token: z.string().min(10),
-  email: z.string().email(),
-  echeance: z.string().min(1),
+  token: tokenSchema,
+  email: z.string().email().max(254),
+  echeance: z.string().min(1).max(120),
   dateRappel: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  libelle: z.string().min(1),
+  libelle: z.string().min(1).max(120),
 });

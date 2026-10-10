@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import { useFiche } from '@/lib/FicheContext';
+import { useFiche, useFicheStorageKey } from '@/lib/FicheContext';
 import BlocAccordeon from './BlocAccordeon';
 
 type TypeCaution = 'personnelle' | 'hypothecaire' | 'solidaire' | 'autre';
@@ -14,8 +14,6 @@ interface CautionDetail {
   creancier: Creancier;
   note?: string;
 }
-
-const STORAGE_KEY = 'avelor_cautions';
 
 const TYPE_LABELS: Record<TypeCaution, string> = {
   personnelle: 'Caution personnelle simple',
@@ -109,6 +107,7 @@ function formatMontant(n: number): string {
 
 export default function BlocAuditCaution() {
   const { reponses } = useFiche();
+  const storageKey = useFicheStorageKey('avelor_cautions');
   const [cautions, setCautions] = useState<CautionDetail[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [draft, setDraft] = useState<Partial<CautionDetail>>({
@@ -118,18 +117,18 @@ export default function BlocAuditCaution() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(storageKey);
       if (raw) setCautions(JSON.parse(raw));
     } catch {}
     setLoaded(true);
-  }, []);
+  }, [storageKey]);
 
   useEffect(() => {
     if (!loaded) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(cautions));
+      localStorage.setItem(storageKey, JSON.stringify(cautions));
     } catch {}
-  }, [cautions, loaded]);
+  }, [cautions, loaded, storageKey]);
 
   const showBloc = reponses.caution === 'oui' || reponses.caution === 'ne-sais-pas';
 

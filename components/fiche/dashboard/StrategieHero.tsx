@@ -136,7 +136,7 @@ export default function StrategieHero() {
                   Alternative possible
                 </p>
                 <p className="mt-1 font-display text-base text-navy">
-                  {AXE_META[secondary.axe].icone} {secondary.titre}
+                  <span aria-hidden>{AXE_META[secondary.axe].icone}</span> {secondary.titre}
                 </p>
                 <p className="mt-1 text-sm text-navy/70">{secondary.verdict}</p>
               </div>

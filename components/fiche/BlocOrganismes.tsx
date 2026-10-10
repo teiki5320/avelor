@@ -63,7 +63,7 @@ function Carte({ o, couleur }: { o: OrganismeCard; couleur: string }) {
             href={`tel:${o.telephone.replace(/\s/g, '')}`}
             className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
           >
-            ☎ {o.telephone}
+            <span aria-hidden>☎</span> {o.telephone}
           </a>
         )}
         {o.site && (
@@ -73,7 +73,7 @@ function Carte({ o, couleur }: { o: OrganismeCard; couleur: string }) {
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
           >
-            🌐 {(() => { try { return new URL(o.site).hostname.replace('www.', ''); } catch { return o.nom; } })()}
+            <span aria-hidden>🌐</span> {(() => { try { return new URL(o.site).hostname.replace('www.', ''); } catch { return o.nom; } })()}
           </a>
         )}
         {o.mapsUrl && (

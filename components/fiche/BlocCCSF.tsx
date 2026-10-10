@@ -94,7 +94,7 @@ export default function BlocCCSF() {
               href={`tel:${(ddfip.telephone ?? '0809401401').replace(/\s/g, '')}`}
               className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
             >
-              ☎ {ddfip.telephone ?? '0 809 401 401'}
+              <span aria-hidden>☎</span> {ddfip.telephone ?? '0 809 401 401'}
             </a>
             {ddfip.site && (
               <a
@@ -103,7 +103,7 @@ export default function BlocCCSF() {
                 rel="noreferrer"
                 className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
               >
-                🌐 contacts impots.gouv.fr
+                <span aria-hidden>🌐</span> contacts impots.gouv.fr
               </a>
             )}
           </div>
@@ -117,7 +117,7 @@ export default function BlocCCSF() {
           rel="noreferrer"
           className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
         >
-          🌐 impots.gouv.fr — page officielle CCSF
+          <span aria-hidden>🌐</span> impots.gouv.fr — page officielle CCSF
         </a>
         <a
           href="https://www.formulaires.service-public.fr/gf/cerfa_15772.do"
@@ -131,7 +131,7 @@ export default function BlocCCSF() {
           href="tel:0809401401"
           className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
         >
-          ☎ 0 809 401 401 (renseignements fiscaux)
+          <span aria-hidden>☎</span> 0 809 401 401 (renseignements fiscaux)
         </a>
         <a
           href="https://www.economie.gouv.fr/entreprises/commission-chefs-services-financiers-ccsf"
@@ -139,12 +139,13 @@ export default function BlocCCSF() {
           rel="noreferrer"
           className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
         >
-          🌐 economie.gouv.fr — guide CCSF
+          <span aria-hidden>🌐</span> economie.gouv.fr — guide CCSF
         </a>
       </div>
 
       <p className="mt-5 text-xs text-navy/50">
-        Source : article L611-7 du Code de commerce, decret n°2007-686.
+        Source : décret n°2007-686 du 4 mai 2007 et articles D626-9 à
+        D626-15 du Code de commerce (remises de dettes publiques).
         La CCSF traite environ 4 000 dossiers par an avec un taux
         d&apos;acceptation supérieur à 80 % quand l&apos;entreprise est viable.
       </p>

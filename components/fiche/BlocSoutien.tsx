@@ -141,7 +141,7 @@ export default function BlocSoutien() {
               href={`tel:${caisseSociale.telephone.replace(/\s/g, '')}`}
               className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
             >
-              ☎ {caisseSociale.telephone}
+              <span aria-hidden>☎</span> {caisseSociale.telephone}
             </a>
             <a
               href={caisseSociale.site}
@@ -149,7 +149,7 @@ export default function BlocSoutien() {
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
             >
-              🌐 {(() => {
+              <span aria-hidden>🌐</span> {(() => {
                 try {
                   return new URL(caisseSociale.site).hostname.replace('www.', '');
                 } catch {

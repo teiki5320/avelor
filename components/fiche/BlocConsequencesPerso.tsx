@@ -205,7 +205,7 @@ export default function BlocConsequencesPerso() {
                     rel="noreferrer"
                     className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
                   >
-                    🌐 {l.label}
+                    <span aria-hidden>🌐</span> {l.label}
                   </a>
                 ))}
               </div>

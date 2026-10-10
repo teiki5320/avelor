@@ -144,7 +144,7 @@ export default function AidejuridictionnellePage() {
       <p className="mt-3 text-base text-navy/70">
         L&apos;aide juridictionnelle prend en charge, totalement ou en
         partie, les honoraires d&apos;avocat et les frais de procédure.
-        Barèmes 2025 officiels basés sur le Revenu Fiscal de Référence
+        Barèmes 2025 officiels (derniers vérifiés) basés sur le Revenu Fiscal de Référence
         (RFR) et le patrimoine.
       </p>
 
@@ -261,7 +261,7 @@ export default function AidejuridictionnellePage() {
       <p className="mt-6 text-xs text-navy/50">
         Sources officielles : Loi n°91-647 du 10 juillet 1991, décret
         n°2020-1717 du 28 décembre 2020, service-public.fr (fiche F18074).
-        Plafonds 2025, revalorisés chaque année au 1er janvier.
+        Plafonds 2025 (derniers vérifiés), revalorisés chaque année au 1er janvier — vérifiez le barème en vigueur sur service-public.fr.
       </p>
     </section>
   );

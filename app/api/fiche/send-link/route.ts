@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sendMagicLink } from '@/lib/resend';
-import { updateFicheEmail } from '@/lib/supabase';
+import { getFicheByToken, updateFicheEmail } from '@/lib/supabase';
 import { sendLinkPayloadSchema } from '@/lib/schemas';
 
 export const runtime = 'nodejs';
@@ -18,6 +18,14 @@ export async function POST(req: Request) {
     }
 
     const { token, email } = parsed.data;
+
+    // Anti-relais : n'envoyer d'email que si le token correspond à une fiche réelle.
+    // Sans cette vérification, l'endpoint permet d'envoyer des emails « Votre fiche
+    // Avelor » à n'importe quelle adresse avec un token arbitraire.
+    const fiche = await getFicheByToken(token);
+    if (!fiche) {
+      return NextResponse.json({ error: 'Fiche introuvable' }, { status: 404 });
+    }
 
     await updateFicheEmail(token, email);
     const ok = await sendMagicLink(email, token);

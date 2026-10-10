@@ -2,9 +2,10 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 
-// Plafond AGS 2025 : 6 fois le plafond mensuel de la Sécu (PMSS).
-// PMSS 2025 = 3 925 €/mois → plafond AGS = 92 736 € (6 × 13 fois car AGS = 13 × PMSS sur 12 mois selon ancienneté).
-// Ici on prend le plafond AGS courant officiel : 92 736 € (plafond le plus élevé).
+// Plafonds AGS — valeurs 2024 (art. D3253-5 C. trav.), dernières vérifiées :
+// garantie = 4, 5 ou 6 × le plafond mensuel des contributions d'assurance
+// chômage (lui-même = 4 × PMSS ; PMSS 2024 = 3 864 €/mois).
+// 4 × 4 × 3 864 = 61 824 € · 5 × → 77 280 € · 6 × → 92 736 €.
 const PLAFOND_AGS_HAUT = 92736;
 const PLAFOND_AGS_INTER = 77280;
 const PLAFOND_AGS_BAS = 61824;
@@ -117,7 +118,7 @@ export default function LicenciementPage() {
       {
         '@type': 'HowToStep',
         name: 'Lire les résultats',
-        text: 'L\'outil affiche l\'indemnité due, la part couverte par l\'AGS (plafonds 2025) et le reste à votre charge.',
+        text: 'L\'outil affiche l\'indemnité due, la part couverte par l\'AGS (plafonds 2024) et le reste à votre charge.',
       },
     ],
   };
@@ -155,7 +156,7 @@ export default function LicenciementPage() {
       <p className="mt-3 text-base text-navy/70">
         Estimez le coût d&apos;un licenciement économique selon les
         barèmes légaux. Le calcul applique la formule de l&apos;article
-        L1234-9 et L1234-1 du Code du travail. Les plafonds AGS 2025
+        L1234-9 et L1234-1 du Code du travail. Les plafonds AGS 2024
         permettent de voir ce qui est couvert en cas de procédure.
       </p>
 
@@ -281,7 +282,7 @@ export default function LicenciementPage() {
             <strong>Congés payés non pris</strong> : à indemniser en plus.
           </li>
           <li>
-            <strong>Plafond AGS 2025</strong> : 4 PMSS si entreprise &lt; 6 mois ou contrat &lt; 6 mois ({formatEuros(PLAFOND_AGS_BAS)}), 5 PMSS si 6 mois à 2 ans ({formatEuros(PLAFOND_AGS_INTER)}), 6 PMSS au-delà ({formatEuros(PLAFOND_AGS_HAUT)}).
+            <strong>Plafonds AGS 2024</strong> : 4 PMSS si entreprise &lt; 6 mois ou contrat &lt; 6 mois ({formatEuros(PLAFOND_AGS_BAS)}), 5 PMSS si 6 mois à 2 ans ({formatEuros(PLAFOND_AGS_INTER)}), 6 PMSS au-delà ({formatEuros(PLAFOND_AGS_HAUT)}).
           </li>
           <li>
             <strong>PSE</strong> obligatoire si licenciement de 10+ salariés sur 30 jours dans une entreprise de 50+ salariés (L1233-61).
@@ -294,7 +295,7 @@ export default function LicenciementPage() {
 
       <p className="mt-6 text-xs text-navy/50">
         Sources : Code du travail, art. L1234-1 (préavis), L1234-9 et R1234-2 (indemnité), L1233-61 (PSE) ; ags-garantie-salaires.org
-        (plafonds AGS 2025).
+        (plafonds AGS 2024, derniers vérifiés).
       </p>
     </section>
   );

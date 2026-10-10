@@ -1,3 +1,4 @@
+import { fetchWithTimeout } from './fetchTimeout';
 import type { PlaceResult } from './types';
 
 /* ---------- Interfaces API ---------- */
@@ -29,7 +30,7 @@ export async function searchPlaces({ query, limit = 3 }: SearchOptions): Promise
 
   try {
     const url = `${BASE}/textsearch/json?query=${encodeURIComponent(query)}&language=fr&region=fr&key=${key}`;
-    const res = await fetch(url, { next: { revalidate: 21600 } });
+    const res = await fetchWithTimeout(url, { next: { revalidate: 21600 } });
     if (!res.ok) return [];
     const json: PlacesApiResponse = await res.json();
     const results: PlacesResult[] = json?.results ?? [];

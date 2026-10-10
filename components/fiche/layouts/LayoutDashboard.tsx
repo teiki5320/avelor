@@ -29,6 +29,15 @@ import BlocFranchise from '@/components/fiche/BlocFranchise';
 import BlocCreditBail from '@/components/fiche/BlocCreditBail';
 import BlocSCOP from '@/components/fiche/BlocSCOP';
 import BlocReclassement from '@/components/fiche/BlocReclassement';
+import BlocAPLDR from '@/components/fiche/BlocAPLDR';
+import BlocPeriodeSuspecte from '@/components/fiche/BlocPeriodeSuspecte';
+import BlocConjointCollaborateur from '@/components/fiche/BlocConjointCollaborateur';
+import BlocPlateformes from '@/components/fiche/BlocPlateformes';
+import BlocCSP from '@/components/fiche/BlocCSP';
+import BlocGarantieBPI from '@/components/fiche/BlocGarantieBPI';
+import BlocArretLongueDuree from '@/components/fiche/BlocArretLongueDuree';
+import BlocNationaliteSejour from '@/components/fiche/BlocNationaliteSejour';
+import ModePerdu from '@/components/fiche/ModePerdu';
 import IdentiteHero from '@/components/fiche/dashboard/IdentiteHero';
 import PriorityCards from '@/components/fiche/dashboard/PriorityCards';
 import QuickLinks from '@/components/fiche/dashboard/QuickLinks';
@@ -64,8 +73,11 @@ export default function LayoutDashboard({
   seuils,
 }: LayoutData) {
   return (
-    <FicheProvider value={{ reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
+    <FicheProvider value={{ token, reponses, company, sector, alertes, bodacc, infogreffe, groupes, companyAge, seuils }}>
     <div className="space-y-6">
+      {/* Mode perdu : remplace temporairement le détail si moral === 'perdu' */}
+      <ModePerdu />
+
       {/* ───── Top : identité + cartes prioritaires dynamiques ───── */}
       <IdentiteHero />
       <PriorityCards />
@@ -100,6 +112,9 @@ export default function LayoutDashboard({
             <div data-section="procedure">
               <BlocProcedureRecommandee />
             </div>
+            <div data-section="apldr">
+              <BlocAPLDR />
+            </div>
           </>
         }
         right={
@@ -109,6 +124,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="reclassement">
               <BlocReclassement />
+            </div>
+            <div data-section="csp">
+              <BlocCSP />
             </div>
           </>
         }
@@ -149,6 +167,9 @@ export default function LayoutDashboard({
             <div data-section="pge">
               <BlocPGE />
             </div>
+            <div data-section="garantie-bpi">
+              <BlocGarantieBPI />
+            </div>
             <div data-section="calendrier">
               <BlocCalendrier />
             </div>
@@ -158,6 +179,12 @@ export default function LayoutDashboard({
           <>
             <div data-section="timeline">
               <BlocTimeline />
+            </div>
+            <div data-section="periode-suspecte">
+              <BlocPeriodeSuspecte />
+            </div>
+            <div data-section="arret-longue-duree">
+              <BlocArretLongueDuree />
             </div>
             <div data-section="rappels">
               <BlocRappels />
@@ -183,6 +210,9 @@ export default function LayoutDashboard({
             <div data-section="caution">
               <BlocAuditCaution />
             </div>
+            <div data-section="conjoint">
+              <BlocConjointCollaborateur />
+            </div>
           </>
         }
         right={
@@ -192,6 +222,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="consequences">
               <BlocConsequencesPerso />
+            </div>
+            <div data-section="nationalite">
+              <BlocNationaliteSejour />
             </div>
           </>
         }
@@ -238,6 +271,9 @@ export default function LayoutDashboard({
             </div>
             <div data-section="scop">
               <BlocSCOP />
+            </div>
+            <div data-section="plateformes">
+              <BlocPlateformes />
             </div>
           </>
         }

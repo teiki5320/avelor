@@ -72,20 +72,19 @@ export default function BlocAidesEtat() {
     });
   }
 
-  // CIRI ou CODEFI selon la taille
-  const grosseStructure =
-    seuils.approx >= 250 ||
-    (reponses.effectif === 'salaries' && seuils.approx >= 250);
+  // CIRI ou CODEFI selon la taille : le CIRI traite les entreprises de plus
+  // de 400 salariés, le CODEFI celles de 400 et moins.
+  const grosseStructure = seuils.approx > 400;
 
   if (grosseStructure) {
     dispositifs.push({
       cle: 'ciri',
       nom: 'CIRI — Comité Interministériel de Restructuration Industrielle',
       description:
-        "Cellule interministérielle dédiée aux entreprises de plus de 400 salariés (ou plus de 250 stratégiques). Coordonne État, banques et créanciers publics pour structurer un plan de retournement.",
+        "Cellule interministérielle dédiée aux entreprises de plus de 400 salariés. Coordonne État, banques et créanciers publics pour structurer un plan de retournement.",
       telephone: '01 44 87 72 58',
       site: 'https://www.economie.gouv.fr/ciri',
-      badge: 'Entreprises >250 salariés',
+      badge: 'Entreprises >400 salariés',
       accent: 'navy',
     });
   } else {
@@ -114,6 +113,32 @@ export default function BlocAidesEtat() {
       site: 'https://www.economie.gouv.fr/entreprises/commissaires-restructurations-prevention',
       badge: 'Cas urgents · confidentiel',
       accent: 'rouge',
+    });
+  }
+
+  // FSE+ : restructurations sociales avec salariés
+  if (reponses.effectif === 'salaries') {
+    dispositifs.push({
+      cle: 'fseplus',
+      nom: 'FSE+ — Fonds Social Européen Plus (2021-2027)',
+      description:
+        "Cofinancement européen pour les actions de reclassement, formation et accompagnement des salariés lors de restructurations. Géré par les Régions (volet décentralisé) et la DGEFP (volet national). Mobilisable en complément d'un PSE ou d'un plan de reclassement.",
+      site: 'https://www.fse.gouv.fr',
+      badge: 'Cofinancement UE · jusqu\'à 60 %',
+      accent: 'bleu',
+    });
+  }
+
+  // FNE-Formation : restructuration formation collective
+  if (reponses.effectif === 'salaries' && (reponses.situation === 'tresorie' || reponses.situation === 'redressement')) {
+    dispositifs.push({
+      cle: 'fne',
+      nom: 'FNE-Formation',
+      description:
+        "Financement public de la formation des salariés pendant une baisse d'activité ou une restructuration. Cumulable avec activité partielle classique ou APLD-R. Demande déposée à l'OPCO via la téléprocédure.",
+      site: 'https://www.travail-emploi.gouv.fr/emploi-et-insertion/accompagnement-des-mutations-economiques/article/fne-formation',
+      badge: 'Maintien dans l\'emploi',
+      accent: 'vert',
     });
   }
 
@@ -155,7 +180,7 @@ export default function BlocAidesEtat() {
                   href={`tel:${d.telephone.replace(/\s/g, '')}`}
                   className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
                 >
-                  ☎ {d.telephone}
+                  <span aria-hidden>☎</span> {d.telephone}
                 </a>
               )}
               {d.site && (
@@ -165,7 +190,7 @@ export default function BlocAidesEtat() {
                   rel="noreferrer"
                   className="rounded-full bg-white/80 px-3 py-1 text-navy/80 hover:bg-white"
                 >
-                  🌐 {(() => {
+                  <span aria-hidden>🌐</span> {(() => {
                     try {
                       return new URL(d.site!).hostname.replace('www.', '');
                     } catch {

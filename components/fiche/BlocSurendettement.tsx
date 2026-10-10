@@ -1,23 +1,23 @@
 'use client';
 import { useFiche } from '@/lib/FicheContext';
+import { getFormeDetail } from '@/lib/strategie';
 import BlocAccordeon from './BlocAccordeon';
 
 /**
  * Bloc dédié à la commission de surendettement de la Banque de France.
  * S'affiche uniquement pour les personnes physiques : entrepreneurs
- * individuels (EI), auto-entrepreneurs, indépendants. Inapplicable aux
- * personnes morales (SARL, SAS, SA…) dont les dettes restent dans la
- * sphère professionnelle (procédure collective).
+ * individuels (EI/EIRL/micro). Inapplicable aux personnes morales
+ * (SARL, SAS, SA…) dont les dettes restent dans la sphère
+ * professionnelle (procédure collective).
  */
 export default function BlocSurendettement() {
   const { company, reponses } = useFiche();
 
-  const formeLow = (company.formeJuridique || '').toLowerCase();
+  const forme = getFormeDetail(company.formeJuridique);
   const isPersonnePhysique =
-    formeLow.includes('individuel') ||
-    formeLow.includes('entrepreneur') ||
-    (company.naf || '').startsWith('00') ||
-    reponses.effectif === 'independant';
+    forme === 'micro' || forme === 'ei' || forme === 'eirl' ||
+    // Fallback : si l'INSEE n'a pas renvoyé de forme mais l'effectif est indépendant
+    (!company.formeJuridique && reponses.effectif === 'independant');
 
   if (!isPersonnePhysique) return null;
 
@@ -109,7 +109,7 @@ export default function BlocSurendettement() {
           href="tel:3414"
           className="rounded-full bg-white/80 px-3 py-1.5 text-navy/80 hover:bg-white"
         >
-          ☎ 34 14 — Correspondant BdF
+          <span aria-hidden>☎</span> 34 14 — Correspondant BdF
         </a>
         <a
           href="https://particuliers.banque-france.fr/surendettement"
@@ -117,7 +117,7 @@ export default function BlocSurendettement() {
           rel="noreferrer"
           className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
         >
-          🌐 particuliers.banque-france.fr/surendettement
+          <span aria-hidden>🌐</span> particuliers.banque-france.fr/surendettement
         </a>
       </div>
 

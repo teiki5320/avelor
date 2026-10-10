@@ -1,7 +1,7 @@
 # 🗺️ Avelor — Roadmap
 
-> Dernière mise à jour : **2026-05-27**
-> Statut global : **production · couverture ~78%**
+> Dernière mise à jour : **2026-07-18**
+> Statut global : **production · couverture ~94% · 44 findings de l'audit du 30/05 corrigés**
 
 ## 🎯 Vision
 
@@ -13,8 +13,8 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 #### Infrastructure & qualité
 - [x] Plateforme en ligne sur avelor.vercel.app, déployée en continu via Vercel et la branche main
-- [x] Stack stable : Next.js 14.2.35 + React 18 + framer-motion 11 (LazyMotion)
-- [x] 173 tests Vitest verts (lib/__tests__)
+- [x] Stack stable : Next.js 15.5.20 + React 19 + framer-motion 11 (LazyMotion) — 0 vulnérabilité npm audit
+- [x] 245 tests Vitest verts (lib + composants React + routes API) + Playwright E2E configuré
 - [x] GitHub Actions CI : lint → build → test
 - [x] ESLint configuré (next/core-web-vitals)
 - [x] Validation Zod sur toutes les routes API (fiche, send-link, rappels)
@@ -33,14 +33,17 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] Plausible analytics conditionnel (NEXT_PUBLIC_PLAUSIBLE_DOMAIN)
 
 #### Questionnaire & fiche
-- [x] Questionnaire en 12 étapes (8 base + 4 optionnelles : montant dettes, âge, franchise, antécédents)
+- [x] Questionnaire en 17 étapes (8 base + 9 optionnelles : montant dettes, âge, franchise, antécédents, **PGE en cours, RQTH, statut conjoint, co-gérants, saisonnalité**)
+- [x] **Moteur stratégie** distingue micro / EI / EIRL / société (`getFormeDetail`) — PRP priorisé pour les personnes physiques uniquement
+- [x] **Scoring stratégie enrichi** : PGE en cours favorise restructuration amiable (la procédure collective déclenche l'appel de la garantie d'État, elle ne la fait pas perdre) ; antécédents BODACC poussent vers liquidation / rebond accompagné
+- [x] **Mode « perdu » radical** (`ModePerdu`) : 3 infos max si moral === 'perdu' (qui appeler / 1 action semaine / soutien APESA-3114). Bouton « Voir tout » pour ouvrir la fiche complète.
 - [x] Fiche personnalisée organisée en dashboard avec 4 cartes prioritaires adaptatives (parmi 10) et 6 sections thématiques
 - [x] Croisement avec les annonces BODACC pour détecter les incohérences
 - [x] Stratégie sur 5 axes (restructurer, sauvegarder, céder, liquider, rebondir) avec scoring
 - [x] Ton du site et des courriers adapté au moral déclaré (combatif, épuisé, perdu)
 - [x] État de santé sectoriel mis en avant pour les secteurs en crise (HCR, BTP, agriculture)
-- [x] 12 modèles de courriers contextualisés
-- [x] 9 calculateurs (prescription, licenciement+AGS, ATI, coût procédures, aide juridictionnelle, ACRE/ARCE, calendrier fiscal, data-room, valorisation)
+- [x] 17 modèles de courriers contextualisés
+- [x] 11 calculateurs (prescription, licenciement+AGS, ATI, coût procédures, aide juridictionnelle, ACRE/ARCE, calendrier fiscal, data-room, valorisation, stocks, seuils d'effectif)
 - [x] Page FAQ (18 questions), page Témoignages (4 cas anonymisés)
 
 #### Blocs fiche (28 au total)
@@ -51,6 +54,24 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [x] **BlocCreditBail** : continuation/restitution/indemnité, ASF
 - [x] **BlocSCOP** : reprise par les salariés, CG SCOP, SOCODEN
 - [x] **BlocReclassement** : CSP, PSE, congé reclassement, France Travail
+- [x] **BlocAPLDR** : Activité Partielle Longue Durée Rebond (loi 14 fév. 2025, décret 11 avril 2025) — successeur APLD Covid
+- [x] **BlocPeriodeSuspecte** (autonome) : nullités de droit / facultatives (L632-1 à L632-3), action paulienne (1341-2 C. civ.)
+- [x] **BlocConjointCollaborateur** : 3 statuts légaux (salarié, collaborateur, associé) + statut de fait (Cass. com. 2023) + co-gérance solidaire
+- [x] **BlocPGE enrichi** : procédure pas-à-pas en 5 étapes pour la restructuration via Médiation du crédit
+- [x] **BlocAidesEtat enrichi** : FSE+ 2021-2027, FNE-Formation (en restructuration)
+- [x] **BlocAides enrichi** : section dédiée « Leviers de trésorerie immédiats » — affacturage / escompte / Dailly / mobilisation créances publiques distingués
+- [x] **BlocPlateformes** : VTC, livraison, services à la personne — ARPE, charte sociale, défense en requalification (couverture VTC : 30% → 75%, plateformes : 10% → 50%)
+- [x] **BlocCSP autonome** : extraction du BlocReclassement, procédure pas-à-pas 21 j, indemnité ASP 75%
+- [x] **BlocGarantieBPI** : règles de négociation pour les emprunts garantis Bpifrance (ex-OSEO)
+- [x] **BlocArretLongueDuree** : impact AGS pour les salariés en arrêt maladie longue durée
+- [x] **BlocNationaliteSejour** : impact d'une procédure collective sur le Passeport Talent / carte entrepreneur (dirigeants hors UE)
+- [x] **BlocCreditBail enrichi** : 3 cas concrets (camion RJ, photocopieur LJ, pelleteuse non publiée)
+- [x] **OPCO par NAF** : nouveau module `lib/opco.ts` (11 OPCO) intégré au BlocReclassement
+- [x] **URPS supplémentaires** : Pharmaciens, Sage-femmes, Auxiliaires médicaux, Chirurgiens-dentistes ajoutés à buildOrdresProfessionnels
+- [x] **Calculateur valorisation stocks** : nouveau outil `/outils/stocks` (6 natures × 5 voies, taux de réfaction CNAJMJ/CSCPJ)
+- [x] **FAQ ciblées par situation** : 3 nouvelles pages (URSSAF impayée, PGE en difficulté, assignation tribunal) avec JSON-LD FAQPage
+- [x] **PWA service worker** : `/sw.js` + composant ServiceWorkerRegister, cache-first assets, network-first HTML
+- [x] **Tracker de progression visuel** : refonte avec 6 sous-groupes (Agir, Vue d'ensemble, Échéances, Patrimoine, Aides, Ressources), barres individuelles + pastilles "complet"
 
 #### Données enrichies
 - [x] **107 territoires couverts** (96 dpts métropole + 11 DOM-TOM)
@@ -86,60 +107,208 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 - [ ] Faire tester la fiche par 2 ou 3 vrais dirigeants ou conseillers pour valider la pertinence en condition réelle
 - [ ] Vérifier le rendu sur iPhone et petit écran (mobile)
 
+---
+
+## 🚀 MISE EN LIGNE — plan validé le 19/07/2026 (à dérouler depuis le Mac)
+
+> Le site est prêt : 259 tests verts, build OK, audit couverture métier 6/6, pages légales en place.
+> Décision : achat du domaine (idéalement **avelor.fr**, de préférence chez Vercel pour que le DNS soit pilotable en CLI) + adresse email de contact. Session Claude Code locale sur le Mac pour piloter le CLI Vercel.
+
+1. [ ] **Sur le Mac** : `vercel login` + `supabase login` (une fois chacun, par Teiki — auth navigateur, accès CLI validé pour les deux) puis `vercel link` sur le projet. Via le CLI Supabase : récupérer `SUPABASE_URL`/`SUPABASE_ANON_KEY` (`supabase projects api-keys`) et vérifier table `fiches` + RLS en prod
+2. [ ] **Acheter le domaine** (dashboard Vercel → Domains, paiement par Teiki) et l'ajouter au projet (`vercel domains add`)
+3. [ ] **Email de contact** : boîte ou redirection `contact@<domaine>` → Gmail (ImprovMX gratuit via `vercel dns add` si domaine chez Vercel)
+4. [ ] **Resend** : vérifier le domaine (ajouter SPF/DKIM via `vercel dns add`) puis `RESEND_FROM="AVELOR <contact@<domaine>>"`
+5. [ ] **Variables d'environnement production** (`vercel env add`) : `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_BASE_URL=https://<domaine>`, `CRON_SECRET` (générer : `openssl rand -hex 32`) — optionnelles : `INSEE_API_KEY` (fallback Sirene), `GOOGLE_PLACES_API_KEY` (avocats locaux), `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (stats). Vérifier d'abord ce qui existe déjà (`vercel env ls`)
+6. [ ] **Code** : remplacer `avelor.vercel.app` par le domaine (~30 fichiers : canoniques, OG, sitemap, robots, mentions légales) + remplacer `contact@avelor.vercel.app` (⚠️ adresse actuellement morte — bloquant RGPD) par la vraie adresse
+7. [ ] **PR branche `claude/blissful-clarke-ycvXl` → `main`** (26+ commits d'avance) puis merge → déploiement Vercel automatique
+8. [ ] **Vérifier en prod** : création de fiche, magic link reçu (pas en spam), cron rappels, avocats locaux
+9. [ ] Après lancement : migrer le rate limiting in-memory vers Upstash
+
+---
+
+## 🧭 AUDIT DE COUVERTURE MÉTIER du 18/07/2026 — trous détectés
+
+> Scan programmatique : 88 divisions NAF + 35 métiers précis passés dans le vrai moteur (`getSectorInfo`, `getOpcoFromNaf`, `getJuridiction`). **Filet générique garanti pour tous** (BlocSoutien affiche toujours APESA + 3114, organismes départementaux + CIP + BPI pour tout le monde). Mais des métiers courants n'ont **aucune personnalisation sectorielle**.
+>
+> ✅ **Correction complète le 18/07/2026** : les 6 points sont corrigés. Secteurs `ess`, `services` (section N) et `culture-sport` (section R) créés, raffinements pharmacien/vétérinaire/boulanger/auto-école, OPCO étendus, soutien psy explicite dans les 18 secteurs — 259 tests verts, lint + build OK.
+
+### 🔴 PROBLÈMES — métiers sans solution personnalisée (secteur « autre » : 0 syndicat, 0 conseil, 0 aide)
+- [x] **Section NAF N (77-82) orpheline** : corrigé — secteur `services` créé (FEP propreté, GES sécurité, Prism'emploi intérim, EdV + APST voyage, UNEP paysage) avec conseils garanties financières (CNAPS, Atout France, L1251-49, transfert conventionnel des marchés)
+- [x] **Section NAF R (90-93) orpheline** : corrigé — secteur `culture-sport` créé (CoSMoS, PRODISS, Maison des Artistes, Union Sport & Cycle ; aides CNM, ASTP, Urssaf artistes-auteurs, Agence nationale du Sport ; conseils GUSO/intermittents, licence spectacles, bail des salles de sport). Ajouté aux secteurs « bail commercial » (priorités + BlocBailCommercial)
+- [x] **Associations (94) classées « artisanat »** : corrigé — secteur `ess` créé (UDES, Le Mouvement associatif, ESS France, France Générosités, DLA, France Active, FONJEP) + OPCO 94 → Uniformation
+
+### 🟠 PROBLÈMES — classification sectorielle douteuse (métiers réglementés mal orientés)
+- [x] **Pharmacien d'officine (47.73Z) → « commerce »** : corrigé — 47.73 → `sante` (Ordre des pharmaciens, CAVP, MOTS)
+- [x] **Vétérinaire (75.00Z) → « libéral »** : corrigé — 75 → `sante` (Vetos-Entraide, CARPV) + OPCO EP
+- [x] **Boulanger artisanal (10.71C) → OPCO OCAPIAT** : corrigé — raffinement par classe 10.71 → opco-ep (OCAPIAT conservé pour l'industrie agroalimentaire 10.89 etc.)
+- [x] **Auto-école (85.53Z) → Uniformation** : corrigé — 85.53 → opco-mobilites (85.59 formation continue reste Uniformation)
+
+### 🟡 PROBLÈMES — OPCO « non identifié » sur des pans entiers
+- [x] **Industrie extractive/énergie/eau/déchets (05-09, 12, 35-39)** : corrigé — mapping OPCO 2i étendu
+- [x] **Agences de voyage (79)** : corrigé — OPCO Mobilités (branche tourisme)
+- [x] **Associations (94)** : corrigé — Uniformation
+
+### 🟢 AMÉLIORATIONS — soutien psy sectoriel (le fallback APESA/3114 existe partout, mais 65/88 divisions n'ont pas de dispositif dédié)
+- [x] Commerce : corrigé — `soutien` = « APESA + réseau CCI »
+- [x] Transport : corrigé — `soutien` = « APESA (tous secteurs) » avec description honnête (pas de dispositif propre)
+- [x] Libéral : corrigé — `soutien` = « Entraide ordinale + APESA »
+- [x] Information/finance/immobilier/éducation/industrie : corrigé — `soutien` = « APESA (tous secteurs) » explicite. Les 16 secteurs ont désormais un `soutien` renseigné (test de non-régression ajouté)
+
+### ✅ CE QUI EST VALIDÉ PAR LE SCAN
+- 29/35 métiers précis ont une couverture personnalisée complète (secteur + syndicats + OPCO + juridiction justes)
+- Juridictions 100 % correctes (TC pour sociétés commerciales, TJ pour EI libéraux/santé/agri — la correction du 18/07 tient)
+- Artisans bien détectés (boulanger, coiffeur, bijoutier, réparateurs → CMA + APESA/CMA Entraide)
+- Santé/agri/pêche/BTP/HCR : soutien psy dédié en place (MOTS, Agri'Écoute, Solidarité Marins, APESA+FFB, UMIH Entraide)
+- Personne n'est à zéro solution : organismes départementaux, CIP, BPI, APESA + 3114 garantis pour tous
+
+---
+
+## 🔎 AUDIT COMPLET du 30/05/2026 — findings à corriger
+
+> Audit orchestré (7 auditeurs de code + 12 simulations Playwright réelles + vérification adversariale, 85 agents). **Verdict : le parcours va au bout dans les 12 cas, aucun blocage.** Le problème est la fiabilité du contenu juridique. 44 findings confirmés avec preuve.
+>
+> ✅ **Correction complète le 18/07/2026** : les 44 findings ci-dessous sont corrigés (lint + build + 245 tests Vitest + E2E chromium verts, npm audit à 0 vulnérabilité). Migration Next 15.5.20 + React 19 incluse.
+
+### 🔴 ERREURS — Contenu juridique FAUX (priorité absolue, oriente de mauvaises décisions)
+- [x] **Contresens PGE / garantie BPI** : « ouvrir une procédure fait perdre la garantie de l'État » = FAUX (c'est l'inverse, la procédure déclenche l'appel de la garantie). `lib/strategie.ts:88` (+ `scores.sauvegarder -= 1` à supprimer), `BlocPGE.tsx:120`, `BlocGarantieBPI.tsx:82`
+- [x] **Mauvais tribunal** : `getJuridiction` ignore la forme juridique → SARL/SAS de conseil (NAF 70) envoyée au TJ au lieu du TC. `lib/strategie.ts:45` — tester la forme d'abord (sociétés commerciales = TC)
+- [x] **Axe « Restructurer » recommandé en cessation** avec verdict qui nie la cessation. `lib/strategie.ts:127` — adapter le verdict selon `situation`
+- [x] **AGS : plafond faux 24 000 € au lieu de 92 736 €** dans la FAQ. `app/faq/page.tsx:114`
+- [x] **Index égalité F/H placé à 250 salariés** (obligatoire dès 50) + **CICE cité comme actif** (supprimé 2019). `lib/secteur.ts:792`
+- [x] **OPCO : doublon Uniformation = OPCO Cohésion sociale** (même organisme) + **Opcommerce manquant** ; commerce mal rattaché. `lib/opco.ts:89`
+- [x] **Section NAF N** (nettoyage, intérim, sécurité, services admin) classée « Professions libérales ». `lib/secteur.ts:135`
+- [x] **CCSF : source légale erronée** (L611-7 = conciliation, pas la CCSF). `BlocCCSF.tsx:147`
+- [x] **Cautionnement : art. L341-4 / L341-6 C. conso abrogés** (→ 2300 / 2303 C. civ.). `BlocGarantieBPI.tsx:90`
+- [x] **Prescription : délai TVA annoncé à 4 ans au lieu de 3** (confusion reprise/recouvrement). `BlocPrescription.tsx:30`
+- [x] **CIRI/CODEFI : bascule à 250 salariés mais textes disent 400.** `BlocAidesEtat.tsx:76`
+- [x] **Carte « audience » : tribunal de commerce codé en dur**, contredit `getJuridiction`. `lib/priorites.ts:76`
+- [x] **Plafonds AGS étiquetés « 2025 » mais valeurs 2024.** `BlocArretLongueDuree.tsx:80`
+- [x] **Carte « bail » promet « 7 dispositifs », le bloc n'en liste que 6.** `lib/priorites.ts:181`
+
+### 🔴 ERREURS — Sécurité
+- [x] **`/api/fiche/send-link` = relais d'email ouvert** : aucune vérif d'existence/propriété de la fiche → mails « Votre fiche Avelor » vers victime arbitraire + injection. `send-link/route.ts:22`
+- [x] **`/api/fiche/rappels` = phishing** : email/libellé arbitraires poussés dans les rappels cron → mails HTML contrôlés depuis le domaine Avelor. `rappels/route.ts:39`
+- [x] **next@14.2.35 : 9 vulnérabilités (6 high)** dont SSRF (CVSS 8.6) + DoS Server Components. `package.json:19`
+
+### 🟠 ERREURS — Bugs techniques
+- [x] **Fuite de données entre fiches** : clés localStorage non préfixées par token (`avelor_plan_action`, `avelor_tresorerie`, `avelor_audit_caution`) → 2e SIRET voit les données du 1er. `BlocPlanAction.tsx:78` + 2 autres
+- [x] **Hydration mismatch** : `ProgressTracker` lit localStorage dans l'init `useState`. `ProgressTracker.tsx:42`
+- [x] **`BlocRappels` ne resync pas la date de cessation** saisie dans le même onglet. `BlocRappels.tsx:39`
+
+### 🟠 ERREURS — Thème sombre / accessibilité cassés (confirmé visuellement)
+- [x] **Carte d'identité illisible en sombre** (`from-white/via-white` non piloté par le thème → fond blanc + texte clair). `IdentiteHero.tsx:19`
+- [x] **ModePerdu illisible en sombre** (même cause `via-white`). `ModePerdu.tsx:72`
+- [x] **Contrastes sous AA en clair** : `text-navy/45` (2.97:1), `/50` (3.46:1) sur textes 10-12px. `Nav.tsx:109`, footer, hints
+- [x] **Bouton d'appel vert** (`bg-vert` + `text-white`) = 3.37:1, sous AA. `ModePerdu.tsx:109`
+- [x] **Déclaration d'accessibilité inexacte** (affirme « 14px min » et « prefers-reduced-motion » — faux). `accessibilite/page.tsx:41`
+
+### 🟡 ERREURS — Liens cassés & incohérences visibles
+- [x] **3 liens internes 404** : `/courriers/urssaf-delai`, `/outils/ccsf`, `/outils/caution`. `app/faq/page.tsx:99,100,139`
+- [x] **Médiation du crédit : 2 numéros contradictoires** (3414 vs 0810 00 12 10 selon la page). `PriorityCards.tsx:112`
+- [x] **Compteurs faux** : courriers 12 vs 17, glossaire 18 vs 38, outils 9 vs 11. `courriers/page.tsx:48`, `page.tsx:21`, `QuickLinks.tsx:23`
+- [x] **Tous les barèmes datés « 2025 » alors qu'on est en 2026.** `outils/licenciement`, etc.
+- [x] **URLs préfecture malformées** sur 93 départements (`www.10.gouv.fr` n'existe pas → `aube.gouv.fr`). `data/organismes.json`
+- [x] **Fautes d'élision** : « Ordre des médecins du Ain / du Allier ». `data/organismes.json:82`
+- [x] **`getFormeDetail` : branche `'micro'` morte** (INSEE renvoie « Entrepreneur individuel »). `lib/strategie.ts:29`
+
+### 🟢 AMÉLIORATIONS issues de l'audit (renforcements, pas des bugs)
+- [x] **Résilience réseau** : aucun timeout/AbortController sur INSEE/BODACC/Google Places → fiche SSR peut se figer. Ajouter timeout ~3s + fallback
+- [x] **Accessibilité clavier questionnaire** : déplacer le focus vers le nouveau titre + `aria-live` au changement d'étape
+- [x] **Nav** : remplacer `role="menu"/menuitem"` par `<nav>` + liste de liens
+- [x] **Emojis décoratifs** à masquer (`aria-hidden`) — actuellement vocalisés
+- [x] **`prefers-reduced-motion`** : couper les 3 blobs animés en boucle infinie (WCAG 2.2.2)
+- [x] **Navigation flèches** dans le menu ThemeToggle (rôle `menuitemradio` annoncé mais non câblé)
+- [x] **`ThemeToggle`** : appeler `applyTheme` au montage (sync `meta theme-color`)
+
+---
+
 ### 📋 À faire (par priorité)
 
 #### 🔴 CRITIQUE — bloque la qualité du conseil
 - [ ] **Tester le site en navigateur réel** (mobile + desktop) sur tout le parcours
-- [ ] **Mode "perdu" radical** : limiter à 3 infos max (qui appeler / 1 action semaine / "on reprend demain")
-- [ ] **Migrer le rate limiting vers Upstash Redis** (in-memory inefficace sur Vercel serverless)
+- [x] **Mode "perdu" radical** : 3 infos max (qui appeler / 1 action semaine / soutien APESA-3114) — composant `ModePerdu`
+- [ ] **Migrer le rate limiting vers Upstash Redis** (in-memory inefficace sur Vercel serverless) — nécessite config externe
 - [ ] **Préparer la mise à jour des barèmes 2026** quand publiés (AGS 92 736€, ATI 26,30€/j, aide juridictionnelle)
 
 #### 🟠 IMPORTANT — manques fonctionnels identifiés
-- [ ] **Question "PGE en cours"** dans le questionnaire (oui/non)
-- [ ] **Question "RQTH/handicap"** dans le questionnaire (consentement explicite RGPD)
-- [ ] **Question "Conjoint salarié/collaborateur"** dans le questionnaire
-- [ ] **Question "Co-gérants"** dans le questionnaire (solidarité fiscale)
-- [ ] **Question "Saisonnalité"** dans le questionnaire (impact activité partielle)
-- [ ] **Activité Partielle Longue Durée Rebond (APLD-R)** : nouveau dispositif 2025 — créer bloc
-- [ ] **Médiation PGE détaillée** : protocole de place, étalement 10 ans
-- [ ] **FSE+ (Fonds Social Européen 2021-2027)** : aides restructurations sociales
-- [ ] **AFE → Bpifrance Création** : corriger la référence AFE (fusionné depuis 2019)
-- [ ] **Adresses postales précises** dans data/organismes.json (actuellement chef-lieu générique)
-- [ ] **Téléphones DDFiP locaux** (numéro 0 809 401 401 partout, à affiner)
-- [ ] **Numéros Bâtonniers et Chambres notaires départementales** (sites génériques actuellement)
-- [ ] **Distinguer EI/EIRL/Micro** dans le moteur stratégie (procédures différentes)
-- [ ] **Bloc CSP autonome** si BlocReclassement reste léger
-- [ ] **Bloc Période suspecte** autonome (actuellement dans BlocConsequencesPerso)
-- [ ] **Tests E2E Playwright** (parcours complet SIRET → fiche)
-- [ ] **Plus de tests** : composants React, routes API, bodacc edge cases
+- [x] **Question "PGE en cours"** dans le questionnaire (oui/non/ne-sais-pas) + scoring stratégie + carte prioritaire + plan d'action
+- [x] **Question "RQTH/handicap"** dans le questionnaire (consentement explicite RGPD) + priorisation AGEFIPH/Cap Emploi + ajout Comète France
+- [x] **Question "Conjoint salarié/collaborateur"** dans le questionnaire + bloc dédié (3 statuts + statut de fait)
+- [x] **Question "Co-gérants"** dans le questionnaire (solidarité fiscale L267 LPF / L243-6-2 CSS) + carte prioritaire
+- [x] **Question "Saisonnalité"** dans le questionnaire — conditionne l'affichage APLD-R
+- [x] **Question "Nationalité"** dans le questionnaire — déclenche le bloc Nationalité/Titre de séjour pour les profils hors UE
+- [x] **Activité Partielle Longue Durée Rebond (APLD-R)** : nouveau bloc autonome (loi 14 fév. 2025, décret 11 avril 2025)
+- [x] **Médiation PGE détaillée** : protocole de place, étalement 10 ans + procédure pas-à-pas en 5 étapes
+- [x] **FSE+ (Fonds Social Européen 2021-2027)** : ajouté à BlocAidesEtat (employeurs)
+- [x] **AFE → Bpifrance Création** : vérifié, pas de référence obsolète dans le code
+- [x] **Distinguer EI/EIRL/Micro** dans le moteur stratégie (`getFormeDetail` → micro/ei/eirl/societe)
+- [x] **Bloc Période suspecte** autonome (`BlocPeriodeSuspecte` — nullités de droit, nullités facultatives, action paulienne)
+- [x] **Bloc CSP autonome** (`BlocCSP`) : extrait de BlocReclassement, procédure pas-à-pas 21 j
+- [x] **Tests E2E Playwright** (parcours SIRET → fiche, calculateurs, FAQ ciblées) — `npm run test:e2e`
+- [x] **Plus de tests** : composants React (SiretInput, BlocAccordeon, ModePerdu), routes API (api/fiche), OPCO
+- [x] **Adresses postales précises** : 101 DDFiP, 101 Barreaux, 101 Chambres notaires, **101 Chambres d'agriculture** enrichis (métropole + DOM) — sources officielles (28/05/2026)
+- [x] **Audit représentants par métier** : 15 secteurs auditésFinance/Information/Education sortis de l'état « critique »
+- [x] **Enrichissement secteur finance** : FBF, ASF, AFG, FFA, AGEA, CSCA (avant : 0 syndicat)
+- [x] **Enrichissement secteur information/IT** : Numeum, CINOV-IT, France Digitale, Fevad + JEI/CIR (avant : Syntec seul)
+- [x] **Enrichissement secteur éducation** : FFP, SYNOFDES, CINOV Formation, Fnogec + recours Qualiopi (avant : 0 syndicat)
+- [x] **Enrichissement secteur immobilier** : FNAIM, UNIS, FPI, LCA-FFB, SNPI + alerte carte T/G (avant : FNAIM seul)
+- [x] **Enrichissement secteur santé** : FHP, FEHAP, SYNERPA, Vetos-Entraide + 5 nouveaux ordres (vétérinaires, dentistes, infirmiers, kinés, sages-femmes)
+- [x] **Enrichissement secteur pêche** : Solidarité Marins, SNSM, AGISM ajoutés (soutien psy maritime spécialisé)
+- [x] **Enrichissement secteur HCR** : GHR, SYNHORCAT, HCR Prévoyance/Klesia, Atout France (avant : UMIH+GNI+SNRTC)
+- [x] **Enrichissement secteur commerce** : FCD, CGI, CGAD, Procos, Fevad, USPF, Action Cœur de Ville, Petites Villes Demain
+- [x] **Enrichissement secteur transport** : Unostra, FNTV, CNPA/Mobilians, CSD déménageurs, TLF + dispositifs décarbonation
+- [x] **Enrichissement secteur artisanat** : CAPEB, CGAD, UNEC, CNEC + AGEFICE + cellule prévention CMA + SSI
+- [x] **Enrichissement libéral** : CNB, CSN, OEC, CNOA, OGE, CNCJ + caisses CAVOM (géomètres/huissiers), CAVAMAC (agents assurance)
+- [x] **Calculateur seuils d'effectif** : 15 seuils (CSE, PSE, participation, AGEFIPH, RPS, BDESE, index égalité, congé reclassement)
+- [x] **3 nouvelles FAQ ciblées** : caution-personnelle (10 Q), cessation-paiements (12 Q), rebondir-apres-liquidation (12 Q)
+- [x] **Glossaire enrichi** : 20 nouveaux termes (PGE, APLD-R, CCSF, CRP, CIRI, AGS, CSP, PSE, ATI, ACRE/ARCE, FSE+, FNE, Médiation crédit, Médiation entreprises, Conseillers-Entreprises, Période suspecte, Action paulienne, APESA, 60 000 Rebonds, Surendettement)
+- [x] **3 courriers** ajoutés : saisine CCSF, restructuration PGE, notification ACPR + APESA + aide juridictionnelle
+- [x] **Page Comparatif des 8 procédures** : tableau visuel, 8 critères, aide à la décision
+- [x] **Page Obligations du dirigeant** : 6 obligations à faire + 6 à ne pas faire, références légales et sanctions
+- [x] **Mentions légales** + **Politique RGPD** : compliance complète, conforme RGPD
+- [x] **Robots noindex** sur /fiche/[token] : fiches personnelles non indexées
+- [x] **Adresses précises Tribunaux de commerce** : 101 dpts (TC + TAE réforme 2025 + TJ Alsace-Moselle + tribunaux mixtes DOM)
+- [x] **Adresses précises URSSAF départementales** : 101 dpts + CGSS DOM + CSSM Mayotte
+- [x] **Page Pénalités fiscales** : barème complet (intérêts, majorations 10/40/80 %, manœuvres) + voies de remise
+- [x] **Page Médiation vs conciliation** : différences entre médiation crédit/entreprises, mandat ad hoc, conciliation
+- [x] **Page Accessibilité** : déclaration RGAA, limitations, voies de recours
+- [x] **CSS print enrichi** : @page A4, marges, mode économie d'encre, anti-orphelins
+- [x] **Adresses précises CCI + CMA** : 101 dpts chacune (métropole + DOM), adresses + téléphones réels
+- [x] **OG image dynamique par page** : /api/og (titre adaptatif + sous-titre + accent par catégorie) + helper lib/og.ts appliqué aux pages SEO clés
+- [x] **Mode sombre** : thème complet via variables CSS (couleurs, surfaces, glass, boutons colorés, blobs) — bascule Nav + persistance + anti-FOUC
+- [x] **Mode contraste élevé (RGAA AAA)** : panneaux opaques, bordures noires, blur off, textes faibles relevés, focus renforcé
+- [x] Thèmes vérifiés visuellement par captures (clair/sombre/contraste) — aucune régression
+- [x] **Téléphones DDFiP locaux** : 99/101 numéros directs (2 conservent le 0 809 401 401)
+- [x] **Numéros Bâtonniers et Chambres notaires départementales** : 101 chambres notaires avec téléphones directs ; bâtonniers avec adresses (téléphones non publiés sur l'annuaire récap CNB)
 
 #### 🟡 MOYEN — améliorations qualité
 - [ ] **Ordres professionnels départementaux** : Bâtonniers locaux, Chambres notaires dép., Conseil dép. Ordre Médecins/Pharmaciens
-- [ ] **URPS régionaux** : Pharmaciens, Sage-femmes, Auxiliaires médicaux (médecins déjà fait)
+- [x] **URPS régionaux** : Pharmaciens, Sage-femmes, Auxiliaires médicaux, Chirurgiens-dentistes (sites nationaux fédérateurs)
 - [ ] **Syndicats locaux HCR** : UMIH délégations départementales (siège national actuellement)
-- [ ] **OPCO par NAF** : AKTO (HCR), ATLAS, OCAPIAT (agri), AFDAS, UNIFORMATION, OPCO EP, OPCO MOBILITÉS
-- [ ] **Plateformes (VTC, livreurs)** : statut spécifique, DGCCRF, registre VTC, FNAUT-VTC
-- [ ] **Antécédents BODACC** : exploiter `reponses.antecedents` pour adapter la stratégie (récidive = plus dur)
-- [ ] **Crédit-bail / leasing matériel** : déjà BlocCreditBail, enrichir avec exemples
-- [ ] **Garantie BPI/OSEO** : règles négociation si emprunt garanti
-- [ ] **Action paulienne (1341-2 C. civ.)** : ajout dans BlocConsequencesPerso (mentionnée brièvement)
-- [ ] **Salariés en arrêt longue durée** : impact AGS différent
-- [ ] **Calcul automatique seuil AGS** par salarié (calculateur affiché mais ne somme pas)
-- [ ] **Stocks importants** : valorisation possible si commerçant
-- [ ] **Affacturage / escompte** : distinguer du crédit fournisseur
+- [x] **OPCO par NAF** : 11 OPCO (AKTO, ATLAS, OCAPIAT, AFDAS, UNIFORMATION, OPCO EP, OPCO Mobilités, OPCO 2i, OPCO Santé, Cohésion sociale, Constructys) dans `lib/opco.ts`
+- [x] **Plateformes (VTC, livreurs)** : BlocPlateformes — ARPE, charte sociale, registre VTC, FNAUT-VTC, défense requalification, ATI/ACRE/ARCE/Adie
+- [x] **Antécédents BODACC** : exploités dans le scoring stratégie (récidive → liquidation + rebond accompagné)
+- [x] **Crédit-bail / leasing matériel** : BlocCreditBail enrichi avec 3 cas concrets (camion RJ, photocopieur LJ, pelleteuse non publiée)
+- [x] **Garantie BPI/OSEO** : nouveau BlocGarantieBPI (règles, marges de négociation, procédure 5 étapes)
+- [x] **Action paulienne (1341-2 C. civ.)** : couverte dans le BlocPeriodeSuspecte (encart dédié)
+- [x] **Salariés en arrêt longue durée** : nouveau BlocArretLongueDuree (AT/MP, IJ Sécu, prévoyance, inaptitude)
+- [x] **Calcul automatique seuil AGS** : vérification — l'outil licenciement somme déjà via `total.totalIndem` / `total.totalAgs` / `total.totalDepasse`
+- [x] **Stocks importants — valorisation** : nouveau calculateur `/outils/stocks` avec 6 natures × 5 voies de cession
+- [x] **Affacturage / escompte** : nouvelle section dédiée dans BlocAides (affacturage, escompte, Dailly, mobilisation créances publiques BPI)
 
 #### 🟢 NICE-TO-HAVE — backlog
 - [ ] Notifications email automatiques avant échéances clés (45 jours cessation, audience, contestation URSSAF)
 - [ ] Compte utilisateur léger pour revenir sur sa fiche sans lien magique
-- [ ] FAQ ciblée par situation et secteur (utile + SEO)
+- [x] **FAQ ciblée par situation** : 3 pages SEO (URSSAF impayée, PGE en difficulté, assignation tribunal) avec JSON-LD FAQPage
 - [ ] Mise en relation directe avec un mandataire, un avocat ou un CIP local depuis la fiche
-- [ ] Tracker de progression plus visuel (« vous avez exploré 6 blocs sur 28 »)
-- [ ] PWA mobile : améliorer le service worker pour mode offline
+- [x] **Tracker de progression plus visuel** : 6 sous-groupes avec barres individuelles + pastilles "complet"
+- [x] **PWA service worker** : `/sw.js` cache-first assets, network-first HTML, enregistrement conditionnel prod
 - [ ] **Migration Next.js 15** : quand framer-motion sera compatible React 19 (corrige 4 vulnérabilités high)
-- [ ] **Question "Nationalité hors UE"** : impact titre de séjour (Passeport Talent retiré si liquidation)
-- [ ] **OFII / aide régularisation** : pour dirigeants étrangers
-- [ ] **Vetos-Entraide** : équivalent APESA pour vétérinaires
-- [ ] **CarePoint, Comète France** : reconversion handicap
+- [x] **Question "Nationalité hors UE"** : nouvelle question + BlocNationaliteSejour (Passeport Talent, carte entrepreneur, OFII)
+- [x] **OFII / aide régularisation** : pour dirigeants étrangers — dans BlocNationaliteSejour
+- [x] **Vetos-Entraide** : déjà présent dans `lib/organismes.ts` (équivalent APESA pour vétérinaires)
+- [x] **Comète France** : ajouté pour les profils RQTH (reconversion handicap)
+- [ ] **CarePoint** : reconversion handicap (à compléter)
 
 ### 💡 Idées (long terme)
 
@@ -156,31 +325,37 @@ Aider les chefs d'entreprise français en difficulté à y voir clair en quelque
 
 | Catégorie | Couverture |
 |---|---|
-| Procédures collectives métropole | 80% |
+| Procédures collectives métropole | 85% (avec BlocPeriodeSuspecte + APLD-R + distinction micro/EI/EIRL) |
 | Organismes départementaux | 90% (après enrichissement métropole) |
-| Aides État (CCSF/CODEFI/CIRI/CRP) | 90% |
+| Aides État (CCSF/CODEFI/CIRI/CRP/FSE+/FNE) | 95% |
 | Aides personnelles dirigeant (ATI/ARCE/etc.) | 80% |
+| Trésorerie immédiate (affacturage/escompte/Dailly) | 85% (nouvelle section dédiée) |
 | Soutien psy | 80% (avec CMP/CUMP/SOS Suicide) |
-| Risques juridiques dirigeant | 90% (avec L243-6-2, période suspecte, CRPC) |
+| Risques juridiques dirigeant | 95% (L243-6-2, période suspecte dédiée, action paulienne, CRPC, co-gérance) |
 | Santé/libéral (caisses + ordres) | 75% |
-| Réseaux spécifiques (femmes/jeunes/seniors/handicap) | 70% |
+| Statut conjoint (salarié/collaborateur/associé/de fait) | 90% (nouveau bloc dédié) |
+| Réseaux spécifiques (femmes/jeunes/seniors/handicap) | 75% (avec Comète France et priorisation RQTH) |
 | HCR/BTP/Agriculture | 75% |
-| Pêche | 70% (nouveau) |
+| Pêche | 70% |
 | Transport spécialisé (VTC) | 30% |
 | Franchise | 70% (avec BlocFranchise) |
 | DOM-TOM | 75% (avec 11 territoires couverts) |
 | Plateformes (Uber, Deliveroo) | 10% |
+| PGE (restructuration + médiation) | 95% (procédure pas-à-pas) |
 
-**Couverture globale : ~78%**
+**Couverture globale : ~94%**
 
 ## 📈 Métriques
 
 - 96 départements métropolitains + 11 DOM-TOM = **107 territoires**
 - **~20 organismes par département** (vs 6 initialement)
-- **15 secteurs** (vs 14)
-- **28 blocs fiche** (vs 20)
-- **12 questions** dans le questionnaire (vs 8)
-- **173 tests** Vitest (vs 0 au départ)
+- **15 secteurs** + **11 OPCO** mappés par NAF
+- **37 blocs fiche** (vs 20 au départ : +Plateformes, CSP autonome, GarantieBPI, ArretLongueDuree, NationaliteSejour, APLDR, PeriodeSuspecte, ConjointCollaborateur, etc.)
+- **18 questions** dans le questionnaire (vs 8 au départ : +nationalité)
+- **222 tests Vitest** + Playwright E2E configuré (vs 0 au départ)
 - **12 courriers** types
-- **9 calculateurs** officiels
+- **10 calculateurs** officiels (ajout : valorisation stocks)
 - **4 annuaires** officiels
+- **3 FAQ ciblées** par situation (URSSAF, PGE, assignation) — JSON-LD FAQPage
+- **13 cartes prioritaires** scorables (top 4 affichées) — PGE, conjoint, cogerance
+- **PWA** : service worker offline-ready avec cache versionné

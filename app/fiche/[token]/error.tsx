@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function FicheError({
   reset,
 }: {
@@ -23,12 +25,12 @@ export default function FicheError({
         >
           Réessayer
         </button>
-        <a
+        <Link
           href="/"
           className="rounded-full bg-bleu-fonce px-6 py-2 text-sm text-white hover:bg-navy"
         >
           Nouvelle fiche
-        </a>
+        </Link>
       </div>
     </section>
   );
