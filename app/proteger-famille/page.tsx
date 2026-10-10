@@ -26,7 +26,7 @@ const checklist = [
   },
   {
     label: 'Demander la CSS si mes revenus ont baissé',
-    url: 'https://complementaire-sante-solidaire.gouv.fr',
+    url: 'https://www.complementaire-sante-solidaire.gouv.fr',
     urlLabel: 'complementaire-sante-solidaire.gouv.fr',
   },
 ];

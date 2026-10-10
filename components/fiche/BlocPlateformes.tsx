@@ -76,7 +76,7 @@ export default function BlocPlateformes() {
         </p>
         <div className="mt-3 flex flex-wrap gap-2 text-sm">
           <a
-            href="https://arpe.gouv.fr"
+            href="https://www.arpe.gouv.fr"
             target="_blank"
             rel="noreferrer"
             className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"
@@ -216,7 +216,7 @@ export default function BlocPlateformes() {
           <p className="mt-1 text-xs text-navy/60">Service gratuit en cas de litige individuel avec la plateforme</p>
           <div className="mt-3 flex flex-wrap gap-2 text-sm">
             <a
-              href="https://arpe.gouv.fr/saisir-le-mediateur/"
+              href="https://www.arpe.gouv.fr/dialogue-social/la-mediation/"
               target="_blank"
               rel="noreferrer"
               className="rounded-full bg-white/80 px-3 py-1.5 text-bleu-fonce hover:bg-white"

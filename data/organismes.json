@@ -467,7 +467,7 @@
     "chefLieu": "Marseille",
     "tribunal": {
       "nom": "Tribunal des activités économiques de Marseille",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal des activités économiques",
       "adresse": "2 rue Emile Pollak, 13006 Marseille",
       "telephone": "04 91 54 70 40",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -477,7 +477,8 @@
       "type": "Chambre de commerce et d’industrie",
       "adresse": "Palais de la Bourse, 9 la Canebière, CS 21856, 13221 Marseille Cedex 01",
       "telephone": "08 10 11 31 13",
-      "site": "https://www.paca.cci.fr"
+      "site": "https://www.paca.cci.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "urssaf": {
       "nom": "URSSAF PACA - site des Bouches-du-Rhône",
@@ -1687,7 +1688,7 @@
     "chefLieu": "Saint-Brieuc",
     "tribunal": {
       "nom": "Tribunal des activités économiques de Saint-Brieuc",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal des activités économiques",
       "adresse": "17 rue Parmentier, 22021 Saint-Brieuc Cedex 1",
       "telephone": "02 96 33 68 92",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -6578,8 +6579,8 @@
     "nom": "Meurthe-et-Moselle",
     "chefLieu": "Nancy",
     "tribunal": {
-      "nom": "Tribunal de commerce de Nancy",
-      "type": "Tribunal de commerce",
+      "nom": "Tribunal des activités économiques de Nancy",
+      "type": "Tribunal des activités économiques",
       "adresse": "Cité judiciaire, BP 30108, rue du Général Fabvier, 54003 Nancy Cedex",
       "telephone": "03 83 40 69 60",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -7035,7 +7036,7 @@
     "chefLieu": "Metz",
     "tribunal": {
       "nom": "Tribunal judiciaire de Metz - Chambre commerciale",
-      "type": "Tribunal de commerce",
+      "type": "Chambre commerciale du tribunal judiciaire",
       "adresse": "3 rue Haute Pierre, 57036 Metz Cedex 01",
       "telephone": "03 87 56 75 00",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -8557,7 +8558,7 @@
     "chefLieu": "Strasbourg",
     "tribunal": {
       "nom": "Tribunal judiciaire de Strasbourg - Chambre commerciale",
-      "type": "Tribunal de commerce",
+      "type": "Chambre commerciale du tribunal judiciaire",
       "adresse": "1 quai Finkmatt, 67070 Strasbourg Cedex",
       "telephone": "03 88 75 27 27",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -8705,7 +8706,7 @@
     "chefLieu": "Colmar",
     "tribunal": {
       "nom": "Tribunal judiciaire de Mulhouse - Chambre commerciale",
-      "type": "Tribunal de commerce",
+      "type": "Chambre commerciale du tribunal judiciaire",
       "adresse": "21 avenue Robert Schuman, 68100 Mulhouse",
       "telephone": "03 89 36 25 00",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -8853,7 +8854,7 @@
     "chefLieu": "Lyon",
     "tribunal": {
       "nom": "Tribunal des activités économiques de Lyon",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal des activités économiques",
       "adresse": "44 rue de Bonnel, 69433 Lyon Cedex 03",
       "telephone": "04 72 60 69 80",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -9309,7 +9310,7 @@
     "chefLieu": "Le Mans",
     "tribunal": {
       "nom": "Tribunal des activités économiques du Mans",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal des activités économiques",
       "adresse": "1 avenue Pierre Mendès France, 72014 Le Mans Cedex",
       "telephone": "02 43 14 18 50",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -9759,7 +9760,7 @@
     "chefLieu": "Paris",
     "tribunal": {
       "nom": "Tribunal des activités économiques de Paris",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal des activités économiques",
       "adresse": "1 quai de la Corse, 75198 Paris Cedex 04",
       "telephone": "01 86 86 75 75",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -9769,7 +9770,8 @@
       "type": "Chambre de commerce et d’industrie",
       "adresse": "9 rue Coquillière, 75001 Paris",
       "telephone": "08 20 01 21 12",
-      "site": "https://www.cci-paris-idf.fr"
+      "site": "https://www.cci-paris-idf.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "urssaf": {
       "nom": "URSSAF Île-de-France - site de Paris",
@@ -10214,8 +10216,8 @@
     "nom": "Yvelines",
     "chefLieu": "Versailles",
     "tribunal": {
-      "nom": "Tribunal de commerce de Versailles",
-      "type": "Tribunal de commerce",
+      "nom": "Tribunal des activités économiques de Versailles",
+      "type": "Tribunal des activités économiques",
       "adresse": "1 place André Mignot, 78000 Versailles",
       "telephone": "01 39 07 16 40",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -10225,7 +10227,8 @@
       "type": "Chambre de commerce et d’industrie",
       "adresse": "21 avenue de Paris, 78021 Versailles Cedex",
       "telephone": "08 20 01 21 12",
-      "site": "https://www.cci-paris-idf.fr"
+      "site": "https://www.cci-paris-idf.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "urssaf": {
       "nom": "URSSAF Île-de-France - site des Yvelines",
@@ -11127,7 +11130,7 @@
     "chefLieu": "Avignon",
     "tribunal": {
       "nom": "Tribunal des activités économiques d'Avignon",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal des activités économiques",
       "adresse": "2 boulevard Limbert, BP 21063, 84097 Avignon Cedex 9",
       "telephone": "04 90 14 31 82",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -11583,7 +11586,7 @@
     "chefLieu": "Limoges",
     "tribunal": {
       "nom": "Tribunal des activités économiques de Limoges",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal des activités économiques",
       "adresse": "Cité Judiciaire, 23 place Winston Churchill, 87000 Limoges",
       "telephone": "05 55 34 60 75",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -11890,8 +11893,8 @@
     "nom": "Yonne",
     "chefLieu": "Auxerre",
     "tribunal": {
-      "nom": "Tribunal de commerce d'Auxerre",
-      "type": "Tribunal de commerce",
+      "nom": "Tribunal des activités économiques d'Auxerre",
+      "type": "Tribunal des activités économiques",
       "adresse": "90 rue de Paris, BP 94, 89011 Auxerre Cedex",
       "telephone": "03 86 72 21 00",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -12341,7 +12344,7 @@
     "chefLieu": "Nanterre",
     "tribunal": {
       "nom": "Tribunal des activités économiques de Nanterre",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal des activités économiques",
       "adresse": "4 rue Pablo Néruda, 3e étage, 92020 Nanterre Cedex",
       "telephone": "01 40 97 17 17",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -12492,7 +12495,8 @@
       "type": "Tribunal de commerce",
       "adresse": "1-13 rue Michel de l'Hospital, 93008 Bobigny Cedex",
       "telephone": "08 91 01 11 11",
-      "site": "https://www.tribunal-de-commerce.fr"
+      "site": "https://www.tribunal-de-commerce.fr",
+      "telephoneNote": "Numéro surtaxé (08 9x : service payant + prix d’un appel)"
     },
     "cci": {
       "nom": "CCI de Seine-Saint-Denis (Bobigny)",
@@ -12933,7 +12937,7 @@
     "chefLieu": "Basse-Terre",
     "tribunal": {
       "nom": "Tribunal mixte de commerce de Pointe-à-Pitre",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal mixte de commerce",
       "adresse": "Place Gourbeyre, 97110 Pointe-à-Pitre",
       "telephone": "05 90 89 69 51",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -12949,14 +12953,16 @@
       "nom": "CGSS Guadeloupe",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "adresse": "Quartier de l'Hôtel de Ville, 97110 Pointe-à-Pitre",
-      "telephone": "0 820 100 971",
-      "site": "https://www.urssaf.fr"
+      "telephone": "0 820 000 971",
+      "site": "https://www.urssaf.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "cgss": {
       "nom": "CGSS Guadeloupe",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "telephone": "0 820 000 971",
-      "site": "https://www.cgss-guadeloupe.fr"
+      "site": "https://www.cgss-guadeloupe.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Basse-Terre",
@@ -12971,9 +12977,8 @@
       "site": "https://mediateur-credit.banque-france.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Antilles-Guyane",
+      "nom": "Bpifrance Antilles-Guyane",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13055,7 +13060,7 @@
     "chefLieu": "Fort-de-France",
     "tribunal": {
       "nom": "Tribunal mixte de commerce de Fort-de-France",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal mixte de commerce",
       "adresse": "35 boulevard du Général de Gaulle, 97200 Fort-de-France",
       "telephone": "05 96 48 41 41",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -13071,14 +13076,16 @@
       "nom": "CGSS Martinique",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "adresse": "Place d'Armes, 97232 Le Lamentin",
-      "telephone": "0 820 100 972",
-      "site": "https://www.urssaf.fr"
+      "telephone": "0 820 000 972",
+      "site": "https://www.urssaf.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "cgss": {
       "nom": "CGSS Martinique",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "telephone": "0 820 000 972",
-      "site": "https://www.cgss-martinique.fr"
+      "site": "https://www.cgss-martinique.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Fort-de-France",
@@ -13093,9 +13100,8 @@
       "site": "https://mediateur-credit.banque-france.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Antilles-Guyane",
+      "nom": "Bpifrance Antilles-Guyane",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13177,7 +13183,7 @@
     "chefLieu": "Cayenne",
     "tribunal": {
       "nom": "Tribunal mixte de commerce de Cayenne",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal mixte de commerce",
       "adresse": "15 avenue du Général de Gaulle, 97300 Cayenne",
       "telephone": "05 94 29 76 30",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -13193,14 +13199,16 @@
       "nom": "CGSS Guyane",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "adresse": "Espace Turenne Radamonthe, route de Raban, 97300 Cayenne",
-      "telephone": "0 820 100 973",
-      "site": "https://www.urssaf.fr"
+      "telephone": "0 820 000 973",
+      "site": "https://www.urssaf.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "cgss": {
       "nom": "CGSS Guyane",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "telephone": "0 820 000 973",
-      "site": "https://www.cgss-guyane.fr"
+      "site": "https://www.cgss-guyane.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Cayenne",
@@ -13215,9 +13223,8 @@
       "site": "https://mediateur-credit.banque-france.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Antilles-Guyane",
+      "nom": "Bpifrance Antilles-Guyane",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13299,7 +13306,7 @@
     "chefLieu": "Saint-Denis",
     "tribunal": {
       "nom": "Tribunal mixte de commerce de Saint-Denis-de-La-Réunion",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal mixte de commerce",
       "adresse": "45 rue Sainte-Anne, 97400 Saint-Denis",
       "telephone": "02 62 40 23 45",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -13315,14 +13322,16 @@
       "nom": "CGSS Réunion",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "adresse": "4 boulevard Doret, 97704 Saint-Denis Cedex 9",
-      "telephone": "0 820 100 974",
-      "site": "https://www.urssaf.fr"
+      "telephone": "0 820 000 974",
+      "site": "https://www.urssaf.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "cgss": {
       "nom": "CGSS La Réunion",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "telephone": "0 820 000 974",
-      "site": "https://www.cgss.re"
+      "site": "https://www.cgss.re",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "sie": {
       "nom": "Service des impôts des entreprises de Saint-Denis",
@@ -13337,9 +13346,8 @@
       "site": "https://mediateur-credit.banque-france.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Océan Indien",
+      "nom": "Bpifrance Océan Indien",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13455,9 +13463,8 @@
       "site": "https://www.iedom.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Outre-mer",
+      "nom": "Bpifrance Outre-mer",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13517,7 +13524,7 @@
     "chefLieu": "Mamoudzou",
     "tribunal": {
       "nom": "Tribunal mixte de commerce de Mamoudzou",
-      "type": "Tribunal de commerce",
+      "type": "Tribunal mixte de commerce",
       "adresse": "Route Nationale Kaweni, Résidence l'Archipel, 97600 Mamoudzou",
       "telephone": "02 69 61 11 15",
       "site": "https://www.tribunal-de-commerce.fr"
@@ -13555,9 +13562,8 @@
       "site": "https://mediateur-credit.banque-france.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Océan Indien",
+      "nom": "Bpifrance Océan Indien",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13653,13 +13659,15 @@
       "nom": "CGSS Guadeloupe (compétente pour Saint-Barthélemy)",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "telephone": "0 820 000 971",
-      "site": "https://www.cgss-guadeloupe.fr"
+      "site": "https://www.cgss-guadeloupe.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "cgss": {
       "nom": "CGSS Guadeloupe (compétente pour Saint-Barthélemy)",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "telephone": "0 820 000 971",
-      "site": "https://www.cgss-guadeloupe.fr"
+      "site": "https://www.cgss-guadeloupe.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "sie": {
       "nom": "Service fiscal de Saint-Barthélemy",
@@ -13673,9 +13681,8 @@
       "site": "https://www.iedom.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Antilles-Guyane",
+      "nom": "Bpifrance Antilles-Guyane",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13749,13 +13756,15 @@
       "nom": "CGSS Guadeloupe (compétente pour Saint-Martin)",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "telephone": "0 820 000 971",
-      "site": "https://www.cgss-guadeloupe.fr"
+      "site": "https://www.cgss-guadeloupe.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "cgss": {
       "nom": "CGSS Guadeloupe (compétente pour Saint-Martin)",
       "type": "Caisse Générale de Sécurité Sociale (URSSAF + CPAM + CARSAT)",
       "telephone": "0 820 000 971",
-      "site": "https://www.cgss-guadeloupe.fr"
+      "site": "https://www.cgss-guadeloupe.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "sie": {
       "nom": "Service fiscal de Saint-Martin",
@@ -13769,9 +13778,8 @@
       "site": "https://www.iedom.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Antilles-Guyane",
+      "nom": "Bpifrance Antilles-Guyane",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13865,9 +13873,8 @@
       "site": "https://www.ieom.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Outre-mer",
+      "nom": "Bpifrance Outre-mer",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -13963,9 +13970,8 @@
       "site": "https://www.ieom.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Outre-mer",
+      "nom": "Bpifrance Outre-mer",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -14061,9 +14067,8 @@
       "site": "https://www.ieom.fr"
     },
     "bpiOutreMer": {
-      "nom": "BPI France Outre-mer",
+      "nom": "Bpifrance Outre-mer",
       "type": "Financement entreprises Outre-mer",
-      "telephone": "3247",
       "site": "https://www.bpifrance.fr"
     },
     "afd": {
@@ -14891,7 +14896,8 @@
       "type": "Chambre de commerce et d’industrie",
       "adresse": "20 boulevard Carabacel, BP 1259, 06005 Nice Cedex 1",
       "telephone": "0820 42 22 22",
-      "site": "https://www.paca.cci.fr"
+      "site": "https://www.paca.cci.fr",
+      "telephoneNote": "Numéro non gratuit (service payant + prix d’un appel)"
     },
     "urssaf": {
       "nom": "URSSAF PACA - site des Alpes-Maritimes",

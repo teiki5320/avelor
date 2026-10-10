@@ -7,6 +7,8 @@ interface OrganismeLocal {
   nom: string;
   type: string;
   telephone?: string;
+  /** Mention de coût pour les numéros à tarification spéciale (08 1x, 08 2x, 08 9x). */
+  telephoneNote?: string;
   adresse?: string;
   site?: string;
 }
@@ -365,6 +367,9 @@ export default function AccompagnantQuestionnaire() {
                           {departement.cci.telephone}
                         </a>
                       )}
+                      {departement.cci.telephoneNote && (
+                        <span className="block text-[11px] text-navy/55">{departement.cci.telephoneNote}</span>
+                      )}
                       {departement.cci.site && (
                         <a
                           href={departement.cci.site}
@@ -379,7 +384,7 @@ export default function AccompagnantQuestionnaire() {
                   </div>
                 )}
 
-                {/* Tribunal de commerce */}
+                {/* Tribunal compétent (commerce, activités économiques ou chambre commerciale) */}
                 {departement.tribunal && (
                   <div className="glass-soft flex items-start gap-3 rounded-2xl p-4">
                     <span className="mt-0.5 text-lg" aria-hidden="true">🏛️</span>
@@ -395,6 +400,9 @@ export default function AccompagnantQuestionnaire() {
                         >
                           {departement.tribunal.telephone}
                         </a>
+                      )}
+                      {departement.tribunal.telephoneNote && (
+                        <span className="block text-[11px] text-navy/55">{departement.tribunal.telephoneNote}</span>
                       )}
                     </div>
                   </div>
