@@ -22,6 +22,8 @@ export default function GlobalError({
             >
               Réessayer
             </button>
+            {/* Rechargement complet voulu : la mise en page racine a planté. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a
               href="/"
               className="rounded-full bg-white px-6 py-2 text-sm text-[#0A1628] hover:bg-white/90"
