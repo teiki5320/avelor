@@ -1,4 +1,4 @@
-# Avelor
+# Solelis
 
 Plateforme SaaS (Next.js 14) d'aide aux dirigeants d'entreprise en difficulté en France.
 Le dirigeant entre son SIRET, répond à un questionnaire, et reçoit une fiche personnalisée (stratégie, courriers, échéances, aides, annuaires).
@@ -13,7 +13,12 @@ npm test         # Vitest (259 tests dans lib/__tests__/, components/__tests__/,
 npm run test:e2e # Playwright (parcours utilisateur)
 ```
 
-Déploiement automatique sur Vercel depuis la branche `main` → https://avelor.vercel.app
+Hébergement : Worker Cloudflare « solelis » via OpenNext (`wrangler.jsonc`, `worker.ts`), déployé depuis `main` → https://solelis.com
+
+```bash
+npm run cf:preview   # Aperçu local dans le simulateur Cloudflare (port 8787)
+npm run cf:deploy    # Build + mise en ligne sur Cloudflare
+```
 
 ## Stack
 
@@ -52,7 +57,7 @@ app/
   api/fiche/                  # POST création fiche + GET récupération
   api/fiche/send-link/        # Envoi magic link par email
   api/fiche/rappels/          # POST programmer un rappel
-  api/cron/rappels/           # GET cron quotidien (Vercel cron 7h)
+  api/cron/rappels/           # GET cron quotidien (Cron Trigger Cloudflare 7h UTC, worker.ts)
   api/og/                     # Image OG dynamique (Edge runtime)
   api/stats/                  # Stats agrégées
   sitemap.ts, robots.ts       # SEO
@@ -98,7 +103,7 @@ data/
   organismes.json             # 107 territoires (96 dpts + 11 DOM-TOM), ~20 organismes par dpt
 
 middleware.ts                 # Rate limiting (in-memory, à migrer Upstash)
-vercel.json                   # Cron rappels quotidiens 7h
+worker.ts                     # Entrée du Worker Cloudflare + Cron rappels quotidiens 7h
 ```
 
 ## Couleurs Tailwind custom

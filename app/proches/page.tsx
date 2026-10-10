@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Comment en parler à vos proches · AVELOR',
+  title: 'Comment en parler à vos proches · Solelis',
   description:
     'Des phrases concrètes pour ouvrir la conversation avec votre conjoint, un ami, votre associé ou vos enfants.',
 };

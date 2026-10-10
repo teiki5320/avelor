@@ -6,7 +6,7 @@ export const metadata = ogMeta({
   description:
     'Les procédures collectives et dispositifs expliqués simplement : mandat ad hoc, conciliation, sauvegarde, RJ, LJ, PRP, PGE, CCSF, AGS, CSP, ATI…',
   cat: 'procedure',
-  pageTitle: 'Glossaire des procédures · AVELOR',
+  pageTitle: 'Glossaire des procédures · Solelis',
 });
 
 interface Term {

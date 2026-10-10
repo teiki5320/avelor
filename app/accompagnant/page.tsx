@@ -2,9 +2,9 @@ import AccompagnantQuestionnaire from './AccompagnantQuestionnaire';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AVELOR · J\'accompagne un dirigeant',
+  title: 'Solelis · J\'accompagne un dirigeant',
   description:
-    'Vous êtes proche d\'un dirigeant en difficulté. AVELOR vous aide à comprendre et à l\'accompagner.',
+    'Vous êtes proche d\'un dirigeant en difficulté. Solelis vous aide à comprendre et à l\'accompagner.',
 };
 
 const urgences = [

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Confidentialité · AVELOR',
+  title: 'Confidentialité · Solelis',
   description:
     'Notre charte de confidentialité, en mots simples. Vos données ne sont jamais vendues.',
 };
@@ -12,7 +12,7 @@ const engagements = [
   'Nous ne partageons rien avec l’État, les impôts, l’URSSAF ou votre banque.',
   'Aucun compte n’est créé sans votre accord.',
   'Vous pouvez supprimer votre fiche à tout moment.',
-  'AVELOR est un outil d’aide — pas un fichier, pas un registre.',
+  'Solelis est un outil d’aide — pas un fichier, pas un registre.',
 ];
 
 export default function ConfidentialitePage() {
@@ -52,10 +52,10 @@ export default function ConfidentialitePage() {
           <p className="text-base text-navy/70">
             Questions ? Écrivez-nous à{' '}
             <a
-              href="mailto:avelor@toakeur.com"
+              href="mailto:solelis@toakeur.com"
               className="font-medium text-bleu-fonce underline underline-offset-4"
             >
-              avelor@toakeur.com
+              solelis@toakeur.com
             </a>
           </p>
         </div>

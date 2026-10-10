@@ -5,9 +5,9 @@ import RetourFiche from '@/components/RetourFiche';
 import { COURRIERS } from '@/lib/courriers';
 
 export const metadata: Metadata = {
-  title: 'AVELOR — Aide aux chefs d\'entreprise en difficulté',
+  title: 'Solelis — Aide aux chefs d\'entreprise en difficulté',
   description:
-    'AVELOR aide les dirigeants d\'entreprise en difficulté en France. Entrez votre SIRET et recevez une fiche personnalisée gratuite : stratégie, courriers, aides, annuaires.',
+    'Solelis aide les dirigeants d\'entreprise en difficulté en France. Entrez votre SIRET et recevez une fiche personnalisée gratuite : stratégie, courriers, aides, annuaires.',
 };
 
 const RESSOURCES = [
@@ -35,7 +35,7 @@ export default function HomePage() {
         et quelque chose coince.
       </h1>
       <p className="mx-auto mt-6 max-w-xl text-base text-navy/70 sm:text-lg">
-        AVELOR vous aide à y voir clair — en quelques minutes, avec les bons
+        Solelis vous aide à y voir clair — en quelques minutes, avec les bons
         interlocuteurs autour de vous. Vous n&apos;avez pas à tout résoudre
         aujourd&apos;hui.
       </p>

@@ -53,7 +53,7 @@ export default function Nav() {
           href="/"
           className="font-display text-base tracking-wide text-navy sm:text-lg"
         >
-          AVELOR
+          Solelis
         </Link>
 
         <div className="hidden items-center gap-4 text-sm text-navy/55 md:flex">

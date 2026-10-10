@@ -84,7 +84,7 @@ function verdict(inputs: Inputs, proj: Projection[]): {
     titre: `Rupture de trésorerie dans ~ ${premierNegatif.mois} mois`,
     message: `À charges constantes, votre trésorerie passe en négatif au mois ${premierNegatif.mois}. Il vous reste ${premierNegatif.mois} mois pour agir — c'est jouable.`,
     actions: [
-      'Obtenez un moratoire URSSAF / SIE (courriers Avelor)',
+      'Obtenez un moratoire URSSAF / SIE (courriers Solelis)',
       'Saisissez la médiation du crédit (Banque de France, gratuit, 5 j)',
       'Réduisez les charges fixes non vitales (abonnements, loyers renégociables)',
       "Accélérez les encaissements clients (relances, affacturage, escompte)",
@@ -101,7 +101,7 @@ const NIVEAU_STYLES: Record<'safe' | 'alerte' | 'cessation', { bg: string; borde
 
 export default function BlocTresorerie() {
   const { reponses } = useFiche();
-  const storageKey = useFicheStorageKey('avelor_tresorerie');
+  const storageKey = useFicheStorageKey('solelis_tresorerie');
   const [inputs, setInputs] = useState<Inputs>(EMPTY);
   const [loaded, setLoaded] = useState(false);
 

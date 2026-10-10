@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  generateBuildId: () => process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 8) ?? `dev-${Date.now()}`,
+  generateBuildId: () => process.env.WORKERS_CI_COMMIT_SHA?.slice(0, 8) ?? `dev-${Date.now()}`,
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'lh3.googleusercontent.com' },

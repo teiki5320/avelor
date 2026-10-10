@@ -7,7 +7,7 @@ export const metadata = {
     sous: 'Mandat ad hoc, conciliation, sauvegarde, RJ, LJ, PRP',
     description: 'Mandat ad hoc, conciliation, sauvegarde, redressement, liquidation, PRP : comparaison détaillée des procédures (confidentialité, durée, coût, conditions).',
     cat: 'procedure',
-    pageTitle: 'Comparatif des procédures collectives — AVELOR',
+    pageTitle: 'Comparatif des procédures collectives — Solelis',
   }),
   robots: { index: true, follow: true },
 };

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Tribunaux des activités économiques (TAE) — AVELOR',
+  title: 'Tribunaux des activités économiques (TAE) — Solelis',
   description:
     'Les 12 tribunaux des activités économiques expérimentaux depuis janvier 2025. Compétences, ressort et réforme des procédures collectives.',
 };

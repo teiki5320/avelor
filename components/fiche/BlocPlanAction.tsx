@@ -77,7 +77,7 @@ function buildDefaultActions(r: Reponses, c: CompanyData, s: SectorInfo): Action
 
 export default function BlocPlanAction({ defaultOpen }: Props) {
   const { reponses, company, sector } = useFiche();
-  const storageKey = useFicheStorageKey('avelor_plan_action');
+  const storageKey = useFicheStorageKey('solelis_plan_action');
   const [actions, setActions] = useState<Action[]>([]);
   const [newText, setNewText] = useState('');
   const [loaded, setLoaded] = useState(false);

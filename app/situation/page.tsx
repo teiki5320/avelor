@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AVELOR · Situations d\'entreprise en difficulté',
+  title: 'Solelis · Situations d\'entreprise en difficulté',
   description: 'Guides pratiques pour chaque type de difficulté : URSSAF, fournisseurs, banque, impôts.',
 };
 
@@ -17,7 +17,7 @@ const jsonLdBreadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
     { '@type': 'ListItem', position: 2, name: 'Situations' },
   ],
 };
@@ -48,7 +48,7 @@ export default function SituationsPage() {
         ))}
       </div>
       <div className="mt-10 text-center">
-        <Link href="/" className="btn-primary">Commencer le diagnostic AVELOR →</Link>
+        <Link href="/" className="btn-primary">Commencer le diagnostic Solelis →</Link>
       </div>
     </section>
   );

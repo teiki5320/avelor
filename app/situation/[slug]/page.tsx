@@ -16,7 +16,7 @@ interface SituationData {
 const DATA: Record<string, SituationData> = {
   'dettes-urssaf': {
     titre: 'Dettes URSSAF : que faire quand on ne peut plus payer ?',
-    metaTitle: 'Dettes URSSAF : que faire ? Guide pratique · AVELOR',
+    metaTitle: 'Dettes URSSAF : que faire ? Guide pratique · Solelis',
     metaDesc: 'Vous avez des dettes URSSAF et ne pouvez plus payer ? Échelonnement, prescription 3 ans, contestation — toutes vos options expliquées simplement.',
     intro: 'Les cotisations URSSAF impayées sont l\'une des premières causes de difficulté pour les dirigeants. La bonne nouvelle : des solutions existent, et plus vous agissez tôt, plus elles sont efficaces. Vous n\'êtes pas le premier ni le dernier à traverser ça.',
     loi: 'Les cotisations sociales se prescrivent par 3 ans (article L244-3 du Code de la sécurité sociale). Concrètement, si vous avez des dettes de plus de 3 ans, elles sont potentiellement prescrites — ce qui peut réduire significativement le montant dû. Par ailleurs, l\'URSSAF est tenue d\'accorder un échelonnement si vous en faites la demande et que vous reprenez le paiement de vos cotisations courantes. En cas de mise en demeure, vous disposez de 2 mois pour saisir la Commission de Recours Amiable (CRA).',
@@ -36,7 +36,7 @@ const DATA: Record<string, SituationData> = {
   },
   'dettes-fournisseurs': {
     titre: 'Dettes fournisseurs : comment négocier sans tout perdre ?',
-    metaTitle: 'Dettes fournisseurs : comment négocier ? · AVELOR',
+    metaTitle: 'Dettes fournisseurs : comment négocier ? · Solelis',
     metaDesc: 'Des factures fournisseurs impayées s\'accumulent ? Négociation amiable, médiation des entreprises, risques — guide pratique pour dirigeants.',
     intro: 'Des factures impayées qui s\'empilent, des relances qui arrivent, la peur d\'une assignation… C\'est un scénario que vivent des milliers de dirigeants chaque année. La négociation amiable reste toujours la meilleure option — et elle fonctionne plus souvent qu\'on ne le croit.',
     loi: 'En cas de facture impayée, le créancier peut vous assigner en paiement devant le tribunal de commerce. Cependant, la loi encourage d\'abord la résolution amiable. Le Médiateur des entreprises (gratuit, confidentiel) peut intervenir pour faciliter un accord. En cas de procédure collective, les fournisseurs deviennent des créanciers chirographaires — ils seront payés selon le plan, mais pas en priorité.',
@@ -56,7 +56,7 @@ const DATA: Record<string, SituationData> = {
   },
   'credit-bancaire': {
     titre: 'Crédit bancaire : que faire quand la banque lâche ?',
-    metaTitle: 'Problème de crédit bancaire : vos recours · AVELOR',
+    metaTitle: 'Problème de crédit bancaire : vos recours · Solelis',
     metaDesc: 'Refus de prêt, découvert réduit, dénonciation de concours ? Médiation du crédit, mandat ad hoc — vos droits et recours expliqués.',
     intro: 'Quand votre banque refuse un prêt, réduit votre découvert ou menace de couper les concours, c\'est toute l\'entreprise qui vacille. Mais vous avez des droits — et des recours gratuits que beaucoup de dirigeants ignorent.',
     loi: 'Une banque ne peut pas supprimer un découvert autorisé du jour au lendemain : elle doit respecter un préavis de 60 jours minimum (article L313-12 du Code monétaire et financier). Pour une dénonciation de concours bancaires, le préavis est de 60 jours également, sauf en cas de comportement gravement répréhensible ou de situation irrémédiablement compromise. La médiation du crédit, gérée par la Banque de France, est gratuite et confidentielle.',
@@ -76,7 +76,7 @@ const DATA: Record<string, SituationData> = {
   },
   'impots-impayes': {
     titre: 'Impôts impayés : comment régulariser sans panique ?',
-    metaTitle: 'Impôts impayés : comment régulariser ? · AVELOR',
+    metaTitle: 'Impôts impayés : comment régulariser ? · Solelis',
     metaDesc: 'TVA, IS, impôts impayés ? Délais de paiement, CCSF, remise gracieuse — toutes vos options pour régulariser votre situation fiscale.',
     intro: 'Des impôts impayés, ça fait peur. Mais l\'administration fiscale n\'est pas votre ennemie : elle accorde des délais, des échelonnements, et parfois même des remises gracieuses. La clé, c\'est de ne pas rester silencieux.',
     loi: 'Le droit de reprise de l\'administration fiscale est de 3 ans pour l\'IR et l\'IS, 4 ans pour la TVA. Vous pouvez demander un délai au SIE, saisir la CCSF pour un échelonnement global, demander une remise gracieuse (art. L247 LPF), négocier une transaction écrite avec l\'administration, ou obtenir un sursis de paiement en cas de contestation formelle (art. L277 LPF). Un dégrèvement d\'office est aussi possible si l\'administration a commis une erreur en votre défaveur.',
@@ -105,7 +105,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const d = DATA[slug];
-  if (!d) return { title: 'AVELOR' };
+  if (!d) return { title: 'Solelis' };
   return { title: d.metaTitle, description: d.metaDesc };
 }
 
@@ -118,8 +118,8 @@ export default async function SituationPage({ params }: { params: Promise<{ slug
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
-      { '@type': 'ListItem', position: 2, name: 'Situations', item: 'https://avelor.vercel.app/situation' },
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Situations', item: 'https://solelis.com/situation' },
       { '@type': 'ListItem', position: 3, name: d.titre },
     ],
   };
@@ -183,7 +183,7 @@ export default async function SituationPage({ params }: { params: Promise<{ slug
 
       <div className="mt-10 text-center">
         <p className="mb-4 text-sm text-navy/60">Prêt à faire le point sur votre situation ?</p>
-        <Link href="/" className="btn-primary">Commencer le diagnostic AVELOR →</Link>
+        <Link href="/" className="btn-primary">Commencer le diagnostic Solelis →</Link>
       </div>
     </section>
   );

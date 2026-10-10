@@ -21,7 +21,7 @@ describe('buildIcs', () => {
   it('contient la version et le prodid', () => {
     const ics = buildIcs([evenementBasique]);
     expect(ics).toContain('VERSION:2.0');
-    expect(ics).toContain('PRODID:-//Avelor//Rappels juridiques//FR');
+    expect(ics).toContain('PRODID:-//Solelis//Rappels juridiques//FR');
   });
 
   it('génère un VEVENT par événement', () => {
@@ -32,7 +32,7 @@ describe('buildIcs', () => {
 
   it('contient l\'UID, le SUMMARY et la DESCRIPTION', () => {
     const ics = buildIcs([evenementBasique]);
-    expect(ics).toContain('UID:test-uid-001@avelor.fr');
+    expect(ics).toContain('UID:test-uid-001@solelis.com');
     expect(ics).toContain('SUMMARY:');
     expect(ics).toContain('DESCRIPTION:');
   });

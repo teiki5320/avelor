@@ -4,7 +4,7 @@ import { getOpcoFromNaf, type Opco } from '../opco';
 import type { CompanyData } from '../types';
 
 /**
- * Test paramétré couvrant les 18 catégories de métiers d'Avelor.
+ * Test paramétré couvrant les 18 catégories de métiers de Solelis.
  * Pour chaque secteur : un NAF représentatif + des assertions ciblées
  * sur les données métier (label, syndicats clés, soutien, ordres,
  * caisses retraite, OPCO compétent…).

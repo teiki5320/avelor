@@ -32,13 +32,13 @@ export function buildIcs(events: IcsEvent[]): string {
   const lines: string[] = [];
   lines.push('BEGIN:VCALENDAR');
   lines.push('VERSION:2.0');
-  lines.push('PRODID:-//Avelor//Rappels juridiques//FR');
+  lines.push('PRODID:-//Solelis//Rappels juridiques//FR');
   lines.push('CALSCALE:GREGORIAN');
   lines.push('METHOD:PUBLISH');
 
   for (const e of events) {
     lines.push('BEGIN:VEVENT');
-    lines.push(`UID:${e.uid}@avelor.fr`);
+    lines.push(`UID:${e.uid}@solelis.com`);
     lines.push(`DTSTAMP:${toIcsDate(new Date())}`);
     lines.push(`DTSTART:${toIcsDate(e.date)}`);
     const dtEnd = new Date(e.date.getTime() + 60 * 60 * 1000);
@@ -59,7 +59,7 @@ export function buildIcs(events: IcsEvent[]): string {
   return lines.join('\r\n');
 }
 
-export function downloadIcs(events: IcsEvent[], filename = 'avelor-rappels.ics') {
+export function downloadIcs(events: IcsEvent[], filename = 'solelis-rappels.ics') {
   const content = buildIcs(events);
   const blob = new Blob([content], { type: 'text/calendar;charset=utf-8' });
   const url = URL.createObjectURL(blob);

@@ -140,7 +140,7 @@ interface Props {
   siret: string;
 }
 
-const STORAGE_KEY = 'avelor_questionnaire';
+const STORAGE_KEY = 'solelis_questionnaire';
 
 function loadSaved(siret: string): { step: number; answers: Partial<Reponses> } | null {
   try {

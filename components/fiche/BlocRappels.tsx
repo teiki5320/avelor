@@ -39,7 +39,7 @@ export default function BlocRappels() {
   // Récupère la date de cessation saisie dans BlocCessationDecompte, et se
   // resynchronise quand elle change — dans le même onglet (événement custom,
   // car `storage` ne se déclenche pas localement) comme dans un autre onglet.
-  const cessationKey = useFicheStorageKey('avelor_cessation_date');
+  const cessationKey = useFicheStorageKey('solelis_cessation_date');
   useEffect(() => {
     try {
       const stored = localStorage.getItem(cessationKey);
@@ -149,12 +149,12 @@ export default function BlocRappels() {
     const events: IcsEvent[] = echeances.map((e) => ({
       uid: `${e.cle}-${e.baseDate.getTime()}`,
       title: e.titre,
-      description: `${e.description}\n\nSource : ${e.source}\n\nGénéré par AVELOR.`,
+      description: `${e.description}\n\nSource : ${e.source}\n\nGénéré par Solelis.`,
       date: e.baseDate,
       alarmHoursBefore: 48,
     }));
     if (events.length === 0) return;
-    downloadIcs(events, 'avelor-rappels.ics');
+    downloadIcs(events, 'solelis-rappels.ics');
   }
 
   function copyGoogleLink() {
@@ -191,7 +191,7 @@ export default function BlocRappels() {
     >
       <p className="mb-4 text-sm text-navy/80">
         Saisissez les dates qui s&apos;appliquent à votre situation.
-        Avelor calcule les échéances légales à partir des textes
+        Solelis calcule les échéances légales à partir des textes
         officiels et génère un fichier <strong>.ics</strong> que vous
         pouvez importer dans Google Agenda, Apple Calendrier, Outlook ou
         tout autre agenda — avec un rappel 48 h avant.

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Annuaires officiels — AVELOR',
+  title: 'Annuaires officiels — Solelis',
   description:
     'Annuaires des organismes clés pour les entreprises en difficulté : AGS, tribunaux des activités économiques, mandataires judiciaires, CIP.',
 };

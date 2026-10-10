@@ -9,7 +9,7 @@ const THEMES: { value: Theme; label: string; icone: string; attr: string }[] = [
   { value: 'contraste', label: 'Contraste élevé', icone: '◐', attr: 'contrast' },
 ];
 
-const STORAGE_KEY = 'avelor_theme';
+const STORAGE_KEY = 'solelis_theme';
 
 function applyTheme(theme: Theme) {
   const def = THEMES.find((t) => t.value === theme) ?? THEMES[0];

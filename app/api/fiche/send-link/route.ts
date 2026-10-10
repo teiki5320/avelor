@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     // Anti-relais : n'envoyer d'email que si le token correspond à une fiche réelle.
     // Sans cette vérification, l'endpoint permet d'envoyer des emails « Votre fiche
-    // Avelor » à n'importe quelle adresse avec un token arbitraire.
+    // Solelis » à n'importe quelle adresse avec un token arbitraire.
     const fiche = await getFicheByToken(token);
     if (!fiche) {
       return NextResponse.json({ error: 'Fiche introuvable' }, { status: 404 });

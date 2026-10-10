@@ -6,7 +6,7 @@ export const metadata = ogMeta({
   description:
     "Estimez la valeur de réalisation de vos stocks en cas de cession ou liquidation : taux de réfaction selon la nature du stock et l'urgence.",
   cat: 'outil',
-  pageTitle: 'Valorisation des stocks (liquidation) — AVELOR',
+  pageTitle: 'Valorisation des stocks (liquidation) — Solelis',
 });
 
 export default function Layout({ children }: { children: React.ReactNode }) {

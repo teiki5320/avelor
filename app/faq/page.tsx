@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Questions fréquentes · AVELOR',
+  title: 'Questions fréquentes · Solelis',
   description:
     'Réponses aux questions les plus courantes sur la cessation des paiements, les procédures collectives, les dettes, la protection personnelle et le rebond.',
 };

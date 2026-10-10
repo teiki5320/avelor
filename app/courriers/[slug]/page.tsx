@@ -93,7 +93,7 @@ export default function CourrierDetailPage() {
   useEffect(() => {
     const merged: Record<string, string> = {};
     try {
-      const stored = sessionStorage.getItem('avelor_company');
+      const stored = sessionStorage.getItem('solelis_company');
       if (stored) Object.assign(merged, JSON.parse(stored));
     } catch {}
     try {
@@ -165,8 +165,8 @@ export default function CourrierDetailPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://avelor.vercel.app/' },
-      { '@type': 'ListItem', position: 2, name: 'Courriers', item: 'https://avelor.vercel.app/courriers' },
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://solelis.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Courriers', item: 'https://solelis.com/courriers' },
       { '@type': 'ListItem', position: 3, name: template?.titre ?? 'Courrier' },
     ],
   };
@@ -179,7 +179,7 @@ export default function CourrierDetailPage() {
       />
       {/* Entête imprimable — n'apparaît qu'à l'impression */}
       <div className="courrier-print-header hidden">
-        <div className="courrier-print-brand">AVELOR</div>
+        <div className="courrier-print-brand">Solelis</div>
         <div className="courrier-print-meta">
           {nomEntreprise && <span>{nomEntreprise} · </span>}
           <span>Document préparé le {todayFR}</span>

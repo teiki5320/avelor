@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Protéger votre famille et votre patrimoine · AVELOR',
+  title: 'Protéger votre famille et votre patrimoine · Solelis',
   description:
     'Résidence principale, régime matrimonial, cautions personnelles, protection des enfants : tout ce qu’il faut savoir pour protéger votre famille.',
 };
