@@ -1,5 +1,8 @@
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
+import { LYS_SVG } from '@/lib/marque';
+
+const LYS_DATA_URI = `data:image/svg+xml;base64,${Buffer.from(LYS_SVG).toString('base64')}`;
 
 // Couleur d'accent par catégorie (cohérent avec la charte Solelis).
 const ACCENTS: Record<string, string> = {
@@ -57,6 +60,8 @@ export async function GET(req: NextRequest) {
             maxWidth: 1000,
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+          <img src={LYS_DATA_URI} width={96} height={96} style={{ marginBottom: 12 }} />
           <div
             style={{
               fontSize: 40,

@@ -1,0 +1,24 @@
+/**
+ * Symbole Solelis : fleur de lys dorée simplifiée (lisible jusqu'à 16 px).
+ * Source unique du dessin, utilisée par l'image de partage (/api/og)
+ * et pour générer les icônes de public/ (favicon, icônes d'appli).
+ */
+
+const DEGRADE_OR = `<linearGradient id="or" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3D98C"/><stop offset="1" stop-color="#C8933A"/></linearGradient>`;
+
+const PETALE_LATERAL = `<g id="moitie"><path d="M54 59 C57 47 64 38 74 36 C86 34 94 44 90 55 C88 61 81 63 78 58 C82 58 85 54 83 49 C80 43 71 44 66 50 C62 54 60 58 60 62 Z"/><path d="M55 66 C63 67 69 73 68 82 C64 76 59 72 53 70 Z"/></g>`;
+
+const LYS = `<g fill="url(#or)"><path d="M50 9 C61 22 65 38 57 56 L50 62 L43 56 C35 38 39 22 50 9 Z"/><use href="#moitie"/><use href="#moitie" transform="translate(100 0) scale(-1 1)"/><rect x="33" y="58" width="34" height="7" rx="2.5"/><path d="M44 65 L56 65 L50 91 Z"/></g>`;
+
+/** Fleur de lys seule, fond transparent (viewBox 100 × 100). */
+export const LYS_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs>${DEGRADE_OR}${PETALE_LATERAL}</defs>${LYS}</svg>`;
+
+/**
+ * Fleur de lys sur fond bleu nuit.
+ * @param arrondi rayon des coins du fond (0 = carré plein, pour les icônes « maskable » et iOS)
+ * @param echelle taille de la fleur par rapport au fond (1 = pleine taille)
+ */
+export function iconeSvg(arrondi = 22, echelle = 1): string {
+  const decalage = (100 - 100 * echelle) / 2;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs>${DEGRADE_OR}${PETALE_LATERAL}</defs><rect width="100" height="100" rx="${arrondi}" fill="#0A1628"/><g transform="translate(${decalage} ${decalage}) scale(${echelle})">${LYS}</g></svg>`;
+}
