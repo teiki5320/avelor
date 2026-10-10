@@ -343,6 +343,18 @@ input, button, textarea {
   }
   main { padding-top: 0 !important; }
   section { break-inside: avoid; }
+
+  /* Accordéons de la fiche (BlocAccordeon) : le contenu replié est dans le
+     DOM avec l'attribut hidden → on l'imprime en entier. */
+  .accordeon-panel[hidden] { display: block !important; }
+  .accordeon-contenu {
+    height: auto !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+  }
+  .accordeon-chevron { display: none !important; }
+  /* Un bloc déplié peut dépasser une page : on autorise la coupure. */
+  section.accordeon { break-inside: auto !important; }
   a { text-decoration: underline; }
   a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666; }
   a[href^="tel:"]::after,
