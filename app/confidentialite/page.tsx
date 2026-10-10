@@ -59,6 +59,9 @@ export default function ConfidentialitePage() {
               solelis@toakeur.com
             </a>
           </p>
+          <p className="mt-3 text-sm text-navy/60">
+            Responsable du traitement : ALOHASH (TOA CORP), La Petite Sigonnière, 85190 Maché.
+          </p>
         </div>
       </div>
     </section>

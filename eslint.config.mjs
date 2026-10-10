@@ -22,6 +22,8 @@ const config = [
       'test-results/**',
       'next-env.d.ts',
       'public/sw.js',
+      // Copies de travail des assistants (déjà exclues des tests et du typage).
+      '.claude/**',
     ],
   },
   ...compat.extends('next/core-web-vitals'),

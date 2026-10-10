@@ -3,15 +3,15 @@ import Link from 'next/link';
 
 /**
  * Identification de l'éditeur (LCEN, art. 6 III).
- * À COMPLÉTER par le ou la propriétaire du site : remplacer chaque « [à compléter] ».
+ * Mêmes informations que les mentions légales publiées sur toakeur.com.
  */
 const EDITEUR = {
-  nomOuRaisonSociale: '[à compléter]',
-  formeEtCapital: '[à compléter — forme juridique et capital social, si société]',
-  adresse: '[à compléter]',
-  siren: '[à compléter — SIREN et ville d’immatriculation au RCS, ou mention « entrepreneur·e individuel·le »]',
-  directeurPublication: '[à compléter]',
-  telephone: '[à compléter]',
+  nomOuRaisonSociale: 'ALOHASH, nom commercial TOA CORP',
+  formeEtCapital: 'Société par actions simplifiée (SAS) au capital de 200 €',
+  adresse: 'La Petite Sigonnière, 85190 Maché, France',
+  siren: 'RCS La Roche-sur-Yon 938 522 596',
+  tva: 'FR16 938 522 596',
+  directeurPublication: 'le président de la société ALOHASH',
   email: 'solelis@toakeur.com',
 };
 
@@ -42,10 +42,10 @@ export default function MentionsLegalesPage() {
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li><strong>Nom ou raison sociale</strong> : {EDITEUR.nomOuRaisonSociale}</li>
             <li><strong>Forme juridique et capital</strong> : {EDITEUR.formeEtCapital}</li>
-            <li><strong>Adresse</strong> : {EDITEUR.adresse}</li>
+            <li><strong>Siège social</strong> : {EDITEUR.adresse}</li>
             <li><strong>SIREN / RCS</strong> : {EDITEUR.siren}</li>
             <li><strong>Directeur·rice de la publication</strong> : {EDITEUR.directeurPublication}</li>
-            <li><strong>Téléphone</strong> : {EDITEUR.telephone}</li>
+            <li><strong>TVA intracommunautaire</strong> : {EDITEUR.tva}</li>
             <li>
               <strong>Email</strong> :{' '}
               <a href={`mailto:${EDITEUR.email}`} className="text-bleu-fonce underline">{EDITEUR.email}</a>
