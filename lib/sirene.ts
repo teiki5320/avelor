@@ -235,6 +235,18 @@ export function determinerDepartement(
   );
 }
 
+/**
+ * Premier nom non vide. `[].join(' ')` renvoie « » (chaîne vide, pas
+ * null) : avec `??` le repli « Votre entreprise » n'était jamais atteint.
+ */
+export function choisirNom(...candidats: (string | null | undefined)[]): string {
+  for (const c of candidats) {
+    const nom = (c ?? '').trim();
+    if (nom) return nom;
+  }
+  return 'Votre entreprise';
+}
+
 function fallbackFor(siret: string): CompanyData {
   return {
     siret,
@@ -275,15 +287,15 @@ async function fetchFromRechercheEntreprises(
     const departement = matching?.commune || matching?.code_postal
       ? determinerDepartement(matching.commune, matching.code_postal, matching.departement)
       : determinerDepartement(result.siege?.commune, codePostal, result.siege?.departement);
-    const nom: string =
-      result.nom_complet ??
-      result.nom_raison_sociale ??
-      [result.prenom_usuel, result.nom].filter(Boolean).join(' ') ??
-      'Votre entreprise';
+    const nom = choisirNom(
+      result.nom_complet,
+      result.nom_raison_sociale,
+      [result.prenom_usuel, result.nom].filter(Boolean).join(' '),
+    );
 
     return {
       siret,
-      nom: nom.trim(),
+      nom,
       formeJuridique: formatForme(result.nature_juridique),
       naf: result.activite_principale ?? '',
       nafLabel: result.libelle_activite_principale ?? undefined,
@@ -325,10 +337,10 @@ async function fetchFromInseeSirene(
     const codePostal: string = addr.codePostalEtablissement ?? '';
     const departement = determinerDepartement(addr.codeCommuneEtablissement, codePostal);
 
-    const nom =
-      unit.denominationUniteLegale ??
-      [unit.prenomUsuelUniteLegale, unit.nomUniteLegale].filter(Boolean).join(' ') ??
-      'Votre entreprise';
+    const nom = choisirNom(
+      unit.denominationUniteLegale,
+      [unit.prenomUsuelUniteLegale, unit.nomUniteLegale].filter(Boolean).join(' '),
+    );
 
     const addressParts = [
       addr.numeroVoieEtablissement,
@@ -340,7 +352,7 @@ async function fetchFromInseeSirene(
 
     return {
       siret,
-      nom: nom.trim(),
+      nom,
       formeJuridique: formatForme(unit.categorieJuridiqueUniteLegale),
       naf: unit.activitePrincipaleUniteLegale ?? '',
       nafLabel: etab.activitePrincipaleEtablissement ?? unit.activitePrincipaleUniteLegale,

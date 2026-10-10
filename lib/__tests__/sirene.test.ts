@@ -5,6 +5,7 @@ import {
   departementDepuisCommune,
   departementDepuisCodePostal,
   determinerDepartement,
+  choisirNom,
 } from '../sirene';
 import { getDepartement } from '../organismes';
 import { getRegionFromDepartement } from '../aidesRegionales';
@@ -160,6 +161,14 @@ describe('département depuis le code postal', () => {
   });
 });
 
+describe('choisirNom', () => {
+  it('ignore les chaînes vides ou blanches', () => {
+    expect(choisirNom('', '  ', 'Jean DUPONT')).toBe('Jean DUPONT');
+    expect(choisirNom(undefined, null, [].join(' '))).toBe('Votre entreprise');
+    expect(choisirNom('  ACME  ')).toBe('ACME');
+  });
+});
+
 describe('fetchSirene (API recherche-entreprises simulée)', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
@@ -202,6 +211,14 @@ describe('fetchSirene (API recherche-entreprises simulée)', () => {
       vi.fn().mockResolvedValue(reponse({ code_postal: '97400', commune: '97411', libelle_commune: 'SAINT-DENIS' })),
     );
     expect((await fetchSirene('34963839500021')).departement).toBe('974');
+  });
+
+  it('nom vide (diffusion partielle) → « Votre entreprise »', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue(reponse({ code_postal: '75001' }, { nom_complet: '', nom_raison_sociale: null })),
+    );
+    expect((await fetchSirene('34963839500021')).nom).toBe('Votre entreprise');
   });
 
   it('sans réponse : département vide, jamais les 2 premiers chiffres du SIREN', async () => {
