@@ -1,7 +1,5 @@
-import { ImageResponse } from '@vercel/og';
+import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
-
-export const runtime = 'edge';
 
 // Couleur d'accent par catégorie (cohérent avec la charte Avelor).
 const ACCENTS: Record<string, string> = {

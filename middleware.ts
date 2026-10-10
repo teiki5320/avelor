@@ -63,7 +63,9 @@ export function middleware(request: NextRequest) {
   }
 
   const ip =
-    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+    request.headers.get('cf-connecting-ip') ??
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    'unknown';
   const pathname = request.nextUrl.pathname;
   const method = request.method;
 
