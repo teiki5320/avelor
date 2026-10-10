@@ -56,18 +56,23 @@ describe('sendMagicLink', () => {
   });
 
   it('retourne false si Resend renvoie une erreur', async () => {
-    mockSend.mockResolvedValueOnce({ error: { message: 'quota exceeded' } });
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    mockSend.mockResolvedValueOnce({ error: { name: 'validation_error', message: 'quota exceeded' } });
 
     const result = await sendMagicLink('test@example.com', 'token-err');
 
     expect(result).toBe(false);
+    expect(warn).toHaveBeenCalledWith('[resend] envoi refusé :', 'validation_error', 'quota exceeded');
+    warn.mockRestore();
   });
 
   it('retourne false si Resend lance une exception', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     mockSend.mockRejectedValueOnce(new Error('network error'));
 
     const result = await sendMagicLink('test@example.com', 'token-crash');
 
     expect(result).toBe(false);
+    warn.mockRestore();
   });
 });

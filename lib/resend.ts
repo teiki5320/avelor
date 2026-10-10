@@ -35,8 +35,14 @@ export async function sendMagicLink(email: string, token: string): Promise<boole
   <p style="font-size:13px;color:#7c8597;margin-top:32px">Solelis · fiche confidentielle · vous seul avez ce lien</p>
 </div>`,
     });
-    return !error;
-  } catch {
+    if (error) {
+      // Raison donnée par Resend (domaine non vérifié, adresse refusée…) — jamais la clé.
+      console.warn('[resend] envoi refusé :', error.name ?? '', error.message ?? '');
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.warn('[resend] échec de la requête', e instanceof Error ? e.message : '');
     return false;
   }
 }
