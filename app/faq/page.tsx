@@ -214,7 +214,7 @@ export default function FAQPage() {
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
     />
-    <main id="contenu-principal" className="mx-auto max-w-3xl px-5 pb-24 pt-28 sm:pt-32">
+    <div className="mx-auto max-w-3xl px-5 pb-24 pt-28 sm:pt-32">
       <h1 className="font-display text-3xl text-navy sm:text-4xl">
         Questions fréquentes
       </h1>
@@ -287,7 +287,7 @@ export default function FAQPage() {
 
       {/* Sections */}
       {SECTIONS.map((section) => (
-        <section key={section.id} id={section.id} className="mt-12">
+        <section key={section.id} id={section.id} className="mt-12 scroll-mt-28">
           <h2 className="font-display text-xl text-navy sm:text-2xl">
             {section.titre}
           </h2>
@@ -361,7 +361,7 @@ export default function FAQPage() {
           Commencer
         </Link>
       </div>
-    </main>
+    </div>
     </>
   );
 }
