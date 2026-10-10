@@ -19,6 +19,8 @@ module.exports = {
         vert: 'rgb(var(--c-vert) / <alpha-value>)',
         // Fond de bouton à texte blanc : le vert standard ne tient pas le AA
         'vert-fonce': 'rgb(var(--c-vert-fonce) / <alpha-value>)',
+        // Texte orange lisible (AA) sur fond clair : text-jaune ne tient pas 4.5:1
+        'jaune-fonce': 'rgb(var(--c-jaune-fonce) / <alpha-value>)',
       },
       fontFamily: {
         display: ['var(--font-playfair)', 'Georgia', 'serif'],
