@@ -69,8 +69,19 @@ interface InseeSireneApiResponse {
 
 // Free, no-key government API. Backed by Sirene data.
 const RECHERCHE_BASE = 'https://recherche-entreprises.api.gouv.fr/search';
-// Fallback (requires key, kept for completeness).
-const SIRENE_BASE = 'https://api.insee.fr/entreprises/sirene/V3';
+// Repli : API Sirene de l'INSEE (portail-api.insee.fr), clé « X-INSEE-Api-Key-Integration ».
+// L'ancienne adresse /entreprises/sirene/V3 (jeton Bearer) ne répond plus.
+const SIRENE_BASE = 'https://api.insee.fr/api-sirene/3.11';
+
+/**
+ * L'API recherche-entreprises limite le nombre d'appels par adresse IP. Depuis
+ * Cloudflare, l'adresse de sortie est partagée avec d'autres sites : elle
+ * répond souvent 429 (trop de requêtes). On réessaie après une courte pause.
+ * Délais en millisecondes avant chaque nouvel essai.
+ */
+export const DELAIS_REESSAI = [250, 600, 1200];
+
+const attendre = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
  * Catégories juridiques INSEE (niveau III) les plus fréquentes.
@@ -256,8 +267,17 @@ async function fetchFromRechercheEntreprises(
 ): Promise<CompanyData | null> {
   try {
     const url = `${RECHERCHE_BASE}?q=${siret}&page=1&per_page=1`;
-    const res = await fetchWithTimeout(url, { next: { revalidate: 3600 } });
-    if (!res.ok) return null;
+    let res = await fetchWithTimeout(url, { cache: 'no-store' });
+    // 429 (limite d'appels) ou erreur passagère du serveur : on réessaie.
+    for (const delai of DELAIS_REESSAI) {
+      if (res.status !== 429 && res.status < 500) break;
+      await attendre(delai);
+      res = await fetchWithTimeout(url, { cache: 'no-store' });
+    }
+    if (!res.ok) {
+      console.warn('[sirene] recherche-entreprises :', res.status);
+      return null;
+    }
     const json: SireneApiResponse = await res.json();
     const result = json?.results?.[0];
     if (!result) return null;
@@ -294,7 +314,8 @@ async function fetchFromRechercheEntreprises(
       departement,
       fetched: true,
     };
-  } catch {
+  } catch (e) {
+    console.warn('[sirene] recherche-entreprises : échec', e instanceof Error ? e.name : '');
     return null;
   }
 }
@@ -308,12 +329,16 @@ async function fetchFromInseeSirene(
   try {
     const res = await fetchWithTimeout(`${SIRENE_BASE}/siret/${siret}`, {
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        'X-INSEE-Api-Key-Integration': apiKey,
         Accept: 'application/json',
       },
-      next: { revalidate: 3600 },
+      cache: 'no-store',
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      // Raison seulement (clé refusée, SIRET inconnu…) — jamais la clé.
+      console.warn('[sirene] INSEE :', res.status);
+      return null;
+    }
     const json: InseeSireneApiResponse = await res.json();
     const etab = json?.etablissement;
     if (!etab) return null;
@@ -351,7 +376,8 @@ async function fetchFromInseeSirene(
       departement,
       fetched: true,
     };
-  } catch {
+  } catch (e) {
+    console.warn('[sirene] INSEE : échec', e instanceof Error ? e.name : '');
     return null;
   }
 }
