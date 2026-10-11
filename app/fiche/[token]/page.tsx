@@ -71,7 +71,8 @@ async function loadFiche(
   const rec = await getFicheByTokenMemo(token);
   if (!rec) return null;
   let company_data = rec.company_data as CompanyData;
-  if (!company_data?.siret) {
+  // Entreprise introuvable à la création (API indisponible) : on retente à l'affichage.
+  if (!company_data?.siret || !company_data.fetched) {
     company_data = await fetchSirene(rec.siret);
   }
   return {

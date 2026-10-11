@@ -6,6 +6,7 @@ import {
   departementDepuisCodePostal,
   determinerDepartement,
   choisirNom,
+  DELAIS_REESSAI,
 } from '../sirene';
 import { getDepartement } from '../organismes';
 import { getRegionFromDepartement } from '../aidesRegionales';
@@ -226,5 +227,55 @@ describe('fetchSirene (API recherche-entreprises simulée)', () => {
     const c = await fetchSirene('34963839500021');
     expect(c.fetched).toBe(false);
     expect(c.departement).toBe('');
+  });
+
+  it('429 (limite d\'appels) puis succès : on réessaie et on trouve l\'entreprise', async () => {
+    vi.useFakeTimers();
+    const f = vi
+      .fn()
+      .mockResolvedValueOnce(new Response('', { status: 429 }))
+      .mockResolvedValueOnce(new Response('', { status: 429 }))
+      .mockResolvedValueOnce(reponse({ code_postal: '75009', commune: '75109', libelle_commune: 'PARIS' }));
+    vi.stubGlobal('fetch', f);
+    const promesse = fetchSirene('34963839500021');
+    await vi.runAllTimersAsync();
+    const c = await promesse;
+    vi.useRealTimers();
+    expect(f).toHaveBeenCalledTimes(3);
+    expect(c.fetched).toBe(true);
+    expect(c.ville).toBe('PARIS');
+  });
+
+  it('toujours 429 : abandon après les essais prévus, puis repli INSEE avec la clé en en-tête', async () => {
+    vi.useFakeTimers();
+    vi.stubEnv('INSEE_API_KEY', 'cle-de-test');
+    const f = vi.fn().mockImplementation((url: string) =>
+      Promise.resolve(
+        url.includes('api.insee.fr')
+          ? new Response(
+              JSON.stringify({
+                etablissement: {
+                  uniteLegale: { denominationUniteLegale: 'ACME' },
+                  adresseEtablissement: { codePostalEtablissement: '75009', codeCommuneEtablissement: '75109', libelleCommuneEtablissement: 'PARIS' },
+                },
+              }),
+              { status: 200 },
+            )
+          : new Response('', { status: 429 }),
+      ),
+    );
+    vi.stubGlobal('fetch', f);
+    const promesse = fetchSirene('34963839500021');
+    await vi.runAllTimersAsync();
+    const c = await promesse;
+    vi.useRealTimers();
+    vi.unstubAllEnvs();
+    const appelsGouv = f.mock.calls.filter(([u]) => String(u).includes('recherche-entreprises'));
+    expect(appelsGouv).toHaveLength(1 + DELAIS_REESSAI.length);
+    const [urlInsee, initInsee] = f.mock.calls.find(([u]) => String(u).includes('api.insee.fr'))!;
+    expect(urlInsee).toBe('https://api.insee.fr/api-sirene/3.11/siret/34963839500021');
+    expect(initInsee.headers['X-INSEE-Api-Key-Integration']).toBe('cle-de-test');
+    expect(c.nom).toBe('ACME');
+    expect(c.departement).toBe('75');
   });
 });
